@@ -1,0 +1,1062 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  CH32F103C8T6 是南京沁恒微电子（WCH）推出的一款 32 位微控制器，兼容 STM32F103C8T6（意法半导体的经典型号），采用 ARM Cortex-M3 内核，性能与成本平衡，适合替代 STM32 在各类嵌入式项目中的应用。以下是其核心特性和应用场景：  （1）核心参数   	 	内核与性能  &lt;ul&gt; 	&lt;li&gt;32 位 ARM Cor">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）">
+<meta property="og:url" content="http://example.com/2025/07/09/%E3%80%90MCU%E3%80%91%E3%80%90CH32%E3%80%91%E5%9F%BA%E4%BA%8ECH32F103C8T6%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%BA%93%E5%92%8CMDK%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  CH32F103C8T6 是南京沁恒微电子（WCH）推出的一款 32 位微控制器，兼容 STM32F103C8T6（意法半导体的经典型号），采用 ARM Cortex-M3 内核，性能与成本平衡，适合替代 STM32 在各类嵌入式项目中的应用。以下是其核心特性和应用场景：  （1）核心参数   	 	内核与性能  &lt;ul&gt; 	&lt;li&gt;32 位 ARM Cor">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a46b471c874f43d4bdcd635adb657b31.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e0106e842e0d46afb4d1bccf58e82826.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d47d5962d0ec47c79066b6c7e578261e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cccc3e1d12b244ffb890ecbf5ba8fe1c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b1d41274734b49adbc78e8cc88e347c3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c4005b7990de4fb7a82c4634b88711b3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a048618c8b3047248ce131bf5eb7c6df.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bad8fa30d867434e89ba4d21a6d01e42.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c4d57684f5947c1b1fc690b4c154e62.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4b2e8e79cce94ee79948b2c3ec3e57e9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b2a898c6bf24ce7994b9da023556931.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9add4bb019b44ed18f30366408a498cc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9a2bd756343d4d7d894b91b7d106f00e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b708e0d566f444fb8d9f7072ec13ae07.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/70244b0d11f1486f9cd26e74940c5447.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/95255badcd744260a588b44cf17c3521.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fc29630b9916450988bfd4f4d256f20c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dcab07955a874d6ab4dfdfa6ca6299ad.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bf574dbd7217423d8d46743ffeac0953.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/49958410cd6c4a3a864089c936b2837f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0af3448aeb4a4eaeaaa960fbbaab674f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e504f3a0c16e43b8979999bb96d954be.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3ac8f692784643bf997b1c8b8ffbfa77.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/56495ff8bc3c42f08ff5884625f65dfe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4ecf2791bc794450a2a12b14450bc4e0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a53c8f1bacd84fe182380f0209f9f6ff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8b04d82919814b899136dab9d1bb8e5c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/697674279e6c4bd0974b31a0a179f137.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb7219e3c2754aa281f49472617f23bf.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e7e14ded568349be8ce520444416afbd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5bbd4480e2ab4886b6e1c89e57737b57.gif">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758">
+<meta property="article:published_time" content="2025-07-09T14:53:23.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="CH32 单片机 keil 嵌入式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/a46b471c874f43d4bdcd635adb657b31.jpeg">
+  
+  
+  
+  <title>【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动） - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-09 22:53" pubdate>
+          2025年7月9日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          11 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>CH32F103C8T6 是南京沁恒微电子（WCH）推出的一款 32 位微控制器，<strong>兼容 STM32F103C8T6</strong>（意法半导体的经典型号），采用 ARM Cortex-M3 内核，性能与成本平衡，适合替代 STM32 在各类嵌入式项目中的应用。以下是其核心特性和应用场景：</p>
+
+<h3><strong>（1）核心参数</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>内核与性能</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;32 位 ARM Cortex-M3 内核，最高 72MHz 主频，支持 Thumb-2 指令集。&lt;/li&gt;
+	&lt;li&gt;1.25DMIPS/MHz，内置硬件乘法器和除法器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;存储与外设&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;64KB Flash（支持 ICP/IAP）、20KB SRAM。&lt;/li&gt;
+	&lt;li&gt;丰富通信接口：3 个 USART、2 个 SPI、2 个 I2C、1 个 USB 2.0 全速（12Mbps）、CAN 2.0B。&lt;/li&gt;
+	&lt;li&gt;1 个 12 位 ADC（16 通道，最高 1MHz 采样率）、2 个 12 位 DAC。&lt;/li&gt;
+	&lt;li&gt;7 个定时器（包括高级定时器），支持 PWM 输出和编码器接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;工作条件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;供电电压：2.0V~3.6V，工作温度：-40&amp;deg;C~+85&amp;deg;C（工业级）。&lt;/li&gt;
+	&lt;li&gt;低功耗模式：睡眠、停止、待机。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3><strong>（2）与 STM32F103C8T6 的兼容性</strong></h3>
+
+<ul>
+	<li><strong>硬件引脚兼容</strong>：完全兼容 STM32F103C8T6 的 LQFP48 封装，可直接替换。</li>
+	<li><strong>软件兼容</strong>：支持标准库（需使用 WCH 提供的固件库）和 HAL 库，大部分 STM32 代码可无缝移植。</li>
+	<li><strong>工具链支持</strong>：
+	<ul>
+		<li>开发环境：Keil MDK、IAR、GCC（如 OpenOCD）。</li>
+		<li>调试接口：支持 SWD/JTAG（与 STM32 相同）。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3><strong>（3）应用场景</strong></h3>
+
+<ul>
+	<li><strong>工业控制</strong>：电机控制、传感器数据采集、PLC 模块。</li>
+	<li><strong>消费电子</strong>：智能家居设备、手持设备、无线充电。</li>
+	<li><strong>通信设备</strong>：串口转 USB/CAN 转换器、网关。</li>
+	<li><strong>替代方案</strong>：在 STM32 缺货或成本敏感场景中作为直接替代品。</li>
+</ul>
+
+<h3><strong>（4）优势与注意事项</strong></h3>
+
+<ul>
+	<li>
+	<p><strong>优势</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;成本更低&lt;/strong&gt;：价格通常低于 STM32F103C8T6。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;国产支持&lt;/strong&gt;：供货稳定，技术支持响应快。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;扩展特性&lt;/strong&gt;：部分型号增加了 USB 和 CAN 等接口（如 CH32F103xC 系列）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;注意事项&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;固件库差异&lt;/strong&gt;：虽然 API 与 STM32 类似，但细节可能不同，需参考 WCH 官方文档。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;生态资源较少&lt;/strong&gt;：第三方库和教程不如 STM32 丰富。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;性能微调&lt;/strong&gt;：部分外设（如 ADC）的精度和稳定性可能略逊于 STM32。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3><strong>（5）开发资源</strong></h3>
+
+<ul>
+	<li><strong>官方资源</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;沁恒官网（&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5&quot; data-link-title=&quot;www.wch.cn&quot; href=&quot;http://www.wch.cn/&quot; title=&quot;www.wch.cn&quot;&gt;www.wch.cn&lt;/a&gt;）提供固件库、数据手册和开发工具（如 WCH-Link）。&lt;/li&gt;
+	&lt;li&gt;支持标准的 ARM 开发工具链（如 Keil、GCC）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;社区支持&lt;/strong&gt;：国内开源社区（如 STM32 论坛）有部分 CH32 移植经验分享。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="CH32F103C8T6的官方示例链接" target="_blank" rel="noopener" href="https://www.wch.cn/search.html" title="CH32F103C8T6的官方示例链接">CH32F103C8T6的官方示例链接</a></p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a46b471c874f43d4bdcd635adb657b31.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p>安装CH32F103C8T6的MDK支持包</p>
+
+<p><img alt="" height="408" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e0106e842e0d46afb4d1bccf58e82826.png" srcset="/img/loading.gif" lazyload width="825" /></p>
+
+<h1>二、工程搭建</h1>
+
+<h2>1.新建文件夹CH32_Example，然后再在其内新建文件夹</h2>
+
+<p><img alt="" height="229" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d47d5962d0ec47c79066b6c7e578261e.png" srcset="/img/loading.gif" lazyload width="797" /></p>
+
+<p><img alt="" height="480" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cccc3e1d12b244ffb890ecbf5ba8fe1c.png" srcset="/img/loading.gif" lazyload width="826" /></p>
+
+<h2>&nbsp;2.\CH32资料\CH32F103\GPIO_PC13LED Project下的ch32f10x_conf.h放到我们的工程文件夹下的config文件夹下</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;使用了商家给的示例工程方便来移植整理，官方的其实也可以，但是外设源码是分开的需要自己整理，所以这里我就使用了商家给的来移植。</p>
+
+<p><img alt="" height="688" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b1d41274734b49adbc78e8cc88e347c3.png" srcset="/img/loading.gif" lazyload width="815" /></p>
+
+<p><img alt="" height="253" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c4005b7990de4fb7a82c4634b88711b3.png" srcset="/img/loading.gif" lazyload width="835" /></p>
+
+<h2>3.将.s启动文件放到startup文件夹下</h2>
+
+<p><img alt="" height="258" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a048618c8b3047248ce131bf5eb7c6df.png" srcset="/img/loading.gif" lazyload width="813" /></p>
+
+<h2>4.将\CH32资料\CH32F103\GPIO_PC13LED Project\SRC\CMSIS下的内核文件放到cmsis文件夹下</h2>
+
+<p><img alt="" height="291" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bad8fa30d867434e89ba4d21a6d01e42.png" srcset="/img/loading.gif" lazyload width="822" /></p>
+
+<p><img alt="" height="278" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c4d57684f5947c1b1fc690b4c154e62.png" srcset="/img/loading.gif" lazyload width="861" /></p>
+
+<h2>5.将\CH32资料\CH32F103\GPIO_PC13LED Project下的system_ch32f10x.h/c系统文件放到system文件夹下</h2>
+
+<p><img alt="" height="712" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4b2e8e79cce94ee79948b2c3ec3e57e9.png" srcset="/img/loading.gif" lazyload width="850" /></p>
+
+<p><img alt="" height="299" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0b2a898c6bf24ce7994b9da023556931.png" srcset="/img/loading.gif" lazyload width="781" /></p>
+
+<h2>6.将\CH32资料\CH32F103\GPIO_PC13LED Project\SRC\StdPeriphDriver下的外设头文件和c文件放到firmware下</h2>
+
+<p><img alt="" height="275" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9add4bb019b44ed18f30366408a498cc.png" srcset="/img/loading.gif" lazyload width="839" /></p>
+
+<h2>7.将\CH32资料\CH32F103\GPIO_PC13LED Project下的ch32f10x_it.h/c和main.c的文件放到user下</h2>
+
+<p><img alt="" height="708" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9a2bd756343d4d7d894b91b7d106f00e.png" srcset="/img/loading.gif" lazyload width="837" /></p>
+
+<h2>8.打开MDK新建工程在Project下，并选择CH32的支持包</h2>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b708e0d566f444fb8d9f7072ec13ae07.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="582" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/70244b0d11f1486f9cd26e74940c5447.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<h2>9.重新建立工程结构</h2>
+
+<p><img alt="" height="591" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/95255badcd744260a588b44cf17c3521.png" srcset="/img/loading.gif" lazyload width="768" /></p>
+
+<h2>10.添加文件</h2>
+
+<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fc29630b9916450988bfd4f4d256f20c.png" srcset="/img/loading.gif" lazyload width="774" /></p>
+
+<p><img alt="" height="581" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dcab07955a874d6ab4dfdfa6ca6299ad.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<p><img alt="" height="567" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bf574dbd7217423d8d46743ffeac0953.png" srcset="/img/loading.gif" lazyload width="765" /></p>
+
+<p><img alt="" height="574" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/49958410cd6c4a3a864089c936b2837f.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<p><img alt="" height="573" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0af3448aeb4a4eaeaaa960fbbaab674f.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<p><img alt="" height="572" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e504f3a0c16e43b8979999bb96d954be.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<h2>11.添加商家给的额外的库</h2>
+
+<p><img alt="" height="355" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3ac8f692784643bf997b1c8b8ffbfa77.png" srcset="/img/loading.gif" lazyload width="795" /></p>
+
+<p><img alt="" height="483" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/56495ff8bc3c42f08ff5884625f65dfe.png" srcset="/img/loading.gif" lazyload width="751" /></p>
+
+<p><img alt="" height="322" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4ecf2791bc794450a2a12b14450bc4e0.png" srcset="/img/loading.gif" lazyload width="808" /></p>
+
+<p><img alt="" height="573" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a53c8f1bacd84fe182380f0209f9f6ff.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<h2>12.添加文件路径</h2>
+
+<p><img alt="" height="583" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8b04d82919814b899136dab9d1bb8e5c.png" srcset="/img/loading.gif" lazyload width="769" /></p>
+
+<h2>13.移去ch32f10x_usb_host.c</h2>
+
+<p><img alt="" height="1013" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/697674279e6c4bd0974b31a0a179f137.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb7219e3c2754aa281f49472617f23bf.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>14.编译完成</h2>
+
+<p><img alt="" height="1010" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e7e14ded568349be8ce520444416afbd.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1>三、代码编写</h1>
+
+<pre>
+<code class="language-cpp">/********************************** (C) COPYRIGHT *******************************
+* File Name          : main.c
+* Author             : WCH
+* Version            : V1.0.0
+* Date               : 2019/10/15
+* Description        : Main program body.
+*******************************************************************************/ 
+#include "debug.h"
+
+/* Global define */
+
+
+/* Global Variable */ 
+
+
+/*******************************************************************************
+* Function Name  : GPIO_Toggle_INIT
+* Description    : Initializes GPIOA.0
+* Input          : None
+* Return         : None
+*******************************************************************************/
+void GPIO_Toggle_INIT(void)
+{
+	GPIO_InitTypeDef  GPIO_InitStructure;
+
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOC,ENABLE);	    
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_13;              
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_PP;           
+	GPIO_InitStructure.GPIO_Speed=GPIO_Speed_50MHz;
+	GPIO_Init(GPIOC, &amp;GPIO_InitStructure);                  
+}
+
+/*******************************************************************************
+* Function Name  : main
+* Description    : Main program.
+* Input          : None
+* Return         : None
+*******************************************************************************/
+int main(void)
+{
+	NVIC_PriorityGroupConfig(NVIC_PriorityGroup_2);
+	Delay_Init();
+	//USART_Printf_Init(115200);
+	GPIO_Toggle_INIT();
+	//printf("SystemClk:%d\r\n",SystemCoreClock);
+	//printf("GPIO Toggle TEST\r\n");
+    
+	while(1)
+	{
+		Delay_Ms(1000);
+		GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_RESET);
+		Delay_Ms(1000);
+		GPIO_WriteBit(GPIOC, GPIO_Pin_13, Bit_SET);
+	}
+}
+
+
+
+</code></pre>
+
+<h1>四、实验效果</h1>
+
+<p><img alt="" height="450" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5bbd4480e2ab4886b6e1c89e57737b57.gif" srcset="/img/loading.gif" lazyload width="600" /></p>
+
+<p>示例工程链接：</p>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="https://github.com/Molesidy/CH32.git" target="_blank" rel="noopener" href="https://github.com/Molesidy/CH32.git" title="https://github.com/Molesidy/CH32.git"><span class="link-card-box" contenteditable="false"><span class="link-title">https://github.com/Molesidy/CH32.git</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/CH32.git</span></span></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/CH32-%E5%8D%95%E7%89%87%E6%9C%BA-keil-%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#CH32 单片机 keil 嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）</div>
+      <div>http://example.com/2025/07/09/【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月9日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="【SoC】【ESP32】ESP-IDF+VSCode的初步使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【SoC】【ESP32】ESP-IDF+VSCode的初步使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/" title="【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）">
+                        <span class="hidden-mobile">【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

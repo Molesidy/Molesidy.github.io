@@ -1,0 +1,1066 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联盛德的 W800 是一款优势显著的安全 IoT Wi-Fi &#x2F; 蓝牙双模 SoC 芯片。它采用 40 纳米工艺，QFN32 封装，尺寸仅 4mm x 4mm ，十分小巧。  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在性能方面，集成 32 位 XT804">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【SoC】【W800】基于W800的PWM实现">
+<meta property="og:url" content="http://example.com/2025/08/30/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EW800%E7%9A%84PWM%E5%AE%9E%E7%8E%B0/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联盛德的 W800 是一款优势显著的安全 IoT Wi-Fi &#x2F; 蓝牙双模 SoC 芯片。它采用 40 纳米工艺，QFN32 封装，尺寸仅 4mm x 4mm ，十分小巧。  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在性能方面，集成 32 位 XT804">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f727fb31fff244a0a0d7f4f6ea877b6c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3dc42f4f0a9f43259afa83f5d09c6a5b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/871b758c282743d2a1ef7800b6d0b89e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4dcbb1926ff14b4ab0a5830bc6c3c64c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/df3423fa905840f297c00615d610f805.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cb5dc953e72f46bd97a117473b41604f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d93bd91a83e94fc7adb9c2237a5a9298.png">
+<meta property="article:published_time" content="2025-08-30T12:12:45.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="SoC W800">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/f727fb31fff244a0a0d7f4f6ea877b6c.png">
+  
+  
+  
+  <title>【SoC】【W800】基于W800的PWM实现 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【SoC】【W800】基于W800的PWM实现"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-30 20:12" pubdate>
+          2025年8月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          15 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【SoC】【W800】基于W800的PWM实现</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;联盛德的 W800 是一款优势显著的安全 IoT Wi-Fi / 蓝牙双模 SoC 芯片。它采用 40 纳米工艺，QFN32 封装，尺寸仅 4mm x 4mm ，十分小巧。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在性能方面，集成 32 位 XT804 处理器，最高工作频率达 240MHz，内置 DSP、浮点运算单元，可满足高算例音视频算法等应用需求。其 Wi-Fi / 蓝牙射频性能在行业中颇具优势，支持 2.4G IEEE802.11b/g/n Wi-Fi 通讯协议，涵盖 Wi-Fi WMM/WMM-PS/WPA/WPA2/WPS 等，支持 20/40M 带宽工作模式，传输速率最高到 150Mbps ，还支持 STA、AP、APSTA 功能；蓝牙方面，支持 BT/BLE 双模工作模式及 BT/BLE4.2 协议 ，集成蓝牙基带处理器 / 协议处理器，支持蓝牙配网。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;W800 的安全特性突出，内置 TEE 安全引擎，代码可区分安全世界与非安全世界，集成 SASC/TIPC，能对内存及内部模块 / 接口配置安全属性，防止非安全代码访问；启用固件签名机制，实现安全 Boot / 升级，具备固件加密功能，且固件加密密钥使用非对称算法分发，增强密钥安全性，还集成了 RC4 256、AES 128 等硬件加解密模块。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;芯片内部资源丰富，内置 2MB Flash 与 288KB RAM ，支持大容量 PSRAM 扩展，集成 5 路高速 UART 接口（最高支持 2Mbps）、2 路 16 比特 ADC（最高采样率 1KHz）、1 个 I2C 控制器、GPIO 控制器、5 路 PWM 接口、1 路 Duplex I2S 控制器、7816（SIM 卡）接口等多种数字接口。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于这些特性，W800 适用于智能家电、智能家居、智能玩具、无线音视频、工业控制、医疗监护等广泛的物联网领域，能够为相关产品提供可靠的无线连接、高性能运算以及安全保障 。</p>
+
+<h1>二、开发环境准备</h1>
+
+<p>系统：win11</p>
+
+<p>开发板：W800_Arduino 开发板</p>
+
+<p>SDK版本：wm_iot_sdk_v2.4-rc</p>
+
+<p>IDE：VSCode</p>
+
+<h1>三、W800的PWM资源</h1>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="技术资料" target="_blank" rel="noopener" href="https://www.winnermicro.com/upload/1/editor/1614934550940.pdf" title="技术资料">技术资料</a></p>
+
+<h2>3.1 文档资料&nbsp;</h2>
+
+<p><img alt="" height="398" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f727fb31fff244a0a0d7f4f6ea877b6c.png" srcset="/img/loading.gif" lazyload width="642" /></p>
+
+<p><img alt="" height="227" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3dc42f4f0a9f43259afa83f5d09c6a5b.png" srcset="/img/loading.gif" lazyload width="851" /></p>
+
+<p><img alt="" height="230" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/871b758c282743d2a1ef7800b6d0b89e.png" srcset="/img/loading.gif" lazyload width="852" /></p>
+
+<p><img alt="" height="434" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4dcbb1926ff14b4ab0a5830bc6c3c64c.png" srcset="/img/loading.gif" lazyload width="853" /></p>
+
+<p><img alt="" height="121" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/df3423fa905840f297c00615d610f805.png" srcset="/img/loading.gif" lazyload width="865" /></p>
+
+<h2>3.2 SDK代码部分</h2>
+
+<pre>
+<code class="language-cpp">/**
+ * @brief     PWM work mode supported by W800
+ */
+enum wm_pwm_mode {
+    WM_PWM_OUT_INDPT,   /**&lt; independent output mode */
+    WM_PWM_OUT_2SYNC,   /**&lt; two channel sync output mode */
+    WM_PWM_OUT_ALLSYNC, /**&lt; all channel sync output mode */
+    WM_PWM_OUT_MC,      /**&lt; complement output mode */
+    WM_PWM_OUT_BRAKE,   /**&lt; brake output mode */
+    WM_PWM_IN_CAP,      /**&lt; capture for input mode */
+    WM_PWM_MODE_MAX
+};</code></pre>
+
+<p>这段代码定义了联盛德 W800 芯片支持的 PWM（脉冲宽度调制）工作模式枚举类型<code>enum wm_pwm_mode</code>，每种模式对应不同的功能场景：</p>
+
+<ul>
+	<li>
+	<p><code>WM_PWM_OUT_INDPT</code>：独立输出模式，各 PWM 通道独立工作，输出波形参数（频率、占空比等）可单独设置，适用于需要独立控制的场景（如 RGB LED 调色）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_OUT_2SYNC</code>：双通道同步输出模式，两组 PWM 通道同步工作，保持相同的频率和相位，适用于需要对称控制的设备（如电机正反转驱动）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_OUT_ALLSYNC</code>：全通道同步模式，所有 PWM 通道同步输出，波形完全一致，适合需要协同动作的多设备控制（如多路 LED 同步调光）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_OUT_MC</code>：互补输出模式，通道输出互为反相的 PWM 波形（一通道高电平时另一通道低电平），常用于 H 桥电路驱动（如直流电机调速）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_OUT_BRAKE</code>：制动输出模式，可快速将输出置于特定电平（如低电平），用于紧急停止场景（如电机刹车）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_IN_CAP</code>：输入捕获模式，此时 PWM 模块作为输入设备，用于测量外部信号的频率、占空比等参数（如脉冲计数、传感器信号检测）。</p>
+	</li>
+	<li>
+	<p><code>WM_PWM_MODE_MAX</code>：枚举边界值，用于模式合法性校验（如判断输入模式是否超出范围）。</p>
+	</li>
+</ul>
+
+<p>这些模式覆盖了输出控制、同步协同、输入检测等场景，体现了 W800 芯片 PWM 模块的灵活性，可满足物联网设备中电机控制、灯光调节、信号测量等多种需求。</p>
+
+<h1>四、PWM的API接口</h1>
+
+<p>&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="PWM API 参考 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/api_reference/driver/pwm.html#c.WM_DRV_PWM_MUTEX_TIMEOUT" title="PWM API 参考 — WinnerMicro 在线文档">PWM API 参考 &mdash; WinnerMicro 在线文档</a></p>
+
+<pre>
+<code class="language-cpp">wm_device_t *wm_drv_pwm_init(const char *name)</code></pre>
+
+<p>函数声明：<code>wm_device_t *wm_drv_pwm_init(const char *name)</code></p>
+
+<h3>功能翻译</h3>
+
+<p>初始化具有指定名称的 PWM 驱动及其相关参数。</p>
+
+<h3>备注说明</h3>
+
+<p>该函数通过提供的名称和参数初始化 PWM 驱动，同时为驱动上下文分配内存并初始化必要的数据结构。函数返回一个指向已初始化的 PWM 驱动设备的指针，可用于后续操作。</p>
+
+<h3>参数说明</h3>
+
+<ul>
+	<li><code>name</code>&nbsp;&ndash; [输入参数] PWM 驱动设备的名称（字符串类型）</li>
+</ul>
+
+<h3>返回值说明</h3>
+
+<ul>
+	<li>成功时：返回指向已初始化的 PWM 驱动设备的指针（<code>wm_device_t *</code>类型）</li>
+	<li>失败时：返回<code>NULL</code></li>
+</ul>
+
+<h3>补充解析</h3>
+
+<p>这是 W800 芯片 PWM 驱动的初始化函数，作用是：</p>
+
+<ol>
+	<li>根据设备名称（如 &quot;pwm0&quot;）找到对应的硬件 PWM 模块</li>
+	<li>完成底层硬件配置和内存资源分配</li>
+	<li>返回可用于后续操作的设备句柄（类似 &quot;设备 ID&quot;）</li>
+</ol>
+
+<p>后续调用<code>wm_drv_pwm_channel_start</code>等函数时，需要将此返回的指针作为第一个参数传入，以指定操作哪个 PWM 设备。例如：</p>
+
+<pre>
+<code>// 初始化名为"pwm0"的PWM设备
+wm_device_t *pwm_dev = wm_drv_pwm_init("pwm0");
+if (pwm_dev == NULL) {
+    // 初始化失败处理
+}</code></pre>
+
+<hr />
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="PWM API 参考 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/2.4-rc/api_reference/driver/pwm.html" title="PWM API 参考 — WinnerMicro 在线文档">PWM API 参考 &mdash; WinnerMicro 在线文档</a></p>
+
+<p>API可以在写代码时编写边了解，这里就不用过多文字的描述了，直接上示例代码。</p>
+
+<hr />
+<h1 style="background-color:transparent">五、正式代码环节</h1>
+
+<p>前情提要：</p>
+
+<p>WM的插件以及配置，看官网</p>
+
+<p><img alt="" height="791" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cb5dc953e72f46bd97a117473b41604f.png" srcset="/img/loading.gif" lazyload width="1338" /></p>
+
+<p><img alt="" height="568" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d93bd91a83e94fc7adb9c2237a5a9298.png" srcset="/img/loading.gif" lazyload width="1664" /></p>
+
+<h2>5.1 初始化</h2>
+
+<pre>
+<code class="hljs">void pwm_init(void)
+{
+    // 配置GPIOB_1为PWM功能
+    int ret = wm_drv_gpio_iomux_func_sel(GPIOB_1_NUM, PWM_FUNC_SEL);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("GPIOB_1 set PWM func failed!");
+        return;
+    }
+    
+    pwm_device = wm_drv_pwm_init("pwm");
+
+    // 配置PWM通道（假设GPIOB_1对应PWM通道0）
+    wm_drv_pwm_channel_cfg_t pwm_cfg = {
+        .channel = WM_PWM_CHANNEL_0,  // 对应GPIOB_1的PWM通道
+        .mode = WM_PWM_OUT_INDPT,     // 独立输出模式
+        .clkdiv = WM_PWM_CLKDIV_DEFAULT,  // 时钟分频
+        .period_cycle = 255-1,         // 周期（根据需求调整）
+        .duty_cycle = 0,            // 占空比（根据需求调整）
+        .autoload = true              // 自动加载参数
+    };
+
+    // 初始化PWM通道
+    ret = wm_drv_pwm_channel_init(pwm_device, &amp;pwm_cfg);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("PWM channel init failed!");
+        return;
+    }
+
+    // 启动PWM输出
+    ret = wm_drv_pwm_channels_start(pwm_device);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("PWM start failed!");
+        return;
+    }
+}</code></pre>
+
+<h2>5.2 创建任务test</h2>
+
+<pre>
+<code class="hljs">void test_task(void *parameters)
+{
+    int duty=0;
+    pwm_init();
+
+    while (1) {
+        
+        if(duty &gt; 255) {
+            duty = 0;  // 重置占空比
+        }
+        wm_drv_pwm_set_channel_duty(pwm_device, WM_PWM_CHANNEL_0, duty++);
+
+
+        vTaskDelay(pdMS_TO_TICKS(100));  // 每秒输出一次日志
+    }
+
+    vTaskDelete(NULL);
+}</code></pre>
+
+<h2>5.3 全代码</h2>
+
+<pre>
+<code class="hljs">#define LOG_TAG "test"
+#include "wm_log.h"
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+#include "wm_drv_gpio.h"
+#include "wm_drv_pwm.h"
+
+#define GPIOB_1_NUM WM_GPIO_NUM_17  /*PB1*/
+#define PWM_FUNC_SEL WM_GPIO_IOMUX_FUN2  // 替换为PWM对应的复用功能序号
+
+ wm_device_t *pwm_device = NULL;
+
+void pwm_init(void)
+{
+    // 配置GPIOB_1为PWM功能
+    int ret = wm_drv_gpio_iomux_func_sel(GPIOB_1_NUM, PWM_FUNC_SEL);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("GPIOB_1 set PWM func failed!");
+        return;
+    }
+    // uint8_t ret;
+    // wm_drv_pwm_channel_cfg_t cfg = { 0 };
+    
+    pwm_device = wm_drv_pwm_init("pwm");
+
+    // 配置PWM通道（假设GPIOB_1对应PWM通道0）
+    wm_drv_pwm_channel_cfg_t pwm_cfg = {
+        .channel = WM_PWM_CHANNEL_0,  // 对应GPIOB_1的PWM通道
+        .mode = WM_PWM_OUT_INDPT,     // 独立输出模式
+        .clkdiv = WM_PWM_CLKDIV_DEFAULT,  // 时钟分频
+        .period_cycle = 255-1,         // 周期（根据需求调整）
+        .duty_cycle = 0,            // 占空比（根据需求调整）
+        .autoload = true              // 自动加载参数
+    };
+
+    // 初始化PWM通道
+    ret = wm_drv_pwm_channel_init(pwm_device, &amp;pwm_cfg);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("PWM channel init failed!");
+        return;
+    }
+
+    // 启动PWM输出
+    ret = wm_drv_pwm_channels_start(pwm_device);
+    if (ret != WM_ERR_SUCCESS) {
+        wm_log_error("PWM start failed!");
+        return;
+    }
+}
+
+void test_task(void *parameters)
+{
+    int duty=0;
+    pwm_init();
+
+    while (1) {
+        
+        if(duty &gt; 255) {
+            duty = 0;  // 重置占空比
+        }
+        wm_drv_pwm_set_channel_duty(pwm_device, WM_PWM_CHANNEL_0, duty++);
+
+
+        vTaskDelay(pdMS_TO_TICKS(100));  // 每秒输出一次日志
+    }
+
+    vTaskDelete(NULL);
+}
+
+
+
+int main(void)
+{
+    xTaskCreate(test_task, "test", 512, NULL, 5, NULL);
+
+    return 0;
+}
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/SoC-W800/" class="print-no-link">#SoC W800</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【SoC】【W800】基于W800的PWM实现</div>
+      <div>http://example.com/2025/08/30/【SoC】【W800】基于W800的PWM实现/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/31/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8E%E7%AB%8B%E5%88%9B%C2%B7GD32VW553%E5%BC%80%E5%8F%91%E6%9D%BF+GD32%20Embedded%20Builder%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/30/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90MingW%E3%80%91MingW%E4%BB%93%E5%BA%93%E5%9C%B0%E5%9D%80/" title="【随笔】【MingW】MingW仓库地址">
+                        <span class="hidden-mobile">【随笔】【MingW】MingW仓库地址</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

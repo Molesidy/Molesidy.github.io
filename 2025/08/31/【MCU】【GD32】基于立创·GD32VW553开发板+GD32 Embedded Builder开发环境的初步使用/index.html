@@ -1,0 +1,1089 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、安装GD32 Embedded Builder开发环境  兆易创新GigaDevice-资料下载兆易创新GD32 MCU      二、GD32 Embedded Builder界面汉化  注意：该软件需要安装JDK  2.1 Help --&gt; Install New Software    2.2 点击Add    2.3 输入如下地址   https:&#x2F;&#x2F;mirrors.ustc">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用">
+<meta property="og:url" content="http://example.com/2025/08/31/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8E%E7%AB%8B%E5%88%9B%C2%B7GD32VW553%E5%BC%80%E5%8F%91%E6%9D%BF+GD32%20Embedded%20Builder%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、安装GD32 Embedded Builder开发环境  兆易创新GigaDevice-资料下载兆易创新GD32 MCU      二、GD32 Embedded Builder界面汉化  注意：该软件需要安装JDK  2.1 Help --&gt; Install New Software    2.2 点击Add    2.3 输入如下地址   https:&#x2F;&#x2F;mirrors.ustc">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/088084b3225f438cba46efb69a280717.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fb78d348b6ca44b28a81da3549cd843d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fb293225a1164cc4a9c0ef9aacf922d1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/73f7bdc53a23447cabc69593d370e747.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5f30ee2218694fe1873fae988e5b5c46.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2f0001d60c9e4e4ebc427213bc58e094.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c510164f5a7450f95ef2ff5d2855278.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b347417cf2a84ad4b630e8d93ab0cea3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/64017866d68a4e7882619ff6d6a63330.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0f5f83651b7c4952bd0f92dd09547f93.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/be172bfff7b546a38dc0801561321454.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8b4f1b9b00cc49d6932e15f4312df421.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/93739a65f8644a5390dbdbcc76b57004.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b8950c63482549b1a2c2f052df44178f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c33b32809854eada69d140145938793.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a1893d9e83b7460783d1a516bbb99e7e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/220898e05580454d91d15a3488454f39.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c73c39456c464cc5885706fef9861c57.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d153e42f4bad4e86ad4d196737b184d1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4450e516224b4a1eaad38af6e20490a4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/23dce238563b4243a0f11dda972b26e8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/92fb8b2a66c042dab3a502c1a1c07efe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4199ec35df3f45ebb55c1c4ab65678ad.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cc7254518019441081975a8ff93be995.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ce175b083e9d47feb6dfd9885876c8be.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/11410a5fb1304c2283d08f73a72576df.gif">
+<meta property="article:published_time" content="2025-08-30T17:13:40.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="单片机 嵌入式硬件 GD32VM533">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/088084b3225f438cba46efb69a280717.png">
+  
+  
+  
+  <title>【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-31 01:13" pubdate>
+          2025年8月31日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          591 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          5 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、安装GD32 Embedded Builder开发环境</h1>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="兆易创新GigaDevice-资料下载兆易创新GD32 MCU" target="_blank" rel="noopener" href="https://gd32mcu.com/cn/download/7?kw=GD32VW5" title="兆易创新GigaDevice-资料下载兆易创新GD32 MCU">兆易创新GigaDevice-资料下载兆易创新GD32 MCU</a></p>
+
+<p><img alt="" height="987" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/088084b3225f438cba46efb69a280717.png" srcset="/img/loading.gif" lazyload width="1572" /></p>
+
+<p></p>
+
+<h1>二、GD32 Embedded Builder界面汉化</h1>
+
+<p>注意：该软件需要安装JDK</p>
+
+<h2>2.1 Help --&gt; Install New Software</h2>
+
+<p><img alt="" height="346" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fb78d348b6ca44b28a81da3549cd843d.png" srcset="/img/loading.gif" lazyload width="843" /></p>
+
+<h2>2.2 点击Add</h2>
+
+<p><img alt="" height="748" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fb293225a1164cc4a9c0ef9aacf922d1.png" srcset="/img/loading.gif" lazyload width="853" /></p>
+
+<h2>2.3 输入如下地址</h2>
+
+<pre>
+<code>https://mirrors.ustc.edu.cn/eclipse/technology/babel/update-site/R0.20.0/2022-12/</code></pre>
+
+<p><img alt="" height="199" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/73f7bdc53a23447cabc69593d370e747.png" srcset="/img/loading.gif" lazyload width="469" /></p>
+
+<h2 style="background-color:transparent">2.4 找到简体中文包进行下载</h2>
+
+<p><img alt="" height="1007" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5f30ee2218694fe1873fae988e5b5c46.png" srcset="/img/loading.gif" lazyload width="1121" /></p>
+
+<p><img alt="" height="996" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2f0001d60c9e4e4ebc427213bc58e094.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
+
+<p><img alt="" height="1004" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c510164f5a7450f95ef2ff5d2855278.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b347417cf2a84ad4b630e8d93ab0cea3.png" srcset="/img/loading.gif" lazyload width="1530" /></p>
+
+<h2>2.5 后续点击相信，最后重启</h2>
+
+<p><img alt="" height="528" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/64017866d68a4e7882619ff6d6a63330.png" srcset="/img/loading.gif" lazyload width="723" /></p>
+
+<p><img alt="" height="224" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0f5f83651b7c4952bd0f92dd09547f93.png" srcset="/img/loading.gif" lazyload width="632" /></p>
+
+<p><img alt="" height="1027" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/be172bfff7b546a38dc0801561321454.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1>三、基于立创&middot;GD32VW553开发板的点灯代码</h1>
+
+<h2>3.1 点击新建项目</h2>
+
+<p><img alt="" height="575" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8b4f1b9b00cc49d6932e15f4312df421.png" srcset="/img/loading.gif" lazyload width="644" /></p>
+
+<h2>3.2 选C</h2>
+
+<p><img alt="" height="491" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/93739a65f8644a5390dbdbcc76b57004.png" srcset="/img/loading.gif" lazyload width="505" /></p>
+
+<h2>3.3 该芯片架构是RISC-V</h2>
+
+<p><img alt="" height="617" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b8950c63482549b1a2c2f052df44178f.png" srcset="/img/loading.gif" lazyload width="537" /></p>
+
+<h2>3.4 选芯片HMQ7，笔者的MCU是这样的</h2>
+
+<p><img alt="" height="813" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c33b32809854eada69d140145938793.png" srcset="/img/loading.gif" lazyload width="1448" /></p>
+
+<p><img alt="" height="933" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a1893d9e83b7460783d1a516bbb99e7e.png" srcset="/img/loading.gif" lazyload width="792" /></p>
+
+<h2 style="background-color:transparent">3.5 这里的编译链工具看自己选择哪种</h2>
+
+<p><img alt="" height="901" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/220898e05580454d91d15a3488454f39.png" srcset="/img/loading.gif" lazyload width="626" /></p>
+
+<p><img alt="" height="1032" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c73c39456c464cc5885706fef9861c57.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>3.6 led需要高电平点亮，同时注释掉所有示例代码</h2>
+
+<p><img alt="" height="311" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d153e42f4bad4e86ad4d196737b184d1.png" srcset="/img/loading.gif" lazyload width="445" /></p>
+
+<p><img alt="" height="833" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4450e516224b4a1eaad38af6e20490a4.png" srcset="/img/loading.gif" lazyload width="1303" /></p>
+
+<p>以及中断的示例代码</p>
+
+<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/23dce238563b4243a0f11dda972b26e8.png" srcset="/img/loading.gif" lazyload width="472" /></p>
+
+<h2>3.7 写点灯代码，点击左上角锤子按钮编译（如果你有使用过STM32CubeIDE，那就很轻车熟路了。）</h2>
+
+<pre>
+<code>/*!
+    \file    main.c
+    \brief   led spark with systick, USART print and key example
+
+    \version 2025-01-16, V1.4.0, firmware for GD32VW55x
+*/
+
+/*
+    Copyright (c) 2025, GigaDevice Semiconductor Inc.
+
+    Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
+       specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+*/
+
+#include "gd32vw55x.h"
+#include "systick.h"
+#include &lt;stdio.h&gt;
+#include "main.h"
+#include "gd32vw553h_eval.h"
+
+
+
+int bsp_led_init(void)
+{
+	//使能时钟
+	rcu_periph_clock_enable(RCU_GPIOC);
+
+	//设置输出模式 一般输出是浮空 不需要上下拉除非特殊情况
+	gpio_mode_set(GPIOC, GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_13);
+
+	//输出模式下的输出能力设置推挽输出
+	gpio_output_options_set(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_25MHZ, GPIO_PIN_13);
+
+	//初始化置高电平 使其熄灭
+	gpio_bit_write(GPIOC, GPIO_PIN_13, RESET);
+}
+
+int bsp_led_toggle(void)
+{
+	gpio_bit_write(GPIOC, GPIO_PIN_13, SET);
+	delay_1ms(1000);
+
+	gpio_bit_write(GPIOC, GPIO_PIN_13, RESET);
+	delay_1ms(1000);
+
+}
+
+int main(void)
+{
+	//一定要配置时钟
+	systick_config();
+
+	//这里的中断优先级分组可要可不要
+	eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
+
+	//led初始化
+	bsp_led_init();
+
+	while(1)
+	{
+		bsp_led_toggle();
+	}
+	return 0;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+///*!
+//    \brief      toggle the led every 500ms
+//    \param[in]  none
+//    \param[out] none
+//    \retval     none
+//*/
+//void led_spark(void)
+//{
+//    static __IO uint32_t timingdelaylocal = 0U;
+//
+//    if(timingdelaylocal) {
+//
+//        if(timingdelaylocal &lt; 500U) {
+//            gd_eval_led_on(LED2);
+//            gd_eval_led_on(LED3);
+//        } else {
+//            gd_eval_led_off(LED2);
+//            gd_eval_led_off(LED3);
+//        }
+//
+//        timingdelaylocal--;
+//    } else {
+//        timingdelaylocal = 1000U;
+//    }
+//}
+//
+///*!
+//    \brief      main function
+//    \param[in]  none
+//    \param[out] none
+//    \retval     none
+//*/
+//int main(void)
+//{
+//#ifdef __FIRMWARE_VERSION_DEFINE
+//    uint32_t fw_ver = 0;
+//#endif /* __FIRMWARE_VERSION_DEFINE */
+//
+//    /* configure systick */
+//    systick_config();
+//    eclic_priority_group_set(ECLIC_PRIGROUP_LEVEL3_PRIO1);
+//    /* initilize the LEDs, USART and key */
+//    gd_eval_led_init(LED1);
+//    gd_eval_led_init(LED2);
+//    gd_eval_led_init(LED3);
+//    gd_eval_com_init(EVAL_COM0);
+//    gd_eval_key_init(KEY_TAMPER_WAKEUP, KEY_MODE_GPIO);
+//
+//#ifdef __FIRMWARE_VERSION_DEFINE
+//    fw_ver = gd32vw55x_firmware_version_get();
+//    /* print firmware version */
+//    printf("\r\nGD32VW55X series firmware version: V%d.%d.%d", (uint8_t)(fw_ver &gt;&gt; 24), (uint8_t)(fw_ver &gt;&gt; 16), (uint8_t)(fw_ver &gt;&gt; 8));
+//#endif /* __FIRMWARE_VERSION_DEFINE */
+//
+//    /* print out the clock frequency of system, AHB, APB1 and APB2 */
+//    printf("\r\nCK_SYS is %d\r\n", rcu_clock_freq_get(CK_SYS));
+//    printf("\r\nCK_AHB is %d\r\n", rcu_clock_freq_get(CK_AHB));
+//    printf("\r\nCK_APB1 is %d\r\n", rcu_clock_freq_get(CK_APB1));
+//    printf("\r\nCK_APB2 is %d\r\n", rcu_clock_freq_get(CK_APB2));
+//
+//    while(1) {
+//        if(RESET == gd_eval_key_state_get(KEY_TAMPER_WAKEUP)) {
+//            delay_1ms(50);
+//            if(SET == gd_eval_key_state_get(KEY_TAMPER_WAKEUP)) {
+//                gd_eval_led_toggle(LED1);
+//            }
+//        }
+//    }
+//}
+</code></pre>
+
+<h2>3.8 烧录程序，长按boot的同时短按reset，然后松开，点击工具的Connect<br />
+串口烧录方式下载烧录工具: GD32AllInOneProgrammer</h2>
+
+<p><img alt="" height="83" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/92fb8b2a66c042dab3a502c1a1c07efe.png" srcset="/img/loading.gif" lazyload width="246" /></p>
+
+<p><img alt="" height="748" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4199ec35df3f45ebb55c1c4ab65678ad.png" srcset="/img/loading.gif" lazyload width="955" /></p>
+
+<p><img alt="" height="503" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cc7254518019441081975a8ff93be995.png" srcset="/img/loading.gif" lazyload width="821" /></p>
+
+<p>选了bin文件就点DOWNLOAD</p>
+
+<p><img alt="" height="792" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ce175b083e9d47feb6dfd9885876c8be.png" srcset="/img/loading.gif" lazyload width="988" /></p>
+
+<h1>四、实验效果</h1>
+
+<p><img alt="" height="480" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/11410a5fb1304c2283d08f73a72576df.gif" srcset="/img/loading.gif" lazyload width="520" /></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6-GD32VM533/" class="print-no-link">#单片机 嵌入式硬件 GD32VM533</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用</div>
+      <div>http://example.com/2025/08/31/【MCU】【GD32】基于立创·GD32VW553开发板+GD32 Embedded Builder开发环境的初步使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/01/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91%E5%9F%BA%E4%BA%8EESP-IDF%205.5%E5%91%BD%E4%BB%A4%E8%A1%8C+Windows%E7%8E%AF%E5%A2%83%E7%9A%84ESP32S3%E7%9A%84%E5%88%9D%E6%AD%A5%E5%BC%80%E5%8F%91/" title="【SoC】【ESP32】基于ESP-IDF 5.5命令行+Windows环境的ESP32S3的初步开发">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【SoC】【ESP32】基于ESP-IDF 5.5命令行+Windows环境的ESP32S3的初步开发</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/30/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EW800%E7%9A%84PWM%E5%AE%9E%E7%8E%B0/" title="【SoC】【W800】基于W800的PWM实现">
+                        <span class="hidden-mobile">【SoC】【W800】基于W800的PWM实现</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

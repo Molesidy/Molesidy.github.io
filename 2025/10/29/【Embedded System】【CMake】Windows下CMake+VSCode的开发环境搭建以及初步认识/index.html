@@ -1,0 +1,2022 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、安装  1.1 CMake  Download CMake    1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Red">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识">
+<meta property="og:url" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、安装  1.1 CMake  Download CMake    1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Red">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4cd5c19b322b46b6bdeda60e16648149.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4b145e7133104df0a7406980f28d33e6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/14f42d7def55477d880e376783a4b148.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2e56deee87864320b057bdf6bc5ec1dc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d371fbae74044f9083f2ba7c8aa1dc6d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png">
+<meta property="article:published_time" content="2025-10-28T17:16:31.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vscode ide 编辑器 cmake">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png">
+  
+  
+  
+  <title>【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-29 01:16" pubdate>
+          2025年10月29日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          63 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、安装</h1>
+
+<h2>1.1 CMake</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="Download CMake" target="_blank" rel="noopener" href="https://cmake.org/download/" title="Download CMake">Download CMake</a></p>
+
+<p><img alt="" height="817" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png" srcset="/img/loading.gif" lazyload width="1131" /></p>
+
+<h2>1.2 MinGw（自行配置gcc/g++的系统环境变量）</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries" target="_blank" rel="noopener" href="https://github.com/niXman/mingw-builds-binaries/releases/tag/15.2.0-rt_v13-rev0" title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries">Release Release of 15.2.0-rt_v13-rev0 &middot; niXman/mingw-builds-binaries</a></p>
+
+<h2>1.3&nbsp;VSCode</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="Visual Studio Code - Code Editing. Redefined" target="_blank" rel="noopener" href="https://code.visualstudio.com/" title="Visual Studio Code - Code Editing. Redefined">Visual Studio Code - Code Editing. Redefined</a></p>
+
+<h2>1.4&nbsp;VSCode插件</h2>
+
+<ul>
+	<li><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="C/C++" target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools" title="C/C++">C/C++</a></li>
+	<li><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="C/C++ Themes" target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cpptools-themes" title="C/C++ Themes">C/C++ Themes</a></li>
+	<li><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="CMake" target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=twxs.cmake" title="CMake">CMake</a></li>
+	<li><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="CMake Tools" target="_blank" rel="noopener" href="https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-tools" title="CMake Tools">CMake Tools</a></li>
+	<li>C/C++ Extension Pack（包含前两个和第三个）</li>
+</ul>
+
+<p><img alt="" height="544" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4cd5c19b322b46b6bdeda60e16648149.png" srcset="/img/loading.gif" lazyload width="1002" /></p>
+
+<h2>二、初步使用</h2>
+
+<h2>2.1 创建一个工程文件夹，然后simple_math.h，simple_math.cpp，main.cpp，编写代码</h2>
+
+<p>simple_math.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __SIMPLE_MATH_H__
+#define __SIMPLE_MATH_H__
+
+
+
+class SimpleMath {
+public:
+    // 1. 构造函数
+    SimpleMath() = default;
+    // 2. 析构函数
+    ~SimpleMath() = default;
+    // 3. 拷贝构造函数（从另一个对象复制成员）
+    SimpleMath(const SimpleMath&amp; other) = default;  // 用默认实现（复制base_）
+    // 4. 移动构造函数（从临时对象“窃取”资源，这里无资源，仅演示）
+    SimpleMath(SimpleMath&amp;&amp; other) noexcept = default;  // 默认实现（移动base_）
+    // 5. 拷贝赋值运算符（用另一个对象赋值给当前对象）
+    SimpleMath&amp; operator=(const SimpleMath&amp; other) = default;  // 默认实现（复制base_）
+    // 6. 移动赋值运算符（用临时对象赋值给当前对象）
+    SimpleMath&amp; operator=(SimpleMath&amp;&amp; other) noexcept = default;  // 默认实现（移动base_）
+
+    // 原有运算方法
+    double add(double a, double b);
+    double subtract(double a, double b);
+    double multiply(double a, double b);
+    double divide(double a, double b);
+
+private:
+    double base_ = 0.0;  // 新增一个成员变量（用于演示构造函数的作用）
+};
+
+
+
+
+#endif</code></pre>
+
+<p>simple_math.cpp</p>
+
+<pre>
+<code class="language-cpp">#include "simple_math.h"
+#include &lt;stdexcept&gt;
+
+double SimpleMath::add(double a, double b) {
+    return a + b;
+}
+
+double SimpleMath::subtract(double a, double b) {
+    return a - b;
+}
+
+double SimpleMath::multiply(double a, double b) {
+    return a * b;
+}
+
+double SimpleMath::divide(double a, double b) {
+    if (b == 0) {
+        throw std::invalid_argument("除数不能为0！");
+    }
+    return a / b;
+}</code></pre>
+
+<p>main.cpp</p>
+
+<pre>
+<code class="language-cpp">#include &lt;iostream&gt;
+#include &lt;string&gt;
+#include &lt;cstdint&gt;
+
+#include "simple_math.h"
+
+using namespace std;
+
+int main() {
+    SimpleMath math;  // 使用默认构造函数
+    cout &lt;&lt; "加法: " &lt;&lt; math.add(5, 3) &lt;&lt; endl;
+    cout &lt;&lt; "减法: " &lt;&lt; math.subtract(5, 3) &lt;&lt; endl;
+    cout &lt;&lt; "乘法: " &lt;&lt; math.multiply(5, 3) &lt;&lt; endl;
+    try {
+        cout &lt;&lt; "除法: " &lt;&lt; math.divide(5, 1) &lt;&lt; endl;
+    } catch (const std::invalid_argument&amp; e) {
+        cerr &lt;&lt; "错误: " &lt;&lt; e.what() &lt;&lt; endl;
+    }
+    return 0;
+}
+
+</code></pre>
+
+<h2>2.2 编写主要文件 CMakeLists.txt</h2>
+
+<pre>
+<code class="language-cpp">cmake_minimum_required(VERSION 3.10)
+
+project(E7_test_project)
+
+add_executable(E7_test_project main.cpp simple_math.cpp)</code></pre>
+
+<h2>2.3&nbsp;在vscode里按下ctrl+shift+p，输入下面的指令，配置cmake构建工程里编译代码的编译器，选择mingw</h2>
+
+<pre>
+<code>CMake: configure</code></pre>
+
+<p>或者在CMakeLists.txt里指定</p>
+
+<pre>
+<code class="language-cpp">set(CMAKE_C_COMPILER "D:/mingw64/bin/gcc.exe")  # 替换为你MinGW的gcc路径
+set(CMAKE_CXX_COMPILER "D:/mingw64/bin/g++.exe")  # 替换为你MinGW的g++路径
+set(CMAKE_SYSTEM_NAME Windows)
+
+cmake_minimum_required(VERSION 3.10)
+
+project(E7_test_project)
+
+add_executable(E7_test_project main.cpp simple_math.cpp)</code></pre>
+
+<h2>2.4&nbsp;新建文件夹build，cd build 在命令行进入文件夹build，使用cmake .. 构建以及编译</h2>
+
+<pre>
+<code class="language-cpp">PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake&gt; cd build
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt; cmake ..
+-- The C compiler identification is GNU 15.2.0
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting C compiler ABI info
+-- Detecting C compiler ABI info - done
+-- Check for working C compiler: D:/mingw64/bin/gcc.exe - skipped
+-- Detecting C compile features
+-- Detecting C compile features - done
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/mingw64/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/VSCode_Projects/VSCode_Examples_Workspaces/E7_test_cmake/build
+</code></pre>
+
+<h2>2.5 使用cmake --build . --config Release（如果不使用--config Release，默认的是Debug模式），产生可执行文件</h2>
+
+<pre>
+<code class="language-cpp">PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt; cmake --build . --config Release
+[ 33%] Building CXX object CMakeFiles/E7_test_project.dir/main.cpp.obj
+[ 66%] Building CXX object CMakeFiles/E7_test_project.dir/simple_math.cpp.obj
+[100%] Linking CXX executable E7_test_project.exe
+[100%] Built target E7_test_project
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt; ls
+
+
+    目录: E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2025/10/28     14:09                .cmake
+d-----        2025/10/28     14:12                CMakeFiles
+-a----        2025/10/28     14:12          16872 CMakeCache.txt
+-a----        2025/10/28     14:12           1646 cmake_install.cmake
+-a----        2025/10/28     14:12            718 compile_commands.json
+-a----        2025/10/28     14:13          84570 E7_test_project.exe
+-a----        2025/10/28     14:12           6617 Makefile
+
+
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt; .\E7_test_project.exe  
+加法: 8
+减法: 2
+乘法: 15
+除法: 5
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt; ls
+
+
+    目录: E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2025/10/28     14:09                .cmake
+d-----        2025/10/28     14:13                CMakeFiles
+-a----        2025/10/28     14:12          16872 CMakeCache.txt
+-a----        2025/10/28     14:12           1646 cmake_install.cmake
+-a----        2025/10/28     14:12            718 compile_commands.json
+-a----        2025/10/28     14:13          84570 E7_test_project.exe
+-a----        2025/10/28     14:12           6617 Makefile
+
+
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt;</code></pre>
+
+<p><img alt="" height="1333" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4b145e7133104df0a7406980f28d33e6.png" srcset="/img/loading.gif" lazyload width="1322" /></p>
+
+<h1>三、构建多文件夹组织结构以及制作静态库/动态库</h1>
+
+<p><img alt="" height="559" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/14f42d7def55477d880e376783a4b148.png" srcset="/img/loading.gif" lazyload width="1144" /></p>
+
+<h2>3.1 在工程文件夹下创建子文件夹hello_world，simple_math，build</h2>
+
+<p><img alt="" height="377" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2e56deee87864320b057bdf6bc5ec1dc.png" srcset="/img/loading.gif" lazyload width="969" /></p>
+
+<h2>3.2&nbsp;hello_world&nbsp;这个作为静态库</h2>
+
+<p>CMakeLists.txt</p>
+
+<pre>
+<code class="language-cpp"># 如果不指定，默认生产静态库. 动态库使用 SHARED 关键字
+# 静态库：Windows 下在 Debug/Release 目录找 helloworld.lib
+# 动态库：Windows 会同时生成 helloworld.dll（运行时库）和 helloworld.lib（导入库）
+add_library(helloworld STATIC hello_world.cpp)
+# 导出头文件路径；${CMAKE_CURRENT_SOURCE_DIR}指向 当前 CMakeLists.txt 所在目录，而非工程根目录
+# CMAKE_SOURCE_DIR	工程根目录（最顶层 CMakeLists.txt 所在目录）
+# CMAKE_CURRENT_SOURCE_DIR	当前处理的 CMakeLists.txt 所在目录
+target_include_directories(helloworld PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})</code></pre>
+
+<p>hello_world.cpp</p>
+
+<pre>
+<code class="language-cpp">#include "hello_world.h"
+#include &lt;iostream&gt;
+
+HelloWorld::HelloWorld() {
+    // 可选：构造时的逻辑，如打印日志
+    std::cout &lt;&lt; "HelloWorld 构造函数被调用" &lt;&lt; std::endl;
+}
+
+HelloWorld::~HelloWorld() {
+    // 可选：析构时的逻辑，如释放资源
+    std::cout &lt;&lt; "HelloWorld 析构函数被调用" &lt;&lt; std::endl;
+}
+
+void HelloWorld::sayHello() {
+    std::cout &lt;&lt; "Say: Hello World!" &lt;&lt; std::endl;
+}</code></pre>
+
+<p>hello_world.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __HELLO_WORLD_H__
+#define __HELLO_WORLD_H__
+
+// #ifdef __cplusplus
+// extern "C" {
+// #endif 
+
+class HelloWorld {
+public:
+    HelloWorld();
+    ~HelloWorld();
+    void sayHello();
+private:
+    // 私有成员变量或方法可在此添加
+};
+
+// #ifdef __cplusplus
+// }
+// #endif
+
+#endif</code></pre>
+
+<h2>3.3&nbsp;simple_math 这个作为动态库（注意：作为动态库时，执行可执行程序时才会链接动态库，则需要将.dll动态库放到可执行程序所在的同一文件夹下，修改顶层camke设置自动拷贝动态库）</h2>
+
+<p>CMakeLists.txt</p>
+
+<pre>
+<code class="language-cpp">add_library(simplemath SHARED simple_math.cpp)
+# PUBLIC 表示头文件路径对链接该库的目标可见
+target_include_directories(simplemath PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})
+</code></pre>
+
+<p>simple_math.cpp</p>
+
+<pre>
+<code class="language-bash">#include "simple_math.h"
+#include &lt;stdexcept&gt;
+#include &lt;iostream&gt;
+
+// 1. 无参构造函数：初始化 base_ 为默认值 0.0
+SimpleMath::SimpleMath() : base_(0.0) {
+    // 可选：添加构造时的日志或额外逻辑（如初始化其他资源）
+    // 例如：std::cout &lt;&lt; "无参构造函数被调用，base_ 初始化为 0.0" &lt;&lt; std::endl;
+    std::cout &lt;&lt; "无参构造函数被调用，base_ 初始化为 0.0" &lt;&lt; std::endl;
+}
+
+// 2. 带参数构造函数：用传入的 base 初始化 base_
+SimpleMath::SimpleMath(double base) : base_(base) {
+    // 可选：对参数进行校验（如不允许负数，根据业务需求）
+    if (base &lt; 0) {
+        throw std::invalid_argument("带参数构造函数初始化失败，base 不能为负数！");
+    } else {
+        std::cout &lt;&lt; "带参数构造函数初始化成功，base_ 初始化为 " &lt;&lt; base &lt;&lt; std::endl;
+    }
+}
+
+// 3. 析构函数：无动态资源（如 new 的内存、文件句柄）时，空实现即可
+SimpleMath::~SimpleMath() {
+    // 若有动态资源，需在此释放（如 delete 指针）
+    // 例如：delete ptr_; （本类无，所以为空）
+}
+
+// 4. 拷贝构造函数：复制 other 的 base_ 到当前对象
+SimpleMath::SimpleMath(const SimpleMath&amp; other) : base_(other.base_) {
+    // 核心：将 other 的成员变量值复制到当前对象
+    // 若有动态资源（如指针），需深拷贝（本类是基本类型，直接复制即可）
+    // 例如：ptr_ = new int(*other.ptr_); （本类无，所以直接复制 base_）
+}
+
+// 5. 移动构造函数："窃取" other 的 base_，并将 other 的 base_ 置空（语义上的移动）
+SimpleMath::SimpleMath(SimpleMath&amp;&amp; other) noexcept : base_(other.base_) {
+    other.base_ = 0.0;  // 置空原对象的资源（基本类型可直接设为默认值）
+    // 若有动态资源（如指针），需转移所有权：
+    // ptr_ = other.ptr_;
+    // other.ptr_ = nullptr; （避免原对象析构时重复释放）
+}
+
+// 6. 拷贝赋值运算符：先释放当前资源（若有），再复制 other 的资源
+SimpleMath&amp; SimpleMath::operator=(const SimpleMath&amp; other) {
+    // 防止自我赋值（如 math1 = math1;）
+    if (this != &amp;other) {
+        base_ = other.base_;  // 复制 other 的 base_
+        // 若有动态资源，需先释放当前资源，再深拷贝：
+        // delete ptr_;
+        // ptr_ = new int(*other.ptr_);
+    }
+    return *this;  // 返回当前对象的引用（支持链式赋值：math1 = math2 = math3;）
+}
+
+// 7. 移动赋值运算符：先释放当前资源（若有），再"窃取" other 的资源
+SimpleMath&amp; SimpleMath::operator=(SimpleMath&amp;&amp; other) noexcept {
+    // 防止自我赋值
+    if (this != &amp;other) {
+        base_ = other.base_;  // 窃取 other 的 base_
+        other.base_ = 0.0;    // 置空原对象的资源
+
+        // 若有动态资源，需先释放当前资源，再转移所有权：
+        // delete ptr_;
+        // ptr_ = other.ptr_;
+        // other.ptr_ = nullptr;
+    }
+    return *this;  // 支持链式赋值
+}
+
+
+// 原有运算方法的实现（不变）
+double SimpleMath::add(double a, double b) {
+    return a + b;
+}
+
+double SimpleMath::subtract(double a, double b) {
+    return a - b;
+}
+
+double SimpleMath::multiply(double a, double b) {
+    return a * b;
+}
+
+double SimpleMath::divide(double a, double b) {
+    if (b == 0) {
+        throw std::invalid_argument("除数不能为0！");
+    }
+    return a / b;
+}</code></pre>
+
+<p>simple_math.h</p>
+
+<pre>
+<code class="language-bash">#ifndef __SIMPLE_MATH_H__
+#define __SIMPLE_MATH_H__
+
+// #ifdef __cplusplus
+// extern "C" {
+// #endif 
+
+class SimpleMath {
+public:
+    // 1. 自定义无参构造函数（替代 default）
+    SimpleMath();
+
+    // 2. 自定义带参数构造函数（初始化 base_ 为指定值）
+    explicit SimpleMath(double base);  // explicit 避免隐式类型转换
+
+    // 3. 自定义析构函数（替代 default，无动态资源时可空实现）
+    ~SimpleMath();
+
+    // 4. 自定义拷贝构造函数（复制 other 的 base_）
+    SimpleMath(const SimpleMath&amp; other);
+
+    // 5. 自定义移动构造函数（移动 other 的 base_，并置空 other 的资源）
+    SimpleMath(SimpleMath&amp;&amp; other) noexcept;
+
+    // 6. 自定义拷贝赋值运算符（复制 other 的 base_ 到当前对象）
+    SimpleMath&amp; operator=(const SimpleMath&amp; other);
+
+    // 7. 自定义移动赋值运算符（移动 other 的 base_，并置空 other 的资源）
+    SimpleMath&amp; operator=(SimpleMath&amp;&amp; other) noexcept;
+
+
+    // 原有运算方法
+    double add(double a, double b);
+    double subtract(double a, double b);
+    double multiply(double a, double b);
+    double divide(double a, double b);
+
+private:
+    double base_;  // 去掉类内默认初始化，改为在构造函数中初始化
+};
+
+
+// #ifdef __cplusplus
+// }
+// #endif
+
+#endif</code></pre>
+
+<h2>3.4 根目录下</h2>
+
+<p>CMakeLists.txt</p>
+
+<pre>
+<code class="language-bash">
+
+# 1. 先设置工具链（用户原有代码）
+set(CMAKE_C_COMPILER "D:/mingw64/bin/gcc.exe")    # C 编译器（MinGW GCC）
+set(CMAKE_CXX_COMPILER "D:/mingw64/bin/g++.exe")  # C++ 编译器（MinGW G++）
+set(CMAKE_SYSTEM_NAME Windows)
+
+set(CMAKE_CXX_STANDARD 11)
+
+# 2. 初始化项目（必须在 project 后打印，部分变量需 project 初始化）
+cmake_minimum_required(VERSION 3.10)
+project(E8_test_cmake_multi LANGUAGES CXX)
+
+# -------------------------- 核心：打印工具链相关路径 --------------------------
+# 打印 1：C 编译器（GCC）路径（即用户设置的 CMAKE_C_COMPILER）
+message(STATUS "【工具链】C 编译器（GCC）路径: ${CMAKE_C_COMPILER}")
+
+# 打印 2：C++ 编译器（G++）路径（即用户设置的 CMAKE_CXX_COMPILER）
+message(STATUS "【工具链】C++ 编译器（G++）路径: ${CMAKE_CXX_COMPILER}")
+
+# 打印 3：CMake 自身可执行文件路径（可选，了解 CMake 工具位置）
+message(STATUS "【工具链】CMake 自身路径: ${CMAKE_COMMAND}")
+
+# 打印 4：当前使用的工具链目标系统（验证是否为 Windows）
+message(STATUS "【工具链】目标系统: ${CMAKE_SYSTEM_NAME}")
+# -----------------------------------------------------------------------------
+
+# 3. 原有逻辑（添加子目录、生成可执行文件、链接库）
+add_subdirectory(hello_world)
+add_subdirectory(simple_math)
+
+add_executable(E8_test_cmake_multi main.cpp)
+
+# ========== 新增：自动复制动态库到 exe 目录 ==========
+add_custom_command(
+  TARGET E8_test_cmake_multi POST_BUILD  # 编译 exe 后执行
+  COMMAND ${CMAKE_COMMAND} -E copy_if_different  # 只在文件变化时复制
+  "${CMAKE_CURRENT_BINARY_DIR}/simple_math/libsimplemath.dll"  # 动态库源路径
+  "${CMAKE_CURRENT_BINARY_DIR}/"  # 动态库目标路径（exe 所在目录，即 build/ 根目录）
+)
+# =====================================================
+
+target_link_libraries(E8_test_cmake_multi helloworld simplemath)</code></pre>
+
+<p>main.cpp</p>
+
+<pre>
+<code class="language-bash">#include &lt;iostream&gt;
+using namespace std;
+
+#include "hello_world.h"
+#include "simple_math.h"
+
+int main()
+{
+    HelloWorld hw;
+    hw.sayHello();
+    SimpleMath sm;
+    cout &lt;&lt; "5 + 1 = " &lt;&lt; sm.add(5, 1) &lt;&lt; endl;
+    cout &lt;&lt; "5 - 1 = " &lt;&lt; sm.subtract(5, 1) &lt;&lt; endl;
+    cout &lt;&lt; "5 * 1 = " &lt;&lt; sm.multiply(5, 1) &lt;&lt; endl;
+    cout &lt;&lt; "5 / 1 = " &lt;&lt; sm.divide(5, 1) &lt;&lt; endl;
+    return 0;
+}</code></pre>
+
+<h2>3.5 配置工具链，ctrl+shift+p，选择工具链mingw：c++</h2>
+
+<pre>
+<code class="language-bash">CMake:Configure</code></pre>
+
+<pre>
+<code class="language-bash">[main] 正在配置项目: E8_test_cmake_multi 
+[proc] 正在执行命令: E:\BasicDocuments\Desktop\RT58X_SDK\Rafael-SDK-SuBG-RT584S\toolchain\cmake-3.31.8\Windows\bin\cmake.EXE -DCMAKE_BUILD_TYPE:STRING=Debug -DCMAKE_EXPORT_COMPILE_COMMANDS:BOOL=TRUE -DCMAKE_C_COMPILER:FILEPATH=D:\mingw64\bin\gcc.exe -DCMAKE_CXX_COMPILER:FILEPATH=D:\mingw64\bin\g++.exe --no-warn-unused-cli -S E:/VSCode_Projects/VSCode_Examples_Workspaces/E8_test_cmake_multi -B e:/VSCode_Projects/VSCode_Examples_Workspaces/E8_test_cmake_multi/build -G "MinGW Makefiles"
+[cmake] Not searching for unused variables given on the command line.
+[cmake] -- 【工具链】C 编译器（GCC）路径: D:/mingw64/bin/gcc.exe
+[cmake] -- 【工具链】C++ 编译器（G++）路径: D:/mingw64/bin/g++.exe
+[cmake] -- 【工具链】CMake 自身路径: E:/BasicDocuments/Desktop/RT58X_SDK/Rafael-SDK-SuBG-RT584S/toolchain/cmake-3.31.8/Windows/bin/cmake.exe
+[cmake] -- 【工具链】目标系统: Windows
+[cmake] -- Configuring done (0.2s)
+[cmake] -- Generating done (0.6s)
+[cmake] -- Build files have been written to: E:/VSCode_Projects/VSCode_Examples_Workspaces/E8_test_cmake_multi/build
+</code></pre>
+
+<h2>3.6 打开vscode终端进入build文件夹下</h2>
+
+<pre>
+<code class="language-bash">PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; cmake ..
+-- The CXX compiler identification is GNU 15.2.0
+-- Detecting CXX compiler ABI info
+-- Detecting CXX compiler ABI info - done
+-- Check for working CXX compiler: D:/mingw64/bin/g++.exe - skipped
+-- Detecting CXX compile features
+-- Detecting CXX compile features - done
+-- 【工具链】C 编译器（GCC）路径: D:/mingw64/bin/gcc.exe
+-- 【工具链】C++ 编译器（G++）路径: D:/mingw64/bin/g++.exe
+-- 【工具链】CMake 自身路径: D:/WM_IDE/WM_Dev_Suite/wmtools/cmake/bin/cmake.exe
+-- 【工具链】目标系统: Windows
+-- Configuring done
+-- Generating done
+-- Build files have been written to: E:/VSCode_Projects/VSCode_Examples_Workspaces/E8_test_cmake_multi/build
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt;</code></pre>
+
+<h2>3.7 使用 cmake --build . 构建产生可执行程序，乱码由于vscode默认支持UTF-8，但是系统终端支持GBK，这里暂时忽略该问题。</h2>
+
+<pre>
+<code class="language-bash">PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; cmake --build .
+[ 16%] Building CXX object hello_world/CMakeFiles/helloworld.dir/hello_world.cpp.obj
+[ 33%] Linking CXX static library libhelloworld.a
+[ 33%] Built target helloworld
+[ 50%] Building CXX object simple_math/CMakeFiles/simplemath.dir/simple_math.cpp.obj
+[ 66%] Linking CXX shared library libsimplemath.dll
+[ 66%] Built target simplemath
+[ 83%] Building CXX object CMakeFiles/E8_test_cmake_multi.dir/main.cpp.obj
+[100%] Linking CXX executable E8_test_cmake_multi.exe
+[100%] Built target E8_test_cmake_multi
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; .\E8_test_cmake_multi.exe
+HelloWorld 鏋勯€犲嚱鏁拌璋冪敤
+Say: Hello World!
+鏃犲弬鏋勯€犲嚱鏁拌璋冪敤锛宐ase_ 鍒濆鍖栦负 0.0
+5 + 1 = 6
+5 - 1 = 4
+5 * 1 = 5
+5 / 1 = 5
+HelloWorld 鏋愭瀯鍑芥暟琚皟鐢
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt;</code></pre>
+
+<p>或者按下ctrl+shift+p，使用cmake的vscode插件来进行配置(cmake ..)、编译(cmake --build .)</p>
+
+<h2><img alt="" height="128" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d371fbae74044f9083f2ba7c8aa1dc6d.png" srcset="/img/loading.gif" lazyload width="608" /></h2>
+
+<h2>补充说明：<br />
+1. 解决编码问题：</h2>
+
+<h3>（1）vscode的右下角，将.h/.c/.cpp代码的编码格式改为UTF-8</h3>
+
+<p><img alt="" height="22" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png" srcset="/img/loading.gif" lazyload width="711" /></p>
+
+<h3>（2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码</h3>
+
+<p><img alt="" height="192" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png" srcset="/img/loading.gif" lazyload width="1235" /></p>
+
+<h3>（3）将vscode里的powershell代理终端切换为UTF-8编码格式，在vscode的总设置文件setting（使用ctrl+shift+p搜索setting）</h3>
+
+<pre>
+<code class="language-bash">"terminal.integrated.profiles.windows": {  
+        "PowerShell": {
+            "source": "PowerShell",
+            "icon": "terminal-powershell",
+            "args": ["-NoExit","chcp 65001"]
+        },
+        "Command Prompt": {
+            "path": [
+                "${env:windir}\\Sysnative\\cmd.exe",
+                "${env:windir}\\System32\\cmd.exe"
+            ],
+            "args": ["/K","chcp 65001"],
+            "icon": "terminal-cmd"
+        },
+}</code></pre>
+
+<p>效果：</p>
+
+<pre>
+<code class="language-bash">Active code page: 65001
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi&gt; cd build
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; ls
+
+
+    目录: E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build
+
+
+Mode                 LastWriteTime         Length Name
+----                 -------------         ------ ----
+d-----        2025/10/28     20:34                .cmake
+d-----        2025/10/28     20:34                CMakeFiles
+d-----        2025/10/28     20:34                hello_world
+d-----        2025/10/28     20:34                simple_math
+-a----        2025/10/28     20:34          15256 CMakeCache.txt
+-a----        2025/10/28     20:34           2515 cmake_install.cmake
+-a----        2025/10/28     20:34           1749 compile_commands.json
+-a----        2025/10/28     20:34           6966 Makefile
+
+
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; cmake --build .
+[ 16%] Building CXX object hello_world/CMakeFiles/helloworld.dir/hello_world.cpp.obj
+[ 33%] Linking CXX static library libhelloworld.a
+[ 33%] Built target helloworld
+[ 50%] Building CXX object simple_math/CMakeFiles/simplemath.dir/simple_math.cpp.obj
+[ 66%] Linking CXX shared library libsimplemath.dll
+[ 66%] Built target simplemath
+[ 83%] Building CXX object CMakeFiles/E8_test_cmake_multi.dir/main.cpp.obj
+[100%] Linking CXX executable E8_test_cmake_multi.exe
+[100%] Built target E8_test_cmake_multi
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt; .\E8_test_cmake_multi.exe
+HelloWorld 构造函数被调用
+Say: Hello World!
+无参构造函数被调用，base_ 初始化为 0.0
+5 + 1 = 6
+5 - 1 = 4
+5 * 1 = 5
+5 / 1 = 5
+HelloWorld 析构函数被调用
+PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt;</code></pre>
+
+<h2>四、讲解常用命令以及访问权限修饰词</h2>
+
+<h2>4.1 注释</h2>
+
+<pre>
+<code class="language-bash">CMake 使用 # 进行行注释
+# 注释演示
+
+CMake 使用 #[[ ]] 形式进行块注释
+#[[
+    注释演示
+]]
+</code></pre>
+
+<h2>4.2 三个基础命令</h2>
+
+<pre>
+<code class="language-cpp"># 限制cmake的最小版本要求 （可选，非必须，如果不加可能会有警告）
+cmake_minimum_required(VERSION 3.10)
+# 定义目标主工程名称
+project(E7_test_project)
+# 定义工程生成一个可执行程序
+add_executable(E7_test_project main.cpp simple_math.cpp)</code></pre>
+
+<h3>（1）PROJECT 指令的语法</h3>
+
+<p>可指定工程的版本、工程描述、web主页地址、支持的语言（默认情况支持所有语言）</p>
+
+<pre>
+<code class="language-cpp">project(&lt;PROJECT-NAME&gt; [&lt;language-name&gt;...])
+project(&lt;PROJECT-NAME&gt;
+       [VERSION &lt;major&gt;[.&lt;minor&gt;[.&lt;patch&gt;[.&lt;tweak&gt;]]]]
+       [DESCRIPTION &lt;project-description-string&gt;]
+       [HOMEPAGE_URL &lt;url-string&gt;]
+       [LANGUAGES &lt;language-name&gt;...])
+</code></pre>
+
+<p>例如</p>
+
+<pre>
+<code class="language-cpp"># 项目名称 "NetworkTool"，版本 1.0.2，描述、主页，支持 C 和 Python
+project(NetworkTool
+  VERSION 1.0.2
+  DESCRIPTION "A tool for network packet analysis"
+  HOMEPAGE_URL "https://example.com/networktool"
+  LANGUAGES C Python
+)</code></pre>
+
+<h3>（2）add_executable 语法</h3>
+
+<pre>
+<code class="language-cpp">add_executable(app a.c b.c c.c)
+
+add_executable(app a.c;b.c;c.c)</code></pre>
+
+<h2>4.3 cmake执行命令</h2>
+
+<pre>
+<code class="language-cpp"># 如果当前就在CMakeLists.txt文件所在路径就直接使用cmake
+# 最好不要污染源代码文件，即创建build文件夹（产生的副文件放在这里），在build文件夹下使用cmake ..
+# .. 是上一级目录
+cmake &lt;顶层CMakeLists.txt文件所在路径&gt;</code></pre>
+
+<h2>4.4 定义变量</h2>
+
+<p>SET 指令的语法是：</p>
+
+<pre>
+<code class="language-cpp"># [] 中的参数为可选项, 如不需要可以不写
+# VAR：变量名
+# VALUE：变量值
+SET(VAR [VALUE] [CACHE TYPE DOCSTRING [FORCE]])</code></pre>
+
+<p>例如：</p>
+
+<pre>
+<code class="language-cpp"># 方式1: 各个源文件之间使用空格间隔
+# set(SRC_LIST a.c  b.c   c.c)
+
+# 方式2: 各个源文件之间使用分号 ; 间隔
+set(SRC_LIST a.c;b.c;c.c)
+add_executable(app  ${SRC_LIST})</code></pre>
+
+<h2>4.5 指定编译器标准</h2>
+
+<pre>
+<code class="language-cpp">$ g++ *.cpp -std=c++11 -o app</code></pre>
+
+<p>cmake中：</p>
+
+<p>（1）在cmake文件里</p>
+
+<pre>
+<code class="language-cpp">#增加-std=c++11
+set(CMAKE_CXX_STANDARD 11)
+#增加-std=c++14
+set(CMAKE_CXX_STANDARD 14)
+#增加-std=c++17
+set(CMAKE_CXX_STANDARD 17)
+
+</code></pre>
+
+<p>（2）在cmake执行时</p>
+
+<pre>
+<code class="language-cpp"># -D 是一个宏相关的指令
+# 增加-std=c++11
+cmake &lt;CMakeLists.txt文件路径&gt; -DCMAKE_CXX_STANDARD=11
+# 增加-std=c++14
+cmake &lt;CMakeLists.txt文件路径&gt; -DCMAKE_CXX_STANDARD=14
+# 增加-std=c++17
+cmake &lt;CMakeLists.txt文件路径&gt; -DCMAKE_CXX_STANDARD=17
+
+# 强制开启
+cmake . -DCMAKE_CXX_STANDARD=17 -DCMAKE_CXX_STANDARD_REQUIRED=ON</code></pre>
+
+<h2>4.6 指定可执行程序的输出的路径</h2>
+
+<pre>
+<code class="language-bash"># CMAKE_CURRENT_SOURCE_DIR 表示当前 CMakeLists.txt 所在的源码目录（通常是项目源代码存放的地方）
+set(EXE $(CMAKE_CURRENT_SOURCE_DIR)/build/bin)
+set(EXECUTABLE_OUTPUT_PATH $(EXE))
+
+# 或者
+# CMAKE_BINARY_DIR 表示当前的构建目录（即执行 cmake 命令时所在的目录）
+set(EXECUTABLE_OUTPUT_PATH ${CMAKE_BINARY_DIR}/bin)</code></pre>
+
+<h2>4.7 搜索文件</h2>
+
+<h3>4.7.1&nbsp;aux_source_directory命令可以查找某个路径下的所有源文件</h3>
+
+<p><code>aux</code>&nbsp;是&nbsp;<strong><code>auxiliary</code></strong>&nbsp;的缩写，意为 &ldquo;辅助的、辅助性的&rdquo;</p>
+
+<pre>
+<code class="language-bash"># dir：目录  variable：变量名
+aux_source_directory(&lt; dir &gt; &lt; variable &gt;)</code></pre>
+
+<h3>4.7.2&nbsp;file搜索</h3>
+
+<p>GLOB: 将指定目录下搜索到的满足条件的所有文件名生成一个列表，并将其存储到变量中。<br />
+GLOB_RECURSE：递归搜索指定目录，将搜索到的满足条件的文件名生成一个列表，并将其存储到变量中。</p>
+
+<pre>
+<code class="language-bash">file(GLOB/GLOB_RECURSE 变量名 要搜索的文件路径和文件类型)</code></pre>
+
+<p>例如：</p>
+
+<pre>
+<code class="language-bash"># 关于要搜索的文件路径和类型可加双引号，也可不加
+
+file(GLOB MAIN_SRC ${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp)
+file(GLOB MAIN_HEAD ${CMAKE_CURRENT_SOURCE_DIR}/include/*.h)
+</code></pre>
+
+<h2>4.8 包含头文件</h2>
+
+<pre>
+<code class="language-bash">include_directories(&lt;含头文件的目录&gt;)</code></pre>
+
+<p>例如：</p>
+
+<pre>
+<code class="language-bash"># 执行 project(CALC) 后，PROJECT_SOURCE_DIR 会被自动设置为包含该 CMakeLists.txt 的目录（即项目根目录），
+# 因此 ${PROJECT_SOURCE_DIR}/include 就是 “项目根目录下的 include 文件夹”，用于指定头文件搜索路径。
+
+project(CALC)  # 定义项目名称为 CALC
+include_directories(${PROJECT_SOURCE_DIR}/include)  # 使用 PROJECT_SOURCE_DIR</code></pre>
+
+<h2>4.9&nbsp;&nbsp;制作动态库或静态库</h2>
+
+<h3>4.9.1&nbsp;制作静态库</h3>
+
+<pre>
+<code class="language-bash">add_library(库名称 STATIC 源文件1 [源文件2] ...) </code></pre>
+
+<h3>4.9.2&nbsp;制作动态库</h3>
+
+<pre>
+<code class="language-bash">add_library(库名称 SHARED 源文件1 [源文件2] ...) </code></pre>
+
+<h3>4.9.3&nbsp;指定库输出的路径</h3>
+
+<h4>（1）方式1 - 适用于动态库</h4>
+
+<p>对于生成的库文件来说和可执行程序一样都可以指定输出路径。由于在Linux下生成的动态库默认是有执行权限的，所以可以按照生成可执行程序的方式去指定它生成的目录：</p>
+
+<pre>
+<code class="language-bash"># PROJECT_SOURCE_DIR必须在project()指令后使用
+
+set(EXECUTABLE_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)</code></pre>
+
+<h4>（2）方式2 - 都适用</h4>
+
+<p>由于在Linux下生成的静态库默认不具有可执行权限，所以在指定静态库生成的路径的时候就不能使用EXECUTABLE_OUTPUT_PATH宏了，而应该使用LIBRARY_OUTPUT_PATH，这个宏对应静态库文件和动态库文件都适用。</p>
+
+<pre>
+<code class="language-bash">cmake_minimum_required(VERSION 3.0)
+project(CALC)
+include_directories(${PROJECT_SOURCE_DIR}/include)
+file(GLOB SRC_LIST "${CMAKE_CURRENT_SOURCE_DIR}/src/*.cpp")
+# 设置动态库/静态库生成路径
+set(LIBRARY_OUTPUT_PATH ${PROJECT_SOURCE_DIR}/lib)
+# 生成动态库
+#add_library(calc SHARED ${SRC_LIST})
+# 生成静态库
+add_library(calc STATIC ${SRC_LIST})</code></pre>
+
+<h2>4.10&nbsp;包含库文件</h2>
+
+<p>在编写程序的过程中，可能会用到一些系统提供的动态库或者自己制作出的动态库或者静态库文件，cmake中也为我们提供了相关的加载动态库的命令。</p>
+
+<h3>4.10.1 链接静态库</h3>
+
+<pre>
+<code class="language-bash"># 参数1：指定出要链接的静态库的名字
+#  可以是全名 libxxx.a
+#  也可以是掐头（lib）去尾（.a）之后的名字 xxx
+# 参数2-N：要链接的其它静态库的名字
+
+link_libraries(&lt;static lib&gt; [&lt;static lib&gt;...])</code></pre>
+
+<h3>4.10.2 指出库的路径</h3>
+
+<p>如果该静态库不是系统提供的（自己制作或者使用第三方提供的静态库）可能出现静态库找不到的情况，此时可以将静态库的路径也指定出来：</p>
+
+<pre>
+<code class="language-bash">link_directories(&lt;lib path&gt;)</code></pre>
+
+<h3>4.10.3&nbsp;链接动态库</h3>
+
+<pre>
+<code class="language-bash"># target：指定要加载的库的文件的名字
+
+# 该文件可能是一个源文件
+# 该文件可能是一个动态库/静态库文件
+# 该文件可能是一个可执行文件
+
+
+target_link_libraries(
+    &lt;target&gt; 
+    &lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;... 
+    [&lt;PRIVATE|PUBLIC|INTERFACE&gt; &lt;item&gt;...]...)
+</code></pre>
+
+<p>PRIVATE|PUBLIC|INTERFACE：动态库的访问权限，默认为PUBLIC</p>
+
+<p>如果各个动态库之间没有依赖关系，无需做任何设置，三者没有没有区别，一般无需指定，使用默认的 PUBLIC 即可。</p>
+
+<p>动态库的链接具有传递性，如果动态库 A 链接了动态库B、C，动态库D链接了动态库A，此时动态库D相当于也链接了动态库B、C，并可以使用动态库B、C中定义的方法。</p>
+
+<pre>
+<code class="language-bash">target_link_libraries(A B C)
+target_link_libraries(D A)
+</code></pre>
+
+<pre>
+<code class="language-bash">PUBLIC：在public后面的库会被Link到前面的target中，并且里面的符号也会被导出，提供给第三方使用。
+PRIVATE：在private后面的库仅被link到前面的target中，并且终结掉，第三方不能感知你调了啥库
+INTERFACE：在interface后面引入的库不会被链接到前面的target中，只会导出符号。</code></pre>
+
+<h3>4.10.4 链接系统动态库</h3>
+
+<pre>
+<code class="language-bash">target_link_libraries(app pthread)</code></pre>
+
+<p>动态库的链接和静态库是完全不同的：</p>
+
+<p>静态库会在生成可执行程序的链接阶段被打包到可执行程序中，所以可执行程序启动，静态库就被加载到内存中了。</p>
+
+<p>动态库在生成可执行程序的链接阶段不会被打包到可执行程序中，当可执行程序被启动并且调用了动态库中的函数的时候，动态库才会被加载到内存。</p>
+
+<h3>4.10.5&nbsp;链接第三方动态库</h3>
+
+<pre>
+<code class="language-bash">link_directories(path)
+
+target_link_libraries(app pthread calc)</code></pre>
+
+<h3>4.10.5 指定目标链接库</h3>
+
+<p>一般放在add_executable()后</p>
+
+<pre>
+<code class="language-bash">target_link_libraries(target_name [item1 [item2 [...]]]
+                      [&lt;debug|optimized|general&gt; &lt;lib1&gt; [&lt;lib2&gt; [...]]])
+</code></pre>
+
+<h2>4.11 信息打印</h2>
+
+<pre>
+<code class="language-bash">message([STATUS|WARNING|AUTHOR_WARNING|FATAL_ERROR|SEND_ERROR] "message to display" ...)
+</code></pre>
+
+<p>(无) ：重要消息<br />
+STATUS ：非重要消息<br />
+WARNING：CMake 警告, 会继续执行<br />
+AUTHOR_WARNING：CMake 警告 (dev), 会继续执行<br />
+SEND_ERROR：CMake 错误, 继续执行，但是会跳过生成的步骤<br />
+FATAL_ERROR：CMake 错误, 终止所有处理过程</p>
+
+<h2>4.12&nbsp;追加拼接</h2>
+
+<h3>4.12.1 set追加</h3>
+
+<pre>
+<code class="language-bash">set(变量名1 ${变量名1} ${变量名2} ...)</code></pre>
+
+<p>例如：</p>
+
+<pre>
+<code class="language-bash">file(GLOB SRC_1 ${PROJECT_SOURCE_DIR}/src1/*.cpp)
+file(GLOB SRC_2 ${PROJECT_SOURCE_DIR}/src2/*.cpp)
+# 追加(拼接)
+set(SRC_1 ${SRC_1} ${SRC_2})
+
+</code></pre>
+
+<p>如果第一个参数中原来有数据会对原数据就行覆盖。</p>
+
+<h3>4.12.2 list拼接</h3>
+
+<pre>
+<code class="language-bash">list(APPEND &lt;list&gt; [&lt;element&gt; ...])</code></pre>
+
+<p><code>list(APPEND SRC_1 ${SRC_1} ${SRC_2})</code>&nbsp;不会 &ldquo;覆盖&rdquo;&nbsp;<code>SRC_1</code>&nbsp;原来的值，而是会<strong>在原有值的基础上追加新内容</strong>，但由于命令中包含&nbsp;<code>${SRC_1}</code>&nbsp;自身，会导致&nbsp;<code>SRC_1</code>&nbsp;的原有内容被<strong>重复添加一次</strong>。</p>
+
+<pre>
+<code class="language-bash">file(GLOB SRC_1 ${PROJECT_SOURCE_DIR}/src1/*.cpp)
+file(GLOB SRC_2 ${PROJECT_SOURCE_DIR}/src2/*.cpp)
+# 追加(拼接)
+list(APPEND SRC_1 ${SRC_1} ${SRC_2})
+
+</code></pre>
+
+<h2>4.13&nbsp;字符串移除</h2>
+
+<pre>
+<code class="language-bash">list(REMOVE_ITEM &lt;list&gt; &lt;value&gt; [&lt;value&gt; ...])</code></pre>
+
+<p>通过 file 命令搜索源文件的时候得到的是文件的绝对路径（在list中每个文件对应的路径都是一个item，并且都是绝对路径），在移除的时候也要将该文件的绝对路径指定出来才可以</p>
+
+<p>4.14&nbsp;</p>
+
+<pre>
+<code class="language-bash">在 CMake 中，list 命令用于对列表（以分号分隔的字符串）进行各种操作，包括增删改查、排序、拼接等。以下是 list 命令的全部子命令整理，包含语法、参数说明和功能描述：
+1. list(LENGTH &lt;list&gt; &lt;output variable&gt;)
+功能：获取列表的长度（元素数量）。参数：
+&lt;list&gt;：目标列表（变量名，无需 ${} 包裹）。
+&lt;output variable&gt;：存储长度的变量（会被创建或覆盖）。
+示例：
+cmake
+set(my_list a b c)
+list(LENGTH my_list len)  # len 会被赋值为 3
+message(${len})  # 输出：3
+
+2. list(GET &lt;list&gt; &lt;index&gt; [&lt;index&gt;...] &lt;output variable&gt;)
+功能：获取列表中指定索引的元素（支持多个索引）。参数：
+&lt;list&gt;：目标列表。
+&lt;index&gt;：元素索引（从 0 开始；负数表示从末尾计数，-1 为最后一个元素）。
+&lt;output variable&gt;：存储结果的变量（多个元素会组成新列表）。
+注意：索引超出范围会报错。
+示例：
+cmake
+set(my_list a b c d)
+list(GET my_list 1 -1 out)  # 获取索引 1（b）和 -1（d）
+message(${out})  # 输出：b;d
+
+3. list(JOIN &lt;list&gt; &lt;glue&gt; &lt;output variable&gt;)
+功能：用指定字符串（glue）连接列表元素，生成单个字符串。参数：
+&lt;list&gt;：目标列表。
+&lt;glue&gt;：连接符（字符串，如 ,、- 等）。
+&lt;output variable&gt;：存储结果字符串的变量。
+示例：
+cmake
+set(my_list a b c)
+list(JOIN my_list ", " str)  # 用 ", " 连接
+message(${str})  # 输出：a, b, c
+
+4. list(FIND &lt;list&gt; &lt;value&gt; &lt;output variable&gt;)
+功能：查找元素在列表中的索引（首次出现的位置）。参数：
+&lt;list&gt;：目标列表。
+&lt;value&gt;：要查找的元素。
+&lt;output variable&gt;：存储结果的变量（找到则返回索引，未找到返回 -1）。
+示例：
+cmake
+set(my_list a b c b)
+list(FIND my_list b idx)  # 查找 "b" 首次出现的位置
+message(${idx})  # 输出：1
+
+5. list(APPEND &lt;list&gt; [&lt;element&gt;...])
+功能：向列表末尾追加一个或多个元素。参数：
+&lt;list&gt;：目标列表（若不存在则创建）。
+&lt;element&gt;...：要追加的元素（多个元素用空格分隔）。
+示例：
+cmake
+set(my_list a b)
+list(APPEND my_list c d)  # 追加 c、d
+message(${my_list})  # 输出：a;b;c;d
+
+6. list(INSERT &lt;list&gt; &lt;index&gt; &lt;element&gt; [&lt;element&gt;...])
+功能：在列表指定索引位置插入一个或多个元素。参数：
+&lt;list&gt;：目标列表。
+&lt;index&gt;：插入位置（0 表示开头，超出范围则插入末尾）。
+&lt;element&gt;...：要插入的元素。
+示例：
+cmake
+set(my_list a b c)
+list(INSERT my_list 1 x y)  # 在索引 1 处插入 x、y
+message(${my_list})  # 输出：a;x;y;b;c
+
+7. list(PREPEND &lt;list&gt; [&lt;element&gt;...])
+功能：向列表开头（索引 0 位置）插入一个或多个元素。参数：
+&lt;list&gt;：目标列表（若不存在则创建）。
+&lt;element&gt;...：要插入的元素（顺序保留，先加的元素更靠前）。
+示例：
+cmake
+set(my_list c d)
+list(PREPEND my_list a b)  # 开头插入 a、b
+message(${my_list})  # 输出：a;b;c;d
+
+8. list(POP_BACK &lt;list&gt; [&lt;out-var&gt;...])
+功能：移除列表最后一个元素（可选：将移除的元素存入变量）。参数：
+&lt;list&gt;：目标列表（若为空则无操作）。
+&lt;out-var&gt;...（可选）：存储被移除元素的变量（仅保留最后一个被移除的元素，多变量时多余变量为空）。
+示例：
+cmake
+set(my_list a b c)
+list(POP_BACK my_list last)  # 移除最后一个元素 c，存入 last
+message(${my_list})  # 输出：a;b
+message(${last})     # 输出：c
+
+9. list(POP_FRONT &lt;list&gt; [&lt;out-var&gt;...])
+功能：移除列表第一个元素（可选：将移除的元素存入变量）。参数：与 POP_BACK 类似，区别为移除第一个元素。示例：
+cmake
+set(my_list a b c)
+list(POP_FRONT my_list first)  # 移除第一个元素 a，存入 first
+message(${my_list})  # 输出：b;c
+message(${first})    # 输出：a
+
+10. list(REMOVE_ITEM &lt;list&gt; &lt;value&gt; [&lt;value&gt;...])
+功能：移除列表中所有与 &lt;value&gt; 匹配的元素（精确匹配）。参数：
+&lt;list&gt;：目标列表。
+&lt;value&gt;...：要移除的元素（可多个）。
+示例：
+cmake
+set(my_list a b c b a)
+list(REMOVE_ITEM my_list a)  # 移除所有 "a"
+message(${my_list})  # 输出：b;c;b
+
+11. list(REMOVE_AT &lt;list&gt; &lt;index&gt; [&lt;index&gt;...])
+功能：移除列表中指定索引的元素（支持多个索引）。参数：
+&lt;list&gt;：目标列表。
+&lt;index&gt;...：要移除的元素索引（超出范围则无操作）。
+示例：
+cmake
+set(my_list a b c d)
+list(REMOVE_AT my_list 1 3)  # 移除索引 1（b）和 3（d）
+message(${my_list})  # 输出：a;c
+
+12. list(REMOVE_DUPLICATES &lt;list&gt;)
+功能：移除列表中的重复元素（保留首次出现的元素）。参数：
+&lt;list&gt;：目标列表。
+示例：
+cmake
+set(my_list a b a c b)
+list(REMOVE_DUPLICATES my_list)  # 去重
+message(${my_list})  # 输出：a;b;c
+
+13. list(REVERSE &lt;list&gt;)
+功能：反转列表中元素的顺序。参数：
+&lt;list&gt;：目标列表。
+示例：
+cmake
+set(my_list a b c)
+list(REVERSE my_list)  # 反转
+message(${my_list})  # 输出：c;b;a
+
+14. list(SORT &lt;list&gt; [COMPARE &lt;compare&gt;] [CASE &lt;case&gt;] [ORDER &lt;order&gt;])
+功能：对列表元素进行排序（默认按字符串升序、大小写敏感）。可选参数：
+COMPARE &lt;compare&gt;：排序方式（STRING：字符串排序，默认；FILE_BASENAME：按文件名排序；NATURAL：自然数排序）。
+CASE &lt;case&gt;：大小写敏感性（SENSITIVE：敏感，默认；INSENSITIVE：不敏感）。
+ORDER &lt;order&gt;：排序方向（ASCENDING：升序，默认；DESCENDING：降序）。
+示例：
+cmake
+set(my_list c A b)
+list(SORT my_list CASE INSENSITIVE)  # 大小写不敏感升序
+message(${my_list})  # 输出：A;b;c</code></pre>
+
+<h2>4.14&nbsp;宏定义</h2>
+
+<pre>
+<code class="language-bash">add_definitions(-D宏名称)</code></pre>
+
+<h2>4.15&nbsp;预定义宏</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>宏</th>
+			<th>功能描述</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>PROJECT_SOURCE_DIR</td>
+			<td>使用&nbsp;<code>cmake</code>&nbsp;命令时指定的源码目录（通常是工程根目录，即最顶层&nbsp;<code>CMakeLists.txt</code>&nbsp;所在目录）</td>
+		</tr>
+		<tr>
+			<td>PROJECT_BINARY_DIR</td>
+			<td>执行&nbsp;<code>cmake</code>&nbsp;命令的目录（构建目录，用于存放构建过程中生成的文件）</td>
+		</tr>
+		<tr>
+			<td>CMAKE_CURRENT_SOURCE_DIR</td>
+			<td>当前正在处理的&nbsp;<code>CMakeLists.txt</code>&nbsp;文件所在的路径</td>
+		</tr>
+		<tr>
+			<td>CMAKE_CURRENT_BINARY_DIR</td>
+			<td>当前目标（target）的编译目录（存放当前目标的中间编译产物，如&nbsp;<code>.o</code>&nbsp;文件）</td>
+		</tr>
+		<tr>
+			<td>EXECUTABLE_OUTPUT_PATH</td>
+			<td>重新定义目标二进制可执行文件的存放位置（需通过&nbsp;<code>set</code>&nbsp;命令手动设置）</td>
+		</tr>
+		<tr>
+			<td>LIBRARY_OUTPUT_PATH</td>
+			<td>重新定义目标链接库文件（静态库、动态库）的存放位置（需通过&nbsp;<code>set</code>&nbsp;命令手动设置）</td>
+		</tr>
+		<tr>
+			<td>PROJECT_NAME</td>
+			<td>返回通过&nbsp;<code>project()</code>&nbsp;指令定义的项目名称</td>
+		</tr>
+		<tr>
+			<td>CMAKE_BINARY_DIR</td>
+			<td>项目实际构建路径（与 PROJECT_BINARY_DIR 一致，通常为执行&nbsp;<code>cmake</code>&nbsp;命令的目录，如&nbsp;<code>build</code>&nbsp;目录）</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>4.16&nbsp;添加子目录</h2>
+
+<p><strong><code>add_subdirectory()</code>&nbsp;的完整语法如下（方括号&nbsp;<code>[]</code>&nbsp;表示可选参数）：</strong></p>
+
+<p>cmake</p>
+
+<pre>
+<code>add_subdirectory(source_dir [binary_dir] [EXCLUDE_FROM_ALL])
+</code></pre>
+
+<p><strong>参数详解</strong></p>
+
+<ol>
+	<li>
+	<p><strong><code>source_dir</code>（必选）</strong>指定包含&nbsp;<code>CMakeLists.txt</code>&nbsp;的子目录路径（源目录）。</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;路径可以是&lt;strong&gt;相对路径&lt;/strong&gt;（相对于当前&amp;nbsp;&lt;code&gt;CMakeLists.txt&lt;/code&gt;&amp;nbsp;所在的目录），或&lt;strong&gt;绝对路径&lt;/strong&gt;。&lt;/li&gt;
+	&lt;li&gt;要求该目录下必须存在&amp;nbsp;&lt;code&gt;CMakeLists.txt&lt;/code&gt;，否则 CMake 会报错（提示 &amp;ldquo;找不到子目录的 CMakeLists.txt&amp;rdquo;）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;示例：若主目录&amp;nbsp;&lt;code&gt;CMakeLists.txt&lt;/code&gt;&amp;nbsp;所在路径为&amp;nbsp;&lt;code&gt;./project&lt;/code&gt;，子目录&amp;nbsp;&lt;code&gt;./project/module&lt;/code&gt;&amp;nbsp;有&amp;nbsp;&lt;code&gt;CMakeLists.txt&lt;/code&gt;，则可写为：&lt;/p&gt;
+
+&lt;p&gt;cmake&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>add_subdirectory(module)  # 相对路径，等价于 add_subdirectory(${CMAKE_CURRENT_SOURCE_DIR}/module)<br></code></pre><br>	</li><br>	<li><br>	<p><strong><code>binary_dir</code>（可选）</strong>指定子目录构建产物（如&nbsp;<code>.o</code>&nbsp;目标文件、可执行文件、库文件等）的存放目录（二进制目录）。</p></p>
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;若不指定，默认与&amp;nbsp;&lt;code&gt;source_dir&lt;/code&gt;&amp;nbsp;同名，即构建产物会放在&lt;strong&gt;构建目录（&lt;code&gt;build&lt;/code&gt;）下与源目录同名的子目录&lt;/strong&gt;中（例如：&lt;code&gt;build/module&lt;/code&gt;）。&lt;/li&gt;
+	&lt;li&gt;若指定，则构建产物会放在该目录下（路径同样可以是相对路径或绝对路径，相对路径基于当前构建目录）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;示例：希望&amp;nbsp;&lt;code&gt;module&lt;/code&gt;&amp;nbsp;的构建产物放在&amp;nbsp;&lt;code&gt;build/my_output&lt;/code&gt;&amp;nbsp;目录下：&lt;/p&gt;
+
+&lt;p&gt;cmake&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>add_subdirectory(module my_output)  # source_dir=module，binary_dir=my_output<br></code></pre><br>	</li><br>	<li><br>	<p><strong><code>EXCLUDE_FROM_ALL</code>（可选）</strong>一个关键字参数，用于指定子目录的构建目标是否<strong>排除在默认构建流程之外</strong>。</p></p>
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;若添加此参数，子目录的目标（如&amp;nbsp;&lt;code&gt;module&lt;/code&gt;&amp;nbsp;中的库）不会被默认构建（即执行&amp;nbsp;&lt;code&gt;make&lt;/code&gt;&amp;nbsp;或&amp;nbsp;&lt;code&gt;cmake --build&lt;/code&gt;&amp;nbsp;时不会自动编译），需手动指定目标（如&amp;nbsp;&lt;code&gt;make module_lib&lt;/code&gt;）才会构建。&lt;/li&gt;
+	&lt;li&gt;适用于 &amp;ldquo;可选组件&amp;rdquo; 场景（如子目录是一个可选插件，默认不需要编译）。&lt;/li&gt;
+&lt;/ul&gt;
+
+&lt;p&gt;示例：子目录&amp;nbsp;&lt;code&gt;plugin&lt;/code&gt;&amp;nbsp;是可选组件，默认不构建：&lt;/p&gt;
+
+&lt;p&gt;cmake&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>add_subdirectory(plugin EXCLUDE_FROM_ALL)</code></pre><br>	</li></p>
+</ol>
+
+<p>参考链接（如有侵权，请联系删除）：</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="https://subingwen.cn/cmake/CMake-primer/" target="_blank" rel="noopener" href="https://subingwen.cn/cmake/CMake-primer/" title="https://subingwen.cn/cmake/CMake-primer/">https://subingwen.cn/cmake/CMake-primer/</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Linux%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Linux学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vscode-ide-%E7%BC%96%E8%BE%91%E5%99%A8-cmake/" class="print-no-link">#vscode ide 编辑器 cmake</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识</div>
+      <div>http://example.com/2025/10/29/【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月29日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/29/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E8%A7%A3%E5%86%B3VS2022%E7%9A%84C#%20Windows%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E7%9A%84TextBox%E9%AB%98%E5%BA%A6%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98/" title="【随笔】解决VS2022的C# Windows界面设计的TextBox高度限制问题">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【随笔】解决VS2022的C# Windows界面设计的TextBox高度限制问题</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/" title="【随笔】【CMake】Windows下cmake构建+编译，代码（UTF-8编码保存）运行时中文字符出现乱码的解决方法">
+                        <span class="hidden-mobile">【随笔】【CMake】Windows下cmake构建+编译，代码（UTF-8编码保存）运行时中文字符出现乱码的解决方法</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,876 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、BCSP（BlueCore Serial Protocol）协议简介  Board of Certified Safety Professionals | BCSP  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP（BlueCore Serial Protocol）是由 CSR 公司（现属于高通）开发的专有协议，并非蓝牙的标准协议，主要作用是在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析">
+<meta property="og:url" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%83%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUART%E7%9A%84%E8%93%9D%E7%89%99%20BCSP%20Transport%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、BCSP（BlueCore Serial Protocol）协议简介  Board of Certified Safety Professionals | BCSP  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP（BlueCore Serial Protocol）是由 CSR 公司（现属于高通）开发的专有协议，并非蓝牙的标准协议，主要作用是在">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-10T08:26:58.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="bluetooth BCSP">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-10 16:26" pubdate>
+          2025年8月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          9 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 style="background-color:transparent">一、BCSP（BlueCore Serial Protocol）协议简介</h1>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="Board of Certified Safety Professionals | BCSP" target="_blank" rel="noopener" href="https://www.bcsp.org/" title="Board of Certified Safety Professionals | BCSP">Board of Certified Safety Professionals | BCSP</a></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP（BlueCore Serial Protocol）是由 CSR 公司（现属于高通）开发的专有协议，并非蓝牙的标准协议，主要作用是在 UART（通用异步收发传输器）物理层上实现蓝牙主机（Host）与控制器（Host Controller）之间的可靠数据传输，位于蓝牙 HCI（主机控制器接口）层之下，为 HCI 数据提供封装与传输保障。</p>
+
+<h1>二、核心定位与功能</h1>
+
+<ul>
+	<li><strong>核心目标</strong>：解决 UART 传输的不可靠性问题（如丢包、数据错乱），通过协议层设计实现 HCI 数据的稳定收发。</li>
+	<li><strong>服务类型</strong>：提供两种双向数据报服务：
+	<ul>
+		<li>可靠数据报服务（通过排序、确认机制保障数据完整）；</li>
+		<li>不可靠数据报服务（无确认机制，适用于实时性优先场景）。</li>
+	</ul>
+	</li>
+	<li><strong>运行环境</strong>：支持三线 UART（TX/RX/GND）或五线 UART（增加 CTS/RTS 硬件流控），兼容常见串口硬件。</li>
+</ul>
+
+<h1 style="background-color:transparent">三、分层架构与工作流程</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP 采用分层设计，从底层到上层依次为 6 层，每层负责特定功能，协同实现数据传输：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>层级</th>
+			<th>核心功能</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>UART Driver Layer</strong></td>
+			<td>初始化并控制本地 UART 硬件，定义默认参数（如 38.4k 波特率、8 数据位、偶校验、1 停止位），处理字节收发与 parity 校验（校验失败则丢弃字节）。</td>
+		</tr>
+		<tr>
+			<td><strong>SLIP Layer</strong></td>
+			<td>基于 SLIP（Serial Link Internet Protocol）协议实现字节流与数据包的转换：以<code>0xC0</code>作为包起始 / 结束标志，对特殊字节（<code>0xC0</code>&rarr;<code>0xDB 0xDC</code>，<code>0xDB</code>&rarr;<code>0xDB 0xDD</code>）进行转义，避免与标志位冲突。</td>
+		</tr>
+		<tr>
+			<td><strong>Packet Integrity Layer</strong></td>
+			<td>检测数据包完整性，丢弃不完整或格式错误的包（如未正确以<code>0xC0</code>结束的包），确保上层处理的是有效数据。</td>
+		</tr>
+		<tr>
+			<td><strong>MUX Layer</strong></td>
+			<td>路由层，根据数据包的<code>Protocol Type</code>字段，将包分发至上层的 &ldquo;可靠传输层&rdquo;（Sequencing Layer）或 &ldquo;不可靠传输层&rdquo;（Datagram Queue Layer），同时记录最后一次成功接收包的时间。</td>
+		</tr>
+		<tr>
+			<td><strong>Sequencing Layer</strong></td>
+			<td>提供可靠传输：通过<code>seq</code>（序号，0-7）和<code>ack</code>（确认号，0-7）的窗口机制实现包排序与重传，确保数据按序、完整到达。</td>
+		</tr>
+		<tr>
+			<td><strong>Datagram Queue Layer</strong></td>
+			<td>提供不可靠传输：无序号与确认机制，适用于实时性要求高的场景（如语音数据），<code>seq</code>和<code>ack</code>字段固定为 0。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1 style="background-color:transparent">四、数据包结构</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP 数据包格式定义了清晰的字段，确保传输的准确性与可解析性，核心结构如下：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>字段</th>
+			<th>位置 / 长度</th>
+			<th>作用描述</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>Flags Field</strong></td>
+			<td>第 1 字节</td>
+			<td>包含<code>seq</code>（序号，0-2bit，仅可靠层有效）、<code>ack</code>（确认号，3-5bit，仅可靠层有效）、<code>CRC</code>（是否包含 CRC，6bit：1 = 包含）、<code>Protocol Type</code>（7bit，用于 MUX 层路由）。</td>
+		</tr>
+		<tr>
+			<td><strong>Protocol Identifier Field</strong></td>
+			<td>第 2 字节 0-3bit</td>
+			<td>也称 &ldquo;BCSP channel&rdquo;，标识上层协议类型，区分可靠 / 不可靠传输的不同数据通道。</td>
+		</tr>
+		<tr>
+			<td><strong>Payload Length Field</strong></td>
+			<td>第 2 字节 4-7bit + 第 3 字节</td>
+			<td>表示 Payload（有效数据）长度（不含 CRC）。</td>
+		</tr>
+		<tr>
+			<td><strong>Checksum Field</strong></td>
+			<td>第 4 字节</td>
+			<td>前 3 字节的校验和取反，用于检测头部完整性。</td>
+		</tr>
+		<tr>
+			<td><strong>Payload</strong></td>
+			<td>可变长度</td>
+			<td>实际传输的 HCI 数据（如命令、事件、音频流等）。</td>
+		</tr>
+		<tr>
+			<td><strong>CRC Field</strong></td>
+			<td>最后 2 字节</td>
+			<td>对整个数据包的 CRC16 校验（仅当<code>Flags</code>中<code>CRC=1</code>时存在），用于检测传输错误（仅校验，不纠错，错误则丢弃或重传）。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1 style="background-color:transparent">总结</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BCSP 作为 UART 上的专有传输协议，通过分层设计与精细的数据包机制，为蓝牙 HCI 层数据提供了灵活的 &ldquo;可靠 / 不可靠&rdquo; 传输选择，弥补了 UART 物理层的固有缺陷。其核心价值在于：在低成本串口硬件上实现高稳定性，适配蓝牙设备（如耳机、传感器）的通信需求，尤其在 CSR 芯片方案中被广泛应用。</p>
+
+<p><strong>注：</strong>由于笔者目前还在学习中，暂时不进行详解BCSP，可等待后续更新；但是，csdn上有部分博主BCSP的源码和解析，可自行寻找。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">蓝牙通信协议学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/bluetooth-BCSP/" class="print-no-link">#bluetooth BCSP</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析</div>
+      <div>http://example.com/2025/08/10/【Bluetooth】【Transport层篇】第七章 基于UART的蓝牙 BCSP Transport解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第八章 基于USB的蓝牙传输协议 USB H2 Transport详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第八章 基于USB的蓝牙传输协议 USB H2 Transport详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%9F%BA%E4%BA%8ESDIO%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20SDIO%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第六章 基于SDIO的蓝牙硬件发送协议 SDIO Transport详解">
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第六章 基于SDIO的蓝牙硬件发送协议 SDIO Transport详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

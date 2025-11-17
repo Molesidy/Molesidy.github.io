@@ -1,0 +1,1227 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文将介绍如何自己手动搭建基于MDK开发环境下的AT32工程模板。  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT32 系列是 ** 雅特力科技（Arterytek）** 推出的 32 位 ARM Cortex-M 系列微控制器（MCU），兼容 STM32">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）">
+<meta property="og:url" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文将介绍如何自己手动搭建基于MDK开发环境下的AT32工程模板。  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT32 系列是 ** 雅特力科技（Arterytek）** 推出的 32 位 ARM Cortex-M 系列微控制器（MCU），兼容 STM32">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ee596a2dceb04062bbc93066ca21f0ff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e004c476ea584a9db83461ca5d6c522c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c4af2910e7fc4b77976aa167b875a1ff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94de730aa6cf466bae575bbe0e6b0c0f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/24cfcbd5747d4cc484b6aa101a472b57.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c88335dd4fd04fcbb3e36d47dc3144f9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9330559b80644eae9681d251e4d236a0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/066fca26267f4e7bafb9ade5dc5f78d7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ed0d78fcfa4b4bfdaf07bdad998f809c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b715ca39ef84436a760a8af90b62732.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c87d3f4d0b224ec7b04bd7ce28f604a6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b966f7bd1e7f4b28ac1edfeeb2dd305f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0c1f0b26730c49dc97e15e8cf0e6be01.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f594bbb437ae493080e531eb255ae473.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f5f17c17359044208aeb802d7546523b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a18acc26dd7247d6baa57f1fb636e49f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e6d22626945a4f25a4c01eb4fa1f5391.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ebf13cc797884cdd82c4c793e01dfb97.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/929c593d352f4a61a344142d75b35ca7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59a796e678f24bf2952de35751598c1d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/58f675306641424cb15f3f1101ff7df2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a6286e8fe55429391bc95965864f20f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d7a4fa7821f4fe8a949e01fd00bda65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5288158b26c44bb48f7810607eeb2ca1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/30c3312d9ee4433097b8016b3e50ef82.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d5687aad2dc544ea97a3769f3fb0eb74.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ab7126c7ba7441dcae446da86ecf7327.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48b026d582db4b588087407870af1308.gif">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758">
+<meta property="article:published_time" content="2025-07-07T16:02:41.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="AT32 单片机 嵌入式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png">
+  
+  
+  
+  <title>【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动） - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-08 00:02" pubdate>
+          2025年7月8日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          13 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文将介绍如何自己手动搭建基于MDK开发环境下的AT32工程模板。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT32 系列是 ** 雅特力科技（Arterytek）** 推出的 32 位 ARM Cortex-M 系列微控制器（MCU），兼容 STM32 生态，提供高性能、低功耗和丰富的外设接口，广泛应用于工业控制、消费电子、IoT 等领域。</p>
+
+<h3><strong>核心特点</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>高性能内核</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;基于 **ARM Cortex-M4/M3/M0+** 内核，最高主频达 240MHz（AT32F437 系列）。&lt;/li&gt;
+	&lt;li&gt;支持 DSP 指令集和 FPU（浮点单元，部分型号），适合数字信号处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;丰富的存储与接口&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;Flash 容量：64KB~2MB，SRAM：16KB~512KB。&lt;/li&gt;
+	&lt;li&gt;通信接口：UART、SPI、I2C、USB、CAN、Ethernet 等。&lt;/li&gt;
+	&lt;li&gt;ADC/DAC：12 位 ADC（最高 2.6MSPS）、12 位 DAC。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;低功耗设计&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;支持多种低功耗模式（睡眠、停止、待机），最低功耗仅数 &amp;mu;A。&lt;/li&gt;
+	&lt;li&gt;内置电源管理单元（PWR）和实时时钟（RTC）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;高安全性&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;支持代码加密（读保护、写保护）。&lt;/li&gt;
+	&lt;li&gt;硬件 CRC 校验、随机数发生器（RNG）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3><strong>典型型号与应用场景</strong></h3>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>系列</strong></th>
+			<th><strong>内核</strong></th>
+			<th><strong>主频</strong></th>
+			<th><strong>典型应用</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>AT32F403A</td>
+			<td>Cortex-M4</td>
+			<td>96MHz</td>
+			<td>工业控制、电机驱动</td>
+		</tr>
+		<tr>
+			<td>AT32F415</td>
+			<td>Cortex-M4</td>
+			<td>120MHz</td>
+			<td>高端消费电子、智能设备</td>
+		</tr>
+		<tr>
+			<td>AT32F437</td>
+			<td>Cortex-M4</td>
+			<td>240MHz</td>
+			<td>高性能计算、通信网关</td>
+		</tr>
+		<tr>
+			<td>AT32F103</td>
+			<td>Cortex-M3</td>
+			<td>72MHz</td>
+			<td>低成本应用、替代 STM32F103</td>
+		</tr>
+		<tr>
+			<td>AT32F407</td>
+			<td>Cortex-M4</td>
+			<td>168MHz</td>
+			<td>网络设备、复杂控制</td>
+		</tr>
+		<tr>
+			<td>AT32F235</td>
+			<td>Cortex-M0+</td>
+			<td>48MHz</td>
+			<td>超低功耗 IoT 设备</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3><strong>开发资源</strong></h3>
+
+<ol>
+	<li>
+	<p><strong>软件开发工具</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;AT32CubeMX&lt;/strong&gt;：图形化配置工具，兼容 STM32CubeMX。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;AT32IDE&lt;/strong&gt;：基于 Eclipse 的集成开发环境。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;支持第三方工具&lt;/strong&gt;：Keil MDK、IAR、GCC 等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;固件库与中间件&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;标准外设库（SPL）&lt;/strong&gt;：类似 STM32 的标准库。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;HAL 库&lt;/strong&gt;：高级抽象层库，简化开发。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;RTOS 支持&lt;/strong&gt;：FreeRTOS、RT-Thread、uC/OS 等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;硬件开发板&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;AT-START-F403A&lt;/strong&gt;：入门级开发板，适合基础学习。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;AT-PRO-F415&lt;/strong&gt;：专业开发板，集成丰富外设。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3><strong>与 STM32 的兼容性</strong></h3>
+
+<ul>
+	<li><strong>代码兼容性高</strong>：大部分 STM32 代码可直接移植到 AT32（需修改头文件和少量寄存器配置）。</li>
+	<li><strong>引脚兼容</strong>：部分型号与 STM32 引脚完全兼容，可无缝替换。</li>
+	<li><strong>生态适配</strong>：支持 STM32 的开发工具和第三方库（如 FatFS、lwIP）。</li>
+</ul>
+
+<h3><strong>适用场景</strong></h3>
+
+<ul>
+	<li><strong>工业控制</strong>：电机驱动、PLC、传感器接口。</li>
+	<li><strong>消费电子</strong>：智能家居、智能穿戴设备。</li>
+	<li><strong>通信设备</strong>：网关、路由器、IoT 终端。</li>
+	<li><strong>替代方案</strong>：作为 STM32 的高性价比替代方案（尤其在供应链紧张时期）。</li>
+</ul>
+
+<h3><strong>学习资源</strong></h3>
+
+<ul>
+	<li><strong>官方文档</strong>：用户手册、参考手册、数据手册。</li>
+	<li><strong>示例代码</strong>：官方提供丰富的外设驱动示例。</li>
+	<li><strong>社区支持</strong>：雅特力官方论坛、GitHub 开源项目。</li>
+</ul>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="固件库下载链接" target="_blank" rel="noopener" href="https://www.arterytek.com/cn/product/AT32F403A.jsp#Resource" title="固件库下载链接">固件库下载链接</a></p>
+
+<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png" srcset="/img/loading.gif" lazyload width="1480" /></p>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="AT32的MDK支持包链接" target="_blank" rel="noopener" href="https://www.arterytek.com/cn/product/AT32F403A.jsp#Resource" title="AT32的MDK支持包链接">AT32的MDK支持包链接</a></p>
+
+<p><img alt="" height="75" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ee596a2dceb04062bbc93066ca21f0ff.png" srcset="/img/loading.gif" lazyload width="1472" /></p>
+
+<h1>二、工程文件结构搭建</h1>
+
+<h2>1.新建文件夹AT32_Example，在其下再次新建文件夹</h2>
+
+<p><img alt="" height="775" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e004c476ea584a9db83461ca5d6c522c.png" srcset="/img/loading.gif" lazyload width="1135" /></p>
+
+<h2>2.将\AT32F403AVGT7移植材料\libraries\drivers\src下的AT32外设c文件源码移植到firmware</h2>
+
+<p><img alt="" height="525" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c4af2910e7fc4b77976aa167b875a1ff.png" srcset="/img/loading.gif" lazyload width="1683" /></p>
+
+<h2>3.将\AT32F403AVGT7移植材料\libraries\drivers\inc下的AT32外设h头文件放到/include/drivers/inc/下</h2>
+
+<p><img alt="" height="973" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94de730aa6cf466bae575bbe0e6b0c0f.png" srcset="/img/loading.gif" lazyload width="1512" /></p>
+
+<h2>&nbsp;4.\AT32F403AVGT7移植材料\project\at32f403a_407_board下的board.c，board.h放在bsp下</h2>
+
+<p><img alt="" height="296" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/24cfcbd5747d4cc484b6aa101a472b57.png" srcset="/img/loading.gif" lazyload width="961" /></p>
+
+<h2>5.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\device_support\startup\mdk下的s文件是mdk环境下的启动文件放在cmsis</h2>
+
+<p><img alt="" height="260" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c88335dd4fd04fcbb3e36d47dc3144f9.png" srcset="/img/loading.gif" lazyload width="895" /></p>
+
+<h2>6.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\device_support下的系统文件也放在cmsis下</h2>
+
+<p><img alt="" height="396" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9330559b80644eae9681d251e4d236a0.png" srcset="/img/loading.gif" lazyload width="903" /></p>
+
+<h2>&nbsp;7.将\AT32F403AVGT7移植材料\project\at_start_f403a\templates\inc下的3个头文件放到user下</h2>
+
+<p><img alt="" height="306" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/066fca26267f4e7bafb9ade5dc5f78d7.png" srcset="/img/loading.gif" lazyload width="859" /></p>
+
+<h2>&nbsp;8.将\AT32F403AVGT7移植材料\project\at_start_f403a\templates\src下的3个c文件放在user下</h2>
+
+<p><img alt="" height="305" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ed0d78fcfa4b4bfdaf07bdad998f809c.png" srcset="/img/loading.gif" lazyload width="998" /></p>
+
+<p>at32f403a_407_conf_template.h文件删掉，因为已经有at32f403a_407_conf.h</p>
+
+<p><img alt="" height="367" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0b715ca39ef84436a760a8af90b62732.png" srcset="/img/loading.gif" lazyload width="1134" /></p>
+
+<h2>&nbsp;9.在文件夹下再新建一个文件夹存放MDK工程启动文件</h2>
+
+<p><img alt="" height="418" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c87d3f4d0b224ec7b04bd7ce28f604a6.png" srcset="/img/loading.gif" lazyload width="1108" /></p>
+
+<h2>10.打开MDK并新建工程</h2>
+
+<p><img alt="" height="90" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b966f7bd1e7f4b28ac1edfeeb2dd305f.png" srcset="/img/loading.gif" lazyload width="1355" /></p>
+
+<p><img alt="" height="825" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0c1f0b26730c49dc97e15e8cf0e6be01.png" srcset="/img/loading.gif" lazyload width="1360" /></p>
+
+<h2>11.选择对应支持芯片包</h2>
+
+<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f594bbb437ae493080e531eb255ae473.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<h2>12.跳过在线配置工具，重新自定义工程结构组</h2>
+
+<p><img alt="" height="581" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f5f17c17359044208aeb802d7546523b.png" srcset="/img/loading.gif" lazyload width="505" /></p>
+
+<h2>13.添加文件</h2>
+
+<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a18acc26dd7247d6baa57f1fb636e49f.png" srcset="/img/loading.gif" lazyload width="775" /></p>
+
+<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e6d22626945a4f25a4c01eb4fa1f5391.png" srcset="/img/loading.gif" lazyload width="771" /></p>
+
+<p><img alt="" height="569" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ebf13cc797884cdd82c4c793e01dfb97.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/929c593d352f4a61a344142d75b35ca7.png" srcset="/img/loading.gif" lazyload width="771" /></p>
+
+<h2>14.添加文件路径</h2>
+
+<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59a796e678f24bf2952de35751598c1d.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<h2>15.再新建文件core</h2>
+
+<h2><img alt="" height="422" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/58f675306641424cb15f3f1101ff7df2.png" srcset="/img/loading.gif" lazyload width="1076" />16.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\core_support下的文件（不包括文件夹），放到core下，再导入路径</h2>
+
+<p><img alt="" height="823" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a6286e8fe55429391bc95965864f20f.png" srcset="/img/loading.gif" lazyload width="1350" /></p>
+
+<p><img alt="" height="580" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d7a4fa7821f4fe8a949e01fd00bda65.png" srcset="/img/loading.gif" lazyload width="776" /></p>
+
+<h2>17.工程配置中添加宏定义</h2>
+
+<pre>
+<code class="language-cpp">AT32F403AVGT7,USE_STDPERIPH_DRIVER,AT_START_F403A_V1</code></pre>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5288158b26c44bb48f7810607eeb2ca1.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>18.编译</h2>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/30c3312d9ee4433097b8016b3e50ef82.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1>三、代码编写</h1>
+
+<h2>1.开启时钟初始化</h2>
+
+<h2>2.延时初始化</h2>
+
+<h2>3.gpio（Led）初始化</h2>
+
+<p><img alt="" height="380" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d5687aad2dc544ea97a3769f3fb0eb74.png" srcset="/img/loading.gif" lazyload width="484" /></p>
+
+<h2>4.灯光闪烁</h2>
+
+<pre>
+<code class="language-cpp">//低电平点亮
+	  gpio_bits_toggle(GPIOD, GPIO_PINS_11|GPIO_PINS_12|GPIO_PINS_13);
+	  delay_ms(1000);</code></pre>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/**
+  **************************************************************************
+  * @file     main.c
+  * @brief    main program
+  **************************************************************************
+  *                       Copyright notice &amp; Disclaimer
+  *
+  * The software Board Support Package (BSP) that is made available to
+  * download from Artery official website is the copyrighted work of Artery.
+  * Artery authorizes customers to use, copy, and distribute the BSP
+  * software and its related documentation for the purpose of design and
+  * development in conjunction with Artery microcontrollers. Use of the
+  * software is governed by this copyright notice and the following disclaimer.
+  *
+  * THIS SOFTWARE IS PROVIDED ON "AS IS" BASIS WITHOUT WARRANTIES,
+  * GUARANTEES OR REPRESENTATIONS OF ANY KIND. ARTERY EXPRESSLY DISCLAIMS,
+  * TO THE FULLEST EXTENT PERMITTED BY LAW, ALL EXPRESS, IMPLIED OR
+  * STATUTORY OR OTHER WARRANTIES, GUARANTEES OR REPRESENTATIONS,
+  * INCLUDING BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY,
+  * FITNESS FOR A PARTICULAR PURPOSE, OR NON-INFRINGEMENT.
+  *
+  **************************************************************************
+  */
+
+#include "at32f403a_407_board.h"
+#include "at32f403a_407_clock.h"
+
+/** @addtogroup AT32F403A_periph_template
+  * @{
+  */
+
+/** @addtogroup 403A_LED_toggle LED_toggle
+  * @{
+  */
+
+#define DELAY                            100
+#define FAST                             1
+#define SLOW                             4
+
+uint8_t g_speed = FAST;
+
+void button_exint_init(void);
+void button_isr(void);
+
+/**
+  * @brief  configure button exint
+  * @param  none
+  * @retval none
+  */
+void button_exint_init(void)
+{
+  exint_init_type exint_init_struct;
+
+  crm_periph_clock_enable(CRM_IOMUX_PERIPH_CLOCK, TRUE);
+  gpio_exint_line_config(GPIO_PORT_SOURCE_GPIOA, GPIO_PINS_SOURCE0);
+
+  exint_default_para_init(&amp;exint_init_struct);
+  exint_init_struct.line_enable = TRUE;
+  exint_init_struct.line_mode = EXINT_LINE_INTERRUPT;
+  exint_init_struct.line_select = EXINT_LINE_0;
+  exint_init_struct.line_polarity = EXINT_TRIGGER_RISING_EDGE;
+  exint_init(&amp;exint_init_struct);
+
+  nvic_priority_group_config(NVIC_PRIORITY_GROUP_4);
+  nvic_irq_enable(EXINT0_IRQn, 0, 0);
+}
+
+/**
+  * @brief  button handler function
+  * @param  none
+  * @retval none
+  */
+void button_isr(void)
+{
+  /* delay 5ms */
+  delay_ms(5);
+
+  /* clear interrupt pending bit */
+  exint_flag_clear(EXINT_LINE_0);
+
+  /* check input pin state */
+  if(SET == gpio_input_data_bit_read(USER_BUTTON_PORT, USER_BUTTON_PIN))
+  {
+    if(g_speed == SLOW)
+      g_speed = FAST;
+    else
+      g_speed = SLOW;
+  }
+}
+
+/**
+  * @brief  exint0 interrupt handler
+  * @param  none
+  * @retval none
+  */
+void EXINT0_IRQHandler(void)
+{
+  button_isr();
+}
+
+/**
+  * @brief  main function.
+  * @param  none
+  * @retval none
+  */
+int main(void)
+{
+  system_clock_config();
+	
+//  at32_board_init();
+//  button_exint_init();
+//  uart_print_init(115200);
+//  printf("at32 mcu initialize ok.\r\n");
+	
+	delay_init();
+	
+	gpio_init_type gpio_init_struct;//结构体定义
+	
+	crm_periph_clock_enable(CRM_GPIOD_PERIPH_CLOCK, TRUE);//初始化GPIOD时钟
+	gpio_default_para_init(&amp;gpio_init_struct);//缺省值配置
+	gpio_init_struct.gpio_drive_strength = GPIO_DRIVE_STRENGTH_STRONGER;//驱动强度
+	gpio_init_struct.gpio_out_type  = GPIO_OUTPUT_PUSH_PULL;//推挽输出
+	gpio_init_struct.gpio_mode = GPIO_MODE_OUTPUT;//输出
+	gpio_init_struct.gpio_pins = GPIO_PINS_11|GPIO_PINS_12|GPIO_PINS_13;
+	gpio_init_struct.gpio_pull = GPIO_PULL_NONE;
+	gpio_init(GPIOD, &amp;gpio_init_struct);
+	
+  while(1)
+  {
+//    at32_led_toggle(LED2);
+//    delay_ms(g_speed * DELAY);
+//    at32_led_toggle(LED3);
+//    delay_ms(g_speed * DELAY);
+//    at32_led_toggle(LED4);
+//    delay_ms(g_speed * DELAY);
+	  
+	  //低电平点亮
+	  gpio_bits_toggle(GPIOD, GPIO_PINS_11|GPIO_PINS_12|GPIO_PINS_13);
+	  delay_ms(1000);
+	  
+  }
+}
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+</code></pre>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ab7126c7ba7441dcae446da86ecf7327.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1>四、 实验验证</h1>
+
+<p><img alt="" height="480" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48b026d582db4b588087407870af1308.gif" srcset="/img/loading.gif" lazyload width="600" /></p>
+
+<p><strong>示例工程链接：</strong><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32." target="_blank" rel="noopener" href="https://github.com/Molesidy/AT32" title="Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32."><span class="link-card-box" contenteditable="false"><span class="link-title">Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32.</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/AT32</span></span></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AT32-%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#AT32 单片机 嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）</div>
+      <div>http://example.com/2025/07/08/【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月8日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/09/%E3%80%90MCU%E3%80%91%E3%80%90CH32%E3%80%91%E5%9F%BA%E4%BA%8ECH32F103C8T6%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%BA%93%E5%92%8CMDK%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/" title="【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91AT32IDE%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="【MCU】【AT32】AT32IDE的初步使用">
+                        <span class="hidden-mobile">【MCU】【AT32】AT32IDE的初步使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

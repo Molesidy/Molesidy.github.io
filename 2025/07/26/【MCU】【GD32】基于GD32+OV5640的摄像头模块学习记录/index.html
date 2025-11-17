@@ -1,0 +1,3589 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  目前，该文章仅仅是记录学习过程，代码方面还有些许问题，未调通，这里的代码仅供参考。  一、OV5640摄像头模块介绍  1.摄像头简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在信息载体中，图像包含的信息最为丰富。作为机器视觉领域的核心组件，摄像头的应用场景十分广泛，涵盖安防监控、野外探险、车牌识别检测等多个领域。  从不同维度对摄像头进行">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录">
+<meta property="og:url" content="http://example.com/2025/07/26/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8EGD32+OV5640%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="前言  目前，该文章仅仅是记录学习过程，代码方面还有些许问题，未调通，这里的代码仅供参考。  一、OV5640摄像头模块介绍  1.摄像头简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在信息载体中，图像包含的信息最为丰富。作为机器视觉领域的核心组件，摄像头的应用场景十分广泛，涵盖安防监控、野外探险、车牌识别检测等多个领域。  从不同维度对摄像头进行">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/15f83e5a5d9a4882ae24b7cbc8bd7cfa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d4a80bf096664495ac6c00a6eeea8ce1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5fe49d91805c44848cf78d630662b743.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/68b9a2e48060400488bc79143e8b84e0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a8eceffe090446a1a383c9924512eb2b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c2641a3b8204317b626f6767ded4012.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5e6b090552c74601b1b293460f9fd114.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd1609e3bcf2408ca71f2944b009f0ea.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b8014a7f987d4bb0a4170416473f0a01.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/99148b76d9de41ac94f6ea8e60a04e8e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de98ddebef0e47359d69559462f6ff77.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/07ae7e375e4147a09216a31a7434a7d2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20f18637517c4fbc92786e2ed9114c05.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/23d35233575e4486a21bce6c1276ab92.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0c2b14184d5c44e0968f1b1e626cf6db.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4638ea4f7a0449de81271d0d280efe88.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/96acaafb5b054ad7bfeefbf15dce42c2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/867691638cef4a3d9dc002317d4afb91.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/35952168835444a9a4271d754aa6b644.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4ed801c6287c4cf4937075a89b22e4b9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c5c1529af412448d97982424dbdc2d8d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/08656b19f56140f9b87d93cc8da9626c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5bc400596e264d3d8fe43ad40b9bbdf9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/aa1e530e9b1d4b8c9fee78790d3b561a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f8954bdaa73f4f83bbad7954806e8998.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1e1f076444f24ee0b778c90022719b49.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/278851f88bae41cb8c5a38d4d6852d55.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/60f4f9a5b88a4e29b2dbfac0e45999c4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/62c8b864b6d4431d9a840a7f5c2da307.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94daac9b00004ceea1394fcf61082769.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1513b8619b504d37b063ba93df0336ee.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/68088347e61d4dfdaf133d7bd8a2bd69.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7472ca400836448e984976977bceba2e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e822d3fcf3164f73b0f120675e8771ac.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fdc59ab9084448a09767e2711758cb6f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d4d80033d9634970992b9886f0ac3a17.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/069863b5825548158d405dbceb9ec0f1.png">
+<meta property="article:published_time" content="2025-07-26T05:47:55.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="学习 OV5640 GD32 DCI">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/15f83e5a5d9a4882ae24b7cbc8bd7cfa.png">
+  
+  
+  
+  <title>【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-26 13:47" pubdate>
+          2025年7月26日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          16k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          134 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>前言</h1>
+
+<p>目前，该文章仅仅是记录学习过程，代码方面还有些许问题，未调通，这里的代码仅供参考。</p>
+
+<h1>一、OV5640摄像头模块介绍</h1>
+
+<h2>1.摄像头简介</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在信息载体中，图像包含的信息最为丰富。作为机器视觉领域的核心组件，摄像头的应用场景十分广泛，涵盖安防监控、野外探险、车牌识别检测等多个领域。</p>
+
+<p>从不同维度对摄像头进行分类，具体如下：</p>
+
+<ol>
+	<li><strong>按输出信号类型</strong>：可分为数字摄像头和模拟摄像头。
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;数字摄像头输出的是数字信号，能直接与数字设备（如计算机、单片机等）进行数据传输和处理。&lt;/li&gt;
+	&lt;li&gt;模拟摄像头输出的是模拟信号，通常需要经过模数转换后才能被数字设备处理。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;按图像传感器材料构成&lt;/strong&gt;：可分为 CCD（电荷耦合器件）摄像头和 CMOS（互补金属氧化物半导体）摄像头。
+&lt;ul&gt;
+	&lt;li&gt;CCD 传感器在成像质量、灵敏度等方面有一定优势，但成本较高、功耗较大。&lt;/li&gt;
+	&lt;li&gt;CMOS 传感器具有成本低、功耗小、集成度高等特点，随着技术的不断发展，其成像质量已得到显著提升。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;值得注意的是，当前智能手机所配备的摄像头，绝大部分都属于 CMOS 类型的数字摄像头，这得益于 CMOS 传感器在功耗、成本和集成度上的优势，能够很好地满足智能手机对小型化、低功耗和高性价比的需求。</p>
+
+<h3>1.1 数字摄像头与模拟摄像头在输出信号类型和接口类型上存在显著区别，具体如下：</h3>
+
+<h4>1. 1.1 输出信号类型</h4>
+
+<ul>
+	<li><strong>数字摄像头</strong>：直接输出数字信号，信号以二进制数据（0 和 1）的形式存在，可直接被计算机、单片机、数字显示屏等数字设备识别和处理，无需额外的模数转换步骤。</li>
+	<li><strong>模拟摄像头</strong>：输出标准的模拟信号（如复合视频信号、分量视频信号等），信号形式为连续变化的电压或电流，需要通过模数转换器（ADC）转换为数字信号后，才能被数字设备处理。</li>
+</ul>
+
+<h4>1.1.2 接口类型</h4>
+
+<ul>
+	<li>
+	<p><strong>数字摄像头</strong>：常见接口包括：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;USB 接口&lt;/strong&gt;：如电脑端的免驱摄像头，通过 USB 总线传输数字数据，即插即用性强。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;IEEE 1394（火线）接口&lt;/strong&gt;：由苹果公司主导开发，数据传输率可达 800Mbps，适用于需要高速传输的场景（如专业视频采集）。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;千兆网接口&lt;/strong&gt;：常见于网络摄像头，通过以太网传输数字信号，支持远程数据传输和监控。&lt;/li&gt;
+	&lt;li&gt;此外，还有 MIPI、DVP 等适用于嵌入式设备（如开发板、智能手机）的数字接口。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;模拟摄像头&lt;/strong&gt;：常用接口为：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;AV 视频端子&lt;/strong&gt;：由信号线和地线组成，输出复合模拟视频信号，常见于早期监控设备、老式录像机等。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;S-VIDEO（超级视频）接口&lt;/strong&gt;：为五芯接口，包含两路视频亮度信号、两路视频色度信号和一路公共屏蔽地线，相比 AV 接口能减少信号干扰，画质稍优。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4>1.1.3 补充说明</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;除了信号和接口的差异，两者的应用场景也因特性不同而有所区分：数字摄像头因信号稳定、抗干扰能力强、易与数字系统集成，广泛用于计算机外设、网络监控、智能手机等；模拟摄像头则因技术成熟、成本较低，曾在传统监控、电视直播等领域普及，但目前已逐渐被数字摄像头替代。</p>
+
+<h3>1.2CCD（电荷耦合器件）与 CMOS（互补金属氧化物半导体）作为摄像头核心的图像传感器，二者的区别主要体现在以下几个方面：​</h3>
+
+<h4>1.2.1 名称与成像材料基础​</h4>
+
+<p>两者的名称直接源于其核心技术原理和材料构成：​</p>
+
+<ul>
+	<li>CCD：全称为 &ldquo;电荷耦合器件&rdquo;，其工作机制基于电荷的耦合与传输，核心结构由 MOS 电容构成，通过特定的时序脉冲信号控制电荷移动来完成成像。​</li>
+</ul>
+
+<ul>
+	<li>CMOS：全称为 &ldquo;互补金属氧化物半导体&rdquo;，依托半导体材料的互补特性实现光电转换与信号处理，集成度更高，能将感光元件与信号处理电路整合在同一芯片上。​</li>
+</ul>
+
+<h4>1.2.2 功耗表现​</h4>
+
+<p>在功耗方面，两者存在显著差异：​</p>
+
+<ul>
+	<li>CCD：由于其像素结构依赖 MOS 电容，读取电荷信号时需要电压较高（至少 12V）的二相、三相或四相时序脉冲信号，因此整个取像系统不仅需要多个电源支持，外设电路的功耗也较大，通常功耗在 2~5W。​</li>
+</ul>
+
+<ul>
+	<li>CMOS：光电传感器仅需单电源（5V 或 3V）供电，且电路设计更精简，功耗远低于 CCD，仅为 CCD 的 1/8~1/10，部分 CMOS 取像系统的功耗可低至 20~50mW，在便携式设备（如智能手机、小型监控设备）中优势尤为明显。​</li>
+</ul>
+
+<h4>1.2.3 成像质量​</h4>
+
+<p>成像质量是两者早期差异的核心体现，不过随着技术发展，这一差距已大幅缩小：​</p>
+
+<ul>
+	<li>CCD：起步早、技术成熟，通过 PN 结或二氧化硅（SiO₂）隔离层有效降低噪声干扰，因此在噪声控制、灵敏度和图像一致性上表现更优，早期在专业摄影、高精度成像领域（如单反相机、工业检测设备）占据主导。​</li>
+</ul>
+
+<ul>
+	<li>CMOS：早期因噪声较高、灵敏度较低，成像质量略逊于 CCD。但近年来，随着消噪技术、像素优化技术的快速发展，其噪声水平大幅降低，成像质量显著提升。目前，CMOS 凭借成本低、集成度高、功耗低等综合优势，已占据市场主流，不仅智能手机、消费级相机广泛采用，主流单反相机也普遍使用 CMOS 传感器。</li>
+</ul>
+
+<h2>2.OV5640摄像头模块简介</h2>
+
+<p></p>
+
+<p>参考链接：<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="野火OV5640摄像头模块" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/gd32/h7/general/zh/latest/doc/ov5640/ov5640.html#id1" title="野火OV5640摄像头模块">野火OV5640摄像头模块</a></p>
+
+<p>注：如有侵权，请联系删除。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镜头部件包含一个镜头座和一个可旋转调节距离的凸透镜，通过旋转可以调节焦距，正常使用时，镜头座覆盖在电路板上遮光，光线只能经过镜头传输到正中央的图像传感器，它采集光线信号，然后把采集得的数据通过下方的信号引脚输出数据到外部器件。</p>
+
+<h3>2.1 OV5640传感器简介</h3>
+
+<p>OV5640 是一款 CMOS 类型的数字图像传感器，作为摄像头的核心部件，具备丰富的功能和特性，具体如下：</p>
+
+<ul>
+	<li>
+	<p><strong>分辨率与像素</strong>：支持输出最大 500 万像素的图像，对应分辨率为 2592x1944，同时兼容 VGA 时序输出图像数据。</p>
+	</li>
+	<li>
+	<p><strong>数据格式</strong>：输出图像的数据格式多样，包括 YUV（422/420）、YCbCr422、RGB565 以及 JPEG 格式。其中，直接输出 JPEG 格式图像可大幅减少数据量，有利于网络传输等场景。</p>
+	</li>
+	<li>
+	<p><strong>图像处理能力</strong>：具备基础的图像补偿与处理功能，支持对伽玛曲线、白平衡、饱和度、色度等参数进行调节，提升图像质量。</p>
+	</li>
+	<li>
+	<p><strong>帧率与功耗</strong>：根据分辨率配置不同，输出图像的帧率可在 15-60 帧之间调节；工作时的功率范围为 150mW-200mW，功耗较低，适用于对能耗有要求的设备场景。</p>
+	</li>
+</ul>
+
+<h3>2.2 OV5640引脚及功能框图</h3>
+
+<p>OV5640模组带有自动对焦功能，引脚的定义见下图：</p>
+
+<p><img alt="" height="657" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/15f83e5a5d9a4882ae24b7cbc8bd7cfa.png" srcset="/img/loading.gif" lazyload width="910" /></p>
+
+<p>硬件原理图：</p>
+
+<p><img alt="" height="650" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d4a80bf096664495ac6c00a6eeea8ce1.png" srcset="/img/loading.gif" lazyload width="473" /></p>
+
+<p><img alt="" height="306" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5fe49d91805c44848cf78d630662b743.png" srcset="/img/loading.gif" lazyload width="426" /></p>
+
+<p>OV5640管脚：</p>
+
+<p><img alt="" height="381" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/68b9a2e48060400488bc79143e8b84e0.png" srcset="/img/loading.gif" lazyload width="1087" /></p>
+
+<p>功能框图：</p>
+
+<p><img alt="" height="542" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a8eceffe090446a1a383c9924512eb2b.png" srcset="/img/loading.gif" lazyload width="706" /></p>
+
+<p>(1) 控制寄存器</p>
+
+<p>标号1处的是 OV5640 的控制寄存器，它根据这些寄存器配置的参数来运行，而这些参数是由外部控制器通过 SIO_C 和 SIO_D 引脚写入的， SIO_C 与 SIO_D 使用的通讯协议跟 I2C 十分类似，在 STM32 中我们完全可以直接用 I2C 硬件外设来控制。</p>
+
+<p>(2) 通信、控制信号及时钟</p>
+
+<p>标号2处包含了 OV5640 的通信、控制信号及外部时钟，其中 PCLK、 HREF 及VSYNC 分别是像素同步时钟、行同步信号以及帧同步信号，这与液晶屏控制中的信号是很类似的。 RESETB 引脚为低电平时，用于复位整个传感器芯片， PWDN 用于控制芯片进入低功耗模式。注意最后的一个 XCLK 引脚，它跟 PCLK是完全不同的， XCLK 是用于驱动整个传感器芯片的时钟信号，是外部输入到OV5640 的信号；而 PCLK 是 OV5640 输出数据时的同步信号，它是由 OV5640 输出的信号。 XCLK 可以外接晶振或由外部控制器提供，若要类比 XCLK 之于OV5640 就相当于 HSE 时钟输入引脚与 STM32 芯片的关系， PCLK 引脚可类比STM32 的 I2C 外设的 SCL 引脚。</p>
+
+<p>(3) 感光矩阵</p>
+
+<p>标号3处的是感光矩阵，光信号在这里转化成电信号，经过各种处理，这些信号存储成由一个个像素点表示的数字图像。</p>
+
+<p>(4) 数据输出信号</p>
+
+<p>标号4处包含了 DSP 处理单元，它会根据控制寄存器的配置做一些基本的图像处理运算。这部分还包含了图像格式转换单元及压缩单元，转换出的数据最终通过Y0-Y9 引脚输出，一般来说我们使用 8 根据数据线来传输，这时仅使用 Y2-Y9 引脚， OV5640 与外部器件的连接方式见图 0-4。</p>
+
+<p><img alt="" height="380" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c2641a3b8204317b626f6767ded4012.png" srcset="/img/loading.gif" lazyload width="273" /></p>
+
+<p>(5) 数据输出信号</p>
+
+<p>标号5处为 VCM 处理单元，他会通过图像分析来实现图像的自动对焦功能。要实现自动对焦还需要下载自动对焦固件到模组。</p>
+
+<h3>2.3 SCCB时序（用于控制OV5640传感器）</h3>
+
+<p>OV5640 的寄存器配置参数通过<strong>SCCB 总线</strong>传输，该总线与 I2C 协议极为相似，因此在 STM32/GD32 驱动中，可直接使用片上 I2C 外设与 OV5640 进行通讯。</p>
+
+<p>SCCB 与标准 I2C 协议的核心区别在于：<strong>SCCB 每次传输仅能写入或读取一个字节的数据</strong>，而标准 I2C 协议支持 &ldquo;突发读写&rdquo;&mdash;&mdash; 即一次传输过程中可连续写入或读取多个字节（例如：EEPROM 的页写入时序就属于突发写操作）。</p>
+
+<p>关于 SCCB 协议的完整细节，可参考野火配套资料中的《SCCB 协议》文档。</p>
+
+<h4>2.3.1 SCCB的起始、停止信号及数据有效性</h4>
+
+<p>SCCB的起始信号、停止信号及数据有效性与I2C完全一样。</p>
+
+<ul>
+	<li>
+	<p>起始信号：在SIO_C为高电平时，SIO_D出现一个下降沿，则SCCB开始传输。</p>
+	</li>
+	<li>
+	<p>停止信号：在SIO_C为高电平时，SIO_D出现一个上升沿，则SCCB停止传输。</p>
+	</li>
+	<li>
+	<p>数据有效性：除了开始和停止状态，在数据传输过程中，当SIO_C为高电平时， 必须保证SIO_D上的数据稳定，也就是说，SIO_D上的电平变换只能发生在SIO_C为低电平的时候，SIO_D的信号在SIO_C为高电平时被采集。</p>
+	</li>
+</ul>
+
+<p><img alt="" height="384" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5e6b090552c74601b1b293460f9fd114.png" srcset="/img/loading.gif" lazyload width="726" /></p>
+
+<h4>2.3.2&nbsp;SCCB 数据读写过程</h4>
+
+<p>在 SCCB 协议中定义的读写操作与 I2C 也是一样的，只是换了一种说法。它定义了两种写操作，即三步写操作和两步写操作。三步写操作可向从设备的一个目的寄存器中写入数据，见图 0-7。</p>
+
+<p>在三步写操作中，第一阶段发送从设备的 ID 地址+W 标志(等于 I2C 的设备地址： 7 位设备地址+读写方向标志)，第二阶段发送从设备目标寄存器的 16 位地址，第三阶段发送要写入寄存器的 8 位数据。图中的&ldquo;X&rdquo;数据位可写入 1 或 0，对通讯无影响。</p>
+
+<p><img alt="" height="149" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd1609e3bcf2408ca71f2944b009f0ea.png" srcset="/img/loading.gif" lazyload width="683" /></p>
+
+<p>两步读操作，它用于读取从设备目的寄存器中的数据，见图 0-9。在第一阶段中发送从设备的设备 ID+R 标志(设备地址+读方向标志)和自由位，在第二阶段中读取寄存器中的8 位数据和写 NA 位(非应答信号)。 由于两步读操作没有确定目的寄存器的地址，所以在读操作前，必需有一个两步写操作，以提供读操作中的寄存器地址。</p>
+
+<p><img alt="" height="150" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b8014a7f987d4bb0a4170416473f0a01.png" srcset="/img/loading.gif" lazyload width="672" /></p>
+
+<p>可以看到，以上介绍的 SCCB 特性都与 I2C 无区别，而 I2C 比 SCCB 还多出了突发读写的功能，所以 SCCB 可以看作是 I2C 的子集，我们完全可以使用 STM32 的 I2C 外设来与OV5640 进行 SCCB 通讯。</p>
+
+<h4>2.3.3&nbsp;OV5640 的寄存器</h4>
+
+<p>控制 OV5640 涉及到它很多的寄存器，可直接查询《ov5640datasheet》了解，通过这些寄存器的配置，可以控制它输出图像的分辨率大小、图像格式及图像方向等。要注意的是 OV5640 寄存器地址为 16 位。</p>
+
+<p>官方还提供了一个《OV5640_自动对焦照相模组应用指南(DVP_接口)__R2.13C.pdf》的文档，它针对不同的配置需求，提供了配置范例，见图 0-10。其中 write_SCCB 是一个利用 SCCB 向寄存器写入数据的函数，第一个参数为要写入的寄存器的地址，第二个参数为要写入的内容。</p>
+
+<p><img alt="" height="299" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/99148b76d9de41ac94f6ea8e60a04e8e.png" srcset="/img/loading.gif" lazyload width="718" /></p>
+
+<h4>&nbsp;补充说明（ATK-OV2640）：</h4>
+
+<p>ATK-OV2640 摄像头模块的所有配置，都是通过 SCCB 总线来实现的， SCCB 全称是：<br />
+Seril Camera Control Bus 即串行摄像头控制总线， 它由两条数据线组成：一个是用于传输时钟信号的 SIO_C（即 OV_SCL），另一个是用于传输数据信号的 SIO_D（即 OV_SDA）。</p>
+
+<p>SCCB 的传输协议与 IIC 协议极其相似，只不过 IIC 在每传输完一个字节后，接收数<br />
+据的一方要发送一位的确认数据，而 SCCB 一次要传输 9 位数据，前 8 位为有用数据，而第9 位数据在写周期中是 don&rsquo;t care 位（即不必关心位），在读周期中是 NA 位。 SCCB 定义数据传输的基本单元为相（phase），即一个相传输一个字节数据。</p>
+
+<p>SCCB 只包括三种传输周期，即 3 相写传输周期（三个相依次为设备从地址，内存地址，<br />
+所写数据）， 2 相写传输周期（两个相依次为设备从地址，内存地址）和 2 相读传输周期（两个相依次为设备从地址，所读数据）。当需要写操作时，应用 3 相写传输周期，当需要读操作时，依次应用 2 相写传输周期和 2 相读传输周期。</p>
+
+<p>其中SCCB_E没有引出，这个信号为1的时候，说明设备时空闲的。<br />
+SIO_C相当于IIC中的SCL<br />
+SIO_D相当于IIC中的SDA</p>
+
+<h4>2.3.4&nbsp;像素数据输出时序</h4>
+
+<p>对 OV5640 采用 SCCB 协议进行控制，而它输出图像时则使用 VGA 时序(还可用SVGA、UXGA，这些时序都差不多)，这跟控制液晶屏输入图像时很类似。 OV5640 输出图像时，一帧帧地输出，在帧内的数据一般从左到右，从上到下，一个像素一个像素地输出(也可通过寄存器修改方向)，见图 0-11。</p>
+
+<p><img alt="" height="326" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de98ddebef0e47359d69559462f6ff77.png" srcset="/img/loading.gif" lazyload width="407" /></p>
+
+<p>例如， 图 0-12，若我们使用 Y2-Y9 数据线，图像格式设置为 RGB565，进行数据输出时， Y2-Y9 数据线会在 1 个像素同步时钟 PCLK 的驱动下发送 1 字节的数据信号，所以 2个 PCLK 时钟可发送 1 个 RGB565 格式的像素数据。像素数据依次传输，每传输完一行数据时，行同步信号 HREF 会输出一个电平跳变信号，每传输完一帧图像时， VSYNC 会输出一个电平跳变信号。</p>
+
+<p><img alt="" height="509" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/07ae7e375e4147a09216a31a7434a7d2.png" srcset="/img/loading.gif" lazyload width="576" /></p>
+
+<h1>二、GD32的DCI介绍</h1>
+
+<h2><a id="1_79"></a>1.GD32 的 DCI 接口简介</h2>
+
+<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20f18637517c4fbc92786e2ed9114c05.png" srcset="/img/loading.gif" lazyload width="679" /></p>
+
+<p>DCI（Digital Camera Interface）即数字摄像头接口，是 GD32 系列微控制器中用于连接摄像头的专用接口，其功能与 STM32 中的 DCMI（Digital Camera Interface）类似。</p>
+
+<p>作为一种同步并行接口，DCI 的核心作用是从数字摄像头中捕获视频流或静态图像数据。它具备灵活的兼容性，不仅支持 YUV、RGB 等多种常用颜色空间的图像数据传输，还可直接处理经过压缩的 JPEG 格式图像，满足不同场景下的图像采集需求。</p>
+
+<p>这一接口为 GD32 与数字摄像头的连接提供了高效、便捷的解决方案，适用于需要实时图像采集的嵌入式应用，如监控设备、机器视觉模块等。</p>
+
+<p><img alt="" height="743" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/23d35233575e4486a21bce6c1276ab92.png" srcset="/img/loading.gif" lazyload width="526" /></p>
+
+<h3>1.1 GD32的外设框图&mdash;&mdash;DCI</h3>
+
+<p>DCI外设挂载在AHB2</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0c2b14184d5c44e0968f1b1e626cf6db.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<h3>1.2 DCI的GPIO相关引脚</h3>
+
+<p><img alt="" height="31" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4638ea4f7a0449de81271d0d280efe88.png" srcset="/img/loading.gif" lazyload width="1133" /></p>
+
+<h3><img alt="" height="40" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/96acaafb5b054ad7bfeefbf15dce42c2.png" srcset="/img/loading.gif" lazyload width="1119" /></h3>
+
+<p><img alt="" height="47" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/867691638cef4a3d9dc002317d4afb91.png" srcset="/img/loading.gif" lazyload width="1118" /></p>
+
+<p><img alt="" height="90" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/35952168835444a9a4271d754aa6b644.png" srcset="/img/loading.gif" lazyload width="1110" /></p>
+
+<p><img alt="" height="201" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4ed801c6287c4cf4937075a89b22e4b9.png" srcset="/img/loading.gif" lazyload width="1115" /></p>
+
+<p><img alt="" height="248" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c5c1529af412448d97982424dbdc2d8d.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
+
+<p><img alt="" height="82" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/08656b19f56140f9b87d93cc8da9626c.png" srcset="/img/loading.gif" lazyload width="1111" /></p>
+
+<p><img alt="" height="43" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5bc400596e264d3d8fe43ad40b9bbdf9.png" srcset="/img/loading.gif" lazyload width="1110" /></p>
+
+<p><img alt="" height="102" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/aa1e530e9b1d4b8c9fee78790d3b561a.png" srcset="/img/loading.gif" lazyload width="1113" /></p>
+
+<p><img alt="" height="118" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f8954bdaa73f4f83bbad7954806e8998.png" srcset="/img/loading.gif" lazyload width="1111" /></p>
+
+<p><img alt="" height="80" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1e1f076444f24ee0b778c90022719b49.png" srcset="/img/loading.gif" lazyload width="1115" /></p>
+
+<p><img alt="" height="72" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/278851f88bae41cb8c5a38d4d6852d55.png" srcset="/img/loading.gif" lazyload width="1115" /></p>
+
+<p><img alt="" height="172" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/60f4f9a5b88a4e29b2dbfac0e45999c4.png" srcset="/img/loading.gif" lazyload width="1111" /></p>
+
+<p><img alt="" height="43" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/62c8b864b6d4431d9a840a7f5c2da307.png" srcset="/img/loading.gif" lazyload width="1128" /></p>
+
+<p><img alt="" height="233" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94daac9b00004ceea1394fcf61082769.png" srcset="/img/loading.gif" lazyload width="1114" /></p>
+
+<p><img alt="" height="69" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1513b8619b504d37b063ba93df0336ee.png" srcset="/img/loading.gif" lazyload width="1120" /></p>
+
+<p><img alt="" height="86" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/68088347e61d4dfdaf133d7bd8a2bd69.png" srcset="/img/loading.gif" lazyload width="1112" /></p>
+
+<p><img alt="" height="338" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7472ca400836448e984976977bceba2e.png" srcset="/img/loading.gif" lazyload width="1113" /></p>
+
+<p>根据手册，DCI的引脚复用功能都是GPIO的AF13复用功能，由于OV5640摄像头的数据只有8位，因此，我们只需要用D0-D7引脚、PIXCLK引脚、VSYNC引脚、HSYNC引脚即可，同时我们选用PA12引脚来连接RST，PA2引脚来控制PWDN，所以摄像头和GD32的连线如下表</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="text-align:center">摄像头引脚</th>
+			<th style="text-align:center">开发板引脚</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="text-align:center">PCLK（PIXCLK）</td>
+			<td style="text-align:center">PA6</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">VS（VSYNC）</td>
+			<td style="text-align:center">PG9</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">HS（HSYNC）（HREF）</td>
+			<td style="text-align:center">PA4</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D0</td>
+			<td style="text-align:center">PC6</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D1</td>
+			<td style="text-align:center">PC7</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D2</td>
+			<td style="text-align:center">PC8</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D3</td>
+			<td style="text-align:center">PC9</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D4</td>
+			<td style="text-align:center">PE4</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D5</td>
+			<td style="text-align:center">PD3</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D6</td>
+			<td style="text-align:center">PB8</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">D7</td>
+			<td style="text-align:center">PB9</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">RST</td>
+			<td style="text-align:center">PA12</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">PDN（PWDN）</td>
+			<td style="text-align:center">PA2</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">SCL</td>
+			<td style="text-align:center">PB6</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">SDA</td>
+			<td style="text-align:center">PB7</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">NC</td>
+			<td style="text-align:center">-</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">NC</td>
+			<td style="text-align:center">-</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">XCLK（XCLK_IN）</td>
+			<td style="text-align:center">接入外部晶振</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">5V</td>
+			<td style="text-align:center">5V</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">GND</td>
+			<td style="text-align:center">GND</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3><strong>1.3 特性参数表</strong></h3>
+
+<p><img alt="" height="653" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e822d3fcf3164f73b0f120675e8771ac.png" srcset="/img/loading.gif" lazyload width="1136" /></p>
+
+<p><strong>表格参数详解（按行）</strong></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>符号（Symbol）</th>
+			<th>参数（Parameter）</th>
+			<th>最小（Min）</th>
+			<th>最大（Max）</th>
+			<th>单位（Unit）</th>
+			<th>解读</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>Frequency ratio</td>
+			<td>DCI_PIXCLK /fHCLK</td>
+			<td>&mdash;</td>
+			<td>0.4</td>
+			<td></td>
+			<td>像素时钟（DCI_PIXCLK）与系统时钟（fHCLK）的比值最大为 0.4，限制时钟分频 / 倍频关系</td>
+		</tr>
+		<tr>
+			<td>DCI_PIXCLK</td>
+			<td>Pixel clock input</td>
+			<td>&mdash;</td>
+			<td>80</td>
+			<td>MHz</td>
+			<td>输入像素时钟的最大频率为 80MHz，决定图像数据传输的 &ldquo;节奏快慢&rdquo;</td>
+		</tr>
+		<tr>
+			<td>DPixel</td>
+			<td>Pixel clock input duty cycle</td>
+			<td>30</td>
+			<td>70</td>
+			<td>%</td>
+			<td>像素时钟的占空比需在 30%~70% 之间（高电平时间占一个时钟周期的比例），保证时序兼容</td>
+		</tr>
+		<tr>
+			<td>tsu(DATA)</td>
+			<td>Data input setup time</td>
+			<td>2.5</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>数据输入 &ldquo;建立时间&rdquo;：时钟沿到来前，数据需保持稳定的最小时间&ge;2.5ns，否则可能采样错误</td>
+		</tr>
+		<tr>
+			<td>th(DATA)</td>
+			<td>Data output valid time</td>
+			<td>1</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>数据输出 &ldquo;保持时间&rdquo;：时钟沿过后，数据需继续稳定的最小时间&ge;1ns</td>
+		</tr>
+		<tr>
+			<td>tsu(HSYNC)</td>
+			<td>DCI_HS input setup time</td>
+			<td>2</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>行同步（HSYNC）信号的建立时间&ge;2ns，确保行同步信号能被正确识别</td>
+		</tr>
+		<tr>
+			<td>tsu(VSYNC)</td>
+			<td>DCI_VS input setup time</td>
+			<td>2</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>场同步（VSYNC）信号的建立时间&ge;2ns，确保场同步信号能被正确识别</td>
+		</tr>
+		<tr>
+			<td>th(HSYNC)</td>
+			<td>DCI_HS input hold time</td>
+			<td>0.5</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>行同步（HSYNC）信号的保持时间&ge;0.5ns，避免信号提前变化导致同步失败</td>
+		</tr>
+		<tr>
+			<td>th(VSYNC)</td>
+			<td>DCI_VS input hold time</td>
+			<td>0.5</td>
+			<td>&mdash;</td>
+			<td>ns</td>
+			<td>场同步（VSYNC）信号的保持时间&ge;0.5ns，同理保证场同步信号稳定识别</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><strong>核心作用</strong></p>
+
+<p>这些参数定义了 DCI 接口与摄像头通信时的<strong>时序边界</strong>，硬件设计和驱动开发时，必须让摄像头输出的时钟、同步信号、数据信号满足这些 &ldquo;最小 / 最大时间、频率限制&rdquo;，否则会出现图像花屏、丢帧、无法识别等问题。简单说：<strong>照着这些参数设计电路、写驱动，才能让 DCI 接口正常 &ldquo;读懂&rdquo; 摄像头传过来的图像数据</strong>&nbsp;。</p>
+
+<h3>1.4 DMA&mdash;&mdash;DCI</h3>
+
+<p><img alt="" height="190" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fdc59ab9084448a09767e2711758cb6f.png" srcset="/img/loading.gif" lazyload width="774" /></p>
+
+<p><strong>直接内存访问（DMA）</strong></p>
+
+<ul>
+	<li><strong>16 通道 DMA 控制器且各通道可配置</strong>：拥有一个 16 通道的 DMA 控制器，其中 DMA0 有 8 个通道，DMA1 有 8 个通道 。每个通道都可以根据实际需求进行单独配置，以适应不同外设和数据传输场景。例如，在不同的应用中，可以灵活设置某个通道的数据传输优先级、传输模式等参数。</li>
+	<li><strong>支持独立的 8 位、16 位、32 位内存和外设传输</strong>：能够在内存和外设之间进行数据传输时，支持 8 位、16 位、32 位这几种不同的数据宽度。这使得 DMA 可以适配各种不同数据处理要求的设备，比如一些简单的传感器可能输出 8 位数据，而复杂的图像传感器可能输出 32 位数据，DMA 都能有效地进行传输处理 。</li>
+	<li><strong>支持的外设</strong>：涵盖了定时器（Timers）、模数转换器（ADC）、串行外设接口（SPIs）、集成电路总线（I2Cs）、通用同步异步收发器（USARTs）、通用异步收发传输器（UARTs）、数模转换器（DAC）、音频总线（I2S）、安全数字输入输出接口（SDIO）以及数字摄像头接口（DCI） 。这意味着这些外设与内存之间的数据传输都可以借助 DMA 来完成，极大地提高了数据传输的效率和系统资源的利用率 。</li>
+</ul>
+
+<p>灵活通用的 DMA 控制器提供了一种在无需 CPU 干预的情况下，在外设和（或）内存之间传输数据的硬件方法，从而为其他系统功能释放带宽 。它支持三种访问方式：外设到内存、内存到外设、内存到内存 。</p>
+
+<p>每个通道都连接到固定的硬件 DMA 请求。DMA 通道请求的优先级由软件配置和硬件通道号共同决定 。源端和目的端的传输大小是相互独立且可配置的，用户可以根据具体的数据传输需求，设置每次传输的数据量大小，增强了 DMA 在不同应用场景下的适用性 。</p>
+
+<p><img alt="" height="727" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d4d80033d9634970992b9886f0ac3a17.png" srcset="/img/loading.gif" lazyload width="833" /></p>
+
+<h3>1.5 DCI特点</h3>
+
+<p><img alt="" height="280" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/069863b5825548158d405dbceb9ec0f1.png" srcset="/img/loading.gif" lazyload width="760" /></p>
+
+<p><strong>数字摄像头接口（DCI）</strong></p>
+
+<ul>
+	<li><strong>数字视频 / 图像采集</strong>：可从摄像头捕获数字视频或图像 。</li>
+	<li><strong>支持 8/10/12/14 位数据宽度</strong>：能适配不同数据位宽需求的摄像头，灵活传输图像数据 。</li>
+	<li><strong>搭配 DMA 接口实现高传输效率</strong>：借助直接内存访问（DMA），无需 CPU 过多参与，数据可快速在接口与内存间传输，提升整体采集效率 。</li>
+	<li><strong>支持视频 / 图像裁剪</strong>：可按需求对采集的视频或图像进行裁剪，获取特定区域内容 。</li>
+	<li><strong>支持多种像素格式</strong>：涵盖 JPEG、YCrCb、RGB 等，适配不同摄像头输出及应用场景对图像格式的要求 。</li>
+	<li><strong>支持硬件 / 嵌入式同步信号</strong>：依靠硬件或嵌入式同步机制，保障图像采集时序稳定、数据准确 。</li>
+</ul>
+
+<p>DCI 是一种 8 位至 14 位的并行接口，能够通过数字摄像头接口从摄像头捕获视频或图像。它可通过 DMA 操作，支持 8/10/12/14 位的数据宽度 ，为数字图像采集提供了灵活、高效的解决方案 ，常应用于嵌入式视觉系统、智能摄像头等场景 ，帮助设备快速、稳定获取图像信息 。</p>
+
+<h1>三、GD32的DCI外设代码（仅供参考！）</h1>
+
+<p>bsp_sccb.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_SCCB_H
+#define __BSP_SCCB_H
+
+#include "gd32f4xx.h"                   // Device header
+#include "bsp_rtos_delay.h"
+
+#define delay_us(x) delay_us(x)
+
+#define OV5640_DEVICE_IIC_ADDR		0x78
+
+#define SCCB_SCL_GPIO_RCU		RCU_GPIOB
+#define SCCB_SCL_GPIO_PORT		GPIOB
+#define SCCB_SCL_GPIO_PIN		GPIO_PIN_6
+
+#define SCCB_SDA_GPIO_RCU		RCU_GPIOB
+#define SCCB_SDA_GPIO_PORT		GPIOB
+#define SCCB_SDA_GPIO_PIN		GPIO_PIN_7
+
+//SDA输出模式
+#define SCCB_SDA_MODE_OUT()   gpio_mode_set(SCCB_SDA_GPIO_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, SCCB_SDA_GPIO_PIN)
+#define SCCB_SDA_MODE_IN()    gpio_mode_set(SCCB_SDA_GPIO_PORT, GPIO_MODE_INPUT, GPIO_PUPD_PULLUP, SCCB_SDA_GPIO_PIN)
+
+//获取SDA引脚变化
+#define SDA_GET()	gpio_input_bit_get(SCCB_SDA_GPIO_PORT,SCCB_SDA_GPIO_PIN)
+
+//SDA输出
+#define SDA(x)		gpio_bit_write(SCCB_SDA_GPIO_PORT,SCCB_SDA_GPIO_PIN, (x?SET:RESET))
+
+//SCL输出
+#define SCL(x)		gpio_bit_write(SCCB_SCL_GPIO_PORT,SCCB_SCL_GPIO_PIN, (x?SET:RESET))
+
+void SCCB_IIC_Init(void);
+void IIC_gpio_config(void);
+void IIC_Start(void);
+void IIC_Stop(void);
+void IIC_Send_Ack(void);
+void IIC_Send_No_Ack(void);
+unsigned char IIC_WaitAck(void);
+uint8_t IIC_Send_Byte(uint8_t dat);
+unsigned char IIC_Read_Byte(void);
+uint8_t IIC_WR_Reg_8bit(uint8_t reg,uint8_t data);
+uint8_t IIC_WR_Reg_16bit(uint16_t reg, uint8_t data);
+uint8_t IIC_RD_Reg_8bit(uint8_t reg);
+uint8_t IIC_RD_Reg_16bit(uint16_t reg);
+#endif
+
+</code></pre>
+
+<p>bsp_sccb.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_sccb.h"
+
+void IIC_gpio_config(void)
+{
+	rcu_periph_clock_enable(SCCB_SCL_GPIO_RCU);
+	rcu_periph_clock_enable(SCCB_SDA_GPIO_RCU);
+
+	// 初始化SCL
+	gpio_mode_set(SCCB_SCL_GPIO_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, SCCB_SCL_GPIO_PIN);
+	gpio_output_options_set(SCCB_SCL_GPIO_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, SCCB_SCL_GPIO_PIN);
+	
+	// 初始化SDA
+	gpio_mode_set(SCCB_SDA_GPIO_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, SCCB_SDA_GPIO_PIN);
+	gpio_output_options_set(SCCB_SDA_GPIO_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, SCCB_SDA_GPIO_PIN);
+
+	SCCB_SDA_MODE_OUT(); // 设置SDA为输出模式
+}
+
+void SCCB_IIC_Init(void)
+{
+	IIC_gpio_config();
+	
+	// SCL输出高电平
+	gpio_bit_write(SCCB_SCL_GPIO_PORT, SCCB_SCL_GPIO_PIN, SET);
+	
+	// SDA输出高电平
+	gpio_bit_write(SCCB_SDA_GPIO_PORT, SCCB_SDA_GPIO_PIN, SET);
+}
+
+// 起始信号：在SIO_C为高电平时，SIO_D出现一个下降沿，则SCCB开始传输。
+void IIC_Start(void)
+{
+	SCCB_SDA_MODE_OUT();
+    
+    SDA(1);  // 释放SDA
+    SCL(1);  // 拉高SCL
+    delay_us(100);  // 延长稳定时间
+    SDA(0);  // SCL高时，SDA下降沿（起始信号）
+    delay_us(100);
+    SCL(0);  // 拉低SCL，准备数据传输          
+}
+
+// 停止信号：在SIO_C为高电平时，SIO_D出现一个上升沿，则SCCB停止传输。
+void IIC_Stop(void)
+{
+	SCCB_SDA_MODE_OUT();
+    
+    SDA(0);  // 拉低SDA
+    SCL(1);  // 拉高SCL
+    delay_us(100);  // 稳定时间
+    SDA(1);  // SCL高时，SDA上升沿（停止信号）
+    delay_us(100);
+    SCL(0);  // 拉低SCL，释放总线
+}
+
+// 主机发送应答信号（告知从机：数据已正确接收）
+void IIC_Send_Ack(void)
+{
+    SCCB_SDA_MODE_OUT();
+    SCL(0);
+    SDA(0);  // 拉低SDA表示应答
+    delay_us(50);
+    SCL(1);  // SCL高电平期间保持SDA低
+    delay_us(100);  // 确保从机检测到
+    SCL(0);  // 拉低SCL
+    SDA(1);  // 释放SDA
+}
+
+//主机发送非应答信号
+void IIC_Send_No_Ack(void)
+{
+    SCCB_SDA_MODE_OUT();
+    SCL(0);
+    SDA(1);  // 拉高SDA表示非应答
+    delay_us(50);
+    SCL(1);  // SCL高电平期间保持SDA高
+    delay_us(100);
+    SCL(0);  // 拉低SCL
+}
+
+//主机等待从机应答
+unsigned char IIC_WaitAck(void)
+{
+	unsigned char ack_flag = 200;  // 延长超时计数
+    SCCB_SDA_MODE_IN();  // 切换为输入模式（释放SDA，由上拉电阻拉高）
+    
+    SCL(0);
+    delay_us(50);
+    SCL(1);  // 拉高SCL，等待从机应答
+    delay_us(50);
+    
+    while (SDA_GET() == 1 &amp;&amp; ack_flag--) {
+        delay_us(1);  // 超时等待
+    }
+    
+    if (ack_flag == 0) {
+        // 超时，发送停止信号释放总线
+        IIC_Stop();
+        return 1;  // 无应答
+    } else {
+        // 收到应答，拉低SCL准备后续操作
+        SCL(0);
+        SCCB_SDA_MODE_OUT();  // 切换回输出模式
+        return 0;  // 有应答
+    }
+}
+
+//写入一个字节
+uint8_t IIC_Send_Byte(uint8_t dat)
+{
+	uint8_t i = 0, res = 0;
+    SCCB_SDA_MODE_OUT();
+    SCL(0);  // 拉低时钟准备传输
+    
+    for (i = 0; i &lt; 8; i++) {
+        SDA((dat &amp; 0x80) &gt;&gt; 7);  // 发送高位
+        dat &lt;&lt;= 1;
+        delay_us(50);
+        SCL(1);  // 拉高时钟，从机采样
+        delay_us(100);  // 延长采样时间
+        SCL(0);  // 拉低时钟，准备下一位
+    }
+    
+    SCCB_SDA_MODE_IN();  // 切换为输入，等待应答
+    delay_us(50);
+    SCL(1);  // 拉高时钟，读取应答
+    delay_us(100);
+    res = SDA_GET();  // 1：无应答，0：有应答
+    SCL(0);  // 拉低时钟
+    SCCB_SDA_MODE_OUT();  // 切换回输出
+    return res;
+}
+
+//接收一个字节
+unsigned char IIC_Read_Byte(void)
+{
+    unsigned char i, receive = 0;
+    SCCB_SDA_MODE_IN();  // 输入模式，释放SDA
+    
+    for (i = 0; i &lt; 8; i++) {
+        SCL(0);  // 拉低时钟，从机准备数据
+        delay_us(100);
+        SCL(1);  // 拉高时钟，主机采样
+        delay_us(100);  // 延长采样时间
+        receive &lt;&lt;= 1;
+        if (SDA_GET()) receive |= 1;
+    }
+    SCL(0);  // 拉低时钟，结束读取
+    return receive;
+}
+
+//写寄存器(三步写操作)
+uint8_t IIC_WR_Reg_8bit(uint8_t reg,uint8_t data)
+{
+	uint8_t res=0;
+	IIC_Start(); 					//启动IIC传输
+	if( IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR) ) res=1;	//写器件ID 
+	delay_us(100);
+  	if( IIC_Send_Byte(reg) ) res=2;  //写寄存器地址 
+	delay_us(100);
+  	if( IIC_Send_Byte(data) )res=3; 	//写数据 
+  	IIC_Stop();	  
+  	return	res;
+}
+
+// 写寄存器（支持16位地址，四步写操作）
+uint8_t IIC_WR_Reg_16bit(uint16_t reg, uint8_t data)
+{
+    uint8_t res = 0;
+    uint8_t reg_high = (reg &gt;&gt; 8) &amp; 0xFF;
+    uint8_t reg_low = reg &amp; 0xFF;
+    
+    IIC_Start();
+    
+    // 发送器件地址（写模式）
+    if (IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR)) {
+        res = 1;
+        IIC_Stop();  // 失败立即停止
+        return res;
+    }
+    delay_us(100);
+    
+    // 发送地址高8位
+    if (IIC_Send_Byte(reg_high)) {
+        res = 2;
+        IIC_Stop();
+        return res;
+    }
+    delay_us(100);
+    
+    // 发送地址低8位
+    if (IIC_Send_Byte(reg_low)) {
+        res = 3;
+        IIC_Stop();
+        return res;
+    }
+    delay_us(100);
+    
+    // 发送数据
+    if (IIC_Send_Byte(data)) {
+        res = 4;
+        IIC_Stop();
+        return res;
+    }
+    
+    IIC_Stop();
+    return res;
+}
+
+//读寄存器(两步读操作)
+//I2C 应答机制的基本规则
+//数据流向与应答方向：
+//发送数据时：发送方（主机或从机）每发送 1 字节后，接收方必须返回ACK/NACK。
+//接收数据时：接收方每接收 1 字节后，必须向发送方返回ACK/NACK，告知是否继续接收。
+//应答信号的含义：
+//ACK（应答）：SDA 线被接收方拉低（SDA=0），表示 “我已成功接收，请继续发送”。
+//NACK（非应答）：SDA 线保持高（SDA=1），表示两种情况：
+//接收方无法继续接收（如缓冲区已满）。
+//接收方完成数据接收，主动结束通信（常见于最后一个字节的接收）。
+uint8_t IIC_RD_Reg_8bit(uint8_t reg)
+{
+	uint8_t val=0;
+	IIC_Start(); 				//启动SCCB传输
+	IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR);		//写器件ID	  
+	delay_us(100);	 
+  	IIC_Send_Byte(reg);			//写寄存器地址	  
+	delay_us(100);	  
+	IIC_Stop();   
+	delay_us(100);	   
+	//设置寄存器地址后，才是读
+	IIC_Start();
+	IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR | 0X01);	//发送1读命令 0x78 实际上011 100才是地址，最后一位是读写位	  
+	delay_us(100);
+  	val = IIC_Read_Byte();		 	//读取数据
+  	IIC_Send_No_Ack(); // 主动结束通讯
+  	IIC_Stop();
+  	return val;
+}
+
+// 读取16位地址的寄存器（支持高8位非0的地址，如0x300A、0x300B）
+uint8_t IIC_RD_Reg_16bit(uint16_t reg)
+{
+    uint8_t val = 0;
+    uint8_t reg_high = (reg &gt;&gt; 8) &amp; 0xFF;  // 提取寄存器地址高8位
+    uint8_t reg_low = reg &amp; 0xFF;          // 提取寄存器地址低8位
+
+    // 第一步：发送16位寄存器地址（高8位 + 低8位）
+    IIC_Start();                           // 启动IIC传输
+    IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR); // 发送写命令（器件地址+写位）
+    delay_us(100);
+    IIC_Send_Byte(reg_high);               // 发送地址高8位
+    delay_us(100);
+    IIC_Send_Byte(reg_low);                // 发送地址低8位
+    delay_us(100);
+    IIC_Stop();                            // 结束地址写入阶段
+    delay_us(100);
+
+    // 第二步：读取该地址的寄存器值
+    IIC_Start();                           // 重新启动IIC
+    // 发送读命令（器件地址+读位，通过|0x01设置读位）
+    IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR | 0x01);
+    delay_us(100);
+    val = IIC_Read_Byte();                 // 读取寄存器数据
+    IIC_Send_No_Ack();                     // 最后一个字节，发送非应答表示结束
+    IIC_Stop();                            // 停止传输
+
+    return val;
+}
+</code></pre>
+
+<p>#include &quot;bsp_OV5640.h&quot;</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_OV5640_H
+#define __BSP_OV5640_H
+
+#include "gd32f4xx.h"
+
+#include "bsp_OV5640_Output.h"
+
+#define FRAME_RATE_30FPS	0 //30帧
+#define FRAME_RATE_15FPS	1 //15帧
+
+//DMA
+#define DCI_DMA_RCU RCU_DMA1
+#define DCI_DMA_PORT DMA1
+#define DCI_DMA_CH  DMA_CH7
+
+//控制引脚
+#define PWDN_GPIO_RCU 	RCU_GPIOA
+#define PWDN_GPIO_PORT	GPIOA
+#define PWDN_GPIO_PIN	GPIO_PIN_12
+
+#define RST_GPIO_RCU	RCU_GPIOA
+#define RST_GPIO_PORT	GPIOA
+#define RST_GPIO_PIN	GPIO_PIN_2
+
+#define OV5640_PWDN_OUT(x)     gpio_bit_write(PWDN_GPIO_PORT, PWDN_GPIO_PIN, x?SET:RESET)
+#define OV5640_RST_OUT(x)      gpio_bit_write(RST_GPIO_PORT,  RST_GPIO_PIN,  x?SET:RESET)
+
+//存储摄像头ID的结构体
+typedef struct
+{
+  uint8_t PIDH;
+  uint8_t PIDL;
+}OV5640_IDTypeDef;
+extern OV5640_IDTypeDef OV5640_Camera_ID;
+
+
+
+
+/*摄像头配置结构体*/
+typedef struct
+{	
+	uint8_t frame_rate;	//输出帧率
+	
+	uint16_t cam_isp_sx; //摄像头ISP X起始位置
+	uint16_t cam_isp_sy; //摄像头ISP Y起始位置
+
+	uint16_t cam_isp_width; //摄像头ISP 宽
+	uint16_t cam_isp_height; //摄像头ISP 高
+
+	uint8_t scaling;				//是否使用自动缩放，推荐使用，1:使用，0:不使用
+	
+	uint16_t cam_out_sx; //摄像头输出窗口X起始位置
+	uint16_t cam_out_sy; //摄像头输出窗口Y起始位置
+	
+	uint16_t cam_out_width;//输出图像分辨率，宽
+	uint16_t cam_out_height;//输出图像分辨率，高
+	
+	uint16_t lcd_sx;//图像显示在液晶屏的X起始位置
+	uint16_t lcd_sy;//图像显示在液晶屏的Y起始位置
+	uint8_t lcd_scan;//液晶屏的扫描模式（0-7）
+	
+	uint8_t light_mode;//光照模式，参数范围[0~4]
+	int8_t saturation;//饱和度,参数范围[-3 ~ +3]   
+	int8_t brightness;//光照度，参数范围[-4~+4]
+	int8_t contrast;//对比度，参数范围[-3~+3]
+	uint8_t effect;	//特殊效果，参数范围[0~9]:	
+	int8_t exposure;//曝光补偿，参数范围[-3~+3]
+
+	
+	uint8_t auto_focus;//是否使用自动对焦功能 1:使用，0:不使用
+
+}OV5640_MODE_PARAM;
+extern OV5640_MODE_PARAM cam_mode;
+
+
+
+
+//extern uint32_t photo_buff[320*240/2];
+//extern uint16_t camera_framebuffer[240*320];
+// 定义缓冲区大小常量
+#define CAMERA_FRAMEBUFFER_WIDTH  240
+#define CAMERA_FRAMEBUFFER_HEIGHT 320
+#define CAMERA_FRAMEBUFFER_SIZE   (CAMERA_FRAMEBUFFER_WIDTH * CAMERA_FRAMEBUFFER_HEIGHT)
+#define PHOTO_BUFF_SIZE           (CAMERA_FRAMEBUFFER_SIZE / 2)
+// 声明指针
+extern uint32_t *photo_buff;
+extern uint16_t *camera_framebuffer;
+
+
+extern uint8_t dci_frame_it_done_flag;
+extern uint8_t dci_dma_it_done_flag;
+
+
+/* Image Sizes enumeration */
+typedef enum   
+{
+  BMP_320x240          =   0x00,	  /* BMP Image 320x240 Size */
+  BMP_352x288          =   0x01,      /* BMP Image 352x288 Size */
+  BMP_640x480          =   0x02,	  /* BMP Image 640x480 Size */
+  BMP_800x480          =   0x03,	  /* BMP Image 800x480 Size */
+}ImageFormat_TypeDef;
+
+//DCI数据寄存器
+#define DCI_DR_ADDRESS       0x50050028
+
+//ID
+#define OV5640_SENSOR_PIDH       0x300A
+#define OV5640_SENSOR_PIDL       0x300B
+
+void DCI_gpio_config(void);
+void DCI_config(void);
+void DCI_IRQHandler(void);
+void DCI_Start(void);
+void DCI_Stop(void);
+
+void CTRL_gpio_config(void);
+void DMA_config(void);
+void DMA1_Channel7_IRQHandler(void);
+void BSP_OV5640_Init(void);
+
+void OV5640_ReadID(OV5640_IDTypeDef *OV5640ID);
+void OV5640_Reset(void);
+void OV5640_RGB565Config(void);
+
+void OV5640_FrameRate_Set(uint8_t frame_rate);
+void OV5640_OutSize_Set(uint8_t scaling,uint16_t x_off,uint16_t y_off,uint16_t width,uint16_t height);
+void OV5640_BrightnessConfig(int8_t Brightness);
+void OV5640_Color_Saturation(int8_t sat);
+void OV5640_ContrastConfig(int8_t cnst);
+void OV5640_Exposure(int8_t ev);
+void OV5640_LightMode(uint8_t mode);
+void OV5640_SpecialEffects(uint8_t mode);
+void OV5640_USER_Config(void);
+
+uint8_t OV5640_WriteFW(uint8_t *pBuffer, uint16_t BufferSize);
+
+void photo_buff_to_framebuffer(void);
+
+#endif
+</code></pre>
+
+<p>#include &quot;bsp_OV5640.c&quot;</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_OV5640.h"
+
+#include "bsp_OV5640_AF.h"
+
+#include "bsp_rtos_delay.h"
+
+#include "bsp_sccb.h"
+
+#include "bsp_uart.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+
+#include "stdio.h"
+#include "string.h"
+
+#include "malloc.h"
+
+uint8_t dci_frame_it_done_flag = 0;
+uint8_t dci_dma_it_done_flag  = 0;
+
+
+OV5640_IDTypeDef OV5640_Camera_ID;
+
+ImageFormat_TypeDef ImageFormat;
+
+/*液晶屏的分辨率，用来计算地址偏移*/
+uint16_t lcd_width = 800, lcd_height = 480;
+
+/*摄像头采集图像的大小*/
+//uint16_t img_width = 800, img_height = 480;
+// uint16_t img_width=640, img_height=480;
+uint16_t img_width=320, img_height=240;
+
+//uint32_t photo_buff[240*320/2];
+//uint16_t camera_framebuffer[240*320];
+// 定义指针
+uint32_t *photo_buff = NULL;
+uint16_t *camera_framebuffer = NULL;
+
+//摄像头初始化配置
+//注意：使用这种方式初始化结构体，要在c/c++选项中选择 C99 mode
+OV5640_MODE_PARAM cam_mode =
+{
+	
+/*以下包含几组摄像头配置，可自行测试，保留一组，把其余配置注释掉即可*/
+/************配置1***854*480******横屏显示*****************************/
+//	.frame_rate = FRAME_RATE_15FPS,	
+//	
+//	//ISP窗口
+//	.cam_isp_sx = 0,
+//	.cam_isp_sy = 0,	
+//	
+//	.cam_isp_width = 1920,
+//	.cam_isp_height = 1080,
+//	
+//	//输出窗口
+//	.scaling = 1,      //使能自动缩放
+//	.cam_out_sx = 16,	//使能自动缩放后，一般配置成16即可
+//	.cam_out_sy = 4,	  //使能自动缩放后，一般配置成4即可
+//	.cam_out_width = 800,
+//	.cam_out_height = 480,
+//	
+//	//LCD位置
+//	.lcd_sx = 0,
+//	.lcd_sy = 0,
+//	.lcd_scan = 5, //LCD扫描模式，本横屏配置可用1、3、5、7模式
+//	
+//	//以下可根据自己的需要调整，参数范围见结构体类型定义	
+//	.light_mode = 0x04,//自动光照模式
+//	.saturation = 0,	
+//	.brightness = 0,
+//	.contrast = 0,
+//	.effect = 0x00,		//正常模式
+//	.exposure = 0,		
+
+//	.auto_focus = 1,
+	
+/**********配置2*****240*320****竖屏显示****************************/	
+	.frame_rate = FRAME_RATE_30FPS,	
+	
+	//ISP窗口
+	.cam_isp_sx = 0,
+	.cam_isp_sy = 0,	
+	
+	.cam_isp_width = 1920,
+	.cam_isp_height = 1080,
+	
+	//输出窗口
+	.scaling = 1,      //使能自动缩放
+	.cam_out_sx = 16,	//使能自动缩放后，一般配置成16即可
+	.cam_out_sy = 4,	  //使能自动缩放后，一般配置成4即可
+	.cam_out_width = 240,
+	.cam_out_height = 320,
+	
+	//LCD位置
+	.lcd_sx = 120,
+	.lcd_sy = 267,
+	.lcd_scan = 6, //LCD扫描模式，
+	
+	//以下可根据自己的需要调整，参数范围见结构体类型定义	
+	.light_mode = 0,//自动光照模式
+	.saturation = 0,	
+	.brightness = 0,
+	.contrast = 0,
+	.effect = 0,		//正常模式
+	.exposure = 0,		
+
+	.auto_focus = 1,//自动对焦
+	
+	/*******配置3********640*480****小分辨率****************************/	
+//  .frame_rate = FRAME_RATE_30FPS,	
+//	
+//	//ISP窗口
+//	.cam_isp_sx = 0,
+//	.cam_isp_sy = 0,	
+//	
+//	.cam_isp_width = 1920,
+//	.cam_isp_height = 1080,
+//	
+//	//输出窗口
+//	.scaling = 0,      //使能自动缩放
+//	.cam_out_sx = 16,	//使能自动缩放后，一般配置成16即可
+//	.cam_out_sy = 4,	  //使能自动缩放后，一般配置成4即可
+//	.cam_out_width = 640,
+//	.cam_out_height = 480,
+//	
+//	//LCD位置
+//	.lcd_sx = 100,
+//	.lcd_sy = 0,
+//	.lcd_scan = 5, //LCD扫描模式，
+//	
+//	//以下可根据自己的需要调整，参数范围见结构体类型定义	
+//	.light_mode = 0,//自动光照模式
+//	.saturation = 0,	
+//	.brightness = 0,
+//	.contrast = 0,
+//	.effect = 0,		//正常模式
+//	.exposure = 0,		
+
+//	.auto_focus = 1,//自动对焦
+
+};
+
+//输出格式数组定义
+unsigned short RGB565_Init[][2]=
+{
+    //15fps VGA RGB565 output
+    // 24MHz input clock, 24MHz PCLK
+    0x3103, 0x11, // system clock from pad, bit[1]
+    0x3008, 0x82, // software reset, bit[7]
+    // delay 5ms
+    0x3008, 0x42, // software power down, bit[6]
+    0x3103, 0x03, // system clock from PLL, bit[1]
+    0x3017, 0xff, // FREX, Vsync, HREF, PCLK, D[9:6] output enable
+    0x3018, 0xff, // D[5:0], GPIO[1:0] output enable
+    0x3034, 0x1a, // MIPI 10-bit
+    0x3037, 0x13, // PLL root divider, bit[4], PLL pre-divider, bit[3:0]
+    0x3108, 0x01, // PCLK root divider, bit[5:4], SCLK2x root divider, bit[3:2]
+    // SCLK root divider, bit[1:0]
+    0x3630, 0x36,
+    0x3631, 0x0e,
+    0x3632, 0xe2,
+    0x3633, 0x12,
+    0x3621, 0xe0,
+    0x3704, 0xa0,
+    0x3703, 0x5a,
+    0x3715, 0x78,
+    0x3717, 0x01,
+    0x370b, 0x60,
+    0x3705, 0x1a,
+    0x3905, 0x02,
+    0x3906, 0x10,
+    0x3901, 0x0a,
+    0x3731, 0x12,
+    0x3600, 0x08, // VCM control
+    0x3601, 0x33, // VCM control
+    0x302d, 0x60, // system control
+    0x3620, 0x52,
+    0x371b, 0x20,
+    0x471c, 0x50,
+    0x3a13, 0x43, // pre-gain = 1.047x
+    0x3a18, 0x00, // gain ceiling
+    0x3a19, 0xf8, // gain ceiling = 15.5x
+    0x3635, 0x13,
+    0x3636, 0x03,
+    0x3634, 0x40,
+    0x3622, 0x01,
+    // 50/60Hz detection 50/60Hz 灯光条纹过滤
+    0x3c01, 0x34, // Band auto, bit[7]
+    0x3c04, 0x28, // threshold low sum
+    0x3c05, 0x98, // threshold high sum
+    0x3c06, 0x00, // light meter 1 threshold[15:8]
+    0x3c07, 0x08, // light meter 1 threshold[7:0]
+    0x3c08, 0x00, // light meter 2 threshold[15:8]
+    0x3c09, 0x1c, // light meter 2 threshold[7:0]
+    0x3c0a, 0x9c, // sample number[15:8]
+    0x3c0b, 0x40, // sample number[7:0]
+    0x3810, 0x00, // Timing Hoffset[11:8]
+    0x3811, 0x10, // Timing Hoffset[7:0]
+    0x3812, 0x00, // Timing Voffset[10:8]
+    0x3708, 0x64,
+    0x4001, 0x02, // BLC start from line 2
+    0x4005, 0x1a, // BLC always update
+    0x3000, 0x00, // enable blocks
+    0x3004, 0xff, // enable clocks
+    0x300e, 0x58, // MIPI power down, DVP enable
+    0x302e, 0x00,
+
+    0x4300, 0x6f, // RGB565
+    0x501f, 0x01, // RGB565
+
+    0x440e, 0x00,
+    0x5000, 0xa7, // Lenc on, raw gamma on, BPC on, WPC on, CIP on
+    // AEC target 自动曝光控制
+    0x3a0f, 0x30, // stable range in high
+    0x3a10, 0x28, // stable range in low
+    0x3a1b, 0x30, // stable range out high
+    0x3a1e, 0x26, // stable range out low
+    0x3a11, 0x60, // fast zone high
+    0x3a1f, 0x14, // fast zone low
+    // Lens correction for ? 镜头补偿
+    0x5800, 0x23,
+    0x5801, 0x14,
+    0x5802, 0x0f,
+    0x5803, 0x0f,
+    0x5804, 0x12,
+    0x5805, 0x26,
+    0x5806, 0x0c,
+    0x5807, 0x08,
+    0x5808, 0x05,
+    0x5809, 0x05,
+    0x580a, 0x08,
+    0x580b, 0x0d,
+    0x580c, 0x08,
+    0x580d, 0x03,
+    0x580e, 0x00,
+    0x580f, 0x00,
+    0x5810, 0x03,
+    0x5811, 0x09,
+    0x5812, 0x07,
+    0x5813, 0x03,
+    0x5814, 0x00,
+    0x5815, 0x01,
+    0x5816, 0x03,
+    0x5817, 0x08,
+    0x5818, 0x0d,
+    0x5819, 0x08,
+    0x581a, 0x05,
+    0x581b, 0x06,
+    0x581c, 0x08,
+    0x581d, 0x0e,
+    0x581e, 0x29,
+    0x581f, 0x17,
+    0x5820, 0x11,
+    0x5821, 0x11,
+    0x5822, 0x15,
+    0x5823, 0x28,
+    0x5824, 0x46,
+    0x5825, 0x26,
+    0x5826, 0x08,
+    0x5827, 0x26,
+    0x5828, 0x64,
+    0x5829, 0x26,
+    0x582a, 0x24,
+    0x582b, 0x22,
+    0x582c, 0x24,
+    0x582d, 0x24,
+    0x582e, 0x06,
+    0x582f, 0x22,
+    0x5830, 0x40,
+    0x5831, 0x42,
+    0x5832, 0x24,
+    0x5833, 0x26,
+    0x5834, 0x24,
+    0x5835, 0x22,
+    0x5836, 0x22,
+    0x5837, 0x26,
+    0x5838, 0x44,
+    0x5839, 0x24,
+    0x583a, 0x26,
+    0x583b, 0x28,
+    0x583c, 0x42,
+    0x583d, 0xce, // lenc BR offset
+    // AWB 自动白平衡
+    0x5180, 0xff, // AWB B block
+    0x5181, 0xf2, // AWB control
+    0x5182, 0x00, // [7:4] max local counter, [3:0] max fast counter
+    0x5183, 0x14, // AWB advanced
+    0x5184, 0x25,
+    0x5185, 0x24,
+    0x5186, 0x09,
+    0x5187, 0x09,
+    0x5188, 0x09,
+    0x5189, 0x75,
+    0x518a, 0x54,
+    0x518b, 0xe0,
+    0x518c, 0xb2,
+    0x518d, 0x42,
+    0x518e, 0x3d,
+    0x518f, 0x56,
+    0x5190, 0x46,
+    0x5191, 0xf8, // AWB top limit
+    0x5192, 0x04, // AWB bottom limit
+    0x5193, 0x70, // red limit
+    0x5194, 0xf0, // green limit
+    0x5195, 0xf0, // blue limit
+    0x5196, 0x03, // AWB control
+    0x5197, 0x01, // local limit
+    0x5198, 0x04,
+    0x5199, 0x12,
+    0x519a, 0x04,
+    0x519b, 0x00,
+    0x519c, 0x06,
+    0x519d, 0x82,
+    0x519e, 0x38, // AWB control
+    // Gamma 伽玛曲线
+    0x5480, 0x01, // Gamma bias plus on, bit[0]
+    0x5481, 0x08,
+    0x5482, 0x14,
+    0x5483, 0x28,
+    0x5484, 0x51,
+    0x5485, 0x65,
+    0x5486, 0x71,
+    0x5487, 0x7d,
+    0x5488, 0x87,
+    0x5489, 0x91,
+    0x548a, 0x9a,
+    0x548b, 0xaa,
+    0x548c, 0xb8,
+    0x548d, 0xcd,
+    0x548e, 0xdd,
+    0x548f, 0xea,
+    0x5490, 0x1d,
+    // color matrix 色彩矩阵
+    0x5381, 0x1e, // CMX1 for Y
+    0x5382, 0x5b, // CMX2 for Y
+    0x5383, 0x08, // CMX3 for Y
+    0x5384, 0x0a, // CMX4 for U
+    0x5385, 0x7e, // CMX5 for U
+    0x5386, 0x88, // CMX6 for U
+    0x5387, 0x7c, // CMX7 for V
+    0x5388, 0x6c, // CMX8 for V
+    0x5389, 0x10, // CMX9 for V
+    0x538a, 0x01, // sign[9]
+    0x538b, 0x98, // sign[8:1]
+    // UV adjust UV 色彩饱和度调整
+    0x5580, 0x06, // saturation on, bit[1]
+    0x5583, 0x40,
+    0x5584, 0x10,
+    0x5589, 0x10,
+    0x558a, 0x00,
+    0x558b, 0xf8,
+    0x501d, 0x40, // enable manual offset of contrast
+    // CIP 锐化和降噪
+    0x5300, 0x08, // CIP sharpen MT threshold 1
+    0x5301, 0x30, // CIP sharpen MT threshold 2
+    0x5302, 0x10, // CIP sharpen MT offset 1
+    0x5303, 0x00, // CIP sharpen MT offset 2
+    0x5304, 0x08, // CIP DNS threshold 1
+    0x5305, 0x30, // CIP DNS threshold 2
+    0x5306, 0x08, // CIP DNS offset 1
+    0x5307, 0x16, // CIP DNS offset 2
+    0x5309, 0x08, // CIP sharpen TH threshold 1
+    0x530a, 0x30, // CIP sharpen TH threshold 2
+    0x530b, 0x04, // CIP sharpen TH offset 1
+    0x530c, 0x06, // CIP sharpen TH offset 2
+    0x5025, 0x00,
+    0x3008, 0x02, // wake up from standby, bit[6]
+   
+//    0x503d, 0x80,//测试彩条
+//    0x4741, 0x00,
+};
+
+unsigned short RGB565_QVGA[][2]=
+{    
+    0x3212, 0x03, // start group 3
+    0x3808, 0x01, // DVPHO = 320
+    0x3809, 0x40, // DVP HO
+    0x380a, 0x00, // DVPVO = 240
+    0x380b, 0xf0, // DVPVO
+    0x3810, 0x00, // H offset = 16
+    0x3811, 0x10, // H offset
+    0x3812, 0x00, // V offset = 4
+    0x3813, 0x04, // V offset
+    0x3212, 0x13, // end group 3
+    0x3212, 0xa3, // launch group 3   
+};
+
+unsigned short RGB565_VGA[][2]=
+{
+    0x3212, 0x03, // start group 3
+    0x3808, 0x02, // DVPHO = 2048
+    0x3809, 0x80, // DVP HO
+    0x380a, 0x01, // DVPVO = 1536
+    0x380b, 0xe0, // DVPVO
+    0x3810, 0x00, // H offset = 16
+    0x3811, 0x10, // H offset
+    0x3812, 0x00, // V offset = 4
+    0x3813, 0x04, // V offset
+    0x3212, 0x13, // end group 3
+    0x3212, 0xa3, // launch group 3
+
+};
+
+unsigned short RGB565_WVGA[][2]=
+{
+    // 800x480 15fps, night mode 5fps
+    // input clock 24Mhz, PCLK 45.6Mhz
+    0x3035, 0x41, // PLL
+    0x3036, 0x72, // PLL
+    0x3c07, 0x08, // light meter 1 threshold[7:0]
+    0x3820, 0x42, // flip
+    0x3821, 0x00, // mirror
+    0x3814, 0x31, // timing X inc
+    0x3815, 0x31, // timing Y inc
+    0x3800, 0x00, // HS
+    0x3801, 0x00, // HS
+    0x3802, 0x00, // VS
+    0x3803, 0xbe, // VS
+    0x3804, 0x0a, // HW (HE)
+    0x3805, 0x3f, // HW (HE)
+    0x3806, 0x06, // VH (VE)
+    0x3807, 0xe4, // VH (VE)
+    0x3808, 0x03, // DVPHO
+    0x3809, 0x20, // DVPHO
+    0x380a, 0x01, // DVPVO
+    0x380b, 0xe0, // DVPVO
+    0x380c, 0x07, // HTS
+    0x380d, 0x69, // HTS
+    0x380e, 0x03, // VTS
+    0x380f, 0x21, // VTS
+    0x3813, 0x06, // timing V offset
+    0x3618, 0x00,
+    0x3612, 0x29,
+    0x3709, 0x52,
+    0x370c, 0x03,
+    0x3a02, 0x09, // 60Hz max exposure, night mode 5fps
+    0x3a03, 0x63, // 60Hz max exposure
+    // banding filters are calculated automatically in camera driver
+    //0x3a08, 0x00, // B50 step
+    //0x3a09, 0x78, // B50 step
+    //0x3a0a, 0x00, // B60 step
+    //0x3a0b, 0x64, // B60 step
+    //0x3a0e, 0x06, // 50Hz max band
+    //0x3a0d, 0x08, // 60Hz max band
+    0x3a14, 0x09, // 50Hz max exposure, night mode 5fps
+    0x3a15, 0x63, // 50Hz max exposure
+    0x4004, 0x02, // BLC line number
+    0x3002, 0x1c, // reset JFIFO, SFIFO, JPG
+    0x3006, 0xc3, // disable clock of JPEG2x, JPEG
+    0x4713, 0x03, // JPEG mode 3
+    0x4407, 0x04, // Quantization sacle
+    0x460b, 0x35,
+    0x460c, 0x22,
+    0x4837, 0x22, // MIPI global timing
+    0x3824, 0x02, // PCLK manual divider
+    0x5001, 0xa3, // SDE on, CMX on, AWB on
+    0x3503, 0x00, // AEC/AGC on//	  /* Initialize OV5640 */
+    
+    
+//    0x3016, 0x01,
+//    0x301C, 0x00,
+//    0x3016, 0x01,
+//    0x301C, 0x01,
+//    0x3019, 0x01,
+//    0x503d, 0x80,//测试彩条
+//    0x4741, 0x00,
+};
+
+
+
+void DCI_gpio_config(void)
+{
+	/*开启GPIO时钟和DCI的时钟*/
+    rcu_periph_clock_enable(RCU_GPIOA);
+    rcu_periph_clock_enable(RCU_GPIOB);
+    rcu_periph_clock_enable(RCU_GPIOC);
+    rcu_periph_clock_enable(RCU_GPIOD);
+	rcu_periph_clock_enable(RCU_GPIOE);
+    rcu_periph_clock_enable(RCU_GPIOG);
+    
+
+    /*配置引脚复用，配置为DCI模式 */
+	gpio_af_set(GPIOA, GPIO_AF_13, GPIO_PIN_6);//PCLK
+    gpio_af_set(GPIOA, GPIO_AF_13, GPIO_PIN_4);//HS
+	gpio_af_set(GPIOG, GPIO_AF_13, GPIO_PIN_9);//VS
+    
+    gpio_af_set(GPIOC, GPIO_AF_13, GPIO_PIN_6);//D0
+    gpio_af_set(GPIOC, GPIO_AF_13, GPIO_PIN_7);//D1
+    gpio_af_set(GPIOC, GPIO_AF_13, GPIO_PIN_8);//D2
+    gpio_af_set(GPIOC, GPIO_AF_13, GPIO_PIN_9);//D3
+    gpio_af_set(GPIOE, GPIO_AF_13, GPIO_PIN_4);//D4
+	gpio_af_set(GPIOD, GPIO_AF_13, GPIO_PIN_3);//D5
+    gpio_af_set(GPIOB, GPIO_AF_13, GPIO_PIN_8);//D6
+    gpio_af_set(GPIOB, GPIO_AF_13, GPIO_PIN_9);//D7
+    
+	//PCLK
+	gpio_mode_set(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_6);
+	gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_6);
+	
+	//HS
+	gpio_mode_set(GPIOA, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_4);
+	gpio_output_options_set(GPIOA, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_4);
+	
+	//VS
+	gpio_mode_set(GPIOG, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_9);
+	gpio_output_options_set(GPIOG, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_9);
+	
+	//D0
+	gpio_mode_set(GPIOC, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_6);
+	gpio_output_options_set(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_6);
+	
+	//D1
+	gpio_mode_set(GPIOC, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_7);
+	gpio_output_options_set(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_7);
+	
+	//D2
+	gpio_mode_set(GPIOC, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_8);
+	gpio_output_options_set(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_8);
+	
+	//D3
+	gpio_mode_set(GPIOC, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_9);
+	gpio_output_options_set(GPIOC, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_9);
+	
+	//D4
+	gpio_mode_set(GPIOE, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_4);
+	gpio_output_options_set(GPIOE, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_4);
+	
+	//D5
+	gpio_mode_set(GPIOD, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_3);
+	gpio_output_options_set(GPIOD, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_3);
+	
+	//D6
+	gpio_mode_set(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_8);
+	gpio_output_options_set(GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_8);
+	
+	//D7
+	gpio_mode_set(GPIOB, GPIO_MODE_AF, GPIO_PUPD_NONE, GPIO_PIN_9);
+	gpio_output_options_set(GPIOB, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, GPIO_PIN_9);
+	
+}
+
+void DCI_config(void)
+{
+	rcu_periph_clock_enable(RCU_DCI);
+	/**DCI参数结构体*/
+    dci_parameter_struct dci_struct = {0};
+    dci_deinit(); // DCI复位
+    /* DCI configuration */
+    dci_struct.capture_mode = DCI_CAPTURE_MODE_SNAPSHOT;      // 配置为连续捕获
+    dci_struct.clock_polarity = DCI_CK_POLARITY_RISING;       // 时钟极性PCLK上升沿有效
+    dci_struct.hsync_polarity = DCI_HSYNC_POLARITY_LOW;       // 水平参考信号低电平有效
+    dci_struct.vsync_polarity = DCI_VSYNC_POLARITY_LOW;       // 垂直参考信号低电平有效
+    dci_struct.frame_rate = DCI_FRAME_RATE_ALL;               // 全帧捕获
+    dci_struct.interface_format = DCI_INTERFACE_FORMAT_8BITS; // 8位数据
+	
+    dci_init(&amp;dci_struct);
+}
+
+void DCI_IRQHandler(void)
+{
+    if( dci_interrupt_flag_get(DCI_INT_FLAG_EF) == SET )
+    {
+        dci_interrupt_flag_clear(DCI_INT_EF);
+		dci_frame_it_done_flag = 1;
+        printf("DCI中断完成\r\n");      
+    }
+}
+
+void DCI_Start(void)
+{
+	dma_channel_enable(DCI_DMA_PORT, DCI_DMA_CH);
+	dci_interrupt_enable(DCI_INT_EF);
+	dci_enable();
+}
+
+void DCI_Stop(void)
+{
+	uint32_t timeout = 0xFFFF;  // 超时计数器，防止死锁
+
+    dci_capture_disable();
+
+    while(dci_flag_get(DCI_FLAG_EF) == RESET &amp;&amp; timeout--) {
+        // 等待帧结束标志（EF）置位，或超时退出
+    }
+
+    dci_disable();
+
+    dma_channel_disable(DCI_DMA_PORT, DCI_DMA_CH);  // 根据实际使用的DMA通道修改
+	
+	
+}
+
+void CTRL_gpio_config(void)
+{
+	rcu_periph_clock_enable(PWDN_GPIO_RCU);
+    rcu_periph_clock_enable(RST_GPIO_RCU);
+	
+	// PWDN
+    gpio_mode_set(PWDN_GPIO_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, PWDN_GPIO_PIN);
+    gpio_output_options_set(PWDN_GPIO_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, PWDN_GPIO_PIN);
+
+    // RST
+    gpio_mode_set(RST_GPIO_PORT, GPIO_MODE_OUTPUT, GPIO_PUPD_PULLUP, RST_GPIO_PIN);
+    gpio_output_options_set(RST_GPIO_PORT, GPIO_OTYPE_PP, GPIO_OSPEED_200MHZ, RST_GPIO_PIN);
+}
+
+void DMA_config(void)
+{
+	dma_single_data_parameter_struct dma_single_struct; //定义DMA参数结构体
+	
+
+	
+    rcu_periph_clock_enable(DCI_DMA_RCU);
+	
+    dma_deinit(DCI_DMA_PORT, DCI_DMA_CH);
+	
+    dma_single_struct.periph_addr = (uint32_t)DCI_DR_ADDRESS;//外设基地址
+    dma_single_struct.memory0_addr =  (uint32_t)photo_buff; //存储器基地址，定义的数组的地址
+    dma_single_struct.direction = DMA_PERIPH_TO_MEMORY;//DMA数据传输方向，外设到存储器
+    dma_single_struct.number = 65535;//65535; // 38400 x 4 = 153600B
+    dma_single_struct.periph_inc = DMA_PERIPH_INCREASE_DISABLE;//外设地址生成算法，串口地址不变，设置为固定模式
+    dma_single_struct.memory_inc = DMA_MEMORY_INCREASE_ENABLE;//存储器基地址，每次存放的地址不同，要配置为增量模式
+    dma_single_struct.periph_memory_width = DMA_PERIPH_WIDTH_32BIT;//DMA_PERIPH_WIDTH_32BIT
+    dma_single_struct.priority = DMA_PRIORITY_HIGH;//DMA的软件优先级，这里配置为高优先级
+    dma_single_struct.circular_mode = DMA_CIRCULAR_MODE_DISABLE; //DMA循环模式，关闭循环模式
+    dma_single_data_mode_init(DCI_DMA_PORT, DCI_DMA_CH, &amp;dma_single_struct);
+
+    dma_channel_subperipheral_select(DCI_DMA_PORT, DCI_DMA_CH, DMA_SUBPERI1);
+	dma_channel_enable(DCI_DMA_PORT, DCI_DMA_CH);
+	
+	dma_interrupt_enable(DCI_DMA_PORT, DCI_DMA_CH, DMA_CHXCTL_FTFIE);//通道传输完成中断
+	dma_interrupt_enable(DCI_DMA_PORT,DCI_DMA_CH,DMA_CHXCTL_TAEIE);//传输访问错误中断使能
+	nvic_irq_enable(DMA1_Channel7_IRQn, 2, 1);//配置中断优先级
+}
+
+void DMA1_Channel7_IRQHandler(void)
+{
+            
+	if (dma_interrupt_flag_get(DCI_DMA_PORT, DCI_DMA_CH, DMA_INT_FLAG_FTF ) == SET)
+	{
+          
+		dma_interrupt_flag_clear(DCI_DMA_PORT, DCI_DMA_CH, DMA_INT_FLAG_FTF);
+		printf("DCI DMA 中断 ok\r\n");
+		dci_dma_it_done_flag = 1;
+		
+		DCI_Stop();
+		
+	}
+	if (dma_interrupt_flag_get(DCI_DMA_PORT, DCI_DMA_CH, DMA_INT_FLAG_TAE) == SET)
+	{
+            
+		printf("DCI DMA 错误 no\r\n");
+		dci_dma_it_done_flag = 0;
+		
+	}
+	printf("DCI DMA 中断 enter\r\n");
+}
+
+
+
+void BSP_OV5640_Init(void)
+{
+	uint8_t focus_status = 0;
+	
+	// 分配内存
+    photo_buff = (uint32_t *)mymalloc(SRAMEX, PHOTO_BUFF_SIZE * sizeof(uint32_t));
+    camera_framebuffer = (uint16_t *)mymalloc(SRAMEX, CAMERA_FRAMEBUFFER_SIZE * sizeof(uint16_t));
+	
+	
+	DCI_gpio_config();
+	DCI_config();
+	CTRL_gpio_config();
+	
+	/* RST, 低电平复位，高电平不复位 */
+	OV5640_RST_OUT(0);
+	
+	/*PWDN引脚，高电平关闭电源，低电平开启供电*/
+	OV5640_PWDN_OUT(1);
+	
+	delay_us(100);
+	OV5640_PWDN_OUT(1);
+	
+	delay_us(100);
+	OV5640_RST_OUT(1);
+	
+	//初始化SCCB-IIC
+	SCCB_IIC_Init();
+	
+	//检查摄像头连接
+	taskENTER_CRITICAL();
+	OV5640_ReadID(&amp;OV5640_Camera_ID);
+	if(OV5640_Camera_ID.PIDH  == 0x56)
+	{
+		printf("%x %x",OV5640_Camera_ID.PIDH ,OV5640_Camera_ID.PIDL);
+	}
+	else
+	{
+		printf("%x %x",OV5640_Camera_ID.PIDH ,OV5640_Camera_ID.PIDL);
+		printf("没有检测到OV5640摄像头，请重新检查连接。\r\n");
+		while(1);  
+	}
+	taskEXIT_CRITICAL();
+	
+	OV5640_RGB565Config();
+	OV5640_USER_Config();
+	OV5640_FOCUS_AD5820_Init();
+	
+	if(cam_mode.auto_focus ==1)
+	{
+		OV5640_FOCUS_AD5820_Constant_Focus();
+		focus_status = 1;
+	}
+	
+	//启动DCI开始图像采集
+	DMA_config();
+	
+	DCI_Start();
+	
+	// 配置中断优先级（确保能被正确响应）
+	nvic_irq_enable(DCI_IRQn, 0U, 0U);          // DCI中断
+	nvic_irq_enable(DMA1_Channel7_IRQn, 2, 1);  // DMA中断
+	
+	//dci_capture_enable();
+}
+
+//读取摄像头的ID
+void OV5640_ReadID(OV5640_IDTypeDef *OV5640ID)
+{
+	/*读取寄存芯片ID*/
+	OV5640ID-&gt;PIDH = IIC_RD_Reg_16bit(OV5640_SENSOR_PIDH);
+	OV5640ID-&gt;PIDL = IIC_RD_Reg_16bit(OV5640_SENSOR_PIDL);
+}
+
+void OV5640_Reset(void)
+{
+	/*OV5640软件复位*/
+  IIC_WR_Reg_16bit(0x3008, 0x80);
+}
+
+unsigned short sensor_reg[(sizeof(RGB565_Init)/4)];//用于验证是否写入正常
+void OV5640_RGB565Config(void)
+{
+  uint32_t i;
+  
+	/*摄像头复位*/
+	OV5640_Reset();
+	
+  /* 写入寄存器配置 */
+  /* Initialize OV5640   Set to output RGB565 */
+	for(i=0; i&lt;(sizeof(RGB565_Init)/4); i++)
+	{
+		IIC_WR_Reg_16bit(RGB565_Init[i][0], RGB565_Init[i][1]);
+		sensor_reg[i] = IIC_RD_Reg_16bit(RGB565_Init[i][0]);
+		
+		printf("sensor_reg[0x%x]:%x-%x\n",RGB565_Init[i][0],RGB565_Init[i][1],sensor_reg[i]);
+
+	}
+
+  vTaskDelay(pdMS_TO_TICKS(500));
+    
+  if(img_width == 320) 
+    ImageFormat = BMP_320x240;
+  else if(img_width == 640)
+    ImageFormat = BMP_640x480;
+  else if(img_width == 800)
+    ImageFormat = BMP_800x480;
+  
+  switch(ImageFormat)
+  {
+    case BMP_320x240:
+    {
+      for(i=0; i&lt;(sizeof(RGB565_QVGA)/2); i++)
+      {
+        IIC_WR_Reg_16bit(RGB565_QVGA[i][0], RGB565_QVGA[i][1]);
+      }
+      break;
+    }
+	
+    case BMP_640x480:
+    {
+       for(i=0; i&lt;(sizeof(RGB565_VGA)/2); i++)
+      {
+        IIC_WR_Reg_16bit(RGB565_VGA[i][0], RGB565_VGA[i][1]);
+      }
+      break;
+    }
+	
+    case BMP_800x480:
+    {
+      for(i=0; i&lt;(sizeof(RGB565_WVGA)/2); i++)
+      {
+        IIC_WR_Reg_16bit(RGB565_WVGA[i][0], RGB565_WVGA[i][1]);
+      }
+      break;
+    }
+	
+    default:
+    {
+      for(i=0; i&lt;(sizeof(RGB565_WVGA)/2); i++)
+      {
+        IIC_WR_Reg_16bit(RGB565_WVGA[i][0], RGB565_WVGA[i][1]);
+      }
+      break;
+    }
+  }
+}
+
+/**
+  * @brief  设置帧率
+  * @param  可使用宏：FRAME_RATE_30FPS，FRAME_RATE_15FPS
+  * @retval 无
+  */
+void OV5640_FrameRate_Set(uint8_t frame_rate)
+{ 
+	if(frame_rate == FRAME_RATE_30FPS)
+	{
+		IIC_WR_Reg_16bit(0x3035,0x21);		//X_ADDR_ST高字节
+		IIC_WR_Reg_16bit(0x3036,0x72);		//X_ADDR_ST低字节	
+
+	}
+	else if(frame_rate == FRAME_RATE_15FPS)
+	{
+		IIC_WR_Reg_16bit(0x3035,0x41);		//X_ADDR_ST高字节
+		IIC_WR_Reg_16bit(0x3036,0x72);		//X_ADDR_ST低字节	
+
+	}
+	
+}
+
+/**
+  * @brief  设置图像输出像大小，位置，以及是否使用自动缩放功能
+  * @param  scaling:0,关闭自动缩放功能，1，开启自动缩放功能
+  * @param  x_off,y_off:-关闭自动缩放功能时，这两个值为输出窗口在ISP图像中的偏移。
+												 ！！不使用自动缩放功能时，非常容易出错。
+
+                         ！！使用15fps相对不容易出错，但还是推荐使用自动缩放功能。
+
+                        -开启自动缩放功能时，这两个值设置为 16,4 一般能正常使用，
+                        也可根据输出窗口的宽高比例来调整，比较复杂，
+                        请参考《OV5640 自动对焦摄像模组应用指南》第46页
+  * @param  width,height:图像宽度和图像高度
+  * @retval 无
+  */
+void OV5640_OutSize_Set(uint8_t scaling,uint16_t x_off,uint16_t y_off,uint16_t width,uint16_t height)
+{ 
+	uint8_t reg_temp;
+
+	//读取原寄存器内容
+	reg_temp = IIC_RD_Reg_16bit(0x5001);
+
+	//不使用自动缩放功能
+	if(scaling == 0 )
+	{
+		IIC_WR_Reg_16bit(0x5001,reg_temp &amp;~(1&lt;&lt;5) );	//scaling off		
+	}
+	else
+	{
+		IIC_WR_Reg_16bit(0x5001,reg_temp|(1&lt;&lt;5) );	//scaling on		
+	}	
+
+	IIC_WR_Reg_16bit(0x3810,x_off&gt;&gt;8);	//X offset高字节
+	IIC_WR_Reg_16bit(0x3811,x_off&amp;0xff);//X offset低字节	
+	IIC_WR_Reg_16bit(0x3812,y_off&gt;&gt;8);	//Y offset高字节
+	IIC_WR_Reg_16bit(0x3813,y_off&amp;0xff);//Y offset低字节
+		
+	
+    IIC_WR_Reg_16bit(0X3212,0X03);  	
+	
+    IIC_WR_Reg_16bit(0x3808,width&gt;&gt;8);	//输出宽度高字节
+    IIC_WR_Reg_16bit(0x3809,width&amp;0xff);//输出宽度低字节  
+    IIC_WR_Reg_16bit(0x380a,height&gt;&gt;8);//输出高度高字节
+    IIC_WR_Reg_16bit(0x380b,height&amp;0xff);//输出高度低字节
+	
+    IIC_WR_Reg_16bit(0X3212,0X13);		
+    IIC_WR_Reg_16bit(0X3212,0Xa3);		
+}
+
+//这段代码实现了 OV5640 摄像头的亮度调节功能，通过修改特定寄存器的值来调整图像的整体亮度。
+//亮度调节范围为 -2（最暗）到 +2（最亮），共 5 个等级。函数使用了 OV5640 的 寄存器组控制机制，确保配置参数被正确应用。
+void OV5640_BrightnessConfig(int8_t Brightness)
+{
+	IIC_WR_Reg_16bit(0x3212, 0x03); // start group 3
+	
+	IIC_WR_Reg_16bit(0x5587, (Brightness&lt;&lt;4)&amp;0xF0);
+
+	if(Brightness &gt;= 0)	
+	{
+		IIC_WR_Reg_16bit(0x5588, 0x01);
+	}
+	else
+	{
+		IIC_WR_Reg_16bit(0x5588, 0x09);
+	}
+		
+	IIC_WR_Reg_16bit(0x3212, 0x13); // end group 3
+	IIC_WR_Reg_16bit(0x3212, 0xa3); // launch group 3
+}
+
+
+//色彩饱和度参数表
+const static uint8_t OV5640_Saturation_reg[][6]=
+{ 
+	0X0C,0x30,0X3D,0X3E,0X3D,0X01,//-3 
+	0X10,0x3D,0X4D,0X4E,0X4D,0X01,//-2  
+	0X15,0x52,0X66,0X68,0X66,0X02,//-1  
+	0X1A,0x66,0X80,0X82,0X80,0X02,//0  
+	0X1F,0x7A,0X9A,0X9C,0X9A,0X02,//+1  
+	0X24,0x8F,0XB3,0XB6,0XB3,0X03,//+2
+	0X2B,0xAB,0XD6,0XDA,0XD6,0X04,//+3
+}; 
+/**
+  * @brief  设置饱和度
+  * @param  sat:饱和度,参数范围[-3 ~ +3]             	
+  * @retval 无
+  */
+void OV5640_Color_Saturation(int8_t sat)
+{
+	uint8_t i;
+	
+	IIC_WR_Reg_16bit(0x3212, 0x03); // start group 3
+	IIC_WR_Reg_16bit(0x5381, 0x1c);	
+	IIC_WR_Reg_16bit(0x5382, 0x5a);
+	IIC_WR_Reg_16bit(0x5383, 0x06);
+	
+	for(i=0;i&lt;6;i++)
+	{
+		IIC_WR_Reg_16bit(0x5384+i, OV5640_Saturation_reg[sat+3][i]);
+	}
+	
+	IIC_WR_Reg_16bit(0x538b, 0x98);
+	IIC_WR_Reg_16bit(0x538a, 0x01);	
+	IIC_WR_Reg_16bit(0x3212, 0x13); // end group 3
+	IIC_WR_Reg_16bit(0x3212, 0xa3); // launch group 3
+	
+}
+
+//对比度参数表
+const static uint8_t OV5640_Contrast_reg[][2]=
+{
+	0x2C,0x1C,
+	0x28,0x18,
+	0x24,0x10,
+	0x20,0x00,
+	0x1C,0x1C,
+	0x18,0x18,
+	0x14,0x14,
+};
+/**
+  * @brief  设置对比度
+	* @param  cnst:对比度，参数范围[-3~+3]
+  * @retval 无
+  */
+void OV5640_ContrastConfig(int8_t cnst)
+{	
+	IIC_WR_Reg_16bit(0x3212, 0x03); // start group 3
+	IIC_WR_Reg_16bit(0x5586, OV5640_Contrast_reg[cnst+3][0]);
+	IIC_WR_Reg_16bit(0x5585, OV5640_Contrast_reg[cnst+3][1]);
+	IIC_WR_Reg_16bit(0x3212, 0x13); // end group 3
+	IIC_WR_Reg_16bit(0x3212, 0xa3); // launch group 3
+}
+
+//曝光补偿设置参数表
+const static uint8_t OV5640_Exposure_reg[][6]=
+{
+    0x10,0x08,0x10,0x08,0x20,0x10,//-3  
+    0x20,0x18,0x41,0x20,0x18,0x10,//-2
+    0x30,0x28,0x61,0x30,0x28,0x10,//-1 
+    0x38,0x30,0x61,0x38,0x30,0x10,//0  
+    0x40,0x38,0x71,0x40,0x38,0x10,//+1 
+    0x50,0x48,0x90,0x50,0x48,0x20,//+2   
+    0x60,0x58,0xa0,0x60,0x58,0x20,//+3    
+};
+
+/**
+  * @brief  设置曝光补偿
+  * @param  ev:曝光补偿等级，参数范围[-3 ~ +3]             	
+  * @retval 无
+  */
+void OV5640_Exposure(int8_t ev)
+{
+	IIC_WR_Reg_16bit(0x3212, 0x03); // start group 3
+
+	IIC_WR_Reg_16bit(0x3a0f, OV5640_Exposure_reg[ev+3][0]);
+	IIC_WR_Reg_16bit(0x3a10, OV5640_Exposure_reg[ev+3][1]);
+	IIC_WR_Reg_16bit(0x3a11, OV5640_Exposure_reg[ev+3][2]);
+	IIC_WR_Reg_16bit(0x3a1b, OV5640_Exposure_reg[ev+3][3]);
+	IIC_WR_Reg_16bit(0x3a1e, OV5640_Exposure_reg[ev+3][4]);
+	IIC_WR_Reg_16bit(0x3a1f, OV5640_Exposure_reg[ev+3][5]);
+	
+	IIC_WR_Reg_16bit(0x3212, 0x13); // end group 3
+	IIC_WR_Reg_16bit(0x3212, 0xa3); // launch group 3
+
+}
+
+//环境光模式参数表
+const static uint8_t OV5640_LightMode_reg[][7]=
+{ 
+	0x04,0X00,0X04,0X00,0X04,0X00,0X00,//Auto,自动 
+	0x06,0X1C,0X04,0X00,0X04,0XF3,0X01,//Sunny,日光
+	0x05,0X48,0X04,0X00,0X07,0XCF,0X01,//Office,办公室
+	0x06,0X48,0X04,0X00,0X04,0XD3,0X01,//Cloudy,阴天 
+	0x04,0X10,0X04,0X00,0X08,0X40,0X01,//Home,室内
+}; 
+/**
+  * @brief  配置光线模式
+  * @param  参数用于选择光线模式
+  *         0x00 Auto     自动
+  *         0x01 Sunny    光照
+  *         0x02 Cloudy   阴天
+  *         0x03 Office   办公室
+  *         0x04 Home     家里
+
+  * @retval None
+  */
+void OV5640_LightMode(uint8_t mode)
+{
+	IIC_WR_Reg_16bit(0x3212, 0x03); // start group 3
+	
+	IIC_WR_Reg_16bit(0x3406, OV5640_LightMode_reg[mode][0]);
+	IIC_WR_Reg_16bit(0x3400, OV5640_LightMode_reg[mode][1]);
+	IIC_WR_Reg_16bit(0x3401, OV5640_LightMode_reg[mode][2]);
+	IIC_WR_Reg_16bit(0x3402, OV5640_LightMode_reg[mode][3]);
+	IIC_WR_Reg_16bit(0x3403, OV5640_LightMode_reg[mode][4]);
+	IIC_WR_Reg_16bit(0x3404, OV5640_LightMode_reg[mode][5]);
+	IIC_WR_Reg_16bit(0x3405, OV5640_LightMode_reg[mode][6]);
+	
+	IIC_WR_Reg_16bit(0x3212, 0x13); // end group 3
+	IIC_WR_Reg_16bit(0x3212, 0xa3); // lanuch group 3
+}
+
+/**
+  * @brief  特殊效果
+  * @param  参数用于选择光线模式
+  *         0x00 Antique   复古  
+  *         0x01 Bluish    偏蓝
+  *         0x02 Greenish  偏绿 
+  *         0x03 Reddish   偏红
+  *         0x04 B&amp;W       黑白
+  *         0x05 Negative  反相
+  *         0x06 B&amp;W negative  黑白反相
+  *         0x07 Normal     正常 
+
+  * @retval None
+  */
+void OV5640_SpecialEffects(uint8_t mode)
+{
+  switch(mode)
+  {
+    case 0:
+   // Antique
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x18);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    IIC_WR_Reg_16bit(0x7d, 0xa6);
+    break;
+    
+    case 1:    
+    //Bluish
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x18);
+    IIC_WR_Reg_16bit(0x7c,0x05);
+    IIC_WR_Reg_16bit(0x7d, 0xa0);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    
+    break;
+    
+    case 2:
+    //Greenish
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x18);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    break;
+    
+    case 3:
+   // Reddish
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x18);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    IIC_WR_Reg_16bit(0x7d, 0xc0);
+    break;
+    
+    case 4:
+   // B&amp;W
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x18);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    break;
+    
+    case 5:
+    //Negative
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x40);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    
+    break;
+    
+    case 6:
+    //B&amp;W negative
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x58);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    
+    break;
+    
+    case 7:
+    //Normal
+    IIC_WR_Reg_16bit(0xff, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x00);
+    IIC_WR_Reg_16bit(0x7d, 0x00);
+    IIC_WR_Reg_16bit(0x7c, 0x05);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    IIC_WR_Reg_16bit(0x7d, 0x80);
+    
+    break;
+
+  }
+}
+
+//用户对于摄像头设置
+void OV5640_USER_Config(void)
+{	
+	OV5640_FrameRate_Set(cam_mode.frame_rate);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+//	OV5640_ISPSize_Set(cam_mode.cam_isp_sx,
+//											 cam_mode.cam_isp_sy,
+//											 cam_mode.cam_isp_width,
+//											 cam_mode.cam_isp_height);
+//	Delay(100);
+
+  OV5640_OutSize_Set(cam_mode.scaling,
+					cam_mode.cam_out_sx,
+					cam_mode.cam_out_sy,
+					cam_mode.cam_out_width,
+					cam_mode.cam_out_height);
+	
+	vTaskDelay(pdMS_TO_TICKS(100));
+	
+	OV5640_BrightnessConfig(cam_mode.brightness);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+	OV5640_Color_Saturation(cam_mode.saturation);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+	OV5640_ContrastConfig(cam_mode.contrast);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+	OV5640_Exposure(cam_mode.exposure);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+	OV5640_LightMode(cam_mode.light_mode);
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+	OV5640_SpecialEffects(cam_mode.effect);	
+	vTaskDelay(pdMS_TO_TICKS(100));
+
+//	Delay(500);
+}
+
+//============================================================================================================
+
+
+#define OV5640_DEVICE_IIC_ADDR		0x78
+/**
+  * @brief  将固件写入到OV5640片内MCU
+  * @param  pBuffer: 指向要写入的固件数据缓冲区的指针
+  * @param  BufferSize: 固件数据的大小（字节数）
+  * @retval 返回0表示写入正常，0xFF表示错误
+  */
+uint8_t OV5640_WriteFW(uint8_t *pBuffer, uint16_t BufferSize)
+{
+    uint16_t Addr = 0x8000;  // OV5640的MCU基地址
+    uint8_t res;
+    
+    // 1. 启动IIC传输
+    IIC_Start();
+    
+    // 2. 发送设备地址（写模式）
+    res = IIC_Send_Byte(OV5640_DEVICE_IIC_ADDR);
+    if (res != 0)
+    {
+        IIC_Stop();
+        return 0xFF;  // 设备地址发送失败
+    }
+    delay_us(100);  // 延时等待响应
+    
+    // 3. 发送地址高8位（0x80）
+    res = IIC_Send_Byte((uint8_t)((Addr &gt;&gt; 8) &amp; 0xFF));
+    if (res != 0)
+    {
+        IIC_Stop();
+        return 0xFF;  // 地址高8位发送失败
+    }
+    delay_us(100);
+    
+    // 4. 发送地址低8位（0x00）
+    res = IIC_Send_Byte((uint8_t)(Addr &amp; 0xFF));
+    if (res != 0)
+    {
+        IIC_Stop();
+        return 0xFF;  // 地址低8位发送失败
+    }
+    delay_us(100);
+    
+    // 5. 循环发送固件数据
+    while (BufferSize--)
+    {
+        // 发送一个字节数据
+        res = IIC_Send_Byte(*pBuffer);
+        if (res != 0)
+        {
+            IIC_Stop();
+            return 0xFF;  // 数据发送失败
+        }
+        pBuffer++;  // 指向 next 字节
+        delay_us(50);  // 适当延时，确保数据稳定发送
+    }
+    
+    // 6. 发送停止信号，结束传输
+    IIC_Stop();
+    
+    // 7. 操作成功
+    return 0;
+}
+
+/**
+ * @brief  将RGB565格式的32位缓冲区拆分为16位缓冲区
+ * @note   假设photo_buff中每个uint32_t存储2个RGB565像素（高16位在前，低16位在后）
+ * @param  无
+ * @retval 无
+ */
+void photo_buff_to_framebuffer(void)
+{
+    uint32_t i;
+    uint32_t total_pairs = 240 * 320 / 2;  // photo_buff的元素总数（每元素含2个像素）
+    
+
+	
+    for (i = 0; i &lt; total_pairs; i++) {
+        uint32_t pixel_pair = photo_buff[i];  // 获取一组（2个）RGB565像素
+        
+        // 拆分高16位为第一个像素（RGB565格式）
+        camera_framebuffer[2 * i] = (uint16_t)((pixel_pair &gt;&gt; 16) &amp; 0xFFFF);
+        
+        // 拆分低16位为第二个像素（RGB565格式）
+        camera_framebuffer[2 * i + 1] = (uint16_t)(pixel_pair &amp; 0xFFFF);
+    }
+}
+</code></pre>
+
+<p>#include &quot;bsp_OV5640_AF.h&quot;</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_OV5640_AF_H
+#define __BSP_OV5640_AF_H
+
+#include "gd32f4xx.h"                   // Device header
+
+void OV5640_AUTO_FOCUS(void);
+void OV5640_FOCUS_AD5820_Init(void);
+void OV5640_FOCUS_AD5820_Pause_Focus(void);
+void OV5640_FOCUS_AD5820_Constant_Focus(void);
+
+#endif
+</code></pre>
+
+<p>#include &quot;bsp_OV5640_AF.c&quot;</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_OV5640_AF.h"
+#include "bsp_uart.h"
+#include "bsp_sccb.h"
+
+
+#include "bsp_OV5640.h"
+
+#include "FreeRTOS.h"
+#include "task.h"
+
+
+
+static void OV5640_FOCUS_AD5820_Check_MCU(void);
+
+static u8 OV5640_AF_FW[] =    
+{
+    0x02, 0x0d, 0xf3, 0x02, 0x0a, 0x5f, 0xc2, 0x01, 0x22, 0x22, 0x00, 0x02, 0x0f, 0x31, 0x30, 0x01,
+    0x03, 0x02, 0x03, 0x09, 0x30, 0x02, 0x03, 0x02, 0x03, 0x09, 0x90, 0x51, 0xa5, 0xe0, 0x78, 0xbb, 
+    0xf6, 0xa3, 0xe0, 0x08, 0xf6, 0xa3, 0xe0, 0x08, 0xf6, 0xe5, 0x1f, 0x70, 0x45, 0x75, 0x1e, 0x20, 
+    0xd2, 0x34, 0x12, 0x0c, 0x0c, 0x78, 0x9c, 0x12, 0x0b, 0xd2, 0x78, 0xa8, 0xa6, 0x14, 0x08, 0xa6, 
+    0x15, 0x78, 0xb3, 0xa6, 0x09, 0x18, 0x76, 0x01, 0x78, 0x4c, 0xa6, 0x0a, 0x08, 0xa6, 0x0b, 0x78, 
+    0x6c, 0xa6, 0x14, 0x08, 0xa6, 0x15, 0x78, 0xb3, 0xe6, 0x78, 0x8c, 0xf6, 0x75, 0x1f, 0x01, 0x78, 
+    0xbb, 0xe6, 0x78, 0xb8, 0xf6, 0x78, 0xbc, 0xe6, 0x78, 0xb9, 0xf6, 0x78, 0xbd, 0xe6, 0x78, 0xba, 
+    0xf6, 0x22, 0x79, 0xb8, 0xe7, 0xd3, 0x78, 0xbb, 0x96, 0x40, 0x05, 0xe7, 0x96, 0xff, 0x80, 0x08, 
+    0xc3, 0x79, 0xbb, 0xe7, 0x78, 0xb8, 0x96, 0xff, 0x78, 0xa6, 0x76, 0x00, 0x08, 0xa6, 0x07, 0x79, 
+    0xb9, 0xe7, 0xd3, 0x78, 0xbc, 0x96, 0x40, 0x05, 0xe7, 0x96, 0xff, 0x80, 0x08, 0xc3, 0x79, 0xbc, 
+    0xe7, 0x78, 0xb9, 0x96, 0xff, 0x12, 0x0c, 0x13, 0x79, 0xba, 0xe7, 0xd3, 0x78, 0xbd, 0x96, 0x40, 
+    0x05, 0xe7, 0x96, 0xff, 0x80, 0x08, 0xc3, 0x79, 0xbd, 0xe7, 0x78, 0xba, 0x96, 0xff, 0x12, 0x0c, 
+    0x13, 0x78, 0xb2, 0xe6, 0x25, 0xe0, 0x24, 0x4c, 0xf8, 0xa6, 0x0a, 0x08, 0xa6, 0x0b, 0x78, 0xb2, 
+    0xe6, 0x25, 0xe0, 0x24, 0x6c, 0xf8, 0xa6, 0x14, 0x08, 0xa6, 0x15, 0x78, 0xb2, 0xe6, 0x24, 0x8c, 
+    0xf8, 0xa6, 0x09, 0x78, 0xb2, 0xe6, 0x24, 0x01, 0xff, 0xe4, 0x33, 0xfe, 0xd3, 0xef, 0x94, 0x0f, 
+    0xee, 0x64, 0x80, 0x94, 0x80, 0x40, 0x04, 0x7f, 0x00, 0x80, 0x05, 0x78, 0xb2, 0xe6, 0x04, 0xff, 
+    0x78, 0xb2, 0xa6, 0x07, 0xe5, 0x1f, 0xb4, 0x01, 0x0a, 0xe6, 0x60, 0x03, 0x02, 0x03, 0x09, 0x75, 
+    0x1f, 0x02, 0x22, 0x12, 0x0c, 0x0c, 0x78, 0x9e, 0x12, 0x0b, 0xd2, 0x12, 0x0c, 0x0c, 0x78, 0xa0, 
+    0x12, 0x0b, 0xff, 0x78, 0xaa, 0x12, 0x0b, 0xff, 0xff, 0x78, 0xac, 0xa6, 0x06, 0x08, 0xa6, 0x07, 
+    0x78, 0x8c, 0xe6, 0x78, 0xb4, 0xf6, 0x78, 0x8c, 0xe6, 0x78, 0xb5, 0xf6, 0x7f, 0x01, 0xef, 0x25, 
+    0xe0, 0x24, 0x4d, 0x78, 0x9f, 0x12, 0x0b, 0xc9, 0x50, 0x0a, 0x12, 0x0b, 0xab, 0x78, 0x9e, 0xa6, 
+    0x04, 0x08, 0xa6, 0x05, 0xef, 0x25, 0xe0, 0x24, 0x6d, 0x78, 0xab, 0x12, 0x0b, 0xc9, 0x50, 0x0f, 
+    0xef, 0x25, 0xe0, 0x24, 0x6c, 0x12, 0x0b, 0xb0, 0x78, 0xaa, 0xa6, 0x04, 0x08, 0xa6, 0x05, 0x74, 
+    0x8c, 0x2f, 0xf9, 0x78, 0xb4, 0xe6, 0xc3, 0x97, 0x50, 0x08, 0x74, 0x8c, 0x2f, 0xf8, 0xe6, 0x78, 
+    0xb4, 0xf6, 0xef, 0x25, 0xe0, 0x24, 0x4d, 0xf9, 0xd3, 0x78, 0xa1, 0x12, 0x0b, 0xcb, 0x40, 0x0a, 
+    0x12, 0x0b, 0xab, 0x78, 0xa0, 0xa6, 0x04, 0x08, 0xa6, 0x05, 0xef, 0x25, 0xe0, 0x24, 0x6d, 0xf9, 
+    0xd3, 0x78, 0xad, 0x12, 0x0b, 0xcb, 0x40, 0x0f, 0xef, 0x25, 0xe0, 0x24, 0x6c, 0x12, 0x0b, 0xb0, 
+    0x78, 0xac, 0xa6, 0x04, 0x08, 0xa6, 0x05, 0x74, 0x8c, 0x2f, 0xf9, 0x78, 0xb5, 0xe6, 0xd3, 0x97, 
+    0x40, 0x08, 0x74, 0x8c, 0x2f, 0xf8, 0xe6, 0x78, 0xb5, 0xf6, 0x0f, 0xef, 0x64, 0x10, 0x60, 0x03, 
+    0x02, 0x01, 0x3e, 0xc3, 0x79, 0x9f, 0x78, 0xa1, 0x12, 0x0b, 0xf7, 0x78, 0xa2, 0xf6, 0x08, 0xa6, 
+    0x07, 0xc3, 0x79, 0xab, 0x78, 0xad, 0x12, 0x0b, 0xf7, 0x78, 0xae, 0xf6, 0x08, 0xa6, 0x07, 0xc3, 
+    0x79, 0xb4, 0xe7, 0x78, 0xb5, 0x96, 0x08, 0xf6, 0xd3, 0x79, 0x9f, 0xe7, 0x78, 0x9d, 0x96, 0x19, 
+    0xe7, 0x18, 0x96, 0x40, 0x05, 0x09, 0xe7, 0x08, 0x80, 0x06, 0xc3, 0x79, 0x9d, 0xe7, 0x78, 0x9f, 
+    0x12, 0x0b, 0xf8, 0xfe, 0x78, 0xa4, 0xa6, 0x06, 0x08, 0xa6, 0x07, 0xd3, 0x79, 0xab, 0xe7, 0x78, 
+    0xa9, 0x96, 0x19, 0xe7, 0x18, 0x96, 0x40, 0x05, 0x09, 0xe7, 0x08, 0x80, 0x06, 0xc3, 0x79, 0xa9, 
+    0xe7, 0x78, 0xab, 0x12, 0x0b, 0xf8, 0xfe, 0x78, 0xb0, 0xa6, 0x06, 0x08, 0xa6, 0x07, 0x79, 0xb4, 
+    0xe7, 0xd3, 0x78, 0xb3, 0x96, 0x40, 0x05, 0xe7, 0x96, 0xff, 0x80, 0x08, 0xc3, 0x79, 0xb3, 0xe7, 
+    0x78, 0xb4, 0x96, 0xff, 0x78, 0xb7, 0xa6, 0x07, 0xe5, 0x1f, 0x64, 0x02, 0x60, 0x03, 0x02, 0x02, 
+    0xef, 0x90, 0x30, 0x24, 0x74, 0x0f, 0xf0, 0x90, 0x0e, 0x8a, 0xe4, 0x93, 0xff, 0x18, 0xe6, 0xc3, 
+    0x9f, 0x40, 0x03, 0x02, 0x03, 0x09, 0x90, 0x30, 0x24, 0x74, 0x0e, 0xf0, 0x78, 0xa2, 0x12, 0x0b, 
+    0xd9, 0x12, 0x0b, 0xa2, 0x90, 0x0e, 0x87, 0x12, 0x0b, 0xb7, 0x78, 0x9e, 0x12, 0x0b, 0xe8, 0x7b, 
+    0x04, 0x12, 0x0b, 0x90, 0xc3, 0x12, 0x07, 0x0e, 0x50, 0x6f, 0x90, 0x0e, 0x8b, 0xe4, 0x93, 0xff, 
+    0x78, 0xb7, 0xe6, 0x9f, 0x40, 0x07, 0x90, 0x30, 0x24, 0x74, 0x0a, 0x80, 0x16, 0x90, 0x0e, 0x89, 
+    0xe4, 0x93, 0xff, 0xd3, 0x78, 0xa7, 0xe6, 0x9f, 0x18, 0xe6, 0x94, 0x00, 0x40, 0x09, 0x90, 0x30, 
+    0x24, 0x74, 0x0b, 0xf0, 0x75, 0x1f, 0x05, 0x78, 0xae, 0x12, 0x0b, 0xd9, 0x12, 0x0b, 0xa2, 0x90, 
+    0x0e, 0x88, 0x12, 0x0b, 0xb7, 0x78, 0xa8, 0x12, 0x0b, 0xe8, 0x7b, 0x40, 0x12, 0x0b, 0x90, 0xd3, 
+    0x12, 0x07, 0x0e, 0x40, 0x24, 0x90, 0x30, 0x24, 0x74, 0x0c, 0xf0, 0x75, 0x1f, 0x05, 0x22, 0x90, 
+    0x30, 0x24, 0x74, 0x01, 0xf0, 0xe5, 0x1f, 0xb4, 0x05, 0x0f, 0xd2, 0x01, 0xc2, 0x02, 0xe4, 0xf5, 
+    0x1f, 0xf5, 0x1e, 0xd2, 0x34, 0xd2, 0x32, 0xd2, 0x35, 0x22, 0xe5, 0x1f, 0x60, 0x03, 0x02, 0x03, 
+    0x93, 0xf5, 0x1e, 0xd2, 0x34, 0x75, 0x34, 0xff, 0x75, 0x35, 0x0e, 0x75, 0x36, 0x55, 0x75, 0x37, 
+    0x01, 0x12, 0x0d, 0x85, 0xe4, 0xff, 0xef, 0x25, 0xe0, 0x24, 0x4c, 0xf8, 0xe4, 0xf6, 0x08, 0xf6, 
+    0x0f, 0xbf, 0x34, 0xf2, 0x90, 0x0e, 0x8c, 0xe4, 0x93, 0xff, 0xe5, 0x49, 0xc3, 0x9f, 0x50, 0x04, 
+    0x7f, 0x05, 0x80, 0x02, 0x7f, 0xfb, 0x78, 0xbb, 0xa6, 0x07, 0x12, 0x0e, 0xbc, 0x40, 0x04, 0x7f, 
+    0x03, 0x80, 0x02, 0x7f, 0x30, 0x78, 0xba, 0xa6, 0x07, 0xe6, 0x18, 0xf6, 0x08, 0xe6, 0x78, 0xb7, 
+    0xf6, 0x78, 0xba, 0xe6, 0x78, 0xb8, 0xf6, 0x78, 0xbd, 0x76, 0x33, 0xe4, 0x08, 0xf6, 0x78, 0xb6, 
+    0x76, 0x01, 0x75, 0x48, 0x02, 0x78, 0xb4, 0xf6, 0x08, 0xf6, 0x74, 0xff, 0x78, 0xbf, 0xf6, 0x08, 
+    0xf6, 0x75, 0x1f, 0x01, 0x78, 0xba, 0xe6, 0x75, 0xf0, 0x05, 0xa4, 0xf5, 0x49, 0x12, 0x0a, 0xfd, 
+    0xc2, 0x36, 0x22, 0x78, 0xb6, 0xe6, 0xd3, 0x94, 0x00, 0x40, 0x02, 0x16, 0x22, 0xe5, 0x1f, 0xb4, 
+    0x05, 0x23, 0xe4, 0xf5, 0x1f, 0xc2, 0x01, 0x78, 0xb4, 0xe6, 0xfe, 0x08, 0xe6, 0xff, 0x78, 0x4c, 
+    0xa6, 0x06, 0x08, 0xa6, 0x07, 0xa2, 0x36, 0xe4, 0x33, 0xf5, 0x3c, 0x90, 0x30, 0x28, 0xf0, 0x75, 
+    0x1e, 0x10, 0xd2, 0x34, 0x22, 0xe5, 0x49, 0x75, 0xf0, 0x05, 0x84, 0x78, 0xba, 0xf6, 0x90, 0x0e, 
+    0x85, 0xe4, 0x93, 0xff, 0x25, 0xe0, 0x24, 0x0a, 0xf8, 0xe6, 0xfc, 0x08, 0xe6, 0xfd, 0x78, 0xba, 
+    0xe6, 0x25, 0xe0, 0x24, 0x4c, 0xf8, 0xa6, 0x04, 0x08, 0xa6, 0x05, 0xef, 0x12, 0x0e, 0xc3, 0xd3, 
+    0x78, 0xb5, 0x96, 0xee, 0x18, 0x96, 0x40, 0x0d, 0x78, 0xba, 0xe6, 0x78, 0xb7, 0xf6, 0x78, 0xb4, 
+    0xa6, 0x06, 0x08, 0xa6, 0x07, 0x90, 0x0e, 0x85, 0xe4, 0x93, 0x12, 0x0e, 0xc3, 0xc3, 0x78, 0xc0, 
+    0x96, 0xee, 0x18, 0x96, 0x50, 0x0d, 0x78, 0xba, 0xe6, 0x78, 0xb8, 0xf6, 0x78, 0xbf, 0xa6, 0x06, 
+    0x08, 0xa6, 0x07, 0x78, 0xb4, 0xe6, 0xfe, 0x08, 0xe6, 0xc3, 0x78, 0xc0, 0x96, 0xff, 0xee, 0x18, 
+    0x96, 0x78, 0xc1, 0xf6, 0x08, 0xa6, 0x07, 0x90, 0x0e, 0x8e, 0xe4, 0x18, 0x12, 0x0e, 0xa1, 0x40, 
+    0x02, 0xd2, 0x36, 0x78, 0xba, 0xe6, 0x08, 0x26, 0x08, 0xf6, 0xe5, 0x1f, 0x64, 0x01, 0x70, 0x4a, 
+    0xe6, 0xc3, 0x78, 0xbe, 0x12, 0x0e, 0x97, 0x40, 0x05, 0x12, 0x0e, 0x92, 0x40, 0x39, 0x12, 0x0e, 
+    0xba, 0x40, 0x04, 0x7f, 0xfe, 0x80, 0x02, 0x7f, 0x02, 0x78, 0xbb, 0xa6, 0x07, 0x78, 0xb7, 0xe6, 
+    0x24, 0x03, 0x78, 0xbd, 0xf6, 0x78, 0xb7, 0xe6, 0x24, 0xfd, 0x78, 0xbe, 0xf6, 0x12, 0x0e, 0xba, 
+    0x40, 0x06, 0x78, 0xbe, 0xe6, 0xff, 0x80, 0x04, 0x78, 0xbd, 0xe6, 0xff, 0x78, 0xbc, 0xa6, 0x07, 
+    0x75, 0x1f, 0x02, 0x78, 0xb6, 0x76, 0x01, 0x02, 0x05, 0x59, 0xe5, 0x1f, 0x64, 0x02, 0x60, 0x03, 
+    0x02, 0x05, 0x39, 0x78, 0xbc, 0xe6, 0xff, 0xc3, 0x78, 0xbe, 0x12, 0x0e, 0x98, 0x40, 0x08, 0x12, 
+    0x0e, 0x92, 0x50, 0x03, 0x02, 0x05, 0x37, 0x12, 0x0e, 0xba, 0x40, 0x04, 0x7f, 0xff, 0x80, 0x02, 
+    0x7f, 0x01, 0x78, 0xbb, 0xa6, 0x07, 0x78, 0xb7, 0xe6, 0x04, 0x78, 0xbd, 0xf6, 0x78, 0xb7, 0xe6, 
+    0x14, 0x78, 0xbe, 0xf6, 0x18, 0x12, 0x0e, 0xbc, 0x40, 0x04, 0xe6, 0xff, 0x80, 0x02, 0x7f, 0x00, 
+    0x78, 0xbd, 0xa6, 0x07, 0xd3, 0x08, 0xe6, 0x64, 0x80, 0x94, 0x80, 0x40, 0x04, 0xe6, 0xff, 0x80, 
+    0x02, 0x7f, 0x00, 0x78, 0xbe, 0xa6, 0x07, 0xc3, 0x18, 0xe6, 0x64, 0x80, 0x94, 0xb3, 0x50, 0x04, 
+    0xe6, 0xff, 0x80, 0x02, 0x7f, 0x33, 0x78, 0xbd, 0xa6, 0x07, 0xc3, 0x08, 0xe6, 0x64, 0x80, 0x94, 
+    0xb3, 0x50, 0x04, 0xe6, 0xff, 0x80, 0x02, 0x7f, 0x33, 0x78, 0xbe, 0xa6, 0x07, 0x12, 0x0e, 0xba, 
+    0x40, 0x06, 0x78, 0xbe, 0xe6, 0xff, 0x80, 0x04, 0x78, 0xbd, 0xe6, 0xff, 0x78, 0xbc, 0xa6, 0x07, 
+    0x75, 0x1f, 0x03, 0x78, 0xb6, 0x76, 0x01, 0x80, 0x20, 0xe5, 0x1f, 0x64, 0x03, 0x70, 0x26, 0x78, 
+    0xbc, 0xe6, 0xff, 0xc3, 0x78, 0xbe, 0x12, 0x0e, 0x98, 0x40, 0x05, 0x12, 0x0e, 0x92, 0x40, 0x09, 
+    0x78, 0xb7, 0xe6, 0x78, 0xbc, 0xf6, 0x75, 0x1f, 0x04, 0x78, 0xbc, 0xe6, 0x75, 0xf0, 0x05, 0xa4, 
+    0xf5, 0x49, 0x02, 0x0a, 0xfd, 0xe5, 0x1f, 0xb4, 0x04, 0x1f, 0x90, 0x0e, 0x8d, 0xe4, 0x78, 0xc1, 
+    0x12, 0x0e, 0xa1, 0x40, 0x02, 0xd2, 0x36, 0x75, 0x1f, 0x05, 0x75, 0x34, 0xff, 0x75, 0x35, 0x0e, 
+    0x75, 0x36, 0x59, 0x75, 0x37, 0x01, 0x12, 0x0d, 0x85, 0x22, 0xef, 0x8d, 0xf0, 0xa4, 0xa8, 0xf0, 
+    0xcf, 0x8c, 0xf0, 0xa4, 0x28, 0xce, 0x8d, 0xf0, 0xa4, 0x2e, 0xfe, 0x22, 0xbc, 0x00, 0x0b, 0xbe, 
+    0x00, 0x29, 0xef, 0x8d, 0xf0, 0x84, 0xff, 0xad, 0xf0, 0x22, 0xe4, 0xcc, 0xf8, 0x75, 0xf0, 0x08, 
+    0xef, 0x2f, 0xff, 0xee, 0x33, 0xfe, 0xec, 0x33, 0xfc, 0xee, 0x9d, 0xec, 0x98, 0x40, 0x05, 0xfc, 
+    0xee, 0x9d, 0xfe, 0x0f, 0xd5, 0xf0, 0xe9, 0xe4, 0xce, 0xfd, 0x22, 0xed, 0xf8, 0xf5, 0xf0, 0xee, 
+    0x84, 0x20, 0xd2, 0x1c, 0xfe, 0xad, 0xf0, 0x75, 0xf0, 0x08, 0xef, 0x2f, 0xff, 0xed, 0x33, 0xfd, 
+    0x40, 0x07, 0x98, 0x50, 0x06, 0xd5, 0xf0, 0xf2, 0x22, 0xc3, 0x98, 0xfd, 0x0f, 0xd5, 0xf0, 0xea, 
+    0x22, 0xe8, 0x8f, 0xf0, 0xa4, 0xcc, 0x8b, 0xf0, 0xa4, 0x2c, 0xfc, 0xe9, 0x8e, 0xf0, 0xa4, 0x2c, 
+    0xfc, 0x8a, 0xf0, 0xed, 0xa4, 0x2c, 0xfc, 0xea, 0x8e, 0xf0, 0xa4, 0xcd, 0xa8, 0xf0, 0x8b, 0xf0, 
+    0xa4, 0x2d, 0xcc, 0x38, 0x25, 0xf0, 0xfd, 0xe9, 0x8f, 0xf0, 0xa4, 0x2c, 0xcd, 0x35, 0xf0, 0xfc, 
+    0xeb, 0x8e, 0xf0, 0xa4, 0xfe, 0xa9, 0xf0, 0xeb, 0x8f, 0xf0, 0xa4, 0xcf, 0xc5, 0xf0, 0x2e, 0xcd, 
+    0x39, 0xfe, 0xe4, 0x3c, 0xfc, 0xea, 0xa4, 0x2d, 0xce, 0x35, 0xf0, 0xfd, 0xe4, 0x3c, 0xfc, 0x22, 
+    0x75, 0xf0, 0x08, 0x75, 0x82, 0x00, 0xef, 0x2f, 0xff, 0xee, 0x33, 0xfe, 0xcd, 0x33, 0xcd, 0xcc, 
+    0x33, 0xcc, 0xc5, 0x82, 0x33, 0xc5, 0x82, 0x9b, 0xed, 0x9a, 0xec, 0x99, 0xe5, 0x82, 0x98, 0x40, 
+    0x0c, 0xf5, 0x82, 0xee, 0x9b, 0xfe, 0xed, 0x9a, 0xfd, 0xec, 0x99, 0xfc, 0x0f, 0xd5, 0xf0, 0xd6, 
+    0xe4, 0xce, 0xfb, 0xe4, 0xcd, 0xfa, 0xe4, 0xcc, 0xf9, 0xa8, 0x82, 0x22, 0xb8, 0x00, 0xc1, 0xb9, 
+    0x00, 0x59, 0xba, 0x00, 0x2d, 0xec, 0x8b, 0xf0, 0x84, 0xcf, 0xce, 0xcd, 0xfc, 0xe5, 0xf0, 0xcb, 
+    0xf9, 0x78, 0x18, 0xef, 0x2f, 0xff, 0xee, 0x33, 0xfe, 0xed, 0x33, 0xfd, 0xec, 0x33, 0xfc, 0xeb, 
+    0x33, 0xfb, 0x10, 0xd7, 0x03, 0x99, 0x40, 0x04, 0xeb, 0x99, 0xfb, 0x0f, 0xd8, 0xe5, 0xe4, 0xf9, 
+    0xfa, 0x22, 0x78, 0x18, 0xef, 0x2f, 0xff, 0xee, 0x33, 0xfe, 0xed, 0x33, 0xfd, 0xec, 0x33, 0xfc, 
+    0xc9, 0x33, 0xc9, 0x10, 0xd7, 0x05, 0x9b, 0xe9, 0x9a, 0x40, 0x07, 0xec, 0x9b, 0xfc, 0xe9, 0x9a, 
+    0xf9, 0x0f, 0xd8, 0xe0, 0xe4, 0xc9, 0xfa, 0xe4, 0xcc, 0xfb, 0x22, 0x75, 0xf0, 0x10, 0xef, 0x2f, 
+    0xff, 0xee, 0x33, 0xfe, 0xed, 0x33, 0xfd, 0xcc, 0x33, 0xcc, 0xc8, 0x33, 0xc8, 0x10, 0xd7, 0x07, 
+    0x9b, 0xec, 0x9a, 0xe8, 0x99, 0x40, 0x0a, 0xed, 0x9b, 0xfd, 0xec, 0x9a, 0xfc, 0xe8, 0x99, 0xf8, 
+    0x0f, 0xd5, 0xf0, 0xda, 0xe4, 0xcd, 0xfb, 0xe4, 0xcc, 0xfa, 0xe4, 0xc8, 0xf9, 0x22, 0xeb, 0x9f, 
+    0xf5, 0xf0, 0xea, 0x9e, 0x42, 0xf0, 0xe9, 0x9d, 0x42, 0xf0, 0xe8, 0x9c, 0x45, 0xf0, 0x22, 0xe8, 
+    0x60, 0x0f, 0xef, 0xc3, 0x33, 0xff, 0xee, 0x33, 0xfe, 0xed, 0x33, 0xfd, 0xec, 0x33, 0xfc, 0xd8, 
+    0xf1, 0x22, 0xe4, 0x93, 0xfc, 0x74, 0x01, 0x93, 0xfd, 0x74, 0x02, 0x93, 0xfe, 0x74, 0x03, 0x93, 
+    0xff, 0x22, 0xe6, 0xfb, 0x08, 0xe6, 0xf9, 0x08, 0xe6, 0xfa, 0x08, 0xe6, 0xcb, 0xf8, 0x22, 0xec, 
+    0xf6, 0x08, 0xed, 0xf6, 0x08, 0xee, 0xf6, 0x08, 0xef, 0xf6, 0x22, 0xa4, 0x25, 0x82, 0xf5, 0x82, 
+    0xe5, 0xf0, 0x35, 0x83, 0xf5, 0x83, 0x22, 0xd0, 0x83, 0xd0, 0x82, 0xf8, 0xe4, 0x93, 0x70, 0x12, 
+    0x74, 0x01, 0x93, 0x70, 0x0d, 0xa3, 0xa3, 0x93, 0xf8, 0x74, 0x01, 0x93, 0xf5, 0x82, 0x88, 0x83, 
+    0xe4, 0x73, 0x74, 0x02, 0x93, 0x68, 0x60, 0xef, 0xa3, 0xa3, 0xa3, 0x80, 0xdf, 0x90, 0x38, 0x04, 
+    0x78, 0x50, 0x12, 0x0c, 0x7f, 0x90, 0x38, 0x00, 0xe0, 0xfe, 0xa3, 0xe0, 0xfd, 0xed, 0xff, 0xc3, 
+    0x12, 0x0c, 0x38, 0x90, 0x38, 0x10, 0x12, 0x0c, 0x2c, 0x90, 0x38, 0x06, 0x78, 0x52, 0x12, 0x0c, 
+    0x7f, 0x90, 0x38, 0x02, 0xe0, 0xfe, 0xa3, 0xe0, 0xfd, 0xed, 0xff, 0xc3, 0x12, 0x0c, 0x38, 0x90, 
+    0x38, 0x12, 0x12, 0x0c, 0x2c, 0xa3, 0xe0, 0xb4, 0x31, 0x07, 0x78, 0x50, 0x79, 0x50, 0x12, 0x0c, 
+    0x95, 0x90, 0x38, 0x14, 0xe0, 0xb4, 0x71, 0x15, 0x78, 0x50, 0xe6, 0xfe, 0x08, 0xe6, 0x78, 0x02, 
+    0xce, 0xc3, 0x13, 0xce, 0x13, 0xd8, 0xf9, 0x79, 0x51, 0xf7, 0xee, 0x19, 0xf7, 0x90, 0x38, 0x15, 
+    0xe0, 0xb4, 0x31, 0x07, 0x78, 0x52, 0x79, 0x52, 0x12, 0x0c, 0x95, 0x90, 0x38, 0x15, 0xe0, 0xb4, 
+    0x71, 0x15, 0x78, 0x52, 0xe6, 0xfe, 0x08, 0xe6, 0x78, 0x02, 0xce, 0xc3, 0x13, 0xce, 0x13, 0xd8, 
+    0xf9, 0x79, 0x53, 0xf7, 0xee, 0x19, 0xf7, 0x79, 0x50, 0x12, 0x0c, 0x67, 0x09, 0x12, 0x0c, 0x67, 
+    0xaf, 0x45, 0x12, 0x0c, 0x1d, 0x7d, 0x50, 0x12, 0x05, 0x9c, 0x78, 0x58, 0xa6, 0x06, 0x08, 0xa6, 
+    0x07, 0xaf, 0x43, 0x12, 0x0c, 0x1d, 0x7d, 0x50, 0x12, 0x05, 0x9c, 0x78, 0x54, 0xa6, 0x06, 0x08, 
+    0xa6, 0x07, 0xaf, 0x46, 0x78, 0x52, 0x12, 0x0c, 0x1f, 0x7d, 0x3c, 0x12, 0x05, 0x9c, 0x78, 0x5a, 
+    0xa6, 0x06, 0x08, 0xa6, 0x07, 0xaf, 0x44, 0x7e, 0x00, 0x78, 0x52, 0x12, 0x0c, 0x21, 0x7d, 0x3c, 
+    0x12, 0x05, 0x9c, 0x78, 0x56, 0xa6, 0x06, 0x08, 0xa6, 0x07, 0xc3, 0x78, 0x59, 0xe6, 0x94, 0x08, 
+    0x18, 0xe6, 0x94, 0x00, 0x50, 0x05, 0x76, 0x00, 0x08, 0x76, 0x08, 0xc3, 0x78, 0x5b, 0xe6, 0x94, 
+    0x08, 0x18, 0xe6, 0x94, 0x00, 0x50, 0x05, 0x76, 0x00, 0x08, 0x76, 0x08, 0x78, 0x58, 0x12, 0x0c, 
+    0x54, 0xff, 0xd3, 0x78, 0x55, 0xe6, 0x9f, 0x18, 0xe6, 0x9e, 0x40, 0x0e, 0x78, 0x58, 0xe6, 0x13, 
+    0xfe, 0x08, 0xe6, 0x78, 0x55, 0x12, 0x0c, 0x8a, 0x80, 0x04, 0x7e, 0x00, 0x7f, 0x00, 0x78, 0x5c, 
+    0x12, 0x0c, 0x4c, 0xff, 0xd3, 0x78, 0x57, 0xe6, 0x9f, 0x18, 0xe6, 0x9e, 0x40, 0x0e, 0x78, 0x5a, 
+    0xe6, 0x13, 0xfe, 0x08, 0xe6, 0x78, 0x57, 0x12, 0x0c, 0x8a, 0x80, 0x04, 0x7e, 0x00, 0x7f, 0x00, 
+    0xe4, 0xfc, 0xfd, 0x78, 0x60, 0x12, 0x07, 0x4f, 0x78, 0x58, 0x12, 0x0c, 0x54, 0x78, 0x55, 0x26, 
+    0xff, 0xee, 0x18, 0x36, 0xfe, 0x78, 0x64, 0x12, 0x0c, 0x4c, 0x78, 0x57, 0x26, 0xff, 0xee, 0x18, 
+    0x36, 0xfe, 0xe4, 0xfc, 0xfd, 0x78, 0x68, 0x12, 0x07, 0x4f, 0x12, 0x0c, 0x5c, 0x78, 0x64, 0x12, 
+    0x07, 0x42, 0xd3, 0x12, 0x07, 0x0e, 0x40, 0x08, 0x12, 0x0c, 0x5c, 0x78, 0x64, 0x12, 0x07, 0x4f, 
+    0x78, 0x52, 0x12, 0x0c, 0x5e, 0x78, 0x68, 0x12, 0x07, 0x42, 0xd3, 0x12, 0x07, 0x0e, 0x40, 0x0a, 
+    0x78, 0x52, 0x12, 0x0c, 0x5e, 0x78, 0x68, 0x12, 0x07, 0x4f, 0xe4, 0xfd, 0x78, 0x5f, 0x12, 0x0c, 
+    0x77, 0x24, 0x01, 0x12, 0x0c, 0x40, 0x78, 0x63, 0x12, 0x0c, 0x77, 0x24, 0x02, 0x12, 0x0c, 0x40, 
+    0x78, 0x67, 0x12, 0x0c, 0x77, 0x24, 0x03, 0x12, 0x0c, 0x40, 0x78, 0x6b, 0x12, 0x0c, 0x77, 0x24, 
+    0x04, 0x12, 0x0c, 0x40, 0x0d, 0xbd, 0x05, 0xd4, 0xc2, 0x0e, 0xc2, 0x06, 0x22, 0x85, 0x08, 0x41, 
+    0x90, 0x30, 0x24, 0xe0, 0xf5, 0x3d, 0xa3, 0xe0, 0xf5, 0x3e, 0xa3, 0xe0, 0xf5, 0x3f, 0xa3, 0xe0, 
+    0xf5, 0x40, 0xa3, 0xe0, 0xf5, 0x3c, 0xd2, 0x33, 0xe5, 0x41, 0x12, 0x07, 0x67, 0x09, 0xb4, 0x03, 
+    0x09, 0xb8, 0x04, 0x09, 0xbe, 0x05, 0x09, 0xc1, 0x06, 0x09, 0xc4, 0x07, 0x09, 0xcd, 0x08, 0x09, 
+    0xde, 0x12, 0x09, 0xe0, 0x80, 0x09, 0xe5, 0x81, 0x0a, 0x43, 0x8f, 0x0a, 0x32, 0x90, 0x0a, 0x43, 
+    0x91, 0x0a, 0x43, 0x92, 0x0a, 0x43, 0x93, 0x0a, 0x43, 0x94, 0x0a, 0x43, 0x98, 0x0a, 0x40, 0x9f, 
+    0x00, 0x00, 0x0a, 0x5e, 0x12, 0x0e, 0xce, 0x22, 0x12, 0x0e, 0xce, 0xd2, 0x03, 0x22, 0xd2, 0x03, 
+    0x22, 0xc2, 0x03, 0x22, 0xa2, 0x36, 0xe4, 0x33, 0xf5, 0x3c, 0x02, 0x0a, 0x43, 0xc2, 0x01, 0xc2, 
+    0x02, 0xc2, 0x03, 0x12, 0x0d, 0x14, 0x75, 0x1e, 0x70, 0xd2, 0x34, 0x02, 0x0a, 0x43, 0x80, 0x4d, 
+    0x12, 0x0f, 0x17, 0x80, 0x5e, 0x85, 0x3d, 0x43, 0x85, 0x3e, 0x44, 0xe5, 0x45, 0xc3, 0x13, 0xff, 
+    0xe5, 0x43, 0xc3, 0x9f, 0x50, 0x02, 0x8f, 0x43, 0xe5, 0x46, 0xc3, 0x13, 0xff, 0xe5, 0x44, 0xc3, 
+    0x9f, 0x50, 0x02, 0x8f, 0x44, 0xe5, 0x45, 0xc3, 0x13, 0xff, 0xfd, 0xe5, 0x43, 0x90, 0x0e, 0x7f, 
+    0x12, 0x0e, 0xea, 0x40, 0x04, 0xee, 0x9f, 0xf5, 0x43, 0xe5, 0x46, 0xc3, 0x13, 0xff, 0xfd, 0xe5, 
+    0x44, 0x90, 0x0e, 0x80, 0x12, 0x0e, 0xea, 0x40, 0x04, 0xee, 0x9f, 0xf5, 0x44, 0x12, 0x07, 0x8d, 
+    0x80, 0x11, 0x85, 0x40, 0x46, 0x85, 0x3f, 0x45, 0x85, 0x3e, 0x44, 0x85, 0x3d, 0x43, 0x80, 0x03, 
+    0x02, 0x07, 0x8d, 0x90, 0x30, 0x24, 0xe5, 0x3d, 0xf0, 0xa3, 0xe5, 0x3e, 0xf0, 0xa3, 0xe5, 0x3f, 
+    0xf0, 0xa3, 0xe5, 0x40, 0xf0, 0xa3, 0xe5, 0x3c, 0xf0, 0x90, 0x30, 0x23, 0xe4, 0xf0, 0x22, 0xc0, 
+    0xe0, 0xc0, 0x83, 0xc0, 0x82, 0xc0, 0xd0, 0x90, 0x3f, 0x0c, 0xe0, 0xf5, 0x32, 0xe5, 0x32, 0x30, 
+    0xe3, 0x4c, 0x30, 0x35, 0x3e, 0x90, 0x60, 0x19, 0xe0, 0xf5, 0x0a, 0xa3, 0xe0, 0xf5, 0x0b, 0x90, 
+    0x60, 0x1d, 0xe0, 0xf5, 0x14, 0xa3, 0xe0, 0xf5, 0x15, 0x30, 0x01, 0x06, 0x30, 0x32, 0x03, 0xd3, 
+    0x80, 0x01, 0xc3, 0x92, 0x09, 0x30, 0x02, 0x06, 0x30, 0x32, 0x03, 0xd3, 0x80, 0x01, 0xc3, 0x92, 
+    0x0a, 0x30, 0x32, 0x0c, 0x30, 0x03, 0x09, 0x20, 0x02, 0x06, 0x20, 0x01, 0x03, 0xd3, 0x80, 0x01, 
+    0xc3, 0x92, 0x0b, 0x90, 0x30, 0x01, 0xe0, 0x44, 0x40, 0xf0, 0xe0, 0x54, 0xbf, 0xf0, 0xe5, 0x32, 
+    0x30, 0xe1, 0x14, 0x30, 0x33, 0x11, 0x90, 0x30, 0x22, 0xe0, 0xf5, 0x08, 0xe4, 0xf0, 0x30, 0x00, 
+    0x03, 0xd3, 0x80, 0x01, 0xc3, 0x92, 0x08, 0xe5, 0x32, 0x30, 0xe5, 0x12, 0x90, 0x56, 0xa1, 0xe0, 
+    0xf5, 0x09, 0x30, 0x30, 0x09, 0x30, 0x05, 0x03, 0xd3, 0x80, 0x01, 0xc3, 0x92, 0x0d, 0x90, 0x3f, 
+    0x0c, 0xe5, 0x32, 0xf0, 0xd0, 0xd0, 0xd0, 0x82, 0xd0, 0x83, 0xd0, 0xe0, 0x32, 0x90, 0x0e, 0x7d, 
+    0xe4, 0x93, 0xfe, 0x74, 0x01, 0x93, 0xff, 0xc3, 0x90, 0x0e, 0x7b, 0x74, 0x01, 0x93, 0x9f, 0xff, 
+    0xe4, 0x93, 0x9e, 0xfe, 0xe4, 0x8f, 0x3b, 0x8e, 0x3a, 0xf5, 0x39, 0xf5, 0x38, 0xab, 0x3b, 0xaa, 
+    0x3a, 0xa9, 0x39, 0xa8, 0x38, 0xaf, 0x49, 0xfc, 0xfd, 0xfe, 0x12, 0x05, 0xf1, 0x12, 0x0e, 0xfc, 
+    0xe4, 0x7b, 0xff, 0xfa, 0xf9, 0xf8, 0x12, 0x06, 0x7c, 0x12, 0x0e, 0xfc, 0x90, 0x0e, 0x69, 0xe4, 
+    0x12, 0x0f, 0x11, 0x12, 0x0e, 0xfc, 0xe4, 0x85, 0x48, 0x37, 0xf5, 0x36, 0xf5, 0x35, 0xf5, 0x34, 
+    0xaf, 0x37, 0xae, 0x36, 0xad, 0x35, 0xac, 0x34, 0xa3, 0x12, 0x0f, 0x11, 0x8f, 0x37, 0x8e, 0x36, 
+    0x8d, 0x35, 0x8c, 0x34, 0xe5, 0x3b, 0x45, 0x37, 0xf5, 0x3b, 0xe5, 0x3a, 0x45, 0x36, 0xf5, 0x3a, 
+    0xe5, 0x39, 0x45, 0x35, 0xf5, 0x39, 0xe5, 0x38, 0x45, 0x34, 0xf5, 0x38, 0xe4, 0xf5, 0x22, 0xf5, 
+    0x23, 0x85, 0x3b, 0x31, 0x85, 0x3a, 0x30, 0x85, 0x39, 0x2f, 0x85, 0x38, 0x2e, 0x02, 0x0d, 0xc5, 
+    0xad, 0x39, 0xac, 0x38, 0xfa, 0xf9, 0xf8, 0x12, 0x05, 0xf1, 0x8f, 0x3b, 0x8e, 0x3a, 0x8d, 0x39, 
+    0x8c, 0x38, 0xab, 0x37, 0xaa, 0x36, 0xa9, 0x35, 0xa8, 0x34, 0x22, 0xef, 0x25, 0xe0, 0x24, 0x4c, 
+    0xf8, 0xe6, 0xfc, 0x08, 0xe6, 0xfd, 0x22, 0x93, 0xff, 0xe4, 0xfc, 0xfd, 0xfe, 0x12, 0x05, 0xf1, 
+    0x8f, 0x37, 0x8e, 0x36, 0x8d, 0x35, 0x8c, 0x34, 0x22, 0xf9, 0xc3, 0xe6, 0x97, 0x18, 0xe6, 0x19, 
+    0x97, 0x22, 0xff, 0xa6, 0x06, 0x08, 0xa6, 0x07, 0x22, 0xe6, 0xfe, 0x08, 0xe6, 0xff, 0xe4, 0x8f, 
+    0x37, 0x8e, 0x36, 0xf5, 0x35, 0xf5, 0x34, 0x22, 0xe6, 0xfe, 0x08, 0xe6, 0xff, 0xe4, 0x8f, 0x3b, 
+    0x8e, 0x3a, 0xf5, 0x39, 0xf5, 0x38, 0x22, 0xe7, 0x96, 0xff, 0x19, 0xe7, 0x18, 0x96, 0x22, 0xff, 
+    0xa6, 0x06, 0x08, 0xa6, 0x07, 0x78, 0x6c, 0xe6, 0xfe, 0x08, 0xe6, 0x22, 0x78, 0x4c, 0xe6, 0xfe, 
+    0x08, 0xe6, 0x22, 0x78, 0xa7, 0xef, 0x26, 0xf6, 0x18, 0xe4, 0x36, 0xf6, 0x22, 0x78, 0x50, 0x7e, 
+    0x00, 0xe6, 0xfc, 0x08, 0xe6, 0xfd, 0x12, 0x05, 0x8a, 0x7c, 0x00, 0x22, 0xe0, 0xa3, 0xe0, 0x75, 
+    0xf0, 0x02, 0xa4, 0xff, 0xae, 0xf0, 0xc3, 0x08, 0xe6, 0x9f, 0xf6, 0x18, 0xe6, 0x9e, 0xf6, 0x22, 
+    0xff, 0xe5, 0xf0, 0x34, 0x60, 0x8f, 0x82, 0xf5, 0x83, 0xec, 0xf0, 0x22, 0xe4, 0xfc, 0xfd, 0x12, 
+    0x07, 0x4f, 0x78, 0x5a, 0xe6, 0xc3, 0x13, 0xfe, 0x08, 0xe6, 0x13, 0x22, 0x78, 0x50, 0xe6, 0xfe, 
+    0x08, 0xe6, 0xff, 0xe4, 0xfc, 0xfd, 0x22, 0xe7, 0xc4, 0xf8, 0x54, 0xf0, 0xc8, 0x68, 0xf7, 0x09, 
+    0xe7, 0xc4, 0x54, 0x0f, 0x48, 0xf7, 0x22, 0xe6, 0xfc, 0xed, 0x75, 0xf0, 0x04, 0xa4, 0x22, 0xe0, 
+    0xfe, 0xa3, 0xe0, 0xfd, 0xee, 0xf6, 0xed, 0x08, 0xf6, 0x22, 0x13, 0xff, 0xc3, 0xe6, 0x9f, 0xff, 
+    0x18, 0xe6, 0x9e, 0xfe, 0x22, 0xe6, 0xc3, 0x13, 0xf7, 0x08, 0xe6, 0x13, 0x09, 0xf7, 0x22, 0x75, 
+    0x89, 0x03, 0x75, 0xa8, 0x01, 0x75, 0xb8, 0x04, 0x75, 0x34, 0xff, 0x75, 0x35, 0x0e, 0x75, 0x36, 
+    0x15, 0x75, 0x37, 0x0d, 0x12, 0x0d, 0x85, 0x12, 0x00, 0x09, 0x12, 0x0f, 0x17, 0x12, 0x00, 0x06, 
+    0xd2, 0x00, 0xd2, 0x33, 0xd2, 0xaf, 0x75, 0x34, 0xff, 0x75, 0x35, 0x0e, 0x75, 0x36, 0x49, 0x75, 
+    0x37, 0x03, 0x12, 0x0d, 0x85, 0x30, 0x08, 0x09, 0xc2, 0x33, 0x12, 0x09, 0x5d, 0xc2, 0x08, 0xd2, 
+    0x33, 0x30, 0x0b, 0x09, 0xc2, 0x35, 0x12, 0x00, 0x0e, 0xc2, 0x0b, 0xd2, 0x35, 0x30, 0x09, 0x09, 
+    0xc2, 0x35, 0x12, 0x03, 0x0a, 0xc2, 0x09, 0xd2, 0x35, 0x30, 0x0e, 0x03, 0x12, 0x07, 0x8d, 0x30, 
+    0x34, 0xd3, 0x90, 0x30, 0x29, 0xe5, 0x1e, 0xf0, 0xb4, 0x10, 0x05, 0x90, 0x30, 0x23, 0xe4, 0xf0, 
+    0xc2, 0x34, 0x80, 0xc1, 0xe4, 0xf5, 0x49, 0x90, 0x0e, 0x77, 0x93, 0xff, 0xe4, 0x8f, 0x37, 0xf5, 
+    0x36, 0xf5, 0x35, 0xf5, 0x34, 0xaf, 0x37, 0xae, 0x36, 0xad, 0x35, 0xac, 0x34, 0x90, 0x0e, 0x6a, 
+    0x12, 0x0f, 0x11, 0x8f, 0x37, 0x8e, 0x36, 0x8d, 0x35, 0x8c, 0x34, 0x90, 0x0e, 0x72, 0x12, 0x07, 
+    0x32, 0xef, 0x45, 0x37, 0xf5, 0x37, 0xee, 0x45, 0x36, 0xf5, 0x36, 0xed, 0x45, 0x35, 0xf5, 0x35, 
+    0xec, 0x45, 0x34, 0xf5, 0x34, 0xe4, 0xf5, 0x22, 0xf5, 0x23, 0x85, 0x37, 0x31, 0x85, 0x36, 0x30, 
+    0x85, 0x35, 0x2f, 0x85, 0x34, 0x2e, 0x12, 0x0d, 0xc5, 0xe4, 0xf5, 0x22, 0xf5, 0x23, 0x90, 0x0e, 
+    0x72, 0x12, 0x0f, 0x05, 0x12, 0x0d, 0xc5, 0xe4, 0xf5, 0x22, 0xf5, 0x23, 0x90, 0x0e, 0x6e, 0x12, 
+    0x0f, 0x05, 0x02, 0x0d, 0xc5, 0xae, 0x35, 0xaf, 0x36, 0xe4, 0xfd, 0xed, 0xc3, 0x95, 0x37, 0x50, 
+    0x33, 0x12, 0x0f, 0x52, 0xe4, 0x93, 0xf5, 0x38, 0x74, 0x01, 0x93, 0xf5, 0x39, 0x45, 0x38, 0x60, 
+    0x23, 0x85, 0x39, 0x82, 0x85, 0x38, 0x83, 0xe0, 0xfc, 0x12, 0x0f, 0x52, 0x74, 0x03, 0x93, 0x52, 
+    0x04, 0x12, 0x0f, 0x52, 0x74, 0x02, 0x93, 0x42, 0x04, 0x85, 0x39, 0x82, 0x85, 0x38, 0x83, 0xec, 
+    0xf0, 0x0d, 0x80, 0xc7, 0x22, 0xa2, 0xaf, 0x92, 0x31, 0xc2, 0xaf, 0xe5, 0x23, 0x45, 0x22, 0x90, 
+    0x0e, 0x5d, 0x60, 0x0b, 0x12, 0x0f, 0x47, 0xe0, 0xf5, 0x2c, 0xe0, 0xf5, 0x2d, 0x80, 0x0f, 0x12, 
+    0x0f, 0x47, 0xe5, 0x30, 0xf0, 0x90, 0x0e, 0x5f, 0x12, 0x0f, 0x47, 0xe5, 0x31, 0xf0, 0xa2, 0x31, 
+    0x92, 0xaf, 0x22, 0x78, 0x7f, 0xe4, 0xf6, 0xd8, 0xfd, 0x75, 0x81, 0xcb, 0x02, 0x0c, 0x9f, 0x00, 
+    0x11, 0x05, 0x25, 0x16, 0x33, 0x02, 0x50, 0x72, 0x6f, 0x66, 0x69, 0x74, 0x20, 0x20, 0x14, 0x00, 
+    0x10, 0x00, 0x56, 0x40, 0x1a, 0x30, 0x29, 0x7e, 0x00, 0x30, 0x04, 0x20, 0xdf, 0x30, 0x05, 0x40, 
+    0xbf, 0x50, 0x03, 0x00, 0xfd, 0x50, 0x27, 0x01, 0xfe, 0x60, 0x00, 0x11, 0x00, 0x3f, 0x05, 0x30, 
+    0x00, 0x3f, 0x06, 0x22, 0x00, 0x3f, 0x01, 0x2a, 0x00, 0x3f, 0x02, 0x00, 0x00, 0x36, 0x06, 0x07, 
+    0x00, 0x3f, 0x0b, 0x0f, 0xf0, 0x00, 0x00, 0x00, 0x00, 0x30, 0x01, 0x40, 0xbf, 0x30, 0x01, 0x00, 
+    0xbf, 0x30, 0x29, 0x70, 0x00, 0x3a, 0x00, 0x00, 0xff, 0x3a, 0x00, 0x00, 0xff, 0x36, 0x03, 0x36, 
+    0x02, 0x41, 0x44, 0x58, 0x20, 0x18, 0x10, 0x0a, 0x04, 0x04, 0x00, 0x03, 0xff, 0x64, 0x00, 0x00, 
+    0x80, 0x00, 0x00, 0x00, 0x00, 0x00, 0x00, 0x02, 0x04, 0x06, 0x00, 0x03, 0x98, 0x00, 0xcc, 0x50, 
+    0x3c, 0x28, 0x1e, 0x0c, 0x0c, 0x00, 0x00, 0x10, 0x0c, 0x10, 0x04, 0x0c, 0x6e, 0x06, 0x05, 0x00, 
+    0xa5, 0x5a, 0x78, 0xbc, 0xe6, 0xd3, 0x08, 0xff, 0xe6, 0x64, 0x80, 0xf8, 0xef, 0x64, 0x80, 0x98, 
+    0x22, 0x93, 0xff, 0x7e, 0x00, 0xe6, 0xfc, 0x08, 0xe6, 0xfd, 0x12, 0x05, 0x8a, 0x78, 0xbf, 0xe6, 
+    0xfc, 0x08, 0xe6, 0xfd, 0xd3, 0xef, 0x9d, 0xee, 0x9c, 0x22, 0x78, 0xbb, 0xd3, 0xe6, 0x64, 0x80, 
+    0x94, 0x80, 0x22, 0x25, 0xe0, 0x24, 0x0a, 0xf8, 0xe6, 0xfe, 0x08, 0xe6, 0xff, 0x22, 0xd2, 0x01, 
+    0xc2, 0x02, 0xe4, 0xf5, 0x1f, 0xf5, 0x1e, 0xd2, 0x34, 0xd2, 0x32, 0xd2, 0x35, 0xd2, 0x01, 0xc2, 
+    0x02, 0xf5, 0x1f, 0xf5, 0x1e, 0xd2, 0x34, 0xd2, 0x32, 0x22, 0x2d, 0xfd, 0xe4, 0x33, 0xfc, 0xe4, 
+    0x93, 0xfe, 0xfb, 0xd3, 0xed, 0x9b, 0x74, 0x80, 0xf8, 0x6c, 0x98, 0x22, 0x8f, 0x3b, 0x8e, 0x3a, 
+    0x8d, 0x39, 0x8c, 0x38, 0x22, 0x12, 0x07, 0x32, 0x8f, 0x31, 0x8e, 0x30, 0x8d, 0x2f, 0x8c, 0x2e, 
+    0x22, 0x93, 0xf9, 0xf8, 0x02, 0x07, 0x1f, 0x90, 0x0e, 0x81, 0x12, 0x07, 0x32, 0x8f, 0x46, 0x8e, 
+    0x45, 0x8d, 0x44, 0x8c, 0x43, 0xd2, 0x06, 0x30, 0x06, 0x03, 0xd3, 0x80, 0x01, 0xc3, 0x92, 0x0e, 
+    0x22, 0xc0, 0xe0, 0xc0, 0x83, 0xc0, 0x82, 0x90, 0x3f, 0x0d, 0xe0, 0xf5, 0x33, 0xe5, 0x33, 0xf0, 
+    0xd0, 0x82, 0xd0, 0x83, 0xd0, 0xe0, 0x32, 0xe4, 0x93, 0xfe, 0x74, 0x01, 0x93, 0xf5, 0x82, 0x8e, 
+    0x83, 0x22, 0x8f, 0x82, 0x8e, 0x83, 0x75, 0xf0, 0x04, 0xed, 0x02, 0x07, 0x5b,  
+};
+
+void OV5640_FOCUS_AD5820_Init(void)
+{
+    u8  state=0x8F;
+    u32 iteration = 100;
+    u16 totalCnt = 0; 
+
+    printf("OV5640_FOCUS_AD5820_Init\n");     
+
+    IIC_WR_Reg_16bit(0x3000, 0x20);
+    totalCnt = sizeof(OV5640_AF_FW); 
+    printf("Total Count = %d\n", totalCnt);
+
+//  写入自动对焦固件 Brust mode
+    OV5640_WriteFW(OV5640_AF_FW, totalCnt);
+
+    IIC_WR_Reg_16bit(0x3022, 0x00);
+    IIC_WR_Reg_16bit(0x3023, 0x00);
+    IIC_WR_Reg_16bit(0x3024, 0x00);
+    IIC_WR_Reg_16bit(0x3025, 0x00);
+    IIC_WR_Reg_16bit(0x3026, 0x00);
+    IIC_WR_Reg_16bit(0x3027, 0x00);
+    IIC_WR_Reg_16bit(0x3028, 0x00);
+    IIC_WR_Reg_16bit(0x3029, 0xFF);
+    IIC_WR_Reg_16bit(0x3000, 0x00);
+    IIC_WR_Reg_16bit(0x3004, 0xFF);
+    IIC_WR_Reg_16bit(0x0000, 0x00);
+    IIC_WR_Reg_16bit(0x0000, 0x00);
+    IIC_WR_Reg_16bit(0x0000, 0x00);
+    IIC_WR_Reg_16bit(0x0000, 0x00);
+    
+//    Delay(100);
+    do {
+        state = (u8)IIC_RD_Reg_16bit(0x3029);
+        printf("when init af, state=0x%x\n",state);	
+	 
+        vTaskDelay(pdMS_TO_TICKS(10));
+		
+        if (iteration-- == 0)
+        {
+            printf("[OV5640]STA_FOCUS state check ERROR!!, state=0x%x\n",state);	
+            break;
+        }
+    } 
+    while(state!=0x70);
+    
+    OV5640_FOCUS_AD5820_Check_MCU();
+    return;    
+}   /*  OV5640_FOCUS_AD5820_Init  */
+
+//set constant focus
+void OV5640_FOCUS_AD5820_Constant_Focus(void)
+{
+    u8 state = 0x8F;
+    u32 iteration = 300;
+
+//    //send idle command to firmware
+//    IIC_WR_Reg_16bit(0x3023,0x01);
+//    IIC_WR_Reg_16bit(0x3022,0x08);
+
+//    iteration = 300;
+//    do {
+//    	 state = (u8)IIC_RD_Reg_16bit(0x3023);
+//        if (iteration-- == 0)
+//        {
+////            RETAILMSG(1, (TEXT("[OV5640]AD5820_Single_Focus time out !!0x%x \r\n")), state);
+//            CAMERA_DEBUG("[OV5640]AD5820_Single_Focus time out !! %x\n",state);
+//            return ;
+//        }   
+//        Delay(10);
+//    } while(state!=0x00); 
+
+    //send constant focus mode command to firmware
+    IIC_WR_Reg_16bit(0x3023,0x01);
+    IIC_WR_Reg_16bit(0x3022,0x04);
+
+    iteration = 5000;
+    do {
+    	 state = (u8)IIC_RD_Reg_16bit(0x3023);
+        if (iteration-- == 0)
+        {
+//            RETAILMSG(1, (TEXT("[OV5640]AD5820_Single_Focus time out II\r\n")));
+            printf("[OV5640]AD5820_Single_Focus time out !! %x\n",state);
+            return ;
+        }
+        vTaskDelay(pdMS_TO_TICKS(10));
+    } while(state!=0x00);//0x0 : focused 0x01: is focusing
+    return;
+}
+void OV5640_FOCUS_AD5820_Single_Focus()
+{
+     
+
+    u8 state = 0x8F;
+    u8 state_ack = 0x8F;	
+    u8 state_cmd = 0x8F;		
+    u32 iteration = 300;
+    printf("OV5640_FOCUS_AD5820_Single_Focus\n");
+//1.update zone
+    //OV5640_FOCUS_AD5820_Update_Zone();
+
+//2.change focus window
+    //OV5640_FOCUS_AD5820_Set_AF_Window_to_IC();
+
+//3.update zone
+    //OV5640_FOCUS_AD5820_Update_Zone();
+
+//4.send single focus mode command to firmware
+    IIC_WR_Reg_16bit(0x3023,0x01);
+    IIC_WR_Reg_16bit(0x3022,0x03);
+
+    printf("after single focus  \n");
+
+//5.after sigle focus cmd, check the STA_FOCUS until S_FOCUSED 0x10
+    iteration = 1000;  
+    do{
+        state = (u8)IIC_RD_Reg_16bit(0x3023);
+        printf("test,Single state = 0x%x,state_ack=0x%x,state_cmd=0x%x\n",state,state_ack,state_cmd);
+        
+        if(state == 0x00)
+        {
+//            state = (u8)IIC_RD_Reg_16bit(0x3029);
+//            if(state == 0x10)
+ //           {   
+                printf("single focused!\n");
+                break;
+ //           }
+        }			
+        vTaskDelay(pdMS_TO_TICKS(10));
+        iteration --;
+
+    }while(iteration);
+    return;
+
+}
+
+void OV5640_FOCUS_AD5820_Pause_Focus()
+{
+    u8 state = 0x8F;
+    u32 iteration = 300;
+
+    //send idle command to firmware
+    IIC_WR_Reg_16bit(0x3023,0x01);
+    IIC_WR_Reg_16bit(0x3022,0x06);
+
+    iteration = 100;  
+    do{
+        state = (u8)IIC_RD_Reg_16bit(0x3023);
+        
+        if(state == 0x00)
+        {
+            printf("idle!\n");
+            break;
+        }			
+        vTaskDelay(pdMS_TO_TICKS(10));
+        iteration --;
+
+    }while(iteration);
+
+}
+
+//static void OV5640_FOCUS_AD5820_Cancel_Focus()
+//{
+//    u8 state = 0x8F;
+//    u32 iteration = 300;
+//    CAMERA_DEBUG("OV5640_FOCUS_AD5820_Cancel_Focus\n");
+//    //send idle command to firmware
+//    IIC_WR_Reg_16bit(0x3023,0x01);
+//    IIC_WR_Reg_16bit(0x3022,0x08);
+//	
+//    iteration = 100;  
+//    do{
+//        state = (u8)IIC_RD_Reg_16bit(0x3023);
+
+//        if(state == 0x00)
+//    {
+//            CAMERA_DEBUG("idle!\n");
+//            break;
+//    }
+//        Delay(10);
+//        iteration --;
+//		
+//    }while(iteration);
+//			
+//}
+
+static void OV5640_FOCUS_AD5820_Check_MCU(void)
+{
+    int i = 0;    
+    u8 check[13] = {0x00};
+	//mcu on
+    check[0] = IIC_RD_Reg_16bit(0x3000);
+    check[1] = IIC_RD_Reg_16bit(0x3004);
+	//soft reset of mcu
+    check[2] = IIC_RD_Reg_16bit(0x3f00);	
+	//afc on
+    check[3] = IIC_RD_Reg_16bit(0x3001);
+    check[4] = IIC_RD_Reg_16bit(0x3005);
+	//gpio1,gpio2
+    check[5] = IIC_RD_Reg_16bit(0x3018);
+    check[6] = IIC_RD_Reg_16bit(0x301e);
+    check[7] = IIC_RD_Reg_16bit(0x301b);
+    check[8] = IIC_RD_Reg_16bit(0x3042);
+	//y0
+    check[9] = IIC_RD_Reg_16bit(0x3018);
+    check[10] = IIC_RD_Reg_16bit(0x301e);
+    check[11] = IIC_RD_Reg_16bit(0x301b);
+    check[12] = IIC_RD_Reg_16bit(0x3042);
+
+
+    for(i = 0; i &lt; 13; i++)
+    printf("check[%d]=0x%x\n", i, check[i]);
+	
+}
+
+void OV5640_AUTO_FOCUS(void)
+{
+   OV5640_FOCUS_AD5820_Init();
+   OV5640_FOCUS_AD5820_Constant_Focus();
+}
+
+
+</code></pre>
+
+<p>注：仍待后续更新~&nbsp;</p>
+
+<p>参考了野火的OV5640相关资料。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%AD%A6%E4%B9%A0-OV5640-GD32-DCI/" class="print-no-link">#学习 OV5640 GD32 DCI</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录</div>
+      <div>http://example.com/2025/07/26/【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月26日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/27/%E3%80%90EWARM%E3%80%91EWARM%EF%BC%88IAR%EF%BC%89%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8AGD32%E7%9A%84IAR%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA/" title="【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/23/%E3%80%90MicroPython%E3%80%91%E5%9F%BA%E4%BA%8EESP32S3+MicroPython%E5%9B%BA%E4%BB%B6%E7%9A%84%E5%88%9D%E6%AD%A5%E5%BC%80%E5%8F%91/" title="【MicroPython】基于ESP32S3+MicroPython固件的初步开发">
+                        <span class="hidden-mobile">【MicroPython】基于ESP32S3+MicroPython固件的初步开发</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

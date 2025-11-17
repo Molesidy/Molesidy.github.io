@@ -1,0 +1,1295 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、基本数据类型    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言的基本数据类型为：整型、字符型、实数型。这些类型按其在计算机中的存储方式可被分为两个系列，即整数(integer)类型和浮点数(floating-point)类型。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这三种类型之下分别是：short">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Embedded System】嵌入式C语言基础知识">
+<meta property="og:url" content="http://example.com/2025/10/30/%E3%80%90Embedded%20System%E3%80%91%E5%B5%8C%E5%85%A5%E5%BC%8FC%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、基本数据类型    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言的基本数据类型为：整型、字符型、实数型。这些类型按其在计算机中的存储方式可被分为两个系列，即整数(integer)类型和浮点数(floating-point)类型。 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这三种类型之下分别是：short">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/01b504ef70d5416595255d86b4061c1d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2184c48bc305498daeb57d526a1a5071.png">
+<meta property="article:published_time" content="2025-10-30T15:55:07.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="c语言 开发语言">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/01b504ef70d5416595255d86b4061c1d.png">
+  
+  
+  
+  <title>【Embedded System】嵌入式C语言基础知识 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Embedded System】嵌入式C语言基础知识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-30 23:55" pubdate>
+          2025年10月30日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          40 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Embedded System】嵌入式C语言基础知识</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、基本数据类型</h1>
+
+<p><img alt="" height="733" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/01b504ef70d5416595255d86b4061c1d.png" srcset="/img/loading.gif" lazyload width="1077" /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;C语言的基本数据类型为：整型、字符型、实数型。这些类型按其在计算机中的存储方式可被分为两个系列，即整数(integer)类型和浮点数(floating-point)类型。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这三种类型之下分别是：short、int、long、char、float、double这六个关键字再加上两个符号说明符signed和unsigned就基本表示了C语言的最常用的数据类型。<br />
+下面列出了在32位操作系统下常见编译器下的数据类型大小及表示的数据范围：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>类型名称</th>
+			<th>类型关键字</th>
+			<th>占字节数</th>
+			<th>其他叫法</th>
+			<th>表示的数据范围</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>字符型</td>
+			<td>char</td>
+			<td>1</td>
+			<td>signed char</td>
+			<td>-128 ~ 127</td>
+		</tr>
+		<tr>
+			<td>无符号字符型</td>
+			<td>unsigned char</td>
+			<td>1</td>
+			<td>none</td>
+			<td>0 ~ 255</td>
+		</tr>
+		<tr>
+			<td>整型</td>
+			<td>int</td>
+			<td>4</td>
+			<td>signed int</td>
+			<td>-2,147,483,648 ~ 2,147,483,647</td>
+		</tr>
+		<tr>
+			<td>无符号整型</td>
+			<td>unsigned int</td>
+			<td>4</td>
+			<td>unsigned</td>
+			<td>0 ~ 4,294,967,295</td>
+		</tr>
+		<tr>
+			<td>短整型</td>
+			<td>short</td>
+			<td>2</td>
+			<td>short int</td>
+			<td>-32,768 ~ 32,767</td>
+		</tr>
+		<tr>
+			<td>无符号短整型</td>
+			<td>unsigned short</td>
+			<td>2</td>
+			<td>unsigned short int</td>
+			<td>0 ~ 65,535</td>
+		</tr>
+		<tr>
+			<td>长整型</td>
+			<td>long</td>
+			<td>4</td>
+			<td>long int</td>
+			<td>-2,147,483,648 ~ 2,147,483,647</td>
+		</tr>
+		<tr>
+			<td>无符号长整型</td>
+			<td>unsigned long</td>
+			<td>4</td>
+			<td>unsigned long</td>
+			<td>0 ~ 4,294,967,295</td>
+		</tr>
+		<tr>
+			<td>单精度浮点数</td>
+			<td>float</td>
+			<td>4</td>
+			<td>none</td>
+			<td>3.4E +/- 38 (7 digits)</td>
+		</tr>
+		<tr>
+			<td>双精度浮点数</td>
+			<td>double</td>
+			<td>8</td>
+			<td>none</td>
+			<td>1.7E +/- 308 (15 digits)</td>
+		</tr>
+		<tr>
+			<td>长双精度浮点数</td>
+			<td>long double</td>
+			<td>10</td>
+			<td>none</td>
+			<td>1.2E +/- 4932 (19 digits)</td>
+		</tr>
+		<tr>
+			<td>长整型</td>
+			<td>long long</td>
+			<td>8</td>
+			<td>__int64</td>
+			<td>-9223372036854775808 ~ 9223372036854775808</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1>二、命名规则和关键字</h1>
+
+<p><strong>命名规则</strong></p>
+
+<ul>
+	<li>标识符组成：仅允许数字、字母、下划线，无其他特殊字符；</li>
+	<li>开头限制：明确禁止数字开头，避免与数值常量混淆；</li>
+	<li>关键字禁用：完全符合标准，关键字是编译器预留的 &ldquo;特殊指令名&rdquo;，不可被用户占用；</li>
+	<li>大小写敏感：是 C 语言的显著特性，<code>num</code>和<code>Num</code>会被识别为两个独立标识符。</li>
+</ul>
+
+<p><strong>C 语言关键字精准分类表（共 32 个）</strong></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>分类</th>
+			<th>关键字列表</th>
+			<th>功能简述</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1. 数据类型关键字（12 个）</td>
+			<td><code>char</code>、<code>short</code>、<code>int</code>、<code>long</code>、<code>float</code>、<code>double</code>、<code>unsigned</code>、<code>signed</code>、<code>struct</code>、<code>union</code>、<code>enum</code>、<code>void</code></td>
+			<td>定义基础数据类型或复合数据类型（如结构体<code>struct</code>、枚举<code>enum</code>），<code>void</code>表示 &ldquo;无类型&rdquo;。</td>
+		</tr>
+		<tr>
+			<td>2. 控制语句关键字（12 个）</td>
+			<td><code>if</code>、<code>else</code>、<code>switch</code>、<code>case</code>、<code>default</code>、<code>for</code>、<code>do</code>、<code>while</code>、<code>break</code>、<code>continue</code>、<code>goto</code>、<code>return</code></td>
+			<td>控制程序执行流程，包括条件判断（<code>if/switch</code>）、循环（<code>for/while/do</code>）、跳转（<code>break/return</code>）。</td>
+		</tr>
+		<tr>
+			<td>3. 存储类关键字（4 个）</td>
+			<td><code>auto</code>、<code>extern</code>、<code>register</code>、<code>static</code></td>
+			<td>控制变量的<strong>存储位置</strong>与生命周期：-&nbsp;<code>static</code>：静态存储（全局生命周期）；-&nbsp;<code>extern</code>：声明外部变量 / 函数；-&nbsp;<code>register</code>：建议存储在寄存器（快取）；-&nbsp;<code>auto</code>：自动存储（默认，函数内局部变量）。</td>
+		</tr>
+		<tr>
+			<td>4. 类型限定符（2 个）</td>
+			<td><code>const</code>、<code>volatile</code></td>
+			<td>修饰变量的<strong>属性</strong>（不控制存储位置）：-&nbsp;<code>const</code>：定义 &ldquo;只读常量&rdquo;（值不可修改）；-&nbsp;<code>volatile</code>：提醒编译器 &ldquo;变量可能被外部修改&rdquo;（禁止优化）。</td>
+		</tr>
+		<tr>
+			<td>5. 其他关键字（2 个）</td>
+			<td><code>sizeof</code>、<code>typedef</code></td>
+			<td>-&nbsp;<code>sizeof</code>：计算数据类型或变量的字节数；-&nbsp;<code>typedef</code>：给已有数据类型起 &ldquo;别名&rdquo;（如<code>typedef int INT</code>）。</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><strong>bool类型</strong></p>
+
+<ul>
+	<li>
+	<p>早期C语言没有布尔类型数据，以0代表逻辑假，非0代表逻辑真</p>
+	</li>
+	<li>
+	<p>C99标准定义了新的关键字_Bool，提供了布尔类型，或者也可以使用stdbool.h中的bool</p>
+	</li>
+</ul>
+
+<h1>三、嵌入式的数据类型</h1>
+
+<p></p>
+
+<table>
+	<thead>
+		<tr>
+			<th>C 语言的数据类型</th>
+			<th>STM32 对应的数据类型</th>
+			<th>功能描述</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>unsigned char</td>
+			<td>uint8_t</td>
+			<td>8 位无符号数据（0～255）</td>
+		</tr>
+		<tr>
+			<td>unsigned short int</td>
+			<td>uint16_t</td>
+			<td>16 位无符号数据（0～65535）</td>
+		</tr>
+		<tr>
+			<td>unsigned int</td>
+			<td>uint32_t</td>
+			<td>32 位无符号数据（0～2&sup3;&sup2;-1）</td>
+		</tr>
+		<tr>
+			<td>unsigned long long</td>
+			<td>uint64_t</td>
+			<td>64 位无符号数据（0～2⁶⁴-1）</td>
+		</tr>
+		<tr>
+			<td>signed char</td>
+			<td>int8_t</td>
+			<td>8 位有符号数据（-128～+127）</td>
+		</tr>
+		<tr>
+			<td>signed short int</td>
+			<td>int16_t</td>
+			<td>16 位有符号数据（-32768～+32767）</td>
+		</tr>
+		<tr>
+			<td>signed int</td>
+			<td>int32_t</td>
+			<td>32 位有符号数据（-2&sup3;&sup1;～2&sup3;&sup1;-1）</td>
+		</tr>
+		<tr>
+			<td>signed long long</td>
+			<td>int64_t</td>
+			<td>64 位有符号数据（-2⁶&sup3;～2⁶&sup3;-1）</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1>四、嵌入式中部分关键字解释</h1>
+
+<h2 style="background-color:transparent">4.1 static</h2>
+
+<ul>
+	<li><strong>功能</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;修饰&lt;strong&gt;局部变量&lt;/strong&gt;：将其变为&lt;strong&gt;静态局部变量&lt;/strong&gt;，生命周期延长至整个程序运行期间，仅在第一次调用时初始化，后续调用保留上次值。&lt;/li&gt;
+	&lt;li&gt;修饰&lt;strong&gt;全局变量 / 函数&lt;/strong&gt;：限制其&lt;strong&gt;作用域为当前文件&lt;/strong&gt;（即 &amp;ldquo;文件内私有&amp;rdquo;），避免跨文件的符号冲突，增强代码模块化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;嵌入式应用场景&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;驱动开发中，用&lt;code&gt;static&lt;/code&gt;修饰仅在当前模块（.c 文件）内调用的函数，如某传感器驱动的内部处理函数&lt;code&gt;static void sensor_process(void)&lt;/code&gt;，防止被其他模块误调用。&lt;/li&gt;
+	&lt;li&gt;实现模块内的 &amp;ldquo;持久化&amp;rdquo; 状态，如按键消抖函数中，用&lt;code&gt;static uint8_t debounce_cnt&lt;/code&gt;记录消抖计数，每次调用时保留计数状态。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h2>4.2 const</h2>
+
+<ul>
+	<li><strong>功能</strong>：定义<strong>只读变量（常量）</strong>，编译时会检查对其的修改操作，防止程序运行中意外篡改。（首先定义一个变量，只进行一次赋值，使用const，使其带上后续不能改变其值的特性。）</li>
+	<li><strong>嵌入式应用场景</strong>：
+	<ul>
+		<li>配置硬件寄存器的固定参数，如串口波特率、GPIO 模式等，例如：<code>const uint32_t UART_BAUDRATE = 115200;</code>，确保波特率在初始化后不会被错误修改。</li>
+		<li>定义硬件地址映射（如外设寄存器基地址），如<code>const uint32_t GPIOA_BASE = 0x40010800;</code>，避免地址被意外覆盖导致硬件操作错误。</li>
+	</ul>
+	</li>
+</ul>
+
+<h2>4.3 extern</h2>
+
+<ul>
+	<li><strong>功能</strong>：<strong>声明外部变量 / 函数</strong>，表示该变量或函数在<strong>其他文件中定义</strong>，当前文件可直接使用（实现跨文件的变量 / 函数共享）。</li>
+	<li><strong>嵌入式应用场景</strong>：
+	<ul>
+		<li>多模块协作的工程中，如 &ldquo;按键模块&rdquo; 定义全局变量<code>uint8_t key_state</code>，在 &ldquo;主控制模块&rdquo; 中用<code>extern uint8_t key_state;</code>声明后，即可读取按键状态进行逻辑处理。</li>
+		<li>驱动层与应用层的接口共享，如传感器驱动定义<code>extern float sensor_read(void);</code>，应用层包含头文件后可直接调用该函数获取传感器数据。</li>
+	</ul>
+	</li>
+</ul>
+
+<h2>4.4 volatile</h2>
+
+<ul>
+	<li><strong>功能</strong>：告诉编译器 &ldquo;该变量的值可能被<strong>硬件 / 中断 / 其他异步操作意外修改</strong>&rdquo;，禁止编译器对其进行优化（如缓存变量值），确保每次都从内存（或硬件）中读取最新值。</li>
+	<li><strong>嵌入式应用场景</strong>：
+	<ul>
+		<li>读取硬件寄存器（如状态寄存器），如<code>volatile uint32_t *status_reg = (volatile uint32_t*)0x40001000;</code>，因为寄存器值可能被硬件随时更新（如外设完成一次传输后自动置位），必须用<code>volatile</code>确保每次读取的是真实当前值。</li>
+		<li>中断标志位，如<code>volatile uint8_t irq_flag;</code>，在主循环中轮询该标志，而中断服务程序会修改它，<code>volatile</code>保证主循环能及时检测到标志变化。</li>
+	</ul>
+	</li>
+</ul>
+
+<h2><strong>4.5&nbsp;<code>typedef</code></strong></h2>
+
+<p></p>
+
+<p><strong>功能</strong>：为已有的数据类型定义一个 &ldquo;别名&rdquo;，本质是 &ldquo;类型重命名&rdquo;，不创造新类型。<strong>作用</strong>：简化复杂类型的书写、提高代码可读性、增强跨平台兼容性（统一类型定义）。</p>
+
+<h4>用法示例：</h4>
+
+<pre>
+<code class="language-cpp">// 为基本类型起别名（嵌入式中最常见，如标准库的uint8_t等）
+typedef unsigned char uint8_t;  // 后续可用uint8_t代替unsigned char
+
+// 为结构体类型起别名（简化结构体变量定义）
+typedef struct {
+    uint8_t year;
+    uint8_t month;
+    uint8_t day;
+} Date;  // 后续可直接用Date定义变量：Date today;
+
+// 为指针类型起别名（避免复杂指针声明的混淆）
+typedef uint8_t* PtrUint8;  // PtrUint8等价于uint8_t*，定义指针：PtrUint8 buf_ptr;</code></pre>
+
+<h4>嵌入式应用场景：</h4>
+
+<ol>
+	<li><strong>统一跨平台类型</strong>：不同 MCU 的<code>int</code>可能是 16 位或 32 位，用<code>typedef</code>定义<code>int32_t</code>（固定 32 位有符号）、<code>uint16_t</code>（固定 16 位无符号），确保代码在不同平台上的类型长度一致（如 STM32 的<code>stdint.h</code>中大量使用）。</li>
+	<li><strong>简化复杂类型</strong>：外设配置结构体（如 SPI 配置）通常较长，用<code>typedef</code>起别名后，变量定义更简洁（如<code>SPI_HandleTypeDef</code>实际是<code>typedef struct _SPI_HandleTypeDef SPI_HandleTypeDef</code>）。</li>
+</ol>
+
+<h4>注意：</h4>
+
+<p><code>typedef</code>是 &ldquo;类型别名&rdquo;，有类型检查；与<code>#define</code>的 &ldquo;文本替换&rdquo; 不同（见 4.6）。</p>
+
+<h2><strong><code>4.6 #define</code></strong></h2>
+
+<p></p>
+
+<p><strong>功能</strong>：预处理指令，用于 &ldquo;文本替换&rdquo;（宏定义），在编译前由预处理器完成替换，不参与编译的语法检查。<strong>作用</strong>：定义常量、简化重复代码、实现条件编译（配合<code>#ifdef</code>等）。</p>
+
+<h4>用法示例：</h4>
+
+<pre>
+<code class="language-cpp">// 1. 定义常量（硬件相关的固定值，如寄存器地址、引脚）
+#define GPIOA_BASE 0x40010800  // GPIOA寄存器基地址
+#define LED_PIN    GPIO_PIN_5  // LED连接的引脚
+
+// 2. 定义“函数宏”（简化重复操作，带参数）
+#define MAX(a, b)  ((a) &gt; (b) ? (a) : (b))  // 求两数最大值
+
+// 3. 条件编译（控制代码是否参与编译）
+#define DEBUG 1  // 定义DEBUG后，下面的调试打印生效
+#ifdef DEBUG
+    #define LOG(msg) printf("Debug: %s\n", msg)
+#else
+    #define LOG(msg)  // 不定义DEBUG时，LOG为空
+#endif</code></pre>
+
+<h4>嵌入式应用场景：</h4>
+
+<ol>
+	<li><strong>硬件地址映射</strong>：MCU 的外设寄存器地址是固定的，用<code>#define</code>定义后，代码中直接使用别名（如<code>#define USART1_SR (*(volatile uint32_t*)(USART1_BASE + 0x00))</code>），避免硬编码数字。</li>
+	<li><strong>引脚与参数配置</strong>：板级外设的引脚（如按键、LED）、配置参数（如波特率<code>#define UART_BAUD 115200</code>）用<code>#define</code>定义，修改时只需改一处，便于维护。</li>
+	<li><strong>调试开关</strong>：通过<code>#define DEBUG</code>控制调试信息的打印，发布时关闭<code>DEBUG</code>即可移除调试代码，不占用运行资源。</li>
+</ol>
+
+<h4>注意：</h4>
+
+<ul>
+	<li>宏替换是 &ldquo;纯文本替换&rdquo;，无类型检查，复杂宏需加括号避免歧义（如<code>MAX(a,b)</code>的括号）。</li>
+	<li>与<code>typedef</code>的区别：<code>typedef</code>针对类型，<code>#define</code>针对文本（可用于非类型的替换，如引脚、常量）。</li>
+</ul>
+
+<h2>4.7 inline</h2>
+
+<p><strong>功能</strong>：建议编译器将函数 &ldquo;内联展开&rdquo;（即把函数体直接插入到调用处，而非通过函数调用指令跳转），减少函数调用的开销（如压栈、跳转、返回的时间）。<strong>作用</strong>：优化频繁调用的小函数的执行效率，适合实时性要求高的场景。</p>
+
+<h4>用法示例：</h4>
+
+<pre>
+<code class="language-cpp">// 定义内联函数（在函数声明前加inline）
+inline uint8_t get_bit(uint8_t data, uint8_t pos) {
+    return (data &gt;&gt; pos) &amp; 0x01;  // 提取data的第pos位
+}
+
+// 调用时，编译器可能直接展开为：(value &gt;&gt; 3) &amp; 0x01，而非函数调用
+int main() {
+    uint8_t value = 0x88;
+    uint8_t bit = get_bit(value, 3);  // 可能被展开，无函数调用开销
+}</code></pre>
+
+<h4>嵌入式应用场景：</h4>
+
+<ol>
+	<li><strong>高频调用的小函数</strong>：如传感器数据的位解析（如从 16 位数据中提取温度的高 8 位）、GPIO 电平读取（<code>inline uint8_t led_state(void) { return GPIO_ReadPin(LED_PORT, LED_PIN); }</code>），这些函数被频繁调用，内联后可减少实时性开销。</li>
+	<li><strong>中断服务程序（ISR）中的辅助函数</strong>：ISR 要求执行速度快，其内调用的小函数（如数据校验、标志位处理）用<code>inline</code>可避免函数调用的延迟。</li>
+</ol>
+
+<h4 style="background-color:transparent">注意：</h4>
+
+<ul>
+	<li><code>inline</code>是 &ldquo;建议&rdquo; 而非 &ldquo;强制&rdquo;：编译器可能忽略（如函数体过大、包含循环 / 递归时），由编译器根据优化策略决定是否展开。</li>
+	<li>内联会增加代码体积（函数体被多次复制），因此仅适合<strong>短小简单</strong>的函数（通常 1-5 行代码），避免滥用导致程序体积膨胀。</li>
+</ul>
+
+<h2><span style="background-color:#fefcd8">4.8 inline</span><span style="background-color:#fefcd8">补充说明</span></h2>
+
+<p><span style="background-color:#fefcd8">内联函数（</span><code><span style="background-color:#fefcd8">inline function</span></code><span style="background-color:#fefcd8">）和宏（</span><code><span style="background-color:#fefcd8">macro</span></code><span style="background-color:#fefcd8">）在代码展开和效率优化上有相似的表象（都能减少函数调用开销），但本质、功能和安全性有显著区别，尤其在嵌入式开发中，理解这些区别对代码可靠性和性能至关重要。</span></p>
+
+<p style="background-color:transparent"><strong><span style="background-color:#fefcd8">核心区别对比表</span></strong></p>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong><span style="background-color:#fefcd8">对比维度</span></strong></th>
+			<th><strong><span style="background-color:#fefcd8">宏（</span><code><span style="background-color:#fefcd8">#define</span></code><span style="background-color:#fefcd8">）</span></strong></th>
+			<th><strong><span style="background-color:#fefcd8">内联函数（</span><code><span style="background-color:#fefcd8">inline</span></code><span style="background-color:#fefcd8">）</span></strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">本质</span></strong></td>
+			<td><span style="background-color:#fefcd8">预处理阶段的</span><strong><span style="background-color:#fefcd8">文本替换</span></strong><span style="background-color:#fefcd8">（无语法 / 类型检查）</span></td>
+			<td><span style="background-color:#fefcd8">编译阶段的</span><strong><span style="background-color:#fefcd8">函数展开建议</span></strong><span style="background-color:#fefcd8">（有完整的函数特性）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">处理阶段</span></strong></td>
+			<td><span style="background-color:#fefcd8">预编译（</span><code><span style="background-color:#fefcd8">cpp</span></code><span style="background-color:#fefcd8">阶段），在代码编译前完成替换</span></td>
+			<td><span style="background-color:#fefcd8">编译阶段（</span><code><span style="background-color:#fefcd8">cc1</span></code><span style="background-color:#fefcd8">阶段），由编译器决定是否展开</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">类型安全</span></strong></td>
+			<td><span style="background-color:#fefcd8">无类型检查，参数类型错误不会报错（如</span><code><span style="background-color:#fefcd8">int</span></code><span style="background-color:#fefcd8">和</span><code><span style="background-color:#fefcd8">float</span></code><span style="background-color:#fefcd8">混用）</span></td>
+			<td><span style="background-color:#fefcd8">有严格的类型检查，参数类型不匹配会编译报错</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">代码展开方式</span></strong></td>
+			<td><span style="background-color:#fefcd8">强制替换（无论是否合理，预处理器都会执行文本替换）</span></td>
+			<td><span style="background-color:#fefcd8">编译器 &ldquo;建议&rdquo;（可忽略，如函数体过大时不展开）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">调试支持</span></strong></td>
+			<td><span style="background-color:#fefcd8">无法调试（预处理后宏名消失，只剩替换后的代码）</span></td>
+			<td><span style="background-color:#fefcd8">可调试（保留函数特性，能设置断点、查看调用栈）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">复杂逻辑支持</span></strong></td>
+			<td><span style="background-color:#fefcd8">处理复杂逻辑（如循环、多语句）容易出错（需加</span><code><span style="background-color:#fefcd8">do-while</span></code><span style="background-color:#fefcd8">包裹）</span></td>
+			<td><span style="background-color:#fefcd8">支持任意复杂逻辑（循环、分支、递归等），结构清晰</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">参数副作用</span></strong></td>
+			<td><span style="background-color:#fefcd8">可能产生副作用（如</span><code><span style="background-color:#fefcd8">MAX(a++, b++)</span></code><span style="background-color:#fefcd8">会导致</span><code><span style="background-color:#fefcd8">a</span></code><span style="background-color:#fefcd8">或</span><code><span style="background-color:#fefcd8">b</span></code><span style="background-color:#fefcd8">多自增）</span></td>
+			<td><span style="background-color:#fefcd8">无副作用（参数先计算再传入，与普通函数一致）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">作用域</span></strong></td>
+			<td><span style="background-color:#fefcd8">无作用域限制（宏定义后全局有效，除非用</span><code><span style="background-color:#fefcd8">#undef</span></code><span style="background-color:#fefcd8">取消）</span></td>
+			<td><span style="background-color:#fefcd8">遵循函数作用域（如</span><code><span style="background-color:#fefcd8">static inline</span></code><span style="background-color:#fefcd8">限制在文件内）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#fefcd8">代码体积影响</span></strong></td>
+			<td><span style="background-color:#fefcd8">强制展开可能导致代码体积急剧膨胀（尤其多次调用时）</span></td>
+			<td><span style="background-color:#fefcd8">编译器会平衡效率与体积（大函数可能不展开）</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p style="background-color:transparent"><strong><span style="background-color:#fefcd8">关键差异详解</span></strong></p>
+
+<p style="background-color:transparent"><strong><span style="background-color:#fefcd8">1. 本质与处理阶段不同</span></strong></p>
+
+<ul>
+	<li><span style="background-color:#fefcd8">宏是</span><strong><span style="background-color:#fefcd8">文本替换工具</span></strong><span style="background-color:#fefcd8">，由预处理器处理：比如</span><code><span style="background-color:#fefcd8">#define MAX(a,b) ((a)&gt;(b)?(a):(b))</span></code><span style="background-color:#fefcd8">，预处理器会在编译前将代码中所有</span><code><span style="background-color:#fefcd8">MAX(x,y)</span></code><span style="background-color:#fefcd8">直接替换为</span><code><span style="background-color:#fefcd8">((x)&gt;(y)?(x):(y))</span></code><span style="background-color:#fefcd8">，不理解 &ldquo;函数&rdquo;&ldquo;参数&rdquo; 的含义，仅做字符串替换。</span></li>
+	<li><span style="background-color:#fefcd8">内联函数是</span><strong><span style="background-color:#fefcd8">真正的函数</span></strong><span style="background-color:#fefcd8">，由编译器处理：</span><code><span style="background-color:#fefcd8">inline int max(int a, int b) { return a&gt;b?a:b; }</span></code><span style="background-color:#fefcd8">本质是函数，编译器会先检查参数类型、函数体语法，再根据优化策略决定是否将函数体插入到调用处（替代函数调用的跳转 / 压栈操作）。</span></li>
+</ul>
+
+<p><strong><span style="background-color:#fefcd8">2. 类型安全与错误检查不同</span></strong></p>
+
+<ul>
+	<li><span style="background-color:#fefcd8">宏无类型概念：如果用</span><code><span style="background-color:#fefcd8">MAX(3.14, 5)</span></code><span style="background-color:#fefcd8">（浮点数）和</span><code><span style="background-color:#fefcd8">MAX(10, &#39;a&#39;)</span></code><span style="background-color:#fefcd8">（整数与字符），预处理器都会无脑替换，即使类型不匹配也不会报错，可能导致隐藏 bug。</span></li>
+	<li><span style="background-color:#fefcd8">内联函数有严格类型检查：如果定义</span><code><span style="background-color:#fefcd8">inline int max(int a, int b)</span></code><span style="background-color:#fefcd8">，调用时传入</span><code><span style="background-color:#fefcd8">max(3.14, 5)</span></code><span style="background-color:#fefcd8">会因 &ldquo;浮点转整数&rdquo; 报警告，传入</span><code><span style="background-color:#fefcd8">max(&quot;a&quot;, &quot;b&quot;)</span></code><span style="background-color:#fefcd8">（字符串）会直接编译报错，安全性更高。</span></li>
+</ul>
+
+<h1 style="background-color:transparent">五、了解有STM32CubeMX产生的部分文件结构</h1>
+
+<p><img alt="" height="301" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2184c48bc305498daeb57d526a1a5071.png" srcset="/img/loading.gif" lazyload width="636" /></p>
+
+<p>为了更清晰体现嵌入式开发的<strong>分层架构逻辑</strong>（从底层驱动到上层应用），以下按 &ldquo;底层支撑&rarr;中层适配&rarr;上层应用&rdquo; 的顺序重新整理各模块定义，同时补充模块间的依赖关系，便于理解各部分的定位与作用：</p>
+
+<h2 style="background-color:transparent">（1）嵌入式开发各模块整理（按分层逻辑排序）</h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>模块名称</th>
+			<th>核心定义</th>
+			<th>关键特性 / 作用</th>
+			<th>典型内容 / 示例</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1. Drivers（厂商 SDK 程序）</td>
+			<td>MCU 厂商（如 STM32、ESP32）或 MCU 内部 CPU 厂商提供的<strong>底层驱动库</strong>，是硬件编程的基础支撑。</td>
+			<td>1. 为 CPU 和 MCU 内部外设（如内核、时钟、IIC/SPI 接口）提供标准化操作接口；2. 屏蔽硬件底层细节，避免用户直接操作寄存器，降低开发难度；3. 官方维护，兼容性与稳定性强。</td>
+			<td>1. 寄存器定义文件（如<code>stm32f10x.h</code>）；2. 外设驱动函数库（如<code>stm32f10x_spi.c</code>）；3. 内核相关接口（如 CMSIS 标准库）。</td>
+		</tr>
+		<tr>
+			<td>2. Core（MCU 驱动程序）</td>
+			<td>基于 Drivers 层，<strong>面向 MCU 内部外设的初始化与管理</strong>，是连接底层 SDK 与上层板级逻辑的中间层。</td>
+			<td>1. 负责 MCU 内部核心功能的配置（如系统时钟、中断优先级、IIC/SPI 外设参数初始化）；2. 是整个程序的 &ldquo;入口载体&rdquo;，包含主函数，统筹 MCU 整体运行逻辑；3. 不涉及板上外部外设（仅管 MCU 内部）。</td>
+			<td>1.&nbsp;<code>main.c</code>（程序入口，包含主循环）；2. 时钟初始化函数（如<code>SystemClock_Config()</code>）；3. 内部外设配置代码（如<code>IIC_Init()</code>）。</td>
+		</tr>
+		<tr>
+			<td>3. BSP（板级支持驱动程序）</td>
+			<td>Board Support Package，<strong>负责 MCU 与板上外部外设（非 MCU 内部）的通信与交互</strong>，是硬件板卡的 &ldquo;专属适配层&rdquo;。</td>
+			<td>1. 分两种场景适配：- 裸机（如有限状态机）：直接编写外设驱动逻辑，无操作系统依赖；- 操作系统下：编写适配 OS 的驱动（如驱动线程、中断回调绑定）；2. 隔离板级硬件差异，使上层应用无需关心具体板卡的外设连接方式。</td>
+			<td>1. 板上传感器驱动（如 MPU6050、DS18B20 驱动）；2. 板载外设接口适配（如 LCD 屏、按键的 GPIO 映射）；3. 裸机 / BSP 驱动函数（如<code>mpu6050_read_data()</code>）。</td>
+		</tr>
+		<tr>
+			<td>4. Middlewares（中间件）</td>
+			<td>抽象程度高、可跨项目复用的<strong>通用功能模块</strong>，不依赖具体硬件，专注于 &ldquo;通用能力支撑&rdquo;。</td>
+			<td>1. 通用性强：可在不同硬件平台、不同项目中直接移植（如 LVGL 在 STM32/ESP32 上均可使用）；2. 补充核心功能：提供业务无关的通用能力，减少重复开发。</td>
+			<td>1. 图形库（LVGL、TouchGFX）；2. 算法库（数学库、快速傅里叶变换 FFT 库）；3. 通信协议栈（如 Modbus、MQTT 客户端库）。</td>
+		</tr>
+		<tr>
+			<td>5. OS/SYSTEM（操作系统层）</td>
+			<td>负责系统资源管理与任务调度的核心层，SYSTEM 是 OS 层的 &ldquo;配置补充目录&rdquo;。</td>
+			<td>1. OS（如 FreeRTOS、RT-Thread）：提供任务管理、内存分配、中断管理、信号量等核心能力；2. SYSTEM：存放<strong>全局系统配置</strong>（如系统宏定义、全局参数、跨模块共享的头文件），影响整个系统的运行参数。</td>
+			<td>1. OS 内核文件（如<code>freertos_kernel.c</code>）；2. SYSTEM 目录下的<code>system.h</code>（全局宏定义）、<code>sys_config.c</code>（系统参数配置）；3. 任务创建与调度代码（如<code>xTaskCreate()</code>）。</td>
+		</tr>
+		<tr>
+			<td>6. 应用层</td>
+			<td>基于所有下层模块，<strong>实现具体业务逻辑</strong>，是开发的最终目标（即 &ldquo;产品要做的事&rdquo;）。</td>
+			<td>1. 不关心底层硬件细节，仅通过调用上层接口（如 BSP 的传感器读取、OS 的任务接口）实现功能；2. 与产品需求强绑定，不同项目的应用层逻辑完全不同。</td>
+			<td>1. 智能家居的 &ldquo;温湿度监测与上报逻辑&rdquo;；2. 工业设备的 &ldquo;参数采集与控制逻辑&rdquo;；3. 消费电子的 &ldquo;UI 交互与功能触发逻辑&rdquo;（如按键控制 LED 亮灭）。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 style="background-color:transparent">（2）模块间核心依赖关系</h2>
+
+<p><code>&nbsp; &nbsp;Drivers</code>（底层 SDK）&rarr;&nbsp;<code>Core</code>（MCU 内部驱动）&rarr;&nbsp;<code>BSP</code>（板级外设适配）&rarr;&nbsp;<code>应用层</code>（业务逻辑）<code>Middlewares</code>（通用功能）、<code>OS/SYSTEM</code>（系统管理）&rarr; 跨层支撑（为 Core、BSP、应用层提供通用能力 / 资源管理）</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 这种分层结构的优势是：硬件变更时仅需修改 Drivers/Core/BSP 层，应用层无需改动；通用功能（如 LVGL）可直接复用，大幅提升开发效率。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E9%AB%98%E7%BA%A7%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">高级程序语言学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/c%E8%AF%AD%E8%A8%80-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" class="print-no-link">#c语言 开发语言</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Embedded System】嵌入式C语言基础知识</div>
+      <div>http://example.com/2025/10/30/【Embedded System】嵌入式C语言基础知识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/31/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90QT%E3%80%91QT5.15.2%E7%89%88%E6%9C%AC%E7%9A%84%E6%9C%80%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%96%B9%E5%BC%8F%EF%BC%81%EF%BC%81%EF%BC%81/" title="【随笔】【QT】QT5.15.2版本的最新下载方式！！！">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【随笔】【QT】QT5.15.2版本的最新下载方式！！！</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/29/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E8%A7%A3%E5%86%B3VS2022%E7%9A%84C#%20Windows%E7%95%8C%E9%9D%A2%E8%AE%BE%E8%AE%A1%E7%9A%84TextBox%E9%AB%98%E5%BA%A6%E9%99%90%E5%88%B6%E9%97%AE%E9%A2%98/" title="【随笔】解决VS2022的C# Windows界面设计的TextBox高度限制问题">
+                        <span class="hidden-mobile">【随笔】解决VS2022的C# Windows界面设计的TextBox高度限制问题</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

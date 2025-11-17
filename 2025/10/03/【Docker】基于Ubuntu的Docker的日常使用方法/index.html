@@ -1,0 +1,1925 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客  一、Docker安装与卸载  1.1 卸载   # 如果安装过，查看Docker版本 docker --version  # 删除旧版本，同时彻底删除Docker相关包及配置 sudo apt-get purge docker docker-engin">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Docker】基于Ubuntu的Docker的日常使用方法">
+<meta property="og:url" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="前言  【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客  一、Docker安装与卸载  1.1 卸载   # 如果安装过，查看Docker版本 docker --version  # 删除旧版本，同时彻底删除Docker相关包及配置 sudo apt-get purge docker docker-engin">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e3d6aa4c53c54f72ac41bab6dd2648f7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dfa80611a7b642fe92559a0303183513.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c2647f5354b9470b8f32aa8d88cfc8e9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/644a65243ef74feebe3165f331f2d0b3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/942fb3b1c191451db4fb4804d7444cbe.png">
+<meta property="article:published_time" content="2025-10-03T04:03:39.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="docker ubuntu nginx">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png">
+  
+  
+  
+  <title>【Docker】基于Ubuntu的Docker的日常使用方法 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Docker】基于Ubuntu的Docker的日常使用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-03 12:03" pubdate>
+          2025年10月3日 中午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          49 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Docker】基于Ubuntu的Docker的日常使用方法</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>前言</h1>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_73648789/article/details/149472417?spm=1001.2014.3001.5502" title="【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客">【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客</a></p>
+
+<h1>一、Docker安装与卸载</h1>
+
+<h2>1.1 卸载</h2>
+
+<pre>
+<code class="language-bash"># 如果安装过，查看Docker版本
+docker --version
+
+# 删除旧版本，同时彻底删除Docker相关包及配置
+sudo apt-get purge docker docker-engine docker.io containerd runc
+
+# 清理无用依赖
+sudo apt-get autoremove
+
+# 手动彻底删除 Docker 的核心数据目录
+sudo rm -rf /var/lib/docker</code></pre>
+
+<h2>1.2 安装</h2>
+
+<h3>1.1.1&nbsp;USTC 地址版本：</h3>
+
+<pre>
+<code class="language-bash"># 需要向系统的软件源配置中添加 Docker 官方仓库的地址信息
+# 这样系统的包管理工具（如apt）才能识别并从该仓库中下载 Docker 相关软件
+# 使用存储库安装Docker的原因：自动处理依赖关系，避免版本冲突
+# 首先就需要其他工具来帮助获取 Docker 官方仓库的地址信息
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+# 查看系统信息
+lsb_release -a
+
+# 通过国内的镜像源 添加 Docker 的官方 GPG 密钥
+curl -fsSL https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+# 需要手动添加 Docker 的 APT 源到系统的apt软件源
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.ustc.edu.cn/docker-ce/linux/ubuntu/ \
+  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+
+# 更新软件源
+sudo apt update
+sudo apt upgrade -y
+
+# 查看过往版本
+apt-cache madison docker-ce
+
+# 安装过往版本示例 例如 5:18.09.1~3-0~ubuntu-xenial
+# sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io
+# sudo apt-get install docker-ce=5:18.09.1~3-0~ubuntu-xenial docker-ce-cli=5:18.09.1~3-0~ubuntu-xenial containerd.io
+
+# 默认安装最新版本
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# 使用验机镜像指令查看是否成功
+sudo docker run hello-world
+
+
+</code></pre>
+
+<h3>1.2.2 阿里云地址版本：</h3>
+
+<pre>
+<code class="language-bash"># 需要向系统的软件源配置中添加 Docker 官方仓库的地址信息
+# 这样系统的包管理工具（如apt）才能识别并从该仓库中下载 Docker 相关软件
+# 使用存储库安装Docker的原因：自动处理依赖关系，避免版本冲突
+# 首先就需要其他工具来帮助获取 Docker 官方仓库的地址信息
+sudo apt-get install \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+# 查看系统信息
+lsb_release -a
+
+# 通过阿里云镜像源 添加 Docker 的官方 GPG 密钥
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+# 需要手动添加 Docker 的 APT 源到系统的apt软件源（使用阿里云镜像）
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.aliyun.com/docker-ce/linux/ubuntu/ \
+  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+sudo apt-get update
+
+# 更新软件源
+sudo apt update
+sudo apt upgrade -y
+
+# 查看可用版本
+apt-cache madison docker-ce
+
+# 安装过往版本示例（需替换为阿里云仓库中存在的版本）
+# sudo apt-get install docker-ce=&lt;VERSION_STRING&gt; docker-ce-cli=&lt;VERSION_STRING&gt; containerd.io
+
+# 默认安装最新版本
+sudo apt-get install docker-ce docker-ce-cli containerd.io
+
+# 使用验机镜像指令查看是否成功 如果未拉下来则配置镜像加速器（使用提供的仓库源）
+sudo docker run hello-world</code></pre>
+
+<p><img alt="" height="752" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png" srcset="/img/loading.gif" lazyload width="1027" /></p>
+
+<h3>1.2.3 补充说明：<br />
+（1）为什么安装docker-ce docker-ce-cli containerd.io，而不是只安装docker-ce？</h3>
+
+<p>在安装 Docker 时需要同时安装&nbsp;<code>docker-ce</code>、<code>docker-ce-cli</code>&nbsp;和&nbsp;<code>containerd.io</code>，是由 Docker 的组件架构和功能分工决定的，三者各司其职、相互依赖，缺一不可。具体原因如下：</p>
+
+<h5><span style="background-color:#cbe0f1">1. 各组件的核心作用</span></h5>
+
+<ul>
+	<li>
+	<p><strong><code><span style="background-color:#cbe0f1">docker-ce</span></code></strong><span style="background-color:#cbe0f1">：</span><br />
+	<span style="background-color:#cbe0f1">全称是 &ldquo;Docker Community Edition&rdquo;（Docker 社区版），是 Docker 的核心引擎（daemon），负责容器的创建、运行、管理等核心功能（如镜像构建、容器生命周期管理等）。它是 Docker 的 &ldquo;运行时核心&rdquo;，但无法直接与用户交互，也不能独立完成所有容器操作。</span></p>
+	</li>
+	<li>
+	<p><strong><code><span style="background-color:#cbe0f1">docker-ce-cli</span></code></strong><span style="background-color:#cbe0f1">：</span><br />
+	<span style="background-color:#cbe0f1">是 Docker 的命令行工具（Command Line Interface），提供了用户与 Docker 引擎交互的命令（如&nbsp;</span><code><span style="background-color:#cbe0f1">docker run</span></code><span style="background-color:#cbe0f1">、</span><code><span style="background-color:#cbe0f1">docker ps</span></code><span style="background-color:#cbe0f1">、</span><code><span style="background-color:#cbe0f1">docker pull</span></code><span style="background-color:#cbe0f1">&nbsp;等）。用户通过这些命令向&nbsp;</span><code><span style="background-color:#cbe0f1">docker-ce</span></code><span style="background-color:#cbe0f1">&nbsp;引擎发送指令，实现对容器的操作。</span><br />
+	<span style="background-color:#cbe0f1">如果没有&nbsp;</span><code><span style="background-color:#cbe0f1">docker-ce-cli</span></code><span style="background-color:#cbe0f1">，用户将无法通过命令行控制 Docker 引擎。</span></p>
+	</li>
+	<li>
+	<p><strong><code><span style="background-color:#cbe0f1">containerd.io</span></code></strong><span style="background-color:#cbe0f1">：</span><br />
+	<span style="background-color:#cbe0f1">是容器运行时（container runtime），负责管理容器的底层生命周期（如镜像的拉取、容器的启停、资源隔离等）。它是 Docker 引擎与操作系统之间的 &ldquo;中间层&rdquo;，最初是 Docker 内部的一个组件，后来被独立出来成为 CNCF（云原生计算基金会）的项目，具备更高的通用性和稳定性。</span><br />
+	<code><span style="background-color:#cbe0f1">docker-ce</span></code><span style="background-color:#cbe0f1">&nbsp;引擎本身并不直接处理容器的底层运行，而是依赖&nbsp;</span><code><span style="background-color:#cbe0f1">containerd.io</span></code><span style="background-color:#cbe0f1">&nbsp;来完成实际的容器创建和管理工作。</span></p>
+	</li>
+</ul>
+
+<h5><span style="background-color:#dad5e9">2. 为什么不能只装&nbsp;</span><code><span style="background-color:#dad5e9">docker-ce</span></code><span style="background-color:#dad5e9">？</span></h5>
+
+<p><code><span style="background-color:#dad5e9">docker-ce</span></code><span style="background-color:#dad5e9">&nbsp;作为核心引擎，必须依赖另外两个组件才能正常工作：</span></p>
+
+<ul>
+	<li><span style="background-color:#dad5e9">没有&nbsp;</span><code><span style="background-color:#dad5e9">docker-ce-cli</span></code><span style="background-color:#dad5e9">：用户无法通过命令行操作 Docker（没有交互入口）；</span></li>
+	<li><span style="background-color:#dad5e9">没有&nbsp;</span><code><span style="background-color:#dad5e9">containerd.io</span></code><span style="background-color:#dad5e9">：</span><code><span style="background-color:#dad5e9">docker-ce</span></code><span style="background-color:#dad5e9">&nbsp;无法完成容器的底层运行和资源管理（没有执行载体）。</span></li>
+</ul>
+
+<p><span style="background-color:#dad5e9">三者是 &ldquo;协作关系&rdquo;：</span><code><span style="background-color:#dad5e9">docker-ce-cli</span></code><span style="background-color:#dad5e9">&nbsp;接收用户命令 &rarr; 传递给&nbsp;</span><code><span style="background-color:#dad5e9">docker-ce</span></code><span style="background-color:#dad5e9">&nbsp;引擎 &rarr;&nbsp;</span><code><span style="background-color:#dad5e9">docker-ce</span></code><span style="background-color:#dad5e9">&nbsp;调用&nbsp;</span><code><span style="background-color:#dad5e9">containerd.io</span></code><span style="background-color:#dad5e9">&nbsp;执行实际的容器操作。</span></p>
+
+<h4><span style="background-color:#f9eda6">3. 三者的关系</span></h4>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#f9eda6">Docker 这三个组件之间的依赖关系可以简单概括为：</span><strong><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;直接依赖&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">，而&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">&nbsp;与&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;是 &ldquo;配套使用&rdquo; 关系</span></strong><span style="background-color:#f9eda6">。具体来说：</span></p>
+
+<h5><span style="background-color:#f9eda6">1.&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;对&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">&nbsp;是强依赖</span></h5>
+
+<p><code><span style="background-color:null">&nbsp; &nbsp;</span><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">（Docker 引擎）本身不直接处理容器的底层运行逻辑（如镜像拉取、容器启停、资源隔离等），这些核心操作必须通过&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">&nbsp;来完成。因此，</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;在设计上</span><strong><span style="background-color:#f9eda6">强制依赖&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code></strong><span style="background-color:#f9eda6">&mdash;&mdash; 如果没有&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">，</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;根本无法启动和工作。</span></p>
+
+<p><span style="background-color:#f9eda6">在实际安装时（比如通过&nbsp;</span><code><span style="background-color:#f9eda6">apt</span></code><span style="background-color:#f9eda6">&nbsp;或&nbsp;</span><code><span style="background-color:#f9eda6">yum</span></code><span style="background-color:#f9eda6">&nbsp;等包管理工具），当你指定安装&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;时，包管理器会自动检测到它对&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">&nbsp;的依赖，并</span><strong><span style="background-color:#f9eda6">自动帮你安装&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code></strong><span style="background-color:#f9eda6">（无需手动显式指定）。</span></p>
+
+<h5><span style="background-color:#f9eda6">2.&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">&nbsp;与&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;是 &ldquo;配套交互&rdquo; 关系</span></h5>
+
+<p><code><span style="background-color:null">&nbsp; &nbsp;</span><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">&nbsp;是用户操作&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;的 &ldquo;入口&rdquo;（提供&nbsp;</span><code><span style="background-color:#f9eda6">docker</span></code><span style="background-color:#f9eda6">&nbsp;命令），但它本身不依赖&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;或&nbsp;</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">（可以单独安装，但安装后如果没有&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;引擎，命令会无法执行实际操作）。</span></p>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#f9eda6">反之，</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;引擎的运行不依赖&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">（引擎可以后台单独运行），但用户如果没有&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">，就无法通过命令行与引擎交互（相当于 &ldquo;有引擎但没遥控器&rdquo;）。因此，实际使用中通常会将&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;和&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">&nbsp;一起安装，确保 &ldquo;引擎 + 遥控器&rdquo; 的完整功能。</span></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color:#f9eda6">所以最终的安装逻辑也可以是：</span><strong><span style="background-color:#f9eda6">显式安装&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;和&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce-cli</span></code><span style="background-color:#f9eda6">&nbsp;即可，</span><code><span style="background-color:#f9eda6">containerd.io</span></code><span style="background-color:#f9eda6">&nbsp;会作为&nbsp;</span><code><span style="background-color:#f9eda6">docker-ce</span></code><span style="background-color:#f9eda6">&nbsp;的依赖被自动安装</span></strong><span style="background-color:#f9eda6">，三者共同构成完整可用的 Docker 环境。</span></p>
+
+<h5>总结</h5>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Docker 的组件拆分（<code>docker-ce</code>、<code>docker-ce-cli</code>、<code>containerd.io</code>）是为了实现 &ldquo;模块化设计&rdquo;：让命令交互、核心引擎、底层运行时各司其职，既提高了稳定性，也方便与其他容器生态（如 Kubernetes）兼容。因此，安装时必须同时包含这三个组件，才能保证 Docker 的完整功能。</p>
+
+<h2>1.3 后续完善</h2>
+
+<h3>1.3.1&nbsp;将当前用户添加到docker组</h3>
+
+<pre>
+<code class="language-bash"># 将用户添加到docker组
+# sudo usermod -aG docker $USER
+sudo usermod -aG docker &lt;your-username&gt;</code></pre>
+
+<h3>1.3.2&nbsp;配置镜像加速器（使用提供的仓库源）</h3>
+
+<pre>
+<code class="language-bash"># 配置加速 比较重要
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+&#123;
+    "registry-mirrors": [
+        "https://do.nark.eu.org",
+        "https://dc.j8.work",
+        "https://docker.m.daocloud.io",
+        "https://dockerproxy.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://docker.nju.edu.cn"
+    ]
+&#125;
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+systemctl status docker
+</code></pre>
+
+<h2>1.4 一键安装式的shell脚本</h2>
+
+<pre>
+<code class="language-bash">#!/bin/bash
+
+# 确保脚本以root权限运行
+if [ "$(id -u)" -ne 0 ]; then
+    echo "请使用root权限运行此脚本（可添加sudo）" &gt;&amp;2
+    exit 1
+fi
+
+# 检查是否已安装Docker，若已安装则停止服务并彻底卸载
+echo "===== 检查Docker是否已安装 ====="
+if command -v docker &amp;&gt; /dev/null; then
+    echo "检测到已安装Docker，版本信息："
+    docker --version
+    
+    echo -e "\n===== 停止Docker服务 ====="
+    sudo systemctl stop docker  # 停止正在运行的Docker服务
+    sudo systemctl disable docker  # 禁用开机自启（可选，彻底清理）
+    
+    echo -e "\n===== 开始卸载Docker ====="
+    # 彻底卸载Docker相关包
+    sudo apt-get purge -y docker-ce docker-ce-cli containerd.io docker-buildx-plugin docker-compose-plugin docker-ce-rootless-extras
+    
+    echo -e "\n===== 清理残留文件 ====="
+    # 删除Docker数据目录（镜像、容器、配置等）
+    sudo rm -rf /var/lib/docker
+    sudo rm -rf /var/lib/containerd
+    sudo rm -rf /etc/docker
+    sudo rm -rf /etc/apt/keyrings/docker.asc
+    sudo rm -rf /etc/apt/sources.list.d/docker.list
+    
+    echo "Docker已完全卸载，将继续执行安装流程"
+else
+    echo "未检测到Docker，将直接执行安装流程"
+fi
+
+# 安装必要的依赖包，用于通过HTTPS获取仓库
+echo -e "\n===== 安装依赖包 ====="
+sudo apt-get install -y \
+    apt-transport-https \
+    ca-certificates \
+    curl \
+    gnupg-agent \
+    software-properties-common
+
+# 查看系统信息，确认Ubuntu版本
+echo -e "\n===== 系统信息 ====="
+lsb_release -a
+
+# 通过阿里云镜像源添加Docker的官方GPG密钥
+echo -e "\n===== 添加阿里云Docker GPG密钥 ====="
+curl -fsSL https://mirrors.aliyun.com/docker-ce/linux/ubuntu/gpg -o /etc/apt/keyrings/docker.asc
+
+# 添加Docker的APT源（阿里云镜像，用于安装Docker软件）
+echo -e "\n===== 配置阿里云Docker软件源 ====="
+echo \
+  "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.asc] https://mirrors.aliyun.com/docker-ce/linux/ubuntu/ \
+  $(. /etc/os-release &amp;&amp; echo "$VERSION_CODENAME") stable" | \
+  sudo tee /etc/apt/sources.list.d/docker.list &gt; /dev/null
+
+# 更新软件源索引
+echo -e "\n===== 更新软件源 ====="
+sudo apt-get update
+sudo apt update
+
+# 升级系统已安装的包
+echo -e "\n===== 升级系统包 ====="
+sudo apt upgrade -y
+
+# 显示可用的Docker版本
+echo -e "\n===== 可用的Docker版本 ====="
+apt-cache madison docker-ce
+
+# 安装最新版本的Docker
+echo -e "\n===== 安装Docker ====="
+sudo apt-get install -y docker-ce docker-ce-cli containerd.io
+
+echo -e "\n===== 配置镜像加速器 ====="
+sudo mkdir -p /etc/docker
+sudo tee /etc/docker/daemon.json &lt;&lt;-'EOF'
+&#123;
+    "registry-mirrors": [
+        # 新增国内主流加速源
+        "https://registry.docker-cn.com",         # Docker 中国官方            
+        "https://mirror.ccs.tencentyun.com",      # 腾讯云
+        "https://cr.console.aliyun.com",          # 阿里云（需登录后获取专属地址）
+        "https://mirrors.aliyun.com/docker-library/", # 阿里云公共
+        "https://hub-mirror.c.163.com",           # 网易云
+        "https://mirrors.tuna.tsinghua.edu.cn/docker-images/", # 清华镜像源
+        "https://mirrors.huaweicloud.com",        # 华为云
+        
+        # 保留原有加速源
+        "https://do.nark.eu.org",
+        "https://dc.j8.work",
+        "https://docker.m.daocloud.io",
+        "https://dockerproxy.com",
+        "https://docker.mirrors.ustc.edu.cn",
+        "https://docker.nju.edu.cn"
+    ]
+&#125;
+EOF
+sudo systemctl daemon-reload
+sudo systemctl restart docker
+systemctl status docker
+
+# 查看Docker信息，验证仓库配置
+echo -e "\n===== 查看Docker配置信息 ====="
+docker info
+
+# 拉取hello-world镜像
+echo -e "\n===== 拉取hello-world镜像 ====="
+sudo docker pull hello-world
+
+# 查看镜像列表
+echo -e "\n===== 查看Docker镜像 ====="
+sudo docker images
+
+# 运行hello-world容器
+echo -e "\n===== 运行hello-world容器 ====="
+sudo docker run hello-world
+
+# 提示将用户添加到docker组（可选）
+echo -e "\n===== 安装完成 ====="
+echo "如果需要非root用户使用Docker，请执行："
+echo "sudo usermod -aG docker &lt;你的用户名&gt;"
+echo "执行后请重新登录以使设置生效:"
+echo "sudo usermod -aG docker $&#123;USER&#125;"
+echo "使用命令查看当前用户所属组:groups或者id"
+</code></pre>
+
+<h1>二、基于Docker+Ubuntu的基础使用</h1>
+
+<h2>2.1 拉取镜像</h2>
+
+<pre>
+<code class="language-bash">sudo docker pull hello-world
+</code></pre>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ sudo docker pull hello-world
+Using default tag: latest
+latest: Pulling from library/hello-world
+17eec7bbc9d7: Pull complete 
+Digest: sha256:54e66cc1dd1fcb1c3c58bd8017914dbed8701e2d8c74d9262e26bd9cc1642d31
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest
+</code></pre>
+
+<h2>2.2 查看镜像，基于<code>hello-world</code>镜像创建并运行一个容器</h2>
+
+<pre>
+<code class="language-bash">sudo docker images
+
+sudo docker run hello-world</code></pre>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ sudo docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+hello-world   latest    1b44b5a3e06a   7 weeks ago   10.1kB
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ sudo docker run hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (amd64)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+</code></pre>
+
+<h2>2.3 容器命令</h2>
+
+<h3 style="background-color:transparent">2.3.1&nbsp;容器运行命令 docker run|stop|start</h3>
+
+<p style="background-color:transparent">docker run|stop|start</p>
+
+<p>镜像运行，停止，从停止到运行<code>docker run</code>后，如果容器没有提供服务，会立即停止，退出。</p>
+
+<p><code>docker run [option] image</code></p>
+
+<p># option 参数说明</p>
+
+<p><code>--name=&quot;Name&quot;</code>&nbsp;#对运行的容器定名字，</p>
+
+<p>常用<code>-d</code>&nbsp;#后台方式运行<code>-it</code>&nbsp;#使用交互方式运行，</p>
+
+<p>进入容器查看内容<code>-it = -i + -t</code></p>
+
+<p><code>-p</code>&nbsp;#小写 p，指定容器的端口</p>
+
+<p><code>-P</code>&nbsp;#大写 P，随机指定端口</p>
+
+<p><code>docker run nginx:1.24.0</code></p>
+
+<pre>
+<code class="language-bash"># 这个 docker run 命令用于在 Docker 中启动一个 Nginx 容器，具体参数解释如下：
+# docker run：Docker 的核心命令，用于创建并启动一个容器
+# --name="test_web1"：为容器指定一个名称 "test_web1"，方便后续管理和识别容器
+# -p 2025:80：端口映射，将主机的 2025 端口映射到容器的 80 端口（Nginx 默认监听 80 端口）
+# 这意味着访问主机的 http://localhost:2025 会转发到容器内的 Nginx 服务
+# -d：后台运行容器（ detached 模式），容器启动后不会占用当前终端
+# nginx：指定要使用的镜像名称，Docker 会从本地或远程仓库拉取最新的 Nginx 镜像
+docker run --name="test_web1" -p 2025:80 -d nginx</code></pre>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ docker pull nginx
+Using default tag: latest
+latest: Pulling from library/nginx
+5c32499ab806: Pull complete 
+375a694db734: Pull complete 
+5f825f15e2e0: Pull complete 
+16d05858bb8d: Pull complete 
+08cfef42fd24: Pull complete 
+3cc5fdd1317a: Pull complete 
+4f4e50e20765: Pull complete 
+Digest: sha256:8adbdcb969e2676478ee2c7ad333956f0c8e0e4c5a7463f4611d7a2e7a7ff5dc
+Status: Downloaded newer image for nginx:latest
+docker.io/library/nginx:latest
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ sudo docker images
+REPOSITORY    TAG       IMAGE ID       CREATED       SIZE
+nginx         latest    203ad09fc156   7 weeks ago   192MB
+hello-world   latest    1b44b5a3e06a   7 weeks ago   10.1kB
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ sudo docker run --name="test_web1" -p 2025:80 -d nginx
+d6c9f476227b58a34f466c3dc5b70014907e9875b714facfc2b4caab4f569926
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ docker ps -a
+CONTAINER ID   IMAGE         COMMAND                   CREATED          STATUS                      PORTS                                     NAMES
+d6c9f476227b   nginx         "/docker-entrypoint.…"   53 seconds ago   Up 52 seconds               0.0.0.0:2025-&gt;80/tcp, [::]:2025-&gt;80/tcp   test_web1
+d98f8b5acdc9   hello-world   "/hello"                  31 minutes ago   Exited (0) 31 minutes ago                                             epic_newton
+11a147f878d1   hello-world   "/hello"                  31 minutes ago   Exited (0) 31 minutes ago                                             naughty_visvesvaraya
+6f7515977c77   hello-world   "/hello"                  35 minutes ago   Exited (0) 35 minutes ago                                             mystifying_johnson
+036cd9de504c   hello-world   "/hello"                  49 minutes ago   Exited (0) 49 minutes ago                                             brave_ramanujan
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:d2:65:56 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.0.105/24 brd 192.168.0.255 scope global dynamic noprefixroute ens33
+       valid_lft 2993sec preferred_lft 2993sec
+    inet6 fe80::b501:560f:3981:a8eb/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether 06:74:70:13:32:c4 brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::474:70ff:fe13:32c4/64 scope link 
+       valid_lft forever preferred_lft forever
+12: vethd233f56@if2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default 
+    link/ether 2e:da:ed:57:61:e1 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet6 fe80::2cda:edff:fe57:61e1/64 scope link 
+       valid_lft forever preferred_lft forever
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ 
+</code></pre>
+
+<p><img alt="" height="327" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e3d6aa4c53c54f72ac41bab6dd2648f7.png" srcset="/img/loading.gif" lazyload width="695" /></p>
+
+<h3 style="background-color:transparent">2.3.2 容器删除命令</h3>
+
+<pre>
+<code class="language-bash"># 单个容器删除
+docker rm 容器id
+
+# 强制删除
+docker rm -f &lt;CONTAINER ID 或 CONTAINER NAME&gt;
+
+# 删除所有已退出的容器
+docker container prune</code></pre>
+
+<h3 style="background-color:transparent">2.3.3&nbsp;容器管理与查看命令</h3>
+
+<pre>
+<code class="language-bash"># 查看所有镜像
+docker images -a
+
+# 查看所有容器
+docker ps -a
+
+# 查看运行容器
+docker ps
+
+# 查看所有容器id
+docker ps -aq
+
+# 进入容器
+docker exec -it 容器id bash
+</code></pre>
+
+<p>效果：</p>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ docker exec -it test_web1 bash
+root@d6c9f476227b:/# 
+root@d6c9f476227b:/# 
+root@d6c9f476227b:/# 
+root@d6c9f476227b:/# 
+root@d6c9f476227b:/# 
+root@d6c9f476227b:/# ls
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@d6c9f476227b:/# ls -al
+total 72
+drwxr-xr-x   1 root root 4096 Oct  2 16:38 .
+drwxr-xr-x   1 root root 4096 Oct  2 16:38 ..
+-rwxr-xr-x   1 root root    0 Oct  2 16:38 .dockerenv
+lrwxrwxrwx   1 root root    7 Sep 29 00:00 bin -&gt; usr/bin
+drwxr-xr-x   2 root root 4096 Aug 24 16:05 boot
+drwxr-xr-x   5 root root  340 Oct  2 16:38 dev
+drwxr-xr-x   1 root root 4096 Sep 29 23:55 docker-entrypoint.d
+-rwxr-xr-x   1 root root 1620 Sep 29 23:55 docker-entrypoint.sh
+drwxr-xr-x   1 root root 4096 Oct  2 16:38 etc
+drwxr-xr-x   2 root root 4096 Aug 24 16:05 home
+lrwxrwxrwx   1 root root    7 Sep 29 00:00 lib -&gt; usr/lib
+lrwxrwxrwx   1 root root    9 Sep 29 00:00 lib64 -&gt; usr/lib64
+drwxr-xr-x   2 root root 4096 Sep 29 00:00 media
+drwxr-xr-x   2 root root 4096 Sep 29 00:00 mnt
+drwxr-xr-x   2 root root 4096 Sep 29 00:00 opt
+dr-xr-xr-x 493 root root    0 Oct  2 16:38 proc
+drwx------   2 root root 4096 Sep 29 00:00 root
+drwxr-xr-x   1 root root 4096 Oct  2 16:38 run
+lrwxrwxrwx   1 root root    8 Sep 29 00:00 sbin -&gt; usr/sbin
+drwxr-xr-x   2 root root 4096 Sep 29 00:00 srv
+dr-xr-xr-x  13 root root    0 Oct  2 16:38 sys
+drwxrwxrwt   2 root root 4096 Sep 29 00:00 tmp
+drwxr-xr-x   1 root root 4096 Sep 29 00:00 usr
+drwxr-xr-x   1 root root 4096 Sep 29 00:00 var
+root@d6c9f476227b:/# cd /usr/share/nginx/html
+root@d6c9f476227b:/usr/share/nginx/html# ls
+50x.html  index.html
+root@d6c9f476227b:/usr/share/nginx/html# cat index.html
+&lt;!DOCTYPE html&gt;
+&lt;html&gt;
+&lt;head&gt;
+&lt;title&gt;Welcome to nginx!&lt;/title&gt;
+&lt;style&gt;
+html &#123; color-scheme: light dark; &#125;
+body &#123; width: 35em; margin: 0 auto;
+font-family: Tahoma, Verdana, Arial, sans-serif; &#125;
+&lt;/style&gt;
+&lt;/head&gt;
+&lt;body&gt;
+&lt;h1&gt;Welcome to nginx!&lt;/h1&gt;
+&lt;p&gt;If you see this page, the nginx web server is successfully installed and
+working. Further configuration is required.&lt;/p&gt;
+
+&lt;p&gt;For online documentation and support please refer to
+&lt;a href="http://nginx.org/"&gt;nginx.org&lt;/a&gt;.&lt;br/&gt;
+Commercial support is available at
+&lt;a href="http://nginx.com/"&gt;nginx.com&lt;/a&gt;.&lt;/p&gt;
+
+&lt;p&gt;&lt;em&gt;Thank you for using nginx.&lt;/em&gt;&lt;/p&gt;
+&lt;/body&gt;
+&lt;/html&gt;
+root@d6c9f476227b:/usr/share/nginx/html# exit
+exit
+zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ 
+
+
+
+</code></pre>
+
+<h3 style="background-color:transparent">2.3.4 容器数据挂载宿主机命令（将宿主机的文件夹挂载在容器内部的文件夹上，相当于创建软连接）</h3>
+
+<pre>
+<code class="language-bash">docker run -d -p 2025:80 -v /home/zky/Docker_Projects/test_web1/html:/usr/share/nginx/html --name test_web1 nginx</code></pre>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~$ docker run -d -p 2025:80 -v /home/zky/Docker_Projects/test_web1/html:/usr/share/nginx/html --name test_web1 nginx
+7050c6e6ae7a1b98df3501f9b56e91c711ba972b5aa905ff1ebf7bc63c2995f8
+zky@zky-virtual-machine:~$ docker exec -it test_web1
+docker: 'docker exec' requires at least 2 arguments
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+See 'docker exec --help' for more information
+zky@zky-virtual-machine:~$ docker exec -it test_web1 bash
+root@7050c6e6ae7a:/# 
+root@7050c6e6ae7a:/# ls
+bin  boot  dev	docker-entrypoint.d  docker-entrypoint.sh  etc	home  lib  lib64  media  mnt  opt  proc  root  run  sbin  srv  sys  tmp  usr  var
+root@7050c6e6ae7a:/# exit
+exit
+zky@zky-virtual-machine:~$ cd Docker_Projects
+zky@zky-virtual-machine:~/Docker_Projects$ ls
+test_web1
+zky@zky-virtual-machine:~/Docker_Projects$ cd test_web1
+zky@zky-virtual-machine:~/Docker_Projects/test_web1$ ls
+html
+zky@zky-virtual-machine:~/Docker_Projects/test_web1$ cd html
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ sudo vim index.html
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ cat index.html
+hello world
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ sudo chmod 777 index.html
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ ls -al
+总计 12
+drwxr-xr-x 2 root root 4096 10月  3 10:32 .
+drwxr-xr-x 3 root root 4096 10月  3 10:27 ..
+-rwxrwxrwx 1 root root   12 10月  3 10:32 index.html
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ 
+</code></pre>
+
+<p>运行容器后，查看</p>
+
+<p><img alt="" height="188" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dfa80611a7b642fe92559a0303183513.png" srcset="/img/loading.gif" lazyload width="720" /></p>
+
+<p>创建一个html文件后，写入hello world&nbsp;</p>
+
+<p><img alt="" height="232" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c2647f5354b9470b8f32aa8d88cfc8e9.png" srcset="/img/loading.gif" lazyload width="453" /></p>
+
+<h3 style="background-color:transparent">2.3.5&nbsp;容器卷映射命令（将容器内部的数据同步映射到宿主机，位置在docker相关文件夹管理）</h3>
+
+<p><span style="background-color:#f9eda6">提示：如果使用容器数据挂载宿主机命令来在宿主机管理nginx的配置文件，由于宿主机外新建的文件夹导致宿主机管理nginx的配置文件是空的，然后运行容器能看见容器好像启动了但是实际上由于配置文件是空的，使用docker ps查看其实它没有在运行，是有错误的；但是，又怎么把容器内部的配置文件拷贝出来呢？这就需要容器卷映射命令将容器的配置文件映射同步到宿主机来管理。</span></p>
+
+<pre>
+<code class="language-bash">docker run -d -p 2026:80 -v /home/zky/Docker_Projects/test_web2/html/:/usr/share/nginx/html -v nginx_conf:/etc/nginx --name test_web2 nginx</code></pre>
+
+<p>查询命令：</p>
+
+<pre>
+<code class="language-bash"># 直接查询卷名
+docker volume inspect nginx_conf
+
+
+# 间接查询容器和卷信息
+docker inspect test_web2</code></pre>
+
+<p>具体查询效果：</p>
+
+<pre>
+<code class="language-bash"># 查询效果
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker ps 
+CONTAINER ID   IMAGE     COMMAND                   CREATED          STATUS          PORTS                                     NAMES
+d6d9810a3197   nginx     "/docker-entrypoint.…"   14 minutes ago   Up 14 minutes   0.0.0.0:2026-&gt;80/tcp, [::]:2026-&gt;80/tcp   test_web2
+7050c6e6ae7a   nginx     "/docker-entrypoint.…"   55 minutes ago   Up 55 minutes   0.0.0.0:2025-&gt;80/tcp, [::]:2025-&gt;80/tcp   test_web1
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker volume inspect nginx_conf
+[
+    &#123;
+        "CreatedAt": "2025-10-03T11:07:52+08:00",
+        "Driver": "local",
+        "Labels": null,
+        "Mountpoint": "/var/lib/docker/volumes/nginx_conf/_data",
+        "Name": "nginx_conf",
+        "Options": null,
+        "Scope": "local"
+    &#125;
+]
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker inspect test_web2
+[
+    &#123;
+        "Id": "d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae",
+        "Created": "2025-10-03T03:07:52.476021273Z",
+        "Path": "/docker-entrypoint.sh",
+        "Args": [
+            "nginx",
+            "-g",
+            "daemon off;"
+        ],
+        "State": &#123;
+            "Status": "running",
+            "Running": true,
+            "Paused": false,
+            "Restarting": false,
+            "OOMKilled": false,
+            "Dead": false,
+            "Pid": 4958,
+            "ExitCode": 0,
+            "Error": "",
+            "StartedAt": "2025-10-03T03:07:52.505249755Z",
+            "FinishedAt": "0001-01-01T00:00:00Z"
+        &#125;,
+        "Image": "sha256:203ad09fc1566a329c1d2af8d1f219b28fd2c00b69e743bd572b7f662365432d",
+        "ResolvConfPath": "/var/lib/docker/containers/d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae/resolv.conf",
+        "HostnamePath": "/var/lib/docker/containers/d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae/hostname",
+        "HostsPath": "/var/lib/docker/containers/d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae/hosts",
+        "LogPath": "/var/lib/docker/containers/d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae/d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae-json.log",
+        "Name": "/test_web2",
+        "RestartCount": 0,
+        "Driver": "overlay2",
+        "Platform": "linux",
+        "MountLabel": "",
+        "ProcessLabel": "",
+        "AppArmorProfile": "docker-default",
+        "ExecIDs": null,
+        "HostConfig": &#123;
+            "Binds": [
+                "/home/zky/Docker_Projects/test_web2/html/:/usr/share/nginx/html",
+                "nginx_conf:/etc/nginx"
+            ],
+            "ContainerIDFile": "",
+            "LogConfig": &#123;
+                "Type": "json-file",
+                "Config": &#123;&#125;
+            &#125;,
+            "NetworkMode": "bridge",
+            "PortBindings": &#123;
+                "80/tcp": [
+                    &#123;
+                        "HostIp": "",
+                        "HostPort": "2026"
+                    &#125;
+                ]
+            &#125;,
+            "RestartPolicy": &#123;
+                "Name": "no",
+                "MaximumRetryCount": 0
+            &#125;,
+            "AutoRemove": false,
+            "VolumeDriver": "",
+            "VolumesFrom": null,
+            "ConsoleSize": [
+                24,
+                178
+            ],
+            "CapAdd": null,
+            "CapDrop": null,
+            "CgroupnsMode": "private",
+            "Dns": [],
+            "DnsOptions": [],
+            "DnsSearch": [],
+            "ExtraHosts": null,
+            "GroupAdd": null,
+            "IpcMode": "private",
+            "Cgroup": "",
+            "Links": null,
+            "OomScoreAdj": 0,
+            "PidMode": "",
+            "Privileged": false,
+            "PublishAllPorts": false,
+            "ReadonlyRootfs": false,
+            "SecurityOpt": null,
+            "UTSMode": "",
+            "UsernsMode": "",
+            "ShmSize": 67108864,
+            "Runtime": "runc",
+            "Isolation": "",
+            "CpuShares": 0,
+            "Memory": 0,
+            "NanoCpus": 0,
+            "CgroupParent": "",
+            "BlkioWeight": 0,
+            "BlkioWeightDevice": [],
+            "BlkioDeviceReadBps": [],
+            "BlkioDeviceWriteBps": [],
+            "BlkioDeviceReadIOps": [],
+            "BlkioDeviceWriteIOps": [],
+            "CpuPeriod": 0,
+            "CpuQuota": 0,
+            "CpuRealtimePeriod": 0,
+            "CpuRealtimeRuntime": 0,
+            "CpusetCpus": "",
+            "CpusetMems": "",
+            "Devices": [],
+            "DeviceCgroupRules": null,
+            "DeviceRequests": null,
+            "MemoryReservation": 0,
+            "MemorySwap": 0,
+            "MemorySwappiness": null,
+            "OomKillDisable": null,
+            "PidsLimit": null,
+            "Ulimits": [],
+            "CpuCount": 0,
+            "CpuPercent": 0,
+            "IOMaximumIOps": 0,
+            "IOMaximumBandwidth": 0,
+            "MaskedPaths": [
+                "/proc/asound",
+                "/proc/acpi",
+                "/proc/interrupts",
+                "/proc/kcore",
+                "/proc/keys",
+                "/proc/latency_stats",
+                "/proc/timer_list",
+                "/proc/timer_stats",
+                "/proc/sched_debug",
+                "/proc/scsi",
+                "/sys/firmware",
+                "/sys/devices/virtual/powercap"
+            ],
+            "ReadonlyPaths": [
+                "/proc/bus",
+                "/proc/fs",
+                "/proc/irq",
+                "/proc/sys",
+                "/proc/sysrq-trigger"
+            ]
+        &#125;,
+        "GraphDriver": &#123;
+            "Data": &#123;
+                "ID": "d6d9810a31972a259ef432aba27285f4e3922f2c44ec975504a040131b2da9ae",
+                "LowerDir": "/var/lib/docker/overlay2/762421dc13711cdeb508331bc89cb991a4e430b5b9e33f4a4fd8a2f34633331b-init/diff:/var/lib/docker/overlay2/f6029dfb70c7a6eebd04e08a08b793bf717d7a27349c1802f9ad0cb3dd14f049/diff:/var/lib/docker/overlay2/8ee89224c3a0511031185bd6db60487881baef74e5584cde37de0e7d61304c0e/diff:/var/lib/docker/overlay2/8adb0517bb33aa017b390656f922acd13dbf60393bf5523ef82c0b18a2ebfdb5/diff:/var/lib/docker/overlay2/87e291b2f300d61839f38cf4b42abc660368226f04e6e8163d2dfd51e72b5807/diff:/var/lib/docker/overlay2/22ad4d13715346a306b7d00627f1cbf933d6cfe532e33ae84ccdc661531f8612/diff:/var/lib/docker/overlay2/595e970753a446f6510df89718aaa3bdf3927566852e8aca4191e04a69cebb71/diff:/var/lib/docker/overlay2/cdb332aa714ac090f4b3ea16bf0f754518936d81ff81733cd47a7309985077d5/diff",
+                "MergedDir": "/var/lib/docker/overlay2/762421dc13711cdeb508331bc89cb991a4e430b5b9e33f4a4fd8a2f34633331b/merged",
+                "UpperDir": "/var/lib/docker/overlay2/762421dc13711cdeb508331bc89cb991a4e430b5b9e33f4a4fd8a2f34633331b/diff",
+                "WorkDir": "/var/lib/docker/overlay2/762421dc13711cdeb508331bc89cb991a4e430b5b9e33f4a4fd8a2f34633331b/work"
+            &#125;,
+            "Name": "overlay2"
+        &#125;,
+        "Mounts": [
+            &#123;
+                "Type": "bind",
+                "Source": "/home/zky/Docker_Projects/test_web2/html",
+                "Destination": "/usr/share/nginx/html",
+                "Mode": "",
+                "RW": true,
+                "Propagation": "rprivate"
+            &#125;,
+            &#123;
+                "Type": "volume",
+                "Name": "nginx_conf",
+                "Source": "/var/lib/docker/volumes/nginx_conf/_data",
+                "Destination": "/etc/nginx",
+                "Driver": "local",
+                "Mode": "z",
+                "RW": true,
+                "Propagation": ""
+            &#125;
+        ],
+        "Config": &#123;
+            "Hostname": "d6d9810a3197",
+            "Domainname": "",
+            "User": "",
+            "AttachStdin": false,
+            "AttachStdout": false,
+            "AttachStderr": false,
+            "ExposedPorts": &#123;
+                "80/tcp": &#123;&#125;
+            &#125;,
+            "Tty": false,
+            "OpenStdin": false,
+            "StdinOnce": false,
+            "Env": [
+                "PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin",
+                "NGINX_VERSION=1.29.1",
+                "NJS_VERSION=0.9.1",
+                "NJS_RELEASE=1~bookworm",
+                "PKG_RELEASE=1~bookworm",
+                "DYNPKG_RELEASE=1~bookworm"
+            ],
+            "Cmd": [
+                "nginx",
+                "-g",
+                "daemon off;"
+            ],
+            "Image": "nginx",
+            "Volumes": null,
+            "WorkingDir": "",
+            "Entrypoint": [
+                "/docker-entrypoint.sh"
+            ],
+            "OnBuild": null,
+            "Labels": &#123;
+                "maintainer": "NGINX Docker Maintainers &lt;docker-maint@nginx.com&gt;"
+            &#125;,
+            "StopSignal": "SIGQUIT"
+        &#125;,
+        "NetworkSettings": &#123;
+            "Bridge": "",
+            "SandboxID": "6c67893c167156f1c7d0938284fac03d46145f1123478c9033eee1c4333d37d4",
+            "SandboxKey": "/var/run/docker/netns/6c67893c1671",
+            "Ports": &#123;
+                "80/tcp": [
+                    &#123;
+                        "HostIp": "0.0.0.0",
+                        "HostPort": "2026"
+                    &#125;,
+                    &#123;
+                        "HostIp": "::",
+                        "HostPort": "2026"
+                    &#125;
+                ]
+            &#125;,
+            "HairpinMode": false,
+            "LinkLocalIPv6Address": "",
+            "LinkLocalIPv6PrefixLen": 0,
+            "SecondaryIPAddresses": null,
+            "SecondaryIPv6Addresses": null,
+            "EndpointID": "95ccdc403058f65eb56164e803fb4adf65a7b94bb4f566ccfafa2c840528e698",
+            "Gateway": "172.17.0.1",
+            "GlobalIPv6Address": "",
+            "GlobalIPv6PrefixLen": 0,
+            "IPAddress": "172.17.0.3",
+            "IPPrefixLen": 16,
+            "IPv6Gateway": "",
+            "MacAddress": "ca:15:c6:dd:25:12",
+            "Networks": &#123;
+                "bridge": &#123;
+                    "IPAMConfig": null,
+                    "Links": null,
+                    "Aliases": null,
+                    "MacAddress": "ca:15:c6:dd:25:12",
+                    "DriverOpts": null,
+                    "GwPriority": 0,
+                    "NetworkID": "673dc66222dbbb9d8a0f68bba2ca14b70a0e4d88355ae54de305639677d6b930",
+                    "EndpointID": "95ccdc403058f65eb56164e803fb4adf65a7b94bb4f566ccfafa2c840528e698",
+                    "Gateway": "172.17.0.1",
+                    "IPAddress": "172.17.0.3",
+                    "IPPrefixLen": 16,
+                    "IPv6Gateway": "",
+                    "GlobalIPv6Address": "",
+                    "GlobalIPv6PrefixLen": 0,
+                    "DNSNames": null
+                &#125;
+            &#125;
+        &#125;
+    &#125;
+]
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ sudo ls /var/lib/docker/volumes/nginx_conf/_data  # 列出目录内容
+conf.d	fastcgi_params	mime.types  modules  nginx.conf  scgi_params  uwsgi_params
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ 
+
+</code></pre>
+
+<p><img alt="" height="240" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/644a65243ef74feebe3165f331f2d0b3.png" srcset="/img/loading.gif" lazyload width="452" /></p>
+
+<p><img alt="" height="969" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/942fb3b1c191451db4fb4804d7444cbe.png" srcset="/img/loading.gif" lazyload width="1437" /></p>
+
+<h3>2.3.6 容器网络配置命令</h3>
+
+<p>具体命令：</p>
+
+<pre>
+<code class="language-bash"># 1. 列出所有Docker网络
+docker network ls
+# 输出说明：
+# - NETWORK ID: 网络唯一标识
+# - NAME: 网络名称（默认包含bridge、host、none三种网络）
+# - DRIVER: 网络驱动类型（bridge为默认桥接网络）
+# - SCOPE: 网络作用域（local表示本地网络）
+
+
+
+
+# 2. 创建自定义网络（最常用）
+# 创建一个名为my_network的桥接网络（默认驱动为bridge）
+docker network create my_network
+
+# 创建指定子网和网关的网络（适合固定IP场景）
+docker network create \
+  --driver bridge \                  # 指定网络驱动为桥接模式
+  --subnet 172.20.0.0/16 \           # 设定子网范围
+  --gateway 172.20.0.1 \             # 设定网关地址
+  --ip-range 172.20.1.0/24 \         # 设定IP分配范围
+  my_custom_network                  # 网络名称
+
+
+
+
+# 3. 查看网络详细信息
+# 查看my_network的详细配置（包括连接的容器、IP范围等）
+docker network inspect my_network
+
+
+
+
+# 4. 将容器连接到网络
+# 将已运行的容器test_web1连接到my_network
+docker network connect my_network test_web1
+
+# 连接时指定固定IP（需网络已设置子网）
+docker network connect \
+  --ip 172.20.1.10 \                 # 为容器指定固定IP
+  my_custom_network \
+  test_web1
+
+
+
+
+# 5. 将容器从网络断开
+# 将test_web1从my_network断开（不会删除容器）
+docker network disconnect my_network test_web1
+
+
+
+
+# 6. 删除网络
+# 删除my_network网络（需先断开所有连接的容器）
+docker network rm my_network
+
+# 批量删除未使用的网络（清理无用网络）
+docker network prune -f              # -f表示强制删除，无需确认
+
+
+
+
+# 7. 运行容器时指定网络
+# 启动容器时直接连接到my_network（不使用默认bridge网络）
+docker run -d \
+  --name test_web3 \
+  --network my_network \             # 指定网络
+  -p 2028:80 \
+  nginx
+
+
+
+
+# 8. 使用host网络（容器共享宿主机网络栈）
+# 容器直接使用宿主机的IP和端口（性能好，但安全性较低）
+docker run -d \
+  --name test_web4 \
+  --network host \                   # 使用宿主机网络
+  nginx                              # 此时无需-p端口映射，直接使用容器内端口
+
+
+
+
+# 9. 使用none网络（容器禁用网络）
+# 创建一个完全隔离、没有网络的容器
+docker run -d \
+  --name isolated_container \
+  --network none \                   # 禁用网络
+  nginx</code></pre>
+
+<p>测试效果：</p>
+
+<pre>
+<code class="language-bash">zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network ls
+NETWORK ID     NAME      DRIVER    SCOPE
+673dc66222db   bridge    bridge    local
+ddc64a266dbf   host      host      local
+550e6ae5e19e   none      null      local
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker ps
+CONTAINER ID   IMAGE     COMMAND                   CREATED             STATUS             PORTS                                     NAMES
+d6d9810a3197   nginx     "/docker-entrypoint.…"   30 minutes ago      Up 30 minutes      0.0.0.0:2026-&gt;80/tcp, [::]:2026-&gt;80/tcp   test_web2
+7050c6e6ae7a   nginx     "/docker-entrypoint.…"   About an hour ago   Up About an hour   0.0.0.0:2025-&gt;80/tcp, [::]:2025-&gt;80/tcp   test_web1
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ ip addr
+1: lo: &lt;LOOPBACK,UP,LOWER_UP&gt; mtu 65536 qdisc noqueue state UNKNOWN group default qlen 1000
+    link/loopback 00:00:00:00:00:00 brd 00:00:00:00:00:00
+    inet 127.0.0.1/8 scope host lo
+       valid_lft forever preferred_lft forever
+    inet6 ::1/128 scope host 
+       valid_lft forever preferred_lft forever
+2: ens33: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc fq_codel state UP group default qlen 1000
+    link/ether 00:0c:29:d2:65:56 brd ff:ff:ff:ff:ff:ff
+    altname enp2s1
+    inet 192.168.0.106/24 brd 192.168.0.255 scope global dynamic noprefixroute ens33
+       valid_lft 2591sec preferred_lft 2591sec
+    inet6 fe80::b501:560f:3981:a8eb/64 scope link noprefixroute 
+       valid_lft forever preferred_lft forever
+3: docker0: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue state UP group default 
+    link/ether be:57:c6:de:92:ad brd ff:ff:ff:ff:ff:ff
+    inet 172.17.0.1/16 brd 172.17.255.255 scope global docker0
+       valid_lft forever preferred_lft forever
+    inet6 fe80::bc57:c6ff:fede:92ad/64 scope link 
+       valid_lft forever preferred_lft forever
+4: vethf08af63@if2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default 
+    link/ether ba:8d:ce:fa:80:97 brd ff:ff:ff:ff:ff:ff link-netnsid 0
+    inet6 fe80::b88d:ceff:fefa:8097/64 scope link 
+       valid_lft forever preferred_lft forever
+5: vethea5b32a@if2: &lt;BROADCAST,MULTICAST,UP,LOWER_UP&gt; mtu 1500 qdisc noqueue master docker0 state UP group default 
+    link/ether 36:66:d2:fe:8c:67 brd ff:ff:ff:ff:ff:ff link-netnsid 1
+    inet6 fe80::3466:d2ff:fefe:8c67/64 scope link 
+       valid_lft forever preferred_lft forever
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker exec -it test_web2
+docker: 'docker exec' requires at least 2 arguments
+
+Usage:  docker exec [OPTIONS] CONTAINER COMMAND [ARG...]
+
+See 'docker exec --help' for more information
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker exec -it test_web2 bash
+root@d6d9810a3197:/# curl test_web2
+curl: (6) Could not resolve host: test_web2
+root@d6d9810a3197:/# exit
+exit
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network create net_web_chat
+8196fc6221d1a4bf90369c371f69df03d284d698cdb67a4551e4d9953edb9f3c
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network ls
+NETWORK ID     NAME           DRIVER    SCOPE
+673dc66222db   bridge         bridge    local
+ddc64a266dbf   host           host      local
+8196fc6221d1   net_web_chat   bridge    local
+550e6ae5e19e   none           null      local
+
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ # 查看 test_web1 的网络详情
+docker inspect -f '&#123;&#123;json .NetworkSettings.Networks&#125;&#125;' test_web1 | python3 -m json.tool
+
+# 查看 test_web2 的网络详情
+docker inspect -f '&#123;&#123;json .NetworkSettings.Networks&#125;&#125;' test_web2 | python3 -m json.tool
+&#123;
+    "bridge": &#123;
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "MacAddress": "ba:64:0f:88:8b:8a",
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "673dc66222dbbb9d8a0f68bba2ca14b70a0e4d88355ae54de305639677d6b930",
+        "EndpointID": "6371e9e214ff2d69168af7ac23f85c18bd5aa080a5cf3d61d7e5b0e30e61b8b7",
+        "Gateway": "172.17.0.1",
+        "IPAddress": "172.17.0.2",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    &#125;
+&#125;
+&#123;
+    "bridge": &#123;
+        "IPAMConfig": null,
+        "Links": null,
+        "Aliases": null,
+        "MacAddress": "ca:15:c6:dd:25:12",
+        "DriverOpts": null,
+        "GwPriority": 0,
+        "NetworkID": "673dc66222dbbb9d8a0f68bba2ca14b70a0e4d88355ae54de305639677d6b930",
+        "EndpointID": "95ccdc403058f65eb56164e803fb4adf65a7b94bb4f566ccfafa2c840528e698",
+        "Gateway": "172.17.0.1",
+        "IPAddress": "172.17.0.3",
+        "IPPrefixLen": 16,
+        "IPv6Gateway": "",
+        "GlobalIPv6Address": "",
+        "GlobalIPv6PrefixLen": 0,
+        "DNSNames": null
+    &#125;
+&#125;
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ # 查看 test_web1 的网络详情
+docker inspect -f '&#123;&#123;json .NetworkSettings.Networks&#125;&#125;' test_web1 | python3 -m json.tool
+
+# 查看 test_web2 的网络详情
+docker inspect -f '&#123;&#123;json .NetworkSettings.Networks&#125;&#125;' test_web2 | python3 -m json.tool^C
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network ls
+NETWORK ID     NAME           DRIVER    SCOPE
+673dc66222db   bridge         bridge    local
+ddc64a266dbf   host           host      local
+8196fc6221d1   net_web_chat   bridge    local
+550e6ae5e19e   none           null      local
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network connect net_web_chat test_web1
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker network connect net_web_chat test_web2
+zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$ docker exec -it test_web2 bash
+root@d6d9810a3197:/# curl test_web1
+hello world
+root@d6d9810a3197:/# 
+</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Docker学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/docker-ubuntu-nginx/" class="print-no-link">#docker ubuntu nginx</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Docker】基于Ubuntu的Docker的日常使用方法</div>
+      <div>http://example.com/2025/10/03/【Docker】基于Ubuntu的Docker的日常使用方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/13/%E3%80%90SoC%E3%80%91%E3%80%90SF32%E3%80%91%E5%88%9D%E6%AC%A1%E4%BD%93%E9%AA%8C%E9%BB%84%E5%B1%B1%E6%B4%BE%E7%9A%84%E8%B6%85%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" title="【SoC】【SF32】初次体验黄山派的超详细教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【SoC】【SF32】初次体验黄山派的超详细教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/02/%E3%80%90MCU%E3%80%91%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX+CLion%E7%9A%84STM32%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境">
+                        <span class="hidden-mobile">【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1996 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、USB介绍  1.概述  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB（Universal Serial Bus，通用串行总线）是一种用于计算机与外部设备连接的接口技术。它凭借高速传输、热插拔支持、多设备兼容及即插即用特性，成为现代电子设备互联的核心纽带。  2.USB发展历程   	USB 1.0：1994 年，以 Intel 为首的七家公司">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证">
+<meta property="og:url" content="http://example.com/2025/07/07/%E3%80%90STM32%E3%80%91%E3%80%90USB%E3%80%91USB%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E5%9F%BA%E4%BA%8ECubeMX%20HAL%E5%BA%93%E7%9A%84%E4%BE%8B%E7%A8%8B%E9%AA%8C%E8%AF%81/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、USB介绍  1.概述  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB（Universal Serial Bus，通用串行总线）是一种用于计算机与外部设备连接的接口技术。它凭借高速传输、热插拔支持、多设备兼容及即插即用特性，成为现代电子设备互联的核心纽带。  2.USB发展历程   	USB 1.0：1994 年，以 Intel 为首的七家公司">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2836aa41813c4103bc1dc305d42e4be5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/14deba0e2534415cb9cd816be56694ae.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/da01003d63ff4a78978ffdfddbab1c30.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e3bf47b1b44d44d39a747d35addfd458.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/97546d8e066f41a09e253e272888e59e.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1f4c881aac304cd7b6a8b6c9fb2fc199.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/126811a0bb82493a8e2d20efc493f1d3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/50724607224d4445b03a9e9e120a9faa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/818e1e21dd414953879ec7928e344e54.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c0660053d1f747b898d7802ed22e2156.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3e12bcfe06884632ba82192955529ec8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d9c95611441d46d6b401a6e25ad4ad4b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ed34d7266d114daf860a864af7d3c1bc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6afae5bc3b804fdaabb11db066adb40e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/526db248530946c9bf28fabc32f677db.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/044ef261baef485b8152f6aaf3551083.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9673004fb14c4fed99e7713b35971d26.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/30432a0009c047b39c97af250373ccad.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd7965d2a396456ca014cdffa41633a5.png">
+<meta property="article:published_time" content="2025-07-07T02:35:41.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="stm32 USB 嵌入式 单片机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/2836aa41813c4103bc1dc305d42e4be5.png">
+  
+  
+  
+  <title>【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-07 10:35" pubdate>
+          2025年7月7日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          67 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、USB介绍</h1>
+
+<h2>1.概述</h2>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB（Universal Serial Bus，通用串行总线）</strong>是一种用于计算机与外部设备连接的接口技术。它凭借高速传输、热插拔支持、多设备兼容及即插即用特性，成为现代电子设备互联的核心纽带。</p>
+
+<h2>2.USB发展历程</h2>
+
+<ul>
+	<li><strong>USB 1.0</strong>：1994 年，以 Intel 为首的七家公司联合研发和制定了 USB 传输协议的第一个草案。1996 年，USB1.0 标准问世，理论速率为 1.5Mbit/s，但该版本未在市场上广泛使用。</li>
+	<li><strong>USB 1.1</strong>：1998 年，USB-IF 发布了 USB1.1 规范，开始逐渐占据主流市场。其高速传输速率为 12Mbit/s，低速传输速率为 1.5Mbit/s，支持热插拔、同步和异步传输并内置电源 / 低压配电装置，线缆最长 5m，最多支持 127 台设备，抗干扰能力大大增强。</li>
+	<li><strong>USB 2.0</strong>：2000 年，USB2.0 规范出台，传输速率达到 480Mbit/s，是半双工数据传输模式，且完全向后兼容之前的 USB 版本。2001 年，USB OTG 功能发布，使特定外部设备在没有电脑的情况下可以互相通讯。2007 年，推出了 Micro-USB 接口，增加了接口的稳定性，同时 USB 充电规格（USB BC）也在同年推出。</li>
+	<li><strong>USB 3.0</strong>：2008 年，Intel、Microsoft、HP 等公司组成的 USB 3.0 Promoter Group 完成了 USB 3.0（SuperSpeed USB）标准的发布，传输速率达到 5.0Gbit/s，最大输出电流 900mA，兼容 USB2.0 并支持全双工数据传输。2013 年，USB 3.1（USB SuperSpeed Gen2）标准发布，传输速率达到 10Gbit/s，供电标准提高至 20V/5A 的 100W。2017 年，USB 3.2 标准发布，在 USB Type-C 下支持双 10Gbit/s 通道，速率达 20Gbit/s。</li>
+	<li><strong>USB 4</strong>：2019 年，USB Promoter Group 发布基于雷电 3 协议开发的 USB4 协议，最大传输率达到 40Gbit/s，具备动态带宽资源分配能力并支持 USB Power Delivery 快充协议。2022 年，推出 USB4 2.0，通过 USB Type-C 接口的传输速率到达 80Gbit/s，并扩展 USB Type-C 接口性能，与 USB3.2、USB2.0 向下兼容。</li>
+</ul>
+
+<p><img alt="" height="514" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2836aa41813c4103bc1dc305d42e4be5.png" srcset="/img/loading.gif" lazyload width="825" /></p>
+
+<p><img alt="" height="430" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/14deba0e2534415cb9cd816be56694ae.png" srcset="/img/loading.gif" lazyload width="505" /></p>
+
+<h2 style="background-color:transparent">3.USB的架构</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB系统架构由几个核心组件构成，包括主机控制器、集线器、以及连接的设备等。USB系统可以被视为一个树状的拓扑结构，每个USB设备都连接到一个集线器（Hub），而集线器又连接到主机控制器，进而连接到主机计算机。</p>
+
+<p>&nbsp;&nbsp;&nbsp;<strong>&nbsp; &nbsp; （1）主机控制器（Host Controller）：</strong>这是连接USB设备与计算机系统总线的桥梁。它负责管理USB总线和处理主机与USB设备之间的通信。在USB 2.0及之前的版本中，又分为EHCI（Enhanced Host Controller Interface）和OHCI（Open Host Controller Interface）。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;主机（尤其是主控制器）控制着所有通信并向设备发出指令。共有三种常见的 USB 主控制器：</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;<span style="color:#4da8ee">1）通用主控制器接口（UHCI）：</span> 由 Intel 生产，适用于 USB 1.0 和 USB 1.1。使用 UHCI 时需要得到 Intel 的许可。该控制器支持低速模式和全速模式。<br />
+&nbsp; &nbsp; &nbsp; <span style="color:#4da8ee">&nbsp;2）开放主控制器接口（OHCI）：</span> 由 Compaq、 Microsoft 和 National Semiconductor 生产， 适用于 USB 1.0 和 1.1。该控制器支持低速模式和全速模式， 并且它的效率比 UHCI 更高， 因为可以执行更多硬件功能。<br />
+&nbsp; &nbsp; &nbsp; <span style="color:#4da8ee">&nbsp;3）扩展型主控制器接口（EHCI）：</span> 在 USB-IF 要求发布单一主控制器规范后，已经生产了该控制器，它适用于 USB2.0。 EHCI 仅支持高速传输，并且将低速和全速传输委托给 OHCI 或 UHCI 控制器执行。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;（2）集线器（Hub）：</strong>集线器允许一台主机控制器连接多个USB设备。集线器可以是物理的，也可以是虚拟的（例如在芯片内部集成）。它提供了端口的数量和位置的灵活性。</p>
+
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp;（3）USB设备（Device）：</strong>连接到USB端口的各种设备，如键盘、鼠标、打印机、存储设备等。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB设备根据其功能和通用性，可以分为不同的类别，例如大容量存储设备（Mass Storage Class）、通信设备（Communication Device Class）、音频设备（Audio Device Class）、人体学接口设备（HID - Human Interface Device Class）等等。每个类设备都遵循特定的规范，以确保与不同主机的兼容性。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB规范定义了设备必须遵守的电气、协议和机械接口的标准。USB总线提供4线连接：电源线、地线、两条数据线（D+（DP）和D-（DM））。通过这些线上的电信号和协议，USB设备能够以高效率传输数据，并且支持热插拔。</p>
+
+<h2>4.USB类设备的分类与实现</h2>
+
+<h3>（一）USB类设备的定义</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB类设备定义了设备的特定功能和行为，使设备能够被操作系统识别和驱动。每个USB类都有特定的类规范，这些规范定义了设备如何响应各种USB请求以及如何与主机通信。一些常见的USB类设备包括：&nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>（1）大容量存储设备（Mass Storage Class, MSC）：</strong>如USB闪存驱动器、外部硬盘驱动器等，它们允许用户存储和传输文件。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>（2）音频设备类（Audio Device Class）：</strong>包括麦克风、扬声器、耳机、声卡等音频设备。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>（3）通信设备类（Communication Device Class, CDC）：</strong>常用于调制解调器、ISDN终端适配器、虚拟COM端口等。<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<strong>（4）人体学接口设备（Human Interface Device, HID）：</strong>包括键盘、鼠标、游戏控制器等与人机交互相关的设备。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>（5）图像设备类（Image Device Class）：</strong>数码相机、网络摄像头等图像捕捉设备。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;每个类设备通过特定的设备请求和类特定的命令集来实现它们的功能。例如，MSC设备通过SCSI透明传输（Bulk-Only Transport）协议来实现数据传输，而HID设备则通过HID类规范定义的通信接口与主机进行数据交换。</p>
+
+<p><img alt="" height="776" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/da01003d63ff4a78978ffdfddbab1c30.png" srcset="/img/loading.gif" lazyload width="1051" /></p>
+
+<h3>（二）STM32的USB外设实现的大致步骤</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STM32的USB外设库（如STM32 USB-FS-Device）提供了实现USB类设备所需的抽象层。开发者需要通过实现回调函数来处理USB标准请求，并实现设备特定的功能。以下是实现USB类设备的一般步骤：</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>1）配置USB硬件 ：</strong>使用STM32CubeMX配置USB接口，设置时钟、中断等参数，并生成初始化代码。<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<strong>2）编写USB类驱动 ：</strong>根据设备的功能，实现相应的USB类驱动代码。例如，对于HID设备，需要实现HID相关的报告描述符和数据交换函数。<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<strong>3） 配置USB端点 ：</strong>设置用于数据传输的端点，包括端点的大小、类型和缓冲区。<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<strong>4）处理USB事件 ：</strong>实现回调函数来处理USB事件，如设备挂载（attach）、断开（detach）、配置变化等。<br />
+&nbsp; &nbsp; &nbsp;<strong>&nbsp; 5）调试和测试 ：</strong>在开发板上下载代码，进行实际设备的连接测试和调试。</p>
+
+<p><img alt="" height="619" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e3bf47b1b44d44d39a747d35addfd458.png" srcset="/img/loading.gif" lazyload width="634" /><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在STM32上实现USB类设备的过程中，开发者可以参考ST提供的示例代码和开发指南。对于较为复杂的类设备，如大容量存储设备，可以利用现成的库文件和模块，进行适当的裁剪和适配，以满足特定的需求。通过这种方式，开发者可以有效减少开发时间，提升开发效率。</p>
+
+<h2>5.USB协议栈</h2>
+
+<h3><strong>（一）USB 协议栈的分层结构</strong></h3>
+
+<p>USB 协议栈通常分为<strong>硬件层、物理层、链路层、事务层、协议层和应用层</strong>，每层功能如下：</p>
+
+<h4>1.&nbsp;<strong>硬件层（Hardware）</strong></h4>
+
+<ul>
+	<li><strong>物理接口</strong>：USB 电缆（VCC、GND、D+、D-）、连接器（A 型、B 型、Type-C 等）。</li>
+	<li><strong>控制器</strong>：主机控制器（如 xHCI）和设备控制器（如 STM32 内置 USB 模块），负责信号收发与底层协议处理。</li>
+</ul>
+
+<h4>2.&nbsp;<strong>物理层（Physical Layer）</strong></h4>
+
+<ul>
+	<li><strong>信号编码</strong>：使用 NRZI（非归零反向）编码，通过电平跳变表示数据（如 USB 2.0）。</li>
+	<li><strong>差分信号传输</strong>：通过 D + 和 D - 的电压差（&plusmn;0.3V）传输数据，抗干扰能力强。</li>
+	<li><strong>速率协商</strong>：根据设备类型自动协商低速（1.5Mbps）、全速（12Mbps）、高速（480Mbps）等模式。</li>
+</ul>
+
+<h4>3.&nbsp;<strong>链路层（Link Layer）</strong></h4>
+
+<ul>
+	<li><strong>分组格式</strong>：将数据封装为固定格式的分组（Packet），包含同步头、地址、数据和 CRC 校验。</li>
+	<li><strong>错误检测与重传</strong>：通过 CRC 校验确保数据完整性，错误时触发重传机制。</li>
+	<li><strong>流量控制</strong>：使用 NAK（未准备好）、STALL（暂停）等握手信号管理数据传输。</li>
+</ul>
+
+<h4>4.&nbsp;<strong>事务层（Transaction Layer）</strong></h4>
+
+<ul>
+	<li><strong>事务类型</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;控制事务&lt;/strong&gt;：设备枚举、配置命令（如获取设备描述符）。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;批量事务&lt;/strong&gt;：大数据量传输（如文件拷贝），无严格实时性要求。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;中断事务&lt;/strong&gt;：小数据量、周期性传输（如键盘输入）。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;同步事务&lt;/strong&gt;：实时数据流（如音频、视频），允许少量错误。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;事务组成&lt;/strong&gt;：由令牌（Token）、数据（Data）和握手（Handshake）三个阶段组成。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4>5.&nbsp;<strong>协议层（Protocol Layer）</strong></h4>
+
+<ul>
+	<li><strong>设备类协议</strong>：定义设备功能和通信规则，如：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;HID（人机接口设备）&lt;/strong&gt;：键盘、鼠标等。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;MSC（海量存储设备）&lt;/strong&gt;：U 盘、移动硬盘。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;CDC（通信设备类）&lt;/strong&gt;：虚拟串口（VCP）。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Audio（音频设备）&lt;/strong&gt;：麦克风、耳机。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;设备描述符&lt;/strong&gt;：设备向主机提供的元数据（如厂商 ID、产品 ID、支持的类）。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4>6.&nbsp;<strong>应用层（Application Layer）</strong></h4>
+
+<ul>
+	<li><strong>用户程序</strong>：通过操作系统 API（如 Windows 的 CreateFile、Linux 的 /dev/ttyUSB*）访问 USB 设备。</li>
+	<li><strong>驱动程序</strong>：将 USB 数据转换为应用可理解的格式（如串口数据、文件流）。</li>
+</ul>
+
+<h3><strong>（二）USB 协议栈的核心组件</strong></h3>
+
+<h4>1.&nbsp;<strong>设备描述符（Descriptors）</strong></h4>
+
+<ul>
+	<li><strong>设备描述符</strong>：包含厂商 ID、产品 ID、设备版本等基本信息。</li>
+	<li><strong>配置描述符</strong>：定义设备的工作模式（如支持的接口数量）。</li>
+	<li><strong>接口描述符</strong>：描述功能（如 HID 接口、音频接口）。</li>
+	<li><strong>端点描述符</strong>：指定端点地址、类型（控制 / 批量 / 中断 / 同步）和最大包大小。</li>
+</ul>
+
+<h4>2.&nbsp;<strong>端点（Endpoints）</strong></h4>
+
+<ul>
+	<li>数据传输的逻辑通道，每个端点有唯一地址和方向（IN/OUT）。</li>
+	<li><strong>端点 0</strong>：固定为控制端点，用于设备枚举和配置。</li>
+</ul>
+
+<h4>3.&nbsp;<strong>主机与设备的交互流程</strong></h4>
+
+<ol>
+	<li><strong>设备插入</strong>：主机检测到 D + 或 D - 上拉，识别设备速率。</li>
+	<li><strong>枚举过程</strong>：主机通过端点 0 获取设备描述符，分配地址。</li>
+	<li><strong>配置设备</strong>：主机选择配置并激活接口。</li>
+	<li><strong>数据传输</strong>：根据设备类协议进行数据交换。</li>
+</ol>
+
+<h3><strong>（三）数据传输流程详解</strong></h3>
+
+<h4>1.&nbsp;<strong>控制传输（以设备枚举为例）</strong></h4>
+
+<pre>
+<code class="language-cpp">主机 → 设备：[SETUP] 获取设备描述符
+设备 → 主机：[DATA0] 发送设备描述符（含厂商ID、产品ID等）
+主机 → 设备：[ACK] 确认接收
+主机 → 设备：[SETUP] 设置地址（如0x01）
+设备 → 主机：[ACK] 确认地址设置
+主机 → 设备：[SETUP] 获取配置描述符
+设备 → 主机：[DATA1] 发送配置描述符
+...</code></pre>
+
+<h4>2.&nbsp;<strong>批量传输（如 U 盘读写）</strong></h4>
+
+<pre>
+<code class="language-cpp">主机 → 设备：[OUT令牌] 发送写命令
+主机 → 设备：[DATA0] 发送数据块
+设备 → 主机：[ACK] 确认接收
+主机 → 设备：[IN令牌] 请求读取数据
+设备 → 主机：[DATA1] 发送数据块
+主机 → 设备：[ACK] 确认接收</code></pre>
+
+<h4>3.&nbsp;<strong>中断传输（如键盘输入）</strong></h4>
+
+<pre>
+<code class="language-cpp">主机周期性发送：[IN令牌] 请求键盘数据
+键盘 → 主机：[DATA0] 发送按键状态（如按下'A'键）
+主机 → 设备：[ACK] 确认接收</code></pre>
+
+<h2>6.STM32-USB</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;STM32微控制器系列由STMicroelectronics（意法半导体公司）开发，是基于ARM Cortex-M处理器的32位微控制器。它们具有高性能、低功耗以及高集成度的特点，广泛应用于工业控制、医疗设备、通信系统等领域。STM32系列微控制器支持多种通信接口，其中USB（Universal Serial Bus，通用串行总线）因其高速和易用性成为主流的通信协议之一，也被STM32集成在硬件内。</p>
+
+<p><strong>USB主要特征：</strong></p>
+
+<p>● 符合USB2.0全速设备的技术规范</p>
+
+<p>● 可配置1到8个USB端点</p>
+
+<p>● CRC(循环冗余校验)生成/校验，反向不归零(NRZI)编码/解码和位填充</p>
+
+<p>● 支持同步传输</p>
+
+<p>● 支持批量/同步端点的双缓冲区机制</p>
+
+<p>● 支持USB挂起/恢复操作</p>
+
+<p>● 帧锁定时钟脉冲生成</p>
+
+<p>注： USB和CAN共用一个专用的512字节的SRAM存储器用于数据的发送和接收，因此不能同时使用USB和CAN(共享的SRAM被USB和CAN模块互斥地访问)。 USB和CAN可以同时用于一个应用中但不能在同一个时间使用。</p>
+
+<h3><strong>（一）硬件架构</strong></h3>
+
+<h4>1.&nbsp;<strong>物理接口</strong></h4>
+
+<ul>
+	<li><strong>数据线</strong>：D+（绿色）和 D-（白色）差分信号线，传输速率 1.5Mbps（低速）或 12Mbps（全速）</li>
+	<li><strong>上拉 / 下拉电阻</strong>：
+	<ul>
+		<li><strong>Device 模式</strong>：D + 需通过 1.5k&Omega; 上拉电阻连接 VCC（全速设备）或 D - 上拉（低速设备）</li>
+		<li><strong>Host 模式</strong>：D + 和 D - 需通过 15k&Omega; 下拉电阻接地</li>
+	</ul>
+	</li>
+	<li><strong>电源</strong>：Vbus（红色）提供 5V 电源，GND（黑色）为地</li>
+</ul>
+
+<h4>2.&nbsp;<strong>内部模块</strong></h4>
+
+<ul>
+	<li><strong>USB 核心控制器</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;处理 USB 协议层（如握手、错误恢复）&lt;/li&gt;
+	&lt;li&gt;管理端点（Endpoint）和缓冲区&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;端点缓冲区&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;通常有 8 个端点（EP0~EP7），每个端点可配置为不同方向和类型&lt;/li&gt;
+	&lt;li&gt;端点 0 固定为控制端点，用于设备枚举&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;收发器&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;实现 TTL 电平和 USB 差分信号的转换&lt;/li&gt;
+	&lt;li&gt;支持 NRZI 编码和解码&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;时钟源&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;需 48MHz 精确时钟（通常由 PLL 提供）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从硬件接口功能上来说STM32系列MCU的USB分为 USB_FS 、 USB_OTG_FS 、 USB_OTG_HS 三种。其中的FS指的是全速（Full Speed），HS指的是高速（High Speed）。OTG指的是既可以作为Device（从设备）使用，也可以作为Host（主机）使用。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Full Speed 理论上速度为12Mbit/s，High Speed 理论上速度为480Mbit/s ，当然这都是理论速度，实际上通讯速度还依赖于所用通讯方式和设备性能。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于STM32系列MCU而言，USB FS的使用只要使用 DM / D- 和 DP / D+ 这两个引脚就行了，最多也就加上ID、SOF、VBUS这三个引脚。而使用USB HS大多数还需要外接PHY芯片（比如USB3300），这样使用的引脚就多了，至少也要用到12个引脚。STM32系列MCU中目前只有STM32F723内置USB HS PHY功能，不需要外接PHY芯片。</p>
+
+<h3><strong>（二）工作模式</strong></h3>
+
+<h4>1.&nbsp;<strong>Device 模式（最常用）</strong></h4>
+
+<ul>
+	<li><strong>特性</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;作为从设备连接到主机（如 PC、充电器）&lt;/li&gt;
+	&lt;li&gt;支持多种设备类（Class）：
+	&lt;ul&gt;
+		&lt;li&gt;&lt;strong&gt;HID&lt;/strong&gt;（Human Interface Device）：键盘、鼠标、游戏手柄&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;CDC&lt;/strong&gt;（Communication Device Class）：虚拟串口&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;MSC&lt;/strong&gt;（Mass Storage Class）：U 盘、移动硬盘&lt;/li&gt;
+		&lt;li&gt;&lt;strong&gt;DFU&lt;/strong&gt;（Device Firmware Upgrade）：固件升级&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;枚举流程&lt;/strong&gt;：&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主机检测连接 &rarr; 分配地址 &rarr; 获取设备描述符 &rarr; 获取配置描述符 &rarr; 设置配置 &rarr; 数据传输</p>
+
+<h4>2.&nbsp;<strong>Host 模式</strong></h4>
+
+<ul>
+	<li><strong>特性</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;作为主机控制外部 USB 设备&lt;/li&gt;
+	&lt;li&gt;需提供 5V 电源（通过 Vbus 引脚）&lt;/li&gt;
+	&lt;li&gt;支持设备热插拔检测&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;典型应用&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;读取 U 盘文件系统&lt;/li&gt;
+	&lt;li&gt;连接 USB 键盘 / 鼠标&lt;/li&gt;
+	&lt;li&gt;控制 USB 摄像头&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4>3.&nbsp;<strong>OTG 模式（仅部分型号支持）</strong></h4>
+
+<ul>
+	<li><strong>特性</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;支持双角色（Device/Host）动态切换&lt;/li&gt;
+	&lt;li&gt;通过 ID 引脚或软件判断当前角色&lt;/li&gt;
+	&lt;li&gt;支持会话请求协议（SRP）和主机协商协议（HNP）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;移动设备间直接通信（如手机与相机互传数据）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3><strong>（三）端点（Endpoint）机制</strong></h3>
+
+<h4>1.&nbsp;<strong>端点类型</strong></h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>类型</th>
+			<th>特点</th>
+			<th>应用场景</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>控制端点</strong></td>
+			<td>双向、无缓冲、低带宽</td>
+			<td>设备枚举、配置命令</td>
+		</tr>
+		<tr>
+			<td><strong>批量端点</strong></td>
+			<td>双向、有缓冲、高带宽</td>
+			<td>文件传输、大数据通信</td>
+		</tr>
+		<tr>
+			<td><strong>中断端点</strong></td>
+			<td>单向、低延迟、周期性</td>
+			<td>键盘、鼠标等实时设备</td>
+		</tr>
+		<tr>
+			<td><strong>同步端点</strong></td>
+			<td>单向、固定带宽、无握手</td>
+			<td>音频、视频等流数据</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>2.&nbsp;<strong>端点配置</strong></h4>
+
+<p>每个端点需配置：</p>
+
+<ul>
+	<li>端点号（0~7）</li>
+	<li>方向（IN/OUT）</li>
+	<li>类型（控制 / 批量 / 中断 / 同步）</li>
+	<li>最大包大小（如 64 字节、512 字节）</li>
+	<li>缓冲区地址和大小</li>
+</ul>
+
+<h3><strong>（四）软件架构</strong></h3>
+
+<h4>1.&nbsp;<strong>USB 协议栈</strong></h4>
+
+<pre>
+<code class="language-cpp">应用层 ──────────────────── 用户代码
+类驱动层 ────────────────── HID/CDC/MSC/DFU驱动
+USB设备层 ───────────────── 端点管理、数据传输
+USB核心层 ───────────────── 协议处理、中断管理
+硬件抽象层 ──────────────── 寄存器操作、底层驱动</code></pre>
+
+<h4>2.&nbsp;<strong>STM32Cube HAL 库接口</strong></h4>
+
+<pre>
+<code class="language-cpp">// 初始化USB设备
+HAL_StatusTypeDef HAL_PCD_Init(PCD_HandleTypeDef *hpcd);
+
+// 注册类驱动
+void HAL_PCD_RegisterClass(PCD_HandleTypeDef *hpcd, PCD_ClassTypeDef *pclass);
+
+// 端点数据发送
+HAL_StatusTypeDef HAL_PCD_EP_Transmit(PCD_HandleTypeDef *hpcd, uint8_t ep_addr, uint8_t *pdata, uint32_t size);
+
+// 端点数据接收
+HAL_StatusTypeDef HAL_PCD_EP_Receive(PCD_HandleTypeDef *hpcd, uint8_t ep_addr, uint8_t *pdata, uint32_t size);</code></pre>
+
+<h4>3.&nbsp;<strong>中断处理</strong></h4>
+
+<p>主要中断源：</p>
+
+<ul>
+	<li><strong>Reset 中断</strong>：USB 总线复位</li>
+	<li><strong>SOF 中断</strong>：帧开始信号（1ms 周期）</li>
+	<li><strong>端点中断</strong>：端点传输完成</li>
+	<li><strong>错误中断</strong>：CRC 错误、位填充错误等</li>
+</ul>
+
+<h3><strong>（五）典型应用场景</strong></h3>
+
+<h4>1.&nbsp;<strong>HID 设备（以鼠标为例）</strong></h4>
+
+<pre>
+<code class="language-cpp">// HID报告描述符示例（鼠标）
+const uint8_t HID_Mouse_ReportDesc[USB_HID_MOUSE_REPORT_DESC_SIZE] = {
+  0x05, 0x01,        // USAGE_PAGE (Generic Desktop)
+  0x09, 0x02,        // USAGE (Mouse)
+  0xA1, 0x01,        // COLLECTION (Application)
+  0x09, 0x01,        //   USAGE (Pointer)
+  0xA1, 0x00,        //   COLLECTION (Physical)
+  0x05, 0x09,        //     USAGE_PAGE (Button)
+  0x19, 0x01,        //     USAGE_MINIMUM (Button 1)
+  0x29, 0x03,        //     USAGE_MAXIMUM (Button 3)
+  0x15, 0x00,        //     LOGICAL_MINIMUM (0)
+  0x25, 0x01,        //     LOGICAL_MAXIMUM (1)
+  0x95, 0x03,        //     REPORT_COUNT (3)
+  0x75, 0x01,        //     REPORT_SIZE (1)
+  0x81, 0x02,        //     INPUT (Data,Var,Abs)
+  0x95, 0x01,        //     REPORT_COUNT (1)
+  0x75, 0x05,        //     REPORT_SIZE (5)
+  0x81, 0x03,        //     INPUT (Cnst,Var,Abs)
+  0x05, 0x01,        //     USAGE_PAGE (Generic Desktop)
+  0x09, 0x30,        //     USAGE (X)
+  0x09, 0x31,        //     USAGE (Y)
+  0x15, 0x81,        //     LOGICAL_MINIMUM (-127)
+  0x25, 0x7F,        //     LOGICAL_MAXIMUM (127)
+  0x75, 0x08,        //     REPORT_SIZE (8)
+  0x95, 0x02,        //     REPORT_COUNT (2)
+  0x81, 0x06,        //     INPUT (Data,Var,Rel)
+  0xC0,              //   END_COLLECTION
+  0xC0               // END_COLLECTION
+};</code></pre>
+
+<h4>2.&nbsp;<strong>CDC 虚拟串口</strong></h4>
+
+<ul>
+	<li><strong>工作原理</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;通过 USB 模拟 RS232 串口通信&lt;/li&gt;
+	&lt;li&gt;支持 AT 命令（如调制解调器）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用场景&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;调试信息输出&lt;/li&gt;
+	&lt;li&gt;设备配置接口&lt;/li&gt;
+	&lt;li&gt;数据透传&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4>3.&nbsp;<strong>MSC 海量存储</strong></h4>
+
+<ul>
+	<li><strong>工作原理</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;模拟 U 盘设备&lt;/li&gt;
+	&lt;li&gt;实现 SCSI 命令集（如 READ、WRITE）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;存储介质&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;内部 Flash&lt;/li&gt;
+	&lt;li&gt;外部 SPI Flash&lt;/li&gt;
+	&lt;li&gt;SD 卡&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3><strong>（六）开发要点</strong></h3>
+
+<h4>1.&nbsp;<strong>时钟配置</strong></h4>
+
+<ul>
+	<li>必须提供 48MHz 精确时钟给 USB 模块</li>
+	<li>通常通过 PLL 倍频得到（如 72MHz/1.5=48MHz）</li>
+</ul>
+
+<h4>2.&nbsp;<strong>电源管理</strong></h4>
+
+<ul>
+	<li>Device 模式：通过 VBUS 引脚检测主机连接</li>
+	<li>Host 模式：需通过 Vbus 引脚向外设供电</li>
+	<li>支持挂起 / 唤醒功能，降低功耗</li>
+</ul>
+
+<h4>3.&nbsp;<strong>数据传输优化</strong></h4>
+
+<ul>
+	<li>大数据量传输建议使用 DMA</li>
+	<li>合理设置端点缓冲区大小和数量</li>
+	<li>遵循 USB 协议的数据包大小限制</li>
+</ul>
+
+<h3><strong>（七）参考资源</strong></h3>
+
+<ol>
+	<li><strong>官方文档</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;STM32 参考手册（RM）中 &amp;quot;USB 全速设备&amp;quot; 章节&lt;/li&gt;
+	&lt;li&gt;STM32Cube HAL 库用户手册（UM）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;固件库&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;STM32Cube FW_F1（F1 系列）&lt;/li&gt;
+	&lt;li&gt;STM32Cube FW_F4（F4 系列）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;应用笔记&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;AN3156：USB CDC 通信实现&lt;/li&gt;
+	&lt;li&gt;AN3587：USB MSC 海量存储实现&lt;/li&gt;
+	&lt;li&gt;AN4221：USB OTG 双角色应用&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通过合理配置 USB 外设，STM32 可轻松实现各种 USB 功能，为嵌入式系统提供强大的通信能力。</p>
+
+<h1>二、USB-CDC类虚拟串口（VCP）的例程验证</h1>
+
+<h2>（一）STM32-VCP理论知识</h2>
+
+<p>STM32内置的USB，均可支持USB 2.0标准，可以支持三种传输速率：</p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;高速模式：</strong>最高可达480 Mbps &nbsp;（部分型号支持，且需搭配外部芯片，不常用，同时，需要搭配外围USB PHY芯片，如USB3300，硬件成本偏高)<br />
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;全速模式：</strong>最高可达12 Mbps &nbsp; &nbsp; &nbsp;(最常用，电路简单）<br />
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;低速模式：</strong>最高可达1.5 Mbps &nbsp; &nbsp;&nbsp;<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从机在PCB布线时，仅需把STM32的引脚PA11、PA12, &nbsp;连接至USB座的DP、DM，然后，PA12(DP线)用1.5K电阻上拉至3.3V。具体如下图：</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/97546d8e066f41a09e253e272888e59e.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p>注：</p>
+
+<p><strong>为什么是上拉？</strong></p>
+
+<p>插拔检测：设备未插入时，主机端DP、DM为低电平，当发现被置高，即为有设备插入；</p>
+
+<p>区分速率：DM线上拉是低速模式，DP线上拉是全速\高速模式；</p>
+
+<p>上拉电压：3.3V。USB通信电平是3.3V，而不是总线供电的5V。</p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;USB虚拟串口</strong>，简称VPC，Virtual Port Com 的简写。但更习惯于把虚拟串口叫作: CDC，因为它是利用 USB 的 CDC类 实现的一种通信接口。利用STM32CubeMX可以快速配置并实现该功能，但是也可以使用ST提供的关于USB的设备库源码进行手动移植操作。</p>
+
+<p>提示：1）Win10、Win11 已带虚拟串口驱动；2）无需安装任何驱动;&nbsp;Win7 要提前手动安装驱动，否则无法识别 ：虚拟串口驱动 下载。</p>
+
+<h2><strong>（二）使用STM32CubeMX配置生成代码</strong></h2>
+
+<h3>1.&nbsp; 打开STM32CubeMX新建工程并选择芯片</h3>
+
+<p><img alt="" height="840" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1f4c881aac304cd7b6a8b6c9fb2fc199.png" srcset="/img/loading.gif" lazyload width="1409" /></p>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/126811a0bb82493a8e2d20efc493f1d3.png" srcset="/img/loading.gif" lazyload width="1866" /></p>
+
+<h3>2.RCC</h3>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/50724607224d4445b03a9e9e120a9faa.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>3.SWD</h3>
+
+<p><img alt="" height="1001" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/818e1e21dd414953879ec7928e344e54.png" srcset="/img/loading.gif" lazyload width="1895" /></p>
+
+<h3>4.激活USB，使用默认配置</h3>
+
+<p>开启GPIO-PD6拉低使能USB，由野火指南者开发板原理图可知</p>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c0660053d1f747b898d7802ed22e2156.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3e12bcfe06884632ba82192955529ec8.png" srcset="/img/loading.gif" lazyload width="1917" /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d9c95611441d46d6b401a6e25ad4ad4b.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>5.使用STM32CubeMX集成的中间件USB_DEVICE下的CDC类-VPC，仍然使用默认配置或者按照自己的需求更改</h3>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ed34d7266d114daf860a864af7d3c1bc.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;以下是配置参数说明：</p>
+
+<p><img alt="" height="774" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6afae5bc3b804fdaabb11db066adb40e.png" srcset="/img/loading.gif" lazyload width="963" /></p>
+
+<pre>
+<code class="language-cpp">以下是对这些 STM32 USB 配置参数 的详细解释，结合 USB 协议和 STM32 USB 库（如 CubeMX 生成的配置）的作用说明：
+1. USBD_MAX_NUM_INTERFACES
+参数名：Maximum number of supported interfaces（支持的最大接口数）
+含义：
+USB 设备可以包含 多个 “接口（Interface）”，每个接口对应一种功能（如 “CDC 串口功能”“HID 键盘功能” 等）。
+该参数定义了你开发的 USB 设备最多能支持多少个独立的接口。
+范围要求：1 ~ 255（由 USB 协议地址空间决定，7 位地址理论最大 127 设备，但接口数独立限制）。
+典型场景：
+若做 复合设备（Composite Device）（如同时支持 “虚拟串口 + 自定义 HID”），需根据实际功能数调整。
+普通单功能设备（如仅 CDC 或仅 MSC）设为 1 即可。
+2. USBD_MAX_NUM_CONFIGURATION
+参数名：Maximum number of supported configuration（支持的最大配置数）
+含义：
+USB 设备可以有 多种 “配置（Configuration）”，不同配置可切换设备的功能组合、功耗等。
+该参数定义设备最多支持多少套配置。
+绝大多数场景下，设备只需 1 套配置（简单设备用默认配置即可）。
+典型场景：
+复杂设备可能需要 “高功耗模式（多功能全开）” 和 “低功耗模式（仅基础功能）”，这时需 2 套配置切换。
+3. USBD_MAX_STR_DESC_SIZ
+参数名：Maximum size for the string descriptors（字符串描述符的最大长度）
+含义：
+USB 设备的 字符串描述符 用于向主机报告文本信息（如厂商名、产品名、序列号等）。
+该参数限制单个字符串描述符的最大字节数（需包含 Unicode 编码、长度、类型等 overhead）。
+设为 512 bytes 属于比较充裕的配置，可容纳较长的字符串（如详细产品描述）。
+注意：
+实际字符串长度受 USB 协议限制（理论单字符串最多 126 字节有效内容，因描述符头占 2 字节），但库配置可留冗余。
+4. USBD_SELF_POWERED
+参数名：Enabled self power（启用自供电模式）
+含义：
+USB 设备供电模式分两种：
+总线供电（Bus-Powered）：从 USB 总线取电（主机 / Hub 提供 5V），电流受限（通常 ≤500mA）。
+自供电（Self-Powered）：设备自身有独立电源（如外接电源、电池），向总线报告 “不依赖总线供电”。
+设为 Enabled 表示设备是 自供电设备，主机需调整对设备的电流限制策略。
+典型场景：
+若设备外接电源（如带电源适配器的仪器），选 Self-Powered；若仅靠 USB 线供电，选 Bus-Powered。
+5. USBD_DEBUG_LEVEL
+参数名：USBD Debug Level（USB 设备库调试级别）
+含义：
+控制 STM32 USB 设备库是否输出 调试日志，方便开发时排查问题。
+选项：
+0: No debug message：关闭调试日志（发布版常用，避免日志占用资源）。
+1: Error：仅输出错误日志。
+2: Warning：输出错误 + 警告。
+3: Info：输出详细信息（开发阶段排障常用）。
+使用建议：
+开发时可临时设为 3 看详细流程，发布前改回 0 减少开销。
+6. USB CDC Rx Buffer Size
+参数名：USB CDC Rx Buffer Size（USB CDC 接收缓冲区大小）
+含义：
+当设备工作在 CDC（虚拟串口）类 时，该参数定义：
+设备端接收主机数据的缓冲区大小（即从 USB 总线收数据，暂存到 RAM 的缓冲区）。
+设为 1024 Bytes 表示最多一次暂存 1KB 数据，避免因主机发数据过快导致溢出。
+注意：
+若需传输大文件 / 高频数据，可适当增大；但会占用更多 RAM，需平衡。
+7. USB CDC Tx Buffer Size
+参数名：USB CDC Tx Buffer Size（USB CDC 发送缓冲区大小）
+含义：
+当设备工作在 CDC（虚拟串口）类 时，该参数定义：
+设备端向主机发送数据的缓冲区大小（即从用户代码取数据，暂存到 RAM 等待 USB 发送的缓冲区）。
+设为 1024 Bytes 表示最多一次缓存 1KB 数据，避免因 USB 发送慢导致用户数据堆积。
+典型场景：
+若设备需高频发数据（如传感器实时流），可增大缓冲区；但同样要权衡 RAM 占用。</code></pre>
+
+<p><img alt="" height="687" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/526db248530946c9bf28fabc32f677db.png" srcset="/img/loading.gif" lazyload width="974" /></p>
+
+<pre>
+<code class="language-cpp">1. Device Descriptor（设备描述符）
+VID (Vendor Identifier)
+含义：厂商识别码，由 USB-IF（USB Implementers Forum）分配，全球唯一 ，用于区分不同厂商。
+这里 1155 是 STMicroelectronics（意法半导体）的 VID ，主机通过它识别 “这是 ST 的设备”。
+LANGID_STRING (Language Identifier)
+含义：语言标识符，定义设备字符串描述符（厂商名、产品名等）使用的语言。
+这里 English(United States) 表示字符串是 “美式英语”，主机据此解析文本编码。
+2. Device Descriptor FS（全速设备描述符，FS=Full Speed）
+USB 设备可支持多种速度（如全速 12Mbps、高速 480Mbps ），Device Descriptor FS 是全速模式下的设备子描述符，补充更多细节：
+
+PID (Product Identifier)
+含义：产品识别码，由厂商自定义（需在 USB-IF 备案），用于区分同一厂商的不同产品。
+这里 22336 是 STM32 虚拟串口（Virtual ComPort）的 PID ，主机通过 VID=1155 + PID=22336 识别 “这是 STM32 的虚拟串口设备”。
+PRODUCT_STRING (Product Identifier)
+含义：产品名字符串，给用户 / 系统显示的设备名称（如在设备管理器里看到的名字 ）。
+这里 STM32 Virtual ComPort 表示 “这是 STM32 的虚拟串口设备”。
+CONFIGURATION_STRING (Configuration Identifier)
+含义：配置名字符串，描述设备当前配置的功能（一个设备可有多套配置，切换功能 / 功耗 ）。
+这里 CDC Config 表示当前配置是 “CDC（虚拟串口）功能配置”。
+INTERFACE_STRING (Interface Identifier)
+含义：接口名字符串，描述设备的接口功能（一个配置可包含多个接口，每个接口对应一类功能 ）。
+这里 CDC Interface 表示该接口是 “CDC 类接口”（实现虚拟串口通信）。</code></pre>
+
+<h3>6.配置时钟树</h3>
+
+<h3 style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/044ef261baef485b8152f6aaf3551083.png" srcset="/img/loading.gif" lazyload /></h3>
+
+<h3>7.工程配置</h3>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9673004fb14c4fed99e7713b35971d26.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/30432a0009c047b39c97af250373ccad.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>（三）代码编写</h2>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "usb_device.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "usbd_cdc_if.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USB_DEVICE_Init();
+  /* USER CODE BEGIN 2 */
+	uint8_t TX[] = "abc\r\n";
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	  HAL_Delay(2000);
+	  CDC_Transmit_FS(TX, 5);
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+  RCC_PeriphCLKInitTypeDef PeriphClkInit = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL6;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_1) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_USB;
+  PeriphClkInit.UsbClockSelection = RCC_USBCLKSOURCE_PLL;
+  if (HAL_RCCEx_PeriphCLKConfig(&amp;PeriphClkInit) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<p>&nbsp;usbd_cdc_if.c</p>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : usbd_cdc_if.c
+  * @version        : v2.0_Cube
+  * @brief          : Usb device for Virtual Com Port.
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+
+/* Includes ------------------------------------------------------------------*/
+#include "usbd_cdc_if.h"
+
+/* USER CODE BEGIN INCLUDE */
+
+/* USER CODE END INCLUDE */
+
+/* Private typedef -----------------------------------------------------------*/
+/* Private define ------------------------------------------------------------*/
+/* Private macro -------------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE END PV */
+
+/** @addtogroup STM32_USB_OTG_DEVICE_LIBRARY
+  * @brief Usb device library.
+  * @{
+  */
+
+/** @addtogroup USBD_CDC_IF
+  * @{
+  */
+
+/** @defgroup USBD_CDC_IF_Private_TypesDefinitions USBD_CDC_IF_Private_TypesDefinitions
+  * @brief Private types.
+  * @{
+  */
+
+/* USER CODE BEGIN PRIVATE_TYPES */
+
+/* USER CODE END PRIVATE_TYPES */
+
+/**
+  * @}
+  */
+
+/** @defgroup USBD_CDC_IF_Private_Defines USBD_CDC_IF_Private_Defines
+  * @brief Private defines.
+  * @{
+  */
+
+/* USER CODE BEGIN PRIVATE_DEFINES */
+/* USER CODE END PRIVATE_DEFINES */
+
+/**
+  * @}
+  */
+
+/** @defgroup USBD_CDC_IF_Private_Macros USBD_CDC_IF_Private_Macros
+  * @brief Private macros.
+  * @{
+  */
+
+/* USER CODE BEGIN PRIVATE_MACRO */
+
+/* USER CODE END PRIVATE_MACRO */
+
+/**
+  * @}
+  */
+
+/** @defgroup USBD_CDC_IF_Private_Variables USBD_CDC_IF_Private_Variables
+  * @brief Private variables.
+  * @{
+  */
+/* Create buffer for reception and transmission           */
+/* It's up to user to redefine and/or remove those define */
+/** Received data over USB are stored in this buffer      */
+uint8_t UserRxBufferFS[APP_RX_DATA_SIZE];
+
+/** Data to send over USB CDC are stored in this buffer   */
+uint8_t UserTxBufferFS[APP_TX_DATA_SIZE];
+
+/* USER CODE BEGIN PRIVATE_VARIABLES */
+
+/* USER CODE END PRIVATE_VARIABLES */
+
+/**
+  * @}
+  */
+
+/** @defgroup USBD_CDC_IF_Exported_Variables USBD_CDC_IF_Exported_Variables
+  * @brief Public variables.
+  * @{
+  */
+
+extern USBD_HandleTypeDef hUsbDeviceFS;
+
+/* USER CODE BEGIN EXPORTED_VARIABLES */
+
+/* USER CODE END EXPORTED_VARIABLES */
+
+/**
+  * @}
+  */
+
+/** @defgroup USBD_CDC_IF_Private_FunctionPrototypes USBD_CDC_IF_Private_FunctionPrototypes
+  * @brief Private functions declaration.
+  * @{
+  */
+
+static int8_t CDC_Init_FS(void);
+static int8_t CDC_DeInit_FS(void);
+static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length);
+static int8_t CDC_Receive_FS(uint8_t* pbuf, uint32_t *Len);
+
+/* USER CODE BEGIN PRIVATE_FUNCTIONS_DECLARATION */
+
+/* USER CODE END PRIVATE_FUNCTIONS_DECLARATION */
+
+/**
+  * @}
+  */
+
+USBD_CDC_ItfTypeDef USBD_Interface_fops_FS =
+{
+  CDC_Init_FS,
+  CDC_DeInit_FS,
+  CDC_Control_FS,
+  CDC_Receive_FS
+};
+
+/* Private functions ---------------------------------------------------------*/
+/**
+  * @brief  Initializes the CDC media low layer over the FS USB IP
+  * @retval USBD_OK if all operations are OK else USBD_FAIL
+  */
+static int8_t CDC_Init_FS(void)
+{
+  /* USER CODE BEGIN 3 */
+  /* Set Application Buffers */
+  USBD_CDC_SetTxBuffer(&amp;hUsbDeviceFS, UserTxBufferFS, 0);
+  USBD_CDC_SetRxBuffer(&amp;hUsbDeviceFS, UserRxBufferFS);
+  return (USBD_OK);
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief  DeInitializes the CDC media low layer
+  * @retval USBD_OK if all operations are OK else USBD_FAIL
+  */
+static int8_t CDC_DeInit_FS(void)
+{
+  /* USER CODE BEGIN 4 */
+  return (USBD_OK);
+  /* USER CODE END 4 */
+}
+
+/**
+  * @brief  Manage the CDC class requests
+  * @param  cmd: Command code
+  * @param  pbuf: Buffer containing command data (request parameters)
+  * @param  length: Number of data to be sent (in bytes)
+  * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+  */
+static int8_t CDC_Control_FS(uint8_t cmd, uint8_t* pbuf, uint16_t length)
+{
+  /* USER CODE BEGIN 5 */
+  switch(cmd)
+  {
+    case CDC_SEND_ENCAPSULATED_COMMAND:
+
+    break;
+
+    case CDC_GET_ENCAPSULATED_RESPONSE:
+
+    break;
+
+    case CDC_SET_COMM_FEATURE:
+
+    break;
+
+    case CDC_GET_COMM_FEATURE:
+
+    break;
+
+    case CDC_CLEAR_COMM_FEATURE:
+
+    break;
+
+  /*******************************************************************************/
+  /* Line Coding Structure                                                       */
+  /*-----------------------------------------------------------------------------*/
+  /* Offset | Field       | Size | Value  | Description                          */
+  /* 0      | dwDTERate   |   4  | Number |Data terminal rate, in bits per second*/
+  /* 4      | bCharFormat |   1  | Number | Stop bits                            */
+  /*                                        0 - 1 Stop bit                       */
+  /*                                        1 - 1.5 Stop bits                    */
+  /*                                        2 - 2 Stop bits                      */
+  /* 5      | bParityType |  1   | Number | Parity                               */
+  /*                                        0 - None                             */
+  /*                                        1 - Odd                              */
+  /*                                        2 - Even                             */
+  /*                                        3 - Mark                             */
+  /*                                        4 - Space                            */
+  /* 6      | bDataBits  |   1   | Number Data bits (5, 6, 7, 8 or 16).          */
+  /*******************************************************************************/
+    case CDC_SET_LINE_CODING:
+
+    break;
+
+    case CDC_GET_LINE_CODING:
+
+    break;
+
+    case CDC_SET_CONTROL_LINE_STATE:
+
+    break;
+
+    case CDC_SEND_BREAK:
+
+    break;
+
+  default:
+    break;
+  }
+
+  return (USBD_OK);
+  /* USER CODE END 5 */
+}
+
+/**
+  * @brief  Data received over USB OUT endpoint are sent over CDC interface
+  *         through this function.
+  *
+  *         @note
+  *         This function will issue a NAK packet on any OUT packet received on
+  *         USB endpoint until exiting this function. If you exit this function
+  *         before transfer is complete on CDC interface (ie. using DMA controller)
+  *         it will result in receiving more data while previous ones are still
+  *         not sent.
+  *
+  * @param  Buf: Buffer of data to be received
+  * @param  Len: Number of data received (in bytes)
+  * @retval Result of the operation: USBD_OK if all operations are OK else USBD_FAIL
+  */
+static int8_t CDC_Receive_FS(uint8_t* Buf, uint32_t *Len)
+{
+  /* USER CODE BEGIN 6 */
+	
+	CDC_Transmit_FS(Buf, *Len);
+	
+	
+  USBD_CDC_SetRxBuffer(&amp;hUsbDeviceFS, &amp;Buf[0]);
+  USBD_CDC_ReceivePacket(&amp;hUsbDeviceFS);
+  return (USBD_OK);
+  /* USER CODE END 6 */
+}
+
+/**
+  * @brief  CDC_Transmit_FS
+  *         Data to send over USB IN endpoint are sent over CDC interface
+  *         through this function.
+  *         @note
+  *
+  *
+  * @param  Buf: Buffer of data to be sent
+  * @param  Len: Number of data to be sent (in bytes)
+  * @retval USBD_OK if all operations are OK else USBD_FAIL or USBD_BUSY
+  */
+uint8_t CDC_Transmit_FS(uint8_t* Buf, uint16_t Len)
+{
+  uint8_t result = USBD_OK;
+  /* USER CODE BEGIN 7 */
+  USBD_CDC_HandleTypeDef *hcdc = (USBD_CDC_HandleTypeDef*)hUsbDeviceFS.pClassData;
+  if (hcdc-&gt;TxState != 0){
+    return USBD_BUSY;
+  }
+  USBD_CDC_SetTxBuffer(&amp;hUsbDeviceFS, Buf, Len);
+  result = USBD_CDC_TransmitPacket(&amp;hUsbDeviceFS);
+  /* USER CODE END 7 */
+  return result;
+}
+
+/* USER CODE BEGIN PRIVATE_FUNCTIONS_IMPLEMENTATION */
+
+/* USER CODE END PRIVATE_FUNCTIONS_IMPLEMENTATION */
+
+/**
+  * @}
+  */
+
+/**
+  * @}
+  */
+</code></pre>
+
+<h2>（四）实验效果</h2>
+
+<p><img alt="" height="684" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd7965d2a396456ca014cdffa41633a5.png" srcset="/img/loading.gif" lazyload width="874" /></p>
+
+<p><br />
+<strong>参考链接：<br />
+&nbsp; &nbsp; &nbsp; &nbsp;</strong><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="STM32 USB通信知识与应用详解" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_49735366/article/details/144367871?sharetype=blog&amp;shareId=144367871&amp;sharerefer=APP&amp;sharesource=qq_73648789&amp;sharefrom=qq" title="STM32 USB通信知识与应用详解">STM32 USB通信知识与应用详解</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="STM32 USB功能深入解析及应用指南" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_33173126/article/details/148062131?sharetype=blog&amp;shareId=148062131&amp;sharerefer=APP&amp;sharesource=qq_73648789&amp;sharefrom=qq" title="STM32 USB功能深入解析及应用指南">STM32 USB功能深入解析及应用指南</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="基于STM32讲USB" target="_blank" rel="noopener" href="https://blog.csdn.net/yu7i7i/article/details/127515361?sharetype=blog&amp;shareId=127515361&amp;sharerefer=APP&amp;sharesource=qq_73648789&amp;sharefrom=qq" title="基于STM32讲USB">基于STM32讲USB</a>&nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title=" 【正点原子STM32连载】 第六十一章 USB虚拟串口实验摘自【正点原子】STM32F103 战舰开发指南V1.2" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_55796564/article/details/131786543" title=" 【正点原子STM32连载】 第六十一章 USB虚拟串口实验摘自【正点原子】STM32F103 战舰开发指南V1.2">&nbsp;【正点原子STM32连载】 第六十一章 USB虚拟串口实验摘自【正点原子】STM32F103 战舰开发指南V1.2</a></p>
+
+<p>&nbsp; &nbsp; &nbsp; <a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title=" 【STM32H7】第8章 学习USB协议栈前要了解的基础知识" target="_blank" rel="noopener" href="https://blog.csdn.net/Simon223/article/details/114029947" title=" 【STM32H7】第8章 学习USB协议栈前要了解的基础知识">&nbsp;【STM32H7】第8章 学习USB协议栈前要了解的基础知识</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="STM32 USB开发全面指南：从基础到应用" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_42589700/article/details/148457922?spm=1001.2101.3001.6650.5&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-5-148457922-blog-114029947.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EYuanLiJiHua%7EPosition-5-148457922-blog-114029947.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;utm_relevant_index=9" title="STM32 USB开发全面指南：从基础到应用">STM32 USB开发全面指南：从基础到应用</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="STM32的USB接口介绍" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38072731/article/details/140986805?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-1-140986805-blog-146330266.235^v43^pc_blog_bottom_relevance_base8&amp;spm=1001.2101.3001.4242.2&amp;utm_relevant_index=3" title="STM32的USB接口介绍">STM32的USB接口介绍</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="stm32学习记录-通讯接口-USB" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_60111912/article/details/143629143?spm=1001.2101.3001.6650.18&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-18-143629143-blog-140986805.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-18-143629143-blog-140986805.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;utm_relevant_index=24" title="stm32学习记录-通讯接口-USB">stm32学习记录-通讯接口-USB</a><br />
+&nbsp; &nbsp; &nbsp; <a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title=" 硬汉嵌入式" target="_blank" rel="noopener" href="https://www.armbbs.cn/forum.php?mod=viewthread&amp;tid=99710" title=" 硬汉嵌入式">&nbsp;硬汉嵌入式</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="博客园-野火指南者USB" target="_blank" rel="noopener" href="https://www.cnblogs.com/couvrir/p/17461078.html" title="博客园-野火指南者USB">博客园-野火指南者USB</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/stm32-USB-%E5%B5%8C%E5%85%A5%E5%BC%8F-%E5%8D%95%E7%89%87%E6%9C%BA/" class="print-no-link">#stm32 USB 嵌入式 单片机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证</div>
+      <div>http://example.com/2025/07/07/【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8E%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8CHAL%E5%BA%93%E5%88%86%E5%88%AB%E5%AE%9E%E7%8E%B0RS485%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" title="【STM32】基于标准库和HAL库分别实现RS485通信方式">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【STM32】基于标准库和HAL库分别实现RS485通信方式</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/" title="【STM32】CAN通讯的学习笔记以及项目实战">
+                        <span class="hidden-mobile">【STM32】CAN通讯的学习笔记以及项目实战</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

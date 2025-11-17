@@ -1,0 +1,985 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;最近，在基于w800开发板环境下的学习过程中，由于在Windows下使用联盛VSCode+SDK，或者win下的命令行ide环境中的编译速度实在不尽如人意，于是笔者就开始转战Ubuntu下的联盛德提供的Linux环境配置，但是由于笔者之前搞了其他的环境，于是就用到了pyenv来管理python版本。但是，由于这个pyenv的py">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置">
+<meta property="og:url" content="http://example.com/2025/08/10/%E3%80%90Ubuntu%E3%80%91%E3%80%90pyenv%E3%80%91%E3%80%90python%E3%80%91%E5%9F%BA%E4%BA%8Epyenv%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B8%8B%EF%BC%8C%E5%AF%B9%E4%BA%8E%E7%89%B9%E5%AE%9Apython%E7%89%88%E6%9C%AC%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%A6%81%E6%B1%82%E4%B8%8B%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;最近，在基于w800开发板环境下的学习过程中，由于在Windows下使用联盛VSCode+SDK，或者win下的命令行ide环境中的编译速度实在不尽如人意，于是笔者就开始转战Ubuntu下的联盛德提供的Linux环境配置，但是由于笔者之前搞了其他的环境，于是就用到了pyenv来管理python版本。但是，由于这个pyenv的py">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f4326a138dac4196a5623e3d2b9fcef2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4e33db82269746e3ad385c8ac4e6875a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8d3a8c6652434a51be64fa4a810db6c9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/29938c2b82824af5af5a8ab9236c89ed.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0953f1a8a8b24cd28705dde2805adeee.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1cb1df882e2440f5a5a54dbc447d5f3f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f0fb437092af4443ba403084a482223e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2037168b0c5d4512bb94903642c10101.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0fedbdd4d33c4ac6b2db881af05760a0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6b33bad13064454d91ca675c45f71185.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/62a9b7f65c394177a50a291c293df995.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/315fdc37eb7e43d69cb5e936ddccce9e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/79af9677959f4d3daa1eaaf2ce3031f4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1aec8fe42ed647418d50945fc31686f3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fd4f79df0bad42b3b979aff8eabaf022.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/30d6ff25875a456690ee3f7133740f91.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/42ae0fb583ac4a849c05f55df9b92792.png">
+<meta property="article:published_time" content="2025-08-09T16:55:32.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ubuntu linux 嵌入式Linux">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/f4326a138dac4196a5623e3d2b9fcef2.png">
+  
+  
+  
+  <title>【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-10 00:55" pubdate>
+          2025年8月10日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;最近，在基于w800开发板环境下的学习过程中，由于在Windows下使用联盛VSCode+SDK，或者win下的命令行ide环境中的编译速度实在不尽如人意，于是笔者就开始转战Ubuntu下的联盛德提供的Linux环境配置，但是由于笔者之前搞了其他的环境，于是就用到了pyenv来管理python版本。但是，由于这个pyenv的python与Ubuntu系统自带的python3有时会冲突，有些时候使用SDK会默认使用系统自带的python导致编译不过，在此记录一些解决方法。</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="WM IoT SDK 编程指南 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/" title="WM IoT SDK 编程指南 — WinnerMicro 在线文档">WM IoT SDK 编程指南 &mdash; WinnerMicro 在线文档</a></p>
+
+<h1>二、相关设置</h1>
+
+<p>部分命令：</p>
+
+<pre>
+<code class="language-cpp">## 查看帮助文档
+pyenv
+
+## 查看某个命令帮助文档
+pyenv install --help
+
+## 查看版本
+pyenv version
+
+## 检查 Python 是否正常运行
+python -c "import sys; print(sys.executable)"
+
+## 查看已安装的 Python 版本
+pyenv versions
+
+## 查看当前使用的 Python 版本
+pyenv version
+
+## 查看所有可用的 Python 版
+pyenv install --list 
+
+## 安装指定版本
+pyenv install 3.9.1
+
+## 验证
+python --version
+
+## 卸载指定版本
+pyenv uninstall 3.9.1
+
+## 全局指定 Python 版本（影响所有项目）
+pyenv global 3.9.1 
+
+## 局部指定 Python 版本（仅影响当前项目目录），指定后在当前项目目录内创建 .python-version 文件，保存版本信息
+## 优先级高于 global
+pyenv local 3.9.1
+
+## 会话级指定 Python 版本（影响所有项目）
+pyenv shell 3.9.1 
+
+## 查看 python 的安装目录
+pyenv which python
+
+## 重新生成 pyenv 的 shims 目录中的可执行文件
+pyenv rehash 
+</code></pre>
+
+<h2 style="background-color:transparent">2.1 对于pyenv的下载缓慢问题</h2>
+
+<h3 style="background-color:transparent">2.1.1 常用方法</h3>
+
+<h4>（1）查看pyenv已经安装的版本</h4>
+
+<p><img alt="" height="116" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f4326a138dac4196a5623e3d2b9fcef2.png" srcset="/img/loading.gif" lazyload width="424" /></p>
+
+<h4>（2）列出所有可以安装的版本，有普通的python，还有anaconda、jython</h4>
+
+<pre>
+<code class="language-python">pyenv install --list</code></pre>
+
+<h4>（3）另辟蹊径，按住ctrl键点击这个网址打开去手动进入网页下载</h4>
+
+<p>有些时候会卡在这里</p>
+
+<p><img alt="" height="79" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4e33db82269746e3ad385c8ac4e6875a.png" srcset="/img/loading.gif" lazyload width="643" /></p>
+
+<p><img alt="" height="178" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8d3a8c6652434a51be64fa4a810db6c9.png" srcset="/img/loading.gif" lazyload width="671" /></p>
+
+<h4>（4）找到你安装的pyenv的本体的文件夹所在的地方，在/pyenv/下创建一个cache文件夹，这其实就是缓存文件夹，将你在网页下载的python包放在cache文件夹下，然后，后面就在使用命令行</h4>
+
+<pre>
+<code class="language-python">pyenv install 版本号</code></pre>
+
+<h4>安装在网页下载的python包对应的版本，实际上它pyenv内部会检出cache文件夹内的python包缓存，就不用再使用http拉取了，会直接解压cache文件夹内的python包，然后导入到你的pyenv内部</h4>
+
+<p><img alt="" height="136" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/29938c2b82824af5af5a8ab9236c89ed.png" srcset="/img/loading.gif" lazyload width="278" /></p>
+
+<h4>（5）放入cache文件夹</h4>
+
+<p><img alt="" height="176" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0953f1a8a8b24cd28705dde2805adeee.png" srcset="/img/loading.gif" lazyload width="555" /></p>
+
+<h4>（5）输入指令重新安装，如果要指定修改镜像源需要.pyenv添加文件，但是笔者用的其他方式安装的pyenv就不用这个方法了，可以看看其他文章</h4>
+
+<pre>
+<code class="language-bash">pyenv install 版本号</code></pre>
+
+<p><img alt="" height="312" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1cb1df882e2440f5a5a54dbc447d5f3f.png" srcset="/img/loading.gif" lazyload width="858" /></p>
+
+<h4>注：可以指定镜像网站下载到cache文件夹</h4>
+
+<pre>
+<code class="language-bash">#wget https://mirrors.huaweicloud.com/python/${v}/Python-${v}.tar.xz -P ~/.pyenv/cache/
+
+wget https://mirrors.huaweicloud.com/python/3.9.0/Python-3.9.0.tar.xz -P ~/.pyenv/cache/</code></pre>
+
+<h2 style="background-color:transparent">2.2 对于Ubuntu的命令环境下的WM IoT SDK</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="Linux 搭建命令行编译环境 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/get_started/linux.html" title="Linux 搭建命令行编译环境 — WinnerMicro 在线文档">Linux 搭建命令行编译环境 &mdash; WinnerMicro 在线文档</a></p>
+
+<p>根据文档的步骤一步步部署就可以了，但是其中，有些需要注意的地方，在这里会指出来。</p>
+
+<h3>2.2.1 根据2.1.1来，pyenv安装python3.8.10</h3>
+
+<p>其他的正常使用apt/apt-get安装</p>
+
+<p><img alt="" height="455" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f0fb437092af4443ba403084a482223e.png" srcset="/img/loading.gif" lazyload width="922" /></p>
+
+<p>注：这里使用的apt安装的工具就不用添加环境变量了</p>
+
+<p>同时，激活一下变成全局的配置</p>
+
+<pre>
+<code class="language-bash">pyenv global 版本号</code></pre>
+
+<p><img alt="" height="164" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2037168b0c5d4512bb94903642c10101.png" srcset="/img/loading.gif" lazyload width="601" /></p>
+
+<h3>2.2.2 由上一步安装了pyenv的python3.8.10，然后，我们的目标是使用pyenv的python3.8.10，所以要指定使用pyenv的python3.8.10来安装这个SDK运行需要的python3.8.10的依赖工具环境。全局的pyenv的python3.8.10的配置后面说。</h3>
+
+<p><img alt="" height="142" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0fedbdd4d33c4ac6b2db881af05760a0.png" srcset="/img/loading.gif" lazyload width="591" /></p>
+
+<pre>
+<code class="language-bash">#requirements.txt里是WM SDK需要的有些依赖工具包
+
+/home/zky/Pyenv/pyenv/versions/3.8.10/bin/python -m pip install --user --break-system-packages -r /home/wm/wm_iot_sdk/tools/wm/requirements.txt</code></pre>
+
+<p><img alt="" height="325" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6b33bad13064454d91ca675c45f71185.png" srcset="/img/loading.gif" lazyload width="708" /></p>
+
+<pre>
+<code class="language-bash">sudo apt-get install python-tk</code></pre>
+
+<h3 style="background-color:transparent">2.2.3 将pyenv的python3.8.10配置为全局，这样子SDK的wm.py就不会调用ubuntu的默认的系统python3，需要编写~/.bashrc里面添加环境变量路径（像windows的path一样）</h3>
+
+<h4>（1）向.bashrc里添加</h4>
+
+<p>使用笔记本打开或者vim打开.bashrc编辑</p>
+
+<pre>
+<code class="language-bash">#设置 WM IoT SDK 路径（替换为你的SDK实际路径）这个SDK作为Linux里的命令行环境
+#vscode的wmsdk插件可以使用其他SDK
+#你的SDK实际存放路径
+export WM_IOT_SDK_PATH=/home/zky/SoftwaresHub/wm/wm_iot_sdk_v2_4/wm_iot_sdk  
+# 将 wm.py 工具添加到环境变量
+export PATH=$WM_IOT_SDK_PATH/tools/wm:$PATH
+
+#pyenv python 路径
+export PYENV_ROOT="$HOME/Pyenv/pyenv"  
+export PATH="$PYENV_ROOT/bin:$PATH"
+# 如果你的shell是bash，请启用下面的命令  
+if [ -d "$PYENV_ROOT/shims" ]; then  
+  export PATH="$PYENV_ROOT/shims:$PATH"  
+fi  
+# 初始化pyenv（对于bash shell）  
+eval "$(pyenv init --path)"  
+eval "$(pyenv init -)"
+export PATH=/home/zky/Pyenv/pyenv/shims/python:$PATH</code></pre>
+
+<h4>（2）同时，还有2个工具的环境变量</h4>
+
+<pre>
+<code class="language-bash">#ccache工具提升编译速度 可能对于系统文件下的.ccache没有读写权限
+export CCACHE_DIR=$HOME/.ccache
+#export CCACHE_DIR=~/.ccache
+
+#csky-elfabiv2-tools-x86_64-minilibc-20210423
+export PATH=/home/zky/SoftwaresHub/wm/tools/csky-elfabiv2-tools-x86_64-minilibc-20210423/bin:$PATH</code></pre>
+
+<p>调试工具需要单独配置，这里暂时不演示了</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="T-Head_Debugger_Server_User_Guide_ZH-CN.pdf" target="_blank" rel="noopener" href="https://doc.winnermicro.net/download/debug_server/T-Head_Debugger_Server_User_Guide_ZH-CN.pdf" title="T-Head_Debugger_Server_User_Guide_ZH-CN.pdf">T-Head_Debugger_Server_User_Guide_ZH-CN.pdf</a></p>
+
+<h4>（3）保存编辑内容，并重启.bashrc</h4>
+
+<pre>
+<code class="language-bash">source ~/.bashrc</code></pre>
+
+<p>然后就可以查看这个全局的python，而不是系统的/usr/bin/python</p>
+
+<p><img alt="" height="117" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/62a9b7f65c394177a50a291c293df995.png" srcset="/img/loading.gif" lazyload width="547" /></p>
+
+<h4>（4）最好在命令环境下的sdk里wm.py脚本的第1行指定一下pyenv的python3.8.10</h4>
+
+<p><img alt="" height="550" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/315fdc37eb7e43d69cb5e936ddccce9e.png" srcset="/img/loading.gif" lazyload width="899" /></p>
+
+<h4>（5）缺模块就自己加，最好显示指定用pyenv的python安装py工具什么的</h4>
+
+<p><img alt="" height="426" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/79af9677959f4d3daa1eaaf2ce3031f4.png" srcset="/img/loading.gif" lazyload width="1105" /></p>
+
+<p>参考链接：</p>
+
+<p><a data-link-desc="文章浏览阅读5.5k次，点赞5次，收藏10次。一个简单的Python版本管理器，可以轻松地在各个Python版本之间进行切换。pyenv默认下载源是www.python.org，国内下载特别慢，可以通过修改环境变量修改为国内下载源。_pyenv换源" data-link-icon="https://g.csdnimg.cn/static/logo/favicon32.ico" data-link-title="python多版本管理器--pyenv更换下载源_pyenv换源-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_49021852/article/details/130268545" title="python多版本管理器--pyenv更换下载源_pyenv换源-CSDN博客">python多版本管理器--pyenv更换下载源_pyenv换源-CSDN博客</a></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="【Ubuntu】安装使用pyenv - Python版本管理_ubuntu安装pyenv-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_60915103/article/details/140440061" title="【Ubuntu】安装使用pyenv - Python版本管理_ubuntu安装pyenv-CSDN博客">【Ubuntu】安装使用pyenv - Python版本管理_ubuntu安装pyenv-CSDN博客</a></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" data-link-title="【Pyenv 更换国内源】_pyenv 国内源-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/axiaowua/article/details/139627637?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-0-139627637-blog-143912174.235^v43^pc_blog_bottom_relevance_base8&amp;spm=1001.2101.3001.4242.1&amp;utm_relevant_index=2" title="【Pyenv 更换国内源】_pyenv 国内源-CSDN博客">【Pyenv 更换国内源】_pyenv 国内源-CSDN博客</a></p>
+
+<h2>2.3 对于Ubuntu下的vscode的wm_iot_sdk的扩展配置</h2>
+
+<p><img alt="" height="504" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1aec8fe42ed647418d50945fc31686f3.png" srcset="/img/loading.gif" lazyload width="847" /></p>
+
+<h3>（1）出现缺少模块tomlkit，但是，我是用pyenv的python3.8.10安装过了</h3>
+
+<p><img alt="" height="272" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fd4f79df0bad42b3b979aff8eabaf022.png" srcset="/img/loading.gif" lazyload width="475" /></p>
+
+<h3>（2）可能就是调用的是系统默认的python3，如下图：</h3>
+
+<p><img alt="" height="305" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/30d6ff25875a456690ee3f7133740f91.png" srcset="/img/loading.gif" lazyload width="356" /></p>
+
+<h3>（3）pyenv的python3.8.10修改为全局环境，就编译成功了</h3>
+
+<p><img alt="" height="336" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/42ae0fb583ac4a849c05f55df9b92792.png" srcset="/img/loading.gif" lazyload width="469" /></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ubuntu-linux-%E5%B5%8C%E5%85%A5%E5%BC%8FLinux/" class="print-no-link">#ubuntu linux 嵌入式Linux</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置</div>
+      <div>http://example.com/2025/08/10/【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%9F%BA%E4%BA%8E%E5%9F%BA%E7%A1%80UART%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20UART%20H5%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9F%BA%E4%BA%8E%E5%9F%BA%E7%A1%80UART%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20UART%20H4%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第四章 基于基础UART的蓝牙硬件发送协议 UART H4 Transport详解">
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第四章 基于基础UART的蓝牙硬件发送协议 UART H4 Transport详解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

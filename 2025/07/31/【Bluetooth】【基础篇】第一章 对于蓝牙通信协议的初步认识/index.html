@@ -1,0 +1,907 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、蓝牙的基础概念  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙（Bluetooth）是一种基于 2.4GHz ISM（工业、科学、医疗）免费频段的短距离无线通信技术，核心目标是实现设备间的低成本、低功耗、灵活便捷的无线互联，替代传统有线连接（如串口线、数据线），解决多设备协同的 &ldquo;线缆困扰&rdquo;。  &nbsp;&nbsp;&amp;">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识">
+<meta property="og:url" content="http://example.com/2025/07/31/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%AF%B9%E4%BA%8E%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、蓝牙的基础概念  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙（Bluetooth）是一种基于 2.4GHz ISM（工业、科学、医疗）免费频段的短距离无线通信技术，核心目标是实现设备间的低成本、低功耗、灵活便捷的无线互联，替代传统有线连接（如串口线、数据线），解决多设备协同的 &ldquo;线缆困扰&rdquo;。  &nbsp;&nbsp;&amp;">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-07-31T10:32:52.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Bluetooth 通信协议 蓝牙发展过程">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-31 18:32" pubdate>
+          2025年7月31日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          28 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、蓝牙的基础概念</h1>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙（Bluetooth）</strong>是一种基于<strong> 2.4GHz ISM</strong>（工业、科学、医疗）免费频段的<strong>短距离无线通信技术</strong>，核心目标是实现设备间的<strong>低成本</strong>、<strong>低功耗</strong>、<strong>灵活便捷</strong>的无线互联，替代传统有线连接（如串口线、数据线），解决多设备协同的<strong> &ldquo;线缆困扰&rdquo;</strong>。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;作为小范围无线连接技术，其核心价值在于<strong>简化设备通信</strong>：不仅能简化移动通信终端设备之间的连接，还能简化设备与因特网的通信，让数据传输更迅速高效，为无线通信拓展了路径。同时，它具备<strong>方便快捷</strong>、<strong>灵活安全</strong>、<strong>低成本</strong>、<strong>低功耗</strong>的特点，可支持数据与语音双向通信，因此成为当前无线个域网通信的主流技术之一。​</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其<strong>本质</strong>是为<strong>固定设备</strong>与<strong>移动设备</strong>建立通用的<strong>无线电空中接口</strong>，将通信技术与计算机技术结合，使 3C 设备在无需电线或电缆连接的情况下，能在近距离内实现相互通信或操作，有力推动着低速率无线个人区域网络的发展。</p>
+
+<h2><strong>1.1 从技术本质的方面来看</strong></h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙通过<strong>跳频扩频（FHSS）</strong>技术在<strong> 2.4GHz 频段</strong>（全球通用的无需授权频段）实现抗干扰传输，设备间可自动发现、配对并建立<strong>稳定连接</strong>，<strong>支持语音</strong>、<strong>数据</strong>等多种信息的<strong>双向传输</strong>。其设计注重 <strong>&ldquo;轻量级&rdquo; </strong>特性：通信距离通常在 <strong>10 米</strong>内（部分版本可扩展至百米级），<strong>功耗和成本较低</strong>，适配从消费电子到工业设备的<strong>多样化场景</strong>。</p>
+
+<h2><strong>1.2 从功能定位的方面来看</strong></h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>蓝牙的核心价值</strong>是<strong> &ldquo;统一短距离无线标准&rdquo;</strong>。通过蓝牙特别兴趣小组（Bluetooth SIG）制定的通用协议栈（涵盖物理层、链路层、应用层等），不同品牌、类型的设备（如手机、耳机、电脑、智能家电）可遵循同一套 &ldquo;通信规则&rdquo;，实现<strong>跨设备兼容</strong> &mdash;&mdash; 例如，无论安卓还是苹果手机，都能与任意符合蓝牙标准的耳机配对，这也是其能成为全球主流无线技术的关键。</p>
+
+<h2>1.3 从技术分支的方面来看</h2>
+
+<p>现蓝牙已形成两大核心方向：</p>
+
+<ul>
+	<li><strong>经典蓝牙（Classic Bluetooth）</strong>：侧重高速率、持续连接，早期版本（如 1.0-3.0）支持 1-3Mbps 传输速率，主要用于音频流传输（如无线耳机、车载蓝牙）、文件传输等；</li>
+	<li><strong>低功耗蓝牙（BLE，Bluetooth Low Energy）</strong>：2010 年随蓝牙 4.0 推出，以超低功耗为核心优势（待机电流可低至微安级），传输速率适中（125kbps-2Mbps），广泛应用于物联网场景（如智能手环、传感器、智能家居设备），支持长时间续航。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简言之，蓝牙是一种<strong> &ldquo;让设备无线&lsquo;对话&rsquo;的通用技术&rdquo;</strong>，通过<strong>标准化协议</strong>和<strong>轻量化设计</strong>，成为连接个人设备、智能硬件、工业系统的 &ldquo;隐形桥梁&rdquo;，深刻改变了人们的无线交互方式。</p>
+
+<h1>二、蓝牙的起源</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>蓝牙（Bluetooth）技术</strong>的起源可追溯至20世纪90年代，其诞生是多家科技公司协作的结果，旨在解决短距离设备间的无线连接问题。以下是关键发展历程的梳理：</p>
+
+<h2>2.1&nbsp;<strong>概念提出与技术雏形（1994&ndash;1997年）</strong></h2>
+
+<ul>
+	<li>
+	<p><strong>爱立信的初步探索</strong>：1994年，瑞典电信公司爱立信（Ericsson）的工程师<strong>Jaap Haartsen</strong>主导研发一种低成本、低功耗的无线通信技术，核心目标是替代移动电话与配件（如耳机、键盘）之间的有线连接（如RS-232串口线），解决设备间数据同步的难题。</p>
+	</li>
+	<li>
+	<p><strong>技术基础</strong>：蓝牙的核心技术基于<strong>跳频扩频（FHSS）</strong>，这一概念源自二战时期好莱坞女演员<strong>Hedy Lamarr</strong>与作曲家George Antheil的专利，后于20世纪80年代被军方采用，最终下沉至民用领域。</p>
+	</li>
+</ul>
+
+<h2>&nbsp;2.2&nbsp;<strong>联盟成立与标准化（1998年）</strong></h2>
+
+<ul>
+	<li>
+	<p><strong>蓝牙技术联盟（Bluetooth SIG）诞生</strong>：1998年，爱立信联合诺基亚（Nokia）、IBM、英特尔（Intel）和东芝（Toshiba）五家公司成立&ldquo;蓝牙特别兴趣小组&rdquo;（Bluetooth Special Interest Group, SIG），推动技术标准化。分工明确：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;英特尔&lt;/strong&gt;：负责芯片与传输软件；&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;爱立信&lt;/strong&gt;：开发无线射频与手机软件；&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;IBM与东芝&lt;/strong&gt;：设计笔记本电脑接口规范。&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;命名由来&lt;/strong&gt;：&amp;ldquo;蓝牙&amp;rdquo; 这一名称的由来，藏着一段与北欧历史相关的小故事。​它源自 10 世纪的丹麦国王哈拉尔德・戈尔姆松（Harald Gormsson）。这位国王出身海盗家庭，凭借领导力统一了当时四分五裂的北欧地区，建立起维京王国。由于他酷爱食用蓝莓 &amp;mdash;&amp;mdash; 这种在当时被认为 &amp;ldquo;不适合食用&amp;rdquo; 的果实，长期下来牙齿被染成了蓝色，因此获得了 &amp;ldquo;蓝牙&amp;rdquo; 的绰号，而他本人也成为了 &amp;ldquo;勇于尝试、推动统一&amp;rdquo; 的象征。​&lt;/p&gt;
+
+&lt;p&gt;1998 年，瑞典爱立信公司联合其他企业推动无线通信技术标准化时，便借用了 &amp;ldquo;蓝牙&amp;rdquo; 这一名称。其寓意正是希望这项技术能像哈拉尔德国王统一北欧那样，打破不同设备间的通信壁垒，实现无线连接标准的统一。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;标志设计&lt;/strong&gt;：蓝牙符号融合了北欧卢恩字母&amp;nbsp;&lt;strong&gt;ᚼ&lt;/strong&gt;（H）和&amp;nbsp;&lt;strong&gt;ᛒ&lt;/strong&gt;（B），代表哈拉尔德名字的首字母缩写。&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h1>三、蓝牙的发展与演变历程​</h1>
+
+<p>蓝牙技术的发展历程不仅是技术迭代的过程，更体现了从解决设备互联痛点到支撑物联网生态的演进逻辑，其命名与版本迭代背后藏着清晰的技术脉络：</p>
+
+<h2>3.1 标准奠基（1998-1999）</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;0.7 版作为首个标准版本，已支持&nbsp;<strong>Baseband（基带）</strong>&nbsp;与&nbsp;<strong>LMP（链路管理协议）</strong>&nbsp;通信协定；随后，随着 SIG 的推进，陆续发布了 0.8 版、0.9 版、1.0 Draft 版、1.0a 版及 1.0B 版，逐步完善技术规范。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1999 年下半年，微软、摩托罗拉、三星、朗讯与蓝牙特别兴趣小组的原有成员共同发起成立蓝牙技术推广组织，加速了技术的市场化进程，在全球范围内掀起蓝牙热潮。不过，同年推出的蓝牙 1.0 正式版本因存在&nbsp;<strong>数据泄露</strong>&nbsp;的技术缺陷（如设备地址 BD_ADDR 明文传输），加之当时支持蓝牙功能的电子设备种类有限且成本高昂，未能实现大规模应用，这些问题也成为后续版本优化的重要方向。</p>
+
+<h2>3.2 技术成熟与市场认可（2001-2007）</h2>
+
+<ul>
+	<li><strong>2001 年蓝牙 1.1</strong>：首个正式商用版本，解决了 1.0 的兼容问题，被纳入 IEEE 802.15.1 标准，SIG 成员突破 2000 家，蓝牙开始进入消费电子领域。</li>
+	<li><strong>2003 年蓝牙 1.2</strong>：新增&nbsp;<strong>自适应跳频技术（AFH）</strong>，抗干扰能力显著提升，降低了与 Wi-Fi 的频段冲突；引入&nbsp;<strong>eSCO 同步信道</strong>，支持立体声传输，代表作为爱立信 T39mc 手机。</li>
+	<li><strong>2004 年蓝牙 2.0+EDR</strong>：引入增强数据速率（EDR），传输速度提升至 3Mbps，支持&nbsp;<strong>双工模式</strong>（同时传输语音与数据），成为首个被市场广泛接受的版本，无线耳机、车载蓝牙等应用兴起。</li>
+	<li><strong>2007 年蓝牙 2.1</strong>：简化配对流程，通过&nbsp;<strong>6 位数字校验</strong>&nbsp;防止中间人攻击，手机间蓝牙传文件成为主流功能；支持 NFC 近场通信，提升配对便利性。</li>
+</ul>
+
+<h2>3.3 速率跃升与场景拓展（2009-2010）</h2>
+
+<ul>
+	<li><strong>2009 年蓝牙 3.0+HS</strong>：采用&nbsp;<strong>交替射频技术（AMP）</strong>，集成 802.11 PAL（高速蓝牙模式），传输速率峰值达 24Mbps，支持大量数据快速传输（如高清图片），同时优化功耗控制。</li>
+	<li><strong>2010 年蓝牙 4.0</strong>：融合<span style="background-color:#ffd900">经典蓝牙</span>、<span style="background-color:#ffd900">高速蓝牙</span>和<span style="background-color:#ffd900">低功耗蓝牙</span>（BLE，源自诺基亚 Wibree 技术），BLE 模式待机功耗降至微安级，传输距离突破 100 米，为智能手环、传感器等物联网设备奠定基础，标志着蓝牙从消费电子向物联网延伸。苹果 iPhone 4S 是首款支持该标准的智能手机。</li>
+</ul>
+
+<h2>3.4 物联网适配与功能强化（2013-2016）</h2>
+
+<ul>
+	<li><strong>2013 年蓝牙 4.1</strong>：支持设备同时扮演多重角色（如既是主机又是从机），实现智能手表与计步器直接通信，无需经手机中转；新增&nbsp;<strong>IPv6 通道</strong>，支持云同步。</li>
+	<li><strong>2014 年蓝牙 4.2</strong>：传输速度提升 2.5 倍，支持&nbsp;<strong>6LoWPAN 协议</strong>，使蓝牙设备可直接接入互联网；采用&nbsp;<strong>Diffie-Hellman 密钥交换</strong>，强化配对安全性。</li>
+	<li><strong>2016 年蓝牙 5.0</strong>：传输速度翻倍（2Mbps）、距离增至 4 倍（最远 300 米）、数据容量提升 8 倍，优化与 Wi-Fi 的共存性；支持&nbsp;<strong>室内定位导航</strong>（精度 &lt;1 米），针对 IoT 物联网进行底层优化，成为大规模部署的核心技术。</li>
+</ul>
+
+<h2>3.5 定位与网状网络突破（2017-2023）</h2>
+
+<ul>
+	<li><strong>2017 年蓝牙 Mesh</strong>：支持多对多通信的网状网络，兼容 4.0 及以上版本，适用于楼宇自动化、工业监测等大规模设备组网场景，加速智能家居互联互通。</li>
+	<li><strong>2019 年蓝牙 5.1</strong>：新增&nbsp;<strong>到达角（AoA）/ 出发角（AoD）定位技术</strong>，精度达厘米级，为室内导航、资产追踪提供可能。</li>
+	<li><strong>2019 年蓝牙 5.2</strong>：引入&nbsp;<strong>LE Audio 标准</strong>，采用 LC3 编解码器，在降低 3 倍功耗的同时提升 3 倍音质，支持多设备音频共享，推动 TWS 耳机进入低功耗高清时代。</li>
+	<li><strong>2021 年蓝牙 5.3</strong>：优化&nbsp;<strong>LE 同步信道</strong>，增强隐私保护，减少设备间干扰；改进安全连接认证（SCA），防止重放攻击。</li>
+</ul>
+
+<h2>3.6 物联网安全与高效通信（2023 年至今）</h2>
+
+<ul>
+	<li><strong>2023 年蓝牙 5.4</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;加密广播数据（EAD）&lt;/strong&gt;：提供标准化的广播包加密方法，加密后的数据仅能被持有相同密钥的设备解密，需在 GATT 连接并完成安全认证后生成密钥。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;带响应的周期性广播（PAwR）&lt;/strong&gt;：支持无连接、双向、一对多的低功耗拓扑，适用于零售电子价签（ESL）、工业设备监控等场景，可远程批量更新数据并实时响应。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;LE GATT 安全级别特性&lt;/strong&gt;：设备可通过 GATT 字段声明安全模式，扩展广播时可选择编解码器，提升通信灵活性。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;抗干扰优化&lt;/strong&gt;：改善与 4G/5G 等无线通信并存时的干扰问题，确保复杂环境下的稳定性。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p><span style="color:#0d0016"><span style="background-color:#ffd900">注：</span></span></p>
+
+<p>（1）第一代蓝牙：关于短距离通讯早期的探索，使用的是BR技术，此时蓝牙的理论传输速率，只能达到721.2Kbps。<br />
+（2）第二代蓝牙：新增的 EDR（Enhanced Data Rate）技术，使得蓝牙设备的传输率可达 3Mbps。<br />
+（3）第三代蓝牙：核心是 AMP（Generic Alternate MAC/PHY），这是一种全新的交替射频技术，支持动态地选择正确射频，传输速率高达 24Mbps。<br />
+（4）第四代蓝牙：主推&rdquo; Low Energy&rdquo;低功耗， BLE（Bluetooth Low Energy）低功耗功能。<br />
+（5）第五代蓝牙：开启「物联网」时代大门，在低功耗模式下具备更快更远的传输能力。</p>
+
+<h2>总结&nbsp; &nbsp; &nbsp; &nbsp;</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;从解决线缆混乱到支撑万物互联，蓝牙通过持续迭代，已成为连接个人设备、智能硬件、工业系统的核心技术，其开放式标准和场景适配能力，使其在无线通信领域保持着长久生命力。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">蓝牙通信协议学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Bluetooth-%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-%E8%93%9D%E7%89%99%E5%8F%91%E5%B1%95%E8%BF%87%E7%A8%8B/" class="print-no-link">#Bluetooth 通信协议 蓝牙发展过程</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识</div>
+      <div>http://example.com/2025/07/31/【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E5%85%B3%E4%BA%8E%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%85%B6%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%A4%A7%E8%87%B4%E6%A6%82%E8%BF%B0/" title="【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/" title="【Git】Git LFS的使用">
+                        <span class="hidden-mobile">【Git】Git LFS的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

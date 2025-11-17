@@ -1,0 +1,1332 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、qt在线下载器  Index of &#x2F;official_releases&#x2F;online_installers    二、安装    去QT官网注册账户      选择自定义      需要勾选归档，才能下载历史版本，在搜索栏的右边&ldquo;显示&rdquo; 的archive            三、组件说明：  3.1&nbsp;    截图中展示的是Qt Design Studi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【随笔】【QT】QT5.15.2版本的最新下载方式！！！">
+<meta property="og:url" content="http://example.com/2025/10/31/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90QT%E3%80%91QT5.15.2%E7%89%88%E6%9C%AC%E7%9A%84%E6%9C%80%E6%96%B0%E4%B8%8B%E8%BD%BD%E6%96%B9%E5%BC%8F%EF%BC%81%EF%BC%81%EF%BC%81/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、qt在线下载器  Index of &#x2F;official_releases&#x2F;online_installers    二、安装    去QT官网注册账户      选择自定义      需要勾选归档，才能下载历史版本，在搜索栏的右边&ldquo;显示&rdquo; 的archive            三、组件说明：  3.1&nbsp;    截图中展示的是Qt Design Studi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/71792a3d6ac740c7b35a7308f0ced4b9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2e16576d1bf64c6db89530758de8a193.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b8fde4bd7a6c4993b1247c74b17bf9bd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c4f40d2631ad4db78109955c53554a9b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/17bc206c34134a3e9423b25f0c0b4ad2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/33578e56c4ec469381fb06d90a6a0163.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/60c13d1fc808476297234a72501dd544.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3a0f0e50c0ce443d8c97f44613b8640e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b4740394ef3046d0af67066d0ec25e43.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/46d83d7cc2504c51a7b4cacb226120c6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bb1f1f9ce9d0411099eb17354e7fff28.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e418d4f4cde44fc7884bb5ba3b394d68.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b46a40e83d4c486897ec7224244bceb7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a059f514092440bb846531dbbc34d335.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8a33b0954aca4453970f15eeda09cd46.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ab27461a0b824d70aea815ca73eaa11b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/096fdc7e479e4f5ca5c7df7e0d85360a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7614c8e6982341cab0edef9fd493558b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/58ac440c5e1341b9b6a6999c49656c12.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ddfa9f99de6645e9954bfb0685552480.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e34a63c5d0b340df88c1fdc710ea129b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6a7afa09af604b98a3b90e6b354a1f7a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7dfcb25c23da462c9840d472c17825a0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2e736e29bcf64f75bad59b6ea8721f3c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/70dc5cc07ec54d6f9b0a8dc131efb4ad.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb6e3f4fdb9847f2a8152cbc026f2f03.png">
+<meta property="article:published_time" content="2025-10-30T17:09:13.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="qt 开发语言">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/71792a3d6ac740c7b35a7308f0ced4b9.png">
+  
+  
+  
+  <title>【随笔】【QT】QT5.15.2版本的最新下载方式！！！ - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【随笔】【QT】QT5.15.2版本的最新下载方式！！！"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-31 01:09" pubdate>
+          2025年10月31日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          53 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【随笔】【QT】QT5.15.2版本的最新下载方式！！！</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、qt在线下载器</h1>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Index of /official_releases/online_installers" target="_blank" rel="noopener" href="https://download.qt.io/official_releases/online_installers/" title="Index of /official_releases/online_installers">Index of /official_releases/online_installers</a></p>
+
+<p><img alt="" height="35" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/71792a3d6ac740c7b35a7308f0ced4b9.png" srcset="/img/loading.gif" lazyload width="455" /></p>
+
+<h1>二、安装</h1>
+
+<p><img alt="" height="719" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2e16576d1bf64c6db89530758de8a193.png" srcset="/img/loading.gif" lazyload width="1069" /></p>
+
+<p>去QT官网注册账户</p>
+
+<p><img alt="" height="734" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b8fde4bd7a6c4993b1247c74b17bf9bd.png" srcset="/img/loading.gif" lazyload width="1096" /></p>
+
+<p><img alt="" height="723" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c4f40d2631ad4db78109955c53554a9b.png" srcset="/img/loading.gif" lazyload width="1077" /></p>
+
+<p>选择自定义</p>
+
+<p><img alt="" height="722" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/17bc206c34134a3e9423b25f0c0b4ad2.png" srcset="/img/loading.gif" lazyload width="1073" /></p>
+
+<p><img alt="" height="1007" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/33578e56c4ec469381fb06d90a6a0163.png" srcset="/img/loading.gif" lazyload width="1893" /></p>
+
+<p>需要勾选归档，才能下载历史版本，在搜索栏的右边&ldquo;显示&rdquo; 的archive</p>
+
+<p><img alt="" height="1009" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/60c13d1fc808476297234a72501dd544.png" srcset="/img/loading.gif" lazyload width="1881" /></p>
+
+<p><img alt="" height="1007" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3a0f0e50c0ce443d8c97f44613b8640e.png" srcset="/img/loading.gif" lazyload width="1643" /></p>
+
+<p><img alt="" height="1006" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b4740394ef3046d0af67066d0ec25e43.png" srcset="/img/loading.gif" lazyload width="1876" /></p>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/46d83d7cc2504c51a7b4cacb226120c6.png" srcset="/img/loading.gif" lazyload width="1891" /></p>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bb1f1f9ce9d0411099eb17354e7fff28.png" srcset="/img/loading.gif" lazyload width="1893" /></p>
+
+<h1>三、组件说明：</h1>
+
+<h2>3.1&nbsp;</h2>
+
+<p><img alt="" height="113" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e418d4f4cde44fc7884bb5ba3b394d68.png" srcset="/img/loading.gif" lazyload width="435" /></p>
+
+<p>截图中展示的是<strong>Qt Design Studio</strong>的不同版本选项。Qt Design Studio 是 Qt 官方推出的一款专注于<strong>UI/UX 设计与原型开发</strong>的工具，主要用于快速创建 Qt 应用（尤其是基于 Qt Quick/QML 的界面）的视觉设计、交互原型，并能直接导出可被开发者使用的 QML 代码，实现设计与开发的协作衔接。</p>
+
+<h3>各版本含义解释：</h3>
+
+<ol>
+	<li>
+	<p><strong>Qt Design Studio 4.8.0</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;这是&lt;strong&gt;正式发布版本（Release）&lt;/strong&gt;，经过完整测试，稳定性和兼容性较好，适合用于实际项目的 UI 设计与开发。&lt;/li&gt;
+	&lt;li&gt;包含当前最新的功能迭代，适合需要使用最新设计工具特性的场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Qt Design Studio 4.1.1 LTS&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&amp;ldquo;LTS&amp;rdquo; 即&lt;strong&gt;Long Term Support（长期支持）&lt;/strong&gt;，这个版本会获得官方更长时间的维护（通常 3-5 年），主要针对稳定性优化，不会频繁添加新功能，但会持续修复 bug 和安全问题。&lt;/li&gt;
+	&lt;li&gt;适合&lt;strong&gt;长期维护的项目&lt;/strong&gt;或对稳定性要求极高的场景（如工业软件、嵌入式设备 UI），避免因工具版本更新导致的兼容性问题。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Qt Design Studio 4.8.0-beta (2025-09-30)&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&amp;ldquo;beta&amp;rdquo; 是&lt;strong&gt;测试版&lt;/strong&gt;，发布于 2025 年 9 月 30 日，主要用于预览 4.8.0 正式版的新功能，收集用户反馈以修复问题。&lt;/li&gt;
+	&lt;li&gt;特点是包含最新特性，但可能存在未修复的 bug、兼容性问题，&lt;strong&gt;不建议用于生产环境&lt;/strong&gt;，仅适合开发者 / 设计师测试新功能时使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3>选择建议：</h3>
+
+<ul>
+	<li>日常项目设计：优先选<strong>4.8.0 正式版</strong>，平衡功能新鲜度和稳定性。</li>
+	<li>长期维护的项目：选<strong>4.1.1 LTS</strong>，确保工具长期可用且少出问题。</li>
+	<li>测试新功能：可选<strong>4.8.0-beta</strong>，但需注意可能的 bug 风险。</li>
+</ul>
+
+<p>如果你的开发主要聚焦于 &ldquo;编写代码&rdquo; 而非 &ldquo;UI 设计&rdquo;，也可以暂时不安装 Qt Design Studio（非必选组件），后续需要时再通过 Qt 维护工具补充安装。</p>
+
+<h2>3.2</h2>
+
+<p><img alt="" height="708" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b46a40e83d4c486897ec7224244bceb7.png" srcset="/img/loading.gif" lazyload width="736" /></p>
+
+<p>截图中展示的是 Qt 的<strong>扩展组件（Extensions）</strong>&nbsp;选项，这些是 Qt 框架提供的额外功能模块，用于扩展应用程序的特定能力。每个组件都对应不同的 Qt 版本（如 6.10.0、6.9.3 等），以下是具体解释：</p>
+
+<h3>一、各扩展组件的功能说明</h3>
+
+<h4>1.&nbsp;<strong>Qt Insight Tracker</strong></h4>
+
+<ul>
+	<li><strong>核心功能</strong>：这是 Qt 提供的<strong>应用程序分析与监控工具</strong>，主要用于收集应用在运行时的使用数据（如功能调用频率、用户操作路径、性能指标等），并生成分析报告。</li>
+	<li><strong>用途</strong>：帮助开发者了解用户如何使用应用、定位功能瓶颈或冷门功能，优化产品体验（类似 &ldquo;用户行为分析&rdquo; 工具）。</li>
+	<li><strong>适用场景</strong>：商业软件或需要持续优化用户体验的项目，普通学习或小型项目通常用不到。</li>
+</ul>
+
+<h4>2.&nbsp;<strong>Qt PDF</strong></h4>
+
+<ul>
+	<li><strong>核心功能</strong>：用于<strong>处理 PDF 文件的模块</strong>，提供 PDF 文档的渲染（显示）、解析、打印等功能，允许在 Qt 应用中直接嵌入 PDF 查看器。</li>
+	<li><strong>用途</strong>：开发需要查看或处理 PDF 的应用（如文档管理软件、电子书阅读器等）。</li>
+	<li><strong>示例</strong>：通过 Qt PDF 组件，可在 Qt 窗口中显示 PDF 文件内容，支持缩放、翻页等基础操作。</li>
+</ul>
+
+<h4>3.&nbsp;<strong>Qt WebEngine</strong></h4>
+
+<ul>
+	<li><strong>核心功能</strong>：基于 Chromium 内核的<strong>网页渲染引擎</strong>，允许在 Qt 应用中嵌入网页内容，支持 HTML5、CSS3、JavaScript 等 Web 技术。</li>
+	<li><strong>用途</strong>：开发需要融合 Web 内容的应用（如带网页预览的工具、内嵌帮助文档的应用，或轻量化浏览器）。</li>
+	<li><strong>优势</strong>：无需依赖外部浏览器，可将 Web 内容与 Qt 原生界面无缝结合（例如在 Qt Widgets 窗口中显示一个网页表单）。</li>
+</ul>
+
+<h3>二、版本号的含义</h3>
+
+<p>每个扩展组件后的版本号（如 6.10.0、6.9.3 等）<strong>与 Qt 主框架版本一一对应</strong>，遵循以下规则：</p>
+
+<ul>
+	<li>版本号越高，功能越新（如 6.10.0 比 6.9.3 新增更多特性）；</li>
+	<li>必须与你安装的<strong>Qt 主版本</strong>匹配（例如：若主框架选了 Qt 6.10.0，扩展组件也应优先选 6.10.0 版本），否则可能出现兼容性问题（如函数接口不匹配、运行时错误）。</li>
+</ul>
+
+<h3>三、选择建议</h3>
+
+<p>扩展组件的选择核心是 &ldquo;<strong>按需安装</strong>&rdquo;，避免浪费磁盘空间：</p>
+
+<ol>
+	<li><strong>Qt Insight Tracker</strong>：仅当需要分析应用使用数据时勾选，普通开发（学习、小型工具）建议不装；</li>
+	<li><strong>Qt PDF</strong>：若应用需要处理 PDF（显示、打印等）则勾选，否则不装；</li>
+	<li><strong>Qt WebEngine</strong>：若应用需要嵌入网页内容（如显示在线文档、网页交互）则勾选，纯本地界面开发（无 Web 需求）建议不装；</li>
+	<li><strong>版本匹配</strong>：无论选哪个组件，都要确保其版本号与你安装的 Qt 主框架版本一致（如主框架是 6.10.0，扩展也选 6.10.0）。</li>
+</ol>
+
+<p>如果暂时不确定需求，也可以先不安装这些扩展，后续需要时通过 &ldquo;Qt Maintenance Tool&rdquo;（Qt 维护工具）补充安装，不影响基础开发。</p>
+
+<h2>3.3</h2>
+
+<p><img alt="" height="790" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a059f514092440bb846531dbbc34d335.png" srcset="/img/loading.gif" lazyload width="494" /></p>
+
+<p><img alt="" height="785" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8a33b0954aca4453970f15eeda09cd46.png" srcset="/img/loading.gif" lazyload width="866" /></p>
+
+<p><img alt="" height="652" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ab27461a0b824d70aea815ca73eaa11b.png" srcset="/img/loading.gif" lazyload width="754" /></p>
+
+<p>这三张截图展示了 Qt 安装器中<strong>核心框架版本</strong>、<strong>Qt5 遗留版本组件</strong>和<strong>构建工具链</strong>三部分内容，涵盖了 Qt 开发的基础环境和工具支持。以下是详细解释：</p>
+
+<h3>一、第一张截图：Qt 核心框架版本（Qt 6 系列）</h3>
+
+<p>这部分是 Qt 6 的主框架版本列表，从<code>Qt 6.2.0</code>到<code>Qt 6.10.0</code>，是当前 Qt 的主流版本（Qt 6 于 2020 年发布，逐步替代 Qt 5）。</p>
+
+<ul>
+	<li>
+	<p><strong>版本号规则</strong>：版本号由 &ldquo;主版本。次版本。补丁版本&rdquo; 组成（如<code>6.10.0</code>中，6 是主版本，10 是次版本，0 是补丁版本）。</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;次版本号越高（如 6.10.0 &amp;gt; 6.9.3），功能越新，包含更多新特性和优化（如更好的 QML 性能、新的 UI 组件）；&lt;/li&gt;
+	&lt;li&gt;补丁版本（最后一位）主要修复 bug，不增加新功能（如 6.9.3 是 6.9 系列的第三次 bug 修复）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;核心作用&lt;/strong&gt;：这些版本是 Qt 应用开发的 &amp;ldquo;基础库&amp;rdquo;，包含核心模块（如&lt;code&gt;Qt Core&lt;/code&gt;、&lt;code&gt;Qt GUI&lt;/code&gt;、&lt;code&gt;Qt Widgets&lt;/code&gt;），所有 Qt 程序都依赖于选定的主框架版本。&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3>二、第二张截图：Qt 5.15.x 版本及组件（Qt 5 遗留版本）</h3>
+
+<p>这部分是 Qt 5 的最后一个长期支持版本（<code>Qt 5.15.x</code>）及其配套组件，Qt 5 已于 2023 年底停止社区支持，但仍被大量旧项目依赖。</p>
+
+<ul>
+	<li><strong>核心组件说明</strong>：
+
+<pre><code class="hljs">&lt;ol&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;编译器（MSVC/MinGW 等）&lt;/strong&gt;：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;code&gt;MSVC 2015/2019&lt;/code&gt;：微软编译器，需搭配对应版本的 Visual Studio 使用，适合 Windows 平台开发；&lt;/li&gt;
+		&lt;li&gt;&lt;code&gt;MinGW 8.1.0&lt;/code&gt;：开源编译器，Qt 安装器自带，无需额外依赖，适合快速开发。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;目标平台&lt;/strong&gt;：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;code&gt;UWP&lt;/code&gt;：针对 Windows 通用平台（如应用商店应用）；&lt;/li&gt;
+		&lt;li&gt;&lt;code&gt;Android&lt;/code&gt;：用于开发安卓应用；&lt;/li&gt;
+		&lt;li&gt;无特殊平台需求时，这些可忽略（默认开发 Windows 桌面程序）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;功能模块&lt;/strong&gt;：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;code&gt;Qt Charts&lt;/code&gt;：图表绘制；&lt;code&gt;Qt WebEngine&lt;/code&gt;：嵌入网页；&lt;code&gt;Qt Quick 3D&lt;/code&gt;：3D 界面等（与 Qt 6 的模块功能类似，仅版本适配 Qt 5）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;其他工具&lt;/strong&gt;：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;code&gt;Sources&lt;/code&gt;：Qt 5 源码（仅需调试源码时勾选）；&lt;/li&gt;
+		&lt;li&gt;&lt;code&gt;Debug Information Files&lt;/code&gt;：调试信息文件（用于调试程序时查看详细堆栈）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3>三、第三张截图：Build Tools（构建工具链）</h3>
+
+<p>这部分是编译、打包 Qt 程序的辅助工具，是开发环境的 &ldquo;基础设施&rdquo;，无论用 Qt 5 还是 Qt 6 都可能用到。</p>
+
+<ul>
+	<li><strong>核心工具说明</strong>：
+
+<pre><code class="hljs">&lt;ol&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;Qt Installer Framework&lt;/strong&gt;：用于制作 Qt 应用的安装包（如&lt;code&gt;.exe&lt;/code&gt;安装程序），支持自定义安装路径、组件选择等，适合发布程序时使用（版本如 4.10、4.9 等，选最新版即可）。&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;MinGW 系列&lt;/strong&gt;：多个版本的 MinGW 编译器工具链（如&lt;code&gt;MinGW 13.1.0&lt;/code&gt;、&lt;code&gt;8.1.0&lt;/code&gt;等），与前面 Qt 版本中的 MinGW 对应：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;高版本 MinGW（如 13.1.0）支持更新的 C++ 标准（如 C++20），兼容性更好；&lt;/li&gt;
+		&lt;li&gt;需与所选 Qt 版本匹配（如 Qt 6.10.0 搭配 MinGW 13.1.0，Qt 5.15 搭配 MinGW 8.1.0）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;构建系统工具&lt;/strong&gt;：&lt;/p&gt;
+
+	&lt;ul&gt;
+		&lt;li&gt;&lt;code&gt;CMake 3.30.5&lt;/code&gt;：跨平台构建工具，用于生成项目编译脚本（Qt Creator 默认支持）；&lt;/li&gt;
+		&lt;li&gt;&lt;code&gt;Ninja 1.12.1&lt;/code&gt;：轻量级编译工具，比传统 Make 更快，通常与 CMake 配合使用。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;Qt Maintenance Tool&lt;/strong&gt;：Qt 的维护工具，用于后续添加 / 删除组件、更新版本（必装，默认勾选）。&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ol&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3>四、选择建议</h3>
+
+<p>根据开发需求，核心原则是 &ldquo;<strong>版本匹配 + 按需勾选</strong>&rdquo;：</p>
+
+<ol>
+	<li>
+	<p><strong>框架版本选择</strong>：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;新项目优先选&lt;strong&gt;Qt 6 最新版（如 6.10.0）&lt;/strong&gt;：支持新特性，长期维护；&lt;/li&gt;
+	&lt;li&gt;维护旧项目或依赖 Qt 5 库：选&lt;strong&gt;Qt 5.15.1&lt;/strong&gt;（最后一个 Qt5 LTS 版本）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;编译器选择&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;已装 Visual Studio：选对应&lt;code&gt;MSVC&lt;/code&gt;版本（如 VS2019 对应&lt;code&gt;MSVC 2019 64-bit&lt;/code&gt;）；&lt;/li&gt;
+	&lt;li&gt;未装 VS 或快速开发：选&lt;code&gt;MinGW&lt;/code&gt;（64 位优先，如 MinGW 13.1.0）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;功能模块&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;基础开发：保留默认核心模块（&lt;code&gt;Qt Core&lt;/code&gt;、&lt;code&gt;Qt Widgets&lt;/code&gt;等）；&lt;/li&gt;
+	&lt;li&gt;特殊需求：按需勾选（如图表&amp;rarr;&lt;code&gt;Qt Charts&lt;/code&gt;，网页&amp;rarr;&lt;code&gt;Qt WebEngine&lt;/code&gt;）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;构建工具&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;必选：与 Qt 版本匹配的&lt;code&gt;MinGW&lt;/code&gt;/&lt;code&gt;MSVC&lt;/code&gt;、&lt;code&gt;CMake&lt;/code&gt;、&lt;code&gt;Qt Maintenance Tool&lt;/code&gt;；&lt;/li&gt;
+	&lt;li&gt;发布程序：勾选&lt;code&gt;Qt Installer Framework&lt;/code&gt;（用于制作安装包）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p>通过以上选择，可搭建满足需求的 Qt 开发环境，后续如需补充组件，可通过 &ldquo;Qt Maintenance Tool&rdquo; 随时添加。</p>
+
+<h2>3.4</h2>
+
+<p><img alt="" height="601" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/096fdc7e479e4f5ca5c7df7e0d85360a.png" srcset="/img/loading.gif" lazyload width="242" /></p>
+
+<p>这张截图展示了 Qt 安装器中<strong>目标平台（编译器）</strong>&nbsp;和<strong>功能模块</strong>的选择界面，每个选项对应特定的开发需求。以下是详细解释，包括各选项的功能、用途及用户当前勾选状态的含义：</p>
+
+<h3>一、目标平台 / 编译器（第一部分）</h3>
+
+<p>这部分决定了 Qt 应用的<strong>编译环境</strong>和<strong>运行平台</strong>，是开发的基础配置：</p>
+
+<ol>
+	<li>
+	<p><strong>WebAssembly</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;功能：将 Qt 应用编译为 WebAssembly 格式（一种面向 Web 的二进制指令格式），使应用能直接在浏览器中运行（无需安装，通过网页访问）。&lt;/li&gt;
+	&lt;li&gt;适用场景：开发跨平台 Web 应用（如在线工具、浏览器内运行的交互程序），用户未勾选，说明不涉及 Web 浏览器端开发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MSVC 系列（MSVC 2015 64-bit、MSVC 2019 32/64-bit）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：微软 Visual C++ 编译器，依赖对应版本的 Visual Studio（如 MSVC 2019 需安装 VS2019），是 Windows 平台的主流编译器。&lt;/li&gt;
+	&lt;li&gt;特点：对 Windows 系统 API 兼容性最佳，生成的程序运行效率高，适合开发仅在 Windows 运行的商业软件。&lt;/li&gt;
+	&lt;li&gt;用户状态：未勾选，说明不依赖 Visual Studio 环境，可能偏好更轻量的编译器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;MinGW 8.1.0（32-bit/64-bit）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：开源的 GNU 编译器集合（Minimalist GNU for Windows），Qt 安装器会自带完整工具链，无需额外安装 VS，开箱即用。&lt;/li&gt;
+	&lt;li&gt;特点：跨平台兼容性好（同一代码可轻度移植到 Linux），适合快速开发、学习或中小型 Windows 应用。&lt;/li&gt;
+	&lt;li&gt;用户状态：勾选了&lt;strong&gt;MinGW 8.1.0 64-bit&lt;/strong&gt;，说明选择用 64 位 MinGW 编译程序，适配现代 64 位 Windows 系统（内存支持更大，性能更优）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;UWP 系列（UWP ARMv7、x64 等）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：针对 Windows 通用平台（Universal Windows Platform）的编译器，用于开发可在 Windows 10/11 全设备（PC、平板、Xbox 等）运行的应用，需发布到微软应用商店。&lt;/li&gt;
+	&lt;li&gt;用户状态：未勾选，说明不开发 UWP 应用，专注于传统 Windows 桌面程序。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Android&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：用于将 Qt 应用编译为安卓 APK，支持在安卓手机 / 平板上运行。&lt;/li&gt;
+	&lt;li&gt;用户状态：未勾选，说明不涉及安卓平台开发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3>二、功能模块（第二部分）</h3>
+
+<p>这部分是 Qt 提供的<strong>扩展功能库</strong>，用于增强应用的特定能力，按需勾选：</p>
+
+<ol>
+	<li>
+	<p><strong>Sources</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;功能：Qt 框架的源代码文件（.cpp/.h 等），包含 Qt 内部实现逻辑。&lt;/li&gt;
+	&lt;li&gt;用途：
+	&lt;ul&gt;
+		&lt;li&gt;调试时查看 Qt 源码（如跟踪某个 Qt 函数的执行过程）；&lt;/li&gt;
+		&lt;li&gt;自定义 Qt 功能（修改源码后重新编译 Qt 库）；&lt;/li&gt;
+		&lt;li&gt;学习 Qt 内部实现原理（适合深入学习 Qt 的开发者）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;用户状态：勾选，说明可能需要调试 Qt 源码或深入学习其实现。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Qt Charts&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：专业的数据可视化模块，提供折线图、柱状图、饼图、散点图等多种图表类型，支持交互（缩放、拖拽、数据提示）。&lt;/li&gt;
+	&lt;li&gt;适用场景：开发需要数据展示的应用（如仪表盘、统计软件、科学实验工具）。&lt;/li&gt;
+	&lt;li&gt;用户状态：勾选，说明应用需要图表绘制功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Qt Quick 3D&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;功能：基于 Qt Quick（QML）的 3D 界面开发模块，无需专业 3D 引擎知识，即可快速创建简单 3D 场景（如 3D 模型展示、交互式 3D 控件）。&lt;/li&gt;
+	&lt;li&gt;特点：比传统 3D 引擎（如 Unity）轻量，与 Qt 的 2D 界面无缝融合（如在 2D 窗口中嵌入 3D 模型）。&lt;/li&gt;
+	&lt;li&gt;适用场景：开发带 3D 元素的应用（如产品 3D 预览、简单 3D 游戏、工业设备 3D 仿真）。&lt;/li&gt;
+	&lt;li&gt;用户状态：勾选，说明应用需要 3D 界面功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;其他未勾选模块&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;Qt Data Visualization&lt;/code&gt;：更高级的 3D 数据可视化（如 3D 曲面图、体素图），比 Qt Charts 更复杂，用户未勾选说明不需要高级 3D 数据展示；&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;Qt Lottie Animation&lt;/code&gt;：播放 Lottie 格式动画（UI 动效，如按钮点击动画），未勾选说明对复杂动效需求低；&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;Qt WebEngine&lt;/code&gt;：嵌入网页内容（如显示 HTML、JavaScript 交互），未勾选说明应用无需 Web 功能；&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;Qt Purchasing&lt;/code&gt;：应用内购买功能（适合商业软件收费模块），未勾选说明不涉及付费功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h2>3.5</h2>
+
+<p><img alt="" height="485" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7614c8e6982341cab0edef9fd493558b.png" srcset="/img/loading.gif" lazyload width="349" /></p>
+
+<p>这张截图展示的是 Qt 安装器中的<strong>构建工具集（Build Tools）</strong>，这些工具是编译、构建和打包 Qt 应用程序的 &ldquo;基础设施&rdquo;，直接影响开发效率和程序发布。以下是每个组件的详细解释及选择逻辑：</p>
+
+<h3>一、核心工具分类与功能</h3>
+
+<h4>1.&nbsp;<strong>Qt Installer Framework（安装包制作框架）</strong></h4>
+
+<ul>
+	<li><strong>功能</strong>：用于将开发完成的 Qt 应用程序打包为可分发的安装包（如 Windows 的<code>.exe</code>安装程序、Linux 的<code>.run</code>脚本），支持自定义安装路径、组件选择、许可协议、桌面快捷方式等功能。</li>
+	<li><strong>版本说明</strong>：截图中包含<code>4.10</code>、<code>4.9</code>、<code>4.8</code>、<code>4.7</code>等版本，版本越高功能越新（如更好的兼容性、更多自定义选项）。</li>
+	<li><strong>用途</strong>：当需要将应用分发给用户时，必须用它制作安装包（否则用户只能直接运行裸程序，体验差）。</li>
+</ul>
+
+<h4>2.&nbsp;<strong>MinGW 系列（编译器工具链）</strong></h4>
+
+<p>MinGW（Minimalist GNU for Windows）是开源的 C/C++ 编译器集合，用于将 Qt 代码编译为可执行程序，截图中列出了多个版本（按更新顺序排序）：</p>
+
+<ul>
+	<li><strong>LLVM-MinGW 17.0.6 64-bit</strong>：基于 LLVM 架构的 MinGW 变体，编译速度更快，对 C++ 新标准（如 C++20）支持更完善，适合追求编译效率的场景。</li>
+	<li><strong>MinGW 13.1.0 64-bit</strong>&nbsp;/&nbsp;<strong>11.2.0 64-bit</strong>：传统 GNU 架构的 MinGW，版本越高支持的 C++ 标准越新（13.1.0 &gt; 11.2.0 &gt; 8.1.0），兼容性更广泛。</li>
+	<li><strong>MinGW 8.1.0 32/64-bit</strong>：较旧的稳定版本，对老项目兼容性更好（如 Qt 5.15 等旧框架），但对新 C++ 特性支持有限。</li>
+	<li><strong>32-bit vs 64-bit</strong>：64 位版本支持更大内存（超过 4GB）和现代 CPU 指令集，适合新开发的应用；32 位仅用于兼容旧系统或特定硬件。</li>
+</ul>
+
+<h4>3.&nbsp;<strong>构建系统工具</strong></h4>
+
+<ul>
+	<li><strong>CMake 3.30.5</strong>：跨平台的构建脚本生成工具，用于将 Qt 项目转换为编译器可识别的构建文件（如 Makefile、Visual Studio 项目），Qt Creator 默认依赖 CMake 管理项目。</li>
+	<li><strong>Ninja 1.12.1</strong>：轻量级构建系统，比传统 Make 工具编译速度更快（尤其多线程编译时），通常与 CMake 配合使用（CMake 可生成 Ninja 脚本）。</li>
+</ul>
+
+<h4>4.&nbsp;<strong>Qt Maintenance Tool</strong></h4>
+
+<ul>
+	<li><strong>功能</strong>：Qt 的维护工具，用于后续管理已安装的组件（如添加 / 删除模块、更新 Qt 版本、修复安装），是必装工具（默认会自动勾选）。</li>
+</ul>
+
+<h3>二、版本选择的核心逻辑</h3>
+
+<p>这些工具的选择需遵循 **&ldquo;与 Qt 主版本匹配 + 按需选择&rdquo;** 原则：</p>
+
+<ol>
+	<li>
+	<p><strong>Qt Installer Framework</strong>：优先选<strong>最新版本（4.10）</strong>，新版本修复了旧版本的 bug，支持更多打包特性（如数字签名、多语言安装界面），无需考虑旧版本（除非项目强制依赖）。</p>
+	</li>
+	<li>
+	<p><strong>MinGW 编译器</strong>：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;若使用&lt;strong&gt;Qt 6.x（如 6.10.0）&lt;/strong&gt;：选&lt;strong&gt;MinGW 13.1.0 64-bit&lt;/strong&gt;或&lt;strong&gt;LLVM-MinGW 17.0.6 64-bit&lt;/strong&gt;，匹配新框架对 C++ 标准的要求（如 C++17/20）。&lt;/li&gt;
+	&lt;li&gt;若使用&lt;strong&gt;Qt 5.15.x&lt;/strong&gt;：选&lt;strong&gt;MinGW 8.1.0 64-bit&lt;/strong&gt;（与 Qt 5.15 兼容性最佳，避免高版本编译器导致的接口不匹配）。&lt;/li&gt;
+	&lt;li&gt;32 位 MinGW 仅在 &amp;ldquo;必须支持 32 位旧系统&amp;rdquo; 时勾选，否则优先 64 位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;CMake 与 Ninja&lt;/strong&gt;：两者&lt;strong&gt;必须勾选&lt;/strong&gt;：CMake 是 Qt 项目的基础构建系统，Ninja 能显著提升编译速度（尤其大项目），直接选截图中的最新版本（3.30.5 和 1.12.1）即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Qt Maintenance Tool&lt;/strong&gt;：强制勾选，否则后续无法更新或补充安装组件。&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h2>3.6</h2>
+
+<p><img alt="" height="137" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/58ac440c5e1341b9b6a6999c49656c12.png" srcset="/img/loading.gif" lazyload width="351" /></p>
+
+<p>这张截图展示的是 Qt 安装器中<strong>Qt Creator 18.0.0（Qt 官方 IDE）的配套组件</strong>，主要涉及调试功能和插件开发支持。以下是每个选项的详细解释、用途及选择建议：</p>
+
+<h3>1.&nbsp;<strong>CDB Debugger Support</strong></h3>
+
+<ul>
+	<li><strong>功能</strong>：CDB（Command Debugger）是微软提供的 Windows 系统调试器（属于 Windows 调试工具集的一部分）。该选项用于让 Qt Creator 支持 CDB 调试器，使其能与 CDB 集成，实现对 MSVC 编译器编译的程序的调试。</li>
+	<li><strong>核心作用</strong>：当你使用 MSVC 编译器（如前面提到的 MSVC 2019）开发 Qt 程序时，必须依赖 CDB 进行调试（如设置断点、查看变量、单步执行等），否则 Qt Creator 无法调试 MSVC 编译的程序。</li>
+	<li><strong>适用场景</strong>：
+	<ul>
+		<li>勾选了 MSVC 编译器（如开发 Windows 平台的商业软件）；</li>
+		<li>需要调试用 MSVC 编译的 Qt 程序。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3>2.&nbsp;<strong>Debugging Tools for Windows</strong></h3>
+
+<ul>
+	<li><strong>功能</strong>：这是 Windows 系统官方的调试工具集（包含 CDB、WinDbg 等工具），是 CDB 调试器的 &ldquo;本体&rdquo;。Qt Creator 的 &ldquo;CDB Debugger Support&rdquo; 仅提供集成接口，而实际的调试功能依赖于这个工具集。</li>
+	<li><strong>关联关系</strong>：如果未安装 &ldquo;Debugging Tools for Windows&rdquo;，即使勾选了 &ldquo;CDB Debugger Support&rdquo;，Qt Creator 也无法正常使用 CDB 调试（会提示 &ldquo;找不到调试器&rdquo;）。</li>
+	<li><strong>获取方式</strong>：
+	<ul>
+		<li>通常随 Visual Studio 自动安装（安装 VS 时勾选 &ldquo;Desktop development with C++&rdquo; 会包含）；</li>
+		<li>若未安装 VS，可通过 Qt 安装器勾选此选项单独安装。</li>
+	</ul>
+	</li>
+	<li><strong>建议</strong>：若使用 MSVC 编译器，<strong>必须勾选</strong>（否则调试功能失效）；若仅用 MinGW，可忽略（MinGW 依赖 GDB 调试器，不依赖此工具）。</li>
+</ul>
+
+<h3>3.&nbsp;<strong>Debug Symbols</strong></h3>
+
+<ul>
+	<li><strong>功能</strong>：调试符号文件（包含变量名、函数名、代码行号与内存地址的映射关系）。当程序崩溃或调试时，调试器通过符号文件能显示具体的函数名、代码位置（如 &ldquo;main.cpp:25 行&rdquo;），而非模糊的内存地址（如 &ldquo;0x00401234&rdquo;）。</li>
+	<li><strong>作用</strong>：极大提升调试效率，帮助快速定位 bug 位置（尤其是复杂项目）。</li>
+	<li><strong>适用场景</strong>：
+	<ul>
+		<li>开发阶段需要深入调试（如追踪 Qt 库内部函数调用）；</li>
+		<li>程序崩溃时需要生成包含详细堆栈信息的日志。</li>
+	</ul>
+	</li>
+	<li><strong>建议</strong>：<strong>开发阶段建议勾选</strong>（仅增加约几百 MB 磁盘空间，对调试体验至关重要）；发布程序时无需包含符号文件（可减小安装包体积）。</li>
+</ul>
+
+<h3>4.&nbsp;<strong>Plugin Development</strong></h3>
+
+<ul>
+	<li><strong>功能</strong>：Qt Creator 的插件开发支持包，包含开发自定义 Qt Creator 插件所需的头文件、库和模板。Qt Creator 本身支持插件扩展（如添加自定义代码检查工具、集成第三方版本控制、扩展 UI 功能等）。</li>
+	<li><strong>适用场景</strong>：
+	<ul>
+		<li>需要开发 Qt Creator 插件（如为团队定制 IDE 功能）；</li>
+		<li>研究 Qt Creator 的插件机制（进阶开发需求）。</li>
+	</ul>
+	</li>
+	<li><strong>建议</strong>：<strong>普通开发无需勾选</strong>（99% 的用户用不到），仅当明确需要开发 Qt Creator 插件时才勾选（会增加约 1GB + 磁盘空间）。</li>
+</ul>
+
+<h1>笔者的选择：</h1>
+
+<p><img alt="" height="1002" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ddfa9f99de6645e9954bfb0685552480.png" srcset="/img/loading.gif" lazyload width="1428" /></p>
+
+<p><img alt="" height="1003" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e34a63c5d0b340df88c1fdc710ea129b.png" srcset="/img/loading.gif" lazyload width="1423" /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6a7afa09af604b98a3b90e6b354a1f7a.png" srcset="/img/loading.gif" lazyload width="1432" /></p>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7dfcb25c23da462c9840d472c17825a0.png" srcset="/img/loading.gif" lazyload width="1428" /></p>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2e736e29bcf64f75bad59b6ea8721f3c.png" srcset="/img/loading.gif" lazyload width="1434" /></p>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/70dc5cc07ec54d6f9b0a8dc131efb4ad.png" srcset="/img/loading.gif" lazyload width="1434" /></p>
+
+<p><img alt="" height="1012" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb6e3f4fdb9847f2a8152cbc026f2f03.png" srcset="/img/loading.gif" lazyload width="1430" /></p>
+
+<p></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96-%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">其他-学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/qt-%E5%BC%80%E5%8F%91%E8%AF%AD%E8%A8%80/" class="print-no-link">#qt 开发语言</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【随笔】【QT】QT5.15.2版本的最新下载方式！！！</div>
+      <div>http://example.com/2025/10/31/【随笔】【QT】QT5.15.2版本的最新下载方式！！！/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月31日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/03/%E3%80%90Web%E3%80%91%E5%9F%BA%E4%BA%8EGitHub%20Pages+Hexo%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%88%B6%E4%BD%9C%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E9%A1%B5/" title="【Web】基于GitHub Pages+Hexo的学习制作个人博客网页">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Web】基于GitHub Pages+Hexo的学习制作个人博客网页</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/30/%E3%80%90Embedded%20System%E3%80%91%E5%B5%8C%E5%85%A5%E5%BC%8FC%E8%AF%AD%E8%A8%80%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86/" title="【Embedded System】嵌入式C语言基础知识">
+                        <span class="hidden-mobile">【Embedded System】嵌入式C语言基础知识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

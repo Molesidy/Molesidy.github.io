@@ -1,0 +1,1603 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、蓝牙技术概述  1.1 蓝牙技术概述  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙协议包含两种核心技术：Basic Rate（BR，基本速率）和 Low Energy（LE，低功耗）。两者虽均具备搜索管理、连接管理等基础机制，但技术体系相互独立、无法直接互通。若设备厂商仅实现其中一种技术，该设备只能与同样支持该技术的设备通信；若需确保与所有蓝牙">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述">
+<meta property="og:url" content="http://example.com/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E5%85%B3%E4%BA%8E%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%85%B6%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%A4%A7%E8%87%B4%E6%A6%82%E8%BF%B0/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、蓝牙技术概述  1.1 蓝牙技术概述  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙协议包含两种核心技术：Basic Rate（BR，基本速率）和 Low Energy（LE，低功耗）。两者虽均具备搜索管理、连接管理等基础机制，但技术体系相互独立、无法直接互通。若设备厂商仅实现其中一种技术，该设备只能与同样支持该技术的设备通信；若需确保与所有蓝牙">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/23de3e89e7de48d2bf8c11dc66714cf5.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9c76d6bc21ce48f09cb93fda6e717fc3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/17f4c390fde84efcb666fc113365ebf3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ea56c2dd1ab54faa93523553531ad71e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4c429de180e641ca844991f942d85984.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0e2cf335fd554d958da806da7d4d984c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9688aa49c99f427da8ea0a8b489e44dd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9031e99ef47446cfab0c3b8c02a3f97b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/92cb9df4ea7d455b8a056efa76aa9d12.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5ccc31fc052a4d349a834ff75733d81a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5babd5af1d7545c7b3148efeec3b9b3f.png">
+<meta property="article:published_time" content="2025-08-03T05:25:05.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="bluetooth 蓝牙通信协议">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/23de3e89e7de48d2bf8c11dc66714cf5.jpeg">
+  
+  
+  
+  <title>【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-03 13:25" pubdate>
+          2025年8月3日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          12k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          100 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、蓝牙技术概述</h1>
+
+<h3>1.1 蓝牙技术概述</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙协议包含两种核心技术：Basic Rate（BR，基本速率）和 Low Energy（LE，低功耗）。两者虽均具备搜索管理、连接管理等基础机制，但技术体系相互独立、无法直接互通。若设备厂商仅实现其中一种技术，该设备只能与同样支持该技术的设备通信；若需确保与所有蓝牙设备兼容，则必须同时集成两种技术，无论实际应用是否需要。</p>
+
+<h4>1.1.1 Basic Rate（BR）</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BR 是蓝牙的经典技术，可包含两类扩展技术：可选的 Enhanced Data Rate（EDR，增强数据速率），以及交替使用的 Alternate MAC and PHY layer extension（AMP，交替 MAC 与 PHY 层扩展）。</p>
+
+<ul>
+	<li><strong>BR</strong>：作为早期蓝牙技术，其最高传输速率为 721.2Kbps，在推出时属于高端技术。</li>
+	<li><strong>EDR</strong>：是 BR 的增强版本，通过技术升级将理论速率提升至 2.1Mbps，属于 BR 的可选扩展，可与 BR 同时存在。</li>
+	<li><strong>AMP</strong>：进一步提升速率至理论 54Mbps，但由于其物理层和 MAC 层与 BR/EDR 差异显著，两者无法同时工作，需交替使用（即 BR/EDR 与 AMP 只能二选一）。</li>
+</ul>
+
+<p><span style="background-color:#f9eda6">注：</span></p>
+
+<p><span style="background-color:#f9eda6">在蓝牙技术中，</span><strong><span style="background-color:#f9eda6">AMP</span></strong><span style="background-color:#f9eda6">&nbsp;是&nbsp;</span><strong><span style="background-color:#f9eda6">Alternate MAC and PHY layer extension</span></strong><span style="background-color:#f9eda6">&nbsp;的缩写，中文译为</span><strong><span style="background-color:#f9eda6">交替 MAC 与 PHY 层扩展</span></strong><span style="background-color:#f9eda6">。它是经典蓝牙（BR 技术）的一种扩展技术，主要作用是提升数据传输速率 &mdash;&mdash; 理论上可达到 54Mbps，远高于基础的 BR（721.2Kbps）和 EDR（2.1Mbps）。不过，由于 AMP 的物理层（PHY）和媒体访问控制层（MAC）与 BR/EDR（基本速率 / 增强数据速率）差异显著，两者无法同时工作，必须 &ldquo;交替使用&rdquo;（即同一时间只能启用 BR/EDR 或 AMP 中的一种），这也是其名称中 &ldquo;Alternate（交替）&rdquo; 的由来。</span></p>
+
+<h4>1.1.2 Low Energy（LE）</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BR 技术的演进方向是不断提升传输速率，但高速率往往伴随高能耗。而许多场景对速率要求不高，却极度关注功耗，蓝牙低功耗技术（LE）由此诞生。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LE 是蓝牙技术联盟专为低功耗场景设计的个人局域网技术，广泛应用于医疗保健、运动健身、信标、安防、家庭娱乐及 IoT（物联网）产品领域。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;尽管 LE 与经典蓝牙（BR/EDR）同属蓝牙体系，且均使用 2.4GHz 无线电频率（双模设备可共享天线），但两者技术差异极大，堪称 &ldquo;同名不同技&rdquo;：LE 采用更简单的调制系统，功耗远低于经典蓝牙。</p>
+
+<p>经典蓝牙与低功耗蓝牙的核心技术规范对比如下：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>技术规范</th>
+			<th>经典蓝牙（BT，含 BR/EDR）</th>
+			<th>低功耗蓝牙（BLE）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>无线电频率</td>
+			<td>2.4GHz</td>
+			<td>2.4GHz</td>
+		</tr>
+		<tr>
+			<td>通信距离</td>
+			<td>约 10 米</td>
+			<td>最大 100 米</td>
+		</tr>
+		<tr>
+			<td>发送数据耗时</td>
+			<td>100ms</td>
+			<td>＜3ms</td>
+		</tr>
+		<tr>
+			<td>响应延时</td>
+			<td>约 100ms</td>
+			<td>6ms</td>
+		</tr>
+		<tr>
+			<td>安全性</td>
+			<td>64/128-bit 及应用层自定义</td>
+			<td>128-bit AES 及应用层自定义</td>
+		</tr>
+		<tr>
+			<td>能耗（参考值）</td>
+			<td>100%</td>
+			<td>1%-50%</td>
+		</tr>
+		<tr>
+			<td>空中传输速率</td>
+			<td>1-3Mb/s</td>
+			<td>1Mb/s</td>
+		</tr>
+		<tr>
+			<td>主要应用场景</td>
+			<td>手机、游戏机、耳机、汽车、PC</td>
+			<td>手机、游戏机、PC、智能穿戴、汽车、家用电子</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="background-color:#fefcd8">注：容易混淆的蓝牙名称：</span><br />
+<span style="background-color:#fefcd8">&nbsp; &nbsp; &nbsp; &nbsp; 主要在于经典蓝牙BT与低功耗蓝牙BLE的区别。</span></p>
+
+<p><span style="background-color:#fefcd8">&nbsp; &nbsp; &nbsp; &nbsp; BT、BR、Basic Rate、EDR、BR/EDR、AMP一般统统都是经典蓝牙。</span></p>
+
+<p><span style="background-color:#fefcd8">&nbsp; &nbsp; &nbsp; &nbsp; BLE、Bluetooth Low Energy 、Bluetooth Smart、LE指的是低功耗蓝牙。</span></p>
+
+<p><span style="background-color:#fefcd8">&nbsp; &nbsp; &nbsp; &nbsp; 双模蓝牙是经典蓝牙和低功耗蓝牙的结合，它可以同时支持这两种技术。</span></p>
+
+<hr />
+<h1>二、蓝牙协议栈的架构概述</h1>
+
+<h2>2.1&nbsp;<strong>协议栈（Protocol Stack）</strong></h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在通信技术中，<strong>协议栈（Protocol Stack）</strong>&nbsp;是指一组按层次结构组织的通信协议集合，每层协议负责特定的通信功能，且上层协议依赖下层协议提供的服务，共同实现不同设备或系统之间的有序、可靠通信。</p>
+
+<h3>2.1.1 核心含义：</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通信过程涉及数据的封装、传输、解析、错误处理、安全验证等多个环节，单一协议难以覆盖所有细节。协议栈通过 &ldquo;分层&rdquo; 将复杂功能拆解：</p>
+
+<ul>
+	<li>底层协议（如物理层、数据链路层）负责处理硬件接口、信号传输、数据帧封装等基础工作；</li>
+	<li>上层协议（如网络层、传输层、应用层）负责数据路由、传输控制、应用数据解析等逻辑处理。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，蓝牙协议栈包含物理层（PHY）、链路层（LL）、主机控制接口（HCI）、逻辑链路控制与适配协议（L2CAP）等多层协议，每层各司其职，最终实现设备间的蓝牙通信。</p>
+
+<h3>2.1.2 在通信技术中的位置：软件部分</h3>
+
+<p>协议栈的核心是<strong>软件逻辑</strong>，其本质是对通信规则（协议）的代码实现。</p>
+
+<ul>
+	<li>底层协议（如物理层协议）可能需要与硬件（如射频芯片、控制器）交互，但协议栈本身的逻辑（如数据帧的格式定义、传输时序控制、错误校验算法等）是通过软件（固件、驱动或应用程序）实现的；</li>
+	<li>上层协议（如应用层协议）则完全由软件实现，负责将用户数据按照协议规则处理后，通过下层协议传递。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单说，硬件（如芯片、天线）提供物理传输能力，而协议栈（软件）定义了 &ldquo;如何使用硬件&rdquo; 进行有效通信 &mdash;&mdash; 硬件是 &ldquo;载体&rdquo;，协议栈是 &ldquo;操作系统&rdquo;，二者协同工作，但协议栈本身属于软件部分。</p>
+
+<h2>2.2 蓝牙协议栈的前提知识储备</h2>
+
+<h3><span style="background-color:#dad5e9">2.2.1 HCI</span></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙的&nbsp;<strong>HCI（Host Controller Interface，主机控制器接口）</strong>&nbsp;是蓝牙协议栈中至关重要的标准化接口，其核心作用是实现 &ldquo;主机（Host）&rdquo; 与 &ldquo;控制器（Controller）&rdquo; 的分离与通信，是蓝牙技术模块化、标准化设计的核心体现。以下从定位、组成、交互逻辑、规范细节及意义等方面详细介绍：</p>
+
+<h4><span style="color:#0d0016"><span style="background-color:#ffd7b9">（1）核心定位：分离 &ldquo;软&rdquo; 与 &ldquo;硬&rdquo; 的 &ldquo;中间层&rdquo;</span></span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙协议栈按功能分为&nbsp;<strong>主机（Host）</strong>&nbsp;和&nbsp;<strong>控制器（Controller）</strong>&nbsp;两大模块：</p>
+
+<ul>
+	<li><strong>主机（Host）</strong>：以软件为主，负责高层协议与逻辑处理，例如经典蓝牙的 L2CAP、RFCOMM、SDP，或低功耗蓝牙（BLE）的 GAP、GATT 等，本质是 &ldquo;决策层&rdquo;，决定 &ldquo;做什么&rdquo;（如发起连接、查询设备、传输数据）。</li>
+	<li><strong>控制器（Controller）</strong>：以硬件 + 固件为主，负责底层信号处理，例如物理层（PHY）、媒体访问控制（MAC）、链路管理（经典蓝牙的 LMP 或 BLE 的 LL），本质是 &ldquo;执行层&rdquo;，负责 &ldquo;怎么做&rdquo;（如无线电信号收发、信道切换、物理连接维护）。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;而&nbsp;<strong>HCI 正是连接这两层的 &ldquo;桥梁&rdquo;</strong>：它定义了主机如何向控制器发送指令、控制器如何反馈状态，以及两者如何传输数据，让 &ldquo;决策&rdquo; 与 &ldquo;执行&rdquo; 既能分离开发，又能高效协作。</p>
+
+<h4><span style="color:#0d0016"><span style="background-color:#ffd7b9">（2）HCI 的组成：逻辑协议 + 物理接口</span></span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HCI 并非单一的 &ldquo;软件&rdquo; 或 &ldquo;硬件&rdquo;，而是一套 &ldquo;规范集合&rdquo;，包含两部分核心内容：</p>
+
+<h5><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#cbe0f1">1）&nbsp;逻辑协议：定义 &ldquo;数据交互规则&rdquo;</span></h5>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这是 HCI 的核心，规定了主机与控制器之间交换的信息格式、类型和语义，包括三大类交互：</p>
+
+<ul>
+	<li>
+	<p><strong>命令（Commands）</strong>：主机&rarr;控制器的 &ldquo;指令&rdquo;，用于控制控制器执行特定操作。<br />
+	例如：&ldquo;开始扫描周围设备&rdquo;&ldquo;建立与某设备的连接&rdquo;&ldquo;设置发射功率&rdquo; 等。<br />
+	命令格式标准化：由&nbsp;<strong>操作码（Opcode）</strong>&nbsp;+&nbsp;<strong>参数（Parameters）</strong>&nbsp;组成。</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;操作码（Opcode）：由 16 位二进制构成，前 6 位为 &amp;ldquo;命令组（OGF，Opcode Group Field）&amp;rdquo;，后 10 位为 &amp;ldquo;命令码（OCF，Opcode Command Field）&amp;rdquo;。&lt;br /&gt;
+	例如：OGF=0x01（链路控制组）、OCF=0x0001（&amp;ldquo;建立连接&amp;rdquo; 命令），组合后唯一标识一个命令。&lt;/li&gt;
+	&lt;li&gt;参数：根据命令类型携带具体信息（如目标设备地址、连接参数等）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;事件（Events）&lt;/strong&gt;：控制器&amp;rarr;主机的 &amp;ldquo;反馈&amp;rdquo;，用于告知命令执行结果或异步状态变化。&lt;br /&gt;
+例如：&amp;ldquo;扫描完成，发现 3 个设备&amp;rdquo;&amp;ldquo;连接成功&amp;rdquo;&amp;ldquo;连接断开（原因：信号弱）&amp;rdquo; 等。&lt;br /&gt;
+事件格式标准化：由&amp;nbsp;&lt;strong&gt;事件码（Event Code）&lt;/strong&gt;&amp;nbsp;+&amp;nbsp;&lt;strong&gt;参数（Parameters）&lt;/strong&gt;&amp;nbsp;组成。&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;事件码：8 位二进制，标识事件类型（如 0x01=&amp;ldquo;命令完成&amp;rdquo;、0x02=&amp;ldquo;命令状态&amp;rdquo;、0x05=&amp;ldquo;连接完成&amp;rdquo;）。&lt;/li&gt;
+	&lt;li&gt;参数：携带事件细节（如命令执行结果、错误码、设备信息等）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据（Data）&lt;/strong&gt;：主机与控制器之间的 &amp;ldquo;业务数据&amp;rdquo; 传输（双向）。&lt;br /&gt;
+例如：应用层的文件、音频数据，经主机高层协议处理后，通过 HCI 传给控制器发送；控制器接收的无线信号解析后，通过 HCI 传给主机处理。&lt;br /&gt;
+数据帧格式：包含 &amp;ldquo;数据长度&amp;rdquo;+&amp;ldquo; payload（有效数据）&amp;rdquo;，根据蓝牙类型（经典蓝牙 / BLE）或物理接口略有差异。&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h5><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#cbe0f1">2）&nbsp;物理接口：定义 &ldquo;实际传输载体&rdquo;</span></h5>
+
+<p>逻辑协议需要通过具体的物理链路实现，HCI 支持多种标准化物理接口，适配不同设备场景：</p>
+
+<ul>
+	<li><strong>UART（异步串口）</strong>：最常见于嵌入式设备（如蓝牙模块、智能硬件），优点是硬件简单、成本低，速率通常在 115200bps~1Mbps。</li>
+	<li><strong>USB</strong>：电脑、手机等设备的主流接口，速率高（USB 2.0 可达 480Mbps），支持即插即用，适合大数据量传输（如音频、文件）。</li>
+	<li><strong>SDIO</strong>：较少见，主要用于部分移动设备（如早期手机），通过 SD 卡接口传输，速率中等。</li>
+	<li><strong>PCM（脉冲编码调制）</strong>：专为音频设计，用于蓝牙音频设备（如耳机）的实时语音传输。</li>
+</ul>
+
+<p><strong>关键特点</strong>：无论采用哪种物理接口，上层的逻辑协议（命令 / 事件 / 数据格式）完全一致，确保 &ldquo;换接口不换逻辑&rdquo;，提升兼容性。</p>
+
+<h4><span style="background-color:#ffd7b9">（3）HCI 在经典蓝牙与 BLE 中的差异</span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HCI 是蓝牙技术的通用接口（经典蓝牙和 BLE 均支持），但因两者底层协议不同，HCI 的 &ldquo;命令集&rdquo; 略有差异：</p>
+
+<ul>
+	<li><strong>经典蓝牙（BR/EDR）</strong>：控制器包含 LMP（链路管理协议），因此 HCI 命令多与 LMP 交互相关（如链路加密、功率控制、同步连接）。</li>
+	<li><strong>BLE</strong>：控制器包含 LL（链路层），因此 HCI 命令多与 LL 交互相关（如广播控制、连接参数更新、广告包发送）。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;但核心交互逻辑（命令&rarr;事件&rarr;数据）完全一致，仅具体命令的 &ldquo;功能范围&rdquo; 因底层协议差异而不同。</p>
+
+<h4><span style="background-color:#ffd7b9">（4）HCI 的核心意义</span></h4>
+
+<ol>
+	<li><strong>兼容性保障</strong>：不同厂商的主机（如 Windows 蓝牙驱动）和控制器（如高通蓝牙芯片），只要遵循 HCI 规范，就能无缝对接（例如电脑的 USB 蓝牙适配器，无论品牌，都能被系统识别）。</li>
+	<li><strong>开发简化</strong>：主机开发者无需关注控制器的硬件细节（如射频电路、芯片型号），只需调用 HCI 命令即可控制蓝牙功能；控制器厂商只需实现 HCI 接口，无需关心上层应用逻辑。</li>
+	<li><strong>灵活扩展</strong>：同一主机可适配不同物理接口的控制器（如电脑既可用 USB 蓝牙适配器，也可通过 UART 连接蓝牙模块），适应多样化设备需求。</li>
+</ol>
+
+<h4><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#ffd7b9">总结</span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;HCI 是蓝牙协议栈的 &ldquo;神经中枢&rdquo;，通过标准化的逻辑协议和物理接口，实现了高层软件（主机）与底层硬件（控制器）的解耦。它不仅是技术规范，更是蓝牙设备兼容、开发高效的核心保障，无论是经典蓝牙还是 BLE，其模块化设计都离不开 HCI 的支撑。</p>
+
+<h3><span style="background-color:#dad5e9">2.2.2&nbsp;BT Controller</span><strong><span style="background-color:#dad5e9">（蓝牙控制器）</span></strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong><span style="background-color:null">&nbsp;BT Controller</span></strong>指的是蓝牙芯片，包括BR/EDR芯片（蓝牙2.1芯片），AMP芯片（蓝牙3.0芯片），LE芯片（蓝牙4.0芯片），芯片层面会有2种模式，包括：</p>
+
+<ul>
+	<li>单模芯片：仅支持&nbsp;<strong>BR/EDR（传统）</strong>&nbsp;或仅支持&nbsp;<strong>LE（低功耗）</strong>（例如早期蓝牙音箱多为单模 BR/EDR，多数 BLE 传感器为单模 LE）。</li>
+	<li>双模芯片：同时支持&nbsp;<strong>BR/EDR + LE</strong>（例如手机蓝牙芯片，既可以连传统蓝牙耳机，也可以连 BLE 手环）。</li>
+	<li><strong>BR/EDR、AMP、LE 的本质</strong>：
+	<ul>
+		<li><strong>BR/EDR</strong>（Basic Rate/Enhanced Data Rate）是 &ldquo;经典蓝牙&rdquo; 的核心技术，从蓝牙 1.0 到 3.0 均以其为基础（如蓝牙 2.1 是 BR/EDR 的一个版本，优化了配对等功能），负责中高速数据传输（如音频、文件），属于 &ldquo;传统蓝牙&rdquo; 技术范畴。</li>
+		<li><strong>AMP</strong>（Alternate MAC/PHY，交替射频）是蓝牙 3.0 引入的扩展技术，允许控制器通过其他射频（如 Wi-Fi）传输高速数据（理论速率达 24Mbps），本质是对 BR/EDR 的补充，仍属于控制器的硬件功能模块。</li>
+		<li><strong>LE</strong>（Low Energy，低功耗）是蓝牙 4.0 引入的全新技术，专注低功耗、短距离通信（如传感器数据），与 BR/EDR 是平行的两种射频技术，而非 &ldquo;4.0 以上&rdquo; 的专属。</li>
+	</ul>
+	</li>
+</ul>
+
+<p><span style="background-color:#fefcd8">补充：</span></p>
+
+<ul>
+	<li>
+	<p><span style="background-color:#fefcd8">蓝牙 4.0 是</span><strong><span style="background-color:#fefcd8">第一个同时支持 BR/EDR（传统）和 LE（低功耗）</span></strong><span style="background-color:#fefcd8">&nbsp;的版本（即 &ldquo;双模&rdquo; 的起点），并非 &ldquo;4.0 以上就是低功耗蓝牙&rdquo;。</span></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;span style=&quot;background-color:#fefcd8&quot;&gt;低功耗蓝牙（BLE）的核心技术是从 4.0 开始引入的，后续的 5.0、5.1、5.3 等版本是对 BLE 的性能升级（如更远距离、更快速率），但 BLE 本身是一种技术类型，而非 &amp;ldquo;4.0 以上的版本统称&amp;rdquo;。&lt;/span&gt;&lt;/li&gt;
+	&lt;li&gt;&lt;span style=&quot;background-color:#fefcd8&quot;&gt;传统蓝牙（BR/EDR）在 4.0 及以上版本中并未消失，而是可以与 LE 共存于 &amp;ldquo;双模芯片&amp;rdquo; 中（如蓝牙 5.0 芯片既支持 BLE 的新特性，也可兼容传统 BR/EDR 的音频传输）。&lt;/span&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<ul>
+	<li><span style="background-color:#fefcd8">蓝牙版本（如 4.0、5.0）是技术规范的版本号，而非 &ldquo;传统 / 低功耗&rdquo; 的划分依据；</span></li>
+	<li><span style="background-color:#fefcd8">LE 是一种技术类型（低功耗），BR/EDR 是另一种（传统），两者可在同一版本（如 4.0 及以上）中通过双模芯片共存。</span></li>
+</ul>
+
+<h3><span style="background-color:#dad5e9">2.2.3 Controller（控制器）的类别</span></h3>
+
+<p>蓝牙协议栈的<strong>下层硬件 + 固件部分</strong>，负责底层射频（PHY）、链路管理（如经典蓝牙的 LMP、BLE 的 LL），分为三类：</p>
+
+<ul>
+	<li><strong>LE Controller</strong>：仅支持&nbsp;<strong>低功耗蓝牙（BLE）</strong>&nbsp;技术（蓝牙 4.0 + 引入，专注低功耗、短数据传输）。</li>
+	<li><strong>BR/EDR Controller</strong>：仅支持&nbsp;<strong>经典蓝牙</strong>&nbsp;技术（Basic Rate/Enhanced Data Rate，负责中高速数据 / 音频传输，如蓝牙 2.1~3.0）。</li>
+	<li><strong>AMP Controller</strong>（Alternate MAC/PHY）：蓝牙 3.0 引入的<strong>辅助射频控制器</strong>，允许借用其他射频（如 Wi-Fi）传输高速数据（理论速率达 24Mbps），需依赖主控制器（BR/EDR）管理。</li>
+</ul>
+
+<h3>&nbsp;<span style="background-color:#dad5e9">2.2.4&nbsp;BT Host</span><strong><span style="background-color:#dad5e9">（蓝牙主机）</span></strong></h3>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BT Host 是蓝牙协议栈中位于 HCI 之上的 &ldquo;主机层&rdquo;</strong>，以软件为主，负责高层协议逻辑处理，不直接接触硬件。它包含的核心模块因技术类型不同而有差异：</p>
+
+<ul>
+	<li>针对&nbsp;<strong>经典蓝牙（BR/EDR）</strong>：Host 包含 L2CAP（逻辑链路控制与适配协议）、RFCOMM（串口仿真协议）、SDP（服务发现协议）等。</li>
+	<li>针对&nbsp;<strong>低功耗蓝牙（LE）</strong>：Host 包含 L2CAP、GAP（通用访问配置文件）、GATT（通用属性配置文件）等。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单说：BT Host 是 &ldquo;协议栈的上层软件部分&rdquo;，而 BT Controller 是 &ldquo;协议栈的下层硬件 + 固件部分&rdquo;，两者通过 HCI 接口交互 &mdash;&mdash; 这才是 &ldquo;主机 - 控制器&rdquo; 架构的核心逻辑。</p>
+
+<h2>2.3 蓝牙协议栈的架构与框架</h2>
+
+<h3>2.3.1 协议栈架构方案：</h3>
+
+<p><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/23de3e89e7de48d2bf8c11dc66714cf5.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p>我们可以从&nbsp;<strong>技术类型（单模 / 双模）、控制器角色（主 / 副）、应用场景</strong>&nbsp;三个维度，拆解图中&nbsp;<strong>Figure 1.1（上排）和 Figure 1.2（下排）</strong>&nbsp;的蓝牙主机 - 控制器组合方案：</p>
+
+<h4><strong>（1）Figure 1.1：单模主控制器 + 可选 AMP 辅助（上排 4 种）</strong></h4>
+
+<p>核心特点：<strong>主控制器仅支持一种蓝牙技术（LE 或 BR/EDR），AMP 作为辅助射频扩展</strong>。</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>架构示意图</th>
+			<th>技术组成</th>
+			<th>核心逻辑与应用场景</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td><code>Host &harr; LE Controller</code></td>
+			<td>单模&nbsp;<strong>LE 主控制器</strong></td>
+			<td>- 仅支持&nbsp;<strong>低功耗蓝牙（BLE）</strong>，专注低功耗、短数据传输（如 BLE 传感器、智能手环）。<br />
+			- 典型场景：无需经典蓝牙功能，追求极致功耗。</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td><code>Host &harr; BR/EDR Controller</code></td>
+			<td>单模&nbsp;<strong>BR/EDR 主控制器</strong></td>
+			<td>- 仅支持&nbsp;<strong>经典蓝牙</strong>（中高速数据 / 音频，如蓝牙 2.1~3.0），适合传统蓝牙设备（如音箱、打印机）。<br />
+			- 典型场景：需要稳定音频或文件传输，不关心低功耗。</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td><code>Host &harr; BR/EDR + 1个AMP</code></td>
+			<td>单模&nbsp;<strong>BR/EDR（主）</strong>&nbsp;+ AMP（副）</td>
+			<td>-&nbsp;<strong>BR/EDR 负责核心蓝牙协议</strong>（连接、配对、时序），<strong>AMP 作为 &ldquo;射频外挂&rdquo;</strong>（如借用 Wi-Fi 传输高速数据，提升速率至 24Mbps）。<br />
+			- 典型场景：经典蓝牙设备需偶尔传大文件（如高清图片），但仍以 BR/EDR 为核心。</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td><code>Host &harr; BR/EDR + 多AMP</code></td>
+			<td>单模&nbsp;<strong>BR/EDR（主）</strong>&nbsp;+ 多 AMP（副）</td>
+			<td>- BR/EDR 主控制器 +&nbsp;<strong>多射频 AMP</strong>（如同时支持 Wi-Fi、LTE），灵活适配不同网络环境，进一步扩展高速传输能力。<br />
+			- 典型场景：高端经典蓝牙设备，需兼容多射频高速传输（如旗舰平板传视频）。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>（2）Figure 1.2：双模主控制器 + 可选 AMP 辅助（下排 3 种）</strong></h4>
+
+<p>核心特点：<strong>主控制器集成&nbsp;<code>BR/EDR + LE</code>&nbsp;双模能力，AMP 仍为辅助扩展</strong>。</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>序号</th>
+			<th>架构示意图</th>
+			<th>技术组成</th>
+			<th>核心逻辑与应用场景</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td><code>Host &harr; （BR/EDR + LE）双模Controller</code></td>
+			<td>单芯片集成&nbsp;<strong>BR/EDR + LE 双模主控制器</strong></td>
+			<td>- 同一控制器同时支持&nbsp;<strong>经典蓝牙（中高速 / 音频）+ 低功耗蓝牙（BLE）</strong>，实现 &ldquo;一芯双协议&rdquo;。<br />
+			- 典型场景：手机、平板等消费电子，需同时连接经典耳机（BR/EDR）和 BLE 手环（LE）。</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td><code>Host &harr; 双模Controller + 1个AMP</code></td>
+			<td>双模主控制器 + AMP（副）</td>
+			<td>- 双模主控制器覆盖&nbsp;<strong>全蓝牙功能</strong>（经典 + BLE），AMP 补充超高速传输能力（如传 4K 视频）。<br />
+			- 典型场景：旗舰手机，既要连耳机 / 手环，又要快速传大文件。</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td><code>Host &harr; 双模Controller + 多AMP</code></td>
+			<td>双模主控制器 + 多 AMP（副）</td>
+			<td>- 双模主控制器 +&nbsp;<strong>多射频 AMP</strong>，同时满足：<br />
+			- BLE：低功耗传感；<br />
+			- BR/EDR：稳定音频；<br />
+			- AMP：多射频高速传输（如 Wi-Fi 6、5G 副链）。<br />
+			- 典型场景：未来智能终端，追求全场景蓝牙能力。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>（3）关键概念补充</strong></h4>
+
+<ol>
+	<li>
+	<p><strong>主控制器（Primary Controller）</strong>：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;负责&amp;nbsp;&lt;strong&gt;核心蓝牙协议栈&lt;/strong&gt;（链路建立、配对、时序同步、协议调度），是蓝牙功能的 &amp;ldquo;中枢&amp;rdquo;。&lt;/li&gt;
+	&lt;li&gt;单模主控制器：仅支持 LE 或 BR/EDR；双模主控制器：同时支持两者（芯片级集成）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;辅助控制器（Secondary Controller，如 AMP）&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;仅负责&amp;nbsp;&lt;strong&gt;&amp;ldquo;数据传输的射频扩展&amp;rdquo;&lt;/strong&gt;，不处理核心蓝牙协议（需依附主控制器运行）。&lt;/li&gt;
+	&lt;li&gt;AMP 是蓝牙 3.0 的扩展，本质是 BR/EDR 的 &amp;ldquo;高速插件&amp;rdquo;，无法独立作为蓝牙控制器。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;单模 vs 双模的本质&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;单模：控制器硬件 / 固件仅支持&amp;nbsp;&lt;strong&gt;一种蓝牙技术&lt;/strong&gt;（LE 或 BR/EDR）。&lt;/li&gt;
+	&lt;li&gt;双模：控制器硬件 / 固件&amp;nbsp;&lt;strong&gt;同时支持两种技术&lt;/strong&gt;（芯片级集成，如蓝牙 4.0 及以上的双模芯片）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p>通过这两类方案，蓝牙技术实现了&nbsp;<strong>&ldquo;从单一功能到全场景覆盖&rdquo;</strong>&nbsp;的灵活扩展：</p>
+
+<ul>
+	<li>Figure 1.1 满足&nbsp;<strong>&ldquo;专一需求&rdquo;</strong>（纯 LE 低功耗、纯 BR/EDR 高速、BR/EDR+AMP 超高速）；</li>
+	<li>Figure 1.2 满足&nbsp;<strong>&ldquo;全功能需求&rdquo;</strong>（同时支持经典蓝牙 + BLE，再叠加 AMP 扩展）。<br />
+	这种模块化设计，让蓝牙能适配从廉价传感器到旗舰手机的所有设备。</li>
+</ul>
+
+<h3>2.3.2 AMP的依赖对象问题</h3>
+
+<h4><span style="color:#fe2c24">单模：</span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color:#fbd4d0">在蓝牙&nbsp;</span><strong><span style="background-color:#fbd4d0">单模场景</span></strong><span style="background-color:#fbd4d0">&nbsp;中，AMP 的依赖对象需结合&nbsp;</span><strong><span style="background-color:#fbd4d0">单模类型</span></strong><span style="background-color:#fbd4d0">&nbsp;和&nbsp;</span><strong><span style="background-color:#fbd4d0">AMP 的技术本质</span></strong><span style="background-color:#fbd4d0">&nbsp;分析，核心结论是：</span></p>
+
+<p><strong><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有 &ldquo;单模 BR/EDR 控制器&rdquo; 能承载 AMP，且 AMP 完全依赖该 BR/EDR 控制器</span></strong><span style="background-color:#fbd4d0">；而 &ldquo;单模 LE 控制器&rdquo; 与 AMP 无任何关联（因协议设计完全不兼容）。</span></p>
+
+<h5><span style="background-color:#fbd4d0">（1）单模的分类与 AMP 的关联前提</span></h5>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙单模控制器分为两类：</span></p>
+
+<ul>
+	<li><strong><span style="background-color:#fbd4d0">单模 BR/EDR 控制器</span></strong><span style="background-color:#fbd4d0">：仅支持经典蓝牙（BR/EDR），可扩展 AMP（蓝牙 3.0 设计的能力）。</span></li>
+	<li><strong><span style="background-color:#fbd4d0">单模 LE 控制器</span></strong><span style="background-color:#fbd4d0">：仅支持低功耗蓝牙（BLE），</span><strong><span style="background-color:#fbd4d0">与 AMP 无任何技术交集</span></strong><span style="background-color:#fbd4d0">（BLE 的协议栈、设计目标与 AMP 完全无关，也未预留 AMP 的控制接口）。</span></li>
+</ul>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，</span><strong><span style="background-color:#fbd4d0">只有单模 BR/EDR 控制器的场景中，才会涉及 AMP</span></strong><span style="background-color:#fbd4d0">；单模 LE 控制器的设备，根本不会集成 AMP 功能。</span></p>
+
+<h5><span style="background-color:#fbd4d0">（2）单模 BR/EDR 场景中，AMP 的依赖逻辑</span></h5>
+
+<p><span style="background-color:#fbd4d0">即使在&nbsp;</span><strong><span style="background-color:#fbd4d0">单模 BR/EDR 控制器</span></strong><span style="background-color:#fbd4d0">&nbsp;架构下，AMP 依然是&nbsp;</span><strong><span style="background-color:#fbd4d0">BR/EDR 的 &ldquo;辅助扩展&rdquo;</span></strong><span style="background-color:#fbd4d0">，依赖关系与双模场景一致：</span></p>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>1. 核心协议依赖：BR/EDR 主控制器</strong></span></p>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AMP 自身&nbsp;</span><strong><span style="background-color:#fbd4d0">不具备独立的蓝牙核心能力</span></strong><span style="background-color:#fbd4d0">，必须依靠单模 BR/EDR 控制器完成：</span></p>
+
+<ul>
+	<li><strong><span style="background-color:#fbd4d0">设备发现、配对、连接建立</span></strong><span style="background-color:#fbd4d0">：AMP 无法主动搜索或配对设备，需 BR/EDR 先建立基础连接。</span></li>
+	<li><strong><span style="background-color:#fbd4d0">激活与协商</span></strong><span style="background-color:#fbd4d0">：是否启用 AMP、切换到哪种辅助射频（如 Wi-Fi），需通过 BR/EDR 的链路协商。</span></li>
+	<li><strong><span style="background-color:#fbd4d0">时序同步、安全验证</span></strong><span style="background-color:#fbd4d0">：数据传输的时序和加密，依赖 BR/EDR 的协议栈支持。</span></li>
+</ul>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>2. 架构上的 &ldquo;主 - 副&rdquo; 关系</strong></span></p>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在单模 BR/EDR + AMP 的架构中：</span></p>
+
+<ul>
+	<li><strong><span style="background-color:#fbd4d0">BR/EDR 控制器是 &ldquo;主控制器&rdquo;</span></strong><span style="background-color:#fbd4d0">：负责所有蓝牙核心协议（链路管理、安全、时序）。</span></li>
+	<li><strong><span style="background-color:#fbd4d0">AMP 是 &ldquo;副控制器&rdquo;</span></strong><span style="background-color:#fbd4d0">：仅负责</span><strong><span style="background-color:#fbd4d0">数据传输的射频扩展</span></strong><span style="background-color:#fbd4d0">（如把 BR/EDR 协商好的数据流，通过 Wi-Fi 射频发送），自身不参与蓝牙协议的核心逻辑。</span></li>
+</ul>
+
+<h5><span style="background-color:#fbd4d0">（3）为什么单模 LE 和 AMP 无关？</span></h5>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BLE 的设计目标是&nbsp;</span><strong><span style="background-color:#fbd4d0">&ldquo;低功耗、短数据&rdquo;</span></strong><span style="background-color:#fbd4d0">，其链路层（LL）、协议栈（GAP/GATT）与 BR/EDR 差异极大：</span></p>
+
+<ul>
+	<li><span style="background-color:#fbd4d0">BLE 没有为 &ldquo;高速射频扩展&rdquo; 预留设计（如 AMP 的协商机制、链路迁移逻辑）。</span></li>
+	<li><span style="background-color:#fbd4d0">即使强行尝试，BLE 的低功耗链路也无法支撑 AMP 所需的 &ldquo;高速数据调度、时序同步&rdquo; 等复杂流程。</span></li>
+</ul>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因此，</span><strong><span style="background-color:#fbd4d0">单模 LE 控制器的设备，从硬件到协议都不会集成 AMP 功能</span></strong><span style="background-color:#fbd4d0">，自然不存在依赖关系。</span></p>
+
+<h5><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总结：单模场景中 AMP 的依赖对象</span></h5>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;只有&nbsp;</span><strong><span style="background-color:#fbd4d0">单模 BR/EDR 控制器</span></strong><span style="background-color:#fbd4d0">&nbsp;能与 AMP 配合，且 AMP 完全依赖该 BR/EDR 控制器的核心协议能力；单模 LE 控制器与 AMP 无关联。</span></p>
+
+<p><span style="background-color:#fbd4d0">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;简单说：</span><strong><span style="background-color:#fbd4d0">AMP 是 BR/EDR 的专属扩展，和单模 / 双模无关 &mdash;&mdash; 只要涉及 AMP，必然依赖 BR/EDR 主控制器</span></strong><span style="background-color:#fbd4d0">。</span></p>
+
+<h4><span style="color:#e6b223">双模：</span></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="background-color:#f9eda6">在 &ldquo;双模 Controller + 单&nbsp;AMP&rdquo; 和 &ldquo;双模 Controller + 多 AMP&rdquo; 方案中，</span><strong><span style="background-color:#f9eda6">AMP 依然依赖 BR/EDR（经典蓝牙）</span></strong><span style="background-color:#f9eda6">，而</span><strong><span style="background-color:#f9eda6">与 BLE（低功耗蓝牙）无关</span></strong><span style="background-color:#f9eda6">。这是由蓝牙协议的底层设计决定的，具体原因如下：</span></p>
+
+<h5><span style="background-color:#f9eda6">（1）AMP 的 &ldquo;基因&rdquo; 决定了它依赖 BR/EDR</span></h5>
+
+<p><span style="background-color:#f9eda6">AMP（Alternate MAC/PHY）是蓝牙 3.0 专为</span><strong><span style="background-color:#f9eda6">经典蓝牙（BR/EDR）</span></strong><span style="background-color:#f9eda6">&nbsp;设计的扩展技术，其核心逻辑是 &ldquo;借助 BR/EDR 的基础链路，实现高速射频的切换与管理&rdquo;。</span></p>
+
+<ul>
+	<li><span style="background-color:#f9eda6">蓝牙规范明确规定：AMP 的激活、连接协商、时序同步、安全验证等核心控制流程，</span><strong><span style="background-color:#f9eda6">必须通过 BR/EDR 的链路完成</span></strong><span style="background-color:#f9eda6">（例如，设备需要先通过 BR/EDR 建立基础连接，才能协商是否启用 AMP 传输数据）。</span></li>
+	<li><span style="background-color:#f9eda6">AMP 自身不具备独立的 &ldquo;设备发现、配对、链路维护&rdquo; 能力，这些核心协议功能完全依赖 BR/EDR 主控制器提供的服务。</span></li>
+</ul>
+
+<h5><span style="background-color:#f9eda6">（2）BLE 与 AMP &ldquo;无交集&rdquo;，不存在依赖关系</span></h5>
+
+<p><span style="background-color:#f9eda6">双模控制器虽然同时支持 BR/EDR 和 BLE，但这两种技术是</span><strong><span style="background-color:#f9eda6">平行的协议栈</span></strong><span style="background-color:#f9eda6">，BLE 的设计目标与 AMP 完全无关：</span></p>
+
+<ul>
+	<li><span style="background-color:#f9eda6">BLE 专注于低功耗、短数据传输（如传感器数据），其链路层（LL）、协议逻辑（GAP/GATT）与 BR/EDR 差异极大，</span><strong><span style="background-color:#f9eda6">没有为 AMP 预留任何控制接口或管理机制</span></strong><span style="background-color:#f9eda6">。</span></li>
+	<li><span style="background-color:#f9eda6">即使在双模设备中，AMP 的激活和管理也只会通过 BR/EDR 链路完成，BLE 仅负责自身的低功耗通信（如连接手环、传感器），不会参与 AMP 的任何流程。</span></li>
+</ul>
+
+<h5><span style="background-color:#f9eda6">（3）总结：双模控制器中 AMP 的依赖关系不变</span></h5>
+
+<p><span style="background-color:#f9eda6">无论主控制器是 &ldquo;单模 BR/EDR&rdquo; 还是 &ldquo;双模（BR/EDR+LE）&rdquo;，</span><strong><span style="background-color:#f9eda6">AMP 始终依赖 BR/EDR 的核心协议</span></strong><span style="background-color:#f9eda6">，与 BLE 无关。</span></p>
+
+<ul>
+	<li><span style="background-color:#f9eda6">双模控制器的价值是 &ldquo;同时支持 BR/EDR（含 AMP 扩展）和 BLE&rdquo;，让设备既能通过 BR/EDR+AMP 实现高速传输 + 音频，又能通过 BLE 实现低功耗传感，但这两个功能模块是独立运作的 &mdash;&mdash;AMP 的依赖关系不会因 &ldquo;双模&rdquo; 而转移到 BLE 上。</span></li>
+</ul>
+
+<p><span style="background-color:#f9eda6">简单说：AMP 是 BR/EDR 的 &ldquo;专属外挂&rdquo;，哪怕和 BLE 共处一个双模芯片里，也只认 BR/EDR 这个 &ldquo;主&rdquo;。</span></p>
+
+<h3>2.3.3 蓝牙协议栈的层次框图</h3>
+
+<p><strong>英文大致框图</strong></p>
+
+<p><img alt="" height="1126" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9c76d6bc21ce48f09cb93fda6e717fc3.png" srcset="/img/loading.gif" lazyload width="1080" /></p>
+
+<p><img alt="" height="412" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/17f4c390fde84efcb666fc113365ebf3.png" srcset="/img/loading.gif" lazyload width="629" /></p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ea56c2dd1ab54faa93523553531ad71e.png" srcset="/img/loading.gif" lazyload /></p>
+
+<p><strong>中文大致框图</strong></p>
+
+<p><img alt="" height="550" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4c429de180e641ca844991f942d85984.png" srcset="/img/loading.gif" lazyload width="749" /></p>
+
+<p><img alt="" height="502" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0e2cf335fd554d958da806da7d4d984c.png" srcset="/img/loading.gif" lazyload width="433" /></p>
+
+<p>（蓝牙系统框图）</p>
+
+<p><img alt="" height="629" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9688aa49c99f427da8ea0a8b489e44dd.png" srcset="/img/loading.gif" lazyload width="775" />&nbsp;（低功耗规范）</p>
+
+<p><img alt="" height="473" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9031e99ef47446cfab0c3b8c02a3f97b.png" srcset="/img/loading.gif" lazyload width="903" /></p>
+
+<p>（层次框图）&nbsp;</p>
+
+<h4>（1）单模-经典蓝牙（无AMP）</h4>
+
+<p><img alt="" height="499" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/92cb9df4ea7d455b8a056efa76aa9d12.png" srcset="/img/loading.gif" lazyload width="294" /></p>
+
+<h4>（2）双模-经典蓝牙+低功耗蓝牙（无AMP）</h4>
+
+<p>&nbsp;<img alt="" height="488" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5ccc31fc052a4d349a834ff75733d81a.png" srcset="/img/loading.gif" lazyload width="317" /></p>
+
+<h4>&nbsp;（3）单模-低功耗蓝牙（无AMP）</h4>
+
+<p>&nbsp;<img alt="" height="480" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5babd5af1d7545c7b3148efeec3b9b3f.png" srcset="/img/loading.gif" lazyload width="270" /></p>
+
+<h3>2.3.4&nbsp;蓝牙协议栈详解</h3>
+
+<p>请等待后续章节：-</p>
+
+<hr />
+<h1>三、蓝牙硬件的架构概述</h1>
+
+<h2>3.1 蓝牙硬件的架构与框架</h2>
+
+<h3>3.1.1 蓝牙硬件架构方案</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件架构的设计直接影响开发复杂度和应用场景，主要分为以下四类方案：</p>
+
+<h4>（1）SoC 单芯片方案</h4>
+
+<p><strong>架构特点</strong>：蓝牙协议栈（Host + Controller）与应用处理器集成在同一芯片内，无需额外组件。<br />
+<strong>核心优势</strong>：设计简单、功耗低、成本低、尺寸小，适合资源受限场景。<br />
+<strong>典型芯片</strong>：Nordic nRF52 系列、Dialog DA14531、TI CC2640。<br />
+<strong>典型应用</strong>：蓝牙耳机、智能手环、无线传感器、低功耗 IoT 设备。<br />
+<strong>开发特点</strong>：芯片厂商已封装协议栈，开发者通过调用接口即可开发，类似普通 MCU 开发，无需深入协议栈细节。</p>
+
+<h4>（2）SoC 蓝牙 + MCU 方案</h4>
+
+<p><strong>架构特点</strong>：蓝牙模块（集成协议栈与射频，Host + Controller）与独立 MCU 分离，MCU 负责上层应用逻辑与数据处理。<br />
+<strong>核心优势</strong>：蓝牙模块专注通信，MCU 专注应用处理，性能更优；可灵活搭配不同性能的 MCU。<br />
+<strong>典型芯片</strong>：Cypress CYW20719（常以模块形式存在）。<br />
+<strong>典型应用</strong>：智能家居、工业控制、医疗设备、蓝牙网关。<br />
+<strong>开发特点</strong>：最简单的开发方式，MCU 通过串口发送 AT 指令控制蓝牙功能，但自定义功能扩展受限。</p>
+
+<h4>（3）蓝牙 Host + Controller 分离方案</h4>
+
+<p><strong>架构特点</strong>：协议栈拆分为 Host（高层协议，如 L2CAP、GATT）和 Controller（低层协议，如 PHY、链路层），两者通过 HCI（UART/SPI/USB）通信；Host 运行在主机（MCU/CPU），Controller 为独立模块。<br />
+<strong>核心优势</strong>：适用于计算能力强的设备，Host 端可灵活管理多连接，扩展性高。<br />
+<strong>典型应用</strong>：智能手机、笔记本电脑、车载系统（如外接 USB 蓝牙适配器，适配器仅实现 Controller 功能）。<br />
+<strong>开发特点</strong>：Host 端需根据业务需求实现高层协议与应用，灵活性高，适合复杂场景。</p>
+
+<h4>（4）蓝牙 + Wi-Fi 方案</h4>
+
+<p><strong>架构特点</strong>：蓝牙与 Wi-Fi 共享射频前端，集成于同一芯片，优化共存机制减少干扰。<br />
+<strong>核心优势</strong>：同时支持两种无线技术，射频干扰低，兼顾高吞吐量（Wi-Fi）与低功耗（蓝牙）。<br />
+<strong>典型芯片</strong>：Broadcom BCM4375、Qualcomm QCA9377、AIC8800M40B。<br />
+<strong>典型应用</strong>：智能手机、智能电视、物联网网关、IPC 摄像机（蓝牙用于配网，Wi-Fi 传输音视频）。<br />
+<strong>开发特点</strong>：需处理两者的协同（如蓝牙传递 Wi-Fi 配网信息），适合多无线技术融合场景。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;四类方案从 &ldquo;全集成低功耗&rdquo; 到 &ldquo;分离式高灵活&rdquo;，覆盖了从简单传感器到复杂智能终端的需求，开发难度随架构复杂度递增。</p>
+
+<h3>3.1.2 蓝牙硬件的核心模块组成</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件架构的实现依赖于多个核心模块的协同工作，这些模块从物理层信号处理到链路管理、功耗控制，共同支撑起设备间的无线通信。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件的核心组成部分包括无线通信的关键模块。首先，无线收发器（RF）作为蓝牙协议栈的关键部分，负责无线信号的发送和接收。基带控制器（BB）则负责处理无线数据的编码和解码，确保数据的准确传输。链路管理层（LMP）则维护和管理蓝牙设备之间的连接，确保通信的稳定性和效率。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件模块由蓝牙协议栈的无线收发器（RF）、基带控制器（BB）和链路管理层（LMP）组成。大多数生产厂家都是利用片上系统技术SOC（System-On-Chip）将这三层功能模块集嵌在同一块芯片上。</p>
+
+<p>以下从功能划分角度，解析蓝牙硬件的核心组成：</p>
+
+<h4>（1）射频（RF）模块（无线射频模块（Radio））</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;射频模块是蓝牙硬件与无线环境交互的 &quot;接口&quot;，负责完成无线信号的发射与接收，是决定通信距离、抗干扰能力的关键。其核心功能包括：</p>
+
+<ul>
+	<li><strong>频段与调制</strong>：工作在全球通用的 2.4GHz ISM 频段（2.402-2.480GHz），采用跳频扩频（FHSS）技术（每秒跳变 1600 次）规避同频段干扰（如 Wi-Fi、微波炉）。调制方式随蓝牙技术类型不同：经典蓝牙（BR/EDR）主要用 GFSK（高斯频移键控），BLE（低功耗蓝牙）采用更节能的 2GFSK（二进制 GFSK），高速蓝牙（HS）则支持 PSK（相移键控）提升速率。</li>
+	<li><strong>发射与接收性能</strong>：发射功率决定传输距离（如 BLE 的 - 40dBm 至 + 20dBm 可调，对应近距微瓦级功耗到远距百米级覆盖）；接收灵敏度（通常 - 90dBm 至 - 105dBm）决定弱信号接收能力，灵敏度越高，抗干扰越强。</li>
+	<li><strong>射频前端</strong>：包含功率放大器（PA）、低噪声放大器（LNA）、滤波器等，负责信号放大、滤波，减少噪声干扰。在蓝牙 + Wi-Fi 共存方案中，射频前端需支持动态频段切换与干扰抑制（如通过时分复用避免同频冲突）。</li>
+</ul>
+
+<h4>（2）基带（Baseband）模块</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基带模块是数字信号处理的 &quot;中枢&quot;，连接射频模块与上层协议，负责将射频接收的模拟信号转为数字信号，或反之。其核心功能包括：</p>
+
+<ul>
+	<li><strong>跳频与同步</strong>：基于蓝牙设备地址（BD_ADDR）生成跳频序列，确保通信双方在同一频率点收发；通过时钟同步（如主设备时钟校准从设备）维持跳频一致性。</li>
+	<li><strong>帧处理</strong>：解析或生成蓝牙数据帧（包含前导码、访问码、头部、载荷），支持不同帧类型（如经典蓝牙的 SCO 语音帧、ACL 数据帧；BLE 的广播帧、数据帧）。</li>
+	<li><strong>差错控制</strong>：通过 CRC 校验检测数据错误，结合重传机制（ARQ）确保数据可靠传输；对 BLE 等低功耗场景，还支持缩短帧长减少传输时间，降低功耗。</li>
+</ul>
+
+<h4>（3）链路控制器（Link Controller）（LC）</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;链路控制器是通信链路的 &quot;管理者&quot;，基于链路层协议（LL）实现设备发现、连接建立与维护，是蓝牙设备交互的核心控制逻辑。其核心功能包括：</p>
+
+<ul>
+	<li><strong>设备交互流程</strong>：执行设备发现（Inquiry，主设备搜索周围从设备）、连接建立（Page，主设备呼叫目标从设备）、连接参数协商（如 BLE 的连接间隔、从设备延迟）。</li>
+	<li><strong>链路状态管理</strong>：控制设备在不同状态间切换（如 BLE 的广播、扫描、连接、休眠状态）；支持多连接管理（如 BLE 主设备同时连接多个从设备时的调度）。</li>
+	<li><strong>安全加速</strong>：硬件级支持加密（AES-128）、认证（基于 E0 或 AES 算法）、配对（如 LE Secure Connections），减少软件计算开销，提升安全响应速度。</li>
+</ul>
+
+<h4>（4）链路管理模块（LM）</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;链路管理模块（Link Manager，LM）是蓝牙协议栈中负责链路逻辑管控的核心单元，主要运行于链路管理层（Link Manager Layer），上接 L2CAP 等高层协议，下连链路控制器（Link Controller），是连接物理层信号传输与上层应用数据交互的 &ldquo;桥梁&rdquo;。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>与其他模块的协同逻辑：</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;LM 不直接处理物理层信号，而是通过 &ldquo;链路管理协议（LMP）&rdquo; 与链路控制器（LC）交互：LM 生成的控制指令（如参数调整、加密启动）经 LMP 封装后，由 LC 转化为基带帧发送；LC 监测到的链路状态（如信号弱、连接超时）也通过 LMP 反馈给 LM，触发 LM 的调整逻辑。这种 &ldquo;LM 决策 + LC 执行&rdquo; 的分工，既保证了链路管理的灵活性（适应不同应用场景），又确保了底层执行的高效性（硬件加速处理）。</p>
+
+<h4>（5）协议栈载体与接口（主机控制器接口（HCI））</h4>
+
+<p>协议栈的运行依赖硬件载体，且需通过接口实现内外交互，这部分与 3.1.1 的架构方案直接关联：</p>
+
+<ul>
+	<li><strong>协议栈硬件载体</strong>：在 SoC 单芯片方案中，协议栈（Host+Controller）运行在芯片内置 MCU 上，部分厂商会集成专用协处理器（如 BLE 的链路层协处理器）加速协议处理；在分离方案中，Controller 为独立硬件（如蓝牙模块），Host 运行在外部 MCU/CPU，两者通过 HCI（主机控制器接口）通信，硬件接口包括 UART（低速场景）、SPI（中速）、USB（高速，如 PC 蓝牙适配器）。</li>
+	<li><strong>外设接口</strong>：为扩展应用场景，蓝牙硬件通常集成丰富外设接口，如 GPIO（连接传感器、按键）、UART/SPI/I2C（对接外部 MCU 或传感器模块）、ADC（检测电池电压）、PWM（控制 LED 或电机），部分高端芯片还支持 USB、以太网接口（如蓝牙网关设备）。</li>
+</ul>
+
+<h4>（6）电源管理单元（PMU）</h4>
+
+<p>蓝牙硬件（尤其是 BLE 设备）对功耗极度敏感，PMU 是续航能力的 &quot;调控中心&quot;，核心功能包括：</p>
+
+<ul>
+	<li><strong>电源转换</strong>：将电池电压（如 3V CR2032 纽扣电池）转换为芯片各模块所需电压（如射频 1.8V、数字电路 3.3V），支持低 dropout（LDO）稳压器减少转换损耗。</li>
+	<li><strong>低功耗模式控制</strong>：支持多级休眠模式，如 BLE 的 &quot;深度睡眠&quot;（Deep Sleep）模式下，关闭射频、基带等模块，仅保留实时时钟（RTC）和中断控制器，电流可低至 1&mu;A 以下；通过外部中断（如按键、传感器触发）或定时唤醒（RTC）快速恢复工作状态。</li>
+</ul>
+
+<h4>（7）模块协同逻辑</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件的工作流程可概括为：外部数据（如传感器数据）通过外设接口传入，经协议栈（Host 层）处理后，由链路控制器生成通信指令，基带模块将数据封装为帧，射频模块调制为无线信号发送；接收时则反向执行（射频接收&rarr;基带解析&rarr;链路控制器处理&rarr;协议栈上传至应用），整个过程由 PMU 动态调控功耗，确保性能与续航平衡。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些核心模块的设计差异，直接决定了蓝牙硬件的适用场景 &mdash;&mdash; 例如，BLE 设备会强化 PMU 的低功耗控制和射频的窄带传输，而经典蓝牙音频设备则侧重基带的语音帧处理和链路控制器的 SCO 同步连接支持。</p>
+
+<h2>3.2 蓝牙硬件技术细节&nbsp;</h2>
+
+<h3>3.2.1 蓝牙硬件外设接口</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙硬件的外设接口是实现与外部设备数据交互的核心通道，需根据应用场景的需求（如数据类型、传输速率）选择适配接口，常见类型如下：</p>
+
+<h4><strong>（1）PCM 接口</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;主要用于传输语音数据（如蓝牙耳机、车载蓝牙的通话功能），通过时分复用机制实现语音信号的实时收发。核心信号包括：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>信号名称</th>
+			<th>描述</th>
+			<th>信号电平</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>PCM_CLK</td>
+			<td>数据同步时钟信号</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+		<tr>
+			<td>PCM_SYNC</td>
+			<td>帧同步信号（区分声道或时隙）</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+		<tr>
+			<td>PCM_IN</td>
+			<td>接收外部语音数据信号</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+		<tr>
+			<td>PCM_OUT</td>
+			<td>向外部发送语音数据信号</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>（2）UART 接口</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通用异步收发传输接口，适用于传输非实时通用数据（如传感器数据、配置指令、文件数据等，音乐文件也可通过 UART 传输），通过 TX/RX 双向信号线实现全双工通信。核心信号包括：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>信号名称</th>
+			<th>描述</th>
+			<th>信号电平</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>UART_RX</td>
+			<td>接收外部数据信号</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+		<tr>
+			<td>UART_TX</td>
+			<td>向外部发送数据信号</td>
+			<td>参考所选芯片的电源电压域</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>（3）其他扩展接口</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;随着蓝牙模组集成度提升，为满足多样化场景需求，还支持以下接口：</p>
+
+<ul>
+	<li><strong>USB 接口</strong>：适用于高速数据传输（如蓝牙适配器与电脑连接），支持即插即用；</li>
+	<li><strong>SPI 接口</strong>：与 MCU 等设备的高速同步通信（如工业传感器通过 SPI 与蓝牙模组交互）；</li>
+	<li><strong>I2S 接口</strong>：专为音频传输设计（如蓝牙音箱的无损音乐传输），支持多声道同步；<br />
+	接口的选择需结合传输速率、硬件复杂度及应用场景（如消费电子优先 UART/USB，工业设备常用 SPI）。</li>
+</ul>
+
+<h3>3.2.2 应用方案设计</h3>
+
+<p>蓝牙硬件的应用方案需基于接口特性与场景需求灵活调整：</p>
+
+<ul>
+	<li>简单场景（如低功耗传感器）可采用 UART 接口，通过 AT 指令快速实现数据上传；</li>
+	<li>语音场景（如蓝牙耳机）需搭配 PCM 或 I2S 接口，保证语音实时性；</li>
+	<li>高速数据场景（如蓝牙网关）优先选择 USB 或 SPI 接口，提升传输效率。<br />
+	实际设计中，模组的接口兼容性（如同时支持 UART 和 SPI）可降低方案迭代成本。</li>
+</ul>
+
+<h2>3.3 蓝牙硬件设计目标</h2>
+
+<h3>3.3.1 合规性认证</h3>
+
+<p>蓝牙硬件需通过多项强制认证，确保合法合规及市场准入：</p>
+
+<ul>
+	<li>
+	<p><strong>BQB 认证</strong><br />
+	所有具备蓝牙功能的产品必须通过蓝牙技术联盟（SIG）的 BQB（Bluetooth Qualification Body）认证，核心是验证产品符合蓝牙协议规范，获得唯一的 QDID（Qualification Design ID）。未通过认证的产品不得使用 &ldquo;Bluetooth&reg;&rdquo; 标识，否则将被视为侵权。</p>
+	</li>
+	<li>
+	<p><strong>SRRC 认证</strong><br />
+	在中国市场销售的蓝牙设备需通过国家无线电管理委员会（SRRC）认证，由中国国家无线电监测中心负责检测，核心验证射频参数（如发射功率、工作频段）符合国内无线电法规，确保不对其他无线设备造成干扰。</p>
+	</li>
+</ul>
+
+<h3>3.3.2&nbsp;协议兼容性</h3>
+
+<p>硬件需支持目标应用场景的蓝牙协议栈，确保与其他设备的互操作性：</p>
+
+<ul>
+	<li>低功耗场景需支持 Bluetooth Low Energy（BLE，原 &ldquo;Bluetooth Smart&rdquo;）协议（如 BLE 5.0 及以上，支持长距离、高速率模式）；</li>
+	<li>经典蓝牙场景（如音频传输）需兼容 BR/EDR 协议，支持 SCO（同步语音）、ACL（异步数据）链路；</li>
+	<li>协议支持需匹配应用需求（如医疗设备需支持 BLE 的加密配对协议 SMP，确保数据安全）。</li>
+</ul>
+
+<h3>3.3.3&nbsp;关键性能指标</h3>
+
+<p>硬件设计需明确以下核心指标，以满足功能与性能需求：</p>
+
+<ul>
+	<li>
+	<p><strong>射频基础指标</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;阻抗控制：射频链路（含天线、走线）需满足 50&amp;Omega; 阻抗匹配（具体以芯片 datasheet 为准），避免信号反射导致功率损耗；&lt;/li&gt;
+	&lt;li&gt;工作频段：需覆盖 2.4GHz ISM 频段（2.402&amp;ndash;2.480GHz，实际可用频段为 2.400&amp;ndash;2.4835GHz），符合全球通用频谱规范。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;天线设计&lt;/strong&gt;&lt;br /&gt;
+天线类型需结合产品形态与通信需求选择：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;外置天线（如拉杆天线、贴片天线）：适用于远距离通信（如工业设备），增益较高；&lt;/li&gt;
+	&lt;li&gt;PCB 内置天线：适合小型设备（如智能手环），成本低但需预留净空区减少干扰。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;射频性能指标&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;发射功率：需符合认证标准（如中国 SRRC 要求&amp;le;10dBm），同时根据通信距离调整（远距离场景可提升至 + 20dBm）；&lt;/li&gt;
+	&lt;li&gt;接收灵敏度：通常需&amp;ge;-90dBm（BLE）或&amp;ge;-85dBm（经典蓝牙），灵敏度越高，抗干扰能力越强；&lt;/li&gt;
+	&lt;li&gt;其他射频指标：如邻道抑制、频率误差等，需满足 BQB 及 SRRC 认证要求。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;功能与性能指标&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;通信距离：需结合应用场景定义（如室内传感器 10-30 米，户外设备 50-100 米），受发射功率、天线增益及环境遮挡影响；&lt;/li&gt;
+	&lt;li&gt;连接数量：BLE 主设备需支持多从设备连接（如网关需同时连接 10 + 传感器）；&lt;/li&gt;
+	&lt;li&gt;功耗：低功耗场景（如可穿戴设备）需控制待机电流&amp;le;1&amp;mu;A，工作电流&amp;le;10mA；&lt;/li&gt;
+	&lt;li&gt;成本：通过芯片集成度（如 SoC 方案）、接口简化（如仅保留 UART）优化硬件成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h2>3.4 项目设计流程</h2>
+
+<p>基于上述背景，蓝牙硬件项目的开发流程可分为以下阶段：</p>
+
+<ol>
+	<li><strong>需求分析</strong>：明确应用场景（如消费电子 / 工业）、功能需求（如数据传输 / 语音）、性能指标（如通信距离、功耗）及合规要求（如 BQB/SRRC 认证）；</li>
+	<li><strong>系统与结构设计</strong>：确定硬件架构（如 SoC 单芯片 / Host-Controller 分离）、接口选型（如 UART/PCM）、结构布局（如天线位置、散热设计）；</li>
+	<li><strong>工程详细设计</strong>：绘制原理图（含射频电路、电源管理、外设接口）、PCB 布局（重点优化射频走线阻抗与抗干扰）、元件选型（确保温湿度、可靠性符合场景需求）；</li>
+	<li><strong>投板与首件测试</strong>：制作首版 PCB，进行焊接质量检查（如虚焊、短路），验证硬件基本功能；</li>
+	<li><strong>单元测试</strong>：针对核心模块测试（如射频性能：发射功率 / 接收灵敏度；接口功能：UART 数据传输）；</li>
+	<li><strong>功能测试</strong>：验证蓝牙全流程功能（如设备发现、连接建立、数据收发、加密配对、断开重连）；</li>
+	<li><strong>系统测试</strong>：模拟实际应用场景测试（如多设备连接稳定性、高低温环境下的通信可靠性）；</li>
+	<li><strong>验收测试</strong>：依据需求规格与认证标准，确认所有指标达标，完成 BQB、SRRC 等认证，最终交付。</li>
+</ol>
+
+<hr />
+<p>&nbsp; &nbsp; &nbsp; &nbsp;后续，笔者会对蓝牙协议栈中各层次以及每层中的各个规范进行逐步讲解，同时，如有错误，可在评论区指出、讨论。</p>
+
+<p>（如有侵权，请联系删除。）&nbsp;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">蓝牙通信协议学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/bluetooth-%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE/" class="print-no-link">#bluetooth 蓝牙通信协议</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述</div>
+      <div>http://example.com/2025/08/03/【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%B2%E5%8F%A3%EF%BC%88UART%EF%BC%89%E9%80%9A%E4%BF%A1/" title="【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/31/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%AF%B9%E4%BA%8E%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/" title="【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识">
+                        <span class="hidden-mobile">【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

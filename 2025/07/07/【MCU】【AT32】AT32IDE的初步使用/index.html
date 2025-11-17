@@ -1,0 +1,899 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  基本信息   	开发基础：基于 Eclipse 框架，是一个跨平台 ARM 嵌入式系统的软件开发环境，集成了一系列 Eclipse 插件和工具。 	操作系统兼容性：支持 Windows 和 Linux 操作系统，其中 Linux 发行版本支持 Ubuntu 18.4 及以上、Fedora 34 及以上、Centos 7 及以上等 。在 Windows 系统中可直接运行安装程序，在">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【AT32】AT32IDE的初步使用">
+<meta property="og:url" content="http://example.com/2025/07/07/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91AT32IDE%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  基本信息   	开发基础：基于 Eclipse 框架，是一个跨平台 ARM 嵌入式系统的软件开发环境，集成了一系列 Eclipse 插件和工具。 	操作系统兼容性：支持 Windows 和 Linux 操作系统，其中 Linux 发行版本支持 Ubuntu 18.4 及以上、Fedora 34 及以上、Centos 7 及以上等 。在 Windows 系统中可直接运行安装程序，在">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ffe01a2afe7d4aef8f7eea70c095c962.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f15848de4f9046eb9e3057a1f5fb1a40.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/772d14a4208f4e5fbdc458b9abcd44d9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cd8a1dda5f76400caf7c0bd36650c98a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dcc47133e930484390a446904ac977c5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/aee0243a757141de95309a1af8cdafca.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1f1c1d265a9a4ce8a6b82f3e85408ee3.png">
+<meta property="article:published_time" content="2025-07-07T12:38:41.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="AT32 单片机 嵌入式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/ffe01a2afe7d4aef8f7eea70c095c962.png">
+  
+  
+  
+  <title>【MCU】【AT32】AT32IDE的初步使用 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【AT32】AT32IDE的初步使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-07 20:38" pubdate>
+          2025年7月7日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          16 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【AT32】AT32IDE的初步使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<h3>基本信息</h3>
+
+<ul>
+	<li><strong>开发基础</strong>：基于 Eclipse 框架，是一个跨平台 ARM 嵌入式系统的软件开发环境，集成了一系列 Eclipse 插件和工具。</li>
+	<li><strong>操作系统兼容性</strong>：支持 Windows 和 Linux 操作系统，其中 Linux 发行版本支持 Ubuntu 18.4 及以上、Fedora 34 及以上、Centos 7 及以上等 。在 Windows 系统中可直接运行安装程序，在 Linux 系统中按照特定步骤解压安装包即可完成安装，如在 Ubuntu 20.4 上，可先创建目录，再通过<code>tar</code>命令解压安装包到指定目录。</li>
+	<li><strong>自带资源</strong>：安装包包含 JRE 运行环境、ARM 工具链（如 GNU ARM 工具链，含 ARM 的 GCC 编译程序）和 GCC Make 构建工具 ，帮助开发者便捷组织资源、装备软件组件。</li>
+</ul>
+
+<h3>主要功能</h3>
+
+<ul>
+	<li><strong>项目创建</strong>：通过雅特力项目向导，为不同的雅特力目标 MCU 提供创建模板项目。以创建基于 AT32F403AVGT7 的项目为例，在菜单栏选择【File】&gt;【New】&gt;【C Project】，输入项目名称，选择项目类型（如 AT32F403A_407 C Project ）和默认工具链（Arm Cross GCC），再按需配置目标芯片、调试等选项，即可完成项目创建 。</li>
+	<li><strong>项目构建</strong>：使用 GNU ARM 工具链来构建项目。构建时，右键单击项目，选择 &ldquo;Build Project&rdquo;，或者选中项目后点击菜单栏的 &ldquo;Build Project&rdquo;，即可生成 elf 文件，构建日志会在控制台打印。若需重新配置构建选项，可选择菜单【Project】&gt;【Properties】或右键项目选择【Properties】，在 C/C++ Build&gt;Settings 中更改配置，应用设置后重新构建项目 。</li>
+	<li><strong>项目调试</strong>：以 GDB 作为调试工具，支持暂停、单步、运行和监视目标芯片，能存取内存及闪存，还支持设置硬件断点及检测点，也可以抹除目标芯片和编程用户配置。调试前，选择菜单【Run】&gt;【Debug Configurations&hellip;】打开调试配置对话框，双击 GDB AT-Link Debugging 自动创建 AT-Link 调试配置，大部分配置信息会自动生成，一般无需修改。在调试透视图，可查看变量值、表达式值、外围寄存器等 。</li>
+</ul>
+
+<h1>二、工程建立</h1>
+
+<h2>1.工程配置</h2>
+
+<p>填写工程名，选择对应芯片</p>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ffe01a2afe7d4aef8f7eea70c095c962.png" srcset="/img/loading.gif" lazyload width="1914" /></p>
+
+<h2>2.选择裸机开发，外部时钟，无跟踪打印输出等</h2>
+
+<p><img alt="" height="991" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f15848de4f9046eb9e3057a1f5fb1a40.png" srcset="/img/loading.gif" lazyload width="977" /></p>
+
+<h2>3.自定义工程目录</h2>
+
+<p><img alt="" height="1001" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/772d14a4208f4e5fbdc458b9abcd44d9.png" srcset="/img/loading.gif" lazyload width="984" /></p>
+
+<p>1. 通用作用</p>
+
+<p>界面标题 &ldquo;<code>Folders settings</code>&rdquo; + 说明文字 &ldquo;<code>Define the project folders and other options.</code>&rdquo; ，功能是让开发者指定项目中不同类别文件的存储路径，方便工程文件分类管理、工具链 / 编译器识别依赖，让代码编译、链接流程更清晰。</p>
+
+<p>2. 逐行解析参数</p>
+
+<ul>
+	<li>
+	<p><strong><code>Include folder</code></strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;用途：存放&lt;strong&gt;头文件（.h）&lt;/strong&gt;&amp;nbsp;，比如芯片寄存器定义、函数声明、宏定义等。&lt;/li&gt;
+	&lt;li&gt;示例：&lt;code&gt;include&lt;/code&gt;&amp;nbsp;目录里可能有&amp;nbsp;&lt;code&gt;at32f403a.h&lt;/code&gt;（芯片外设寄存器头文件 ）、&lt;code&gt;project_config.h&lt;/code&gt;（项目全局配置 ），代码里&amp;nbsp;&lt;code&gt;#include &amp;quot;xxx.h&amp;quot;&lt;/code&gt;&amp;nbsp;会从这里找文件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Libraries folder&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;用途：存放&lt;strong&gt;库文件（.a、.lib 等二进制库，或 .c/.cpp 源码形式的库 ）&lt;/strong&gt;&amp;nbsp;，一般是通用算法、第三方功能封装（如加密库、数学库 ）。&lt;/li&gt;
+	&lt;li&gt;示例：&lt;code&gt;libraries&lt;/code&gt;&amp;nbsp;里可能有&amp;nbsp;&lt;code&gt;math_lib&lt;/code&gt;&amp;nbsp;文件夹，包含数学运算函数的源码 / 编译好的库，工程编译时会链接这些代码实现功能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;BSP folder&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;含义：BSP = Board Support Package（板级支持包 ）。&lt;/li&gt;
+	&lt;li&gt;用途：存放&lt;strong&gt;与硬件板卡强相关的代码&lt;/strong&gt;，比如特定开发板的引脚初始化（&lt;code&gt;bsp_gpio.c&lt;/code&gt;&amp;nbsp;）、硬件外设适配（显示屏、按键驱动 ）。&lt;/li&gt;
+	&lt;li&gt;作用：隔离硬件差异，换开发板时只需替换 / 修改 BSP 目录，上层逻辑（如应用代码 ）可复用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;CMSIS library folder&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;含义：CMSIS = Cortex Microcontroller Software Interface Standard（ARM Cortex 内核 MCU 软件接口标准 ）。&lt;/li&gt;
+	&lt;li&gt;用途：存放&amp;nbsp;&lt;strong&gt;CMSIS 标准相关文件&lt;/strong&gt;，包含：
+	&lt;ul&gt;
+		&lt;li&gt;内核寄存器定义（如&amp;nbsp;&lt;code&gt;core_cm4.h&lt;/code&gt;&amp;nbsp;，针对 Cortex-M4 内核 ）；&lt;/li&gt;
+		&lt;li&gt;内核外设驱动（如 SysTick 定时器、NVIC 中断控制器初始化 ）；&lt;/li&gt;
+		&lt;li&gt;部分通用 API（如&amp;nbsp;&lt;code&gt;__disable_irq()&lt;/code&gt;&amp;nbsp;关中断函数 ）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;作用：让代码适配 ARM 内核规范，不同厂商（如雅特力、ST、NXP ）的 Cortex-M 系列 MCU，CMSIS 层可通用，降低移植成本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;Firmware folder&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;用途：存放&lt;strong&gt;芯片厂商提供的固件库 / 驱动源码&lt;/strong&gt;，比如 AT32 官方的外设驱动（GPIO、UART、SPI 等初始化函数 ）。&lt;/li&gt;
+	&lt;li&gt;示例：&lt;code&gt;firmware&lt;/code&gt;&amp;nbsp;里可能有&amp;nbsp;&lt;code&gt;at32f403a_gpio.c&lt;/code&gt;（GPIO 外设驱动 ）、&lt;code&gt;at32f403a_uart.c&lt;/code&gt;（串口驱动 ），包含寄存器操作的底层代码，开发者可直接调用这些驱动函数控制硬件。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;User folder&lt;/code&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;用途：存放&lt;strong&gt;用户自定义代码&lt;/strong&gt;，比如主函数（&lt;code&gt;main.c&lt;/code&gt;&amp;nbsp;）、应用逻辑（&lt;code&gt;app_task.c&lt;/code&gt;&amp;nbsp;）、业务功能实现（如传感器数据处理、协议解析 ）。&lt;/li&gt;
+	&lt;li&gt;作用：区分开官方 / 通用代码（如 CMSIS、Firmware ）和开发者写的业务代码，工程结构更清晰，方便维护。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p>实际开发价值</p>
+
+<p>这样的目录划分是嵌入式工程 **&ldquo;模块化管理&rdquo;** 的体现：</p>
+
+<ul>
+	<li>工具链（如 GCC 编译时 ）能通过这些路径找到头文件、库文件，确保&nbsp;<code>#include</code>&nbsp;不报错、链接不缺文件；</li>
+	<li>多人协作 / 后续维护时，一眼能区分 &ldquo;官方驱动&rdquo;&ldquo;用户代码&rdquo;&ldquo;硬件适配代码&rdquo;，降低理解成本；</li>
+	<li>移植项目到新芯片 / 新开发板时，只需替换 CMSIS、BSP、Firmware 等目录，用户代码大概率复用，效率更高。</li>
+</ul>
+
+<h2>4.工具链选择</h2>
+
+<h2><img alt="" height="575" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cd8a1dda5f76400caf7c0bd36650c98a.png" srcset="/img/loading.gif" lazyload width="734" />5.添加DEBUG配置</h2>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dcc47133e930484390a446904ac977c5.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1006" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/aee0243a757141de95309a1af8cdafca.png" srcset="/img/loading.gif" lazyload width="1891" /></p>
+
+<p>选择烧写方式</p>
+
+<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1f1c1d265a9a4ce8a6b82f3e85408ee3.png" srcset="/img/loading.gif" lazyload width="1892" /></p>
+
+<p>注：<br />
+AT32IDE内无法使用ST-Link下载程序（如果有读者知道AT32IDE如何配置ST-Link可以在评论区发出来），需要使用AT-Link。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/AT32-%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#AT32 单片机 嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【AT32】AT32IDE的初步使用</div>
+      <div>http://example.com/2025/07/07/【MCU】【AT32】AT32IDE的初步使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/" title="【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【AT32】利用AT32离线固件包搭建AT32工程模板（纯手动）</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8E%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8CHAL%E5%BA%93%E5%88%86%E5%88%AB%E5%AE%9E%E7%8E%B0RS485%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/" title="【STM32】基于标准库和HAL库分别实现RS485通信方式">
+                        <span class="hidden-mobile">【STM32】基于标准库和HAL库分别实现RS485通信方式</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

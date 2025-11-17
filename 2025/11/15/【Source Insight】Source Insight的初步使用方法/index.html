@@ -1,0 +1,904 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  Source Insight 是一款专注于代码阅读与分析的集成开发工具（IDE），由 Source Dynamics 公司开发，广泛应用于软件开发领域。  它的核心优势在于对代码的深度解析能力：能自动构建项目的符号数据库（如函数、变量、类等），支持实时语法高亮、快速跳转到定义 &#x2F; 引用、调用关系树显示等功能，帮助开发者高效浏览和理解大型代码库（尤其适合 C、C++、Java、Pyt">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Source Insight】Source Insight的初步使用方法">
+<meta property="og:url" content="http://example.com/2025/11/15/%E3%80%90Source%20Insight%E3%80%91Source%20Insight%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  Source Insight 是一款专注于代码阅读与分析的集成开发工具（IDE），由 Source Dynamics 公司开发，广泛应用于软件开发领域。  它的核心优势在于对代码的深度解析能力：能自动构建项目的符号数据库（如函数、变量、类等），支持实时语法高亮、快速跳转到定义 &#x2F; 引用、调用关系树显示等功能，帮助开发者高效浏览和理解大型代码库（尤其适合 C、C++、Java、Pyt">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/03161de7fd3947c3964e70bc456d3f29.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e33da765df34416e9fe799441aaa0e9b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de0d988508ef4cf5a94a0913c3297efc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8a300b7ebc1642c1ae886ffe87543f07.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dce16a5f278049dead157b9c817da24f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bf4bf2c7a22a4f7d8e0b5429e0a21af3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/89e3662adc644948b64750b381d8d07f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0d9ae34b18be40b894fa5a30f2542116.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dea9632a6ae84a30846967ad9804eb25.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/02dd8ab4a5a04e978018c137e352f482.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/53c44debcc4248c58addc26ad2be703b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a6528a670ba344baa2299ca175e7a726.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/efaa760c5c2341f6b0c07b1e0fb81bcb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e5b02a4428ce4500baf3d593df8135aa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a972dfe7bbe4b30b88080cd4fe8f212.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b9a6e370d76d4aa784c3ca21ece54d75.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b271ad790a3a46f28977a2201deea4e7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/10b464ac173b4859925595c426be20c1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a68c67e871144a208cdc9343a11b9943.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cba5c1761fe442e990ddb0231c00b7b2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8c5c6c53d0c04ffd952593e3a71e6b64.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/79a96811763a4ec6a2cc9615de2bb0db.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d85c53157c5b4589baa8c98ad3ad80e4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c5373d02286f41cb8d458d2b56ffd1b7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cb1cd371d3a74dcf88a124a3ed16d5ab.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ae1cdc49fd4f446abba1e018779ab996.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e361fa0a4ced49818c7ccadb172a39d2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e40aa5d8d4e54e369a1a619f4a8cabdb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ff8abcf2ee504e82829da0815e6e163f.png">
+<meta property="article:published_time" content="2025-11-15T05:56:07.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="Source Insight">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/03161de7fd3947c3964e70bc456d3f29.png">
+  
+  
+  
+  <title>【Source Insight】Source Insight的初步使用方法 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Source Insight】Source Insight的初步使用方法"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-15 13:56" pubdate>
+          2025年11月15日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          650 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          6 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Source Insight】Source Insight的初步使用方法</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>Source Insight 是一款专注于代码阅读与分析的集成开发工具（IDE），由 Source Dynamics 公司开发，广泛应用于软件开发领域。</p>
+
+<p>它的核心优势在于对代码的深度解析能力：能自动构建项目的符号数据库（如函数、变量、类等），支持实时语法高亮、快速跳转到定义 / 引用、调用关系树显示等功能，帮助开发者高效浏览和理解大型代码库（尤其适合 C、C++、Java、Python 等多种编程语言）。</p>
+
+<p>界面简洁直观，操作轻量化，兼顾编辑与分析功能，是程序员阅读、修改和维护复杂代码时的常用工具，能显著提升代码理解效率和开发 productivity。</p>
+
+<h1>二、初步使用</h1>
+
+<h2>2.1 新建一个文件夹，用于放Source Insight工程的文件夹</h2>
+
+<p><img alt="" height="300" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/03161de7fd3947c3964e70bc456d3f29.png" srcset="/img/loading.gif" lazyload width="766" /></p>
+
+<h2>2.2 写Source Insight工程名字，以及更改存放这个Source Insight工程的文件夹位置，然后点击ok</h2>
+
+<p><img alt="" height="303" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e33da765df34416e9fe799441aaa0e9b.png" srcset="/img/loading.gif" lazyload width="574" /></p>
+
+<h2>2.3 在红框里，选择你想要导入Source Insight的源码文件夹路径，这里拿STM32的KEIL工程为例，其他选项默认，后续自行研究功能，点击ok</h2>
+
+<p><img alt="" height="703" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de0d988508ef4cf5a94a0913c3297efc.png" srcset="/img/loading.gif" lazyload width="592" /></p>
+
+<h2>2.4 导入源码文件</h2>
+
+<p><img alt="" height="648" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8a300b7ebc1642c1ae886ffe87543f07.png" srcset="/img/loading.gif" lazyload width="673" /></p>
+
+<h3>（1）不勾选只显示只知道的文件类型</h3>
+
+<p><img alt="" height="656" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dce16a5f278049dead157b9c817da24f.png" srcset="/img/loading.gif" lazyload width="666" /></p>
+
+<h3 style="background-color:transparent">（2）按ctrl，鼠标点击多选</h3>
+
+<p><img alt="" height="660" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bf4bf2c7a22a4f7d8e0b5429e0a21af3.png" srcset="/img/loading.gif" lazyload width="668" /></p>
+
+<h3>（3）选择完毕点击add，然后，如果有文件夹，一定要勾选递归添加子文件的选项</h3>
+
+<p><img alt="" height="658" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/89e3662adc644948b64750b381d8d07f.png" srcset="/img/loading.gif" lazyload width="674" /></p>
+
+<p><img alt="" height="117" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0d9ae34b18be40b894fa5a30f2542116.png" srcset="/img/loading.gif" lazyload width="433" /></p>
+
+<p>点击ok</p>
+
+<p><img alt="" height="655" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dea9632a6ae84a30846967ad9804eb25.png" srcset="/img/loading.gif" lazyload width="675" /></p>
+
+<h2>2.5 添加完毕，点击close关闭窗口</h2>
+
+<p><img alt="" height="652" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/02dd8ab4a5a04e978018c137e352f482.png" srcset="/img/loading.gif" lazyload width="674" /></p>
+
+<h2>2.6 如果是空白界面，需要调出窗口，点击view--&gt;panels--&gt;project window，可以到文件夹下选择要查看的文件</h2>
+
+<p><img alt="" height="1031" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/53c44debcc4248c58addc26ad2be703b.png" srcset="/img/loading.gif" lazyload width="1918" /></p>
+
+<p><img alt="" height="786" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a6528a670ba344baa2299ca175e7a726.png" srcset="/img/loading.gif" lazyload width="1607" /></p>
+
+<p><img alt="" height="1007" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/efaa760c5c2341f6b0c07b1e0fb81bcb.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="519" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e5b02a4428ce4500baf3d593df8135aa.png" srcset="/img/loading.gif" lazyload width="503" /></p>
+
+<h2>2.7 打开正文窗口</h2>
+
+<h3>方法一：点击视图里的功能选项</h3>
+
+<p><img alt="" height="627" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a972dfe7bbe4b30b88080cd4fe8f212.png" srcset="/img/loading.gif" lazyload width="918" /></p>
+
+<h3>方法二：双击右下的文件</h3>
+
+<p><img alt="" height="1001" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b9a6e370d76d4aa784c3ca21ece54d75.png" srcset="/img/loading.gif" lazyload width="1916" /></p>
+
+<h2>2.8 同步并解析文件，让各个文件的函数关联起来，勾选第一个选项Force all files to be re-parsed，然后开始</h2>
+
+<p><img alt="" height="509" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b271ad790a3a46f28977a2201deea4e7.png" srcset="/img/loading.gif" lazyload width="765" /></p>
+
+<p><img alt="" height="307" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/10b464ac173b4859925595c426be20c1.png" srcset="/img/loading.gif" lazyload width="598" /></p>
+
+<h2>2.9 如果有乱码，请更改文件编码格式</h2>
+
+<p><img alt="" height="267" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a68c67e871144a208cdc9343a11b9943.png" srcset="/img/loading.gif" lazyload width="378" /></p>
+
+<p><img alt="" height="786" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cba5c1761fe442e990ddb0231c00b7b2.png" srcset="/img/loading.gif" lazyload width="568" /></p>
+
+<h2>2.10 然后就是函数定义跳转</h2>
+
+<h3>方法一：与vscode差不多，按住ctrl，鼠标点击函数名</h3>
+
+<h3>方法二：选中函数名，然后右击鼠标</h3>
+
+<p><img alt="" height="720" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8c5c6c53d0c04ffd952593e3a71e6b64.png" srcset="/img/loading.gif" lazyload width="445" /></p>
+
+<h2>2.11 高亮出自己想看的部分，options--&gt;Key Assignments...&nbsp; ，找到词语高亮 View:Highlight Word，我的对应的快捷键 F8，选中，按下F8</h2>
+
+<p><img alt="" height="249" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/79a96811763a4ec6a2cc9615de2bb0db.png" srcset="/img/loading.gif" lazyload width="441" /></p>
+
+<p><img alt="" height="509" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d85c53157c5b4589baa8c98ad3ad80e4.png" srcset="/img/loading.gif" lazyload width="557" /></p>
+
+<p><img alt="" height="183" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c5373d02286f41cb8d458d2b56ffd1b7.png" srcset="/img/loading.gif" lazyload width="522" /></p>
+
+<p>或者右击菜单里也有</p>
+
+<p><img alt="" height="407" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cb1cd371d3a74dcf88a124a3ed16d5ab.png" srcset="/img/loading.gif" lazyload width="450" /></p>
+
+<h2>2.12 比较重要的就是：可以查看调用关系图的功能，先开启窗口，再选中对应的词语或者函数名，窗口下面有横向树状图标，可以开启树状图</h2>
+
+<p><img alt="" height="566" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ae1cdc49fd4f446abba1e018779ab996.png" srcset="/img/loading.gif" lazyload width="948" /></p>
+
+<p><img alt="" height="467" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e361fa0a4ced49818c7ccadb172a39d2.png" srcset="/img/loading.gif" lazyload width="1918" /></p>
+
+<p><img alt="" height="307" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e40aa5d8d4e54e369a1a619f4a8cabdb.png" srcset="/img/loading.gif" lazyload width="727" /></p>
+
+<p><img alt="" height="276" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ff8abcf2ee504e82829da0815e6e163f.png" srcset="/img/loading.gif" lazyload width="433" /></p>
+
+<p></p>
+
+<p>注：目前介绍简单功能，等待后续更新</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96-%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">其他-学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/Source-Insight/" class="print-no-link">#Source Insight</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Source Insight】Source Insight的初步使用方法</div>
+      <div>http://example.com/2025/11/15/【Source Insight】Source Insight的初步使用方法/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月15日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/" title="【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程">
+                        <span class="hidden-mobile">【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

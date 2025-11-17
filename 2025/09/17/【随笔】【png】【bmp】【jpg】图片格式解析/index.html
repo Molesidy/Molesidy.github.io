@@ -1,0 +1,1773 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、 .png图片格式解析  1.1&nbsp; png简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PNG（Portable Network Graphics），便携式网络图形，是一种采用无损压缩算法的位图格式，支持索引、灰度、RGB三种颜色方案以及Alpha通道等特性。&nbsp;[5]其设计目的是试图替代GIF和TIFF文件格式，同时增加一些">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【随笔】【png】【bmp】【jpg】图片格式解析">
+<meta property="og:url" content="http://example.com/2025/09/17/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90png%E3%80%91%E3%80%90bmp%E3%80%91%E3%80%90jpg%E3%80%91%E5%9B%BE%E7%89%87%E6%A0%BC%E5%BC%8F%E8%A7%A3%E6%9E%90/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、 .png图片格式解析  1.1&nbsp; png简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PNG（Portable Network Graphics），便携式网络图形，是一种采用无损压缩算法的位图格式，支持索引、灰度、RGB三种颜色方案以及Alpha通道等特性。&nbsp;[5]其设计目的是试图替代GIF和TIFF文件格式，同时增加一些">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1d0833a32881489c8aa8f8e8cb3b6d33.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/efdb381167a6443fb6e86bfa4ee14cde.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/51641439d8a44275a69237c4069b3d14.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/aff0b9a917e04bbeaf808a560feae611.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/51674f4b0e1a4daeb14e3222cc109f3c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c9c67b06a235445a8238c756597eb0e3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ac26c5b0b3eb485b821859a52dde2897.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8d8a12199ac94bd5b2918c4ef7bb9157.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9022a3a506fd4056877bf159d02e49d2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ba1c96873779416f91a27c6da8c974b3.png">
+<meta property="article:published_time" content="2025-09-17T12:21:21.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="jpg bmp png">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/1d0833a32881489c8aa8f8e8cb3b6d33.png">
+  
+  
+  
+  <title>【随笔】【png】【bmp】【jpg】图片格式解析 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【随笔】【png】【bmp】【jpg】图片格式解析"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-17 20:21" pubdate>
+          2025年9月17日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          7.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          66 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【随笔】【png】【bmp】【jpg】图片格式解析</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、 .png图片格式解析</h1>
+
+<h2>1.1&nbsp; png简介</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PNG（Portable Network Graphics），便携式网络图形，是一种采用无损压缩算法的位图格式，支持索引、灰度、<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="RGB" target="_blank" rel="noopener" href="https://baike.baidu.com/item/RGB/342517?fromModule=lemma_inlink" title="RGB">RGB</a>三种颜色方案以及Alpha通道等特性。&nbsp;[5]其设计目的是试图替代<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="GIF" target="_blank" rel="noopener" href="https://baike.baidu.com/item/GIF/217778?fromModule=lemma_inlink" title="GIF">GIF</a>和<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="TIFF" target="_blank" rel="noopener" href="https://baike.baidu.com/item/TIFF/2106?fromModule=lemma_inlink" title="TIFF">TIFF</a><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="文件格式" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%96%87%E4%BB%B6%E6%A0%BC%E5%BC%8F/6156907?fromModule=lemma_inlink" title="文件格式">文件格式</a>，同时增加一些GIF文件格式所不具备的特性。PNG使用从LZ77派生的无损数据压缩算法，一般应用于JAVA程序、网页或S60程序中，原因是它<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="压缩比" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%8E%8B%E7%BC%A9%E6%AF%94/109904?fromModule=lemma_inlink" title="压缩比">压缩比</a>高，生成文件体积小。<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="PNG文件" target="_blank" rel="noopener" href="https://baike.baidu.com/item/PNG%E6%96%87%E4%BB%B6/1218810?fromModule=lemma_inlink" title="PNG文件">PNG文件</a>的<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="扩展名" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E6%89%A9%E5%B1%95%E5%90%8D/103577?fromModule=lemma_inlink" title="扩展名">扩展名</a>为.png</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2025年6月24日，W3C PNG工作组发布便携式网络图形（PNG）规范第三版正式推荐标准。第三版正式加入了动态PNG（APNG）和高动态范围（HDR）PNG功能。</p>
+
+<h2>1.2 使用vscode的插件以二进制方式查看图片</h2>
+
+<p><img alt="" height="197" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1d0833a32881489c8aa8f8e8cb3b6d33.png" srcset="/img/loading.gif" lazyload width="770" /><img alt="" height="305" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/efdb381167a6443fb6e86bfa4ee14cde.png" srcset="/img/loading.gif" lazyload width="519" /></p>
+
+<p><img alt="" height="249" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/51641439d8a44275a69237c4069b3d14.png" srcset="/img/loading.gif" lazyload width="788" /></p>
+
+<h2>1.3 png格式</h2>
+
+<h2><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="PNG文件格式详解" target="_blank" rel="noopener" href="https://www.cnblogs.com/senior-engineer/p/9548347.html" title="PNG文件格式详解">PNG文件格式详解</a></h2>
+
+<p>PNG（Portable Network Graphics）是一种无损压缩的位图文件格式，旨在替代GIF和TIFF格式。它支持丰富的颜色深度和透明通道，广泛应用于网络图像存储和传输。</p>
+
+<p><strong>文件结构：</strong></p>
+
+<p>PNG文件由<strong>文件署名</strong>和**数据块（chunk）**组成。</p>
+
+<p><strong>文件署名：</strong></p>
+
+<p>文件的前8字节是固定的，用于标识PNG文件：</p>
+
+<p>十六进制：89 50 4E 47 0D 0A 1A 0A</p>
+
+<p>ASCII： . P N G \r \n \x1A \n</p>
+
+<p><strong>数据块：</strong></p>
+
+<p>PNG文件包含两类数据块：</p>
+
+<ul>
+	<li>
+	<p><strong>关键数据块（Critical Chunk）</strong>：必须存在，包括IHDR、PLTE、IDAT和IEND。</p>
+	</li>
+	<li>
+	<p><strong>辅助数据块（Ancillary Chunk）</strong>：可选，用于存储额外信息，如透明度、文本注释等。</p>
+	</li>
+</ul>
+
+<p>每个数据块由以下部分组成：</p>
+
+<p>Length (4字节)：数据块内容的长度。</p>
+
+<p>Chunk Type Code (4字节)：块类型的ASCII标识。</p>
+
+<p>Chunk Data (可变长度)：实际数据。</p>
+
+<p>关键数据块解析</p>
+
+<ul>
+	<li>
+	<p><strong>IHDR（文件头数据块）</strong>&nbsp;包含图像的基本信息，必须是第一个数据块，结构如下：</p>
+	</li>
+</ul>
+
+<p>Width (4字节)：图像宽度（像素）。</p>
+
+<p>Height (4字节)：图像高度（像素）。</p>
+
+<p>Bit Depth (1字节)：色深（如8表示256色）。</p>
+
+<p>Color Type (1字节)：颜色类型（如6表示带透明通道的真彩色）。</p>
+
+<p>Compression Method (1字节)：压缩方法（固定为0）。</p>
+
+<p>Filter Method (1字节)：滤波器方法（固定为0）。</p>
+
+<p>Interlace Method (1字节)：隔行扫描方式（如0表示非隔行扫描）。</p>
+
+<ul>
+	<li>
+	<p><strong>PLTE（调色板数据块）</strong>&nbsp;定义索引彩色图像的调色板信息，包含RGB三元组，每个颜色占3字节。</p>
+	</li>
+</ul>
+
+<ul>
+	<li>
+	<p><strong>IDAT（图像数据块）</strong>&nbsp;存储图像的实际数据，可以有多个连续的IDAT块。</p>
+	</li>
+</ul>
+
+<ul>
+	<li>
+	<p><strong>IEND（图像结束数据块）</strong>&nbsp;标志PNG文件结束，固定值为：</p>
+	</li>
+</ul>
+
+<p>00 00 00 00 49 45 4E 44 AE 42 60 82</p>
+
+<p>辅助数据块示例</p>
+
+<ol>
+	<li>
+	<p><strong>tEXt（文本信息数据块）</strong>&nbsp;存储文本注释，如标题、作者等。</p>
+	</li>
+	<li>
+	<p><strong>tRNS（透明数据块）</strong>&nbsp;定义图像的透明度信息。</p>
+	</li>
+	<li>
+	<p><strong>pHYs（物理像素尺寸数据块）</strong>&nbsp;指定像素的物理尺寸或宽高比例。</p>
+	</li>
+</ol>
+
+<p>CRC (4字节)：循环冗余校验码，用于校验数据完整性。</p>
+
+<hr />
+<h2>1.4&nbsp;示例</h2>
+
+<p><img alt="" height="271" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/aff0b9a917e04bbeaf808a560feae611.png" srcset="/img/loading.gif" lazyload width="1025" /></p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/51674f4b0e1a4daeb14e3222cc109f3c.png" srcset="/img/loading.gif" lazyload /></p>
+
+<hr />
+<p>详细解释这段 PNG 数据的每一个字节，需结合&nbsp;<strong>PNG 文件的 &ldquo;签名 + 数据块（Chunk）&rdquo; 结构</strong>&nbsp;拆解（PNG 块结构：<code>[4字节长度] + [4字节类型] + [数据] + [4字节CRC校验和]</code>）：</p>
+
+<h3>1. PNG 文件签名（偏移&nbsp;<code>00000000</code>&nbsp;-&nbsp;<code>00000007</code>）</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000000</td>
+			<td><code>89</code></td>
+			<td>特殊字节，避免 PNG 被误判为 ASCII 文本（ASCII 范围是&nbsp;<code>00-7F</code>，<code>89</code>&nbsp;超出此范围）</td>
+		</tr>
+		<tr>
+			<td>00000001</td>
+			<td><code>50</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;P&#39;</code>，是 &ldquo;PNG&rdquo; 首字母</td>
+		</tr>
+		<tr>
+			<td>00000002</td>
+			<td><code>4E</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;N&#39;</code>，是 &ldquo;PNG&rdquo; 第二个字母</td>
+		</tr>
+		<tr>
+			<td>00000003</td>
+			<td><code>47</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;G&#39;</code>，是 &ldquo;PNG&rdquo; 第三个字母</td>
+		</tr>
+		<tr>
+			<td>00000004</td>
+			<td><code>0D</code></td>
+			<td>DOS 风格换行符&nbsp;<code>\r</code>（回车），用于兼容旧系统</td>
+		</tr>
+		<tr>
+			<td>00000005</td>
+			<td><code>0A</code></td>
+			<td>DOS 风格换行符&nbsp;<code>\n</code>（换行），与&nbsp;<code>0D</code>&nbsp;配合</td>
+		</tr>
+		<tr>
+			<td>00000006</td>
+			<td><code>1A</code></td>
+			<td>DOS 文件结束符（Ctrl+Z），防止二进制内容被文本工具错误解析</td>
+		</tr>
+		<tr>
+			<td>00000007</td>
+			<td><code>0A</code></td>
+			<td>Unix 风格换行符&nbsp;<code>\n</code>，兼容跨平台解析</td>
+		</tr>
+		<tr>
+			<td>这些字节是 PNG&nbsp;<strong>固定签名</strong>，用于唯一标识文件类型。</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>2. 第一个数据块：<code>IHDR</code>（图像头块，必选，偏移&nbsp;<code>00000008</code>&nbsp;开始）</h3>
+
+<p>PNG 块结构：<code>[长度(4B)] + [类型(4B)] + [数据(13B)] + [CRC(4B)]</code></p>
+
+<h4>（1）长度字段（偏移&nbsp;<code>00000008</code>&nbsp;-&nbsp;<code>0000000B</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000008</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 1 字节（大端序）</td>
+		</tr>
+		<tr>
+			<td>00000009</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 2 字节</td>
+		</tr>
+		<tr>
+			<td>0000000A</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 3 字节</td>
+		</tr>
+		<tr>
+			<td>0000000B</td>
+			<td><code>0D</code></td>
+			<td>无符号整数的第 4 字节，整体值为&nbsp;<code>0x0000000D</code>（十进制&nbsp;<code>13</code>），表示&nbsp;<code>IHDR</code>&nbsp;数据部分长度为 13 字节</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（2）类型字段（偏移&nbsp;<code>0000000C</code>&nbsp;-&nbsp;<code>0000000F</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>0000000C</td>
+			<td><code>49</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;I&#39;</code>，是&nbsp;<code>IHDR</code>&nbsp;首字母</td>
+		</tr>
+		<tr>
+			<td>0000000D</td>
+			<td><code>48</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;H&#39;</code>，是&nbsp;<code>IHDR</code>&nbsp;第二个字母</td>
+		</tr>
+		<tr>
+			<td>0000000E</td>
+			<td><code>44</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;D&#39;</code>，是&nbsp;<code>IHDR</code>&nbsp;第三个字母</td>
+		</tr>
+		<tr>
+			<td>0000000F</td>
+			<td><code>52</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;R&#39;</code>，是&nbsp;<code>IHDR</code>&nbsp;第四个字母</td>
+		</tr>
+		<tr>
+			<td><code>IHDR</code>&nbsp;是 PNG&nbsp;<strong>必须的第一个块</strong>，存储图像核心参数。</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（3）数据部分（13 字节，偏移&nbsp;<code>00000010</code>&nbsp;-&nbsp;<code>0000001C</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>含义</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000010</td>
+			<td><code>00 00 01 40</code></td>
+			<td>图像宽度</td>
+			<td>无符号整数&nbsp;<code>0x00000140</code>（十进制&nbsp;<code>320</code>），表示图像宽度为 320 像素</td>
+		</tr>
+		<tr>
+			<td>00000014</td>
+			<td><code>00 00 00 F0</code></td>
+			<td>图像高度</td>
+			<td>无符号整数&nbsp;<code>0x000000F0</code>（十进制&nbsp;<code>240</code>），表示图像高度为 240 像素</td>
+		</tr>
+		<tr>
+			<td>00000018</td>
+			<td><code>08</code></td>
+			<td>位深度</td>
+			<td>每个颜色通道的位数为&nbsp;<code>8</code>（如 R、G、B 各占 8 位）</td>
+		</tr>
+		<tr>
+			<td>00000019</td>
+			<td><code>06</code></td>
+			<td>颜色类型</td>
+			<td>编码&nbsp;<code>6</code>&nbsp;表示「带 Alpha 通道的真彩色（RGBA）」，即每个像素含 R、G、B、透明四通道</td>
+		</tr>
+		<tr>
+			<td>0000001A</td>
+			<td><code>00</code></td>
+			<td>压缩方法</td>
+			<td>固定为&nbsp;<code>0</code>，表示使用 PNG 唯一支持的 DEFLATE 压缩</td>
+		</tr>
+		<tr>
+			<td>0000001B</td>
+			<td><code>00</code></td>
+			<td>过滤方法</td>
+			<td>固定为&nbsp;<code>0</code>，表示 &ldquo;无过滤&rdquo;（压缩前像素行的预处理方式）</td>
+		</tr>
+		<tr>
+			<td>0000001C</td>
+			<td><code>00</code></td>
+			<td>交错方法</td>
+			<td>固定为&nbsp;<code>0</code>，表示 &ldquo;无交错&rdquo;（图像数据按顺序存储，非渐进式）</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（4）CRC 校验和（偏移&nbsp;<code>0000001D</code>&nbsp;-&nbsp;<code>00000020</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>0000001D</td>
+			<td><code>54</code></td>
+			<td>CRC-32 校验和的第 1 字节</td>
+		</tr>
+		<tr>
+			<td>0000001E</td>
+			<td><code>46</code></td>
+			<td>CRC-32 校验和的第 2 字节</td>
+		</tr>
+		<tr>
+			<td>0000001F</td>
+			<td><code>E2</code></td>
+			<td>CRC-32 校验和的第 3 字节</td>
+		</tr>
+		<tr>
+			<td>00000020</td>
+			<td><code>B7</code></td>
+			<td>CRC-32 校验和的第 4 字节，对&nbsp;<code>IHDR</code>&nbsp;类型 + 数据部分计算，用于验证完整性</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>3. 第二个数据块：<code>cHRM</code>（颜色空间块，可选，偏移&nbsp;<code>00000021</code>&nbsp;开始）</h3>
+
+<p>PNG 块结构：<code>[长度(4B)] + [类型(4B)] + [数据(32B)] + [CRC(4B)]</code></p>
+
+<h4>（1）长度字段（偏移&nbsp;<code>00000021</code>&nbsp;-&nbsp;<code>00000024</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000021</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 1 字节</td>
+		</tr>
+		<tr>
+			<td>00000022</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 2 字节</td>
+		</tr>
+		<tr>
+			<td>00000023</td>
+			<td><code>00</code></td>
+			<td>无符号整数的第 3 字节</td>
+		</tr>
+		<tr>
+			<td>00000024</td>
+			<td><code>20</code></td>
+			<td>无符号整数的第 4 字节，整体值为&nbsp;<code>0x00000020</code>（十进制&nbsp;<code>32</code>），表示&nbsp;<code>cHRM</code>&nbsp;数据部分长度为 32 字节</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（2）类型字段（偏移&nbsp;<code>00000025</code>&nbsp;-&nbsp;<code>00000028</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000025</td>
+			<td><code>63</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;c&#39;</code>，是&nbsp;<code>cHRM</code>&nbsp;首字母</td>
+		</tr>
+		<tr>
+			<td>00000026</td>
+			<td><code>48</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;H&#39;</code>，是&nbsp;<code>cHRM</code>&nbsp;第二个字母</td>
+		</tr>
+		<tr>
+			<td>00000027</td>
+			<td><code>52</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;R&#39;</code>，是&nbsp;<code>cHRM</code>&nbsp;第三个字母</td>
+		</tr>
+		<tr>
+			<td>00000028</td>
+			<td><code>4D</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;M&#39;</code>，是&nbsp;<code>cHRM</code>&nbsp;第四个字母</td>
+		</tr>
+		<tr>
+			<td><code>cHRM</code>&nbsp;是<strong>可选块</strong>，用于描述图像的颜色空间（原色和白点的色度坐标）。</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（3）数据部分（32 字节，偏移&nbsp;<code>00000029</code>&nbsp;-&nbsp;<code>00000048</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节（节选）</th>
+			<th>含义</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000029</td>
+			<td><code>7A 26 00 00</code></td>
+			<td>红原色 x 坐标</td>
+			<td>无符号整数，单位为 &ldquo;万分之一的色度值&rdquo;，描述红色在色度空间的位置</td>
+		</tr>
+		<tr>
+			<td>...</td>
+			<td>...</td>
+			<td>红原色 y 坐标</td>
+			<td>后续字节依次存储绿、蓝原色的 x/y 坐标，以及白点的 x/y 坐标</td>
+		</tr>
+		<tr>
+			<td>（共 8 组 4 字节整数，对应红 / 绿 / 蓝原色和白点的 x/y 坐标）</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+		<tr>
+			<td>这些数据用于颜色管理系统（如打印机、显示器）准确还原色彩。</td>
+			<td></td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<h4>（4）CRC 校验和（偏移&nbsp;<code>00000049</code>&nbsp;-&nbsp;<code>0000004C</code>）</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000049</td>
+			<td><code>51</code></td>
+			<td>CRC-32 校验和的第 1 字节</td>
+		</tr>
+		<tr>
+			<td>0000004A</td>
+			<td><code>3C</code></td>
+			<td>CRC-32 校验和的第 2 字节</td>
+		</tr>
+		<tr>
+			<td>0000004B</td>
+			<td><code>00</code></td>
+			<td>CRC-32 校验和的第 3 字节</td>
+		</tr>
+		<tr>
+			<td>0000004C</td>
+			<td><code>00</code></td>
+			<td>CRC-32 校验和的第 4 字节，对&nbsp;<code>cHRM</code>&nbsp;类型 + 数据部分计算</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>4. 后续元数据块（如&nbsp;<code>gAMA</code>、<code>sRGB</code>、<code>tIME</code>&nbsp;等，偏移&nbsp;<code>00000050</code>&nbsp;开始，节选）</h3>
+
+<p>截图中此区域字节（如&nbsp;<code>02 62 4B 47 44...</code>）属于<strong>可选元数据块</strong>，用于补充图像信息（如伽马值、色彩空间标识、时间戳等），符合 PNG 规范，但非必须。</p>
+
+<h3>5.&nbsp;<code>IDAT</code>&nbsp;块开始（像素数据区域，偏移&nbsp;<code>00000080</code>）</h3>
+
+<table>
+	<thead>
+		<tr>
+			<th>偏移</th>
+			<th>字节</th>
+			<th>解释</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>00000080</td>
+			<td><code>49</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;I&#39;</code>，是&nbsp;<code>IDAT</code>&nbsp;首字母</td>
+		</tr>
+		<tr>
+			<td>00000081</td>
+			<td><code>44</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;D&#39;</code>，是&nbsp;<code>IDAT</code>&nbsp;第二个字母</td>
+		</tr>
+		<tr>
+			<td>00000082</td>
+			<td><code>41</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;A&#39;</code>，是&nbsp;<code>IDAT</code>&nbsp;第三个字母</td>
+		</tr>
+		<tr>
+			<td>00000083</td>
+			<td><code>54</code></td>
+			<td>ASCII 字符&nbsp;<code>&#39;T&#39;</code>，是&nbsp;<code>IDAT</code>&nbsp;第四个字母</td>
+		</tr>
+		<tr>
+			<td><code>IDAT</code>&nbsp;是 PNG&nbsp;<strong>核心数据块</strong>，存储<strong>经 DEFLATE 压缩的像素流</strong>。从该位置开始，数据不再是 &ldquo;元数据&rdquo;，而是图像的实际像素内容。</td>
+			<td></td>
+			<td></td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>总结</h3>
+
+<p>从文件起始到&nbsp;<code>IDAT</code>&nbsp;块的&nbsp;<code>49 44 41 54</code>&nbsp;之前，所有字节都属于&nbsp;<strong>PNG 元数据区域</strong>（包含签名、<code>IHDR</code>（图像基本参数）、<code>cHRM</code>（颜色空间）等可选块）；<code>IDAT</code>&nbsp;开始后，进入<strong>像素数据区域</strong>。所有字节均符合 PNG 规范，无额外非法 / 非标准内容。</p>
+
+<hr />
+<p>结尾</p>
+
+<p><img alt="" height="210" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c9c67b06a235445a8238c756597eb0e3.png" srcset="/img/loading.gif" lazyload width="1091" /></p>
+
+<p>PNG 文件的<strong>结尾由&nbsp;<code>IEND</code>&nbsp;块标识</strong>，在截图中：</p>
+
+<h3>6. 定位&nbsp;<code>IEND</code>&nbsp;块（文件结尾标志）</h3>
+
+<p>在偏移&nbsp;<code>00009040</code>&nbsp;附近，能看到十六进制数据&nbsp;<code>00 00 00 00 49 45 4E 44 AE 42 60 82</code>，这正是 PNG 标准的 **<code>IEND</code>&nbsp;块 **：</p>
+
+<ul>
+	<li><code>00 00 00 00</code>：是&nbsp;<code>IEND</code>&nbsp;块的「长度字段」（值为 0，因为&nbsp;<code>IEND</code>&nbsp;块无数据内容）。</li>
+	<li><code>49 45 4E 44</code>：是「块类型字段」，ASCII 对应&nbsp;<code>IEND</code>（PNG 文件结束的专属标识）。</li>
+	<li><code>AE 42 60 82</code>：是「CRC 校验和字段」（对&nbsp;<code>IEND</code>&nbsp;类型和空数据计算的校验值）。</li>
+</ul>
+
+<h3>结论</h3>
+
+<p>PNG 文件的<strong>结尾从&nbsp;<code>IEND</code>&nbsp;块开始</strong>（即截图中偏移&nbsp;<code>00009040</code>&nbsp;处的&nbsp;<code>00 00 00 00 49 45 4E 44...</code>），<code>IEND</code>&nbsp;块结束后，整个 PNG 文件的有效数据就全部结束了。</p>
+
+<hr />
+<h1 style="background-color:transparent">二、.bmp图片格式解析</h1>
+
+<h2>2.1&nbsp; bmp简介</h2>
+
+<blockquote>
+<p><strong>BMP</strong>取自位图Bitmap的缩写，也称为DIB（与设备无关的位图），是一种独立于显示器的<strong>位图</strong>数字图像文件格式。常见于微软视窗和OS/2操作系统。 ----维基百科</p>
+</blockquote>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BMP格式就是表示位图的格式。BMP格式图像中的像素点，其位深度可以是1，4，8，24，32，但常见的BMP位深度还是8和24。</p>
+
+<p>选择一张BMP图像，右键打开属性 --&gt; 详细信息，可以查看其位深度。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;位图按照是否与设备相关分类可以分为：设备相关位图DDB(device-dependent bitmap）、设备无关位图DIB(device-independent bitmap）。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按照像素深度分类可以分为：1bit位图(2色)、4bit位图(16色)、8bit位图(256色)、16bit位图(65536色-高彩色)、24bit位图(1670万色-真彩色)、32bit位图(1670万色-增强型真彩色)。</p>
+
+<h2>2.2&nbsp;bmp文件格式</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BMP文件格式，又称为位图，是Windows系统中广泛使用的图像文件格式。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;BMP文件的数据分为四个部分：</p>
+
+<ul>
+	<li>bmp文件头(bmp file header)：提供文件的格式、大小等信息</li>
+	<li>位图信息头(bitmap information)：提供图像数据的尺寸、位平面数、压缩方式、颜色索引等信息</li>
+	<li>调色板(color palette)：可选，如使用索引来表示图像，调色板就是索引与其对应的颜色的映射表</li>
+	<li>位图数据(bitmap data)：图像数据（像素阵列）</li>
+</ul>
+
+<hr />
+<h2>2.3 示例</h2>
+
+<p><img alt="" height="1247" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ac26c5b0b3eb485b821859a52dde2897.png" srcset="/img/loading.gif" lazyload width="1140" /></p>
+
+<p><img alt="" height="617" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8d8a12199ac94bd5b2918c4ef7bb9157.png" srcset="/img/loading.gif" lazyload width="1144" /></p>
+
+<p>这段十六进制数据属于&nbsp;<strong>BMP 图像文件的 &ldquo;头部 + 颜色表&rdquo; 部分</strong>，需结合 BMP 的结构化布局（文件头、信息头、颜色表、像素数据）逐段解析：</p>
+
+<h3>2.3.1 BMP 文件头（<code>BITMAPFILEHEADER</code>，前 14 字节）</h3>
+
+<p>BMP 文件头是固定 14 字节的结构，用于标识文件类型、大小及像素数据偏移。<br />
+C 语言结构定义（小端字节序，字节低位在前）：</p>
+
+<pre>
+<code>typedef struct {
+    uint16_t bfType;      // "BM" 标识，2 字节
+    uint32_t bfSize;      // 文件总大小，4 字节
+    uint16_t bfReserved1; // 保留字段，2 字节
+    uint16_t bfReserved2; // 保留字段，2 字节
+    uint32_t bfOffBits;   // 像素数据偏移量（文件头到像素数据的字节数），4 字节
+} BITMAPFILEHEADER;
+</code></pre>
+
+<p>对应十六进制解析：</p>
+
+<ul>
+	<li><code>42 4D</code>&nbsp;&rarr;&nbsp;<code>bfType</code>：ASCII 为&nbsp;<code>&quot;BM&quot;</code>，是 BMP 文件的标志性开头，确认文件类型。</li>
+	<li><code>36 30 01 00</code>&nbsp;&rarr; 小端序转换为&nbsp;<code>0x00013036</code>（十进制&nbsp;<code>77878</code>）&rarr;&nbsp;<code>bfSize</code>：文件总大小约 77KB。</li>
+	<li><code>00 00</code>&nbsp;&rarr;&nbsp;<code>bfReserved1</code>：保留字段，值为 0（无特殊用途）。</li>
+	<li><code>00 00</code>&nbsp;&rarr;&nbsp;<code>bfReserved2</code>：保留字段，值为 0（无特殊用途）。</li>
+	<li><code>36 04 00 00</code>&nbsp;&rarr; 小端序转换为&nbsp;<code>0x00000436</code>（十进制&nbsp;<code>1078</code>）&rarr;&nbsp;<code>bfOffBits</code>：<strong>像素数据从文件开头偏移 1078 字节处开始</strong>（核心字段，决定像素数据的起始位置）。</li>
+</ul>
+
+<h3>2.3.2 BMP 信息头（<code>BITMAPINFOHEADER</code>，后续 40 字节）</h3>
+
+<p>信息头（标准大小 40 字节）存储图像宽高、位深、压缩方式等核心参数。<br />
+C 语言结构关键字段：</p>
+
+<pre>
+<code>typedef struct {
+    uint32_t biSize;          // 信息头大小，4 字节（通常为 40）
+    int32_t  biWidth;         // 图像宽度，4 字节
+    int32_t  biHeight;        // 图像高度，4 字节
+    uint16_t biPlanes;        // 颜色平面数，2 字节（固定为 1）
+    uint16_t biBitCount;      // 位深（每像素位数），2 字节
+    // 其余字段：压缩方式、像素数据大小等...
+} BITMAPINFOHEADER;
+</code></pre>
+
+<p>对应十六进制解析：</p>
+
+<ul>
+	<li><code>28 00 00 00</code>&nbsp;&rarr; 小端序为&nbsp;<code>0x00000028</code>（十进制&nbsp;<code>40</code>）&rarr;&nbsp;<code>biSize</code>：信息头大小 40 字节，符合标准&nbsp;<code>BITMAPINFOHEADER</code>&nbsp;格式。</li>
+	<li><code>40 01 00 00</code>&nbsp;&rarr; 小端序为&nbsp;<code>0x00000140</code>（十进制&nbsp;<code>320</code>）&rarr;&nbsp;<code>biWidth</code>：图像宽度为 320 像素。</li>
+	<li><code>F0 00 00 00</code>&nbsp;&rarr;&nbsp;<code>biHeight</code>：图像高度为 （十进制&nbsp;<code>240</code>）。</li>
+	<li><code>01 00</code>&nbsp;&rarr;&nbsp;<code>biPlanes</code>：值为 1，符合 BMP 规范（颜色平面数固定为 1）。</li>
+	<li><code>08 00</code>&nbsp;&rarr;&nbsp;<code>biBitCount</code>：值为 8 &rarr;&nbsp;<strong>位深为 8 位</strong>（表示 &ldquo;索引色&rdquo;，每个像素用 8 位索引到 &ldquo;颜色表&rdquo; 中获取真实颜色）。</li>
+</ul>
+
+<h3>2.3.3 颜色表（Palette，位深 8 位时存在，紧接信息头）</h3>
+
+<p>当&nbsp;<code>biBitCount=8</code>&nbsp;时，BMP 会包含<strong>颜色表</strong>（存储 256 种颜色的 RGB 组合，每个颜色项占 4 字节：蓝、绿、红、保留位）。</p>
+
+<p>截图中信息头之后的序列（如&nbsp;<code>00 00 00</code>、<code>01 01 01</code>、<code>02 02 02</code>...），是<strong>灰度调色板的特征</strong>：</p>
+
+<ul>
+	<li>每个颜色项的 R、G、B 分量相等（如&nbsp;<code>00 00 00 00</code>&nbsp;对应纯黑，<code>01 01 01 00</code>&nbsp;对应深灰，<code>02 02 02 00</code>&nbsp;对应中灰... 直到&nbsp;<code>FF FF FF 00</code>&nbsp;对应纯白）。</li>
+	<li>这种 &ldquo;R=G=B&rdquo; 的序列，是典型的<strong>灰度颜色表</strong>（图像为灰度图）。</li>
+</ul>
+
+<h3>四、像素数据的起始位置</h3>
+
+<p>像素数据的绝对起始位置由&nbsp;<code>bfOffBits=1078</code>&nbsp;决定：从文件开头跳过 1078 字节后，后续内容才是<strong>真正的像素数据</strong>（每个像素用 8 位索引，对应颜色表中的一项）</p>
+
+<p>截图中展示的内容（文件头、信息头、颜色表）均属于 &ldquo;头部元数据&rdquo;，未到达像素数据区。</p>
+
+<h3>2.3.4 总结</h3>
+
+<p>这段数据是 BMP 文件的<strong>头部（文件头 + 信息头）和颜色表</strong>：</p>
+
+<ul>
+	<li>确认是 BMP 格式，图像宽 320 像素，高 240像素、位深 8 位（灰度索引色）。</li>
+	<li>像素数据从文件偏移 1078 字节处开始，此前为元数据（文件标识、参数、颜色映射表）。</li>
+</ul>
+
+<h1>三、.jpg图片格式解析</h1>
+
+<h2>3.1 jpg简介</h2>
+
+<p>JPEG（Joint Photographic Experts Group，联合图像专家小组）作为全球应用最广泛的图像压缩标准，彻底改变了数字图像的存储与传输方式。自 1992 年由 ISO（国际标准化组织）和 CCITT（国际电报电话咨询委员会）联合制定以来，这一标准通过精妙的有损压缩算法，在视觉质量与文件体积之间取得了完美平衡，成为照片、网络图像和数字媒体的事实标准。本文将从技术原理、格式类型、应用场景等维度全面解析 JPEG 格式。</p>
+
+<h3>3.1.1 JPEG 格式基础概述</h3>
+
+<p>JPEG 标准的诞生源于特定的技术需求：在 64Kbps 的通信线路上传输 720&times;576 分辨率的图像。为实现这一目标，专家小组开发了一种基于人眼视觉特性的压缩方案，核心思想是选择性丢弃人眼不敏感的图像细节，从而在保证视觉可接受性的前提下大幅缩减文件体积。实践证明，这种方案极为成功 &mdash;&mdash; 典型的 JPEG 图像可将原始数据压缩至 1/10 至 1/20，而普通用户几乎无法察觉质量损失。</p>
+
+<p>从文件标识来看，JPEG 图像通常使用<code>.jpg</code>或<code>.jpeg</code>扩展名，两者本质完全相同。<code>.jpg</code>扩展名的出现源于 DOS 时代 8.3 文件名规则的限制（最多 8 个字符的主名 + 3 个字符的扩展名），而<code>.jpeg</code>是更规范的全称形式。现代操作系统和软件已完全支持这两种扩展名的互通使用。</p>
+
+<p>JPEG 格式的核心特性可概括为三点：首先是<strong>有损压缩机制</strong>，通过永久丢弃冗余信息实现高效压缩；其次是<strong>24 位真彩色支持</strong>，可呈现约 1677 万种颜色，完美适配照片等复杂色彩场景；最后是<strong>可调压缩率</strong>，用户可根据需求在质量与体积之间灵活权衡。这些特性使 JPEG 广泛应用于数字摄影、网络传输、印刷出版等领域，成为跨平台兼容性最强的图像格式之一。</p>
+
+<h3>3.1.2 JPEG 压缩技术原理深度解析</h3>
+
+<p>JPEG 的高效压缩能力源于其精密设计的技术流程，整个压缩过程可分为四个核心步骤，每个步骤都针对图像数据的不同特性进行优化处理。</p>
+
+<h4>1. 颜色空间转换与采样</h4>
+
+<p>人眼视觉系统对亮度变化的敏感度远高于对色彩变化的敏感度，这一生物学特性成为 JPEG 压缩的重要依据。压缩流程首先将图像从 RGB 颜色空间转换为 YCbCr 颜色空间：其中 Y 通道代表亮度信息，Cb 和 Cr 通道代表色度（色彩）信息。转换公式如下：</p>
+
+<ul>
+	<li>亮度 Y = 0.299R + 0.587G + 0.114B</li>
+	<li>色度 Cb = -0.1687R - 0.3313G + 0.5B + 128</li>
+	<li>色度 Cr = 0.5R - 0.4187G - 0.0813B + 128</li>
+</ul>
+
+<p>转换后进行<strong>色度子采样</strong>，通过降低色度通道的分辨率进一步减少数据量。常用的采样比例有 4:2:2（水平方向每 2 个像素采样 1 个色度值）和 4:2:0（水平和垂直方向每 2 个像素采样 1 个色度值），这两种方式可分别减少 33% 和 50% 的色度数据，而视觉质量几乎不受影响。</p>
+
+<h4>2. 离散余弦变换（DCT）</h4>
+
+<p>经过颜色转换的图像数据被分割为 8&times;8 的像素块，每个块独立进行离散余弦变换（DCT）。DCT 的作用是将空间域的像素值转换为频率域的系数，将图像的能量集中到少数低频系数上，而高频系数（代表细节）则数值较小。</p>
+
+<p>变换过程中，每个 8&times;8 的像素块会生成一个对应的频率系数矩阵，左上角的系数称为 DC 系数（代表块的平均亮度），其余 63 个称为 AC 系数（代表细节变化）。这种变换使后续的压缩操作更具针对性 &mdash;&mdash; 我们可以更高效地处理那些人眼不敏感的高频信息。</p>
+
+<h4>3. 量化过程</h4>
+
+<p>量化是导致 JPEG 图像质量损失的关键步骤，也是压缩率可调的核心环节。量化通过预设的量化表对 DCT 变换后的频率系数进行舍入处理，将浮点数转换为整数。高频系数通常使用更大的量化步长，导致更多细节损失，而低频系数（对视觉更重要）则保留更精确。</p>
+
+<p>量化表的选择直接影响压缩效果：高压缩率（低质量）使用更粗糙的量化表，会丢弃更多高频信息；而低压缩率（高质量）使用精细量化表，保留更多细节。这种损失是不可逆的 &mdash;&mdash; 一旦系数被量化，原始细节便永久丢失，这也是不建议反复编辑保存 JPEG 文件的原因。</p>
+
+<h4>4. 编码阶段</h4>
+
+<p>量化后的系数矩阵需要通过编码进一步压缩数据量。编码过程包含两个关键步骤：首先是<strong>Z 字形扫描</strong>（Zigzag Order），将 8&times;8 矩阵按对角线方向排列成一维序列，使连续的零值（主要来自高频系数）集中出现；然后对这个序列进行<strong>行程长度编码</strong>（RLE）和<strong>熵编码</strong>（通常是霍夫曼编码或算术编码）。</p>
+
+<p>Z 字形扫描的巧妙之处在于将空间上分散的零值转化为连续的零值序列，极大提升了行程长度编码的效率。熵编码则利用数据的统计特性，对出现频率高的值分配更短的编码，最终实现无失真的进一步压缩。</p>
+
+<h3>3.1.3 JPEG 格式的主要类型与演变</h3>
+
+<p>随着技术发展，JPEG 标准衍生出多种格式变体，每种变体针对特定场景优化，形成了丰富的技术生态。</p>
+
+<h4>1. 标准 JPEG（Sequential JPEG）</h4>
+
+<p>标准 JPEG 采用<strong>顺序式编码</strong>，图像数据按从左到右、从上到下的顺序一次性编码。解码时必须接收完整数据才能显示图像全貌，在网络传输中表现为 &quot;从上到下&quot; 逐步加载的效果。</p>
+
+<p>这种格式的压缩比通常在 10:1 到 40:1 之间，用户可通过调整量化参数控制质量。由于编码和解码过程简单高效，标准 JPEG 成为数字相机、网页图像的默认选择，几乎所有图像软件都能完美支持。</p>
+
+<h4>2. 渐进式 JPEG（Progressive JPEG）</h4>
+
+<p>渐进式 JPEG 是对标准格式的重要改进，采用<strong>多扫描编码</strong>策略。图像数据被分成多次扫描传输：首次扫描传输低分辨率的轮廓信息，使图像快速呈现大致面貌；后续扫描逐步传输高频细节，图像随之逐渐清晰。</p>
+
+<p>这种加载方式在低速网络环境中体验更佳，用户无需等待完整下载即可看到图像内容。实现原理是将 DCT 系数按频率分层编码，先传输低频系数（决定整体轮廓），再传输高频系数（决定细节）。渐进式 JPEG 的文件体积与标准 JPEG 相近，但用户感知的加载速度更快。</p>
+
+<h4>3. JPEG 2000：技术飞跃与应用局限</h4>
+
+<p>2000 年推出的 JPEG 2000（用户原文中 &quot;JPEG2002&quot; 为笔误）代表了 JPEG 技术的重大升级，它采用<strong>离散小波变换（DWT）</strong>&nbsp;替代传统的 DCT 变换，在压缩效率和功能扩展性上实现了突破。</p>
+
+<p>相比标准 JPEG，JPEG 2000 的优势显著：压缩率提高约 30%，同等体积下质量更优；同时支持有损和无损压缩，满足专业领域需求；引入<strong>感兴趣区域（ROI）</strong>&nbsp;功能，可指定图像特定区域保持更高质量；采用更先进的渐进传输，支持从模糊到清晰的平滑过渡。</p>
+
+<p>然而，JPEG 2000 的推广面临诸多挑战：与传统 JPEG 不兼容，需要全新的编解码支持；编码复杂度高，对硬件要求更高；网页浏览器普遍不支持，限制了其在网络应用中的普及。目前主要应用于专业领域，如数字影院、医疗成像和档案保存等。</p>
+
+<h4>4. 其他特殊模式</h4>
+
+<p>JPEG 标准还定义了<strong>分层式编码</strong>（Hierarchical JPEG）和<strong>无损 JPEG</strong>（Lossless JPEG）两种特殊模式。分层式编码生成多分辨率版本的图像，支持根据需求选择不同分辨率解码；无损 JPEG 不使用 DCT 变换，而是采用差分编码，实现无质量损失的压缩，适合需要精确还原的场景。</p>
+
+<p>无损 JPEG 的压缩率通常较低（约 2:1），远不及有损压缩，但保留了完整图像数据，主要用于医学图像、卫星遥感等对精度要求极高的领域。</p>
+
+<h3>3.1.4 JPEG 的适用场景与局限性</h3>
+
+<p>JPEG 格式的设计特性决定了其适用边界，了解这些特性有助于在实际应用中做出最优选择。</p>
+
+<h4>理想应用场景</h4>
+
+<p>JPEG 在<strong>连续色调图像</strong>领域表现卓越，特别适合：</p>
+
+<ul>
+	<li>数字摄影：手机、相机拍摄的人物照、风景照等，能保留丰富色彩过渡</li>
+	<li>网络传输：社交媒体、网页配图等需平衡质量与加载速度的场景</li>
+	<li>存储归档：在有限空间内保存大量图像，如照片库、数字相册</li>
+</ul>
+
+<p>这些场景的共同特点是图像包含复杂的色彩渐变和丰富的细节层次，JPEG 的有损压缩能有效去除冗余信息而不影响视觉体验。</p>
+
+<h4>不适用场景</h4>
+
+<p>JPEG 的技术特性使其在某些场景中表现不佳：</p>
+
+<ul>
+	<li>线条与文字图像：截图、图表、文字等包含锐利边缘的内容，压缩后易出现锯齿和模糊</li>
+	<li>透明背景需求：JPEG 不支持透明通道，透明区域会被填充为纯色</li>
+	<li>专业编辑工作流：反复编辑保存会导致质量持续下降，应使用 PSD、TIFF 等无损格式</li>
+	<li>高对比度图像：包含大片纯色区域的图像易出现 &quot;块效应&quot; 和色带</li>
+</ul>
+
+<h4>与其他格式的对比</h4>
+
+<table>
+	<thead>
+		<tr>
+			<th>格式</th>
+			<th>压缩方式</th>
+			<th>透明支持</th>
+			<th>核心优势</th>
+			<th>典型应用</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>JPEG</td>
+			<td>有损为主</td>
+			<td>❌ 不支持</td>
+			<td>体积小、兼容性极佳</td>
+			<td>照片、网页图像</td>
+		</tr>
+		<tr>
+			<td>PNG</td>
+			<td>无损为主</td>
+			<td>✅ 支持</td>
+			<td>保留细节、透明效果</td>
+			<td>图标、截图、文字</td>
+		</tr>
+		<tr>
+			<td>WebP</td>
+			<td>有损 / 无损</td>
+			<td>✅ 支持</td>
+			<td>比 JPEG 体积小 30%</td>
+			<td>现代网页、应用</td>
+		</tr>
+		<tr>
+			<td>JPEG 2000</td>
+			<td>有损 / 无损</td>
+			<td>✅ 支持</td>
+			<td>压缩效率更高、功能丰富</td>
+			<td>医疗成像、数字影院</td>
+		</tr>
+	</tbody>
+</table>
+
+<h3>3.1.5 JPEG 的技术影响与未来展望</h3>
+
+<p>JPEG 标准的成功不仅体现在技术层面，更深刻影响了数字图像的应用生态。它使数字摄影普及成为可能，推动了社交媒体和网络图像的蓬勃发展，成为信息时代视觉传播的基础设施。</p>
+
+<p>尽管面临 WebP、AVIF 等新兴格式的挑战，JPEG 凭借无与伦比的兼容性仍将长期存在。JPEG 标准本身也在持续演进，最新的 JPEG XL 等提案旨在结合传统 JPEG 的兼容性与现代压缩技术的高效率，试图在保持生态优势的同时突破性能瓶颈。</p>
+
+<p>对于普通用户，理解 JPEG 的工作原理有助于做出更明智的格式选择：拍摄照片时可使用中等压缩率（80-90% 质量）平衡存储与质量；网络分享时可适当提高压缩率减小体积；而需要编辑的图像应保留原始格式，避免反复压缩损失。</p>
+
+<p>从技术本质看，JPEG 的成功源于对 &quot;人类视觉系统特性&quot; 的深刻理解与巧妙利用 &mdash;&mdash; 它不追求数学上的完美，而是专注于优化人类感知到的质量，这种务实的设计哲学或许正是其长盛不衰的根本原因。</p>
+
+<h2>3.2&nbsp;jpg文件格式</h2>
+
+<p>JPEG图片格式组成部分：<br />
+<strong>SOI（文件头）+APP0（图像识别信息）+ DQT（定义量化表）+ SOF0（图像基本信息）+ DHT（定义Huffman表）</strong>&nbsp;+ DRI（定义重新开始间隔）+&nbsp;<strong>SOS（扫描行开始）+ EOI（文件尾）</strong></p>
+
+<p>一般情况下，是按照这个顺序排列的：</p>
+
+<table align="left" border="0">
+	<tbody>
+		<tr>
+			<td>TAG类型</td>
+			<td>数值</td>
+			<td>名称</td>
+			<td>其他备注</td>
+		</tr>
+		<tr>
+			<td>SOI</td>
+			<td>0xFFD8</td>
+			<td>Start of Image</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>APP0</td>
+			<td>0xFFE0</td>
+			<td>application0</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>APPn</td>
+			<td>0xFFEn</td>
+			<td>applicationn</td>
+			<td>可选带（APP1一般为Exif信息）</td>
+		</tr>
+		<tr>
+			<td>DQT</td>
+			<td>0xFFDB</td>
+			<td>Define Quantization Table</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>SOF</td>
+			<td>0xFFC0</td>
+			<td>Start of Frame</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>DHT</td>
+			<td>0xFFC4</td>
+			<td>Define Huffman Table</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>SOS</td>
+			<td>0xFFDA</td>
+			<td>Start of Scan</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>compress data</td>
+			<td>---</td>
+			<td>---</td>
+			<td>必带</td>
+		</tr>
+		<tr>
+			<td>EOI</td>
+			<td>0xFFD9</td>
+			<td>End of Image</td>
+			<td>必带</td>
+		</tr>
+	</tbody>
+</table>
+
+<p></p>
+
+<p></p>
+
+<h2>3.3 示例</h2>
+
+<p><img alt="" height="558" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9022a3a506fd4056877bf159d02e49d2.png" srcset="/img/loading.gif" lazyload width="1122" /></p>
+
+<p><img alt="" height="67" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ba1c96873779416f91a27c6da8c974b3.png" srcset="/img/loading.gif" lazyload width="916" /></p>
+
+<hr />
+<p>要详细分析 JPEG 格式并确定<strong>头部结束位置与像素数据起始位置</strong>，需结合 JPEG 的「<strong>标记（Marker）序列</strong>」结构（JPEG 由一系列以&nbsp;<code>0xFF</code>&nbsp;开头的标记组成，不同标记承载元数据或像素数据），逐字节拆解如下：</p>
+
+<h3>3.3.1 JPEG 标记与结构回顾</h3>
+
+<p>JPEG 文件由<strong>元数据标记</strong>（如文件起始、应用段、量化表、帧头、哈夫曼表等）和<strong>像素数据标记</strong>（扫描开始&nbsp;<code>SOS</code>）组成。关键标记的功能：</p>
+
+<ul>
+	<li><code>FF D8</code>：<code>SOI</code>（Start of Image）&rarr; 文件起始，头部开始。</li>
+	<li><code>FF E0</code>：<code>APP0</code>&nbsp;&rarr; 应用段（常存 JFIF 元数据），头部。</li>
+	<li><code>FF DB</code>：<code>DQT</code>&nbsp;&rarr; 定义量化表（压缩参数），头部。</li>
+	<li><code>FF C0</code>：<code>SOF0</code>&nbsp;&rarr; 帧头（定义图像尺寸、位深），头部。</li>
+	<li><code>FF C4</code>：<code>DHT</code>&nbsp;&rarr; 定义哈夫曼表（编码参数），头部。</li>
+	<li><code>FF DA</code>：<code>SOS</code>（Start of Scan）&rarr; 扫描开始，<strong>像素数据的起始标志</strong>（此标记后为压缩的像素流）。</li>
+</ul>
+
+<h3>3.3.2 逐字节解析（结合截图偏移与内容）</h3>
+
+<p>以下按十六进制偏移（如&nbsp;<code>00000000</code>&nbsp;表示第 0 字节）逐段分析：</p>
+
+<h4>1. 偏移&nbsp;<code>00000000</code>&nbsp;-&nbsp;<code>00000001</code>：<code>FF D8</code></h4>
+
+<ul>
+	<li>组成&nbsp;<code>SOI</code>（Start of Image）标记 &rarr; JPEG 文件的<strong>起始标志</strong>，头部开始。</li>
+</ul>
+
+<h4>2. 偏移&nbsp;<code>00000002</code>&nbsp;-&nbsp;<code>0000000F</code>：<code>FF E0 00 10 4A 46 49 46 00 01 01 00 01 00</code></h4>
+
+<ul>
+	<li><code>FF E0</code>：<code>APP0</code>&nbsp;标记 &rarr; 应用段（此处为 JFIF 元数据），头部。</li>
+	<li><code>00 10</code>：<code>APP0</code>&nbsp;段<strong>长度</strong>（大端序，<code>0x0010</code>&nbsp;= 16 字节，含长度字段本身，实际数据长&nbsp;<code>16-2=14</code>&nbsp;字节）。</li>
+	<li><code>4A 46 49 46 00</code>：ASCII 为&nbsp;<code>&quot;JFIF\0&quot;</code>&nbsp;&rarr; 确认是 JFIF 格式的应用段，头部元数据。</li>
+	<li>后续&nbsp;<code>01 01 00 01 00</code>：JFIF 版本、密度单位、分辨率等信息，头部。</li>
+</ul>
+
+<h4>3. 偏移&nbsp;<code>00000010</code>&nbsp;-&nbsp;<code>00000050</code>：<code>FF DB 00 43 ...</code>（量化表数据）</h4>
+
+<ul>
+	<li><code>FF DB</code>：<code>DQT</code>&nbsp;标记 &rarr; 定义量化表（压缩时的量化矩阵，属于压缩参数），头部。</li>
+	<li><code>00 43</code>：<code>DQT</code>&nbsp;段<strong>长度</strong>（<code>0x0043</code>&nbsp;= 67 字节，实际数据长&nbsp;<code>67-2=65</code>&nbsp;字节）。</li>
+	<li>后续字节：量化表的具体数值（亮度或色度的量化系数），头部元数据。</li>
+</ul>
+
+<h4>4. 偏移&nbsp;<code>00000050</code>&nbsp;-&nbsp;<code>00000058</code>：<code>FF C0 00 0B 08 00 F0 00 40</code></h4>
+
+<ul>
+	<li><code>FF C0</code>：<code>SOF0</code>&nbsp;标记 &rarr; 帧头（定义图像核心参数），头部。</li>
+	<li><code>00 0B</code>：<code>SOF0</code>&nbsp;段<strong>长度</strong>（<code>0x000B</code>&nbsp;= 11 字节，实际数据长&nbsp;<code>11-2=9</code>&nbsp;字节）。</li>
+	<li><code>08</code>：<strong>位深</strong>&nbsp;&rarr; 每个颜色分量占 8 位。</li>
+	<li><code>00 F0</code>：<strong>图像高度</strong>（大端序，<code>0x00F0</code>&nbsp;= 240 像素）。</li>
+	<li><code>00 40</code>：<strong>图像宽度</strong>（大端序，<code>0x0040</code>&nbsp;= 64 像素）。</li>
+	<li>后续字节：颜色分量的采样系数等，头部。</li>
+</ul>
+
+<h4>5. 偏移&nbsp;<code>00000060</code>&nbsp;-&nbsp;<code>00000130</code>：<code>FF C4 00 1F ...</code>（哈夫曼表数据）</h4>
+
+<ul>
+	<li><code>FF C4</code>：<code>DHT</code>&nbsp;标记 &rarr; 定义哈夫曼编码表（压缩编码的关键表），头部。</li>
+	<li><code>00 1F</code>：<code>DHT</code>&nbsp;段<strong>长度</strong>（<code>0x001F</code>&nbsp;= 31 字节，实际数据长&nbsp;<code>31-2=29</code>&nbsp;字节）。</li>
+	<li>后续字节：哈夫曼表的码长、码值等，头部元数据。</li>
+</ul>
+
+<h4>6. 偏移&nbsp;<code>00000130</code>&nbsp;-&nbsp;<code>00000131</code>：<code>FF DA</code></h4>
+
+<ul>
+	<li><code>FF DA</code>：<code>SOS</code>&nbsp;标记 &rarr;&nbsp;<strong>扫描开始</strong>，是「头部元数据」与「像素压缩数据」的<strong>分界点</strong>。</li>
+</ul>
+
+<h3>3.3.3 结论：头部结束与像素数据起始</h3>
+
+<p>JPEG 的<strong>头部（所有元数据）在&nbsp;<code>FF DA</code>&nbsp;标记之前结束</strong>；<strong><code>FF DA</code>&nbsp;标记之后的第一个字节，就是真正的像素压缩数据的起始位置</strong>。</p>
+
+<p>简言之：从截图中&nbsp;<code>FF DA</code>（偏移&nbsp;<code>00000130</code>&nbsp;-&nbsp;<code>00000131</code>）之后的字节开始，即为 JPEG 的像素数据部分。JPEG 文件的 ** 结尾由&nbsp;<code>FF D9</code>&nbsp;标记（EOI，End of Image）** 标识。在提供的截图中，偏移&nbsp;<code>00006640</code>&nbsp;附近的&nbsp;<code>FF D9</code>&nbsp;就是 JPEG 的<strong>结束标记</strong>&mdash;&mdash; 从该标记开始，JPEG 文件的有效数据（包括头部元数据、像素压缩数据）全部结束。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96-%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">其他-学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/jpg-bmp-png/" class="print-no-link">#jpg bmp png</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【随笔】【png】【bmp】【jpg】图片格式解析</div>
+      <div>http://example.com/2025/09/17/【随笔】【png】【bmp】【jpg】图片格式解析/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月17日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/09/17/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90%E8%93%9D%E5%B1%8F%E3%80%91DMA%E9%94%99%E8%AF%AF/" title="【随笔】【蓝屏】DMA错误">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【随笔】【蓝屏】DMA错误</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/" title="【Embedded System】【Kconfig】基于WM IoT SDK和ESP IDF SDK的关于【Kconfig】【menuconfig】【prj.config】等配置文件的深入理解">
+                        <span class="hidden-mobile">【Embedded System】【Kconfig】基于WM IoT SDK和ESP IDF SDK的关于【Kconfig】【menuconfig】【prj.config】等配置文件的深入理解</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

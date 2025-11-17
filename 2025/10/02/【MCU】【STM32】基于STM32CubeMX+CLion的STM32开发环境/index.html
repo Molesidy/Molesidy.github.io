@@ -1,0 +1,1337 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  基于&nbsp;STM32CubeMX + CLion&nbsp;的 STM32 开发环境，是一种融合了 &ldquo;图形化配置效率&rdquo; 与 &ldquo;现代 IDE 开发体验&rdquo; 的嵌入式开发方案。它以 STM32CubeMX 的硬件配置自动化为基础，搭配 CLion 的智能代码编辑、调试能力，解决了传统 STM32 开发（如 Keil MDK）中 &amp;ld">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境">
+<meta property="og:url" content="http://example.com/2025/10/02/%E3%80%90MCU%E3%80%91%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX+CLion%E7%9A%84STM32%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  基于&nbsp;STM32CubeMX + CLion&nbsp;的 STM32 开发环境，是一种融合了 &ldquo;图形化配置效率&rdquo; 与 &ldquo;现代 IDE 开发体验&rdquo; 的嵌入式开发方案。它以 STM32CubeMX 的硬件配置自动化为基础，搭配 CLion 的智能代码编辑、调试能力，解决了传统 STM32 开发（如 Keil MDK）中 &amp;ld">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/976476982fcf4a32aa2f0713f5498005.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/00fa9283c9034f8db2861ee7bb1d3cad.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9b1fae63c8694579a181dfaaab3292ea.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a65bb1a130cb483599e1f347cab9707f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ddfd049553554b93b7b5f5c53986231c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/79864355c57547aebfbde88a9a31aa2a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/174cc6f874224a3eacbb20ddc19cc7ee.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3104c0d221a42f0a7ac07252cf93b54.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e32d82b51a81463f945e322f6733bf88.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/44ed862384754fc79f0fb1087897de95.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/975d6caa90984533b6517e8acdb0b456.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/89cdfdc27ed640d99cb1cdd3fbbc90a2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b92561fd818a437894e4fb5ad683bc8d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/25ba40bacfe74e9da7be0960541d6285.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7257d8c247a6410baf065043ec981871.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7ff2e18930874dd1833d7010c8a8d1b0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7e3ccf1b427248bda799b981a5714a08.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cfcce9d32cfc4862aac7963c0061c536.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/088e32fc5e9745d7b76fe55b85444896.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8eed9bcf5f864e0b97615a853593df88.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/42f1b53ff6204012926751816e8aa4ec.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e1a06c3994764f3b915027ff1b86b1ca.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fd31ca50cab24aa990fc5bcb0217870b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dd636779375c42bbaf770bfc0b9439df.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3f5327111004f4e9021df3ee87e15c5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/edfb3e4a5a5446c091629f6be5909a4b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a8982da53abe426f89f0f06fd159cb43.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/221967e35bd048998ce260eafaf46c37.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3c91ffcd4fef47a0a2abe235e1cfef70.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3819a1ad02ed47dd85072dd83ede68d1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/65fa0afac3d6452fbf3c62a8c4ebc95c.gif">
+<meta property="article:published_time" content="2025-10-02T12:58:53.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="单片机 stm32 嵌入式硬件 CLion stm32CubeMX">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/976476982fcf4a32aa2f0713f5498005.png">
+  
+  
+  
+  <title>【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-02 20:58" pubdate>
+          2025年10月2日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          20 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>基于&nbsp;<strong>STM32CubeMX + CLion</strong>&nbsp;的 STM32 开发环境，是一种融合了 &ldquo;图形化配置效率&rdquo; 与 &ldquo;现代 IDE 开发体验&rdquo; 的嵌入式开发方案。它以 STM32CubeMX 的硬件配置自动化为基础，搭配 CLion 的智能代码编辑、调试能力，解决了传统 STM32 开发（如 Keil MDK）中 &ldquo;配置繁琐、代码提示弱、跨平台性差&rdquo; 的痛点，尤其适合习惯现代 C/C++ 开发流程、追求高效调试的开发者。</p>
+
+<h2>1.1 核心工具定位与分工</h2>
+
+<p>该环境的核心是 &ldquo;<strong>STM32CubeMX 负责 &ldquo;硬件配置与代码生成&rdquo;，CLion 负责 &ldquo;代码编写、编译与调试&rdquo;</strong>&nbsp;&rdquo;，两者通过标准化的工程文件联动，形成完整开发闭环：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>工具</th>
+			<th>核心功能</th>
+			<th>解决的痛点</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>STM32CubeMX</strong></td>
+			<td>1. 图形化选择芯片型号、配置引脚（GPIO、SPI、UART 等）、时钟树、外设参数；2. 自动生成初始化代码（基于 HAL/LL 库）；3. 生成支持 CLion 的工程模板（如 Makefile/CMake）。</td>
+			<td>避免手动编写繁琐的外设初始化代码、时钟树计算，降低硬件配置出错率。</td>
+		</tr>
+		<tr>
+			<td><strong>CLion</strong></td>
+			<td>1. 智能代码编辑（语法高亮、自动补全、重构、跳转）；2. 集成编译工具链（ARM-GCC）；3. 支持硬件调试（配合 OpenOCD/J-Link）；4. 跨平台（Windows/macOS/Linux）。</td>
+			<td>解决传统 IDE（如 Keil）代码提示弱、不支持跨平台、调试界面不直观的问题。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2>1.2 环境搭建核心依赖</h2>
+
+<p>要让两者联动，需额外配置 &ldquo;编译工具链&rdquo; 和 &ldquo;调试工具&rdquo;，形成完整链路：</p>
+
+<ol>
+	<li>
+	<p><strong>编译工具链：ARM GNU Toolchain</strong>用于将 C/C++ 代码编译为 STM32 可执行的二进制文件（.elf/.hex），需下载对应平台的工具链（如<code>arm-none-eabi-gcc</code>）并配置环境变量。</p>
+	</li>
+	<li>
+	<p><strong>调试工具：OpenOCD + 调试器</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;OpenOCD&lt;/strong&gt;：开源调试工具，负责与硬件调试器（如 J-Link、ST-Link）通信，实现 &amp;ldquo;下载程序、断点调试、查看寄存器&amp;rdquo; 等功能；&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;硬件调试器&lt;/strong&gt;：常用 ST 官方的 ST-Link（低成本，支持大部分 STM32）或 Segger 的 J-Link（兼容性更强，支持复杂调试）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;驱动支持&lt;/strong&gt;安装调试器的 USB 驱动（如 ST-Link 驱动、J-Link 驱动），确保电脑能识别硬件。&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h2>1.3 典型开发流程（以 &ldquo;GPIO 点亮 LED&rdquo; 为例）</h2>
+
+<ol>
+	<li>
+	<p><strong>Step 1：STM32CubeMX 配置与代码生成</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;打开 STM32CubeMX，选择目标芯片（如 STM32F103C8T6）；&lt;/li&gt;
+	&lt;li&gt;配置硬件：
+	&lt;ul&gt;
+		&lt;li&gt;引脚：将 PA5（LED 引脚）设为 &amp;ldquo;GPIO_Output&amp;rdquo;；&lt;/li&gt;
+		&lt;li&gt;时钟树：将 HSE（外部高速时钟）设为 8MHz，系统时钟（SYSCLK）设为 72MHz；&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;工程配置：
+	&lt;ul&gt;
+		&lt;li&gt;选择 &amp;ldquo;Toolchain/IDE&amp;rdquo; 为 &amp;ldquo;Makefile&amp;rdquo;（CLion 支持 Makefile/CMake，Makefile 更简单）；&lt;/li&gt;
+		&lt;li&gt;勾选 &amp;ldquo;Generate peripheral initialization as a pair of .c/.h files per peripheral&amp;rdquo;（模块化代码）；&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;点击 &amp;ldquo;Generate Code&amp;rdquo; 生成工程文件（包含 HAL 库、初始化代码、Makefile）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Step 2：CLion 导入工程并编写业务代码&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;打开 CLion，选择 &amp;ldquo;Open&amp;rdquo; 导入 STM32CubeMX 生成的工程文件夹；&lt;/li&gt;
+	&lt;li&gt;CLion 会自动识别 Makefile，无需额外配置编译规则；&lt;/li&gt;
+	&lt;li&gt;在&lt;code&gt;main.c&lt;/code&gt;的&lt;code&gt;while(1)&lt;/code&gt;循环中添加 LED 翻转代码：
+	&lt;pre&gt;
+</code></pre>
+<p><code>HAL_GPIO_TogglePin(GPIOA, GPIO_PIN_5); // 翻转PA5电平<br>HAL_Delay(500); // 延时500ms<br></code></pre><br>		</li><br>	</ul><br>	</li><br>	<li><br>	<p><strong>Step 3：编译与下载</strong></p></p>
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;点击 CLion 右上角的 &amp;ldquo;Build&amp;rdquo;（或快捷键&lt;code&gt;Ctrl+F9&lt;/code&gt;），调用 ARM-GCC 编译工程，生成&lt;code&gt;*.elf&lt;/code&gt;文件；&lt;/li&gt;
+	&lt;li&gt;连接调试器（如 ST-Link）到 STM32 开发板，在 CLion 中配置调试：
+	&lt;ul&gt;
+		&lt;li&gt;进入 &amp;ldquo;Run&amp;gt; Edit Configurations&amp;rdquo;，选择 &amp;ldquo;OpenOCD Download &amp;amp; Run&amp;rdquo;；&lt;/li&gt;
+		&lt;li&gt;选择对应芯片的 OpenOCD 配置文件（如&lt;code&gt;stm32f1x.cfg&lt;/code&gt;，通常 OpenOCD 已自带）；&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+	&lt;li&gt;点击 &amp;ldquo;Debug&amp;rdquo;（或快捷键&lt;code&gt;Shift+F9&lt;/code&gt;），CLion 会通过 OpenOCD 将程序下载到 STM32，并进入调试模式。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Step 4：调试与验证&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;在&lt;code&gt;HAL_GPIO_TogglePin&lt;/code&gt;行设置断点，调试时程序会暂停在断点处；&lt;/li&gt;
+	&lt;li&gt;通过 CLion 的调试面板查看 &amp;ldquo;GPIO 寄存器状态&amp;rdquo;&amp;ldquo;变量值&amp;rdquo;，或单步执行（F8）观察 LED 翻转逻辑；&lt;/li&gt;
+	&lt;li&gt;调试完成后，点击 &amp;ldquo;Run&amp;rdquo;（或快捷键&lt;code&gt;Shift+F10&lt;/code&gt;）直接运行程序，LED 会以 500ms 周期闪烁。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h2>1.4 该方案的优势与局限性</h2>
+
+<h4>优势：</h4>
+
+<ol>
+	<li><strong>开发体验现代</strong>：CLion 的智能补全（如输入<code>HAL_GPIO_</code>会自动提示所有 GPIO 相关函数）、代码跳转（点击函数名跳转到定义）大幅提升编码效率；</li>
+	<li><strong>跨平台自由</strong>：Windows/macOS/Linux 均可使用，解决了 Keil MDK 仅支持 Windows 的问题（尤其适合 Mac 用户）；</li>
+	<li><strong>开源生态友好</strong>：依赖的 ARM-GCC、OpenOCD 均为开源工具，无需付费（对比 Keil 需要 license）；</li>
+	<li><strong>代码可移植性强</strong>：STM32CubeMX 生成的 HAL 库代码标准化，切换芯片时只需重新配置生成，业务代码基本无需修改。</li>
+</ol>
+
+<h4>局限性：</h4>
+
+<ol>
+	<li><strong>调试功能不如 Keil 全面</strong>：对某些复杂调试需求（如 Trace 跟踪、功耗分析）支持较弱，Keil MDK 在 STM32 专属调试功能上更成熟；</li>
+	<li><strong>入门门槛略高</strong>：需手动配置工具链、OpenOCD，对新手而言比 &ldquo;一键安装 Keil&rdquo; 更复杂；</li>
+	<li><strong>部分老芯片支持有限</strong>：STM32CubeMX 对非常早期的 STM32 型号（如 STM32F100）支持不足，更适合近 5 年推出的芯片（如 F1/F4/F7/H7/L4 系列）。</li>
+</ol>
+
+<h2>1.5 适用人群</h2>
+
+<ul>
+	<li>习惯现代 C/C++ 开发（如使用过 VS Code、Qt Creator）的开发者；</li>
+	<li>需要跨平台开发（如在 Mac 上开发 STM32）的用户；</li>
+	<li>追求开源工具链、避免商业软件依赖的团队或个人；</li>
+	<li>以 HAL 库为主要开发框架的 STM32 项目（若用标准库，STM32CubeMX 支持有限，需手动适配）。</li>
+</ul>
+
+<p>综上，STM32CubeMX+CLion 是一套 &ldquo;高效、现代、跨平台&rdquo; 的 STM32 开发方案，尤其适合对开发体验有要求的中高级开发者，或需要摆脱 Keil 依赖的场景。</p>
+
+<h2>二、工程创建</h2>
+
+<h2>2.1 使用STM32CubeMX创建工程cmake工程，其他的STM32工程的配置与keil的配置一样，主要是针对工程配置。</h2>
+
+<p><img alt="" height="1773" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/976476982fcf4a32aa2f0713f5498005.png" srcset="/img/loading.gif" lazyload width="1133" /></p>
+
+<h2>2.2 工程配置</h2>
+
+<p>选择cmake</p>
+
+<p><img alt="" height="948" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/00fa9283c9034f8db2861ee7bb1d3cad.png" srcset="/img/loading.gif" lazyload width="1904" /></p>
+
+<p><img alt="" height="951" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9b1fae63c8694579a181dfaaab3292ea.png" srcset="/img/loading.gif" lazyload width="1916" /></p>
+
+<h2>2.3 导入工程，打开文件夹</h2>
+
+<p><img alt="" height="281" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a65bb1a130cb483599e1f347cab9707f.png" srcset="/img/loading.gif" lazyload width="758" /></p>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ddfd049553554b93b7b5f5c53986231c.png" srcset="/img/loading.gif" lazyload width="1541" /></p>
+
+<p>取消勾选默认的Debug</p>
+
+<p><img alt="" height="691" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/79864355c57547aebfbde88a9a31aa2a.png" srcset="/img/loading.gif" lazyload width="804" /></p>
+
+<p>勾选Debug预设</p>
+
+<p><img alt="" height="690" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/174cc6f874224a3eacbb20ddc19cc7ee.png" srcset="/img/loading.gif" lazyload width="1099" /></p>
+
+<h2>2.4&nbsp;交换位置</h2>
+
+<pre>
+<code># Core project settings
+project(${CMAKE_PROJECT_NAME})
+message("Build type: " ${CMAKE_BUILD_TYPE})
+
+# Enable CMake support for ASM and C languages
+enable_language(C ASM)</code></pre>
+
+<p><img alt="" height="999" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3104c0d221a42f0a7ac07252cf93b54.png" srcset="/img/loading.gif" lazyload width="1887" /></p>
+
+<p><img alt="" height="988" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e32d82b51a81463f945e322f6733bf88.png" srcset="/img/loading.gif" lazyload width="1909" /></p>
+
+<h2>2.5 下载工具链</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Download OpenOCD for Windows" target="_blank" rel="noopener" href="https://gnutoolchains.com/arm-eabi/openocd/" title="Download OpenOCD for Windows">Download OpenOCD for Windows</a></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Arm GNU 工具链下载 – Arm Developer" target="_blank" rel="noopener" href="https://developer.arm.com/downloads/-/arm-gnu-toolchain-downloads" title="Arm GNU 工具链下载 – Arm Developer">Arm GNU 工具链下载 &ndash; Arm Developer</a></p>
+
+<p><img alt="" height="278" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/44ed862384754fc79f0fb1087897de95.png" srcset="/img/loading.gif" lazyload width="711" /></p>
+
+<p><img alt="" height="1501" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/975d6caa90984533b6517e8acdb0b456.png" srcset="/img/loading.gif" lazyload width="1164" /></p>
+
+<p><img alt="" height="1752" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/89cdfdc27ed640d99cb1cdd3fbbc90a2.png" srcset="/img/loading.gif" lazyload width="1167" /></p>
+
+<p><img alt="" height="187" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b92561fd818a437894e4fb5ad683bc8d.png" srcset="/img/loading.gif" lazyload width="651" /></p>
+
+<p><img alt="" height="26" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/25ba40bacfe74e9da7be0960541d6285.png" srcset="/img/loading.gif" lazyload width="361" /></p>
+
+<h2>2.6 进入设置，配置工具链</h2>
+
+<p><img alt="" height="725" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7257d8c247a6410baf065043ec981871.png" srcset="/img/loading.gif" lazyload width="1258" /></p>
+
+<h2>2.7 配置OpenOCD</h2>
+
+<p><img alt="" height="164" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7ff2e18930874dd1833d7010c8a8d1b0.png" srcset="/img/loading.gif" lazyload width="735" /></p>
+
+<p><img alt="" height="689" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7e3ccf1b427248bda799b981a5714a08.png" srcset="/img/loading.gif" lazyload width="991" /></p>
+
+<p><img alt="" height="42" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cfcce9d32cfc4862aac7963c0061c536.png" srcset="/img/loading.gif" lazyload width="195" /></p>
+
+<p><img alt="" height="706" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/088e32fc5e9745d7b76fe55b85444896.png" srcset="/img/loading.gif" lazyload width="993" /></p>
+
+<p>选择适合stm32f103c8t6的下载配置</p>
+
+<p><img alt="" height="53" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8eed9bcf5f864e0b97615a853593df88.png" srcset="/img/loading.gif" lazyload width="649" /></p>
+
+<p><img alt="" height="863" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/42f1b53ff6204012926751816e8aa4ec.png" srcset="/img/loading.gif" lazyload width="1145" /></p>
+
+<h2>2.8 先编译测试</h2>
+
+<p><img alt="" height="247" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e1a06c3994764f3b915027ff1b86b1ca.png" srcset="/img/loading.gif" lazyload width="356" /></p>
+
+<p><img alt="" height="955" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fd31ca50cab24aa990fc5bcb0217870b.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
+
+<h1>三、编写、编译代码</h1>
+
+<h2>3.1 测试烧写，注意下载STlink驱动，烧写成功</h2>
+
+<pre>
+<code class="language-bash">    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
+    HAL_Delay(100);
+    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
+    HAL_Delay(100);</code></pre>
+
+<pre>
+<code class="language-bash">D:\DevEnv\CLion_Toolchain\openocd-v0.12.0-i686-w64-mingw32\bin\openocd.exe -s D:\DevEnv\CLion_Toolchain\openocd-v0.12.0-i686-w64-mingw32\share\openocd\scripts -f D:\DevEnv\CLion_Toolchain\stm32f1_stlink.cfg -c "tcl_port disabled" -c "gdb_port disabled" -c "tcl_port disabled" -c "program \"E:/MDK_Projects/STM32CubeMX_Projects/STM32MX_Examples_Workspaces/clion_test/build/Debug/clion_test.elf\"" -c reset -c shutdown
+[0m[0mOpen On-Chip Debugger 0.12.0 (2023-01-14-23:37)
+Licensed under GNU GPL v2
+For bug reports, read
+        http://openocd.org/doc/doxygen/bugs.html
+Info : auto-selecting first available session transport "hla_swd". To override u
+se 'transport select &lt;transport&gt;'.
+Info : The selected transport took over low-level target control. The results mi
+ght differ compared to plain JTAG/SWD
+none separate
+
+Info : clock speed 1000 kHz
+Info : STLINK V2J45S7 (API v2) VID:PID 0483:3748
+Info : Target voltage: 3.225841
+Info : [stm32f1x.cpu] Cortex-M3 r1p1 processor detected
+Info : [stm32f1x.cpu] target has 6 breakpoints, 4 watchpoints
+Info : gdb port disabled
+[stm32f1x.cpu] halted due to debug-request, current mode: Thread
+xPSR: 0x01000000 pc: 0x08000188 msp: 0x20000dc0
+** Programming Started **
+Info : device id = 0x20036410
+Info : flash size = 64 KiB
+Warn : Adding extra erase range, 0x0800123c .. 0x080013ff
+** Programming Finished **
+shutdown command invoked</code></pre>
+
+<p><img alt="" height="982" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dd636779375c42bbaf770bfc0b9439df.png" srcset="/img/loading.gif" lazyload width="1889" /></p>
+
+<h2>3.2 添加mycode文件夹和bsp_led组件</h2>
+
+<p><img alt="" height="401" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3f5327111004f4e9021df3ee87e15c5.png" srcset="/img/loading.gif" lazyload width="516" /></p>
+
+<p><img alt="" height="96" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/edfb3e4a5a5446c091629f6be5909a4b.png" srcset="/img/loading.gif" lazyload width="494" /></p>
+
+<pre>
+<code class="language-bash">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "../../mycode/bsp_led/bsp_led.h"
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  /* USER CODE BEGIN 2 */
+
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+    led_change();
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<pre>
+<code class="language-bash">//
+// Created by zky on 2025/10/2.
+//
+
+#include "bsp_led.h"
+
+void led_change(void)
+{
+    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_RESET);
+    HAL_Delay(50);
+    HAL_GPIO_WritePin(GPIOC,GPIO_PIN_13,GPIO_PIN_SET);
+    HAL_Delay(50);
+}
+</code></pre>
+
+<h2>3.3 添加cmake路径</h2>
+
+<p><img alt="" height="957" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a8982da53abe426f89f0f06fd159cb43.png" srcset="/img/loading.gif" lazyload width="1621" /></p>
+
+<p><img alt="" height="101" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/221967e35bd048998ce260eafaf46c37.png" srcset="/img/loading.gif" lazyload width="359" /></p>
+
+<h3>（1）添加自定义的头文件路径和源文件路径</h3>
+
+<p><img alt="" height="252" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3c91ffcd4fef47a0a2abe235e1cfef70.png" srcset="/img/loading.gif" lazyload width="476" /></p>
+
+<pre>
+<code class="language-bash">cmake_minimum_required(VERSION 3.22)
+
+#
+# This file is generated only once,
+# and is not re-generated if converter is called multiple times.
+#
+# User is free to modify the file as much as necessary
+#
+
+# Setup compiler settings
+set(CMAKE_C_STANDARD 11)
+set(CMAKE_C_STANDARD_REQUIRED ON)
+set(CMAKE_C_EXTENSIONS ON)
+
+
+# Define the build type
+if(NOT CMAKE_BUILD_TYPE)
+    set(CMAKE_BUILD_TYPE "Debug")
+endif()
+
+# Set the project name
+set(CMAKE_PROJECT_NAME clion_test)
+
+# Include toolchain file
+include("cmake/gcc-arm-none-eabi.cmake")
+
+# Enable compile command to ease indexing with e.g. clangd
+set(CMAKE_EXPORT_COMPILE_COMMANDS TRUE)
+
+
+
+# Core project settings
+project(${CMAKE_PROJECT_NAME})
+message("Build type: " ${CMAKE_BUILD_TYPE})
+
+# Enable CMake support for ASM and C languages
+enable_language(C ASM)
+
+# Create an executable object type
+add_executable(${CMAKE_PROJECT_NAME}
+        mycode/bsp_led/bsp_led.h
+        mycode/bsp_led/bsp_led.c)
+
+# Add STM32CubeMX generated sources
+add_subdirectory(cmake/stm32cubemx)
+
+# Link directories setup
+target_link_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user defined library search paths
+)
+
+# Add sources to executable
+target_sources(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user sources here
+        mycode/bsp_led/bsp_led.c
+)
+
+# Add include paths
+target_include_directories(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user defined include paths
+        mycode/bsp_led
+)
+
+# Add project symbols (macros)
+target_compile_definitions(${CMAKE_PROJECT_NAME} PRIVATE
+    # Add user defined symbols
+)
+
+# Add linked libraries
+target_link_libraries(${CMAKE_PROJECT_NAME}
+    stm32cubemx
+
+    # Add user defined libraries
+)
+</code></pre>
+
+<h3>（2）编译成功，已经识别</h3>
+
+<p><img alt="" height="833" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3819a1ad02ed47dd85072dd83ede68d1.png" srcset="/img/loading.gif" lazyload width="1615" /></p>
+
+<h1>四、实验效果</h1>
+
+<p><img alt="" height="400" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/65fa0afac3d6452fbf3c62a8c4ebc95c.gif" srcset="/img/loading.gif" lazyload width="680" /></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-stm32-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6-CLion-stm32CubeMX/" class="print-no-link">#单片机 stm32 嵌入式硬件 CLion stm32CubeMX</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境</div>
+      <div>http://example.com/2025/10/02/【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月2日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="【Docker】基于Ubuntu的Docker的日常使用方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Docker】基于Ubuntu的Docker的日常使用方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/30/%E3%80%90NAS%E3%80%91%E6%96%90%E8%AE%AFN1%E7%9B%92%E5%AD%90%E5%88%B7Armbain/" title="【NAS】斐讯N1盒子刷Armbain">
+                        <span class="hidden-mobile">【NAS】斐讯N1盒子刷Armbain</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

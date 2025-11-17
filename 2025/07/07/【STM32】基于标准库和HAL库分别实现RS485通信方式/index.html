@@ -1,0 +1,1407 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  发展历程：   	UART 的产生：UART（通用异步收发器）的发展与串行通信的发展密切相关。早期的串行通讯主要用于电信和无线电设备，采用莫尔斯电码和调幅（AM），这些系统通常是定制化的，缺乏标准化的硬件模块。随着串行通信的普及，20 世纪 60 年代末，UART 应运而生。 	RS-232 的出现：UART 产生后，需要有相应的标准来规范其硬件的电气特性和协议，使串行通信更加规范">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【STM32】基于标准库和HAL库分别实现RS485通信方式">
+<meta property="og:url" content="http://example.com/2025/07/07/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8E%E6%A0%87%E5%87%86%E5%BA%93%E5%92%8CHAL%E5%BA%93%E5%88%86%E5%88%AB%E5%AE%9E%E7%8E%B0RS485%E9%80%9A%E4%BF%A1%E6%96%B9%E5%BC%8F/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  发展历程：   	UART 的产生：UART（通用异步收发器）的发展与串行通信的发展密切相关。早期的串行通讯主要用于电信和无线电设备，采用莫尔斯电码和调幅（AM），这些系统通常是定制化的，缺乏标准化的硬件模块。随着串行通信的普及，20 世纪 60 年代末，UART 应运而生。 	RS-232 的出现：UART 产生后，需要有相应的标准来规范其硬件的电气特性和协议，使串行通信更加规范">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d69148ca49c6472daf43a20817cb8d5c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b54807c3aec44e96a2d9fee92c6f1ee1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c8b14e492f4347aaa4ba60bb023bc3e8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/90d1661810fe4ef3a773d8d4c489a433.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e350c5ca6d645e88b2126bff109b29f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/69e21a425ad145dba75e4a6f975f62fb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/575fd7f31f484701af7311d664ed8c4f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0d15133d255d4f6fbde96dd2542b28ce.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7a508fba92a45bf8bc428ff3593c8ac.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e8a4fb379f91470db5ca3cb2523054ec.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/79551238414047789e2c981c15d0f5db.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c2dcb9f0360b4cc3a64555ec672e3f43.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e22a00928f534286885a818fcac7a694.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6906b0e595c84ff8b419906d672e130d.gif">
+<meta property="article:published_time" content="2025-07-07T09:02:34.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="stm32 单片机 嵌入式 RS485">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/d69148ca49c6472daf43a20817cb8d5c.png">
+  
+  
+  
+  <title>【STM32】基于标准库和HAL库分别实现RS485通信方式 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【STM32】基于标准库和HAL库分别实现RS485通信方式"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-07 17:02" pubdate>
+          2025年7月7日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          27 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【STM32】基于标准库和HAL库分别实现RS485通信方式</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 style="background-color:transparent">一、简介</h1>
+
+<p><strong>发展历程：</strong></p>
+
+<ul>
+	<li><strong>UART 的产生</strong>：UART（通用异步收发器）的发展与串行通信的发展密切相关。早期的串行通讯主要用于电信和无线电设备，采用莫尔斯电码和调幅（AM），这些系统通常是定制化的，缺乏标准化的硬件模块。随着串行通信的普及，20 世纪 60 年代末，UART 应运而生。</li>
+	<li><strong>RS-232 的出现</strong>：UART 产生后，需要有相应的标准来规范其硬件的电气特性和协议，使串行通信更加规范化。1962 年，EIA 发布了 RS-232 标准，命名为 EIA-232-E，作为工业标准，以保证不同厂家产品之间的兼容。RS-232 采用单端信号传送，存在共地噪声和不能抑制共模干扰等问题，一般用于 20 米以内的通信，最大位速率为 20Kb/s。</li>
+	<li><strong>RS-422 的发展</strong>：由于 RS-232 存在通信距离短、速率低的缺点，为了改进这些不足，EIA 在 RS-232 的基础上发展出了 RS-422 标准。RS-422 定义了一种平衡通信接口，将传输速率提高到 10Mbps，传输距离延长到 1200 米（速率低于 100Kbps 时），并允许在一条平衡总线上连接最多 10 个接收器。它是一种单机发送、多机接收的单向、平衡传输规范，被命名为 TIA/EIA-422-A 标准。</li>
+	<li><strong>RS-485 的诞生</strong>：为了进一步扩展应用范围，EIA 于 1983 年在 RS-422 基础上制定了 RS-485 标准。RS-485 增加了多点、双向通信能力，即允许多个发送器连接到同一条总线上，同时增加了发送器的驱动能力和冲突保护特性，扩展了总线共模范围，后命名为 TIA/EIA-485-A 标准。RS-485 为半双工通信，用于多站互连时可节省信号线，便于高速、远距离传送，允许最多并联 32 台驱动器和 32 台接收器。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;需要注意的是，按照技术发展的先后顺序，应该是 UART-&gt;RS-232-&gt;RS-422-&gt;RS-485。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS485和RS422电路原理基本相同，都是以差动方式发送和接受，不需要数字地线。差动工作是同速率条件下传输距离远的根本原因，这正是二者与RS232的根本区别，因为RS232是单端输入输出，双工工作时至少需要数字地线、发送线和接受线三条线（异步传输），还可以加其它控制线完成同步等功能。RS422通过两对双绞线可以全双工工作收发互不影响，而RS485只能半双工工作，发收不能同时进行，但它只需要一对双绞线。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS-232、RS-422与RS-485标准只对接口的电气特性（电压，阻抗）做出规定，而不涉及接插件、电缆或协议，在此基础上用户可以建立自己的高层通信协议。</p>
+
+<p><strong>RS485：</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与CAN类似，RS-485是一种工业控制环境中常用的通讯协议，它具有抗干扰能力强、传输距离远的特点。RS-485通讯协议由RS-232协议改进而来， 协议层不变，只是改进了物理层，因而保留了串口通讯协议应用简单的特点。（<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="参考链接" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f407batianhu/std/zh/latest/book/RS485.html#id3" title="参考链接">参考链接</a>）</p>
+
+<p>RS485通信网络示意图</p>
+
+<p><img alt="" height="492" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d69148ca49c6472daf43a20817cb8d5c.png" srcset="/img/loading.gif" lazyload width="976" /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对比CAN通讯网络，可发现它们的网络结构组成是类似的，每个节点都是由一个通讯控制器和一个收发器组成，在RS-485通讯网络中， 节点中的串口控制器使用RX与TX信号线连接到收发器上，而收发器通过差分线连接到网络总线，串口控制器与收发器之间一般使用TTL信号传输， 收发器与总线则使用差分信号来传输。发送数据时，串口控制器的TX信号经过收发器转换成差分信号传输到总线上，而接收数据时， 收发器把总线上的差分信号转化成TTL信号通过RX引脚传输到串口控制器中。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS-485通讯网络的最大传输距离可达1200米，总线上可挂载128个通讯节点，而由于RS-485网络只有一对差分信号线，它使用差分信号来表达逻辑， 当AB两线间的电压差为-6V~-2V时表示逻辑1，当电压差为+2V~+6V表示逻辑0，在同一时刻只能表达一个信号，所以它的通讯是半双工形式的， 它与RS-232通讯协议的特性对比见图。</p>
+
+<p><img alt="" height="272" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b54807c3aec44e96a2d9fee92c6f1ee1.png" srcset="/img/loading.gif" lazyload width="972" /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS-485与RS-232的差异只体现在物理层上，它们的协议层是相同的，也是使用串口数据包的形式传输数据。而由于RS-485具有强大的组网功能， 人们在基础协议之上还制定了MODBUS协议，被广泛应用在工业控制网络中。此处说的基础协议是指前面串口章节中讲解的， 仅封装了基本数据包格式的协议(基于数据位)，而MODBUS协议是使用基本数据包组合成通讯帧格式的高层应用协议(基于数据包或字节)。 感兴趣的读者可查找MODBUS协议的相关资料了解。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于RS-485与RS-232的协议层没有区别，进行通讯时，同样是使用STM32的USART外设作为通讯节点中的串口控制器， 再外接一个RS-485收发器芯片把USART外设的TTL电平信号转化成RS-485的差分信号即可。</p>
+
+<p>实际的RS485收发器的硬件原理图：</p>
+
+<p><img alt="" height="534" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c8b14e492f4347aaa4ba60bb023bc3e8.png" srcset="/img/loading.gif" lazyload width="1036" /></p>
+
+<p><img alt="" height="460" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/90d1661810fe4ef3a773d8d4c489a433.png" srcset="/img/loading.gif" lazyload width="1148" /></p>
+
+<p>SP3485 是一款高性能、低功耗的 RS-485/RS-422 收发器。其引脚定义如下：</p>
+
+<ol>
+	<li><strong>RO（接收输出）</strong>：将从 RS485 中接收到的差分信号转换为数字信号，并输出到 USART 的 RX 引脚。（RO接MCU的RX）</li>
+	<li><strong>RE（接收使能）</strong>：低电平有效，即当该引脚为低电平时，使能接收功能，高电平则禁用接收功能。（MCU对RE输出低电平就激活收发器的接收功能，反之禁用接收）</li>
+	<li><strong>DE（发送使能）</strong>：高电平有效，当该引脚为高电平时，使能发送功能，低电平则禁用发送功能。（MCU对DE输出高电平就激活收发器的发送功能，反之禁用发送）</li>
+	<li><strong>DI（发送输入）</strong>：将 USART 输入的数字信号发送到 RS485，将其转换为差分信号后输出到总线。（DI接MCU的TX）</li>
+	<li><strong>GND（接地）</strong>：连接到电源地。</li>
+	<li><strong>A（发送器输出 / 接收器输入正端）</strong>：用于 RS-485 差分信号传输的正极引脚。（半双工）</li>
+	<li><strong>B（发送器输出 / 接收器输入负端）</strong>：用于 RS-485 差分信号传输的负极引脚。（半双工）</li>
+	<li><strong>VCC（电源）</strong>：芯片供电引脚，通常接 + 3.3V 电源。</li>
+</ol>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;单片机通信一般是TTL电平，而外接设备如果是485设备，通信的电平就是485电平，电平是不一样的，所以两者不能直接相接。中间需要电平转换的芯片来转换一下，所以就有了我们的485芯片。因为485通信是半双工的，所以又把485芯片叫做半双工收发器。而SP3485芯片就是一款非常经典的低功耗半双工收发器的芯片，满足RS485串行协议要求。</p>
+
+<p><strong>RS485 通信</strong>采用差分信号传输，通常情况下只需要两根信号线就可以进行正常的通信。<br />
+在差分信号中，<strong>逻辑0</strong>和<strong>逻辑1</strong>是用两根信号线（A+和B-）的<strong>电压差</strong>来表示。</p>
+
+<ul>
+	<li><strong>逻辑 1</strong>：两根信号线（A+和B-）的电压差在&nbsp;<strong>+2V～+6V</strong>&nbsp;之间。</li>
+	<li><strong>逻辑 0</strong>：两根信号线（A+和B-）的电压差在&nbsp;<strong>-2V～-6V</strong>&nbsp;之间。</li>
+</ul>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="串行接口RS485简介-视频链接" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV15g4y1A7fZ/?spm_id_from=333.337.search-card.all.click&amp;vd_source=77379e487a8ecc7d4f9e65b8d9cd422d" title="串行接口RS485简介-视频链接">串行接口RS485简介-视频链接</a></p>
+
+<h1>二、工程创建</h1>
+
+<h2 style="background-color:transparent">1.基于STM32CubeMX的HAL库实现RS485通讯</h2>
+
+<h3>（1）打开STM32CubeMX进行工程创建，首先，开启外部高速时钟</h3>
+
+<p><img alt="" height="295" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e350c5ca6d645e88b2126bff109b29f.png" srcset="/img/loading.gif" lazyload width="805" /></p>
+
+<p>（2）开启SWD</p>
+
+<p><img alt="" height="1011" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/69e21a425ad145dba75e4a6f975f62fb.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>（3）开启串口1，作为MCU链接RS485的串口接口，并且开启全局中断</h3>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/575fd7f31f484701af7311d664ed8c4f.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0d15133d255d4f6fbde96dd2542b28ce.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>（4）开启一个GPIO-PA7作为RS485的控制引脚</h3>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7a508fba92a45bf8bc428ff3593c8ac.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>（5）PB8/9 作为OLED驱动引脚，PB1/11作为按键来控制发送部分</h3>
+
+<p><img alt="" height="1012" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e8a4fb379f91470db5ca3cb2523054ec.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>（6）配置时钟树</h3>
+
+<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/79551238414047789e2c981c15d0f5db.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>（7）工程配置</h3>
+
+<p><img alt="" height="815" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c2dcb9f0360b4cc3a64555ec672e3f43.png" srcset="/img/loading.gif" lazyload width="1581" /></p>
+
+<p><img alt="" height="829" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e22a00928f534286885a818fcac7a694.png" srcset="/img/loading.gif" lazyload width="1580" /></p>
+
+<h3>（8）代码编写</h3>
+
+<p><strong>接收部分：</strong></p>
+
+<p>bsp_RS485.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_485_H
+#define __BSP_485_H
+
+#include "stm32f1xx_hal.h"
+
+#define USART1_RX_Byte_Size 1
+#define USART1_RxBuffer_Size 256
+
+#define RS485DIR_TX_MODE HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);//定义我们的控制引脚为发送状态
+#define RS485DIR_RX_MODE HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_RESET);//定义我们的控制引脚为接收状态
+
+extern uint16_t USART1_RX_Flag;
+extern uint8_t USART1_RX_Byte[USART1_RX_Byte_Size];
+extern uint8_t USART1_RxBuffer[USART1_RxBuffer_Size];
+
+void RS485_Init(void);
+
+#endif //__BSP_485_H
+</code></pre>
+
+<p>bsp_RS485.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_RS485.h"
+
+#include "usart.h"
+
+uint16_t USART1_RX_Flag = 0;
+
+uint8_t USART1_RX_Byte[USART1_RX_Byte_Size]; //字节接受
+uint8_t USART1_RxBuffer[USART1_RxBuffer_Size]; //缓冲区
+
+
+uint8_t RX_index = 0;
+
+void RS485_Init(void)
+{
+	//RS485DIR_TX_MODE;
+	RS485DIR_RX_MODE;
+	HAL_UART_Receive_IT(&amp;huart1, (unsigned char *)USART1_RX_Byte, sizeof(USART1_RX_Byte));//初始化接收中断使能
+}
+
+void HAL_UART_RxCpltCallback(UART_HandleTypeDef *huart)
+{
+	
+	if(huart-&gt;Instance==USART1)//如果是串口1
+	{
+//		if((USART1_RX_Flag&amp;0x8000)==0)//接收未完成
+//		{
+//			if(USART1_RX_Flag&amp;0x4000)
+//			{
+//				if(USART1_RX_Byte[0]!=0x0a)USART1_RX_Flag=0;//接收错误,重新开始
+//				else USART1_RX_Flag|=0x8000;	//收到0x0a 接收完成了 
+//			}
+//			else 
+//			{	
+//				//判断是否收到0X0D
+//				if(USART1_RX_Byte[0]==0x0d)USART1_RX_Flag|=0x4000; //收到0X0D USART1_RX_Flag为0x4000
+//				else //没有收到0X0D
+//				{
+//					USART1_RxBuffer[USART1_RX_Flag&amp;0X3FFF]=USART1_RX_Byte[0] ;
+//					USART1_RX_Flag++;
+//					if(USART1_RX_Flag&gt;(USART1_RxBuffer_Size-1))USART1_RX_Flag=0;//接收数据错误,重新开始接收	  
+//				}		 
+//			}
+//		}
+		
+		USART1_RX_Flag = 1;
+		USART1_RxBuffer[RX_index++] = USART1_RX_Byte[0];
+		USART1_RX_Byte[0] = 0;
+		
+		
+		HAL_UART_Receive_IT(&amp;huart1, (unsigned char *)USART1_RX_Byte, sizeof(USART1_RX_Byte));
+		
+	}
+}
+</code></pre>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "usart.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "bsp_key.h"
+#include "bsp_oled.h"
+#include "bsp_RS485.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+	uint8_t len;
+	uint8_t message[] = "tip";
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART1_UART_Init();
+  /* USER CODE BEGIN 2 */
+	OLED_Init();
+	RS485_Init();//RX
+	
+	OLED_Clear();
+	OLED_ShowString(1, 1, "TX:");
+	OLED_ShowString(3, 1, "RX:");
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	HAL_Delay(100);
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_Delay(100);
+	  
+	  
+	  //USART1_RX_Flag&amp;0x8000
+	if(USART1_RX_Flag == 1)
+		{					   
+			//len=USART1_RX_Flag&amp;0x3fff;//得到此次接收到的数据长度
+			
+//			RS485DIR_TX_MODE;//拉高PB5，更改RS485模式为发送
+//			HAL_UART_Transmit(&amp;huart1,(uint8_t*)message,sizeof(message),1000);	//发送提示信息
+//			while(__HAL_UART_GET_FLAG(&amp;huart1,UART_FLAG_TC)!=SET);		//等待发送结束
+//			HAL_UART_Transmit(&amp;huart1,(uint8_t*)USART1_RxBuffer,len,1000);	//发送接收到的数据
+//			while(__HAL_UART_GET_FLAG(&amp;huart1,UART_FLAG_TC)!=SET);		//等待发送结束
+			
+			
+			OLED_ShowNum(3, 5, USART1_RxBuffer[0], 2);
+			
+			OLED_ShowNum(3, 9, USART1_RxBuffer[1], 2);
+			
+			
+			
+			
+			USART1_RxBuffer[0] = 0;
+			USART1_RxBuffer[1] = 0;
+//			USART1_RxBuffer[2] = 0;
+//			USART1_RxBuffer[3] = 0;
+			
+			RX_index=0;
+			//RS485DIR_RX_MODE;//拉低PB5，更改RS485模式为接收
+			len = 0;
+			USART1_RX_Flag=0;
+//			if(USART1_RxBuffer[0] == '1') 
+//				HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_1);
+		}
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<p><strong>发送部分：</strong></p>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "usart.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "bsp_key.h"
+#include "bsp_oled.h"
+#include "bsp_RS485.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+	uint8_t TX_Buffer[2] = {1,2};
+	uint8_t Key_Num = 0;
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_USART1_UART_Init();
+  /* USER CODE BEGIN 2 */
+	OLED_Init();
+	RS485_Init();//TX
+	
+	OLED_Clear();
+	OLED_ShowString(1, 1, "TX:");
+	OLED_ShowString(3, 1, "RX:");
+	
+	uint8_t new[2] = "\r\n";
+	
+	
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	//HAL_Delay(100);
+	
+	
+	Key_Num = KEY_GetNum();
+	if(Key_Num == 1)
+	{
+		HAL_UART_Transmit(&amp;huart1, TX_Buffer, 2, 1000);
+		//HAL_UART_Transmit(&amp;huart1, new, 2, 1000);
+		OLED_ShowNum(1, 5, TX_Buffer[0], 2);
+		OLED_ShowNum(1, 9, TX_Buffer[1], 2);
+		
+		TX_Buffer[0]++;
+		TX_Buffer[1]++;
+	}
+	  
+	  
+	HAL_GPIO_TogglePin(GPIOC, GPIO_PIN_13);
+	HAL_Delay(500);
+	  
+	  
+	  
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<p><strong>实验效果：</strong></p>
+
+<h1><img alt="" height="500" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6906b0e595c84ff8b419906d672e130d.gif" srcset="/img/loading.gif" lazyload width="700" /></h1>
+
+<p><strong>总结：</strong></p>
+
+<p>RS485 是在串口（UART）的串行通信原理基础上，通过以下方式实现升级的通信技术：</p>
+
+<ol>
+	<li><strong>物理层增强</strong>：采用差分信号传输（通过 RS485 收发器实现电平转换和驱动），提升抗干扰能力和传输距离，支持多节点组网。</li>
+	<li><strong>上层协议补充</strong>：RS485 本身仅定义物理层标准，需搭配 Modbus 等上层协议规定数据帧格式、通信规则，以实现有效通信。</li>
+</ol>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/stm32-%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F-RS485/" class="print-no-link">#stm32 单片机 嵌入式 RS485</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【STM32】基于标准库和HAL库分别实现RS485通信方式</div>
+      <div>http://example.com/2025/07/07/【STM32】基于标准库和HAL库分别实现RS485通信方式/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月7日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91AT32IDE%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="【MCU】【AT32】AT32IDE的初步使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【AT32】AT32IDE的初步使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90STM32%E3%80%91%E3%80%90USB%E3%80%91USB%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E5%9F%BA%E4%BA%8ECubeMX%20HAL%E5%BA%93%E7%9A%84%E4%BE%8B%E7%A8%8B%E9%AA%8C%E8%AF%81/" title="【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证">
+                        <span class="hidden-mobile">【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

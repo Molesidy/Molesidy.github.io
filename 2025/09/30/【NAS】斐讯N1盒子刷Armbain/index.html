@@ -1,0 +1,1114 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  1.1&nbsp;斐讯 N1 的硬件参数  产品类型：家庭网络存储，云存储  处理器：Amlogic S905D Cortex-A53，Mali-450 GPU  内存：RAM 2GB, ROM 8GB  接口：USB 2.0 * 2、HDMI * 1、RJ45 * 1（千兆网口）  无线连接：支持2.4G&#x2F;5G WiFi，蓝牙BT 4.1 BLE低功耗  视频输出分辨率：最高支持">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【NAS】斐讯N1盒子刷Armbain">
+<meta property="og:url" content="http://example.com/2025/09/30/%E3%80%90NAS%E3%80%91%E6%96%90%E8%AE%AFN1%E7%9B%92%E5%AD%90%E5%88%B7Armbain/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  1.1&nbsp;斐讯 N1 的硬件参数  产品类型：家庭网络存储，云存储  处理器：Amlogic S905D Cortex-A53，Mali-450 GPU  内存：RAM 2GB, ROM 8GB  接口：USB 2.0 * 2、HDMI * 1、RJ45 * 1（千兆网口）  无线连接：支持2.4G&#x2F;5G WiFi，蓝牙BT 4.1 BLE低功耗  视频输出分辨率：最高支持">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fd0ddf6397c84bfc8bf6cf1bf7dd5347.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1fcec124410e4f69ae59993dd5c293a5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/827fa3e99c414b889b397cc2b672fa9f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/28fe0c1edc0247dbb7c48e6c5fb8a33c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/50a41fa1c96b44f7a6ae47e49f05cb98.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d8649bfe08f44afba1f665b629b69075.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/63e640ecc499411fa0bd59d840ea42a4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/faca02fafa354358ad45002fce75776d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8c65dd69a0044e768b221d010c2cd68c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/04858b260aa64c01a358b99268173b21.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f647b89ff1904178b4fb159f39c6c67a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b9f830c347ec4b97954d730cdf691fc1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/86cc974c983d48f0a53b2d7d55df92e8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e842a491b33f4ccebac0f8e4cd65d6a1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/509e5766d2974f4cb5baea0ac432df82.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b4f2fa3609024358870e350e79847f35.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6a354d407db2427f92ede54d0a8f57f2.png">
+<meta property="article:published_time" content="2025-09-29T16:19:22.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="斐讯n1 armbian 刷机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/fd0ddf6397c84bfc8bf6cf1bf7dd5347.png">
+  
+  
+  
+  <title>【NAS】斐讯N1盒子刷Armbain - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【NAS】斐讯N1盒子刷Armbain"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-09-30 00:19" pubdate>
+          2025年9月30日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【NAS】斐讯N1盒子刷Armbain</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<h2>1.1&nbsp;<strong>斐讯 N1 的硬件参数</strong></h2>
+
+<p>产品类型：家庭网络存储，云存储</p>
+
+<p>处理器：Amlogic S905D Cortex-A53，Mali-450 GPU</p>
+
+<p>内存：RAM 2GB, ROM 8GB</p>
+
+<p>接口：USB 2.0 * 2、HDMI * 1、RJ45 * 1（千兆网口）</p>
+
+<p>无线连接：支持2.4G/5G WiFi，蓝牙BT 4.1 BLE低功耗</p>
+
+<p>视频输出分辨率：最高支持到 4K 60 帧硬件解码</p>
+
+<p>电源接口：12V/2A</p>
+
+<p>尺寸与重量：产品尺寸为110mm x 110mm x 40mm，产品重量约为0.248kg</p>
+
+<h1>二、详细步骤</h1>
+
+<h2>2.1 下载系统镜像</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Releases · ophub/amlogic-s9xxx-armbian" target="_blank" rel="noopener" href="https://github.com/ophub/amlogic-s9xxx-armbian/releases/" title="Releases · ophub/amlogic-s9xxx-armbian">Releases &middot; ophub/amlogic-s9xxx-armbian</a></p>
+
+<p><img alt="" height="798" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fd0ddf6397c84bfc8bf6cf1bf7dd5347.png" srcset="/img/loading.gif" lazyload width="1307" /></p>
+
+<p>(1)这些 Armbian 版本的核心区别是<strong>底层依赖的 Debian/Ubuntu 发行版分支不同</strong>（部分是针对特定场景的定制版），以下逐个解析：</p>
+
+<h3>1.&nbsp;<code>Armbian_trixie_save_2025.09</code></h3>
+
+<ul>
+	<li><code>trixie</code>&nbsp;是&nbsp;<strong>Debian Testing（测试版）</strong>&nbsp;的代号。</li>
+	<li>特点：软件版本较新（处于 &ldquo;稳定版候选&rdquo; 阶段），但稳定性略低于 Debian 正式稳定版；适合需要 &ldquo;较新功能 + 一定稳定性&rdquo; 的开发 / 尝鲜场景。</li>
+</ul>
+
+<h3>2.&nbsp;<code>Armbian_noble_save_2025.09</code></h3>
+
+<ul>
+	<li><code>noble</code>&nbsp;是&nbsp;<strong>Ubuntu 24.04 LTS</strong>（2024 年长期支持版）的代号。</li>
+	<li>特点：继承 Ubuntu 生态（软件新、桌面友好、社区支持广），且是 LTS 版本（支持到 2030 年左右）；适合开发、桌面使用或需要长期支持的场景。</li>
+</ul>
+
+<h3>3.&nbsp;<code>Armbian_jammy_save_2025.09</code></h3>
+
+<ul>
+	<li><code>jammy</code>&nbsp;是&nbsp;<strong>Ubuntu 22.04 LTS</strong>（2022 年长期支持版）的代号。</li>
+	<li>特点：目前 Ubuntu 生态中<strong>使用最广泛的 LTS 版本</strong>（支持到 2027 年），稳定性和软件生态都很成熟；适合服务器、桌面等 &ldquo;成熟且长期运行&rdquo; 的场景。</li>
+</ul>
+
+<h3>4.&nbsp;<code>Armbian_bullseye_save_2025.09</code></h3>
+
+<ul>
+	<li><code>bullseye</code>&nbsp;是&nbsp;<strong>Debian 11</strong>（稳定版）的代号。</li>
+	<li>特点：Debian 稳定版的典型代表，软件经过充分验证，<strong>稳定性极致</strong>；适合生产环境（如服务器、嵌入式设备长期无人值守运行）。</li>
+</ul>
+
+<h3>5.&nbsp;<code>Armbian_bookworm_save_2025.09</code></h3>
+
+<ul>
+	<li><code>bookworm</code>&nbsp;是&nbsp;<strong>Debian 12</strong>（稳定版）的代号。</li>
+	<li>特点：Debian 最新稳定版（2023 年发布），平衡了 &ldquo;较新软件版本&rdquo; 和 &ldquo;Debian 级稳定性&rdquo;；是当前 Debian 生态的主力稳定版，适合多数通用场景。</li>
+</ul>
+
+<h3>6.&nbsp;<code>Armbian_HassloSupervisor_bookworm_save_2025.09</code></h3>
+
+<ul>
+	<li>这是&nbsp;<strong>专用定制版</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;HassloSupervisor&lt;/code&gt;&amp;nbsp;指向&amp;nbsp;&lt;code&gt;Home Assistant Supervisor&lt;/code&gt;（智能家居系统 Home Assistant 的核心组件，负责管理插件、容器等）；&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;bookworm&lt;/code&gt;&amp;nbsp;说明底层基于 Debian 12。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;特点：为 &amp;ldquo;在 ARM 设备上部署 Home Assistant（智能家居中枢）&amp;rdquo; 专门优化，预装相关依赖，方便快速搭建智能家居系统。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3>选择逻辑总结</h3>
+
+<ul>
+	<li>追求<strong>极致稳定 + 生产环境</strong>：选&nbsp;<code>bullseye</code>（Debian 11）或&nbsp;<code>bookworm</code>（Debian 12）系；</li>
+	<li>想要<strong>Ubuntu 生态 + 长期支持</strong>：选&nbsp;<code>jammy</code>（Ubuntu 22.04 LTS）或&nbsp;<code>noble</code>（Ubuntu 24.04 LTS）系；</li>
+	<li>尝鲜<strong>较新功能</strong>：选&nbsp;<code>trixie</code>（Debian Testing）系；</li>
+	<li>部署<strong>智能家居（Home Assistant）</strong>：选&nbsp;<code>HassloSupervisor_bookworm</code>&nbsp;定制版</li>
+</ul>
+
+<p>(2)选择基于debian12的Armbian，根据芯片选对应的镜像</p>
+
+<p><img alt="" height="769" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1fcec124410e4f69ae59993dd5c293a5.png" srcset="/img/loading.gif" lazyload width="941" /></p>
+
+<p><img alt="" height="85" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/827fa3e99c414b889b397cc2b672fa9f.png" srcset="/img/loading.gif" lazyload width="1398" /></p>
+
+<h2>2.2 制作系统引导U盘，会格式化U盘</h2>
+
+<p>使用rufus写入镜像</p>
+
+<p><img alt="" height="580" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/28fe0c1edc0247dbb7c48e6c5fb8a33c.png" srcset="/img/loading.gif" lazyload width="439" /></p>
+
+<h2>2.3 连接网络（wifi或者路由器）获得IP地址，提示连续点击打开adb功能</h2>
+
+<h2><img alt="" height="568" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/50a41fa1c96b44f7a6ae47e49f05cb98.png" srcset="/img/loading.gif" lazyload width="1122" /></h2>
+
+<h2><img alt="" height="390" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d8649bfe08f44afba1f665b629b69075.png" srcset="/img/loading.gif" lazyload width="596" /></h2>
+
+<h2>2.4 如果拿到手是原电视机盒子的系统，同时固件版本为2.19，可以直接刷机（按2），否则从1开始。输入IP地址，运行run脚本使用官方降级工具按2进行降级，如果出现等待连接，插上盒子的usb与电脑连接，进行按任意键继续，等待成功就会n1盒子就自动重启了，如何等待它自己重新连接上网络</h2>
+
+<p><img alt="" height="28" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/63e640ecc499411fa0bd59d840ea42a4.png" srcset="/img/loading.gif" lazyload width="618" /></p>
+
+<h2><img alt="" height="400" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/faca02fafa354358ad45002fce75776d.png" srcset="/img/loading.gif" lazyload width="743" /></h2>
+
+<p><img alt="" height="351" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8c65dd69a0044e768b221d010c2cd68c.png" srcset="/img/loading.gif" lazyload width="343" /></p>
+
+<h2><img alt="" height="517" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/04858b260aa64c01a358b99268173b21.png" srcset="/img/loading.gif" lazyload width="785" /></h2>
+
+<h2>2.5 现在直接把引导盘插到N1的USB（任意一个），安卓的插靠近HDMI的那个，其他的键盘，显示器插上，然后运行脚本，输入盒子的IP，然后就会自动重启进入u盘的引导系统，现在就是U盘优先启动模式了</h2>
+
+<p><img alt="" height="205" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f647b89ff1904178b4fb159f39c6c67a.png" srcset="/img/loading.gif" lazyload width="506" /></p>
+
+<p><img alt="" height="61" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b9f830c347ec4b97954d730cdf691fc1.png" srcset="/img/loading.gif" lazyload width="651" /></p>
+
+<p><img alt="" height="217" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/86cc974c983d48f0a53b2d7d55df92e8.png" srcset="/img/loading.gif" lazyload width="678" /></p>
+
+<p><img alt="" height="431" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e842a491b33f4ccebac0f8e4cd65d6a1.png" srcset="/img/loading.gif" lazyload width="715" /></p>
+
+<h2>2.6&nbsp;等待跑码一会儿，正常引导进入系统界面，默认用户: root，自行设置 root 的密码，然后选择bash风格的命令行</h2>
+
+<p><img alt="" height="544" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/509e5766d2974f4cb5baea0ac432df82.png" srcset="/img/loading.gif" lazyload width="418" /></p>
+
+<h2>2.7&nbsp;将U盘里的系统写入emmc，使用命令 armbian-install，一定要选101的n1</h2>
+
+<p><img alt="" height="455" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b4f2fa3609024358870e350e79847f35.png" srcset="/img/loading.gif" lazyload width="421" /></p>
+
+<p><img alt="" height="543" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6a354d407db2427f92ede54d0a8f57f2.png" srcset="/img/loading.gif" lazyload width="312" /></p>
+
+<h2>2.8 可以根据自己的需求，修改静态地址，使用命令 armbian-config</h2>
+
+<h2>2.9&nbsp;修改软件源使用 armbian-apt 命令选择合适的软件源</h2>
+
+<p>apt update</p>
+
+<h2>2.10 安装软件</h2>
+
+<pre>
+<code class="language-bash">root@armbian:/home/zky# armbian-software
+[ STEPS ] Start installing the necessary dependencies...
+Hit:1 http://ports.ubuntu.com noble InRelease                                                
+Hit:2 http://ports.ubuntu.com noble-security InRelease                                       
+Hit:3 https://github.armbian.com/configng stable InRelease                                   
+Hit:4 http://ports.ubuntu.com noble-updates InRelease                                        
+Hit:5 http://ports.ubuntu.com noble-backports InRelease
+Hit:6 https://mirror.iscas.ac.cn/armbian noble InRelease
+Reading package lists... Done
+Reading package lists... Done
+Building dependency tree... Done
+Reading state information... Done
+curl is already the newest version (8.5.0-2ubuntu10.6).
+tar is already the newest version (1.35+dfsg-3build1).
+ca-certificates is already the newest version (20240203).
+The following additional packages will be installed:
+  git-man libnftables1 libnss-myhostname libpam-systemd libsystemd-shared libsystemd0 libudev1 python3-software-properties systemd-dev systemd-resolved systemd-sysv udev
+Suggested packages:
+  gettext-base git-daemon-run | git-daemon-sysvinit git-doc git-email git-gui gitk gitweb git-cvs git-mediawiki git-svn systemd-container systemd-homed systemd-userdbd systemd-boot libtss2-esys-3.0.2-0 libtss2-mu-4.0.1-0 libtss2-rc0 libtss2-tcti-device0
+Recommended packages:
+  dns-root-data networkd-dispatcher libnss-systemd systemd-hwe-hwdb
+The following NEW packages will be installed:
+  apt-transport-https cpu-checker dmidecode dnsmasq-base libnftables1 net-tools
+The following packages will be upgraded:
+  coreutils git git-man libnss-myhostname libpam-systemd libsystemd-shared libsystemd0 libudev1 python3-software-properties software-properties-common systemd systemd-dev systemd-resolved systemd-sysv udev
+15 upgraded, 6 newly installed, 0 to remove and 77 not upgraded.
+Need to get 6,064 kB/15.9 MB of archives.
+After this operation, 3,471 kB of additional disk space will be used.
+Get:1 http://ports.ubuntu.com noble-updates/main arm64 dmidecode arm64 3.5-3ubuntu0.1 [61.1 kB]
+Get:2 http://ports.ubuntu.com noble/main arm64 libnftables1 arm64 1.0.9-1build1 [352 kB]
+Get:3 http://ports.ubuntu.com noble-updates/universe arm64 apt-transport-https all 2.8.3 [3,970 B]
+Get:4 http://ports.ubuntu.com noble/main arm64 cpu-checker arm64 0.7-1.3build2 [6,134 B]
+Get:5 http://ports.ubuntu.com noble-updates/main arm64 dnsmasq-base arm64 2.90-2ubuntu0.1 [366 kB]
+Get:6 http://ports.ubuntu.com noble-security/main arm64 git-man all 1:2.43.0-1ubuntu7.3 [1,100 kB]
+Get:7 http://ports.ubuntu.com noble-security/main arm64 git arm64 1:2.43.0-1ubuntu7.3 [3,774 kB]
+Get:8 http://ports.ubuntu.com noble-security/main arm64 net-tools arm64 2.10-0.1ubuntu4.4 [207 kB]                                                                                                                                                                           
+Get:9 http://ports.ubuntu.com noble-updates/main arm64 software-properties-common all 0.99.49.3 [14.4 kB]                                                                                                                                                                    
+Get:10 http://ports.ubuntu.com noble-updates/main arm64 python3-software-properties all 0.99.49.3 [29.9 kB]                                                                                                                                                                  
+Get:11 http://ports.ubuntu.com noble-updates/universe arm64 libnss-myhostname arm64 255.4-1ubuntu8.11 [149 kB]                                                                                                                                                               
+Fetched 6,064 kB in 8s (785 kB/s)                                                                                                                                                                                                                                            
+(Reading database ... 34596 files and directories currently installed.)
+Preparing to unpack .../coreutils_9.4-3ubuntu6.1_arm64.deb ...
+Unpacking coreutils (9.4-3ubuntu6.1) over (9.4-3ubuntu6) ...
+Setting up coreutils (9.4-3ubuntu6.1) ...
+(Reading database ... 34596 files and directories currently installed.)
+Preparing to unpack .../0-systemd-sysv_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking systemd-sysv (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../1-libpam-systemd_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking libpam-systemd:arm64 (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../2-systemd-dev_255.4-1ubuntu8.11_all.deb ...
+Unpacking systemd-dev (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../3-systemd-resolved_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking systemd-resolved (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../4-libsystemd-shared_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking libsystemd-shared:arm64 (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../5-libsystemd0_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking libsystemd0:arm64 (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Setting up libsystemd0:arm64 (255.4-1ubuntu8.11) ...
+(Reading database ... 34596 files and directories currently installed.)
+Preparing to unpack .../systemd_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking systemd (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../udev_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking udev (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Preparing to unpack .../libudev1_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking libudev1:arm64 (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Setting up libudev1:arm64 (255.4-1ubuntu8.11) ...
+Selecting previously unselected package dmidecode.
+(Reading database ... 34596 files and directories currently installed.)
+Preparing to unpack .../00-dmidecode_3.5-3ubuntu0.1_arm64.deb ...
+Unpacking dmidecode (3.5-3ubuntu0.1) ...
+Selecting previously unselected package libnftables1:arm64.
+Preparing to unpack .../01-libnftables1_1.0.9-1build1_arm64.deb ...
+Unpacking libnftables1:arm64 (1.0.9-1build1) ...
+Selecting previously unselected package apt-transport-https.
+Preparing to unpack .../02-apt-transport-https_2.8.3_all.deb ...
+Unpacking apt-transport-https (2.8.3) ...
+Selecting previously unselected package cpu-checker.
+Preparing to unpack .../03-cpu-checker_0.7-1.3build2_arm64.deb ...
+Unpacking cpu-checker (0.7-1.3build2) ...
+Selecting previously unselected package dnsmasq-base.
+Preparing to unpack .../04-dnsmasq-base_2.90-2ubuntu0.1_arm64.deb ...
+Unpacking dnsmasq-base (2.90-2ubuntu0.1) ...
+Preparing to unpack .../05-git-man_1%3a2.43.0-1ubuntu7.3_all.deb ...
+Unpacking git-man (1:2.43.0-1ubuntu7.3) over (1:2.43.0-1ubuntu7.2) ...
+Preparing to unpack .../06-git_1%3a2.43.0-1ubuntu7.3_arm64.deb ...
+Unpacking git (1:2.43.0-1ubuntu7.3) over (1:2.43.0-1ubuntu7.2) ...
+Selecting previously unselected package net-tools.
+Preparing to unpack .../07-net-tools_2.10-0.1ubuntu4.4_arm64.deb ...
+Unpacking net-tools (2.10-0.1ubuntu4.4) ...
+Preparing to unpack .../08-software-properties-common_0.99.49.3_all.deb ...
+Unpacking software-properties-common (0.99.49.3) over (0.99.49.2) ...
+Preparing to unpack .../09-python3-software-properties_0.99.49.3_all.deb ...
+Unpacking python3-software-properties (0.99.49.3) over (0.99.49.2) ...
+Preparing to unpack .../10-libnss-myhostname_255.4-1ubuntu8.11_arm64.deb ...
+Unpacking libnss-myhostname:arm64 (255.4-1ubuntu8.11) over (255.4-1ubuntu8.6) ...
+Setting up net-tools (2.10-0.1ubuntu4.4) ...
+Setting up libnftables1:arm64 (1.0.9-1build1) ...
+Setting up apt-transport-https (2.8.3) ...
+Setting up systemd-dev (255.4-1ubuntu8.11) ...
+Setting up dnsmasq-base (2.90-2ubuntu0.1) ...
+Setting up python3-software-properties (0.99.49.3) ...
+Setting up libsystemd-shared:arm64 (255.4-1ubuntu8.11) ...
+Setting up libnss-myhostname:arm64 (255.4-1ubuntu8.11) ...
+Setting up cpu-checker (0.7-1.3build2) ...
+Setting up git-man (1:2.43.0-1ubuntu7.3) ...
+Setting up dmidecode (3.5-3ubuntu0.1) ...
+Setting up systemd (255.4-1ubuntu8.11) ...
+Setting up software-properties-common (0.99.49.3) ...
+Setting up udev (255.4-1ubuntu8.11) ...
+Setting up git (1:2.43.0-1ubuntu7.3) ...
+Setting up systemd-resolved (255.4-1ubuntu8.11) ...
+Setting up systemd-sysv (255.4-1ubuntu8.11) ...
+Setting up libpam-systemd:arm64 (255.4-1ubuntu8.11) ...
+Processing triggers for libc-bin (2.39-0ubuntu8.4) ...
+Processing triggers for man-db (2.12.0-4build2) ...
+Processing triggers for dbus (1.14.10-4ubuntu4.1) ...
+Processing triggers for initramfs-tools (0.142ubuntu25.5) ...
+update-initramfs: Not updating initramfs.
+[ STEPS ] Start selecting software [ Current system: ubuntu/noble ]...
+───────────────────────────────────────────────────────────────────
+ID    NAME                           STATE           MANAGE         
+───────────────────────────────────────────────────────────────────
+101   Docker                         not-installed   install        
+102   Portainer                      not-installed   install        
+103   Yacht                          not-installed   install        
+104   Transmission                   not-installed   install        
+105   qBittorrent                    not-installed   install        
+106   NextCloud                      not-installed   install        
+107   Jellyfin                       not-installed   install        
+108   HomeAssistant                  not-installed   install        
+109   Kodbox                         not-installed   install        
+110   CouchPotato                    not-installed   install        
+111   Sonarr                         not-installed   install        
+112   Radarr                         not-installed   install        
+113   Syncthing                      not-installed   install        
+114   FileBrowser                    not-installed   install        
+115   Heimdall                       not-installed   install        
+116   Node-RED                       not-installed   install        
+117   Mosquitto                      not-installed   install        
+118   OpenWrt                        not-installed   install        
+119   Netdata                        not-installed   install        
+120   XunLei                         not-installed   install        
+121   Docker-Headless                not-installed   install        
+122   Navidrome                      not-installed   install        
+123   Alist                          not-installed   install        
+124   QingLong                       not-installed   install        
+125   ChatGPT-Next-Web               not-installed   install        
+───────────────────────────────────────────────────────────────────
+ID    NAME                           STATE           MANAGE         
+───────────────────────────────────────────────────────────────────
+201   Desktop                        not-installed   install        
+202   Firefox                        not-installed   install        
+203   VLC                            not-installed   install        
+204   MPV                            not-installed   install        
+205   GIMP                           not-installed   install        
+206   Krita                          not-installed   install        
+207   LibreOffice                    not-installed   install        
+208   Shotcut                        not-installed   install        
+209   Kdenlive                       not-installed   install        
+210   Thunderbird                    not-installed   install        
+211   Evolution                      not-installed   install        
+212   Gwenview                       not-installed   install        
+213   Eog                            not-installed   install        
+214   VisualStudioCode               not-installed   install        
+215   Gedit                          not-installed   install        
+216   Flameshot                      not-installed   install        
+───────────────────────────────────────────────────────────────────
+ID    NAME                           STATE           MANAGE         
+───────────────────────────────────────────────────────────────────
+301   Frps                           not-installed   install        
+302   Frpc                           not-installed   install        
+303   NPS                            not-installed   install        
+304   NPC                            not-installed   install        
+305   Plex                           not-installed   install        
+306   Emby-Server                    not-installed   install        
+307   KVM                            not-installed   install        
+309   CasaOS                         not-installed   install        
+310   ArozOS                         not-installed   install        
+───────────────────────────────────────────────────────────────────
+[ OPTIONS ] Please Input Software ID:</code></pre>
+
+<p><strong>参考链接：</strong></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="最新斐讯N1刷OpenWRT软路由系统_超详细教程！N1主路由+旁路由设置_N1刷路由器-2560x1440_哔哩哔哩_bilibili" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV18u411v7aK/?buvid=XXD4152D4B550B1BA46A7C63FD018494819BE&amp;from_spmid=main.my-history.0.0&amp;is_story_h5=false&amp;mid=2DKD8pBS2kfS9jkhBbHgxA%3D%3D&amp;plat_id=116&amp;share_from=ugc&amp;share_medium=android&amp;share_plat=android&amp;share_session_id=cf57ddb0-f7a3-44d6-ba20-6d1d56daed8c&amp;share_source=QQ&amp;share_tag=s_i&amp;spmid=united.player-video-detail.0.0&amp;timestamp=1759143213&amp;unique_k=4m5VBuH&amp;up_id=456970784&amp;vd_source=77379e487a8ecc7d4f9e65b8d9cd422d" title="最新斐讯N1刷OpenWRT软路由系统_超详细教程！N1主路由+旁路由设置_N1刷路由器-2560x1440_哔哩哔哩_bilibili">最新斐讯N1刷OpenWRT软路由系统_超详细教程！N1主路由+旁路由设置_N1刷路由器-2560x1440_哔哩哔哩_bilibili</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Docker学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E6%96%90%E8%AE%AFn1-armbian-%E5%88%B7%E6%9C%BA/" class="print-no-link">#斐讯n1 armbian 刷机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【NAS】斐讯N1盒子刷Armbain</div>
+      <div>http://example.com/2025/09/30/【NAS】斐讯N1盒子刷Armbain/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年9月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/02/%E3%80%90MCU%E3%80%91%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX+CLion%E7%9A%84STM32%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83/" title="【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【STM32】基于STM32CubeMX+CLion的STM32开发环境</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/09/17/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90%E8%93%9D%E5%B1%8F%E3%80%91DMA%E9%94%99%E8%AF%AF/" title="【随笔】【蓝屏】DMA错误">
+                        <span class="hidden-mobile">【随笔】【蓝屏】DMA错误</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1116 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;什么是&nbsp;MicroPython&nbsp;固件？它是指运行在&nbsp;ESP32&nbsp;上的一段代码，功能为将你写的&nbsp;python&nbsp;代码翻译成&nbsp;ESP32&nbsp;可以运行的机器码，也称之为&nbsp;python&nbsp;解释器。  &nbsp;&amp;nb">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MicroPython】基于ESP32S3+MicroPython固件的初步开发">
+<meta property="og:url" content="http://example.com/2025/07/23/%E3%80%90MicroPython%E3%80%91%E5%9F%BA%E4%BA%8EESP32S3+MicroPython%E5%9B%BA%E4%BB%B6%E7%9A%84%E5%88%9D%E6%AD%A5%E5%BC%80%E5%8F%91/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;什么是&nbsp;MicroPython&nbsp;固件？它是指运行在&nbsp;ESP32&nbsp;上的一段代码，功能为将你写的&nbsp;python&nbsp;代码翻译成&nbsp;ESP32&nbsp;可以运行的机器码，也称之为&nbsp;python&nbsp;解释器。  &nbsp;&amp;nb">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1b39d1084a1749319fbf77c9a892f671.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/534aaae1909c42c9a5e45dc637f42719.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0111e008fdae4999a45961d572ada937.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6295ad2c176443229a5afa87afa4022e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d44b52e38fc145a384fb18ac9578f812.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/80d8af8eb57845dc99e8f8a1dcaa1261.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/533b37dddfb84bc9b7c00e8372b3f8f0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0ef4caba5d694844af74bd914d470a9c.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5d901d537af142e389e7af6839fb99e3.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/11c2c3e9cad04303bb045bf0ff2e5046.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/797ad205d3a746b2bb015046ee761640.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7a075ffb0445406ab17a371ccaa72824.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ce26e3c8769d48fea864fd22850fd563.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c5c7d6806c4c4d05bd1e428624aba142.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4384302ea1864d9d9e7f42e3043bb0bd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/49f23b3012a04e80ba3448ba8002a497.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8cce23f5c17942919c3df7088d5d1cd5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd108e134e224f4b98af35d619533f38.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c3fa07e32d76479ba5d517e66be95097.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7742457900e4a78a35992271bb33ef2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/053c4868674c46efbbefab0bb8bf25ed.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/91250f2268f6469f9e12a5fe87f081a4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/62c28c07b9ea4307bc5c2d4d5ad7bbea.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3b6228c2aebc4a82aafcf6ab5a42758e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cf7a6ef4e6a24427a238ac710cf6f3a1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/88ca4c4b08e04fa3a3c99fb6927d5a9b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/95a5167c87cb458c9c7080c10105fe21.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0af81f68ab274c3fa27016f3ea56ebd3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fe53a658f19e4e83849a7ab73cbcd0dc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cda24b79d4af41a69b9b6eb87567dfe2.png">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/770edc460985432e92547af050d0a5fe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b80d7abadac04755a56a2fd8e9333ee9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cd51052a65d14a3489156ba756b4b943.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd481f2509ec421a980da074b22ce07c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c8825f9410ef400a85aa60eb0489809e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9655aa8797d049a4bae1faf44c025b5e.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/905c00ff86ee448384931ed73028d6d9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a35adfb0f349448fbe6cdd36a15f32c1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d5ff01f6ec14f42b1cf34c2019df313.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd06f5b9b7d846629feb35ee9d2ef219.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/46a026152caa481bb1f9c37216e13ec8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b42d07065654446b86099f4ef0da8697.gif">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/85f8a44af0774439af4164c0e82c05a8.png">
+<meta property="article:published_time" content="2025-07-23T08:00:31.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="单片机 嵌入式硬件 ESP32 Thonny MicroPython">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/1b39d1084a1749319fbf77c9a892f671.png">
+  
+  
+  
+  <title>【MicroPython】基于ESP32S3+MicroPython固件的初步开发 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MicroPython】基于ESP32S3+MicroPython固件的初步开发"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-23 16:00" pubdate>
+          2025年7月23日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MicroPython】基于ESP32S3+MicroPython固件的初步开发</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<p><strong>前言</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;什么是&nbsp;<code>MicroPython</code>&nbsp;固件？它是指运行在&nbsp;<code>ESP32</code>&nbsp;上的一段代码，功能为将你写的&nbsp;<code>python</code>&nbsp;代码翻译成&nbsp;<code>ESP32</code>&nbsp;可以运行的机器码，也称之为&nbsp;<code>python</code>&nbsp;解释器。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基于 ESP32S3 与 MicroPython 固件进行初步开发，不仅能让开发者快速掌握微控制器的基本操作，还能为后续更复杂的物联网项目打下坚实的基础。本文将围绕这一开发组合，从基础环境搭建到简单功能实现，逐步引导读者踏入 ESP32S3+MicroPython 开发的世界，帮助读者开启物联网开发的奇妙之旅。</p>
+
+<h1>一、ESP32S3的MicroPython固件烧录</h1>
+
+<h2>1.获取固件</h2>
+
+<p>登录<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="MicroPython官网" target="_blank" rel="noopener" href="https://micropython.org/download/" title="MicroPython官网">MicroPython官网</a>（<code>https://micropython.org/download/</code>）下载，下拉并选中&nbsp;<code>ESP32-S3</code>&nbsp;如下图所示：</p>
+
+<p><img alt="" height="961" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1b39d1084a1749319fbf77c9a892f671.png" srcset="/img/loading.gif" lazyload width="1241" /></p>
+
+<p><img alt="" height="301" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/534aaae1909c42c9a5e45dc637f42719.png" srcset="/img/loading.gif" lazyload width="250" /></p>
+
+<p>选择最新<strong>&nbsp;<code>bin</code></strong>&nbsp;文件，并下载</p>
+
+<p><img alt="" height="153" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0111e008fdae4999a45961d572ada937.png" srcset="/img/loading.gif" lazyload width="710" /></p>
+
+<h2>2.获取Flash工具</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Flash 下载工具用户指南 - ESP32 - — ESP 测试工具 latest 文档" target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-test-tools/zh_CN/latest/esp32/production_stage/tools/flash_download_tool.html" title="Flash 下载工具用户指南 - ESP32 - — ESP 测试工具 latest 文档">Flash 下载工具用户指南 - ESP32 - &mdash; ESP 测试工具 latest 文档</a></p>
+
+<p><img alt="" height="94" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6295ad2c176443229a5afa87afa4022e.png" srcset="/img/loading.gif" lazyload width="562" /></p>
+
+<h2>3.安装CH340系列的串口驱动</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="CH341SER.EXE - 南京沁恒微电子股份有限公司" target="_blank" rel="noopener" href="https://www.wch.cn/downloads/CH341SER_EXE.html" title="CH341SER.EXE - 南京沁恒微电子股份有限公司">CH341SER.EXE - 南京沁恒微电子股份有限公司</a></p>
+
+<p><img alt="" height="61" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d44b52e38fc145a384fb18ac9578f812.png" srcset="/img/loading.gif" lazyload width="325" /></p>
+
+<p>&nbsp;<img alt="" height="832" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/80d8af8eb57845dc99e8f8a1dcaa1261.png" srcset="/img/loading.gif" lazyload width="1669" /></p>
+
+<p><img alt="" height="494" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/533b37dddfb84bc9b7c00e8372b3f8f0.png" srcset="/img/loading.gif" lazyload width="755" /></p>
+
+<h2>4.TypeC数据线接上TTL转USB接口</h2>
+
+<p><img alt="" height="960" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0ef4caba5d694844af74bd914d470a9c.jpeg" srcset="/img/loading.gif" lazyload width="1280" /></p>
+
+<p><img alt="" height="960" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5d901d537af142e389e7af6839fb99e3.jpeg" srcset="/img/loading.gif" lazyload width="1280" /></p>
+
+<h2>5.使用Flash烧写工具（还有另外两种方法）</h2>
+
+<p><img alt="" height="540" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/11c2c3e9cad04303bb045bf0ff2e5046.png" srcset="/img/loading.gif" lazyload width="1128" /></p>
+
+<p><img alt="" height="636" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/797ad205d3a746b2bb015046ee761640.png" srcset="/img/loading.gif" lazyload width="1214" /></p>
+
+<p>进入界面</p>
+
+<p><img alt="" height="856" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7a075ffb0445406ab17a371ccaa72824.png" srcset="/img/loading.gif" lazyload width="528" /></p>
+
+<p><span style="color:#fe2c24">注：其他方法</span></p>
+
+<p><span style="color:#fe2c24">方法一：官方有推荐的固件烧写安装方法</span><br />
+<img alt="" height="821" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ce26e3c8769d48fea864fd22850fd563.png" srcset="/img/loading.gif" lazyload width="779" /></p>
+
+<p><span style="color:#fe2c24">方法二：使用Thonny内置更新固件工具</span></p>
+
+<p>（1）点击右下角，点击配置解释器</p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c5c7d6806c4c4d05bd1e428624aba142.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="214" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4384302ea1864d9d9e7f42e3043bb0bd.png" srcset="/img/loading.gif" lazyload width="399" /></p>
+
+<p>（2）点击解释器选项</p>
+
+<p><img alt="" height="667" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/49f23b3012a04e80ba3448ba8002a497.png" srcset="/img/loading.gif" lazyload width="708" /></p>
+
+<p>（3） 选择类型ESP32，并点击右下角的安装或更新</p>
+
+<p><img alt="" height="657" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8cce23f5c17942919c3df7088d5d1cd5.png" srcset="/img/loading.gif" lazyload width="712" /></p>
+
+<p>（4）点击三线按钮选择第一个选项，选择烧录我们下载的本地MicroPython固件（镜像）</p>
+
+<p><img alt="" height="743" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd108e134e224f4b98af35d619533f38.png" srcset="/img/loading.gif" lazyload width="796" /></p>
+
+<p><img alt="" height="827" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c3fa07e32d76479ba5d517e66be95097.png" srcset="/img/loading.gif" lazyload width="1123" /></p>
+
+<p>（5） 烧录固件</p>
+
+<p><img alt="" height="833" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7742457900e4a78a35992271bb33ef2.png" srcset="/img/loading.gif" lazyload width="1015" /></p>
+
+<p><img alt="" height="1011" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/053c4868674c46efbbefab0bb8bf25ed.png" srcset="/img/loading.gif" lazyload width="1487" /></p>
+
+<p>Done完成</p>
+
+<p><img alt="" height="929" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/91250f2268f6469f9e12a5fe87f081a4.png" srcset="/img/loading.gif" lazyload width="1892" /></p>
+
+<h2>6.点击第一行的三个点的地方选择固件</h2>
+
+<p><img alt="" height="734" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/62c28c07b9ea4307bc5c2d4d5ad7bbea.png" srcset="/img/loading.gif" lazyload width="959" /></p>
+
+<p><img alt="" height="573" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3b6228c2aebc4a82aafcf6ab5a42758e.png" srcset="/img/loading.gif" lazyload width="917" /></p>
+
+<h2>7.配置如下：</h2>
+
+<p><img alt="" height="865" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cf7a6ef4e6a24427a238ac710cf6f3a1.png" srcset="/img/loading.gif" lazyload width="528" /></p>
+
+<h2>8.点击ERASE，先擦除</h2>
+
+<p><img alt="" height="871" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/88ca4c4b08e04fa3a3c99fb6927d5a9b.png" srcset="/img/loading.gif" lazyload width="1406" /></p>
+
+<p><img alt="" height="895" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/95a5167c87cb458c9c7080c10105fe21.png" srcset="/img/loading.gif" lazyload width="1594" /></p>
+
+<h2>9.点击START，开始烧写</h2>
+
+<p><img alt="" height="876" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0af81f68ab274c3fa27016f3ea56ebd3.png" srcset="/img/loading.gif" lazyload width="1639" /></p>
+
+<p><img alt="" height="876" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fe53a658f19e4e83849a7ab73cbcd0dc.png" srcset="/img/loading.gif" lazyload width="1637" /></p>
+
+<p><img alt="" height="886" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cda24b79d4af41a69b9b6eb87567dfe2.png" srcset="/img/loading.gif" lazyload width="1645" /></p>
+
+<p>固件烧录完成</p>
+
+<h1>二、基于Thonny的ESP32S3开发环境配置</h1>
+
+<h2>1.安装 Thonny IDE 软件 并配置编译环境</h2>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Thonny, Python IDE for beginners" target="_blank" rel="noopener" href="https://thonny.org/" title="Thonny, Python IDE for beginners"><span class="link-card-box" contenteditable="false"><span class="link-title">Thonny, Python IDE for beginners</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://thonny.org/</span></span></a></p>
+
+<h2>2.下的Windows版本&nbsp;</h2>
+
+<p><img alt="" height="502" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/770edc460985432e92547af050d0a5fe.png" srcset="/img/loading.gif" lazyload width="783" /></p>
+
+<h2>3. 配置解释器</h2>
+
+<p><img alt="" height="245" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b80d7abadac04755a56a2fd8e9333ee9.png" srcset="/img/loading.gif" lazyload width="719" /></p>
+
+<h2>4.出现Shell控制台，左下角出现boot.py，表示已同步连接上了ESP32S3</h2>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cd51052a65d14a3489156ba756b4b943.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>&nbsp;5.查看固件的内置的功能（help()）</h2>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd481f2509ec421a980da074b22ce07c.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><strong><span style="color:#fe2c24">help()说明：</span></strong></p>
+
+<p>在 ESP32 上运行的 MicroPython 环境中，<code>help()</code>命令是获取交互式帮助的重要工具。上述输出展示了 MicroPython 的基础功能和使用方法，下面为你详细解释：</p>
+
+<h3>1. 硬件控制（<code>machine</code>模块）</h3>
+
+<p>这部分介绍了借助<code>machine</code>模块对 ESP32 硬件资源进行操控的方法：</p>
+
+<p>python</p>
+
+<p>运行</p>
+
+<pre>
+<code class="language-cpp">import machine
+# 配置GPIO引脚12为输出模式，然后输出高电平
+pin12 = machine.Pin(12, machine.Pin.OUT)
+pin12.value(1)
+
+# 配置GPIO引脚13为输入模式，并且启用上拉电阻，之后读取其电平
+pin13 = machine.Pin(13, machine.Pin.IN, machine.Pin.PULL_UP)
+print(pin13.value())
+
+# 配置I2C总线，使用GPIO21作为时钟线（SCL），GPIO22作为数据线（SDA）
+i2c = machine.I2C(scl=machine.Pin(21), sda=machine.Pin(22))
+i2c.scan()                # 扫描I2C总线上的设备
+i2c.writeto(addr, b'1234') # 向指定地址的设备写入数据
+i2c.readfrom(addr, 4)      # 从指定地址的设备读取4字节数据
+</code></pre>
+
+<h3>2. WiFi 网络配置（<code>network</code>模块）</h3>
+
+<p>这里说明了如何利用<code>network</code>模块来配置 ESP32 的 WiFi 连接：</p>
+
+<p>python运行</p>
+
+<pre>
+<code>import network
+# 启用STA模式（即作为客户端连接到WiFi）
+sta_if = network.WLAN(network.WLAN.IF_STA); sta_if.active(True)
+sta_if.scan()                             # 扫描可用的WiFi接入点
+sta_if.connect("&lt;AP_name&gt;", "&lt;password&gt;") # 连接到指定的WiFi
+sta_if.isconnected()                      # 检查是否成功连接
+</code></pre>
+
+<h3>3. REPL 控制命令</h3>
+
+<p>REPL（交互式解释器）的控制命令如下，这些命令在空行输入时有效：</p>
+
+<ul>
+	<li><strong>CTRL - A</strong>：进入<strong>raw REPL 模式</strong>。在此模式下，键盘输入会直接传输到设备，不会被本地终端处理，通常用于上传文件。</li>
+	<li><strong>CTRL - B</strong>：进入<strong>normal REPL 模式</strong>，也就是普通的交互式解释器模式。</li>
+	<li><strong>CTRL - C</strong>：中断正在运行的程序，可用于终止无限循环。</li>
+	<li><strong>CTRL - D</strong>：执行<strong>软复位</strong>，会重新启动 MicroPython 解释器。</li>
+	<li><strong>CTRL - E</strong>：进入<strong>粘贴模式</strong>，适合粘贴多行代码，避免逐行执行。</li>
+</ul>
+
+<h3>4. 进一步帮助</h3>
+
+<ul>
+	<li><strong><code>help(obj)</code></strong>：获取特定对象（如模块、函数）的详细帮助信息。例如：<code>help(machine.Pin)</code>。</li>
+	<li><strong><code>help(&#39;modules&#39;)</code></strong>：查看所有可用模块的列表。</li>
+</ul>
+
+<h1>三、基于Thonny+MicroPython+ESP32S3的初步程序开发</h1>
+
+<h2>1.控制台点灯</h2>
+
+<p>电路方面是低电平点亮</p>
+
+<pre>
+<code class="language-cpp">&gt;&gt;&gt; import machine
+&gt;&gt;&gt; led1 = machine.Pin(1, machine.Pin.OUT)
+&gt;&gt;&gt; led1.value(1)
+&gt;&gt;&gt; led1.value(0)</code></pre>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c8825f9410ef400a85aa60eb0489809e.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1707" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9655aa8797d049a4bae1faf44c025b5e.jpeg" srcset="/img/loading.gif" lazyload width="1280" /></p>
+
+<h2>2.编写测试程序</h2>
+
+<pre>
+<code class="language-python">import machine
+import uos
+import gc
+import time
+
+def print_system_info():
+    """打印ESP32S3的系统信息"""
+    
+    # Flash信息
+    fs_stat = uos.statvfs('/')
+    total_flash = fs_stat[0] * fs_stat[2]
+    free_flash = fs_stat[0] * fs_stat[3]
+    
+    # SRAM信息
+    allocated_ram = gc.mem_alloc()
+    free_ram = gc.mem_free()
+    total_ram = allocated_ram + free_ram
+    
+    # 时钟频率
+    cpu_freq = machine.freq()
+    
+    # 打印信息
+    print("=" * 30)
+    print("ESP32S3 系统信息")
+    print("=" * 30)
+    print(f"Flash: 总空间 {total_flash / 1024:.2f} KB, 可用 {free_flash / 1024:.2f} KB")
+    print(f"SRAM: 总空间 {total_ram / 1024:.2f} KB, 已用 {allocated_ram / 1024:.2f} KB, 空闲 {free_ram / 1024:.2f} KB")
+    print(f"CPU: 时钟频率 {cpu_freq / 1000000:.2f} MHz")
+    print("=" * 30)
+
+def led1_toggle():
+    """控制LED闪烁"""
+    led1.value(1)         # 点亮LED
+    time.sleep_ms(100)    # 延时100毫秒
+    led1.value(0)         # 熄灭LED
+    time.sleep_ms(100)    # 延时100毫秒
+
+def main():
+    """主函数，程序的入口点"""
+    global led1  # 声明led1为全局变量，以便在其他函数中使用
+    
+    # 初始化硬件
+    led1 = machine.Pin(1, machine.Pin.OUT)
+    
+    # 打印系统信息
+    print_system_info()
+    
+    # 主循环
+    try:
+        while True:
+            led1_toggle()
+    except KeyboardInterrupt:
+        print("\n程序已停止")
+        led1.value(0)  # 确保LED在程序退出时熄灭
+
+# 程序入口点
+if __name__ == '__main__':
+    main()
+</code></pre>
+
+<h2>3.ctrl+s保存</h2>
+
+<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/905c00ff86ee448384931ed73028d6d9.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="410" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a35adfb0f349448fbe6cdd36a15f32c1.png" srcset="/img/loading.gif" lazyload width="784" /></p>
+
+<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d5ff01f6ec14f42b1cf34c2019df313.png" srcset="/img/loading.gif" lazyload width="965" /></p>
+
+<h2>4.编译运行</h2>
+
+<p><img alt="" height="420" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd06f5b9b7d846629feb35ee9d2ef219.png" srcset="/img/loading.gif" lazyload width="798" /></p>
+
+<h2>5.实验效果</h2>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/46a026152caa481bb1f9c37216e13ec8.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="540" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b42d07065654446b86099f4ef0da8697.gif" srcset="/img/loading.gif" lazyload width="680" /></p>
+
+<p><strong>MicroPyhton学习网址：</strong></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="MicroPython 文档— MicroPython中文 1.17 文档" target="_blank" rel="noopener" href="http://www.micropython.com.cn/en/latet/index-2.html" title="MicroPython 文档— MicroPython中文 1.17 文档">MicroPython 文档&mdash; MicroPython中文 1.17 文档</a></p>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="官方最新文档连接 " target="_blank" rel="noopener" href="https://docs.micropython.org/en/latest/" title="官方最新文档连接 ">官方最新文档连接&nbsp;</a></p>
+
+<p><img alt="" height="967" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/85f8a44af0774439af4164c0e82c05a8.png" srcset="/img/loading.gif" lazyload width="1896" /></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MicroPython%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F-SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MicroPython学习专栏 SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6-ESP32-Thonny-MicroPython/" class="print-no-link">#单片机 嵌入式硬件 ESP32 Thonny MicroPython</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MicroPython】基于ESP32S3+MicroPython固件的初步开发</div>
+      <div>http://example.com/2025/07/23/【MicroPython】基于ESP32S3+MicroPython固件的初步开发/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月23日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/26/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8EGD32+OV5640%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/22/%E3%80%90RK3566%E3%80%91%E9%80%82%E7%94%A8%E4%BA%8E%E8%90%8C%E6%96%B0%E4%B8%8E%E5%B0%8F%E7%99%BD%E7%9A%84%E7%AB%8B%E5%88%9B%E6%B3%B0%E5%B1%B1%E6%B4%BE%E5%88%B0%E6%89%8B%E5%88%9D%E4%BD%93%E9%AA%8C%E9%80%9F%E9%80%9A%E6%95%99%E7%A8%8B/" title="【RK3566】适用于萌新与小白的立创泰山派到手初体验速通教程">
+                        <span class="hidden-mobile">【RK3566】适用于萌新与小白的立创泰山派到手初体验速通教程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

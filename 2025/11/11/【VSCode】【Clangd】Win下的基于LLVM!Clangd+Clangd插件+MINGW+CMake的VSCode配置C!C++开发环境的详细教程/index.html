@@ -1,0 +1,1421 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  在 VSCode 中配置 C&#x2F;C++ 开发环境，主要有两种主流的语言服务器（LSP）方案，它们基于不同的工具链和设计理念，适用于不同的开发需求。要理解这两种方案，需先明确 LSP（语言服务器协议）&nbsp;的概念：它是由微软主导制定的一套跨编辑器 &#x2F; IDE 的标准化协议，旨在简化编程语言工具（如代码补全、语法检查、跳转定义等）的开发与集成，让开发者在不同编辑器中能获得一致的编程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【VSCode】【Clangd】Win下的基于LLVM&#x2F;Clangd+Clangd插件+MINGW+CMake的VSCode配置C&#x2F;C++开发环境的详细教程">
+<meta property="og:url" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  在 VSCode 中配置 C&#x2F;C++ 开发环境，主要有两种主流的语言服务器（LSP）方案，它们基于不同的工具链和设计理念，适用于不同的开发需求。要理解这两种方案，需先明确 LSP（语言服务器协议）&nbsp;的概念：它是由微软主导制定的一套跨编辑器 &#x2F; IDE 的标准化协议，旨在简化编程语言工具（如代码补全、语法检查、跳转定义等）的开发与集成，让开发者在不同编辑器中能获得一致的编程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7130fbeab5d5419f8ba666d459fcea7b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/980de7d7070443a4ba646dface3de033.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5381be2152c94c05b61188d328274800.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/240e5161423e47969ac200d956d3b7fc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/83b7d8debf32492fadfd5d39a92dfd45.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d25ffeea9a824ec5b264f5f2e3ae5331.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd06e784a20a4f40b982e5555fb931d1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/16faba45640a4da080d5e8f71928eeff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e0567c07a2644ccc96b0f47f3b2b95b1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/42685dcf44f243319b103ff66774b435.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8b2df7bd905d4d0b8f3432eddfa03786.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/221a3e80692d434bab242e23ffab5d46.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/19bdfce5b5d142e5a30c628ddb0c3d2e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59d03df88fcb42e2838eb9b79f8837ac.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6cc7f13002da4826a6b951ab2a73f738.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4c224733502043abb5b2daef21192073.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5f56b55e0a524bee9ad49d7935c08441.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/917709db95894f7f9b2eee3336db7d33.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/80c6034fd9864a4bbcedd50271de64f2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f3ab9875e3dd4be092f0005f6fa9c526.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cc75aa94791b4d10a10f8bced7ec3727.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94343b98ecc24dbf961ed797ac414c95.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4cef572ea1ee4e199d2a15e316fe25b1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/056c07c738c04068b5bd1c0a9c10c12b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/be37655961484fec9626ce73d7e6b176.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6188f8b628994d57ae6b8d77f3ae45d5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3339aa69f4904df898c9749cd8ddf064.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d8800b25c5a54ff78fd5e7766b351772.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4162624540da477cb228ab3ff2cc0bdb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7fb19b395ef40ddbaf988055c80da68.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2c413ecf695f44dca1ad679211a78d21.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ab9a025223f44a7a9cda873b9e54e937.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a43500105a004612ae82d95f6b212080.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6c04107a67a64997ba6c1bd57f5ab74b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/795825607c6a44c78313ca0320e4205f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/84917224c969468eaba08013d298aa02.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/818bde999f004096a38b9afbcbecbb65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48c4d9940bad43f0918504d63d5bd4dd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/07ab5270fc8a4330ad25d74c133eb5a8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fa385c3e2194668ac6c50fc1343ddf5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/65adc71dcbf04ed6809b46cbe00a8b6d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1b67dad8a4ff436898d8a9cd634d1a74.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c35412c1978e406d9f3025f0e37b1212.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ba13409712dd4f12ba3b72789605be73.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/148b8af31f764caca16b515683c35234.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/12c9dfcc73764e4e898b5bf85e90f311.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/71f8320ef359478d90f9b6419593d3c9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5e959b7f3b854057a149856f6475899f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8e641441e566453a96f8c41e5dfa8a7a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c25bb7d1f3824c8cbecb65da9a2cd421.png">
+<meta property="article:published_time" content="2025-11-11T15:56:18.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vscode c++ ide clangd LLVM">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png">
+  
+  
+  
+  <title>【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-11 23:56" pubdate>
+          2025年11月11日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.1k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          51 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>在 VSCode 中配置 C/C++ 开发环境，主要有两种主流的语言服务器（LSP）方案，它们基于不同的工具链和设计理念，适用于不同的开发需求。要理解这两种方案，需先明确 LSP（语言服务器协议）&nbsp;的概念：它是由微软主导制定的一套跨编辑器 / IDE 的标准化协议，旨在简化编程语言工具（如代码补全、语法检查、跳转定义等）的开发与集成，让开发者在不同编辑器中能获得一致的编程辅助体验。</p>
+
+<h2>1.1 微软官方 C/C++ 插件方案</h2>
+
+<p>由微软官方开发维护，是一套 &ldquo;一站式&rdquo; 的 C/C++ 开发解决方案。它集成了 IntelliSense（智能感知）&nbsp;和调试功能，安装后无需额外配置太多依赖即可快速上手。具备代码补全、语法检查、跳转定义、断点调试等完整流程，适合 C/C++ 新手快速搭建开发环境，降低入门门槛。</p>
+
+<h2>1.2 Clangd插件+LLVM/Clangd 方案</h2>
+
+<p>由 LLVM 团队开发的<code>Clangd</code>插件，基于 Clang 工具链提供语言服务。它在<strong>代码分析的准确性、大型项目的性能表现</strong>上更具优势，尤其适合追求编译工具链一致性（如用 Clang 编译代码）的场景。但需要注意，<code>Clangd</code>本身不包含调试功能，需搭配<strong><code>CodeLLDB</code></strong>插件才能实现 C/C++ 程序的调试。这种方案更偏向于专业开发场景，尤其是对代码质量和编译流程有深入需求的开发者。</p>
+
+<p>本文将聚焦<strong>Windows 下基于 Clangd 插件 + LLVM 的 VSCode C/C++ 开发环境</strong>，详细讲解其配置流程与初步使用方法，帮助开发者利用 Clang 工具链的优势打造高效开发环境。</p>
+
+<h2>1.3 什么是LLVM</h2>
+
+<p><span style="background-color:#fff5e6">LLVM 命名最早源自于底层虚拟机（Low&nbsp;Level&nbsp;Virtual&nbsp;Machine）的缩写，由于命名带来的混乱，LLVM就是该项目的全称。LLVM&nbsp;核心库提供了与<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="编译器" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BC%96%E8%AF%91%E5%99%A8/8853067?fromModule=lemma_inlink" title="编译器">编译器</a>相关的支持，可以作为多种语言编译器的后台来使用。能够进行<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="程序语言" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%A8%8B%E5%BA%8F%E8%AF%AD%E8%A8%80/10696489?fromModule=lemma_inlink" title="程序语言">程序语言</a>的编译器优化、链接优化、在线编译优化、<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="代码生成" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BB%A3%E7%A0%81%E7%94%9F%E6%88%90/10934969?fromModule=lemma_inlink" title="代码生成">代码生成</a>。LLVM的项目是一个模块化和可重复使用的编译器和工具技术的集合。LLVM是<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="伊利诺伊大学" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E4%BC%8A%E5%88%A9%E8%AF%BA%E4%BC%8A%E5%A4%A7%E5%AD%A6/1373290?fromModule=lemma_inlink" title="伊利诺伊大学">伊利诺伊大学</a>的一个研究项目，提供一个现代化的，基于SSA的编译策略能够同时支持静态和动态的任意<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="编程语言" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E7%BC%96%E7%A8%8B%E8%AF%AD%E8%A8%80/9845131?fromModule=lemma_inlink" title="编程语言">编程语言</a>的编译目标。自那时以来，已经成长为LLVM的主干项目，由不同的<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="子项目" target="_blank" rel="noopener" href="https://baike.baidu.com/item/%E5%AD%90%E9%A1%B9%E7%9B%AE/6866890?fromModule=lemma_inlink" title="子项目">子项目</a>组成，其中许多正在生产中使用的各种商业和开源的项目，以及被广泛用于学术研究。</span></p>
+
+<p>总之，LLVM 是一个<strong>开源的编译器基础设施项目与框架</strong>，它以模块化、可重用的设计理念，为编译技术领域提供了一套完整的工具链和扩展能力，其核心价值可从以下维度解析：</p>
+
+<p><span style="background-color:#cbe0f1">（Chris Latter本来只是想写一个底层的虚拟机，这也是LLVM名字的由来，low level&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="virtual" target="_blank" rel="noopener" href="https://so.csdn.net/so/search?q=virtual&amp;spm=1001.2101.3001.7020" title="virtual">virtual</a>&nbsp;machine，跟Java的JVM虚拟机一样，可是后来，llvm从来没有被用作过虚拟机，哪怕LLVM的名气已经传开了。所以人们决定仍然叫他LLVM，更多的时候只是当作&ldquo;商标&rdquo;一样的感觉在使用，其实</span><strong><span style="background-color:#cbe0f1">它跟虚拟机没有关系</span></strong><span style="background-color:#cbe0f1">。官方描述如下：</span><br />
+<span style="background-color:#cbe0f1">The name &quot;LLVM&quot; itself is not an acronym; it is the full name of the project. &ldquo;LLVM&rdquo;这个名称本身不是首字母缩略词; 它是项目的全名。）</span></p>
+
+<h3>1.3.1 核心定位：编译器生态的 &ldquo;通用底座&rdquo;</h3>
+
+<p>它并非单一工具，而是一个<strong>包含编译器组件、优化库、工具链的生态系统</strong>，支持从编程语言前端（如 C/C++、Rust、Swift 等）的语法解析，到中间代码优化，再到目标平台（x86、ARM、RISCV 等）机器码生成的全流程。</p>
+
+<p>简单来说，LLVM 是编译技术的 &ldquo;乐高积木&rdquo;&mdash;&mdash; 开发者可以基于它的模块化组件，快速构建新编程语言的编译器、静态分析工具、代码优化插件等，无需从零实现整个编译流程。</p>
+
+<h4>（1）传统的编译器架构</h4>
+
+<p><img alt="" height="118" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png" srcset="/img/loading.gif" lazyload width="608" /></p>
+
+<ul>
+	<li><strong>Frontend:前端</strong><br />
+	词法分析、语法分析、语义分析、生成中间代码</li>
+	<li><strong>Optimizer:优化器</strong><br />
+	中间代码优化</li>
+	<li><strong>Backend:后端</strong><br />
+	生成机器码</li>
+</ul>
+
+<h4>（2）LLVM架构</h4>
+
+<p><img alt="" height="260" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7130fbeab5d5419f8ba666d459fcea7b.png" srcset="/img/loading.gif" lazyload width="644" /></p>
+
+<ul>
+	<li>不同的前端后端使用统一的中间代码LLVM Intermediate Representation (LLVM IR)</li>
+	<li>如果需要支持一种新的编程语言，那么只需要实现一个新的前端</li>
+	<li>如果需要支持一种新的硬件设备，那么只需要实现一个新的后端</li>
+	<li>优化阶段是一个通用的阶段，它针对的是统一的LLVM IR，不论是支持新的编程语言，还是支持新的硬件设备，都不需要对优化阶段做修改</li>
+	<li>相比之下，GCC的前端和后端没分得太开，前端后端耦合在了一起。所以GCC为了支持一门新的语言，或者为了支持一个新的目标平台，就变得特别困难</li>
+	<li>LLVM现在被作为实现各种静态和运行时编译语言的通用基础结构(GCC家族、Java、.NET、Python、Ruby、Scheme、Haskell等)</li>
+</ul>
+
+<h3>1.3.2 技术架构：模块化与标准化的突破</h3>
+
+<p>传统编译器（如 GCC）的<strong>前端（语法分析）和后端（机器码生成）耦合度高</strong>，导致新增一门语言或支持新硬件时，需要大量重复开发。而 LLVM 通过<strong>统一的中间表示（LLVM IR）</strong>&nbsp;实现了 &ldquo;前后端解耦&rdquo;：</p>
+
+<ul>
+	<li><strong>前端</strong>：负责将特定编程语言（如 C++、Rust）转换为<strong>LLVM IR</strong>（一种与平台无关的中间代码）。例如，Clang 就是 LLVM 生态中针对 C/C++/Objective-C 的前端。</li>
+	<li><strong>优化器</strong>：对 LLVM IR 进行通用优化（如消除冗余代码、提升执行效率），这一阶段与具体语言、硬件无关。</li>
+	<li><strong>后端</strong>：将优化后的 LLVM IR 转换为目标平台的机器码。若需支持新硬件，只需开发对应的后端模块即可。</li>
+</ul>
+
+<h3>1.3.3 生态与工具：从编译到开发全链路覆盖</h3>
+
+<p>LLVM 生态包含众多核心工具，支撑不同场景的开发需求：</p>
+
+<ul>
+	<li><strong>Clang</strong>：LLVM 的 C/C++/Objective-C 前端编译器，以<strong>编译速度快、错误提示友好、模块化易集成</strong>著称，是 Xcode等 IDE 的默认 C++ 编译工具之一。</li>
+	<li><strong>Clangd</strong>：基于 Clang 的<strong>C/C++ 语言服务器</strong>（支持 LSP 协议），为 VSCode 等编辑器提供代码补全、跳转定义、语法检查等开发辅助功能。</li>
+	<li><strong>LLDB</strong>：跨平台调试器，可与 Clangd 配合实现 C++ 程序的断点调试。</li>
+	<li><strong>其他衍生工具</strong>：如用于静态分析的<code>Clang Static Analyzer</code>、用于代码混淆的<code>LLVM Obfuscator</code>等。</li>
+</ul>
+
+<h3>1.3.4 技术价值：跨语言、跨平台的 &ldquo;万能适配&rdquo;</h3>
+
+<ul>
+	<li><strong>跨语言支持</strong>：只要能将某门语言转换为 LLVM IR，就能借助其优化器和后端生成任意平台的可执行代码。因此，Rust、Swift、D 语言等都以 LLVM 为编译基础。</li>
+	<li><strong>跨平台能力</strong>：支持几乎所有主流硬件架构（x86、ARM、RISCV 等），开发者无需为不同平台重复开发编译逻辑。</li>
+	<li><strong>可扩展性</strong>：基于 LLVM 的模块化设计，开发者可轻松扩展功能 &mdash;&mdash; 比如开发自定义的代码优化 &ldquo;Pass&rdquo;、新增编程语言的前端，或为 IDE 打造智能提示插件（如 Clangd）。</li>
+</ul>
+
+<h3>1.3.5 行业地位：技术影响力的标杆</h3>
+
+<ul>
+	<li>它是<strong>众多主流技术的底层支撑</strong>：苹果 Swift 语言、Rust 语言的编译器、Linux 内核的 Clang 编译方案、VSCode 的 C++ 开发环境等，都依赖 LLVM 生态。</li>
+	<li>曾获<strong>ACM 2012 年软件系统奖</strong>（该奖项此前授予过 Java、UNIX、万维网等里程碑式技术），足以证明其在软件领域的突破性价值。</li>
+</ul>
+
+<p><span style="background-color:#fefcd8">简言之，LLVM 不仅是一套编译器工具链，更是编译技术的 &ldquo;基础设施框架&rdquo;&mdash;&mdash; 它通过标准化、模块化的设计，大幅降低了编译工具的开发门槛，推动了跨语言、跨平台开发的效率革命。</span></p>
+
+<h2>1.4 什么是clang</h2>
+
+<p>Clang 是<strong>LLVM 项目旗下的开源 C/C++/Objective-C 编译器前端</strong>，基于 LLVM 架构设计，专注于将源代码转换为 LLVM 中间表示（LLVM IR），是现代 C/C++ 开发中替代 GCC 的重要工具。其核心定位、技术特点与价值可从以下维度解析：</p>
+
+<h3>1.4.1 核心角色：LLVM 架构的 &ldquo;前端支柱&rdquo;</h3>
+
+<p>在 LLVM 的模块化编译流程中，Clang 承担 &ldquo;前端&rdquo; 职责：负责接收 C/C++/Objective-C 源代码，通过<strong>预处理、词法分析、语法分析</strong>生成抽象语法树（AST），最终转换为 LLVM IR（中间代码）。后续的代码优化、机器码生成则由 LLVM 后端完成。</p>
+
+<p>简单说，Clang 是 &ldquo;源代码到中间代码的转换器&rdquo;，是 LLVM 生态中处理 C/C++ 类语言的核心入口。</p>
+
+<h3>1.4.2 相比 GCC 的核心优势</h3>
+
+<p>作为新一代编译器前端，Clang 在性能、易用性和扩展性上显著优于传统的 GCC 前端：</p>
+
+<ol>
+	<li><strong>编译速度更快</strong>：在 Debug 模式下，编译 Objective-C 代码的速度是 GCC 的 3 倍，对大型项目的开发效率提升明显。</li>
+	<li><strong>内存占用更低</strong>：生成的抽象语法树（AST）内存占用仅为 GCC 的 1/5，减少了编译过程中的资源消耗。</li>
+	<li><strong>模块化设计</strong>：基于库的模块化架构（如 libclang、libTooling），易于集成到 IDE（如 VSCode、Xcode）或开发自定义工具（如静态分析器）。</li>
+	<li><strong>诊断信息更友好</strong>：编译错误提示包含详细元数据（如代码位置、错误原因），可读性远超 GCC 的晦涩输出，便于开发者快速定位问题。</li>
+	<li><strong>易于扩展</strong>：代码结构清晰，开发者可轻松开发插件（如代码规范检查工具）或扩展语法支持，而 GCC 因架构耦合度高，扩展难度大。</li>
+</ol>
+
+<h3>1.4.3 工作流程：从源代码到 LLVM IR 的全解析</h3>
+
+<p>Clang 对源代码的处理遵循编译前端的标准流程，以 Objective-C 文件（<code>main.m</code>）为例：</p>
+
+<ol>
+	<li><strong>预处理</strong>：处理<code>#include</code>、<code>#import</code>、宏定义等，生成预处理后的代码（可通过<code>clang -E main.m</code>查看）。</li>
+	<li><strong>词法分析</strong>：将代码拆分为最小语法单元（Token），如关键字（<code>void</code>）、标识符（<code>test</code>）、运算符（<code>+</code>）等（可通过<code>clang -dump-tokens</code>查看）。</li>
+	<li><strong>语法分析</strong>：基于 Token 生成抽象语法树（AST），描述代码的语法结构（如函数定义、变量赋值），明确代码逻辑（可通过<code>clang -ast-dump</code>查看）。</li>
+	<li><strong>生成 LLVM IR</strong>：将 AST 转换为与平台无关的 LLVM IR（中间代码），供 LLVM 后端优化并生成机器码（可通过<code>clang -S -emit-llvm</code>生成文本格式的<code>.ll</code>文件）。</li>
+</ol>
+
+<h3>1.4.4 应用场景：从编译到工具开发</h3>
+
+<ul>
+	<li><strong>日常编译</strong>：作为 C/C++/Objective-C 的编译器前端，直接用于代码编译（如 Xcode 默认使用 Clang 编译 iOS/macOS 项目）。</li>
+	<li><strong>IDE 集成</strong>：其模块化库（如 libclang）为 VSCode 等编辑器提供代码补全、跳转定义等功能（Clangd 插件即基于此）。</li>
+	<li><strong>工具开发</strong>：基于 Clang 可开发静态分析工具（检查命名规范、内存泄漏）、代码重构工具，或通过插件扩展编译器功能。</li>
+</ul>
+
+<p>简言之，Clang 是 LLVM 生态中为 C/C++/Objective-C 量身打造的 &ldquo;高效、轻量、易扩展&rdquo; 的编译器前端，凭借其性能优势和模块化设计，已成为现代 C/C++ 开发的主流工具之一。</p>
+
+<h1>二、安装与配置</h1>
+
+<p><span style="color:#fe2c24">注意：在使用Clangd插件+LLVM 方案时，需要关闭微软官方的C/C++插件，因为会产生冲突。</span></p>
+
+<p><img alt="" height="588" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/980de7d7070443a4ba646dface3de033.png" srcset="/img/loading.gif" lazyload width="913" /></p>
+
+<h2>2.1 安装LLVM，一般GitHub的都带了clang，但是有些渠道下载的可能没有clang，需要注意一下</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Releases · llvm/llvm-project" target="_blank" rel="noopener" href="https://github.com/llvm/llvm-project/releases" title="Releases · llvm/llvm-project">Releases &middot; llvm/llvm-project</a></p>
+
+<p><img alt="" height="915" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5381be2152c94c05b61188d328274800.png" srcset="/img/loading.gif" lazyload width="1570" /></p>
+
+<p><img alt="" height="80" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/240e5161423e47969ac200d956d3b7fc.png" srcset="/img/loading.gif" lazyload width="1038" /></p>
+
+<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/83b7d8debf32492fadfd5d39a92dfd45.png" srcset="/img/loading.gif" lazyload width="492" /></p>
+
+<p><img alt="" height="353" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d25ffeea9a824ec5b264f5f2e3ae5331.png" srcset="/img/loading.gif" lazyload width="500" /></p>
+
+<p><img alt="" height="357" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd06e784a20a4f40b982e5555fb931d1.png" srcset="/img/loading.gif" lazyload width="497" /></p>
+
+<p><img alt="" height="322" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/16faba45640a4da080d5e8f71928eeff.png" srcset="/img/loading.gif" lazyload width="686" /></p>
+
+<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e0567c07a2644ccc96b0f47f3b2b95b1.png" srcset="/img/loading.gif" lazyload width="434" /></p>
+
+<h2>2.2 vscode安装clang插件</h2>
+
+<p><img alt="" height="295" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/42685dcf44f243319b103ff66774b435.png" srcset="/img/loading.gif" lazyload width="576" /></p>
+
+<p><img alt="" height="903" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8b2df7bd905d4d0b8f3432eddfa03786.png" srcset="/img/loading.gif" lazyload width="1039" /></p>
+
+<p>这里选择不安装，到时候手动配置自己下载的clangd</p>
+
+<p><img alt="" height="99" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/221a3e80692d434bab242e23ffab5d46.png" srcset="/img/loading.gif" lazyload width="445" /></p>
+
+<h2>2.3 下载安装MINGW，记得添加到环境变量</h2>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries" target="_blank" rel="noopener" href="https://github.com/niXman/mingw-builds-binaries/releases/tag/15.2.0-rt_v13-rev0" title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries">Release Release of 15.2.0-rt_v13-rev0 &middot; niXman/mingw-builds-binaries</a></p>
+
+<p><img alt="" height="45" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/19bdfce5b5d142e5a30c628ddb0c3d2e.png" srcset="/img/loading.gif" lazyload width="1275" /></p>
+
+<h2>2.4 配置需要的功能</h2>
+
+<p>要配置 Clangd 的<strong>用户级（全局共享）<strong>和</strong>项目级（工程私有）</strong>&nbsp;YAML 配置文件，可按照以下步骤操作：</p>
+
+<h3>2.4.1 用户配置（全局共享设置）</h3>
+
+<p>用于存放所有项目通用的配置（如补全样式、提示规则等）。</p>
+
+<h4>1. 定位配置文件路径</h4>
+
+<p>根据系统类型，在对应路径创建&nbsp;<code>config.yaml</code>&nbsp;文件：</p>
+
+<p><img alt="" height="68" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59d03df88fcb42e2838eb9b79f8837ac.png" srcset="/img/loading.gif" lazyload width="703" /></p>
+
+<p><img alt="" height="191" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6cc7f13002da4826a6b951ab2a73f738.png" srcset="/img/loading.gif" lazyload width="780" /></p>
+
+<ul>
+	<li><strong>Windows</strong>：路径：<code>%LocalAppData%\clangd\config.yaml</code>（可在文件资源管理器中直接输入&nbsp;<code>%LocalAppData%\clangd</code>，新建&nbsp;<code>config.yaml</code>）</li>
+	<li><strong>macOS</strong>：路径：<code>~/Library/Preferences/clangd/config.yaml</code>（在 Finder 中按&nbsp;<code>Shift+Command+G</code>，输入路径并创建文件）</li>
+	<li><strong>Linux</strong>：路径：<code>$XDG_CONFIG_HOME/clangd/config.yaml</code>（若&nbsp;<code>XDG_CONFIG_HOME</code>&nbsp;未设置，默认是&nbsp;<code>~/.config/clangd/config.yaml</code>）</li>
+</ul>
+
+<h4>2. 写入通用配置内容</h4>
+
+<p>将以下内容复制到&nbsp;<code>config.yaml</code>&nbsp;中（可根据需求调整）：</p>
+
+<p>yaml</p>
+
+<pre>
+<code># 参考：https://clangd.llvm.org/config
+---
+# 补全配置：参数列表显示分隔符
+Completion:
+  ArgumentLists: Delimiters
+
+# 嵌入式提示：显示代码块结束、默认参数等
+InlayHints:
+  BlockEnd: true        # 显示代码块结束标记（如 `}` 旁标注函数名）
+  DefaultArguments: true # 显示函数默认参数提示
+  TypeNameLimit: 0      # 类型名提示无长度限制
+
+# 悬停提示：显示别名（AKA）信息
+Hover:
+  ShowAKA: true
+
+# 全局编译选项（所有项目生效）
+CompileFlags:
+  Add: [-Wall]  # 添加 `-Wall` 开启所有警告
+</code></pre>
+
+<p><img alt="" height="494" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4c224733502043abb5b2daef21192073.png" srcset="/img/loading.gif" lazyload width="821" /></p>
+
+<h3>2.4.2 项目配置（工程私有设置）</h3>
+
+<h4>官方的配置说明文档链接</h4>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Configuration" target="_blank" rel="noopener" href="https://clangd.llvm.org/config#files" title="Configuration">Configuration</a></p>
+
+<p>用于存放单个项目的专属配置（如编译命令路径、特定编译器等）。</p>
+
+<h4>1. 创建项目配置目录</h4>
+
+<p>在<strong>项目根目录</strong>下，创建&nbsp;<code>.clangd</code>&nbsp;文件，使用yaml语法添加选项。</p>
+
+<p>（创建&nbsp;<code>.clangd</code>&nbsp;文件夹，再在其中新建&nbsp;<code>config.yaml</code>&nbsp;文件。这种方式过时了）</p>
+
+<h4>2. 写入工程专属配置</h4>
+
+<p>这里的配置其实除了&nbsp;<code>.clangd</code>&nbsp;文件方法，一般用vscode工作区里的提前增加条件选项。</p>
+
+<p>通过 &ldquo;用户配置（全局通用）+ 项目配置（工程私有）&rdquo; 的分离，既能保证所有项目共享统一的交互体验，又能针对单个工程做定制化编译配置，大幅提升 C/C++ 开发效率。</p>
+
+<h2>2.5&nbsp;在VSCode中配置LLVM官方插件Clangd</h2>
+
+<h3>2.5.1&nbsp;&nbsp;配置工具链本体路径，在设置里搜索Clangd:Path，因为我们最开始下载的时候插件Clangd是个空壳子还要求我们是否下载，取消后这里配置我们自己下载的clangd</h3>
+
+<p><img alt="" height="444" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5f56b55e0a524bee9ad49d7935c08441.png" srcset="/img/loading.gif" lazyload width="1189" /></p>
+
+<h3>2.5.2 进入Clangd插件设置使用选项</h3>
+
+<p><img alt="" height="288" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/917709db95894f7f9b2eee3336db7d33.png" srcset="/img/loading.gif" lazyload width="928" /></p>
+
+<p><img alt="" height="392" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/80c6034fd9864a4bbcedd50271de64f2.png" srcset="/img/loading.gif" lazyload width="1010" /></p>
+
+<p>建议改为工作区设置，方便后续每个工作区的定制化改变，不会影响到用户设置</p>
+
+<p><img alt="" height="131" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f3ab9875e3dd4be092f0005f6fa9c526.png" srcset="/img/loading.gif" lazyload width="66" /></p>
+
+<p>一定要一条一条加进去</p>
+
+<p><img alt="" height="533" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cc75aa94791b4d10a10f8bced7ec3727.png" srcset="/img/loading.gif" lazyload width="1046" /></p>
+
+<pre>
+<code class="language-bash">{
+    "clangd.arguments": [
+        // 后台索引（提升大型项目的响应速度）
+        "--background-index",
+        "--background-index-priority=low",  // 后台索引优先级设为低，不影响编辑
+        
+        // 启用代码检查（基于clang-tidy，支持代码规范检查）
+        "--clang-tidy",
+        
+        // 补全样式：detailed显示更详细的补全信息（如参数类型）
+        "--completion-style=detailed",
+        
+        // 代码风格 fallback：当项目无明确风格时，默认使用Google风格
+        "--fallback-style=Google",
+        
+        // 关闭函数参数占位符（避免补全时自动插入`${1}`等占位符）
+        "--function-arg-placeholders=false",
+        
+        // 禁止自动插入#include（如需手动控制头文件引入）
+        "--header-insertion=never",
+        
+        // 重命名文件时无数量限制（默认可能限制大项目重命名）
+        "--rename-file-limit=0",
+        
+        // 启用Clangd的配置文件（即前面提到的user/project级config.yaml）
+        "--enable-config",
+        
+        // 并行任务数量（根据CPU核心数调整，如8核设为8，加速索引）
+        "-j=12",
+        
+        // PCH（预编译头）存储在内存中，提升解析速度
+        "--pch-storage=memory",
+        
+        // 格式化输出日志（方便调试）
+        "--pretty",
+        
+        // 【核心】指定compile_commands.json的路径（必须修改！）
+        // 该文件由CMake、Make等构建工具生成，包含项目编译信息（如头文件路径、宏定义）
+        // 解释：基于cmake构建管理项目时，使用该命令（--compile-commands-dir=）产生的compile_commands.json会放到指定文件夹下同时该文件帮助你找到头文件信息索引
+        // 格式：--compile-commands-dir=项目中compile_commands.json所在的文件夹路径
+        "--compile-commands-dir=${workspaceFolder}/build",  // 示例：项目根目录下的build文件夹
+        
+        // 【核心】指定编译器路径（解决标准库头文件找不到的问题）
+        // 通配符匹配编译器路径（如ARM交叉编译器、x86编译器）
+        // 格式：--query-driver=编译器可执行文件的路径（支持*通配符）
+        // "--query-driver=${userHome}/tools/gcc-arm-none-eabi-10.3-2021.10/bin/arm-none-eabi-g*"  // 示例：ARM编译器路径
+        "--query-driver=D:/mingw64/bin"
+    ]
+}</code></pre>
+
+<h4>（1）参数说明（必看）</h4>
+
+<ol>
+	<li>
+	<p><strong><code>--compile-commands-dir</code></strong>：必须指向项目中<code>compile_commands.json</code>文件所在的文件夹（该文件是 Clangd 理解项目结构的 &ldquo;地图&rdquo;）。</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;若用 CMake 构建，可在 cmake 命令中添加&lt;code&gt;-DCMAKE_EXPORT_COMPILE_COMMANDS=ON&lt;/code&gt;生成该文件（默认在 build 目录下）。&lt;/li&gt;
+	&lt;li&gt;若项目无该文件，Clangd 可能无法识别头文件路径，导致&lt;code&gt;#include&lt;/code&gt;报错。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;code&gt;--query-driver&lt;/code&gt;&lt;/strong&gt;：用于告诉 Clangd 项目使用的编译器路径（如交叉编译器、本地 GCC/Clang），确保其能找到编译器自带的标准库头文件（如&lt;code&gt;stdio.h&lt;/code&gt;）。&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;路径需用通配符&lt;code&gt;*&lt;/code&gt;匹配编译器可执行文件（如&lt;code&gt;arm-none-eabi-gcc&lt;/code&gt;、&lt;code&gt;arm-none-eabi-g++&lt;/code&gt;可统一用&lt;code&gt;arm-none-eabi-g*&lt;/code&gt;匹配）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h4>（2）验证配置是否生效</h4>
+
+<ol>
+	<li><strong>重启 VSCode</strong>：按下<code>Ctrl+Shift+P</code>，输入 &ldquo;Reload Window&rdquo; 并回车，让配置生效。</li>
+	<li><strong>打开项目文件</strong>：如<code>main.c</code>，观察<code>#include</code>语句下方是否有红色波浪线（若消失，说明头文件识别成功）。</li>
+	<li><strong>查看 Clangd 日志</strong>：按下<code>Ctrl+~</code>打开终端，切换到 &ldquo;Output&rdquo; 面板，选择 &ldquo;Clangd&rdquo;。
+	<ul>
+		<li>若日志中无<code>E[时间戳]</code>开头的错误（如 &ldquo;cannot find header&rdquo;），则配置成功；</li>
+		<li>若有错误，检查<code>--compile-commands-dir</code>和<code>--query-driver</code>路径是否正确。</li>
+	</ul>
+	</li>
+</ol>
+
+<h4>（3）特别提醒</h4>
+
+<ul>
+	<li><strong>工作区设置 vs 用户设置</strong>：若有多个 C/C++ 项目（如不同架构、不同编译器），务必用 &ldquo;Workspace Settings&rdquo;（仅对当前项目生效），避免配置冲突。</li>
+	<li><strong>新项目需重新配置</strong>：每个项目的<code>compile_commands.json</code>路径和编译器路径可能不同，新项目需重新修改<code>--compile-commands-dir</code>和<code>--query-driver</code>。</li>
+	<li>确保<code>--query-driver</code>的路径与项目级<code>.clangd/config.yaml</code>中<code>Compiler</code>项一致（若有），否则可能导致标准库识别混乱。</li>
+</ul>
+
+<p>通过以上步骤，Clangd 插件就能正确解析项目代码，提供准确的代码补全、跳转定义、语法检查等功能了。</p>
+
+<p>注：验证：打开一个 C/C++ 文件，观察代码补全、跳转定义等功能是否正常工作，同时可通过 VSCode 的 &ldquo;输出&rdquo; 面板（选择 &ldquo;Clangd&rdquo;）查看日志，确认是否成功加载自定义的&nbsp;<code>clangd</code>。</p>
+
+<h2>2.6 安装cmake</h2>
+
+<p><img alt="" height="803" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94343b98ecc24dbf961ed797ac414c95.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
+
+<p>我这里选择的二进制包，你可以下载.msi来安装，这种就是很直观但会增加一些注册表，但是，如果你直接拿源码是不行的，需要自己去编译得到可执行工具链。要下载二进制包，然后将bin文件夹工具链路径加入系统环境变量。这是个人习惯问题。</p>
+
+<p><img alt="" height="229" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4cef572ea1ee4e199d2a15e316fe25b1.png" srcset="/img/loading.gif" lazyload width="650" /></p>
+
+<p><img alt="" height="101" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/056c07c738c04068b5bd1c0a9c10c12b.png" srcset="/img/loading.gif" lazyload width="516" /></p>
+
+<p><img alt="" height="114" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/be37655961484fec9626ce73d7e6b176.png" srcset="/img/loading.gif" lazyload width="647" /></p>
+
+<h2>2.7 安装VSCode的CMake插件</h2>
+
+<p><img alt="" height="900" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6188f8b628994d57ae6b8d77f3ae45d5.png" srcset="/img/loading.gif" lazyload width="1609" /></p>
+
+<p><img alt="" height="928" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3339aa69f4904df898c9749cd8ddf064.png" srcset="/img/loading.gif" lazyload width="1780" /></p>
+
+<h2>2.8 如果后续需要调试，就需要安装这个插件，提示：这个插件会下载很久建议找到VSIX的外部http地址进行下载</h2>
+
+<p><img alt="" height="939" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d8800b25c5a54ff78fd5e7766b351772.png" srcset="/img/loading.gif" lazyload width="1268" /></p>
+
+<p><img alt="" height="583" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4162624540da477cb228ab3ff2cc0bdb.png" srcset="/img/loading.gif" lazyload width="624" /></p>
+
+<p>会出现</p>
+
+<p><img alt="" height="50" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7fb19b395ef40ddbaf988055c80da68.png" srcset="/img/loading.gif" lazyload width="56" /></p>
+
+<h1>三、初步使用</h1>
+
+<p><strong>说明：</strong>自己可以尝试当一个大型项目找对应的函数实现，会发现微软那个c/c++插件查找索引会比较慢以及占用内存，相对之下Clangd的效果就好的多。</p>
+
+<p>目前搭配方案是：MINGW的编译器+Clangd的代码补全以及其他功能。你也可以使用clang++代替c++</p>
+
+<h2>3.1 未使用CMake版本</h2>
+
+<p>这里可以写个小代码进行测试，clangd是否运行正常，一般头文件出现下划线，以及传值前面会有函数形参变量名提示，以及能够正常跳转，就表示是正常的</p>
+
+<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2c413ecf695f44dca1ad679211a78d21.png" srcset="/img/loading.gif" lazyload width="1487" /></p>
+
+<p><img alt="" height="773" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ab9a025223f44a7a9cda873b9e54e937.png" srcset="/img/loading.gif" lazyload width="1093" /></p>
+
+<p>右击鼠标，能够正常跳转</p>
+
+<p><img alt="" height="997" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a43500105a004612ae82d95f6b212080.png" srcset="/img/loading.gif" lazyload width="1649" /></p>
+
+<p>这个配置文件就再指定了一下编译器路径。</p>
+
+<p><img alt="" height="283" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6c04107a67a64997ba6c1bd57f5ab74b.png" srcset="/img/loading.gif" lazyload width="735" /></p>
+
+<h2>3.2 使用CMake版本</h2>
+
+<p>参考：</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识_如何利用vscode和cmake 搭建c++开发环境-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_73648789/article/details/154009851?spm=1001.2014.3001.5502" title="【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识_如何利用vscode和cmake 搭建c++开发环境-CSDN博客">【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识_如何利用vscode和cmake 搭建c++开发环境-CSDN博客</a></p>
+
+<p>错误现象（原因是因为使用clangd+cmake，你需要在cmake顶层文件里开启一个产生特殊文件的选项来让clangd识别到各个头文件）：<br />
+<img alt="" height="1031" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/795825607c6a44c78313ca0320e4205f.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
+
+<p>这里简单描述一下怎么使用cmake，需要将加法函数c/h文件放入一个子文件夹，可以将这个子文件夹编译为单独一个静态库提供给根目录下的main文件使用，根目录和add子文件夹分别需要cmake文件，根目录下的cmake文件（顶层cmake）为主</p>
+
+<h3>3.2.1 代码</h3>
+
+<h4>（1）add</h4>
+
+<p>add.h</p>
+
+<pre>
+<code class="hljs">#ifndef __ADD_H__
+#define __ADD_H__
+
+int add(int a, int b);
+
+#endif // !__ADD_H__
+
+</code></pre>
+
+<p>add.c</p>
+
+<pre>
+<code class="hljs">#include "add.h"
+
+int add(int a, int b)
+{
+    return a+b;
+}</code></pre>
+
+<p>CMakeLists.txt</p>
+
+<pre>
+<code class="hljs">cmake_minimum_required(VERSION 3.10)
+
+add_library(add STATIC add.cpp)
+
+target_include_directories(add PUBLIC ${CMAKE_CURRENT_SOURCE_DIR})</code></pre>
+
+<h4>（2）根目录</h4>
+
+<p>.clangd</p>
+
+<pre>
+<code class="hljs">CompileFlags:
+  Add: []
+  Remove: []
+  Compiler: D:/mingw64/bin/c++*</code></pre>
+
+<p>main.cpp</p>
+
+<pre>
+<code class="hljs">#include &lt;iostream&gt;
+#include &lt;string&gt;
+
+#include "add.h"
+
+int main() {
+    std::string name;
+    std::cout &lt;&lt; "Enter your name: ";
+    std::getline(std::cin, name);
+    std::cout &lt;&lt; "Hello, " &lt;&lt; name &lt;&lt; "!" &lt;&lt; std::endl;
+
+    int a = 1;
+
+    if (a == 1) {
+        std::cout &lt;&lt; "a is 1" &lt;&lt; std::endl;
+    }
+
+    std::cout &lt;&lt; "add: " &lt;&lt; add(1, 1) &lt;&lt; "!" &lt;&lt; std::endl;
+
+    return 0;
+}</code></pre>
+
+<p>E9_clang_test.code-workspace</p>
+
+<pre>
+<code class="hljs">{
+	"folders": [
+		{
+			"path": "."
+		}
+	],
+	"settings": {
+		"clangd.arguments": [
+			"--background-index",
+			"--background-index-priority=low",
+			"--clang-tidy",
+			"--completion-style=detailed",
+			"--fallback-style=Google",
+			"--function-arg-placeholders=false",
+			"--header-insertion=never",
+			"--header-insertion-decorators",
+			"--import-insertions",
+			"--rename-file-limit=0",
+			"--enable-config",
+			"-j=18",
+			"--pch-storage=memory",
+			"--pretty",
+			"--compile-commands-dir=${workspaceFolder}/build",
+			"--query-driver=D:/mingw64/bin/c++*"
+		]
+	}
+}</code></pre>
+
+<p>CMakeLists.txt</p>
+
+<pre>
+<code class="hljs"># 主目录 CMakeLists.txt
+cmake_minimum_required(VERSION 3.18)
+project(E9_clang_test)  # 项目名可保持不变
+
+# 开启编译数据库生成（关键！clangd依赖这个文件）
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+
+# 关键：添加子目录（编译add模块）
+add_subdirectory(add)
+
+# 定义可执行程序目标（目标名：E9_clang_test）
+add_executable(E9_clang_test main.cpp)
+
+# 链接add库（目标名必须和上面的add_executable一致）
+target_link_libraries(E9_clang_test add)</code></pre>
+
+<p><span style="color:#fe2c24">注意：</span></p>
+
+<p><span style="color:#fe2c24"># 开启编译数据库生成（关键！clangd依赖这个文件）<br />
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</span></p>
+
+<h3>3.2.2&nbsp;代码编译执行</h3>
+
+<h4>（1）cmake配置，选择对应的编译器，然后就会先配置一些东西，此时就会产生<code>compile_commands.json</code>，然后可以<code>clangd: Restart Language Server</code>&nbsp;重启服务</h4>
+
+<p><img alt="" height="99" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/84917224c969468eaba08013d298aa02.png" srcset="/img/loading.gif" lazyload width="616" /></p>
+
+<p><img alt="" height="433" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/818bde999f004096a38b9afbcbecbb65.png" srcset="/img/loading.gif" lazyload width="1390" /></p>
+
+<h4>（2）在 VS Code 中按&nbsp;<code>Ctrl+Shift+P</code>，输入&nbsp;<code>clangd: Restart Language Server</code>&nbsp;重启服务，clangd 会重新读取&nbsp;<code>compile_commands.json，就会发现头文件就不会报红了</code></h4>
+
+<p><img alt="" height="475" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48c4d9940bad43f0918504d63d5bd4dd.png" srcset="/img/loading.gif" lazyload width="1201" /></p>
+
+<h4>（3）在 VS Code 中按&nbsp;<code>Ctrl+Shift+P</code>，输入 cmake build</h4>
+
+<p><img alt="" height="49" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/07ab5270fc8a4330ad25d74c133eb5a8.png" srcset="/img/loading.gif" lazyload width="593" /></p>
+
+<p><img alt="" height="1034" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6fa385c3e2194668ac6c50fc1343ddf5.png" srcset="/img/loading.gif" lazyload width="1913" /></p>
+
+<h4>（4）执行可执行文件</h4>
+
+<p><img alt="" height="1031" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/65adc71dcbf04ed6809b46cbe00a8b6d.png" srcset="/img/loading.gif" lazyload width="1914" /></p>
+
+<h4>（5）尝试调试，点击调试目标设置，通过cmake插件工具进行配置项目的调试方式文件launch.json，或者直接从CodeLLDB的调试按钮开始也可以</h4>
+
+<p><img alt="" height="26" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1b67dad8a4ff436898d8a9cd634d1a74.png" srcset="/img/loading.gif" lazyload width="392" /></p>
+
+<p><img alt="" height="1002" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c35412c1978e406d9f3025f0e37b1212.png" srcset="/img/loading.gif" lazyload width="1915" /></p>
+
+<p><img alt="" height="1024" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ba13409712dd4f12ba3b72789605be73.png" srcset="/img/loading.gif" lazyload width="1636" /></p>
+
+<p><img alt="" height="1027" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/148b8af31f764caca16b515683c35234.png" srcset="/img/loading.gif" lazyload width="1418" /></p>
+
+<p>或者CodeLLDB</p>
+
+<p><img alt="" height="106" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/12c9dfcc73764e4e898b5bf85e90f311.png" srcset="/img/loading.gif" lazyload width="431" /></p>
+
+<h4>（6）查看launch</h4>
+
+<p><img alt="" height="1032" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/71f8320ef359478d90f9b6419593d3c9.png" srcset="/img/loading.gif" lazyload width="1646" /></p>
+
+<h4>（7）现在开始CodeLLDB，左上角直接点击出现错误，要找到可执行文件，&quot;program&quot;: &quot;${workspaceRoot}/build/E9_clang_test.exe&quot;,</h4>
+
+<p><img alt="" height="1026" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5e959b7f3b854057a149856f6475899f.png" srcset="/img/loading.gif" lazyload width="1911" /></p>
+
+<h4>（8）这里发现我使用的：vscode的 G++编译器+Clangd代码补全+lldb（CodeLLDB） 不能调试（不知道为什么打了断点后，点击使用lldb调试后就马上全部执行并退出，断点灰色且空心），原因可能是：G++编译出来的调试版本的代码的调试符号与lldb不适配，可能需要更换为clang编译出来的文件进行调试。这里我把C/C++ Extension Pack再打开，换为cppdbg调试，可能会跳出一个智能补全类型的功能提示与clang冲突了，点击disable关掉，然后就可以正常进行单步调试。</h4>
+
+<p><img alt="" height="1028" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8e641441e566453a96f8c41e5dfa8a7a.png" srcset="/img/loading.gif" lazyload width="1916" /></p>
+
+<p><img alt="" height="1029" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c25bb7d1f3824c8cbecb65da9a2cd421.png" srcset="/img/loading.gif" lazyload width="1909" /></p>
+
+<p></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/VSCode%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">VSCode学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vscode-c-ide-clangd-LLVM/" class="print-no-link">#vscode c++ ide clangd LLVM</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【VSCode】【Clangd】Win下的基于LLVM/Clangd+Clangd插件+MINGW+CMake的VSCode配置C/C++开发环境的详细教程</div>
+      <div>http://example.com/2025/11/11/【VSCode】【Clangd】Win下的基于LLVM!Clangd+Clangd插件+MINGW+CMake的VSCode配置C!C++开发环境的详细教程/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月11日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/15/%E3%80%90Source%20Insight%E3%80%91Source%20Insight%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/" title="【Source Insight】Source Insight的初步使用方法">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Source Insight】Source Insight的初步使用方法</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/11/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91PS%E7%9A%84%E7%AE%80%E8%A6%81%E5%AE%89%E8%A3%85%E6%AD%A5%E9%AA%A4/" title="【随笔】PS的简要安装步骤">
+                        <span class="hidden-mobile">【随笔】PS的简要安装步骤</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

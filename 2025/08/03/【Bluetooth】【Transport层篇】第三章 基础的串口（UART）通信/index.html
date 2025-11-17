@@ -1,0 +1,1311 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、串口简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;串口（UART）是嵌入式系统与外设通信中最常用的接口之一，其 &ldquo;通用、异步、串行&rdquo; 的特性使其在低速数据传输场景中占据重要地位。本章将从基本概念、工作原理到实际特性，系统解析 UART 通信的核心知识。  1.1 UART 的定义与核心作用  &nbsp;&nbsp;&amp;n">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信">
+<meta property="og:url" content="http://example.com/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%89%E7%AB%A0%20%E5%9F%BA%E7%A1%80%E7%9A%84%E4%B8%B2%E5%8F%A3%EF%BC%88UART%EF%BC%89%E9%80%9A%E4%BF%A1/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、串口简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;串口（UART）是嵌入式系统与外设通信中最常用的接口之一，其 &ldquo;通用、异步、串行&rdquo; 的特性使其在低速数据传输场景中占据重要地位。本章将从基本概念、工作原理到实际特性，系统解析 UART 通信的核心知识。  1.1 UART 的定义与核心作用  &nbsp;&nbsp;&amp;n">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a05b0993f784b7c9fcf0508a569e267.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d8acd906208242bf8423a5703504d875.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/429134a2046d4aff97fac77dc9087d70.png">
+<meta property="article:published_time" content="2025-08-03T13:13:51.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="串口">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/4a05b0993f784b7c9fcf0508a569e267.png">
+  
+  
+  
+  <title>【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-03 21:13" pubdate>
+          2025年8月3日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          5.7k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          48 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 style="background-color:transparent">一、串口简介</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;串口（UART）是嵌入式系统与外设通信中最常用的接口之一，其 &ldquo;通用、异步、串行&rdquo; 的特性使其在低速数据传输场景中占据重要地位。本章将从基本概念、工作原理到实际特性，系统解析 UART 通信的核心知识。</p>
+
+<h2 style="background-color:transparent">1.1 UART 的定义与核心作用</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART（Universal Asynchronous Receiver/Transmitter，通用异步接收 / 发送装置）是一种<strong>串行通信协议</strong>，通过两根数据线（发送线 TX、接收线 RX）实现设备间的双向数据传输，无需专用时钟线（&ldquo;异步&rdquo; 的核心特征）。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;其核心作用是：将设备内部的并行数据（如 CPU 处理的 8 位字节）转换为串行数据（逐位传输）发送出去，同时将接收的串行数据转换为并行数据供设备处理，是 &ldquo;并行数据&rdquo; 与 &ldquo;串行传输&rdquo; 之间的桥梁。</p>
+
+<h2 style="background-color:transparent">1.2 串行通信与并行通信的本质区别</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通信按数据传输方式可分为<strong>串行通信</strong>和<strong>并行通信</strong>，UART 属于典型的串行通信，二者的核心差异如下：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>维度</strong></th>
+			<th>串行通信（以 UART 为例）</th>
+			<th>并行通信（如 CPU 与内存）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>数据线数量</strong></td>
+			<td>仅需 1-2 根（单工 1 根，全双工 2 根）</td>
+			<td>需多根（如 8 位数据需 8 根数据线，加控制线共十余根）</td>
+		</tr>
+		<tr>
+			<td><strong>传输方式</strong></td>
+			<td>数据位逐位依次传输（如 1 字节的 8 位分 8 次发送）</td>
+			<td>多个数据位同时传输（如 1 字节的 8 位同时发送）</td>
+		</tr>
+		<tr>
+			<td><strong>抗干扰能力</strong></td>
+			<td>强（少线传输，受干扰概率低）</td>
+			<td>弱（多线间存在串扰，高速时更明显）</td>
+		</tr>
+		<tr>
+			<td><strong>传输距离</strong></td>
+			<td>较长（通常数米至数十米，配合优化可达百米）</td>
+			<td>短（通常厘米级，高速时仅数厘米）</td>
+		</tr>
+		<tr>
+			<td><strong>硬件复杂度</strong></td>
+			<td>低（布线简单，适合小型设备）</td>
+			<td>高（布线复杂，成本高）</td>
+		</tr>
+	</tbody>
+</table>
+
+<p>串行</p>
+
+<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a05b0993f784b7c9fcf0508a569e267.png" srcset="/img/loading.gif" lazyload width="936" /></p>
+
+<p>并行</p>
+
+<p>&nbsp;<img alt="" height="233" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d8acd906208242bf8423a5703504d875.png" srcset="/img/loading.gif" lazyload width="508" /></p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;举例</strong>：用 UART 传输字符 &ldquo;A&rdquo;（二进制<code>01000001</code>）时，需通过 TX 线分 8 次逐位发送；而并行通信则通过 8 根线同时发送这 8 位，速度更快但硬件成本更高。</p>
+
+<h1 style="background-color:transparent">二、 UART 的硬件组成与工作流程</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 的硬件核心由三部分组成，协同完成数据的发送与接收：</p>
+
+<ul>
+	<li><strong>发送器（Transmitter）</strong>：将设备内部的并行数据（如 8 位字节）转换为串行数据，按约定格式添加起始位、校验位、停止位，通过 TX 线发送。</li>
+	<li><strong>接收器（Receiver）</strong>：通过 RX 线接收串行数据，去除起始位、停止位（校验位可选），转换为并行数据供设备处理。</li>
+	<li><strong>波特率发生器（Baud Rate Generator）</strong>：生成稳定的时钟信号，控制数据位的传输速率（波特率），确保收发双方节奏一致。</li>
+</ul>
+
+<p><strong>工作流程示例</strong>（发送 &ldquo;A&rdquo;，8 位数据，无校验，1 位停止位）：</p>
+
+<ol>
+	<li>发送器接收并行数据<code>01000001</code>（字符 &ldquo;A&rdquo; 的 ASCII 码）；</li>
+	<li>按 UART 格式封装：添加起始位（1 位低电平<code>0</code>）&rarr; 数据位（<code>01000001</code>）&rarr; 停止位（1 位高电平<code>1</code>），形成完整帧<code>0 01000001 1</code>；</li>
+	<li>发送器以约定波特率（如 115200 bps）将帧数据逐位通过 TX 线发送；</li>
+	<li>接收器通过 RX 线检测到起始位（低电平跳变），触发同步，按相同波特率逐位接收数据；</li>
+	<li>接收器去除起始位和停止位，将数据位<code>01000001</code>转换为并行数据，传递给设备内部处理。</li>
+</ol>
+
+<h1 style="background-color:transparent">三、UART 数据帧格式：异步通信的 &ldquo;规则&rdquo;</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 通过<strong>固定帧结构</strong>实现异步同步（无需时钟线），确保接收方正确解析数据。标准帧格式由 5 部分组成（按传输顺序）：</p>
+
+<ol>
+	<li>
+	<p><strong>起始位（Start Bit）</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;1 位低电平（逻辑 0），标志数据传输开始。&lt;/li&gt;
+	&lt;li&gt;作用：空闲时总线为高电平（逻辑 1），起始位的低电平跳变可触发接收方 &amp;ldquo;开始采样&amp;rdquo;，实现收发同步。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;数据位（Data Bits）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;5-9 位（常用 8 位），代表实际传输的数据（如 ASCII 字符、传感器数值）。&lt;/li&gt;
+	&lt;li&gt;传输顺序：从最低位（LSB）到最高位（MSB），例如发送&lt;code&gt;01000001&lt;/code&gt;时，先传&lt;code&gt;1&lt;/code&gt;（最低位），最后传&lt;code&gt;0&lt;/code&gt;（最高位）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;校验位（Parity Bit，可选）&lt;/strong&gt;&lt;/p&gt;
+1 位，用于简单错误检测，根据数据位中 &amp;ldquo;1&amp;rdquo; 的数量计算：
+
+&lt;ul&gt;
+	&lt;li&gt;无校验（None）：不添加校验位（常用，需上层协议保障可靠性）。&lt;/li&gt;
+	&lt;li&gt;偶校验（Even）：数据位 + 校验位中 &amp;ldquo;1&amp;rdquo; 的总数为偶数；&lt;/li&gt;
+	&lt;li&gt;奇校验（Odd）：数据位 + 校验位中 &amp;ldquo;1&amp;rdquo; 的总数为奇数；&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;停止位（Stop Bit）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;1 位、1.5 位或 2 位高电平（逻辑 1），标志一帧数据结束。&lt;/li&gt;
+	&lt;li&gt;作用：为接收方提供缓冲时间，确保下一帧起始位的低电平跳变可被准确识别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;空闲位（Idle）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;总线空闲时为高电平（逻辑 1），无数据传输时持续保持，直到新帧的起始位到来。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p><strong>示例</strong>：8 位数据、奇校验、1 位停止位的帧结构<br />
+发送数据<code>01000001</code>（含 3 个 &ldquo;1&rdquo;）&rarr; 奇校验位为<code>0</code>（3+0=3，奇数）&rarr; 完整帧：<code>0（起始） 01000001（数据） 0（校验） 1（停止）</code>。</p>
+
+<h1 style="background-color:transparent">四、波特率：UART 的 &ldquo;传输速度&rdquo;</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;波特率（Baud Rate）是 UART 的核心参数，定义为<strong>每秒传输的位数（bps，bit per second）</strong>，直接决定通信速度。</p>
+
+<ul>
+	<li>
+	<p><strong>常见波特率</strong>：9600、19200、38400、115200、921600 bps 等（蓝牙模块常用 115200 或更高）。</p>
+	</li>
+	<li>
+	<p><strong>实际有效速率</strong>：需扣除起始位、校验位、停止位。例如：<br />
+	波特率 115200 bps，8 位数据、无校验、1 位停止位 &rarr; 每帧含 10 位（1+8+1）&rarr; 有效字节速率 = 115200&divide;10=11520 字节 / 秒。</p>
+	</li>
+	<li>
+	<p><strong>同步原理</strong>：收发双方必须使用相同波特率，接收方通过起始位触发后，按波特率对应的时间间隔（如 115200 bps 对应每 bit 约 8.68&mu;s）采样数据，确保采样点落在数据位的中间（最稳定区域）。</p>
+	</li>
+</ul>
+
+<h1 style="background-color:transparent">五、通信方向：单工、半双工与全双工</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 支持全双工通信，其通信方向特性如下：</p>
+
+<ul>
+	<li><strong>单工（Simplex）</strong>：数据仅能单向传输（如红外遥控器&rarr;电视），仅需 1 根数据线（TX 或 RX）。</li>
+	<li><strong>半双工（Half-Duplex）</strong>：数据可双向传输，但同一时刻只能单向进行（如对讲机），需 1 根数据线（分时收发）。</li>
+	<li><strong>全双工（Full-Duplex）</strong>：数据可同时双向传输（如手机通话），UART 通过 TX（发送）和 RX（接收）两根独立数据线实现，无需切换方向。</li>
+</ul>
+
+<h1 style="background-color:transparent">六、流控：避免数据丢失的 &ldquo;交通规则&rdquo;</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当发送方速率快于接收方处理速度时，可能导致接收方缓冲区溢出、数据丢失。UART 通过<strong>流控</strong>机制解决这一问题，分为两类：</p>
+
+<ol>
+	<li>
+	<p><strong>硬件流控（Hardware Flow Control）</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;需额外两根线：RTS（Request To Send，发送请求）和 CTS（Clear To Send，发送允许）。&lt;/li&gt;
+	&lt;li&gt;工作逻辑：
+	&lt;ul&gt;
+		&lt;li&gt;接收方准备好接收数据时，拉低 RTS（通知发送方 &amp;ldquo;可发送&amp;rdquo;）；&lt;/li&gt;
+		&lt;li&gt;发送方检测到对方 CTS（即接收方 RTS）为低电平时，开始发送数据；&lt;/li&gt;
+		&lt;li&gt;接收方缓冲区满时，拉高 RTS（禁止发送），发送方暂停传输。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;软件流控（Software Flow Control）&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;无需额外硬件，通过特定字符（XON=0x11，XOFF=0x13）控制：
+	&lt;ul&gt;
+		&lt;li&gt;接收方缓冲区快满时，发送 XOFF（暂停发送）；&lt;/li&gt;
+		&lt;li&gt;接收方处理完数据后，发送 XON（恢复发送）。&lt;/li&gt;
+	&lt;/ul&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;说明</strong>：硬件流控响应速度快、可靠性高，适合高速通信（如蓝牙 HCI 交互）；软件流控节省硬件资源，适合低速场景（如调试打印）。</p>
+
+<hr />
+<p><span style="background-color:#f9eda6">注：基础串口硬件流控模式下&nbsp;</span><strong><span style="background-color:#f9eda6">四线制（TX, RX, RTS, CTS）</span></strong><span style="background-color:#f9eda6">&nbsp;的详细介绍表格：</span></p>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong><span style="background-color:#f9eda6">信号线</span></strong></th>
+			<th><strong><span style="background-color:#f9eda6">方向 (DTE视角)</span></strong></th>
+			<th><strong><span style="background-color:#f9eda6">全称</span></strong></th>
+			<th><strong><span style="background-color:#f9eda6">功能描述</span></strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong><span style="background-color:#f9eda6">TX</span></strong></td>
+			<td><span style="background-color:#f9eda6">输出 &rarr;</span></td>
+			<td><span style="background-color:#f9eda6">Transmit Data</span></td>
+			<td><span style="background-color:#f9eda6">DTE 发送数据到 DCE（如：计算机 &rarr; 调制解调器）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#f9eda6">RX</span></strong></td>
+			<td><span style="background-color:#f9eda6">输入 &larr;</span></td>
+			<td><span style="background-color:#f9eda6">Receive Data</span></td>
+			<td><span style="background-color:#f9eda6">DTE 接收来自 DCE 的数据（如：计算机 &larr; 调制解调器）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#f9eda6">RTS</span></strong></td>
+			<td><span style="background-color:#f9eda6">输出 &rarr;</span></td>
+			<td><span style="background-color:#f9eda6">Request To Send</span></td>
+			<td><strong><span style="background-color:#f9eda6">DTE 通知 DCE</span></strong><span style="background-color:#f9eda6">：&ldquo;我已准备好接收数据，</span><strong><span style="background-color:#f9eda6">你可以发送</span></strong><span style="background-color:#f9eda6">&rdquo;（请求对方发送）</span></td>
+		</tr>
+		<tr>
+			<td><strong><span style="background-color:#f9eda6">CTS</span></strong></td>
+			<td><span style="background-color:#f9eda6">输入 &larr;</span></td>
+			<td><span style="background-color:#f9eda6">Clear To Send</span></td>
+			<td><strong><span style="background-color:#f9eda6">DCE 通知 DTE</span></strong><span style="background-color:#f9eda6">：&ldquo;我已准备好接收数据，</span><strong><span style="background-color:#f9eda6">你可以发送</span></strong><span style="background-color:#f9eda6">&rdquo;（允许本端发送）</span></td>
+		</tr>
+	</tbody>
+</table>
+
+<p style="background-color:transparent"><span style="background-color:#f9eda6">关键说明：</span></p>
+
+<ol>
+	<li>
+	<p><strong><span style="background-color:#f9eda6">硬件流控作用</span></strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;通过&amp;nbsp;&lt;/span&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;RTS/CTS 信号自动协调&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;数据传输，避免因缓冲区满导致的数据丢失（&lt;/span&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;解决&amp;ldquo;过载&amp;rdquo;问题&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;）。&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;当接收方无法处理数据时，通过拉低 CTS 信号暂停发送方传输。&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;信号方向&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;DTE (数据终端设备)&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;：如计算机、单片机&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;DCE (数据通信设备)&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;：如调制解调器、串口模块&lt;/span&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;RTS 是 DTE 的输出 &amp;rarr; DCE 的输入&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;CTS 是 DCE 的输出 &amp;rarr; DTE 的输入&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+	&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;流控交互流程&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;table&gt;
+	&lt;thead&gt;
+		&lt;tr&gt;
+			&lt;th&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;步骤&lt;/span&gt;&lt;/th&gt;
+			&lt;th&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;DTE 动作&lt;/span&gt;&lt;/th&gt;
+			&lt;th&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;DCE 动作&lt;/span&gt;&lt;/th&gt;
+		&lt;/tr&gt;
+	&lt;/thead&gt;
+	&lt;tbody&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;1&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;置高 RTS：&amp;quot;&lt;/span&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;我可以接收&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;&amp;quot;&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;检测到 RTS 高电平&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;2&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;等待 CTS 高电平&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;若就绪，置高 CTS：&amp;quot;&lt;/span&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;你可以发送&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;&amp;quot;&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;3&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;开始发送 TX 数据&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;接收数据&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;4&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;若 DCE 缓冲区满&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;拉低 CTS&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;：&amp;quot;暂停发送！&amp;quot;&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+		&lt;tr&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;5&lt;/span&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;立即停止发送&lt;/span&gt;&lt;/strong&gt;&lt;/td&gt;
+			&lt;td&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;缓冲区空后重新置高 CTS&lt;/span&gt;&lt;/td&gt;
+		&lt;/tr&gt;
+	&lt;/tbody&gt;
+&lt;/table&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;物理连接&lt;/span&gt;&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;
+	&lt;p&gt;&lt;strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;直连方案&lt;/span&gt;&lt;/strong&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;（DTE 与 DCE 连接）：&lt;/span&gt;&lt;/p&gt;
+
+	&lt;p&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;text&lt;/span&gt;&lt;/p&gt;
+
+	&lt;pre&gt;
+</code></pre>
+<p><span style="background-color:#f9eda6">DTE_TX  &rarr; DCE_RX<br>DTE_RX  &larr; DCE_TX<br>DTE_RTS &rarr; DCE_CTS<br>DTE_CTS &larr; DCE_RTS  </span></pre><br>		</li><br>		<li><br>		<p><strong><span style="background-color:#f9eda6">交叉方案</span></strong><span style="background-color:#f9eda6">（两台 DTE 直连需交叉 RTS&#x2F;CTS）：</span></p></p>
+<pre><code class="hljs">	&lt;p&gt;&lt;span style=&quot;background-color:#f9eda6&quot;&gt;text&lt;/span&gt;&lt;/p&gt;
+
+	&lt;pre&gt;
+</code></pre>
+<p><span style="background-color:#f9eda6">DTE1_RTS &rarr; DTE2_CTS<br>DTE1_CTS &larr; DTE2_RTS  </span></pre><br>		</li><br>	</ul><br>	</li></p>
+</ol>
+
+<p style="background-color:transparent"><span style="background-color:#f9eda6">应用场景</span></p>
+
+<ul>
+	<li>
+	<p><span style="background-color:#f9eda6">高速串口通信（&ge;115200 bps）</span></p>
+	</li>
+	<li>
+	<p><span style="background-color:#f9eda6">大数据量传输（如文件传输、视频流控制）</span></p>
+	</li>
+	<li>
+	<p><span style="background-color:#f9eda6">嵌入式设备与模组通信（如4G模块、GPS模块）</span></p>
+	</li>
+</ul>
+
+<blockquote>
+<p><strong><span style="background-color:#f9eda6">注意</span></strong><span style="background-color:#f9eda6">：若无需流控，仅&nbsp;</span><strong><span style="background-color:#f9eda6">TX/RX 2根线</span></strong><span style="background-color:#f9eda6">即可工作；启用硬件流控需&nbsp;</span><strong><span style="background-color:#f9eda6">4根线</span></strong><span style="background-color:#f9eda6">（TX+RX+RTS+CTS）。RTS/CTS 是硬件流控的核心，可显著提升通信可靠性。</span></p>
+</blockquote>
+
+<hr />
+<p>&nbsp;（注：因为蓝牙产品会用到可靠的硬件流控，所以这里补充说明了一下。）</p>
+
+<h1 style="background-color:transparent">七、UART 的优缺点与典型应用</h1>
+
+<p><strong>优点</strong>：</p>
+
+<ul>
+	<li>硬件简单：仅需 2-4 根线（TX、RX、RTS、CTS），布线成本低；</li>
+	<li>灵活性高：支持不同波特率、数据位配置，适配多种设备；</li>
+	<li>全双工：可同时收发，适合交互场景。</li>
+</ul>
+
+<p><strong>缺点</strong>：</p>
+
+<ul>
+	<li>速率有限：最高通常不超过 10Mbps（远低于 USB、SPI）；</li>
+	<li>抗干扰弱：TTL 电平信号易受电磁干扰，传输距离短（通常数米）；</li>
+	<li>无时钟线：波特率误差超过 3% 可能导致数据错误（需严格匹配）。</li>
+</ul>
+
+<p><strong>典型应用</strong>：</p>
+
+<ul>
+	<li>嵌入式调试（通过 UART 打印日志）；</li>
+	<li>传感器数据传输（如温湿度传感器&rarr;MCU）；</li>
+	<li>蓝牙模块交互（如 MCU 通过 UART 控制蓝牙模块发送 AT 指令）；</li>
+	<li>低速外设通信（如 GPS 模块、RFID 读卡器）。</li>
+</ul>
+
+<h1 style="background-color:transparent">八、基础串口小结</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 作为一种通用异步串行通信协议，通过简洁的硬件设计和灵活的配置，成为嵌入式系统中低速数据传输的首选方案。其核心是通过固定帧结构（起始位、数据位、停止位）实现异步同步，通过波特率控制传输速度，通过流控机制保障可靠性。理解 UART 的工作原理，是掌握蓝牙模块交互、传感器通信等场景的基础。</p>
+
+<h1>九、补充说明</h1>
+
+<h2>9.1 RS485</h2>
+
+<p>请参考：<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="【STM32】基于标准库和HAL库分别实现RS485通信方式-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_73648789/article/details/149055140?spm=1001.2014.3001.5502" title="【STM32】基于标准库和HAL库分别实现RS485通信方式-CSDN博客">【STM32】基于标准库和HAL库分别实现RS485通信方式-CSDN博客</a></p>
+
+<h2 style="background-color:transparent">9.2 RS232</h2>
+
+<h3 style="background-color:transparent">9.2.1 RS232：UART 物理层的标准化升级</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS232（全称 EIA-RS-232）是串行通信领域首个标准化接口规范，由美国电子工业协会（EIA）于 1970 年联合设备厂商制定，旨在解决基础 UART 在实际应用中的兼容性问题。它并非替代 UART 的协议，而是对 UART<strong>物理层</strong>（接口形式、电平标准、抗干扰设计）的规范化定义，让不同厂商的设备能通过统一标准实现串行通信。</p>
+
+<h3 style="background-color:transparent">9.2.2&nbsp;RS232 的核心价值：解决 UART 的三大痛点</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;基础 UART 虽能实现串行通信，但存在接口混乱、电平不统一、抗干扰弱等问题，RS232 针对性地给出了解决方案：</p>
+
+<h4 style="background-color:transparent">（1）接口标准化：统一硬件连接形式</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 仅定义了信号名称（如 TX、RX），但未规定物理接口（如连接器类型、引脚排列），导致不同设备间难以直接对接。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS232 通过<strong>DB9 连接器</strong>（9 针插头 / 插座）统一了接口标准，所有遵循 RS232 的设备均采用相同的引脚定义和机械尺寸，彻底解决了 &ldquo;线不对口&rdquo; 的兼容问题。&nbsp;</p>
+
+<h4>（2）电平规范化：提升抗干扰能力</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 采用 TTL 电平（通常 3.3V 或 5V，逻辑 1 为高电平、逻辑 0 为低电平），但未统一电平范围，且低电压信号易受电磁干扰（如工业环境中的电机噪声）。<br />
+RS232 重新定义了电平标准：</p>
+
+<ul>
+	<li>逻辑 &ldquo;1&rdquo;（MARK）：-5V~-15V（负电压）；</li>
+	<li>逻辑 &ldquo;0&rdquo;（SPACE）：+5V~+15V（正电压）；</li>
+	<li>噪声容限：&plusmn;2V（即接收器会将 + 3V 以下视为逻辑 1，-3V 以上视为逻辑 0）。</li>
+</ul>
+
+<p>通过正负电压差（最小 10V）传输信号，RS232 能有效抵抗环境噪声，大幅提升通信稳定性。</p>
+
+<h4 style="background-color:transparent">（3）延长传输距离：突破 UART 的短距限制</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 的 TTL 电平信号传输距离通常仅数米（受噪声干扰限制），而 RS232 通过高电压信号和抗干扰设计，在无中继的情况下可稳定传输<strong>30 米</strong>；若配合光电隔离（20mA 电流环）或 Modem（调制解调器），传输距离可延伸至千米级甚至更远（如通过电话线、光纤传输）。</p>
+
+<h3 style="background-color:transparent">9.2.3 RS232 的核心特性：协议层兼容，物理层优化</h3>
+
+<ul>
+	<li><strong>与 UART 的关系</strong>：RS232 不改变 UART 的协议逻辑（如数据帧格式、波特率、软件编程接口），仅优化物理层。因此，RS232 通信的软件实现（如串口初始化、数据收发代码）与 UART 完全一致，开发者无需修改程序即可适配。</li>
+	<li><strong>通信模式</strong>：仅支持<strong>一对一通信</strong>（点到点），无法像 RS485 那样实现多设备组网。</li>
+</ul>
+
+<h3 style="background-color:transparent">9.2.4 DB9 接口：RS232 的 &ldquo;标准化连接器&rdquo;</h3>
+
+<p><img alt="" height="864" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/429134a2046d4aff97fac77dc9087d70.png" srcset="/img/loading.gif" lazyload width="1135" /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS232 最常用的接口是<strong>DB9</strong>（9 针），其引脚定义严格规范了信号功能和传输方向，以下是各引脚的核心说明（蓝牙场景重点关注标红部分）：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>引脚编号</th>
+			<th>定义（全称）</th>
+			<th>传输方向</th>
+			<th>功能说明</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>1</td>
+			<td>DCD（Data Carrier Detect）</td>
+			<td>&larr;</td>
+			<td>数据载波检测：DCE（如 Modem）通知 DTE（如计算机）&ldquo;已检测到载波信号&rdquo;</td>
+		</tr>
+		<tr>
+			<td>2</td>
+			<td>RXD（Receive Data）</td>
+			<td>&larr;</td>
+			<td>接收数据：DTE 从 DCE 接收串行数据（对应 UART 的 RX 线）</td>
+		</tr>
+		<tr>
+			<td>3</td>
+			<td>TXD（Transmit Data）</td>
+			<td>&rarr;</td>
+			<td>发送数据：DTE 向 DCE 发送串行数据（对应 UART 的 TX 线）</td>
+		</tr>
+		<tr>
+			<td>4</td>
+			<td>DTR（Data Terminal Ready）</td>
+			<td>&rarr;</td>
+			<td>终端就绪：DTE 通知 DCE &ldquo;自身已准备好接收数据&rdquo;</td>
+		</tr>
+		<tr>
+			<td>5</td>
+			<td>GND（Ground）</td>
+			<td>&mdash;</td>
+			<td>信号地：为所有信号提供参考电位（必须连接，否则电平无法正确识别）</td>
+		</tr>
+		<tr>
+			<td>6</td>
+			<td>DSR（Data Set Ready）</td>
+			<td>&larr;</td>
+			<td>设备就绪：DCE 通知 DTE &ldquo;自身已准备好通信&rdquo;（如 Modem 已拨号成功）</td>
+		</tr>
+		<tr>
+			<td>7</td>
+			<td>RTS（Request To Send）</td>
+			<td>&rarr;</td>
+			<td>请求发送：DTE 向 DCE 请求发送数据（硬件流控信号，对应 UART 的 RTS）</td>
+		</tr>
+		<tr>
+			<td>8</td>
+			<td>CTS（Clear To Send）</td>
+			<td>&larr;</td>
+			<td>允许发送：DCE 通知 DTE &ldquo;可开始发送数据&rdquo;（硬件流控信号，对应 UART 的 CTS）</td>
+		</tr>
+		<tr>
+			<td>9</td>
+			<td>RI（Ring Indicator）</td>
+			<td>&larr;</td>
+			<td>振铃指示：DCE 通知 DTE &ldquo;检测到外部呼叫&rdquo;（如 Modem 接到电话振铃）</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><strong>蓝牙场景的简化应用</strong>：<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙模块与上位机（如 PC、MCU）通过 RS232 通信时，无需使用全部引脚，核心只需连接 4 根线：</p>
+
+<ul>
+	<li>TXD（3 脚）：蓝牙模块&rarr;上位机（发送数据）；</li>
+	<li>RXD（2 脚）：上位机&rarr;蓝牙模块（接收数据）；</li>
+	<li>RTS（7 脚）+ CTS（8 脚）：硬件流控（可选，高速通信时必接）；</li>
+	<li>GND（5 脚）：信号地（必须连接，否则电平紊乱）。</li>
+</ul>
+
+<h3 style="background-color:transparent">9.2.5 硬件设计关键：TTL 与 RS232 的电平转换</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 设备（如蓝牙模块、MCU）通常输出 TTL 电平（3.3V/5V），而 RS232 设备（如 PC 的 DB9 串口）使用 &plusmn;15V 电平，二者无法直接连接，必须通过<strong>电平转换芯片</strong>实现信号转换。</p>
+
+<ul>
+	<li><strong>典型转换芯片</strong>：MAX232、SP3232 等（支持 3.3V 或 5V 供电）；</li>
+	<li><strong>转换原理</strong>：将 TTL 的高电平（3.3V/5V）转为 RS232 的 + 5V~+15V（逻辑 0），将 TTL 的低电平（0V）转为 RS232 的 - 5V~-15V（逻辑 1）；</li>
+	<li><strong>电路架构</strong>：UART 设备 &rarr; 转换芯片 &rarr; DB9 接口 &rarr; 另一端 RS232 设备（如 PC）。</li>
+</ul>
+
+<h3 style="background-color:transparent">9.2.6 RS232 的应用与局限性</h3>
+
+<h4 style="background-color:transparent">（1）典型应用场景</h4>
+
+<ul>
+	<li>传统计算机与外设通信（如老式 PC 的串口与蓝牙模块调试）；</li>
+	<li>工业设备本地调试（如 PLC 通过 RS232 连接蓝牙网关）；</li>
+	<li>低速数据传输（如 POS 机、考勤机与主机通信）。</li>
+</ul>
+
+<h4>（2）局限性</h4>
+
+<ul>
+	<li>仅支持一对一通信，无法组网；</li>
+	<li>速率较低（通常&le;115200 bps，高速时抗干扰能力下降）；</li>
+	<li>电缆成本高（需屏蔽线减少干扰）；</li>
+	<li>逐渐被 USB、以太网等替代，但在工业和传统设备中仍广泛存在。</li>
+</ul>
+
+<h3 style="background-color:transparent">9.2.7 RS232 小结</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RS232 是 UART 物理层的标准化升级，通过统一接口（DB9）、规范电平（&plusmn;15V）、增强抗干扰能力，解决了早期串行通信的兼容性和可靠性问题。它不改变 UART 的协议逻辑，却大幅扩展了串行通信的应用场景（如中短距离设备互联）。在蓝牙领域，RS232 常用于模块与上位机的调试或近距离数据传输，是理解更复杂串行标准（如 RS485）的基础。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">蓝牙通信协议学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E4%B8%B2%E5%8F%A3/" class="print-no-link">#串口</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信</div>
+      <div>http://example.com/2025/08/03/【Bluetooth】【Transport层篇】第三章 基础的串口（UART）通信/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月3日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%9B%9B%E7%AB%A0%20%E5%9F%BA%E4%BA%8E%E5%9F%BA%E7%A1%80UART%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20UART%20H4%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第四章 基于基础UART的蓝牙硬件发送协议 UART H4 Transport详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第四章 基于基础UART的蓝牙硬件发送协议 UART H4 Transport详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/03/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%BA%8C%E7%AB%A0%20%E5%85%B3%E4%BA%8E%E8%93%9D%E7%89%99%E5%8D%8F%E8%AE%AE%E6%A0%88%E6%9E%B6%E6%9E%84%E4%B8%8E%E5%85%B6%E7%A1%AC%E4%BB%B6%E6%96%B9%E6%A1%88%E6%9E%B6%E6%9E%84%E5%A4%A7%E8%87%B4%E6%A6%82%E8%BF%B0/" title="【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述">
+                        <span class="hidden-mobile">【Bluetooth】【基础篇】第二章 关于蓝牙协议栈架构与其硬件方案架构大致概述</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,1411 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  RT-Thread官网https:&#x2F;&#x2F;www.rt-thread.org&#x2F;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，市面上存在多种的嵌入式实时操作系统（RTOS），其中的RT-Thread 是由中国团队开发的开源嵌入式实时操作系统（RTOS），诞生于 2006 年，具有高可靠性、轻量级、易移植等特点，广泛应用于工业控制、消费电子、物联">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动）">
+<meta property="og:url" content="http://example.com/2025/06/30/%E3%80%90RT-Thread%E3%80%91%E5%9F%BA%E4%BA%8ESTM32+HAL%E5%BA%93%E7%9A%84RT-Thread%E7%A7%BB%E6%A4%8D%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  RT-Thread官网https:&#x2F;&#x2F;www.rt-thread.org&#x2F;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，市面上存在多种的嵌入式实时操作系统（RTOS），其中的RT-Thread 是由中国团队开发的开源嵌入式实时操作系统（RTOS），诞生于 2006 年，具有高可靠性、轻量级、易移植等特点，广泛应用于工业控制、消费电子、物联">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ffe1e39ada6f41efa58bcea553de6b02.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/36b058b650c542b6ad0869a046dcbe36.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/654ed926269948e093f251e57a9bdad2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2004fcd17ad246479bc44620ebfa433b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c8af90fe82a34edfb827cf7796a30a56.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3c575ac072f842edae12a9f73633f0ca.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9486c2fcfe474674a702bb6adc2a72fe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/43cfa2d945824210ace15ffa88c379fc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/01371e0ed9a34681aed04e04542221d6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3d86e5633cf14ac989a609267316c544.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/614bff94c1264b93a70c3a682e4c489f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/744c3fae39ff40198346c031ad3fa4b0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9a33e21f4d504d2197fae9c657a187be.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48a4c31743af4ecc8e54b7a5cc7c9ce5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/09fe6ecd5cfc4e5cbc64cb2a8dfc4c5d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c791c2a46325491fb145e4956946221c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1a2675e08c91444393f3439ff95e7f08.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d5aa491d89764a16b6b4c7cf9e97860b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a765d672aead41c3ad74e4e9a8b57953.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8949726455634aecb9a19330a3e194b4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bb5704e6a3f842c298bedb18b9152913.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2c5c0e8417a94347b24410b16d58b154.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/28bb3dc6757e49d78273cdb62a68560f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48e32cd9f6454b4eb6ae20e5f0525c91.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/858301fe746e4536a309708eedb9797d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ddeadef2d7204b46b887c3a930022a1d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e29899cd28c49558331d4de2cd72ca6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0847b717d6e04bd298d02d41b3b6bc68.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20d8c979b8ec4c15849b22a776a37279.gif">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="article:published_time" content="2025-06-30T09:20:55.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="RT-Thread 嵌入式 单片机 stm32">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+  
+  
+  
+  <title>【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动） - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动）"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-30 17:20" pubdate>
+          2025年6月30日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.9k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          17 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动）</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1><strong>一、简介</strong></h1>
+
+<p><a class="link-info has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="RT-Thread官网" target="_blank" rel="noopener" href="https://www.rt-thread.org/" title="RT-Thread官网"><span class="link-card-box" contenteditable="false"><span class="link-title">RT-Thread官网</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://www.rt-thread.org/</span></span></a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;现在，市面上存在多种的嵌入式实时操作系统（RTOS），其中的RT-Thread 是由中国团队开发的开源嵌入式实时操作系统（RTOS），诞生于 2006 年，具有高可靠性、轻量级、易移植等特点，广泛应用于工业控制、消费电子、物联网等领域。</p>
+
+<p>其特点：</p>
+
+<h3>1.&nbsp;<strong>开源与社区支持</strong></h3>
+
+<ul>
+	<li><strong>许可证</strong>：遵循 Apache 2.0 开源许可证，商业使用无需付费。</li>
+	<li><strong>社区活跃</strong>：国内最大的 RTOS 社区之一，提供丰富的文档、教程和示例代码。</li>
+	<li><strong>企业支持</strong>：得到华为、腾讯、ST 等厂商的支持，生态完善。</li>
+</ul>
+
+<h3>2.&nbsp;<strong>核心特性</strong></h3>
+
+<ul>
+	<li><strong>高可靠性</strong>：支持线程优先级、抢占式调度，适用于对实时性要求高的场景。</li>
+	<li><strong>资源占用小</strong>：内核最小仅需 3KB ROM、1.2KB RAM，可裁剪性强。</li>
+	<li><strong>组件丰富</strong>：
+	<ul>
+		<li><strong>设备驱动</strong>：支持 UART、SPI、I2C、USB 等常见外设。</li>
+		<li><strong>文件系统</strong>：支持 FatFS、LittleFS 等。</li>
+		<li><strong>网络协议栈</strong>：支持 TCP/IP、MQTT、HTTP 等。</li>
+		<li><strong>工具链</strong>：提供图形化配置工具 RT-Thread Studio。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3>3.&nbsp;<strong>架构与生态</strong></h3>
+
+<ul>
+	<li><strong>组件化设计</strong>：内核、设备驱动、中间件分离，方便集成第三方库。</li>
+	<li><strong>软件包管理</strong>：通过<code>pkgs</code>工具快速集成蓝牙、GUI、AI 等功能模块。</li>
+	<li><strong>支持多架构</strong>：ARM Cortex-M/R/A、MIPS、RISC-V 等，适配超 200 款开发板。</li>
+</ul>
+
+<h3>4.&nbsp;<strong>开发工具</strong></h3>
+
+<ul>
+	<li><strong>RT-Thread Studio</strong>：基于 Eclipse 的一站式开发环境，提供图形化配置、调试等功能。</li>
+	<li><strong>Env 工具</strong>：基于命令行的配置工具，适合 Linux 用户。</li>
+	<li><strong>调试支持</strong>：集成 GDB、OpenOCD、PyOCD 等调试工具。</li>
+</ul>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; 在这里我将说明为什么会推荐RT-Thread？因为该RTOS经过长久的发展至现在已经拥有了非常丰富的系统生态，并且拥有大量的用户支持。同时，RT-Thread拥有标准版、nano版、smart版等多个版本可对应不同的需求进行应用并且裁剪的自由度很大。尤其是RT-Thread拥有着极其丰富的组件、各种各样的软件包和对应各大厂商的开发板的BSP（板级支持包）。同时，已经有着专业的集成开发环境RT-Thread Studio极大地方便了用户的使用，我后续会介绍RT-Thread Studio。</p>
+
+<p>获取RT-Thread nano 源码：</p>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="rt-thread.org/download.html" target="_blank" rel="noopener" href="https://www.rt-thread.org/download.html" title="rt-thread.org/download.html"><span class="link-card-box" contenteditable="false"><span class="link-title">rt-thread.org/download.html</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://www.rt-thread.org/download.html</span></span></a></p>
+
+<p><img alt="" height="901" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ffe1e39ada6f41efa58bcea553de6b02.png" srcset="/img/loading.gif" lazyload width="1910" /></p>
+
+<h1><strong>二、创建裸机项目示例</strong></h1>
+
+<h2><strong>1.打开STM32CubeMX进行初始化3个GPIO用于点灯</strong></h2>
+
+<p>RCC</p>
+
+<p><img alt="" height="1012" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/36b058b650c542b6ad0869a046dcbe36.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>SWD</p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/654ed926269948e093f251e57a9bdad2.png" srcset="/img/loading.gif" lazyload width="1918" /></p>
+
+<p>GPIO</p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2004fcd17ad246479bc44620ebfa433b.png" srcset="/img/loading.gif" lazyload width="1915" /></p>
+
+<p>注：因为后面没有使用finsh组件就可不用开启串口。</p>
+
+<h2><strong>2.时钟树配置</strong></h2>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c8af90fe82a34edfb827cf7796a30a56.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2><strong>3.工程配置</strong></h2>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3c575ac072f842edae12a9f73633f0ca.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9486c2fcfe474674a702bb6adc2a72fe.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1><strong>三、RT-Thread移植</strong></h1>
+
+<h2>1.将解压后地RT-Tread源码复制到工程文件夹目录下</h2>
+
+<p><img alt="" height="158" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/43cfa2d945824210ace15ffa88c379fc.png" srcset="/img/loading.gif" lazyload width="845" /></p>
+
+<p>再新建一个文件夹RT_Thread</p>
+
+<p><img alt="" height="388" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/01371e0ed9a34681aed04e04542221d6.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
+
+<h2>2.将\STM32_RT_Thread\rt-thread-3.1.5\bsp\stm32\stm32f103-fire-arbitrary下的rtconfig.h复制到RT_Thread下的文件夹config</h2>
+
+<p><img alt="" height="227" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3d86e5633cf14ac989a609267316c544.png" srcset="/img/loading.gif" lazyload width="1138" /></p>
+
+<h2>3.将\STM32_RT_Thread\rt-thread-3.1.5\bsp\stm32\stm32f103-fire-arbitrary\board下的board.c、board.h复制到RT_Thread下的文件夹board</h2>
+
+<p><img alt="" height="316" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/614bff94c1264b93a70c3a682e4c489f.png" srcset="/img/loading.gif" lazyload width="1143" /></p>
+
+<h2>4.根据自己的实际硬件平台具有的内核架构选择，将\STM32_RT_Thread\rt-thread-3.1.5\libcpu\arm\cortex-m3下的context_rvds.S、cpuport.c复制到\STM32_RT_Thread\RT_Thread\libcpu\arm\cortex-m3</h2>
+
+<p><img alt="" height="267" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/744c3fae39ff40198346c031ad3fa4b0.png" srcset="/img/loading.gif" lazyload width="1133" /></p>
+
+<h2>5.在KEIL里新建4个组别RT_Thread/config，RT_Thread/libcpu，RT_Thread/src，RT_Thread/board</h2>
+
+<p><img alt="" height="578" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9a33e21f4d504d2197fae9c657a187be.png" srcset="/img/loading.gif" lazyload width="768" /></p>
+
+<h2>6.将\STM32_RT_Thread\rt-thread-3.1.5下的include文件夹整个复制到\STM32_RT_Thread\RT_Thread下</h2>
+
+<p><img alt="" height="341" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48a4c31743af4ecc8e54b7a5cc7c9ce5.png" srcset="/img/loading.gif" lazyload width="1145" /></p>
+
+<h2>7.将\STM32_RT_Thread\rt-thread-3.1.5的components整个复制到\STM32_RT_Thread\RT_Thread下</h2>
+
+<p><img alt="" height="417" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/09fe6ecd5cfc4e5cbc64cb2a8dfc4c5d.png" srcset="/img/loading.gif" lazyload width="1155" /></p>
+
+<p>由于\STM32_RT_Thread\RT_Thread\components下的finsh需要注册串口设备，我们这里只移植精简版就把finsh组件删去</p>
+
+<p><img alt="" height="659" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c791c2a46325491fb145e4956946221c.png" srcset="/img/loading.gif" lazyload width="1165" /></p>
+
+<h2>8.4个组对应添加文件</h2>
+
+<p><img alt="" height="574" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1a2675e08c91444393f3439ff95e7f08.png" srcset="/img/loading.gif" lazyload width="765" /></p>
+
+<p><img alt="" height="571" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d5aa491d89764a16b6b4c7cf9e97860b.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<p><img alt="" height="578" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a765d672aead41c3ad74e4e9a8b57953.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<p><img alt="" height="575" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8949726455634aecb9a19330a3e194b4.png" srcset="/img/loading.gif" lazyload width="769" /></p>
+
+<h2>9.添加对应路径</h2>
+
+<p><img alt="" height="581" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bb5704e6a3f842c298bedb18b9152913.png" srcset="/img/loading.gif" lazyload width="771" /></p>
+
+<h2>10.注释掉#define RT_USING_FINSH，因为暂时不会用到finsh组件</h2>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2c5c0e8417a94347b24410b16d58b154.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>11.注释掉board.h的内容</h2>
+
+<p><img alt="" height="894" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/28bb3dc6757e49d78273cdb62a68560f.png" srcset="/img/loading.gif" lazyload width="1918" /></p>
+
+<h2>12.因为有重定义，则注释掉PendSV_Handler，SysTick_Handler，&nbsp;HardFault_Handler</h2>
+
+<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48e32cd9f6454b4eb6ae20e5f0525c91.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="984" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/858301fe746e4536a309708eedb9797d.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
+
+<h2>13.本来RT-Thread已经定义了void SystemClock_Config(void)，这里注释掉board.c的SystemClock_Config，后面将使用CubeMX生成的SystemClock_Config</h2>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ddeadef2d7204b46b887c3a930022a1d.png" srcset="/img/loading.gif" lazyload width="1915" /></p>
+
+<h2>14.编写board.c，board. h</h2>
+
+<p>board.h</p>
+
+<pre>
+<code class="language-cpp">/*
+ * Copyright (c) 2006-2021, RT-Thread Development Team
+ *
+ * SPDX-License-Identifier: Apache-2.0
+ *
+ * Change Logs:
+ * Date           Author       Notes
+ * 2018-11-06     balanceTWK   first version
+ */
+
+#ifndef __BOARD_H__
+#define __BOARD_H__
+
+//#include &lt;rtthread.h&gt;
+//#include &lt;stm32f1xx.h&gt;
+//#include "drv_common.h"
+//#include "drv_gpio.h"
+
+//#ifdef __cplusplus
+//extern "C" {
+//#endif
+
+///* Internal SRAM memory size[Kbytes] &lt;8-64&gt;, Default: 64*/
+//#define STM32_SRAM_SIZE      64
+//#define STM32_SRAM_END       (0x20000000 + STM32_SRAM_SIZE * 1024)
+
+//#define STM32_FLASH_START_ADRESS     ((uint32_t)0x08000000)
+//#define STM32_FLASH_SIZE             (512 * 1024)
+//#define STM32_FLASH_END_ADDRESS      ((uint32_t)(STM32_FLASH_START_ADRESS + STM32_FLASH_SIZE))
+
+//#if defined(__CC_ARM) || defined(__CLANG_ARM)
+//extern int Image$$RW_IRAM1$$ZI$$Limit;
+//#define HEAP_BEGIN      ((void *)&amp;Image$$RW_IRAM1$$ZI$$Limit)
+//#elif __ICCARM__
+//#pragma section="CSTACK"
+//#define HEAP_BEGIN      (__segment_end("CSTACK"))
+//#else
+//extern int __bss_end;
+//#define HEAP_BEGIN      ((void *)&amp;__bss_end)
+//#endif
+
+//#define HEAP_END        STM32_SRAM_END
+
+//void SystemClock_Config(void);
+
+//#ifdef __cplusplus
+//}
+//#endif
+
+
+#include "stm32f1xx_hal.h"
+
+void rt_hw_board_init(void);
+void SysTick_Handler(void);
+
+#endif /* __BOARD_H__ */
+</code></pre>
+
+<p>board.c</p>
+
+<pre>
+<code class="language-cpp">#include "board.h"
+ 
+#include &lt;rthw.h&gt;
+#include &lt;rtthread.h&gt;
+
+#include "main.h"
+#include "gpio.h"
+
+#include "stdio.h"
+
+#if defined(RT_USING_USER_MAIN) &amp;&amp; defined(RT_USING_HEAP)
+/*
+ * Please modify RT_HEAP_SIZE if you enable RT_USING_HEAP
+ * the RT_HEAP_SIZE max value = (sram size - ZI size), 1024 means 1024 bytes
+ */
+#define RT_HEAP_SIZE (15*1024)
+static rt_uint8_t rt_heap[RT_HEAP_SIZE];
+ 
+RT_WEAK void *rt_heap_begin_get(void)
+{
+    return rt_heap;
+}
+ 
+RT_WEAK void *rt_heap_end_get(void)
+{
+    return rt_heap + RT_HEAP_SIZE;
+}
+#endif
+ 
+void rt_os_tick_callback(void)
+{
+    rt_interrupt_enter();
+    
+    rt_tick_increase();
+ 
+    rt_interrupt_leave();
+}
+ 
+/**
+ * This function will initial your board.
+ */
+void rt_hw_board_init(void)
+{
+
+	/* 初始化 SysTick *///这一句是加入的
+	extern void SystemClock_Config(void);
+	SystemClock_Config();
+	//下面放置硬件初始化
+	MX_GPIO_Init();
+	
+	//高电平关闭灯光，初始化关闭便于观察
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_0, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_1, GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_5, GPIO_PIN_SET);
+	
+#ifdef RT_USING_COMPONENTS_INIT
+    rt_components_board_init();
+#endif
+ 
+#if defined(RT_USING_USER_MAIN) &amp;&amp; defined(RT_USING_HEAP)
+    rt_system_heap_init(rt_heap_begin_get(), rt_heap_end_get());
+#endif
+	
+}
+ 
+#ifdef RT_USING_CONSOLE
+ 
+static int uart_init(void)
+{
+//#error "TODO 2: Enable the hardware uart and config baudrate."
+    return 0;
+}
+INIT_BOARD_EXPORT(uart_init);
+ 
+void rt_hw_console_output(const char *str)
+{
+//#error "TODO 3: Output the string 'str' through the uart."
+}
+ 
+#endif
+
+
+
+
+void SysTick_Handler(void)
+{
+    /* 进入中断 */
+    rt_interrupt_enter();
+ 
+    /* 更新时基 */
+    rt_tick_increase();
+ 
+    /* 离开中断 */
+    rt_interrupt_leave();
+}
+
+</code></pre>
+
+<p>&nbsp;在board.c中将进行初始化，且看RT-Thread启动流程。</p>
+
+<p><img alt="" height="618" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e29899cd28c49558331d4de2cd72ca6.png" srcset="/img/loading.gif" lazyload width="1485" /></p>
+
+<h2>15.编写main.c</h2>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+
+#include "board.h"
+#include "rtthread.h"
+
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+/*定义线程控制块*/
+static struct rt_thread led0_thread;
+/* 定义线程控栈时要求 RT_ALIGN_SIZE 个字节对齐 */
+ALIGN(RT_ALIGN_SIZE)
+/* 定义线程栈 */
+static rt_uint8_t rt_led0_thread_stack[1024];
+
+/*定义线程控制块*/
+static struct rt_thread led1_thread;
+/* 定义线程控栈时要求 RT_ALIGN_SIZE 个字节对齐 */
+ALIGN(RT_ALIGN_SIZE)
+/* 定义线程栈 */
+static rt_uint8_t rt_led1_thread_stack[1024];
+
+/*定义线程控制块*/
+static struct rt_thread led2_thread;
+/* 定义线程控栈时要求 RT_ALIGN_SIZE 个字节对齐 */
+ALIGN(RT_ALIGN_SIZE)
+/* 定义线程栈 */
+static rt_uint8_t rt_led2_thread_stack[1024];
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+//声明线程函数
+static void led0_thread_entry(void* parameter);
+static void led1_thread_entry(void* parameter);
+static void led2_thread_entry(void* parameter);
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+	
+	/*
+	* 开发板硬件初始化，RTT 系统初始化已经在 main 函数之前完成，
+	* 即在 component.c 文件中的 rtthread_startup()函数中完成了。
+	* 所以在 main 函数中，只需要创建线程和启动线程即可。
+	*/
+
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+//  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+//  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+//	MX_GPIO_Init();
+  /* USER CODE BEGIN 2 */
+  
+	//初始化线程
+	rt_thread_init(&amp;led0_thread,			/*线程控制块*/
+					"led0",					/*线程名字*/
+					led0_thread_entry,		/*线程入口函数*/
+					RT_NULL,                /*线程入口函数参数*/
+					&amp;rt_led0_thread_stack[0],/*线程栈起始地址*/
+					sizeof(rt_led0_thread_stack),/*线程栈大小*/
+					3,							/*线程的优先级*/
+					20);						/*线程时间片*/
+	//启动线程
+	rt_thread_startup(&amp;led0_thread);
+					
+		rt_thread_init(&amp;led1_thread,			/*线程控制块*/
+					"led1",					/*线程名字*/
+					led1_thread_entry,		/*线程入口函数*/
+					RT_NULL,                /*线程入口函数参数*/
+					&amp;rt_led1_thread_stack[0],/*线程栈起始地址*/
+					sizeof(rt_led1_thread_stack),/*线程栈大小*/
+					3,							/*线程的优先级*/
+					20);						/*线程时间片*/
+	//启动线程
+	rt_thread_startup(&amp;led1_thread);
+
+		rt_thread_init(&amp;led2_thread,			/*线程控制块*/
+					"led2",					/*线程名字*/
+					led2_thread_entry,		/*线程入口函数*/
+					RT_NULL,                /*线程入口函数参数*/
+					&amp;rt_led2_thread_stack[0],/*线程栈起始地址*/
+					sizeof(rt_led2_thread_stack),/*线程栈大小*/
+					3,							/*线程的优先级*/
+					20);						/*线程时间片*/
+	//启动线程
+	rt_thread_startup(&amp;led2_thread);
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+//定义线程函数
+	static void led0_thread_entry(void* parameter)
+	{
+		while(1)
+		{
+			HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_0);
+			rt_thread_delay(400);/* 延时 400 个 tick */
+		}
+	}
+
+	
+//定义线程函数
+	static void led1_thread_entry(void* parameter)
+	{
+		while(1)
+		{
+			HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_1);
+			rt_thread_delay(600);/* 延时 600 个 tick */
+		}
+	}
+
+	
+//定义线程函数
+	static void led2_thread_entry(void* parameter)
+	{
+		while(1)
+		{
+			HAL_GPIO_TogglePin(GPIOB,GPIO_PIN_5);
+			rt_thread_delay(800);/* 延时 800 个 tick */
+		}
+	}
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;至此，纯手动移植完成，后续会讲如何使用KEIL自带源码包移植RT-Thread和RT-Thread Studio的使用。</p>
+
+<p><img alt="" height="992" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0847b717d6e04bd298d02d41b3b6bc68.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h1><strong>四、实验效果</strong></h1>
+
+<p><img alt="" height="500" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20d8c979b8ec4c15849b22a776a37279.gif" srcset="/img/loading.gif" lazyload width="1000" /></p>
+
+<p><strong>移植成功项目示例链接：</strong></p>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Molesidy/RT-Thread: This repository stores the code achievements I obtained during the process of learning RT-Thread." target="_blank" rel="noopener" href="https://github.com/Molesidy/RT-Thread" title="Molesidy/RT-Thread: This repository stores the code achievements I obtained during the process of learning RT-Thread."><span class="link-card-box" contenteditable="false"><span class="link-title">Molesidy/RT-Thread: This repository stores the code achievements I obtained during the process of learning RT-Thread.</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/RT-Thread</span></span></a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/RT-Thread%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">RT-Thread学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/RT-Thread-%E5%B5%8C%E5%85%A5%E5%BC%8F-%E5%8D%95%E7%89%87%E6%9C%BA-stm32/" class="print-no-link">#RT-Thread 嵌入式 单片机 stm32</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动）</div>
+      <div>http://example.com/2025/06/30/【RT-Thread】基于STM32+HAL库的RT-Thread移植（纯手动）/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/01/%E3%80%90RT-Thread%E3%80%91%E5%9F%BA%E4%BA%8ERT-Thread%20Studio%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84RT-Thread%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%A8%8B%E5%BA%8F/" title="【RT-Thread】基于RT-Thread Studio开发环境的RT-Thread多任务程序">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【RT-Thread】基于RT-Thread Studio开发环境的RT-Thread多任务程序</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/06/30/%E3%80%90Git%E3%80%91Sourcetree%E4%B8%8A%E4%BC%A0%E9%A1%B9%E7%9B%AE%E7%9A%84%E8%BF%87%E7%A8%8B%E8%AE%B0%E5%BD%95/" title="【Git】Sourcetree上传项目的过程记录">
+                        <span class="hidden-mobile">【Git】Sourcetree上传项目的过程记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

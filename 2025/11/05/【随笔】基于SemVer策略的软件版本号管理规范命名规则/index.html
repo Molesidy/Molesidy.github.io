@@ -1,0 +1,1186 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、解析企业发布的软件版本号管理规范        一般以v开头  然后便是vA.B.C-D（A：jpegxl B：次版本号 C：修订版本号 D：希腊字母版本号）  也有些时候会是  示例：1.2.3.20251106_beta（主 1：稳定架构；次 2：新增兼容功能；修订 3：Bug 修复；20251106：修改日期；beta：小范围测试阶段）   	 		 			组成部分 			格式规则">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【随笔】基于SemVer策略的软件版本号管理规范命名规则">
+<meta property="og:url" content="http://example.com/2025/11/05/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E5%9F%BA%E4%BA%8ESemVer%E7%AD%96%E7%95%A5%E7%9A%84%E8%BD%AF%E4%BB%B6%E7%89%88%E6%9C%AC%E5%8F%B7%E7%AE%A1%E7%90%86%E8%A7%84%E8%8C%83%E5%91%BD%E5%90%8D%E8%A7%84%E5%88%99/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、解析企业发布的软件版本号管理规范        一般以v开头  然后便是vA.B.C-D（A：jpegxl B：次版本号 C：修订版本号 D：希腊字母版本号）  也有些时候会是  示例：1.2.3.20251106_beta（主 1：稳定架构；次 2：新增兼容功能；修订 3：Bug 修复；20251106：修改日期；beta：小范围测试阶段）   	 		 			组成部分 			格式规则">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3f550b2d6b194735af322b19cca7e17c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/aedf0bf4899441e59c6fdf38ae88b3ab.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/83bd621a13884cdfaa5daeec6e366d65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f4b660ef515c41eaa45aff26abe5b034.png">
+<meta property="article:published_time" content="2025-11-05T15:51:11.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="版本号规范 CICD">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/3f550b2d6b194735af322b19cca7e17c.png">
+  
+  
+  
+  <title>【随笔】基于SemVer策略的软件版本号管理规范命名规则 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【随笔】基于SemVer策略的软件版本号管理规范命名规则"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-11-05 23:51" pubdate>
+          2025年11月5日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.5k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          22 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【随笔】基于SemVer策略的软件版本号管理规范命名规则</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、解析企业发布的软件版本号管理规范</h1>
+
+<p><img alt="" height="155" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3f550b2d6b194735af322b19cca7e17c.png" srcset="/img/loading.gif" lazyload width="392" /></p>
+
+<p><img alt="" height="150" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/aedf0bf4899441e59c6fdf38ae88b3ab.png" srcset="/img/loading.gif" lazyload width="523" /></p>
+
+<p><img alt="" height="155" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/83bd621a13884cdfaa5daeec6e366d65.png" srcset="/img/loading.gif" lazyload width="187" /></p>
+
+<p>一般以v开头</p>
+
+<p>然后便是vA.B.C-D（A：jpegxl B：次版本号 C：修订版本号 D：希腊字母版本号）</p>
+
+<p>也有些时候会是</p>
+
+<p>示例：1.2.3.20251106_beta（主 1：稳定架构；次 2：新增兼容功能；修订 3：Bug 修复；20251106：修改日期；beta：小范围测试阶段）</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>组成部分</th>
+			<th>格式规则</th>
+			<th>约束条件（轻量化落地）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>主版本号</td>
+			<td>非负整数（0/1 起始）</td>
+			<td>无前置零（如 &ldquo;1&rdquo; 而非 &ldquo;01&rdquo;），仅递增，开发者自主决策</td>
+		</tr>
+		<tr>
+			<td>次版本号</td>
+			<td>非负整数</td>
+			<td>无前置零，主版本号变更时归 0，仅递增</td>
+		</tr>
+		<tr>
+			<td>修订版本号</td>
+			<td>非负整数</td>
+			<td>无前置零，次版本号变更时归 0，仅递增</td>
+		</tr>
+		<tr>
+			<td>日期版本号</td>
+			<td>8 位数字（YYYYMMDD）</td>
+			<td>每日修改必更新，单日多次修改仅递增修订号（如 1.2.1&rarr;1.2.2，日期不变）</td>
+		</tr>
+		<tr>
+			<td>希腊字母版本号</td>
+			<td>小写英文（可加数字后缀）</td>
+			<td>标识开发阶段，无需复杂评审，开发者按进度更新（如 beta.1&rarr;beta.2）</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1>二、各版本号变更规则</h1>
+
+<h2>2.1 主版本号（Major）：企业级 &ldquo;突破性变更&rdquo; 标识</h2>
+
+<h4>变更场景（满足任一即可，独立开发者自主判断）</h4>
+
+<ol>
+	<li>软件架构重构（如从单文件脚本改为模块化项目，核心逻辑重写）；</li>
+	<li>API 不兼容变更（如旧版本调用get_data()，新版本改为fetch_data()，需用户改代码）；</li>
+	<li>新增重大功能体系（如个人笔记软件新增 &ldquo;云同步模块&rdquo;，从本地工具升级为云端工具）。</li>
+</ol>
+
+<h4>联动规则：主版本号递增后，次版本号、修订版本号<strong>强制归 0</strong>（如 1.3.2&rarr;2.0.0）。</h4>
+
+<h2>2.2 次版本号（Minor）：企业级 &ldquo;兼容性功能新增&rdquo; 标识</h2>
+
+<h4>变更场景（满足任一即可）</h4>
+
+<ol>
+	<li>新增不影响 API 兼容的功能（如笔记软件增加 &ldquo;Markdown 预览&rdquo; 功能，旧用户无需改操作）；</li>
+	<li>现有功能优化（如搜索速度提升、界面主题切换，不改变核心逻辑）；</li>
+	<li>API 标记 &ldquo;Deprecated&rdquo;（如提示 &ldquo;old_func()将在 2.0 版删除，建议用new_func()&rdquo;，暂不删除旧 API）。</li>
+</ol>
+
+<h4>联动规则：次版本号递增后，修订版本号<strong>强制归 0</strong>（如 1.2.5&rarr;1.3.0）。</h4>
+
+<h2>2.3 修订版本号（Revision）：企业级 &ldquo;Bug 修复与小变动&rdquo; 标识</h2>
+
+<h4>变更场景（满足任一即可，独立开发者灵活判断）</h4>
+
+<ol>
+	<li>修复功能 Bug（如笔记保存失败、导出格式错乱）；</li>
+	<li>非功能性调整（如补充 README 文档、优化代码注释、调整日志打印格式）；</li>
+	<li>轻微体验优化（如按钮位置调整、弹窗提示文案修改，不影响功能使用）。</li>
+</ol>
+
+<h4>联动规则：仅独立递增，不影响主 / 次版本号（如 1.3.0&rarr;1.3.1）。</h4>
+
+<h2>2.4 日期版本号：企业级 &ldquo;时间追溯&rdquo; 核心</h2>
+
+<ul>
+	<li><strong>变更规则</strong>：每日有代码修改（无论功能 / BUG 修复），必须更新为当天日期（如 2025 年 11 月 7 日改为 20251107）；</li>
+</ul>
+
+<ul>
+	<li><strong>责任角色：</strong>独立开发者自行同步，无需报备（适配单人流程）。</li>
+</ul>
+
+<h3>2.5 希腊字母版本号：企业级 &ldquo;开发阶段&rdquo; 透明化</h3>
+
+<p>核心用于向用户 / 合作方清晰传递版本状态，<strong>阶段递进时必更新</strong>，独立开发者无需复杂评审，按实际进度调整：</p>
+
+<table border="1">
+	<tbody>
+		<tr>
+			<td>
+			<p>标识</p>
+			</td>
+			<td>
+			<p>阶段名称</p>
+			</td>
+			<td>
+			<p>企业级场景适配（独立开发者落地）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>alpha</p>
+			</td>
+			<td>
+			<p>内部测试版</p>
+			</td>
+			<td>
+			<p>功能初步实现，仅自己 / 核心测试用户使用（如发给 1-2 个信任的用户帮忙找 Bug），不对外公开（如 0.2.0.20251110_alpha）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>beta</p>
+			</td>
+			<td>
+			<p>小范围测试版</p>
+			</td>
+			<td>
+			<p>消除严重 Bug，功能基本完整，开放给 10-20 个潜在用户测试（如开源项目发 GitHub Release 的 Beta 版）（如 0.2.1.20251115_beta.2）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>rc</p>
+			</td>
+			<td>
+			<p>候选发布版</p>
+			</td>
+			<td>
+			<p>功能冻结（不再加新功能），仅修复测试反馈的 Bug，接近正式版（如客户定制软件的 &ldquo;最终确认版&rdquo;）（如 1.0.0.20251118_rc.1）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>release</p>
+			</td>
+			<td>
+			<p>正式交付版</p>
+			</td>
+			<td>
+			<p>经多轮测试无关键 Bug，可正式交付用户 / 上架平台（如上传应用商店、给客户最终版本），也可用企业级 &ldquo;GA&rdquo; 替代（如 1.0.0.20251120_GA）</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1>三、扩展版本标识</h1>
+
+<p>保留企业级扩展逻辑，仅筛选独立开发者常用标识，格式：核心版本号_扩展标识：</p>
+
+<table border="1">
+	<tbody>
+		<tr>
+			<td>
+			<p>扩展标识</p>
+			</td>
+			<td>
+			<p>含义</p>
+			</td>
+			<td>
+			<p>企业级场景适配（独立开发者用例）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>dev</p>
+			</td>
+			<td>
+			<p>开发快照版</p>
+			</td>
+			<td>
+			<p>用于自己记录开发进度（如每日下班前提交的版本，标记1.0.1.dev3.20251107），避免混乱</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>hotfix</p>
+			</td>
+			<td>
+			<p>紧急修复版</p>
+			</td>
+			<td>
+			<p>正式版交付后发现重大 Bug（如客户反馈 &ldquo;无法登录&rdquo;），紧急修复的版本（如 1.0.0.hotfix1.20251122）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>Trial</p>
+
+<pre><code class="hljs">		&lt;p&gt;&lt;/p&gt;
+		&lt;/td&gt;
+		&lt;td&gt;
+		&lt;p&gt;试用版&lt;/p&gt;
+		&lt;/td&gt;
+		&lt;td&gt;
+		&lt;p&gt;给潜在客户短期试用（如开放 7 天全功能试用，标记1.0.0.20251120_Trial），便于转化付费用户&lt;/p&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+	&lt;tr&gt;
+		&lt;td&gt;
+		&lt;p&gt;Lite/Pro&lt;/p&gt;
+		&lt;/td&gt;
+		&lt;td&gt;
+		&lt;p&gt;精简版 / 专业版&lt;/p&gt;
+		&lt;/td&gt;
+		&lt;td&gt;
+		&lt;p&gt;多版本运营（如工具软件分 &amp;ldquo;Lite 版（免费，限 3 个项目）&amp;rdquo; 和 &amp;ldquo;Pro 版（付费，无限制）&amp;rdquo;，标记1.0.0.20251120_Lite）&lt;/p&gt;
+		&lt;/td&gt;
+	&lt;/tr&gt;
+&lt;/tbody&gt;
+</code></pre>
+</table>
+
+<h1>四、企业级特殊规则（独立开发者必遵守）</h1>
+
+<p><strong>初始阶段标识</strong>：主版本号为 &ldquo;0&rdquo;（如 0.x.x.x）时，表示软件处于原型验证期（企业级 &ldquo;MVP 阶段&rdquo;），API 不稳定，适合快速试错（如 0.1.0.20251106_alpha）；</p>
+
+<p><strong>版本不可回溯</strong>：版本一经发布（如上传 GitHub、发给用户），不得修改内容；需调整时必须发新版本（如 1.0.0_release 有 Bug，发 1.0.1_release），符合企业级 &ldquo;可追溯&rdquo; 要求；</p>
+
+<p><strong>无前置零</strong>：主 / 次 / 修订版本号不得出现 &ldquo;01&rdquo;&ldquo;002&rdquo;（如 &ldquo;1.02.3&rdquo; 错误，应为 &ldquo;1.2.3&rdquo;），符合企业级格式规范；</p>
+
+<p><strong>排序逻辑</strong>：企业级优先级规则（如 1.0.0_beta &lt; 1.0.0_release；beta.1 &lt; beta.2），确保用户 / 平台识别版本顺序。</p>
+
+<h1>五、企业级版本管理（独立开发者轻量化落地）</h1>
+
+<p>无需复杂工具，用基础工具实现企业级 &ldquo;可追溯&rdquo;：</p>
+
+<p><strong>版本记录</strong>：维护简易<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="CHANGELOG.md" target="_blank" rel="noopener" href="http://CHANGELOG.md" title="CHANGELOG.md">CHANGELOG.md</a>，记录核心信息（示例如下），替代企业级复杂文档：</p>
+
+<p><code>## 1.0.0.20251120_release</code></p>
+
+<p><code>- 新增：云同步功能（兼容旧版本数据）</code></p>
+
+<p><code>- 修复：导出Excel格式错乱Bug</code></p>
+
+<p><code>- 负责人：XXX（独立开发者姓名）</code></p>
+
+<p><code>- 下载地址：[GitHub Release链接]</code></p>
+
+<p><strong>Git 关联</strong>：</p>
+
+<ul>
+	<li>提交代码时备注版本（如 &ldquo;[V1.0.1] 修复登录 Bug&rdquo;）；</li>
+	<li>发布版本时打 Tag（如git tag V1.0.0.20251120_release），便于回溯历史版本；</li>
+</ul>
+
+<ol>
+	<li><strong>文档同步</strong>：需求文档（如需求<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="_V1.0.0.md" target="_blank" rel="noopener" href="http://_V1.0.0.md" title="_V1.0.0.md">_V1.0.0.md</a>）、使用手册（如手册_V1.0.0.pdf）标注对应版本，避免用户拿到 &ldquo;旧文档配新版本&rdquo;；</li>
+	<li><strong>归档管理</strong>：正式版（release/GA）压缩包命名含版本（如工具_V1.0.0_release_20251120.zip），存放在 &ldquo;版本归档&rdquo; 文件夹，避免混乱。</li>
+</ol>
+
+<h1>六、独立开发者常见场景示例（企业级规范落地）</h1>
+
+<table border="1">
+	<tbody>
+		<tr>
+			<td>
+			<p>场景描述</p>
+			</td>
+			<td>
+			<p>版本号命名</p>
+			</td>
+			<td>
+			<p>变更说明（企业级逻辑 + 独立操作）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>开发个人笔记软件（原型期）</p>
+			</td>
+			<td>
+			<p>0.1.0.20251106_alpha</p>
+			</td>
+			<td>
+			<p>主 0（原型），次 1（首版核心功能：本地笔记），alpha（自己测试）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>新增 &ldquo;Markdown 编辑&rdquo; 功能</p>
+			</td>
+			<td>
+			<p>0.2.0.20251110_alpha</p>
+			</td>
+			<td>
+			<p>次版本 + 1（兼容新增），修订归 0，继续内部测试</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>修复 &ldquo;笔记保存闪退&rdquo; Bug</p>
+			</td>
+			<td>
+			<p>0.2.1.20251112_beta</p>
+			</td>
+			<td>
+			<p>修订 + 1，日期更新，升级为 beta（发给 5 个用户小范围测试）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>功能冻结，修复测试反馈 Bug</p>
+			</td>
+			<td>
+			<p>1.0.0.20251118_rc.1</p>
+			</td>
+			<td>
+			<p>主版本升 1（正式阶段），次 / 修订归 0，rc 版（给客户确认最终版）</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>正式上架应用商店</p>
+			</td>
+			<td>
+			<p>1.0.0.20251120_release</p>
+			</td>
+			<td>
+			<p>希腊字母更改为 release，打 Git Tag，归档安装包</p>
+			</td>
+		</tr>
+		<tr>
+			<td>
+			<p>紧急修复 &ldquo;云同步失败&rdquo; Bug</p>
+			</td>
+			<td>
+			<p>1.0.1.20251122_hotfix.1</p>
+			</td>
+			<td>
+			<p>修订 + 1，加 hotfix 标识，紧急发给用户修复</p>
+			</td>
+		</tr>
+	</tbody>
+</table>
+
+<h1>七、独立开发者工具适配建议（降低企业级规范落地成本）</h1>
+
+<ul>
+	<li><strong>版本校验</strong>：用 VS Code 插件 &ldquo;SemVer Checker&rdquo; 自动校验版本格式（避免格式错误）；</li>
+</ul>
+
+<ul>
+	<li><strong>提交规范</strong>：用 &ldquo;Commitizen&rdquo; 插件生成标准化提交信息（如fix: 修复云同步Bug），便于后续追溯；</li>
+</ul>
+
+<ul>
+	<li><strong>Tag 管理</strong>：用 Git Desktop 可视化管理版本 Tag（无需记命令，点击即可打 Tag）；</li>
+</ul>
+
+<ul>
+	<li><strong>日志生成</strong>：用 &ldquo;standard-version&rdquo; 工具自动生成<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="CHANGELOG.md" target="_blank" rel="noopener" href="http://CHANGELOG.md" title="CHANGELOG.md">CHANGELOG.md</a>（输入命令即可，无需手动写日志）。</li>
+</ul>
+
+<h1>八、总结</h1>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;在进行个人软件开发时，一般建议使用</p>
+
+<p>（1）Software_v1.1.0.exe</p>
+
+<p>（2）Software_v1.1.0.20251010.exe</p>
+
+<p>（3）Software-1.1.0.exe</p>
+
+<p>（4）Software-1.1.0-运行平台.exe或者Software-运行平台-1.1.0.exe</p>
+
+<p>（5）Software-1.1.0-x64-Release.exe</p>
+
+<p>（6）Software-1.1.0-beta-build003.exe</p>
+
+<p>等等</p>
+
+<p>基本上现在的规范都基于SemVer策略</p>
+
+<p>笔者一般使用</p>
+
+<p>（1）Software-i386/i686/x86_64-windows/linux-1.1.1-release.exe</p>
+
+<p>（2）Software-armv7/aarch64-linux-1.1.1-release</p>
+
+<p>然后，根据实际情况可能做些小删改进行版本号控制</p>
+
+<p>带不带日期根据自己的需求，有时日期能够帮助我们更好的在软件出错是进行回滚和溯源。</p>
+
+<p>记得在git提交时，打上tag</p>
+
+<p>实际上每次进行版本更新不止版本号改变，提交后时，一定要注意注释进行了什么类型的改动，养成良好的软件管理习惯。(细节上的规定根据实际情况而定)</p>
+
+<p>这将会帮助你在进行CI/CD进阶开发中，更好的形成企业级/产品级项目开发规范。（CI/CD包含了一整套的规范流程）</p>
+
+<p><img alt="" height="817" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f4b660ef515c41eaa45aff26abe5b034.png" srcset="/img/loading.gif" lazyload width="793" /></p>
+
+<pre>
+<code class="language-cpp">fix(tab): [# 30 36] fix RTC init
+
+del(tab): [# 30 36] del RTC init</code></pre>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E5%85%B6%E4%BB%96-%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">其他-学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E7%89%88%E6%9C%AC%E5%8F%B7%E8%A7%84%E8%8C%83-CICD/" class="print-no-link">#版本号规范 CICD</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【随笔】基于SemVer策略的软件版本号管理规范命名规则</div>
+      <div>http://example.com/2025/11/05/【随笔】基于SemVer策略的软件版本号管理规范命名规则/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年11月5日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/11/07/%E3%80%90Android%20Studio%E3%80%91Android%20Studio%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" title="【Android Studio】Android Studio的安装过程以及初步使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Android Studio】Android Studio的安装过程以及初步使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/11/03/%E3%80%90Web%E3%80%91%E5%9F%BA%E4%BA%8EGitHub%20Pages+Hexo%E7%9A%84%E5%AD%A6%E4%B9%A0%E5%88%B6%E4%BD%9C%E4%B8%AA%E4%BA%BA%E5%8D%9A%E5%AE%A2%E7%BD%91%E9%A1%B5/" title="【Web】基于GitHub Pages+Hexo的学习制作个人博客网页">
+                        <span class="hidden-mobile">【Web】基于GitHub Pages+Hexo的学习制作个人博客网页</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

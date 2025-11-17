@@ -1,0 +1,1861 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  IAR官网  EWARM，即 IAR Embedded Workbench for ARM，是由 IAR Systems 开发的一款专门用于 ARM 微处理器软件开发的集成开发环境。以下是具体介绍：   	功能特性：  &lt;ul&gt; 	&lt;li&gt;&lt;strong&gt;完整工具链支持&lt;&#x2F;strong&gt;：集成了高级编辑器、全面的编译器工具链以及功能强">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建">
+<meta property="og:url" content="http://example.com/2025/07/27/%E3%80%90EWARM%E3%80%91EWARM%EF%BC%88IAR%EF%BC%89%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8AGD32%E7%9A%84IAR%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  IAR官网  EWARM，即 IAR Embedded Workbench for ARM，是由 IAR Systems 开发的一款专门用于 ARM 微处理器软件开发的集成开发环境。以下是具体介绍：   	功能特性：  &lt;ul&gt; 	&lt;li&gt;&lt;strong&gt;完整工具链支持&lt;&#x2F;strong&gt;：集成了高级编辑器、全面的编译器工具链以及功能强">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/41967378adec45b1a82ef5f08be4ad65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/db66662a209c4c48a9b3139eee7ed2b0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/85b7fdd7382542139d73f07b659ddad8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/10d3121768ac475a9f11c46dcb64168e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cfc5ed60253743e5a08b1e956ddd7bfd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb607764585441f695e4555f52c91bdf.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a29adfa63b04fdd827328227453739d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4c6815e2ab214c15b642cb46c4358cff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d6de6c484f314969a07d947bb24ffd00.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0d8d5a8e68cb427f8dfa52a70c82212d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/719430643e1c46f6aa4416d3f02d73b1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fb450c19c7804e9c804580805cf76954.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8ea851a2e2d249179d698b2c0eccd6d5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/437e5380b06849b8b494495567187014.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/50d72f58952149b3a7c57496a5e325f3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/648d735855db4604a8ddccf1b3cad1cc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a428b4b9732b4e4daf015f3baf1b949c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e20715afbb7415f9468e286c1335153.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0a4341a8db314fdb8fc4c81922cee8e7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/78dd668748964102b413cafc65939362.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a35a6c39d4bc47b7983cce08561cf6b2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9e605363547e470e98363f82d5c90ccd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/574a7cf8b8ac41f2804ad793cd681577.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b6823374096f421c87a13c83f3a6a96c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/71accec030414739b0053d3cb71d663a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/87ae9305c2fc4f8a87c3b1d994dfee62.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0a2e93871937493489911e9d714da05e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd1cb0dae962491ea0fbaa7e71c5fafa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5b59e2920ab84e96a2ad5dd18283f255.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a09cf6fdbf324a5cb250464e69822d36.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d7fb85d8c6047ef9e0d44d99f32bf27.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/12c95f0672214cdb8b89ba9d57454f12.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1edeff94adf641008a91722e5f4a785e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fd80ee27e2cb4eac91867bbf3e49fd1e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4e58e6c42e684b7e9641eed3cb52b88b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a7e5714ca60e46dfa8e367343f693ee0.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7a8249b36ff44c93b634e064230be81d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f3a318de15704fbd8753c1ebac67d476.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6171531af9104b37a81c34a4cf99eb0d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0a1492d064984070a766209f11096cfa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/541da624ad7e4522b9f66b463d0ffca3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20c34fa1b28340b48b7851536cc81735.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6526f93ba3d147ee8c665a61d496b26d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1d351a386ee84ff1bdefc47e20555e46.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3dda492670894f2caf9baa1a0a076b2d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c66dea1dfb9e4d1493073f24cef1b802.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2c26700478d44c7bb55362cdd9c7790a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a317b177cb654598ae6d6d9a745233d9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e4fff56d035743a5a8539a272ee60278.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e4b9f06273ee47e4bb12ef80a163d13d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d06c38ab6a2d4381a344b3af278ae7b4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a0271b37a0341ab9541fa19c8906987.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/97d1dc708d5f414797c31f4f68a3e8ee.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/608145bff3324ab2a9fe85ca9d77eb6d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c9cbb2ae54124ecf880dda0825dbbbc3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5a77ec7d48bb4c189f252c7a963db04a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1009350b96cc46fcaef60afa8f606674.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/efd6a240aa67437bb9b6d84a3a7d986c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5d722d90dd1948998a8b5c5519ead3eb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/298cf32e14264e1682be76365ba1a567.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1fe5d5328a334f67b039aa4a35b9920c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f09942136c4f4d409e90e8410326c3ae.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/62d3b559009c4301ae033a4c5639f2f8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f9dac6d91a7e42359ceaa0fe7cc421a9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7ba445a4f60f409687617eef45a8e431.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3a3179a169d54eb9ae4df4df0ef4d729.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eeb7b916dc5d40b785701518d020081d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ecccb03c1a8642b298e921cbd44d5b8f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ad45a6366f7b4b2ebce94df9366a1629.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ffaeaf2542d04815b787d0d46c8bbe02.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/39b1feb3387a48f8aef629cedef02fcb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b8e9dcb9539c4ba4a7af465056a972b2.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/46ad1503b87f42b5a72b9c2459df6d5d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4bf2dc3368624c30968e654e17416f9a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d2146db536243c5969012eb7ec1c765.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7c9fd1e8f68342938c2b3c0cde4fb092.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/033aee7c93d24cf98135c8e5c1a6755f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/18c6e45e6e244cde9bb18615b7739fed.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4fab926f4a304dccbc260709287ce18a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b8d7b8dcc3b443eeb61d857874478523.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/75246ef2e8c64952949c2a6bbe589600.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cacc1d15e3e04425bae6246a9e8e0008.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/68f168be29564851be592fbd446afc4c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4025d15c096345128f09f241a6215ffc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c6f3a52a6311468db2f7c02be408c251.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0eab5d8d6a984f99b81ea0a28b463e31.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e67bf6ae7f2243229016da5fd4322e53.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/26e3b463604e4327a6503eeb4b390710.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9477ae95c3954b01b96ec6b22f72be3c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d60dc2c55fd4d1595044b69f4b0969a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bbb0a3db66d949b8adbd24b58f29e060.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/30a00a614d794697a366e2a629ae7aa5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8429acd9a3cc4257872a6b17682a593a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e7a9ad63f2141cb89c5243feb2a22a6.gif">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="article:published_time" content="2025-07-26T17:07:53.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="IAR GD32 学习记录 嵌入式 单片机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/41967378adec45b1a82ef5f08be4ad65.png">
+  
+  
+  
+  <title>【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-27 01:07" pubdate>
+          2025年7月27日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          3.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          32 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="IAR官网" target="_blank" rel="noopener" href="https://www.iar.com/zh/embedded-development-tools/free-trials" title="IAR官网">IAR官网</a></p>
+
+<p>EWARM，即 IAR Embedded Workbench for ARM，是由 IAR Systems 开发的一款专门用于 ARM 微处理器软件开发的集成开发环境。以下是具体介绍：</p>
+
+<ul>
+	<li><strong>功能特性</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;完整工具链支持&lt;/strong&gt;：集成了高级编辑器、全面的编译器工具链以及功能强大的调试器，支持从编码、编译、调试到固件下载的完整开发周期。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;多核心支持&lt;/strong&gt;：支持多种 ARM 核心，如 Cortex-M、Cortex-R 等，还为不同的 ARM 内核和硬件平台提供了一系列预设的项目模板，可针对不同处理器进行优化编译。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;实时操作系统兼容&lt;/strong&gt;：支持多种 RTOS，包括 FreeRTOS、RT-Thread、uC/OS 等，方便开发者在多任务或高实时性要求的应用场景中进行开发。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;调试功能&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;丰富调试接口&lt;/strong&gt;：支持 JTAG 调试，也可使用 SWD 接口，方便开发者访问微控制器的内部资源，如寄存器、内存和外设等，以进行实时调试和分析。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;多种调试手段&lt;/strong&gt;：内置的调试器提供了断点、步进、单步、变量观察和寄存器查看等功能，还支持事件追踪、数据追踪和地址追踪等多种追踪模式，以及代码覆盖率分析和性能分析等功能，有助于开发者发现程序瓶颈并优化程序性能。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;主要模块&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;编译器&lt;/strong&gt;：高度优化的 IAR ARM C/C++ Compiler，具有先进的通用编译器优化和针对特定处理器的速度优化及存储器优化功能。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;链接器&lt;/strong&gt;：一个通用的 IAR XLINK Linker，可将编译后的目标文件链接成可执行文件或库文件。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;建库程序和运行库&lt;/strong&gt;：IAR XAR 和 XLIB 建库程序用于创建和管理库文件，IAR DLIB C/C++ 运行库提供了运行时所需的函数支持。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;调试器&lt;/strong&gt;：IAR C-SPY 调试器是一款先进的高级语言调试器，支持源代码和反汇编程序调试，具备复杂的代码和数据断点、丰富的数据监视功能等。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;其他&lt;/strong&gt;：还包括项目管理器、功能强大的编辑器以及命令行实用程序等。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;优势特点&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;入门容易&lt;/strong&gt;：相较于其他一些 ARM 开发环境，EWARM 具有较为友好的操作界面和相对简单的配置流程，开发者能够较快上手，适合初学者使用。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;代码紧凑&lt;/strong&gt;：通过其优化的编译器和相关工具，生成的代码具有较高的效率，代码体积相对较小，能够更好地适应嵌入式系统对资源有限的特点。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;跨平台支持良好&lt;/strong&gt;：从软件模拟器到高性能的硬件调试器，EWARM 提供了广泛的目标设备支持，可在不同的开发环境和硬件平台上使用。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h1>二、EWARM（IAR）安装过程</h1>
+
+<h2>1.点击运行安装程序</h2>
+
+<p><img alt="" height="785" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/41967378adec45b1a82ef5f08be4ad65.png" srcset="/img/loading.gif" lazyload width="1159" /></p>
+
+<h2>2.选择第1个选项安装IAR FOR ARM（对于ARM架构的）</h2>
+
+<p><img alt="" height="538" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/db66662a209c4c48a9b3139eee7ed2b0.png" srcset="/img/loading.gif" lazyload width="688" /></p>
+
+<h2>3.NEXT</h2>
+
+<p><img alt="" height="455" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/85b7fdd7382542139d73f07b659ddad8.png" srcset="/img/loading.gif" lazyload width="654" /></p>
+
+<h2>4.accept，NEXT</h2>
+
+<p><img alt="" height="456" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/10d3121768ac475a9f11c46dcb64168e.png" srcset="/img/loading.gif" lazyload width="660" /></p>
+
+<h2>5.选择安装路径（建议C盘以外，最好新建一个不含有中文的文件夹，因为后续有些版本不支持中文路径），下一步</h2>
+
+<p><img alt="" height="454" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cfc5ed60253743e5a08b1e956ddd7bfd.png" srcset="/img/loading.gif" lazyload width="659" /></p>
+
+<p><img alt="" height="460" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb607764585441f695e4555f52c91bdf.png" srcset="/img/loading.gif" lazyload width="658" /></p>
+
+<h2>6.驱动</h2>
+
+<p><img alt="" height="462" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a29adfa63b04fdd827328227453739d.png" srcset="/img/loading.gif" lazyload width="660" /></p>
+
+<h2>7.下一步</h2>
+
+<p><img alt="" height="457" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4c6815e2ab214c15b642cb46c4358cff.png" srcset="/img/loading.gif" lazyload width="658" /></p>
+
+<h2>8.确定</h2>
+
+<p><img alt="" height="462" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d6de6c484f314969a07d947bb24ffd00.png" srcset="/img/loading.gif" lazyload width="656" /></p>
+
+<h2>9.安装</h2>
+
+<p><img alt="" height="457" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0d8d5a8e68cb427f8dfa52a70c82212d.png" srcset="/img/loading.gif" lazyload width="654" /></p>
+
+<h2>10.等待安装完成</h2>
+
+<p><img alt="" height="453" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/719430643e1c46f6aa4416d3f02d73b1.png" srcset="/img/loading.gif" lazyload width="566" /></p>
+
+<p><img alt="" height="508" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fb450c19c7804e9c804580805cf76954.png" srcset="/img/loading.gif" lazyload width="701" /></p>
+
+<p><img alt="" height="522" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8ea851a2e2d249179d698b2c0eccd6d5.png" srcset="/img/loading.gif" lazyload width="678" /></p>
+
+<h2>11.暂时不打开软件，暂时取消证书的安装</h2>
+
+<p><img alt="" height="526" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/437e5380b06849b8b494495567187014.png" srcset="/img/loading.gif" lazyload width="678" /></p>
+
+<p><img alt="" height="525" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/50d72f58952149b3a7c57496a5e325f3.png" srcset="/img/loading.gif" lazyload width="682" /></p>
+
+<h2>12.驱动无脑装</h2>
+
+<p><img alt="" height="497" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/648d735855db4604a8ddccf1b3cad1cc.png" srcset="/img/loading.gif" lazyload width="627" /></p>
+
+<p>&nbsp;<img alt="" height="457" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a428b4b9732b4e4daf015f3baf1b949c.png" srcset="/img/loading.gif" lazyload width="758" /></p>
+
+<p>这是&nbsp;<strong>TI Emulators 8.0.803.0</strong>（德州仪器仿真器软件）的安装许可协议界面，核心内容是：</p>
+
+<p>1. 界面功能</p>
+
+<ul>
+	<li>呈现&nbsp;<strong>德州仪器（Texas Instruments）的软件许可协议</strong>，要求你阅读并决定是否接受条款。</li>
+	<li>协议里有版权、使用限制、责任等法律约束内容（2004 年 3 月 11 日版本 ）。</li>
+</ul>
+
+<p>2. 操作选项</p>
+
+<ul>
+	<li><strong>接受协议（I accept the agreement）</strong>：选这个才能继续安装，代表你同意遵守协议条款。</li>
+	<li><strong>不接受（I do not accept the agreement）</strong>：选这个会终止安装，无法使用软件。</li>
+</ul>
+
+<p>简单说，就是安装前让你确认 &ldquo;是否同意德州仪器的软件使用规则&rdquo;，想装软件就得选 &ldquo;接受&rdquo;，点 &ldquo;Next&rdquo; 继续流程；不想装就选 &ldquo;不接受&rdquo; 或直接关窗口～</p>
+
+<p><img alt="" height="464" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e20715afbb7415f9468e286c1335153.png" srcset="/img/loading.gif" lazyload width="740" /></p>
+
+<p>这是&nbsp;<strong>TI Emulators 8.0.803.0（德州仪器仿真器软件）</strong>&nbsp;的安装路径设置界面，核心信息是：</p>
+
+<p>1. 标题含义</p>
+
+<p>&ldquo;Code Composer Studio Installation Directory&rdquo;：需指定软件安装路径，若和 Code Composer Studio（CCS，德州仪器的集成开发环境）一起用，要选对应 CCS 版本（ccsv5/6/7）的文件夹。</p>
+
+<p>2. 路径说明</p>
+
+<ul>
+	<li>默认路径是&nbsp;<code>C:\ti</code>，你可以修改成其他自定义路径（点输入框右侧文件夹图标选位置）。</li>
+	<li>若已有 CCS，按提示选到 CCS 安装目录里的&nbsp;<code>ccsv5</code>/<code>ccsv6</code>/<code>ccsv7</code>&nbsp;文件夹，能让仿真器和 CCS 更好配合。</li>
+</ul>
+
+<p>3. 操作逻辑</p>
+
+<p>选好路径后点 &ldquo;Next&rdquo; 继续安装；想改路径就调整输入框内容；不想装了点 &ldquo;Cancel&rdquo; 退出。</p>
+
+<p>简单说，就是让你选 &ldquo;把 TI 仿真器软件装到电脑哪个位置&rdquo;，按需求（或默认）设好路径，继续下一步安装流程～</p>
+
+<p><img alt="" height="488" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0a4341a8db314fdb8fc4c81922cee8e7.png" srcset="/img/loading.gif" lazyload width="1036" /></p>
+
+<p><img alt="" height="525" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/78dd668748964102b413cafc65939362.png" srcset="/img/loading.gif" lazyload width="682" /></p>
+
+<h2>13.打开运行，准备安装证书</h2>
+
+<p><img alt="" height="179" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a35a6c39d4bc47b7983cce08561cf6b2.png" srcset="/img/loading.gif" lazyload width="405" /></p>
+
+<p>取消</p>
+
+<p><img alt="" height="1025" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9e605363547e470e98363f82d5c90ccd.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2><strong>14.到help下的License manager</strong></h2>
+
+<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/574a7cf8b8ac41f2804ad793cd681577.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="672" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b6823374096f421c87a13c83f3a6a96c.png" srcset="/img/loading.gif" lazyload width="1295" /></p>
+
+<h2>15.点击License下的离线激活</h2>
+
+<p><img alt="" height="679" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/71accec030414739b0053d3cb71d663a.png" srcset="/img/loading.gif" lazyload width="1287" /></p>
+
+<p><img alt="" height="719" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/87ae9305c2fc4f8a87c3b1d994dfee62.png" srcset="/img/loading.gif" lazyload width="898" /></p>
+
+<h2>16.注册机</h2>
+
+<p><img alt="" height="287" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0a2e93871937493489911e9d714da05e.png" srcset="/img/loading.gif" lazyload width="931" /></p>
+
+<h2>17.将注册机的License Number，放到离线激活里，然后，离线激活里再点击下一步</h2>
+
+<p><img alt="" height="700" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd1cb0dae962491ea0fbaa7e71c5fafa.png" srcset="/img/loading.gif" lazyload width="1640" /></p>
+
+<p><img alt="" height="705" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5b59e2920ab84e96a2ad5dd18283f255.png" srcset="/img/loading.gif" lazyload width="1637" /></p>
+
+<h2>18.NO&nbsp;</h2>
+
+<p><img alt="" height="720" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a09cf6fdbf324a5cb250464e69822d36.png" srcset="/img/loading.gif" lazyload width="899" /></p>
+
+<h2>19.选择存放初始证书的位置，后面再使用这个产生一个回应的验证证书</h2>
+
+<p><img alt="" height="726" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d7fb85d8c6047ef9e0d44d99f32bf27.png" srcset="/img/loading.gif" lazyload width="1403" /></p>
+
+<h2>20.确认下一步</h2>
+
+<p><img alt="" height="720" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/12c95f0672214cdb8b89ba9d57454f12.png" srcset="/img/loading.gif" lazyload width="895" /></p>
+
+<h2>21.使用注册机去使用初始证书，产生一个回应的验证证书（真正的证书）</h2>
+
+<p>选择初始证书</p>
+
+<p><img alt="" height="657" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1edeff94adf641008a91722e5f4a785e.png" srcset="/img/loading.gif" lazyload width="680" /></p>
+
+<p>点击产生&nbsp;</p>
+
+<p><img alt="" height="79" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fd80ee27e2cb4eac91867bbf3e49fd1e.png" srcset="/img/loading.gif" lazyload width="329" /></p>
+
+<p><img alt="" height="651" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4e58e6c42e684b7e9641eed3cb52b88b.png" srcset="/img/loading.gif" lazyload width="679" /></p>
+
+<h2>22.回到注册页面，选择回应文件</h2>
+
+<p><img alt="" height="722" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a7e5714ca60e46dfa8e367343f693ee0.png" srcset="/img/loading.gif" lazyload width="899" /></p>
+
+<p><img alt="" height="707" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7a8249b36ff44c93b634e064230be81d.png" srcset="/img/loading.gif" lazyload width="1430" /></p>
+
+<p>&nbsp;<img alt="" height="719" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f3a318de15704fbd8753c1ebac67d476.png" srcset="/img/loading.gif" lazyload width="900" /></p>
+
+<h2>23.后续</h2>
+
+<p><img alt="" height="682" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6171531af9104b37a81c34a4cf99eb0d.png" srcset="/img/loading.gif" lazyload width="1282" /></p>
+
+<p>这是&nbsp;<strong>IAR License Manager（IAR 许可证管理器）</strong>&nbsp;的弹窗，对应&nbsp;<code>IAR Embedded Workbench for Arm 8.32</code>&nbsp;版本，核心内容是：</p>
+
+<h3>1. 功能说明</h3>
+
+<p>你的许可证允许提取&nbsp;<strong>IAR Library Source for Arm（ARM 库源代码包）</strong>，这些代码可辅助开发，但<strong>提取需要管理员权限</strong>（确保系统级操作权限）。</p>
+
+<h3>2. 操作选项</h3>
+
+<ul>
+	<li><strong>Yes</strong>：立即提取库源代码，点了之后会触发管理员权限申请（可能弹 UAC 确认框），完成后把代码放到指定路径。</li>
+	<li><strong>No</strong>：暂不提取，之后想提随时能在许可证管理器里操作；若勾选&nbsp;<code>Don&#39;t notify me about this again</code>，下次不会再弹这个提示。</li>
+</ul>
+
+<h3>3. 建议逻辑</h3>
+
+<ul>
+	<li>若开发时需要调试 / 查看库代码（比如做底层优化、排错），选&nbsp;<strong>Yes</strong>&nbsp;提取，方便后续开发；</li>
+	<li>若只是简单用 IAR 编译、不碰库源码，选&nbsp;<strong>No</strong>&nbsp;也不影响基础功能。</li>
+</ul>
+
+<p>简单说，就是 &ldquo;许可证给你权限提取 ARM 库源码，要不要现在用管理员权限提取&rdquo;，按需选就行～</p>
+
+<p>我选的yes&nbsp;</p>
+
+<p><img alt="" height="673" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0a1492d064984070a766209f11096cfa.png" srcset="/img/loading.gif" lazyload width="1286" /></p>
+
+<h2>24.绿色状态，完成</h2>
+
+<p><img alt="" height="677" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/541da624ad7e4522b9f66b463d0ffca3.png" srcset="/img/loading.gif" lazyload width="1289" /></p>
+
+<h1>三、初步新建IAR下的GD32工程模板</h1>
+
+<p>注：硬件平台：立创梁山派</p>
+
+<h2>1.到<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="GD32的官网" target="_blank" rel="noopener" href="https://www.gd32mcu.com/cn/download/7?kw=GD32F4" title="GD32的官网">GD32的官网</a>下载固件库和IAR环境支持包（环境补丁）</h2>
+
+<p><img alt="" height="216" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20c34fa1b28340b48b7851536cc81735.png" srcset="/img/loading.gif" lazyload width="1242" /></p>
+
+<p><img alt="" height="144" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6526f93ba3d147ee8c665a61d496b26d.png" srcset="/img/loading.gif" lazyload width="1217" /></p>
+
+<h2>2.安装IAR补丁，一定一定要以管理员身份运行才能让其自动检测到你安装的IAR路径！！！</h2>
+
+<p><img alt="" height="280" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1d351a386ee84ff1bdefc47e20555e46.png" srcset="/img/loading.gif" lazyload width="1031" /></p>
+
+<p><img alt="" height="498" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3dda492670894f2caf9baa1a0a076b2d.png" srcset="/img/loading.gif" lazyload width="714" /></p>
+
+<p><img alt="" height="497" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c66dea1dfb9e4d1493073f24cef1b802.png" srcset="/img/loading.gif" lazyload width="711" /></p>
+
+<h2>3.新建工程文件夹IAR_GD32_Template</h2>
+
+<p><img alt="" height="346" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2c26700478d44c7bb55362cdd9c7790a.png" srcset="/img/loading.gif" lazyload width="970" /></p>
+
+<h2>4.\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library下的Firmware里就是外设源文件，但是，首先，在我们的工程文件夹里新建文件夹</h2>
+
+<p><img alt="" height="465" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a317b177cb654598ae6d6d9a745233d9.png" srcset="/img/loading.gif" lazyload width="1095" /><img alt="" height="363" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e4fff56d035743a5a8539a272ee60278.png" srcset="/img/loading.gif" lazyload width="1044" /></p>
+
+<h2>5.搬移文件</h2>
+
+<h3>（1）CMSIS</h3>
+
+<p>\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Firmware\CMSIS的core内核文件放到CMSIS</p>
+
+<p><img alt="" height="432" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e4b9f06273ee47e4bb12ef80a163d13d.png" srcset="/img/loading.gif" lazyload width="1040" /></p>
+
+<p><img alt="" height="461" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d06c38ab6a2d4381a344b3af278ae7b4.png" srcset="/img/loading.gif" lazyload width="1051" /></p>
+
+<h3>（2）StartUp</h3>
+
+<p>IAR环境启动文件</p>
+
+<p>\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Firmware\CMSIS\GD\GD32F4xx\Source\IAR下的启动文件放到StartUp</p>
+
+<p><img alt="" height="413" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a0271b37a0341ab9541fa19c8906987.png" srcset="/img/loading.gif" lazyload width="1005" /></p>
+
+<h3>（3）SYSTEM</h3>
+
+<h3>\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Firmware\CMSIS\GD\GD32F4xx下的头文件放到SYSTEM的INCLUDE</h3>
+
+<p><img alt="" height="281" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/97d1dc708d5f414797c31f4f68a3e8ee.png" srcset="/img/loading.gif" lazyload width="856" /></p>
+
+<p>\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Firmware\CMSIS\GD\GD32F4xx\Source下的system_gd32f4xx.c放到SYSTEM的SOURCE</p>
+
+<p><img alt="" height="316" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/608145bff3324ab2a9fe85ca9d77eb6d.png" srcset="/img/loading.gif" lazyload width="976" /></p>
+
+<p><img alt="" height="311" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c9cbb2ae54124ecf880dda0825dbbbc3.png" srcset="/img/loading.gif" lazyload width="1060" /></p>
+
+<p><img alt="" height="297" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5a77ec7d48bb4c189f252c7a963db04a.png" srcset="/img/loading.gif" lazyload width="1057" /><img alt="" height="268" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1009350b96cc46fcaef60afa8f606674.png" srcset="/img/loading.gif" lazyload width="972" /></p>
+
+<h3>（4）USER</h3>
+
+<p>同时根据官方例程需要一些其他文件支持，在\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Template寻找</p>
+
+<p><img alt="" height="625" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/efd6a240aa67437bb9b6d84a3a7d986c.png" srcset="/img/loading.gif" lazyload width="865" /></p>
+
+<p><img alt="" height="479" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5d722d90dd1948998a8b5c5519ead3eb.png" srcset="/img/loading.gif" lazyload width="1004" /></p>
+
+<p>根据自己习惯，分个类</p>
+
+<p><img alt="" height="314" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/298cf32e14264e1682be76365ba1a567.png" srcset="/img/loading.gif" lazyload width="1028" /></p>
+
+<h3>（5）GD32F4xx_standard_peripheral</h3>
+
+<p>\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library_V3.3.1\GD32F4xx_Firmware_Library\Firmware\GD32F4xx_standard_peripheral</p>
+
+<h3><img alt="" height="264" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1fe5d5328a334f67b039aa4a35b9920c.png" srcset="/img/loading.gif" lazyload width="835" /></h3>
+
+<p>将外设源文件全放到GD32F4xx_standard_peripheral</p>
+
+<h2>6.打开IAR，创建IAR工程</h2>
+
+<p><img alt="" height="293" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f09942136c4f4d409e90e8410326c3ae.png" srcset="/img/loading.gif" lazyload width="642" /></p>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/62d3b559009c4301ae033a4c5639f2f8.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>7.跟keil就差不多了，就是新建组别，添加文件</h2>
+
+<p>&nbsp;<img alt="" height="635" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f9dac6d91a7e42359ceaa0fe7cc421a9.png" srcset="/img/loading.gif" lazyload width="656" /></p>
+
+<p><img alt="" height="798" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7ba445a4f60f409687617eef45a8e431.png" srcset="/img/loading.gif" lazyload width="460" /></p>
+
+<h2>8.工程配置</h2>
+
+<h3>（1）右击项目，选择Options</h3>
+
+<p><img alt="" height="60" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3a3179a169d54eb9ae4df4df0ef4d729.png" srcset="/img/loading.gif" lazyload width="407" /></p>
+
+<h3>（2）选芯片</h3>
+
+<p><img alt="" height="890" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eeb7b916dc5d40b785701518d020081d.png" srcset="/img/loading.gif" lazyload width="1820" /></p>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ecccb03c1a8642b298e921cbd44d5b8f.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="722" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ad45a6366f7b4b2ebce94df9366a1629.png" srcset="/img/loading.gif" lazyload width="785" /></p>
+
+<h3>（3）配置库，内核文件已有CMSIS</h3>
+
+<p><img alt="" height="723" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ffaeaf2542d04815b787d0d46c8bbe02.png" srcset="/img/loading.gif" lazyload width="793" /></p>
+
+<p>设置外部文件夹Debug</p>
+
+<p><img alt="" height="729" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/39b1feb3387a48f8aef629cedef02fcb.png" srcset="/img/loading.gif" lazyload width="836" /></p>
+
+<h3>（4）添加宏，路径</h3>
+
+<pre>
+<code class="language-cpp">USE_STDPERIPH_DRIVER,GD32F4XX,LV_CONF_INCLUDE_SIMPLE</code></pre>
+
+<p><img alt="" height="731" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b8e9dcb9539c4ba4a7af465056a972b2.png" srcset="/img/loading.gif" lazyload width="779" /></p>
+
+<p><img alt="" height="736" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/46ad1503b87f42b5a72b9c2459df6d5d.png" srcset="/img/loading.gif" lazyload width="786" /></p>
+
+<p>下拉选择相对路径：</p>
+
+<p><img alt="" height="819" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4bf2dc3368624c30968e654e17416f9a.png" srcset="/img/loading.gif" lazyload width="1486" /></p>
+
+<h3>（5）输出配置</h3>
+
+<p><img alt="" height="725" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d2146db536243c5969012eb7ec1c765.png" srcset="/img/loading.gif" lazyload width="782" /></p>
+
+<h3>（6）选择下载模式</h3>
+
+<p><img alt="" height="725" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7c9fd1e8f68342938c2b3c0cde4fb092.png" srcset="/img/loading.gif" lazyload width="818" /></p>
+
+<p><img alt="" height="723" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/033aee7c93d24cf98135c8e5c1a6755f.png" srcset="/img/loading.gif" lazyload width="846" /></p>
+
+<p>差点忘记立创梁山派用的DAP了</p>
+
+<p><img alt="" height="717" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/18c6e45e6e244cde9bb18615b7739fed.png" srcset="/img/loading.gif" lazyload width="813" /></p>
+
+<p><img alt="" height="721" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4fab926f4a304dccbc260709287ce18a.png" srcset="/img/loading.gif" lazyload width="843" /></p>
+
+<h3>（7）选择链接文件</h3>
+
+<p>Linker --&gt; Config --&gt; Linker configuration file&nbsp; 勾选上 Override default 重设默认文件</p>
+
+<p><img alt="" height="739" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b8d7b8dcc3b443eeb61d857874478523.png" srcset="/img/loading.gif" lazyload width="847" /></p>
+
+<h2>9.编译</h2>
+
+<p><img alt="" height="619" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/75246ef2e8c64952949c2a6bbe589600.png" srcset="/img/loading.gif" lazyload width="497" /></p>
+
+<p>保存工作空间</p>
+
+<p><img alt="" height="1024" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cacc1d15e3e04425bae6246a9e8e0008.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>10.解决报错</h2>
+
+<pre>
+<code class="language-cpp">Building configuration: IAR_GD32 - Debug 
+Updating build tree... 
+ 
+0  file(s) deleted. 
+Updating build tree... 
+startup_gd32f450_470.s 
+gd32f4xx_exmc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_dbg.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_enet.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_dci.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_dma.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_dac.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_crc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_can.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_ctc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_adc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_misc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_i2c.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_pmu.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_fwdgt.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_exti.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_ipa.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_fmc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_it.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_gpio.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_iref.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_wwdgt.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_tli.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_rcu.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_rtc.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_sdio.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_spi.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_syscfg.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_usart.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_timer.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+gd32f4xx_trng.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+main.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+systick.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+system_gd32f4xx.c  
+Fatal Error[Pe035]: #error directive: "Please select the target GD32F4xx device in gd32f4xx.h file" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\SYSTEM\Include\gd32f4xx.h 56 
+Error while running C/C++ Compiler 
+ 
+Total number of errors: 33 
+Total number of warnings: 0 
+</code></pre>
+
+<p>添加具体的芯片的宏&nbsp;</p>
+
+<p><img alt="" height="721" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/68f168be29564851be592fbd446afc4c.png" srcset="/img/loading.gif" lazyload width="781" /></p>
+
+<pre>
+<code class="language-cpp">Building configuration: IAR_GD32 - Debug 
+Updating build tree... 
+ 
+1  file(s) deleted. 
+Updating build tree... 
+startup_gd32f450_470.s 
+gd32f4xx_exmc.c  
+gd32f4xx_can.c  
+gd32f4xx_ctc.c  
+gd32f4xx_dbg.c  
+gd32f4xx_dma.c  
+gd32f4xx_dci.c  
+gd32f4xx_crc.c  
+gd32f4xx_enet.c  
+gd32f4xx_dac.c  
+gd32f4xx_adc.c  
+gd32f4xx_exti.c  
+gd32f4xx_i2c.c  
+gd32f4xx_pmu.c  
+gd32f4xx_misc.c  
+gd32f4xx_fmc.c  
+gd32f4xx_gpio.c  
+gd32f4xx_fwdgt.c  
+gd32f4xx_rcu.c  
+gd32f4xx_it.c  
+gd32f4xx_ipa.c  
+gd32f4xx_iref.c  
+main.c  
+Fatal Error[Pe1696]: cannot open source file "gd32f450i_eval.h" E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\USER\Source\main.c 39 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\USER\Source\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\CMSIS\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\GD32F4xx_standard_peripheral\Include\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\GD32F4xx_standard_peripheral\Source\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\StartUp\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\SYSTEM\Include\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\SYSTEM\Source\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\USER\Include\" 
+            searched: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\Project\..\USER\Source\" 
+            searched: "D:\IAR Systems\Embedded Workbench 8.2\arm\inc\" 
+            searched: "D:\IAR Systems\Embedded Workbench 8.2\arm\inc\c\" 
+            current directory: "E:\EWARM_Projects\EWARM_Examples_Workspaces\IAR_GD32\IAR_GD32_Template\USER\Source" 
+Error while running C/C++ Compiler 
+gd32f4xx_wwdgt.c  
+gd32f4xx_rtc.c  
+gd32f4xx_trng.c  
+gd32f4xx_syscfg.c  
+gd32f4xx_tli.c  
+gd32f4xx_sdio.c  
+gd32f4xx_spi.c  
+gd32f4xx_usart.c  
+gd32f4xx_timer.c  
+systick.c  
+system_gd32f4xx.c  
+ 
+Total number of errors: 1 
+Total number of warnings: 0 
+</code></pre>
+
+<p>方法1：</p>
+
+<p>添加上去gd32f450i_eval.c/h</p>
+
+<p><img alt="" height="641" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4025d15c096345128f09f241a6215ffc.png" srcset="/img/loading.gif" lazyload width="900" /></p>
+
+<p>方法二：</p>
+
+<p>重写main.c，不用#include &quot;gd32f450i_eval.h&quot;</p>
+
+<h2>11.代码改正</h2>
+
+<p>gd32f4xx_it.c</p>
+
+<p>注释led_spark();</p>
+
+<pre>
+<code class="language-cpp">/*!
+    \file    gd32f4xx_it.c
+    \brief   interrupt service routines
+
+    \version 2024-12-20, V3.3.1, firmware for GD32F4xx
+*/
+
+/*
+    Copyright (c) 2024, GigaDevice Semiconductor Inc.
+
+    Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
+       specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+*/
+
+#include "gd32f4xx_it.h"
+#include "main.h"
+#include "systick.h"
+
+/*!
+    \brief      this function handles NMI exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void NMI_Handler(void)
+{
+    /* if NMI exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles HardFault exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void HardFault_Handler(void)
+{
+    /* if Hard Fault exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles MemManage exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void MemManage_Handler(void)
+{
+    /* if Memory Manage exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles BusFault exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void BusFault_Handler(void)
+{
+    /* if Bus Fault exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles UsageFault exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void UsageFault_Handler(void)
+{
+    /* if Usage Fault exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles SVC exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void SVC_Handler(void)
+{
+    /* if SVC exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles DebugMon exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void DebugMon_Handler(void)
+{
+    /* if DebugMon exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief      this function handles PendSV exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void PendSV_Handler(void)
+{
+    /* if PendSV exception occurs, go to infinite loop */
+    while(1) {
+    }
+}
+
+/*!
+    \brief    this function handles SysTick exception
+    \param[in]  none
+    \param[out] none
+    \retval     none
+*/
+void SysTick_Handler(void)
+{
+    //led_spark();
+    delay_decrement();
+}
+</code></pre>
+
+<p>&nbsp;main.h</p>
+
+<p>注释void led_spark(void);</p>
+
+<pre>
+<code class="language-cpp">/*!
+    \file    main.h
+    \brief   the header file of main
+
+    \version 2024-12-20, V3.3.1, firmware for GD32F4xx
+*/
+
+/*
+    Copyright (c) 2024, GigaDevice Semiconductor Inc.
+
+    Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
+       specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+*/
+
+#ifndef __MAIN_H
+#define __MAIN_H
+
+/* led spark function */
+//void led_spark(void);
+
+#endif /* __MAIN_H */
+
+
+</code></pre>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/*!
+    \file    main.c
+    \brief   led spark with systick
+
+    \version 2024-12-20, V3.3.1, firmware for GD32F4xx
+*/
+
+/*
+    Copyright (c) 2024, GigaDevice Semiconductor Inc.
+
+    Redistribution and use in source and binary forms, with or without modification,
+are permitted provided that the following conditions are met:
+
+    1. Redistributions of source code must retain the above copyright notice, this
+       list of conditions and the following disclaimer.
+    2. Redistributions in binary form must reproduce the above copyright notice,
+       this list of conditions and the following disclaimer in the documentation
+       and/or other materials provided with the distribution.
+    3. Neither the name of the copyright holder nor the names of its contributors
+       may be used to endorse or promote products derived from this software without
+       specific prior written permission.
+
+    THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED
+WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED.
+IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT,
+INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT
+NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR
+PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY,
+WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY
+OF SUCH DAMAGE.
+*/
+
+#include "gd32f4xx.h"
+#include "systick.h"
+#include &lt;stdio.h&gt;
+#include "main.h"
+
+//#include "gd32f450i_eval.h"
+
+
+int main(void)
+{
+  systick_config();
+  
+  // 开启时钟
+    rcu_periph_clock_enable(RCU_GPIOD);   
+
+  /* 配置为输出模式 */
+  gpio_mode_set(GPIOD,GPIO_MODE_OUTPUT, GPIO_PUPD_NONE, GPIO_PIN_7);
+  
+  /* 配置为推挽输出 50MHZ */
+  gpio_output_options_set(GPIOD, GPIO_OTYPE_PP, GPIO_OSPEED_50MHZ, GPIO_PIN_7);
+  gpio_bit_set(GPIOD,  GPIO_PIN_7);
+  while(1)
+  {
+    gpio_bit_write(GPIOD, GPIO_PIN_7, RESET);
+    delay_1ms(100);
+    
+    gpio_bit_write(GPIOD, GPIO_PIN_7, SET);
+    delay_1ms(100);
+    
+  }
+}
+
+
+
+
+
+
+
+
+
+
+///*!
+//    \brief    toggle the led every 500ms
+//    \param[in]  none
+//    \param[out] none
+//    \retval     none
+//*/
+//void led_spark(void)
+//{
+//    static __IO uint32_t timingdelaylocal = 0U;
+//
+//    if(timingdelaylocal) {
+//
+//        if(timingdelaylocal &lt; 500U) {
+//            gd_eval_led_on(LED1);
+//        } else {
+//            gd_eval_led_off(LED1);
+//        }
+//
+//        timingdelaylocal--;
+//    } else {
+//        timingdelaylocal = 1000U;
+//    }
+//}
+//
+///*!
+//    \brief    main function
+//    \param[in]  none
+//    \param[out] none
+//    \retval     none
+//*/
+//int main(void)
+//{
+//#ifdef __FIRMWARE_VERSION_DEFINE
+//    uint32_t fw_ver = 0;
+//#endif
+//
+//    gd_eval_led_init(LED1);
+//    systick_config();
+//
+//#ifdef __FIRMWARE_VERSION_DEFINE
+//    fw_ver = gd32f4xx_firmware_version_get();
+//    /* print firmware version */
+//    printf("\r\nGD32F4xx series firmware version: V%d.%d.%d", (uint8_t)(fw_ver &gt;&gt; 24), (uint8_t)(fw_ver &gt;&gt; 16), (uint8_t)(fw_ver &gt;&gt; 8));
+//#endif /* __FIRMWARE_VERSION_DEFINE */
+//
+//    while(1) {
+//    }
+//}
+//
+//#ifdef GD_ECLIPSE_GCC
+///* retarget the C library printf function to the USART, in Eclipse GCC environment */
+//int __io_putchar(int ch)
+//{
+//    usart_data_transmit(EVAL_COM0, (uint8_t)ch);
+//    while(RESET == usart_flag_get(EVAL_COM0, USART_FLAG_TBE));
+//    return ch;
+//}
+//#else
+///* retarget the C library printf function to the USART */
+//int fputc(int ch, FILE *f)
+//{
+//    usart_data_transmit(EVAL_COM0, (uint8_t)ch);
+//    while(RESET == usart_flag_get(EVAL_COM0, USART_FLAG_TBE));
+//
+//    return ch;
+//}
+//#endif /* GD_ECLIPSE_GCC */
+</code></pre>
+
+<p>&nbsp;编译没有问题<img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c6f3a52a6311468db2f7c02be408c251.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>12.下载</h2>
+
+<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0eab5d8d6a984f99b81ea0a28b463e31.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>注意：由于IAR对于DAP支持较差，可能出问题，需要重新设置一下DAP</p>
+
+<p>参考链接：<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!" target="_blank" rel="noopener" href="https://www.armbbs.cn/forum.php?mod=viewthread&amp;tid=113113" title="H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!">H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!</a></p>
+
+<p>DAP下载失败问题的解决方法：</p>
+
+<p>（1）DAP开启&nbsp;</p>
+
+<p><img alt="" height="655" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e67bf6ae7f2243229016da5fd4322e53.png" srcset="/img/loading.gif" lazyload width="838" /></p>
+
+<p>（2）这里建议选择Software和Hardware，我选的Software成功</p>
+
+<p><img alt="" height="662" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/26e3b463604e4327a6503eeb4b390710.png" srcset="/img/loading.gif" lazyload width="837" /></p>
+
+<p>勾选</p>
+
+<p><img alt="" height="145" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9477ae95c3954b01b96ec6b22f72be3c.png" srcset="/img/loading.gif" lazyload width="259" /></p>
+
+<p>（3）接口模式SWD</p>
+
+<p><img alt="" height="664" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d60dc2c55fd4d1595044b69f4b0969a.png" srcset="/img/loading.gif" lazyload width="845" /></p>
+
+<p>我成功了&nbsp;</p>
+
+<h2>13.成功，演示过程</h2>
+
+<p>点OK&nbsp;</p>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bbb0a3db66d949b8adbd24b58f29e060.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1023" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/30a00a614d794697a366e2a629ae7aa5.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>点GO，不打断点，全速运行</p>
+
+<p><img alt="" height="128" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8429acd9a3cc4257872a6b17682a593a.png" srcset="/img/loading.gif" lazyload width="727" /></p>
+
+<h1>四、实验效果</h1>
+
+<p><img alt="" height="500" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e7a9ad63f2141cb89c5243feb2a22a6.gif" srcset="/img/loading.gif" lazyload width="700" /></p>
+
+<p>工程链接：</p>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="https://github.com/Molesidy/GD32.git" target="_blank" rel="noopener" href="https://github.com/Molesidy/GD32.git" title="https://github.com/Molesidy/GD32.git"><span class="link-card-box" contenteditable="false"><span class="link-title">https://github.com/Molesidy/GD32.git</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/GD32.git</span></span></a></p>
+
+<p>参考链接（如有侵权，请联系删除）：</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="IAR新建工程模块及工程配置 - GWen9 - 博客园" target="_blank" rel="noopener" href="https://www.cnblogs.com/Gentle-Wen/p/13278524.html" title="IAR新建工程模块及工程配置 - GWen9 - 博客园">IAR新建工程模块及工程配置 - GWen9 - 博客园</a></p>
+
+<p id="articleContentId"><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="IAR for ARM下载、安装、注册，并搭建stm32工程（胎教版）" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_56527127/article/details/119815640#:~:text=%E4%BA%8E%E6%98%AF%E5%88%B0%E7%BD%91%E4%B8%8A%E6%89%BE%E5%88%B0%E4%BA%86%E4%B8%80%E4%B8%AA%E7%89%88%E6%9C%AC%E6%AF%94%E8%BE%83%E9%AB%98%E7%9A%84%E8%B5%84%E6%BA%90%20IAR%20For%20ARM%208.31%20%28%E6%8F%90%E5%8F%96%E7%A0%81i91o%29%EF%BC%8C%E4%BA%B2%E6%B5%8B%E5%8F%AF%E7%94%A8%E3%80%82%20%E4%B8%8B%E8%BE%B9%E6%98%AF%E5%AE%89%E8%A3%85%E5%8F%8A%E6%B3%A8%E5%86%8C%E6%AD%A5%E9%AA%A4%EF%BC%9A,1%E3%80%81%E6%89%93%E5%BC%80%E5%AE%89%E8%A3%85%E5%8C%85%EF%BC%8C%E9%80%89%E6%8B%A9%E2%80%9C%E5%AE%89%E8%A3%85%E2%80%9D%E9%80%89%E9%A1%B9%202%E3%80%81%E7%9B%B4%E6%8E%A5%E4%B8%8B%E4%B8%80%E6%AD%A5%203%E3%80%81%E6%8E%A5%E5%8F%97%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%204%E3%80%81%E9%80%89%E6%8B%A9%E5%AE%89%E8%A3%85%E8%B7%AF%E5%BE%84%EF%BC%88%E5%BB%BA%E8%AE%AE%E7%B3%BB%E7%BB%9F%E7%9B%98%E4%BB%A5%E5%A4%96%EF%BC%8C%E4%B8%BA%E4%BA%86%E4%BB%A5%E9%98%B2%E4%B8%87%E4%B8%80%E6%9C%80%E5%A5%BD%E6%96%B0%E5%BB%BA%E4%B8%80%E4%B8%AA%E4%B8%8D%E5%90%AB%E6%9C%89%E4%B8%AD%E6%96%87%E7%9A%84%E6%96%87%E4%BB%B6%E5%A4%B9%EF%BC%89%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%205%E3%80%81%E9%80%89%E6%8B%A9%E9%9C%80%E8%A6%81%E5%AE%89%E8%A3%85%E7%9A%84%E8%B0%83%E8%AF%95%E9%A9%B1%E5%8A%A8%EF%BC%8C%E6%88%91%E6%98%AF%E5%85%A8%E9%80%89%E4%BA%86%EF%BC%8C%E5%A4%A7%E5%AE%B6%E4%B9%9F%E5%8F%AF%E4%BB%A5%E6%A0%B9%E6%8D%AE%E9%9C%80%E8%A6%81%20%E9%80%89%E6%8B%A9%EF%BC%8C%E4%B8%8B%E4%B8%80%E6%AD%A5%206%E3%80%81%E4%B8%8B%E4%B8%80%E6%AD%A5%207%E3%80%81%E7%A1%AE%E5%AE%9A%E5%AE%89%E8%A3%85" title="IAR for ARM下载、安装、注册，并搭建stm32工程（胎教版）">IAR for ARM下载、安装、注册，并搭建stm32工程（胎教版）</a></p>
+
+<p id="articleContentId"><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="IAR的工程路径和头文件路径的配置问题" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_38351824/article/details/81591904" title="IAR的工程路径和头文件路径的配置问题">IAR的工程路径和头文件路径的配置问题</a></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!" target="_blank" rel="noopener" href="https://www.armbbs.cn/forum.php?mod=viewthread&amp;tid=113113" title="H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!">H7-TOOL的高速DAPLINKY用于IAR9.30的设置说明(2022-06-18) - H7-TOOL开发工具 - 硬汉嵌入式论坛 - Powered by Discuz!</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F-EWARM%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏 EWARM学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/IAR-GD32-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%B5%8C%E5%85%A5%E5%BC%8F-%E5%8D%95%E7%89%87%E6%9C%BA/" class="print-no-link">#IAR GD32 学习记录 嵌入式 单片机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建</div>
+      <div>http://example.com/2025/07/27/【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/" title="【Git】Git LFS的使用">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Git】Git LFS的使用</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/26/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8EGD32+OV5640%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" title="【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录">
+                        <span class="hidden-mobile">【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

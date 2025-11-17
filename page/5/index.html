@@ -1,0 +1,937 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta property="og:type" content="website">
+<meta property="og:title" content="Molesidy Blog">
+<meta property="og:url" content="http://example.com/page/5/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:author" content="John Doe">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 100vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="Welcome to Molesidy&#39;s Blog"></span>
+          
+        </div>
+
+        
+      </div>
+
+      
+        <div class="scroll-down-bar">
+          <i class="iconfont icon-arrowdown"></i>
+        </div>
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      <div class="container nopadding-x-md">
+        <div id="board"
+          style="margin-top: 0">
+          
+          <div class="container">
+            <div class="row">
+              <div class="col-12 col-md-10 m-auto">
+                
+
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+          【Git】Git LFS的使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          一、简介  Git LFS（Git Large File Storage）是由 GitHub 开发的一款 Git 扩展工具，旨在帮助开发者更高效地管理仓库中的大文件。传统 Git 会将文件的每个版本完整存储在仓库历史中，导致大文件（如音频、视频、数据集、二进制文件等）快速膨胀仓库体积，影响克隆和推送效率。Git LFS 通过以下机制解决这一问题：  核心原理   	指针替换：在提交时，将大文件
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-27 10:39" pubdate>
+              2025-07-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Git%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Git学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/git-git-lfs-%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/">#git git lfs 远程推送 学习记录</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/27/%E3%80%90EWARM%E3%80%91EWARM%EF%BC%88IAR%EF%BC%89%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8AGD32%E7%9A%84IAR%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA/" target="_self">
+          【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/27/%E3%80%90EWARM%E3%80%91EWARM%EF%BC%88IAR%EF%BC%89%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8AGD32%E7%9A%84IAR%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA/" target="_self">
+        <div>
+          一、简介  IAR官网  EWARM，即 IAR Embedded Workbench for ARM，是由 IAR Systems 开发的一款专门用于 ARM 微处理器软件开发的集成开发环境。以下是具体介绍：   	功能特性：  &lt;ul&gt; 	&lt;li&gt;&lt;strong&gt;完整工具链支持&lt;/strong&gt;：集成了高级编辑器、全面的编译器工具链以及功能强
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-27 01:07" pubdate>
+              2025-07-27
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F-EWARM%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏 EWARM学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/IAR-GD32-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95-%E5%B5%8C%E5%85%A5%E5%BC%8F-%E5%8D%95%E7%89%87%E6%9C%BA/">#IAR GD32 学习记录 嵌入式 单片机</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/26/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8EGD32+OV5640%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" target="_self">
+          【MCU】【GD32】基于GD32+OV5640的摄像头模块学习记录
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/26/%E3%80%90MCU%E3%80%91%E3%80%90GD32%E3%80%91%E5%9F%BA%E4%BA%8EGD32+OV5640%E7%9A%84%E6%91%84%E5%83%8F%E5%A4%B4%E6%A8%A1%E5%9D%97%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" target="_self">
+        <div>
+          前言  目前，该文章仅仅是记录学习过程，代码方面还有些许问题，未调通，这里的代码仅供参考。  一、OV5640摄像头模块介绍  1.摄像头简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在信息载体中，图像包含的信息最为丰富。作为机器视觉领域的核心组件，摄像头的应用场景十分广泛，涵盖安防监控、野外探险、车牌识别检测等多个领域。  从不同维度对摄像头进行
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-26 13:47" pubdate>
+              2025-07-26
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%AD%A6%E4%B9%A0-OV5640-GD32-DCI/">#学习 OV5640 GD32 DCI</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/23/%E3%80%90MicroPython%E3%80%91%E5%9F%BA%E4%BA%8EESP32S3+MicroPython%E5%9B%BA%E4%BB%B6%E7%9A%84%E5%88%9D%E6%AD%A5%E5%BC%80%E5%8F%91/" target="_self">
+          【MicroPython】基于ESP32S3+MicroPython固件的初步开发
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/23/%E3%80%90MicroPython%E3%80%91%E5%9F%BA%E4%BA%8EESP32S3+MicroPython%E5%9B%BA%E4%BB%B6%E7%9A%84%E5%88%9D%E6%AD%A5%E5%BC%80%E5%8F%91/" target="_self">
+        <div>
+          前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;什么是&nbsp;MicroPython&nbsp;固件？它是指运行在&nbsp;ESP32&nbsp;上的一段代码，功能为将你写的&nbsp;python&nbsp;代码翻译成&nbsp;ESP32&nbsp;可以运行的机器码，也称之为&nbsp;python&nbsp;解释器。  &nbsp;&nb
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-23 16:00" pubdate>
+              2025-07-23
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MicroPython%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F-SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MicroPython学习专栏 SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6-ESP32-Thonny-MicroPython/">#单片机 嵌入式硬件 ESP32 Thonny MicroPython</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/22/%E3%80%90RK3566%E3%80%91%E9%80%82%E7%94%A8%E4%BA%8E%E8%90%8C%E6%96%B0%E4%B8%8E%E5%B0%8F%E7%99%BD%E7%9A%84%E7%AB%8B%E5%88%9B%E6%B3%B0%E5%B1%B1%E6%B4%BE%E5%88%B0%E6%89%8B%E5%88%9D%E4%BD%93%E9%AA%8C%E9%80%9F%E9%80%9A%E6%95%99%E7%A8%8B/" target="_self">
+          【RK3566】适用于萌新与小白的立创泰山派到手初体验速通教程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/22/%E3%80%90RK3566%E3%80%91%E9%80%82%E7%94%A8%E4%BA%8E%E8%90%8C%E6%96%B0%E4%B8%8E%E5%B0%8F%E7%99%BD%E7%9A%84%E7%AB%8B%E5%88%9B%E6%B3%B0%E5%B1%B1%E6%B4%BE%E5%88%B0%E6%89%8B%E5%88%9D%E4%BD%93%E9%AA%8C%E9%80%9F%E9%80%9A%E6%95%99%E7%A8%8B/" target="_self">
+        <div>
+          前言  本文目前只涉及到了立创泰山派到手后的速通验货过程，后面的虚拟机内的编译过程演示请等待后续更新&middot;&middot;&middot;&middot;&middot;&middot;  一、以2G+16G版本的立创泰山派为例的速通验货过程  1.到手后拆开包装，仔细有没有因为检查运输导致出现的物理损坏与硬件是否齐全。    2.2G+16G版本的立创泰山派出厂时，就在EMMC里刷
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-22 18:29" pubdate>
+              2025-07-22
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/%E7%AB%8B%E5%88%9B%E6%B3%B0%E5%B1%B1%E6%B4%BE-RK3566-%E9%AA%8C%E8%B4%A7-%E7%83%A7%E5%86%99%E9%95%9C%E5%83%8F/">#立创泰山派 RK3566 验货 烧写镜像</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/22/%E3%80%90Docker%E3%80%91Docker%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E4%BB%A5%E5%8F%8AUbuntu%E4%B8%8B%E7%9A%84Docker%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/" target="_self">
+          【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/22/%E3%80%90Docker%E3%80%91Docker%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E4%BB%A5%E5%8F%8AUbuntu%E4%B8%8B%E7%9A%84Docker%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/" target="_self">
+        <div>
+          前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在当今快速迭代的软件开发与部署领域，容器化技术已成为不可或缺的核心力量，而 Docker 作为容器化技术的杰出代表，正以其轻量、高效、可移植的特性深刻改变着开发与运维的模式。它有效解决了 &ldquo;在我机器上能运行，在你那里却不行&rdquo; 的环境一致性难题，极大简化了应用的打包、分发与部署流程
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-22 13:53" pubdate>
+              2025-07-22
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Docker学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/docker-%E5%AE%B9%E5%99%A8-%E8%BF%90%E7%BB%B4-Ubuntu/">#docker 容器 运维 Ubuntu</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu+%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E7%9A%84Linux%20To%20Go%E7%9A%84%E8%B6%85%E8%AF%A6%E7%BB%86%E5%88%B6%E4%BD%9C%E5%85%A8%E8%BF%87%E7%A8%8B/" target="_self">
+          【Ubuntu】基于Ubuntu+移动硬盘的Linux To Go的超详细制作全过程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu+%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E7%9A%84Linux%20To%20Go%E7%9A%84%E8%B6%85%E8%AF%A6%E7%BB%86%E5%88%B6%E4%BD%9C%E5%85%A8%E8%BF%87%E7%A8%8B/" target="_self">
+        <div>
+          前言  &nbsp; &nbsp; &nbsp; &nbsp;为什么需要Linux To Go？  &nbsp; &nbsp; &nbsp; &nbsp;（1）或许你尝试过用虚拟机体验 Linux &mdash;&mdash; 这种方式确实成本低廉，只需在现有系统中划分部分资源即可运行。但它的短板也十分明显：虚拟机里的 Linux 始终是 &ldquo;不完整的存在&rdquo;。一方面，受限
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-18 20:04" pubdate>
+              2025-07-18
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/linux-ubuntu-Linux-To-Go/">#linux ubuntu Linux To Go</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91Ubuntu%E7%9A%84%E5%88%86%E5%8C%BA%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%88%B6%E5%AE%9A%E6%9C%80%E4%BD%B3%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" target="_self">
+          【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91Ubuntu%E7%9A%84%E5%88%86%E5%8C%BA%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%88%B6%E5%AE%9A%E6%9C%80%E4%BD%B3%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/" target="_self">
+        <div>
+          前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于该文章仅适用于个人Linux电脑，笔者暂时没有深入研究运维方面的服务器Ubuntu系统安装和分区配置，有待后续更新。   目录  一、基础知识  （一）在了解硬盘分区前，先明确硬盘的主要分类及 Linux 系统中的标识规则：​  （二）硬盘分区表格式与 BIOS 引导方式的对应关系及系统适配​  （
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-18 13:07" pubdate>
+              2025-07-18
+            </time>
+          </div>
+        
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/ubuntu-linux-%E5%88%86%E5%8C%BA/">#ubuntu linux 分区</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/11/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91%E5%9F%BA%E4%BA%8EVSCode+ESP-IDF%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B/" target="_self">
+          【SoC】【ESP32】基于VSCode+ESP-IDF插件开发环境的示例工程
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/11/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91%E5%9F%BA%E4%BA%8EVSCode+ESP-IDF%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B/" target="_self">
+        <div>
+          一、简介  （1）开发环境   	VSCode：一款轻量级但功能强大的跨平台代码编辑器，拥有丰富的插件生态系统，方便进行代码编辑、调试等操作。 	ESP-IDF 插件：由乐鑫公司开发，集成了 ESP32 系列芯片开发所需的工具链、编译环境等，能在 VSCode 中直接进行 ESP32 项目的创建、编译、烧录和调试等工作。   （2）硬件基础   	ESP32 芯片：这是乐鑫推出的一款低功耗、高
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-11 00:49" pubdate>
+              2025-07-11
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vscode-ide-%E7%BC%96%E8%BE%91%E5%99%A8-ESP32-FreeRTOS/">#vscode ide 编辑器 ESP32 FreeRTOS</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+  <div class="row mx-auto index-card">
+    
+    
+    <article class="col-12 col-md-12 mx-auto index-info">
+      <h2 class="index-header">
+        
+        <a href="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" target="_self">
+          【SoC】【ESP32】ESP-IDF+VSCode的初步使用
+        </a>
+      </h2>
+
+      
+      <a class="index-excerpt index-excerpt__noimg" href="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/" target="_self">
+        <div>
+          一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（Espressif IoT Development Framework）是乐鑫为其 ESP32、ESP32-S 系列、ESP32-C 系列等芯片提供的官方物联网开发框架，基于 FreeRTOS 操作系统，支持 C、C++ 和 Lua 等语言，用于快速开发物联网、智能家居、工业控制等领
+        </div>
+      </a>
+
+      <div class="index-btm post-metas">
+        
+          <div class="post-meta mr-3">
+            <i class="iconfont icon-date"></i>
+            <time datetime="2025-07-10 17:33" pubdate>
+              2025-07-10
+            </time>
+          </div>
+        
+        
+          <div class="post-meta mr-3 d-flex align-items-center">
+            <i class="iconfont icon-category"></i>
+            
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+          </div>
+        
+        
+          <div class="post-meta">
+            <i class="iconfont icon-tags"></i>
+            
+              <a href="/tags/vscode-ide-%E7%BC%96%E8%BE%91%E5%99%A8-ESP32-ESP-IDF/">#vscode ide 编辑器 ESP32 ESP-IDF</a>
+            
+          </div>
+        
+      </div>
+    </article>
+  </div>
+
+
+
+  <nav aria-label="navigation">
+    <span class="pagination" id="pagination">
+      <a class="extend prev" rel="prev" href="/page/4/#board"><i class="iconfont icon-arrowleft"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/3/#board">3</a><a class="page-number" href="/page/4/#board">4</a><span class="page-number current">5</span><a class="page-number" href="/page/6/#board">6</a><a class="page-number" href="/page/7/#board">7</a><a class="extend next" rel="next" href="/page/6/#board"><i class="iconfont icon-arrowright"></i></a>
+    </span>
+  </nav>
+
+
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

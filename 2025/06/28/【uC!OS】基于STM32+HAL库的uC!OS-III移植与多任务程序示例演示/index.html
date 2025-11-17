@@ -1,0 +1,1624 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、RTOS简介  1. 嵌入式实时操作系统（RTOS）  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;嵌入式实时操作系统（RTOS）是面向嵌入式设备设计的专用操作系统，核心优势在于实时响应能力与任务执行确定性。这类系统专为处理时间敏感性强、需快速反馈的场景而生，例如汽车电子控制单元（ECU）、医疗监护设备、工业机器人控制系统等。在这些应用中">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【uC&#x2F;OS】基于STM32+HAL库的uC&#x2F;OS-III移植与多任务程序示例演示">
+<meta property="og:url" content="http://example.com/2025/06/28/%E3%80%90uC!OS%E3%80%91%E5%9F%BA%E4%BA%8ESTM32+HAL%E5%BA%93%E7%9A%84uC!OS-III%E7%A7%BB%E6%A4%8D%E4%B8%8E%E5%A4%9A%E4%BB%BB%E5%8A%A1%E7%A8%8B%E5%BA%8F%E7%A4%BA%E4%BE%8B%E6%BC%94%E7%A4%BA/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、RTOS简介  1. 嵌入式实时操作系统（RTOS）  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;嵌入式实时操作系统（RTOS）是面向嵌入式设备设计的专用操作系统，核心优势在于实时响应能力与任务执行确定性。这类系统专为处理时间敏感性强、需快速反馈的场景而生，例如汽车电子控制单元（ECU）、医疗监护设备、工业机器人控制系统等。在这些应用中">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fe88d847dd514d06b0c95971d10f47b4.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0ace0c63a92d45c783d31b69c777314c.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f581e70afb564e5e99d69e44b7e66e25.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/283b49ae0504464ea39d786a3b6795f1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5e9ab539ebd84e2fa99a46080bd79def.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3d02535d07d343079bab6ed3c321183b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/75d2c08bf05e4505a789ae0db3b4a03e.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7bc559b4fb8a4d2c932d34dadd323f5e.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/869baa64b3d44651b14a6415ec4721af.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/09552cd3f9f54d72bcf6e046c1224f65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb1749cc998f4f32b24ac7f2d574c776.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e87d1e157448492bb822452330e00498.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9837b1d06b55499ea1846305f8f3b339.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a98cd8168f3452fa3e94b63e434e04f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/049a3801e53243f7a5e47af073997f9b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/65a0ce1c34ad41089c033bd236d929b5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c6485ac54f8c436c9e76527abdc532c3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/66ffd10c078e40e590b3a37c24560a72.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/72c04f72d46742fe87a646c973a76a1c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/578d452d54d54efc958c8b1a94d696e9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/61f5f880b32749eaa937c2f0a78b7448.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/68cf87444d074dcf919b6f0513342b66.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/41d74f6a6425449496ce6a53cf6ee45f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/505fc4d4cbd14cbf94bee9973a6af7a6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6ae1046b3e784e1ba9d858875be717e4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1f605361f3d7413fa0f9aa261502e6ae.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/111e87c1c78f4d5f8c2d3d348193a179.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e69ad9060f4d4f3fa6c2a8b7e82b9ccc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a4aed71dea16432e9846f15e74008e31.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/349a7e146e994db799457cd4a4d2492b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/080b183fde4b4b6588d02503abb3a42e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/edb7fb4f92b84acebce130640e1afd1d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3d3d3d34887a40d0b714ab056f8e66fb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2cbff0f957964a0583537b9ca9731e74.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6db9138003734f59993f9e6bb9c28cc4.gif">
+<meta property="article:published_time" content="2025-06-28T11:21:07.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="stm32 嵌入式硬件 单片机">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5">
+  
+  
+  
+  <title>【uC/OS】基于STM32+HAL库的uC/OS-III移植与多任务程序示例演示 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【uC/OS】基于STM32+HAL库的uC/OS-III移植与多任务程序示例演示"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-06-28 19:21" pubdate>
+          2025年6月28日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【uC/OS】基于STM32+HAL库的uC/OS-III移植与多任务程序示例演示</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<p><strong>一、RTOS简介</strong></p>
+
+<p id="main-toc" name="tableOfContents">1. 嵌入式实时操作系统（RTOS）</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;嵌入式实时操作系统（RTOS）是面向嵌入式设备设计的专用操作系统，核心优势在于<strong>实时响应能力</strong>与<strong>任务执行确定性</strong>。这类系统专为处理时间敏感性强、需快速反馈的场景而生，例如汽车电子控制单元（ECU）、医疗监护设备、工业机器人控制系统等。在这些应用中，任务的执行时序和响应速度直接影响系统功能与安全性。</p>
+
+<p>目前主流的嵌入式 RTOS 包括：</p>
+
+<ul>
+	<li><strong>FreeRTOS</strong>：开源轻量级系统，广泛应用于消费电子与工业控制领域；</li>
+	<li><strong>uC/OS</strong>：模块化设计的商业 RTOS，支持多任务调度与实时性能优化；</li>
+	<li><strong>RT-Thread</strong>：国产开源 RTOS，集成丰富组件与生态支持；</li>
+	<li><strong>ThreadX</strong>：微软旗下商业 RTOS，常用于对可靠性要求极高的嵌入式场景。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;RTOS不止以上的这几种，同时，RTOS通过精确的任务调度算法（如优先级抢占、时间片轮转）、中断管理机制及资源同步原语（互斥锁、信号量等），确保关键任务在指定时限内完成，满足嵌入式系统对实时性与稳定性的需求。</p>
+
+<p>2.uC/OS-III简介<br />
+<strong>&nbsp; &nbsp; &nbsp; &nbsp;</strong> uC/OS-III（Micro C/OS-III）是由美国嵌入式系统专家 Jean J. Labrosse 开发的<strong>实时操作系统（RTOS）</strong>，专为嵌入式系统设计。其前身是 uC/OS-II，III 代在实时性、可靠性和可扩展性上进行了全面升级，广泛应用于工业控制、医疗设备、航空航天、消费电子等对实时性要求严格的领域。</p>
+
+<p><strong>二、获取uC/OS-III源码</strong></p>
+
+<p>1.官网下载链接：</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Micrium Software and Documentation - Silicon Labs" target="_blank" rel="noopener" href="https://www.silabs.com/developers/micrium" title="Micrium Software and Documentation - Silicon Labs">Micrium Software and Documentation - Silicon Labs</a></p>
+
+<p>2.git移植成功示例（含uC/OS源码）：</p>
+
+<p><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Molesidy/uCOS: This repository is used to store porting routines for uCOS, including partial source code of uCOS II/III, and is intended for learning purposes only." target="_blank" rel="noopener" href="https://github.com/Molesidy/uCOS" title="Molesidy/uCOS: This repository is used to store porting routines for uCOS, including partial source code of uCOS II/III, and is intended for learning purposes only."><span class="link-card-box" contenteditable="false"><span class="link-title">Molesidy/uCOS: This repository is used to store porting routines for uCOS, including partial source code of uCOS II/III, and is intended for learning purposes only.</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/uCOS</span></span></a><strong>三、创建裸机项目工程示例</strong></p>
+
+<p>1.使用STM32CubeMX创建工程，首先，选择系统时钟来源和开启SWD。</p>
+
+<p><strong><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fe88d847dd514d06b0c95971d10f47b4.jpeg" srcset="/img/loading.gif" lazyload /></strong></p>
+
+<p style="text-align:center"><strong><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0ace0c63a92d45c783d31b69c777314c.jpeg" srcset="/img/loading.gif" lazyload /></strong></p>
+
+<p>2.图形化配置3个GPIO（PB0，PB1，PB5）为GPIO输出，用于进行创建3个Led闪烁的任务以便测试。</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f581e70afb564e5e99d69e44b7e66e25.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p>3.进行时钟树配置。</p>
+
+<p><img alt="" height="1006" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/283b49ae0504464ea39d786a3b6795f1.png" srcset="/img/loading.gif" lazyload width="1899" /></p>
+
+<p>4.最后进行工程的配置。</p>
+
+<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5e9ab539ebd84e2fa99a46080bd79def.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3d02535d07d343079bab6ed3c321183b.png" srcset="/img/loading.gif" lazyload width="1917" /></p>
+
+<p><strong>四、移植uC/OS源码到示例工程下</strong><br />
+1.在工程的文件夹下添加新的文件夹BSP、uCOS_III。</p>
+
+<p><img alt="" height="529" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/75d2c08bf05e4505a789ae0db3b4a03e.jpeg" srcset="/img/loading.gif" lazyload width="703" /></p>
+
+<p>2.将源码的4个文件夹放到新增的uCOS文件夹下，然后我对应将这4个文件重命名了一下，这个根据自己的习惯来。</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7bc559b4fb8a4d2c932d34dadd323f5e.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p style="text-align:center"><img alt="" height="355" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/869baa64b3d44651b14a6415ec4721af.png" srcset="/img/loading.gif" lazyload width="1154" /></p>
+
+<p>3.在KEIL工程内部将uCOS_III的对应文件夹下的文件对应加入到KEIL工程组当中。</p>
+
+<p>（1）uCOS_III_CONFIG</p>
+
+<p><img alt="" height="727" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/09552cd3f9f54d72bcf6e046c1224f65.png" srcset="/img/loading.gif" lazyload width="1305" /></p>
+
+<p><img alt="" height="527" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb1749cc998f4f32b24ac7f2d574c776.png" srcset="/img/loading.gif" lazyload width="762" /></p>
+
+<p>（2）uCOS_III_CPU</p>
+
+<p><img alt="" height="735" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e87d1e157448492bb822452330e00498.png" srcset="/img/loading.gif" lazyload width="1308" /></p>
+
+<p>将\STM32_uCOS_III\uCOS_III\uCOS_CPU\ARM-Cortex-M3\RealView下的文件加入到uCOS_III_CPU组中。</p>
+
+<p style="text-align:center"><img alt="" height="716" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9837b1d06b55499ea1846305f8f3b339.png" srcset="/img/loading.gif" lazyload width="1293" /><img alt="" height="578" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a98cd8168f3452fa3e94b63e434e04f.png" srcset="/img/loading.gif" lazyload width="774" /></p>
+
+<p>（3）uCOS_III_LIB</p>
+
+<p><img alt="" height="730" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/049a3801e53243f7a5e47af073997f9b.png" srcset="/img/loading.gif" lazyload width="1293" /></p>
+
+<p>将\STM32_uCOS_III\uCOS_III\uCOS_LIB\Ports\ARM-Cortex-M3\RealView下文件加入uCOS_III_LIB组中。</p>
+
+<p><img alt="" height="726" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/65a0ce1c34ad41089c033bd236d929b5.png" srcset="/img/loading.gif" lazyload width="1299" /><img alt="" height="574" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c6485ac54f8c436c9e76527abdc532c3.png" srcset="/img/loading.gif" lazyload width="771" /></p>
+
+<p>（4）uCOS_III_PORT<br />
+将\STM32_uCOS_III\uCOS_III\uCOS_III\Ports\ARM-Cortex-M3\Generic\RealView下文件加入到uCOS_III_PORT组中。</p>
+
+<p><img alt="" height="733" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/66ffd10c078e40e590b3a37c24560a72.png" srcset="/img/loading.gif" lazyload width="1295" /></p>
+
+<p><img alt="" height="579" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/72c04f72d46742fe87a646c973a76a1c.png" srcset="/img/loading.gif" lazyload width="769" /></p>
+
+<p>（5）uCOS_III_SOURCE</p>
+
+<p><img alt="" height="621" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/578d452d54d54efc958c8b1a94d696e9.png" srcset="/img/loading.gif" lazyload width="1293" /></p>
+
+<p><img alt="" height="580" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/61f5f880b32749eaa937c2f0a78b7448.png" srcset="/img/loading.gif" lazyload width="772" /></p>
+
+<p><img alt="" height="573" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/68cf87444d074dcf919b6f0513342b66.png" srcset="/img/loading.gif" lazyload width="770" /></p>
+
+<p>（6）uCOS_III_APP<br />
+新建2个用户文件user_app.h、user_app.c起来用于未来存放自己封装的应用函数，可建可不可建，这个示例的3个Led任务将会放在main.c中，并未涉及这个user_app.c/h。</p>
+
+<p class="img-center"><img alt="" height="73" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/41d74f6a6425449496ce6a53cf6ee45f.png" srcset="/img/loading.gif" lazyload width="302" /></p>
+
+<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/505fc4d4cbd14cbf94bee9973a6af7a6.png" srcset="/img/loading.gif" lazyload width="773" /></p>
+
+<p>（7）BSP</p>
+
+<p>新建空白文件bsp.h、bsp.c，用于板级支持包初始化和其他调整。</p>
+
+<p class="img-center"><img alt="" height="79" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6ae1046b3e784e1ba9d858875be717e4.png" srcset="/img/loading.gif" lazyload width="285" /></p>
+
+<p><img alt="" height="575" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1f605361f3d7413fa0f9aa261502e6ae.png" srcset="/img/loading.gif" lazyload width="770" /></p>
+
+<p>（8）导入文件所在的路径。</p>
+
+<p><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/111e87c1c78f4d5f8c2d3d348193a179.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e69ad9060f4d4f3fa6c2a8b7e82b9ccc.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>4.添加文件完毕后，便是对代码进行修改。</p>
+
+<p>（1）在bsp.h、bsp.c文件添加相应的代码。</p>
+
+<p>bsp.h</p>
+
+<pre>
+<code class="language-cs">#ifndef  __BSP_H__
+#define  __BSP_H__
+ 
+#include "stm32f1xx_hal.h"
+ 
+void BSP_Init(void);
+ 
+#endif</code></pre>
+
+<p>bsp.c</p>
+
+<pre>
+<code class="language-cs">// bsp.c
+#include "includes.h"
+ 
+#define  DWT_CR      *(CPU_REG32 *)0xE0001000
+#define  DWT_CYCCNT  *(CPU_REG32 *)0xE0001004
+#define  DEM_CR      *(CPU_REG32 *)0xE000EDFC
+#define  DBGMCU_CR   *(CPU_REG32 *)0xE0042004
+ 
+#define  DEM_CR_TRCENA                   (1 &lt;&lt; 24)
+#define  DWT_CR_CYCCNTENA                (1 &lt;&lt;  0)
+ 
+CPU_INT32U  BSP_CPU_ClkFreq (void)
+{
+    return HAL_RCC_GetHCLKFreq();
+}
+ 
+void BSP_Tick_Init(void)
+{
+	CPU_INT32U cpu_clk_freq;
+	CPU_INT32U cnts;
+	cpu_clk_freq = BSP_CPU_ClkFreq();
+	
+	#if(OS_VERSION&gt;=3000u)
+		cnts = cpu_clk_freq/(CPU_INT32U)OSCfg_TickRate_Hz;
+	#else
+		cnts = cpu_clk_freq/(CPU_INT32U)OS_TICKS_PER_SEC;
+	#endif
+	OS_CPU_SysTickInit(cnts);
+}
+ 
+ 
+ 
+void BSP_Init(void)
+{
+	BSP_Tick_Init();
+	MX_GPIO_Init();
+}
+ 
+ 
+#if (CPU_CFG_TS_TMR_EN == DEF_ENABLED)
+void  CPU_TS_TmrInit (void)
+{
+    CPU_INT32U  cpu_clk_freq_hz;
+ 
+ 
+    DEM_CR         |= (CPU_INT32U)DEM_CR_TRCENA;                /* Enable Cortex-M3's DWT CYCCNT reg.                   */
+    DWT_CYCCNT      = (CPU_INT32U)0u;
+    DWT_CR         |= (CPU_INT32U)DWT_CR_CYCCNTENA;
+ 
+    cpu_clk_freq_hz = BSP_CPU_ClkFreq();
+    CPU_TS_TmrFreqSet(cpu_clk_freq_hz);
+}
+#endif
+ 
+ 
+#if (CPU_CFG_TS_TMR_EN == DEF_ENABLED)
+CPU_TS_TMR  CPU_TS_TmrRd (void)
+{
+    return ((CPU_TS_TMR)DWT_CYCCNT);
+}
+#endif
+ 
+ 
+#if (CPU_CFG_TS_32_EN == DEF_ENABLED)
+CPU_INT64U  CPU_TS32_to_uSec (CPU_TS32  ts_cnts)
+{
+	CPU_INT64U  ts_us;
+  CPU_INT64U  fclk_freq;
+ 
+ 
+  fclk_freq = BSP_CPU_ClkFreq();
+  ts_us     = ts_cnts / (fclk_freq / DEF_TIME_NBR_uS_PER_SEC);
+ 
+  return (ts_us);
+}
+#endif
+ 
+ 
+#if (CPU_CFG_TS_64_EN == DEF_ENABLED)
+CPU_INT64U  CPU_TS64_to_uSec (CPU_TS64  ts_cnts)
+{
+	CPU_INT64U  ts_us;
+	CPU_INT64U  fclk_freq;
+ 
+ 
+  fclk_freq = BSP_CPU_ClkFreq();
+  ts_us     = ts_cnts / (fclk_freq / DEF_TIME_NBR_uS_PER_SEC);
+	
+  return (ts_us);
+}
+#endif
+</code></pre>
+
+<p>（2）修改STM32启动文件。</p>
+
+<p><img alt="" height="39" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a4aed71dea16432e9846f15e74008e31.png" srcset="/img/loading.gif" lazyload width="830" /></p>
+
+<p><img alt="" height="162" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/349a7e146e994db799457cd4a4d2492b.png" srcset="/img/loading.gif" lazyload width="694" /></p>
+
+<p>将上述所有PendSV_Handler和SysTick_Handler替换为</p>
+
+<pre>
+<code class="language-cs">OS_CPU_PendSVHandler
+OS_CPU_SysTickHandler</code></pre>
+
+<p>（3）修改app_cfg.h。</p>
+
+<pre>
+<code class="language-cs">//#define  APP_CFG_SERIAL_EN                          DEF_ENABLED //注释掉
+#define  APP_CFG_SERIAL_EN                          DEF_DISABLED //改为此句
+
+//#define  APP_TRACE                                  BSP_Ser_Printf //注释掉
+#define  APP_TRACE                                  (void) //改为此句</code></pre>
+
+<p><img alt="" height="599" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/080b183fde4b4b6588d02503abb3a42e.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="596" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/edb7fb4f92b84acebce130640e1afd1d.png" srcset="/img/loading.gif" lazyload width="1909" /></p>
+
+<p>（4）修改includes.h。</p>
+
+<pre>
+<code class="language-cs">//#include  &lt;stm32f10x_lib.h&gt;
+#include "stm32f1xx_hal.h" //改为此句
+
+#include "gpio.h" //同时添加该头文件，以便uCOS初始化HAL库的MX_GPIO_Init
+</code></pre>
+
+<pre>
+<code class="language-cs">/*
+*********************************************************************************************************
+*                                              EXAMPLE CODE
+*
+*                          (c) Copyright 2003-2013; Micrium, Inc.; Weston, FL
+*
+*               All rights reserved.  Protected by international copyright laws.
+*               Knowledge of the source code may NOT be used to develop a similar product.
+*               Please help us continue to provide the Embedded community with the finest
+*               software available.  Your honesty is greatly appreciated.
+*********************************************************************************************************
+*/
+
+/*
+*********************************************************************************************************
+*
+*                                           MASTER INCLUDES
+*
+*                                     ST Microelectronics STM32
+*                                              on the
+*
+*                                     Micrium uC-Eval-STM32F107
+*                                         Evaluation Board
+*
+* Filename      : includes.h
+* Version       : V1.00
+* Programmer(s) : EHS
+*                 DC
+*********************************************************************************************************
+*/
+
+#ifndef  INCLUDES_PRESENT
+#define  INCLUDES_PRESENT
+
+
+/*
+*********************************************************************************************************
+*                                         STANDARD LIBRARIES
+*********************************************************************************************************
+*/
+
+#include  &lt;stdarg.h&gt;
+#include  &lt;stdio.h&gt;
+#include  &lt;stdlib.h&gt;
+#include  &lt;math.h&gt;
+
+
+/*
+*********************************************************************************************************
+*                                              LIBRARIES
+*********************************************************************************************************
+*/
+
+#include  &lt;cpu.h&gt;
+#include  &lt;lib_def.h&gt;
+#include  &lt;lib_ascii.h&gt;
+#include  &lt;lib_math.h&gt;
+#include  &lt;lib_mem.h&gt;
+#include  &lt;lib_str.h&gt;
+
+
+/*
+*********************************************************************************************************
+*                                              APP / BSP
+*********************************************************************************************************
+*/
+
+#include  &lt;bsp.h&gt;
+
+
+/*
+*********************************************************************************************************
+*                                                 OS
+*********************************************************************************************************
+*/
+
+#include  &lt;os.h&gt;
+
+
+/*
+*********************************************************************************************************
+*                                                 ST
+*********************************************************************************************************
+*/
+
+//#include  &lt;stm32f10x_lib.h&gt;
+#include "stm32f1xx_hal.h"
+#include "gpio.h"
+
+/*
+*********************************************************************************************************
+*                                            INCLUDES END
+*********************************************************************************************************
+*/
+
+
+#endif
+
+</code></pre>
+
+<p>（5）根据实际情况，可修改堆空间大小。</p>
+
+<pre>
+<code class="language-cs">//#define  LIB_MEM_CFG_HEAP_SIZE          27u * 1024u     /* Configure heap memory size         [see Note #2a].           */
+#define  LIB_MEM_CFG_HEAP_SIZE          5u * 1024u</code></pre>
+
+<p><img alt="" height="601" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3d3d3d34887a40d0b714ab056f8e66fb.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>（6）编写main.c函数。</p>
+
+<pre>
+<code class="language-cs">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include &lt;includes.h&gt;
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+/* 任务优先级 */
+#define START_TASK_PRIO		3
+#define LED0_TASK_PRIO		4
+#define LED1_TASK_PRIO		4
+#define LED2_TASK_PRIO		4
+ 
+/* 任务堆栈大小	*/
+#define START_STK_SIZE 		256
+#define LED0_STK_SIZE 		128
+#define LED1_STK_SIZE 		128
+#define LED2_STK_SIZE 		128
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+/* 任务栈 */	
+CPU_STK START_TASK_STK[START_STK_SIZE];
+CPU_STK LED0_TASK_STK[LED0_STK_SIZE];
+CPU_STK LED1_TASK_STK[LED1_STK_SIZE];
+CPU_STK LED2_TASK_STK[LED2_STK_SIZE];
+
+/* 任务控制块 */
+OS_TCB StartTaskTCB;
+OS_TCB Led0TaskTCB;
+OS_TCB Led1TaskTCB;
+OS_TCB Led2TaskTCB;
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+/* 任务函数定义 */
+void start_task(void *p_arg);
+static  void  AppTaskCreate(void);
+static  void  AppObjCreate(void);
+static  void  Led0_Task(void *p_arg);
+static  void  Led1_Task(void *p_arg);
+static  void  Led2_Task(void *p_arg);
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+ 
+  /**Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+  /**Initializes the CPU, AHB and APB busses clocks 
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+ 
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+	OS_ERR err;
+	OSInit(&amp;err);
+	HAL_Init();
+	SystemClock_Config();
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  //HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  //SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  //MX_GPIO_Init();
+  /* USER CODE BEGIN 2 */
+	/* 创建任务 */
+	OSTaskCreate((OS_TCB     *)&amp;StartTaskTCB,                /* Create the start task                                */
+				 (CPU_CHAR   *)"start task",
+				 (OS_TASK_PTR ) start_task,
+				 (void       *) 0,
+				 (OS_PRIO     ) START_TASK_PRIO,
+				 (CPU_STK    *)&amp;START_TASK_STK[0],
+				 (CPU_STK_SIZE) START_STK_SIZE/10,
+				 (CPU_STK_SIZE) START_STK_SIZE,
+				 (OS_MSG_QTY  ) 0,
+				 (OS_TICK     ) 0,
+				 (void       *) 0,
+				 (OS_OPT      )(OS_OPT_TASK_STK_CHK | OS_OPT_TASK_STK_CLR),
+				 (OS_ERR     *)&amp;err);
+	/* 启动多任务系统，控制权交给uC/OS-III */
+	OSStart(&amp;err);            /* Start multitasking (i.e. give control to uC/OS-III). */
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+//void SystemClock_Config(void)
+//{
+//  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+//  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+//  /** Initializes the RCC Oscillators according to the specified parameters
+//  * in the RCC_OscInitTypeDef structure.
+//  */
+//  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+//  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+//  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+//  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+//  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+//  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+//  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+//  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+
+//  /** Initializes the CPU, AHB and APB buses clocks
+//  */
+//  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+//                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+//  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+//  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+//  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+//  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+//  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+//  {
+//    Error_Handler();
+//  }
+//}
+
+/* USER CODE BEGIN 4 */
+void start_task(void *p_arg)
+{
+	OS_ERR err;
+
+	p_arg = p_arg;
+	
+	BSP_Init();                                                   /* Initialize BSP functions */
+	CPU_Init();
+	Mem_Init();                                                 /* Initialize Memory Management Module */
+ 
+#if OS_CFG_STAT_TASK_EN &gt; 0u
+	OSStatTaskCPUUsageInit(&amp;err);  		//统计任务                
+#endif
+	
+#ifdef CPU_CFG_INT_DIS_MEAS_EN			//如果使能了测量中断关闭时间
+    CPU_IntDisMeasMaxCurReset();	
+#endif
+ 
+#if	OS_CFG_SCHED_ROUND_ROBIN_EN  		//当使用时间片轮转的时候
+	 //使能时间片轮转调度功能,时间片长度为1个系统时钟节拍，既1*5=5ms
+	OSSchedRoundRobinCfg(DEF_ENABLED,1,&amp;err);  
+#endif		
+	
+	AppTaskCreate();                                                                      
+ 
+	AppObjCreate();                                             
+	
+}
+
+
+static  void  Led0_Task (void *p_arg)
+{
+	OS_ERR err;
+
+	(void)p_arg;
+	
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
+	
+	while (DEF_TRUE)
+	{
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_RESET);
+		OSTimeDlyHMSM(0, 0, 0, 300,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);
+		OSTimeDlyHMSM(0, 0, 0, 300,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+	}
+
+}
+ 
+static  void  Led1_Task (void *p_arg)
+{
+	OS_ERR  err;
+ 
+	(void)p_arg;
+	
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
+	
+	while (DEF_TRUE)
+	{
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_RESET);
+		OSTimeDlyHMSM(0, 0, 0, 600,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
+		OSTimeDlyHMSM(0, 0, 0, 600,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+	}
+
+}
+ 
+static  void  Led2_Task (void *p_arg)
+{
+	OS_ERR err;
+
+	(void)p_arg;
+
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_1,GPIO_PIN_SET);
+	HAL_GPIO_WritePin(GPIOB,GPIO_PIN_5,GPIO_PIN_SET);
+	
+	while (DEF_TRUE)
+	{
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_RESET);
+		OSTimeDlyHMSM(0, 0, 0, 900,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+		HAL_GPIO_WritePin(GPIOB,GPIO_PIN_0,GPIO_PIN_SET);
+		OSTimeDlyHMSM(0, 0, 0, 900,OS_OPT_TIME_HMSM_STRICT,&amp;err);
+	}
+  
+}
+
+
+ 
+ 
+/* USER CODE BEGIN 4 */
+/**
+  * 函数功能: 创建应用任务
+  * 输入参数: p_arg 是在创建该任务时传递的形参
+  * 返 回 值: 无
+  * 说    明：无
+  */
+static  void  AppTaskCreate (void)
+{
+	OS_ERR err;
+	CPU_SR_ALLOC();
+	
+	OS_CRITICAL_ENTER();	//进入临界区
+	/* 创建LED0任务 */
+	OSTaskCreate((OS_TCB 	* )&amp;Led0TaskTCB,		
+				 (CPU_CHAR	* )"Led0_Task", 		
+                 (OS_TASK_PTR )Led0_Task, 			
+                 (void		* )0,					
+                 (OS_PRIO	  )LED0_TASK_PRIO,     
+                 (CPU_STK   * )&amp;LED0_TASK_STK[0],	
+                 (CPU_STK_SIZE)LED0_STK_SIZE/10,	
+                 (CPU_STK_SIZE)LED0_STK_SIZE,		
+                 (OS_MSG_QTY  )0,					
+                 (OS_TICK	  )0,					
+                 (void   	* )0,					
+                 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
+                 (OS_ERR 	* )&amp;err);		
+ 
+	/* 创建LED1任务 */
+	OSTaskCreate((OS_TCB 	* )&amp;Led1TaskTCB,		
+				 (CPU_CHAR	* )"Led1_Task", 		
+                 (OS_TASK_PTR )Led1_Task, 			
+                 (void		* )0,					
+                 (OS_PRIO	  )LED1_TASK_PRIO,     
+                 (CPU_STK   * )&amp;LED1_TASK_STK[0],	
+                 (CPU_STK_SIZE)LED1_STK_SIZE/10,	
+                 (CPU_STK_SIZE)LED1_STK_SIZE,		
+                 (OS_MSG_QTY  )0,					
+                 (OS_TICK	  )0,					
+                 (void   	* )0,					
+                 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR,
+                 (OS_ERR 	* )&amp;err);										 
+				 
+	/* 创建LED2任务 */
+	OSTaskCreate((OS_TCB 	* )&amp;Led2TaskTCB,		
+				 (CPU_CHAR	* )"Led2_Task", 		
+                 (OS_TASK_PTR )Led2_Task, 			
+                 (void		* )0,					
+                 (OS_PRIO	  )LED2_TASK_PRIO,     	
+                 (CPU_STK   * )&amp;LED2_TASK_STK[0],	
+                 (CPU_STK_SIZE)LED2_STK_SIZE/10,	
+                 (CPU_STK_SIZE)LED2_STK_SIZE,		
+                 (OS_MSG_QTY  )0,					
+                 (OS_TICK	  )0,					
+                 (void   	* )0,				
+                 (OS_OPT      )OS_OPT_TASK_STK_CHK|OS_OPT_TASK_STK_CLR, 
+                 (OS_ERR 	* )&amp;err);
+				 
+	OS_TaskSuspend((OS_TCB*)&amp;StartTaskTCB,&amp;err);		//挂起开始任务			 
+	OS_CRITICAL_EXIT();	//进入临界区
+}
+ 
+ 
+/**
+  * 函数功能: uCOSIII内核对象创建
+  * 输入参数: 无
+  * 返 回 值: 无
+  * 说    明：无
+  */
+static  void  AppObjCreate (void)
+{
+ 
+}
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2cbff0f957964a0583537b9ca9731e74.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>最后，移植成功并成功运行多任务！</p>
+
+<p><strong>五、实验效果演示</strong></p>
+
+<p><img alt="" height="500" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6db9138003734f59993f9e6bb9c28cc4.gif" srcset="/img/loading.gif" lazyload width="1200" /></p>
+
+<p>注：<br />
+（1）使用的硬件平台是野火指南者。<br />
+（2）若移植过程有误，可在评论区指出。<br />
+（3）参考博客：</p>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="                        【STM32】uc/OS-III多任务程序" target="_blank" rel="noopener" href="https://blog.csdn.net/star68_/article/details/139422777?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-4-139422777-blog-121698499.235^v43^pc_blog_bottom_relevance_base8&amp;spm=1001.2101.3001.4242.3&amp;utm_relevant_index=6" title="                        【STM32】uc/OS-III多任务程序">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; 【STM32】uc/OS-III多任务程序</a><br />
+<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="                          STM32基于HAL库移植uC/OS-III" target="_blank" rel="noopener" href="https://blog.csdn.net/m0_74773601/article/details/144710901?utm_medium=distribute.pc_relevant.none-task-blog-2~default~baidujs_baidulandingword~default-5-144710901-blog-128479276.235^v43^pc_blog_bottom_relevance_base8&amp;spm=1001.2101.3001.4242.4&amp;utm_relevant_index=8" title="                          STM32基于HAL库移植uC/OS-III">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; STM32基于HAL库移植uC/OS-III</a><br />
+<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="                          STM32 —— UCOS 移植" target="_blank" rel="noopener" href="https://ppqppl.blog.csdn.net/article/details/128479276?spm=1001.2101.3001.6650.5&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5-128479276-blog-137204748.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-5-128479276-blog-137204748.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;utm_relevant_index=9" title="                          STM32 —— UCOS 移植">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; STM32 &mdash;&mdash; UCOS 移植</a>&nbsp;<br />
+<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="                          ​​​​​​​STM32关于uc/OS-III的多任务程序  " target="_blank" rel="noopener" href="https://blog.csdn.net/2201_75516394/article/details/139551898?spm=1001.2101.3001.6650.13&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-13-139551898-blog-139550247.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-13-139551898-blog-139550247.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;utm_relevant_index=22" title="                          STM32关于uc/OS-III的多任务程序  ">&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; STM32关于uc/OS-III的多任务程序&nbsp;</a>&nbsp;</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/uC-OS%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">uC/OS学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/stm32-%E5%B5%8C%E5%85%A5%E5%BC%8F%E7%A1%AC%E4%BB%B6-%E5%8D%95%E7%89%87%E6%9C%BA/" class="print-no-link">#stm32 嵌入式硬件 单片机</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【uC/OS】基于STM32+HAL库的uC/OS-III移植与多任务程序示例演示</div>
+      <div>http://example.com/2025/06/28/【uC!OS】基于STM32+HAL库的uC!OS-III移植与多任务程序示例演示/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年6月28日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/" title="【Git】仓库的创建与项目的提交">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Git】仓库的创建与项目的提交</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/05/28/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84%E5%87%AD%E5%80%9FQueue%E9%98%9F%E5%88%97%E7%AE%A1%E7%90%86%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/" title="【STM32】基于STM32CubeMX的凭借Queue队列管理的串口空闲中断接收数据（有操作系统）">
+                        <span class="hidden-mobile">【STM32】基于STM32CubeMX的凭借Queue队列管理的串口空闲中断接收数据（有操作系统）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

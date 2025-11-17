@@ -1,0 +1,970 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在蓝牙协议栈的 Transport 层中，UART（通用异步收发传输器）是最常用的硬件接口之一，而UART H5 Transport是蓝牙规范中定义的基于 UART 物理层的传输协议，主要用于蓝牙芯片（如 BLE 模块、经典蓝牙模块）与主机（如 MCU、AP）之间的通信。本章将详细解析 UART H5 Tran">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解">
+<meta property="og:url" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E4%BA%94%E7%AB%A0%20%E5%9F%BA%E4%BA%8E%E5%9F%BA%E7%A1%80UART%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20UART%20H5%20Transport%E8%AF%A6%E8%A7%A3/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在蓝牙协议栈的 Transport 层中，UART（通用异步收发传输器）是最常用的硬件接口之一，而UART H5 Transport是蓝牙规范中定义的基于 UART 物理层的传输协议，主要用于蓝牙芯片（如 BLE 模块、经典蓝牙模块）与主机（如 MCU、AP）之间的通信。本章将详细解析 UART H5 Tran">
+<meta property="og:locale" content="zh_CN">
+<meta property="article:published_time" content="2025-08-10T03:10:42.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="bluetooth 蓝牙通信协议 H5">
+<meta name="twitter:card" content="summary_large_image">
+  
+  
+  
+  <title>【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-10 11:10" pubdate>
+          2025年8月10日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.2k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          19 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在蓝牙协议栈的 Transport 层中，UART（通用异步收发传输器）是最常用的硬件接口之一，而<strong>UART H5 Transport</strong>是蓝牙规范中定义的基于 UART 物理层的传输协议，主要用于蓝牙芯片（如 BLE 模块、经典蓝牙模块）与主机（如 MCU、AP）之间的通信。本章将详细解析 UART H5 Transport 的协议规范、帧结构、数据传输流程及应用场景。</p>
+
+<h2>一、 UART H5 Transport 的定位与作用</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙协议栈的 Transport 层负责<strong>主机（Host）与控制器（Controller）之间的数据传输</strong>，而 UART H5 Transport 是其中基于 UART 硬件接口的具体实现方案。其核心作用是：</p>
+
+<ul>
+	<li>定义主机与控制器通过 UART 接口传输数据时的<strong>帧格式、编码规则、流控机制</strong>；</li>
+	<li>确保 HCI（主机控制器接口）命令、事件、数据在 UART 物理层上的<strong>可靠传输</strong>；</li>
+	<li>兼容蓝牙核心规范（如 Core Specification v5.0+）中对 UART 传输的要求，支持 BLE、经典蓝牙等多种蓝牙技术。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;与其他 Transport 方案（如 USB、SPI）相比，UART H5 Transport 的优势在于<strong>硬件实现简单</strong>（仅需 TX/RX 两根信号线，可选流控线）、<strong>成本低</strong>，因此广泛应用于中小型嵌入式设备（如智能家居传感器、可穿戴设备）。</p>
+
+<h2>二、物理层基础：UART 接口特性</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART H5 Transport 依赖 UART 硬件接口，其物理层特性需满足以下要求：</p>
+
+<ul>
+	<li><strong>信号线</strong>：至少包含 TX（发送）和 RX（接收）两根数据线，可选 CTS（清除发送）和 RTS（请求发送）用于硬件流控；</li>
+	<li><strong>波特率</strong>：支持多种速率，常见为 115200 bps、230400 bps、1 Mbps 等，主机与控制器需预先协商一致；</li>
+	<li><strong>数据格式</strong>：1 个起始位、8 个数据位、1 个停止位，无奇偶校验（即 &ldquo;8N1&rdquo; 格式）；</li>
+	<li><strong>电气特性</strong>：遵循 TTL 电平（3.3V）或 RS-232 电平，需根据硬件设计匹配。</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART 的异步传输特性决定了其无需时钟线，通过预先约定的波特率实现数据同步，但需通过协议层的帧结构确保数据边界的识别。</p>
+
+<h2>三、UART H5 Transport 的帧结构</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为解决 UART 异步传输中 &ldquo;数据边界模糊&rdquo; 的问题，H5 协议定义了明确的<strong>帧结构</strong>，用于标识数据的开始、结束及校验。完整的 H5 帧格式如下（按传输顺序排列）：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>字段</th>
+			<th>长度（字节）</th>
+			<th>作用描述</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>起始标志（SOF）</td>
+			<td>1</td>
+			<td>固定值<code>0x7E</code>，标识一帧数据的开始。</td>
+		</tr>
+		<tr>
+			<td>长度（Length）</td>
+			<td>2</td>
+			<td>表示后续 &ldquo;数据字段&rdquo; 的长度（Little-Endian 格式），范围 0~65535 字节。</td>
+		</tr>
+		<tr>
+			<td>数据字段（Data）</td>
+			<td>可变（0~65535）</td>
+			<td>实际传输的 HCI 数据包，包括 HCI 命令、事件或 ACL 数据（格式遵循 HCI 规范）。</td>
+		</tr>
+		<tr>
+			<td>校验（CRC）</td>
+			<td>2</td>
+			<td>对 &ldquo;长度字段&rdquo; 和 &ldquo;数据字段&rdquo; 的 CRC16 校验值（多项式：0x1021），用于检错。</td>
+		</tr>
+		<tr>
+			<td>结束标志（EOF）</td>
+			<td>1</td>
+			<td>固定值<code>0x7F</code>，标识一帧数据的结束。</td>
+		</tr>
+	</tbody>
+</table>
+
+<h2 style="background-color:transparent">3.1 转义机制（Escape）</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于 &ldquo;数据字段&rdquo; 中可能包含与 SOF（0x7E）或 EOF（0x7F）相同的字节，导致帧边界识别错误，H5 协议引入<strong>转义机制</strong>：</p>
+
+<ul>
+	<li>当数据中出现<code>0x7E</code>时，替换为<code>0x7D</code>&nbsp;+&nbsp;<code>0x5E</code>（0x7E ^ 0x20）；</li>
+	<li>当数据中出现<code>0x7F</code>时，替换为<code>0x7D</code>&nbsp;+&nbsp;<code>0x5F</code>（0x7F ^ 0x20）；</li>
+	<li>当数据中出现转义符<code>0x7D</code>时，替换为<code>0x7D</code>&nbsp;+&nbsp;<code>0x5D</code>（0x7D ^ 0x20）。</li>
+</ul>
+
+<p>接收端需对上述转义序列进行反向解析，还原原始数据。</p>
+
+<h2>3.2 帧示例</h2>
+
+<p>假设需传输的 HCI 数据为<code>0x01 0x00 0x00</code>（一条简单的 HCI 命令），则 H5 帧的构建过程如下：</p>
+
+<ol>
+	<li>长度字段：数据长度为 3 &rarr; 0x03 0x00（Little-Endian）；</li>
+	<li>CRC 计算：对<code>0x03 0x00 0x01 0x00 0x00</code>计算 CRC16，假设结果为<code>0x12 0x34</code>；</li>
+	<li>完整帧（未转义）：<code>0x7E 0x03 0x00 0x01 0x00 0x00 0x12 0x34 0x7F</code>。</li>
+</ol>
+
+<h2>四、数据传输流程</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART H5 Transport 的传输流程分为<strong>发送流程</strong>和<strong>接收流程</strong>，两者需严格遵循帧结构和转义规则。</p>
+
+<h2>4.1 发送流程（主机&rarr;控制器或控制器&rarr;主机）</h2>
+
+<ol>
+	<li>发送端将原始 HCI 数据包按 H5 帧结构封装（添加 SOF、Length、CRC、EOF）；</li>
+	<li>对帧中需转义的字节（0x7E、0x7F、0x7D）进行转义处理；</li>
+	<li>通过 UART TX 线逐字节发送处理后的帧数据；</li>
+	<li>若启用硬件流控（CTS/RTS），发送端需在 CTS 有效（低电平）时才能发送数据。</li>
+</ol>
+
+<h2>4.2 接收流程</h2>
+
+<ol>
+	<li>接收端通过 UART RX 线持续监测数据，当检测到 SOF（0x7E）时，开始接收一帧数据；</li>
+	<li>接收 Length 字段，确定后续数据字段的长度；</li>
+	<li>接收数据字段和 CRC 字段，期间对转义序列进行反向解析；</li>
+	<li>检测到 EOF（0x7F）后，帧接收完成；</li>
+	<li>验证 CRC：若 CRC 校验通过，则提取数据字段并提交给上层（HCI 层）；若失败，则丢弃该帧并记录错误。</li>
+</ol>
+
+<h2>五、流控与错误处理</h2>
+
+<h2>5.1 流控机制</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART H5 Transport 支持<strong>硬件流控</strong>（CTS/RTS）和<strong>软件流控</strong>（XON/XOFF），其中硬件流控更常用：</p>
+
+<ul>
+	<li>硬件流控：当接收端缓冲区即将满时，拉低 RTS（通知发送端暂停发送）；缓冲区空闲时，拉高 RTS（允许继续发送）；</li>
+	<li>软件流控：通过特定字符（如 XON=0x11，XOFF=0x13）控制发送端启停，适用于无硬件流控引脚的场景。</li>
+</ul>
+
+<h2>5.2 错误处理</h2>
+
+<ul>
+	<li><strong>CRC 校验失败</strong>：接收端丢弃该帧，可通过 HCI 事件向上层报告 &ldquo;传输错误&rdquo;；</li>
+	<li><strong>帧不完整</strong>：若超时未检测到 EOF（如超过 100ms），接收端重置接收状态，重新等待 SOF；</li>
+	<li><strong>波特率不匹配</strong>：会导致接收数据全为乱码，需通过硬件设计确保主机与控制器波特率一致。</li>
+</ul>
+
+<h2>六、应用场景与局限性</h2>
+
+<h2>6.1 典型应用</h2>
+
+<ul>
+	<li>中小型嵌入式设备：如 BLE 传感器（温湿度、心率）、蓝牙遥控器，通过 MCU（如 STM32、GD32）与蓝牙模块（如 CC2541、ESP32-BLE）的 UART 接口通信；</li>
+	<li>低成本蓝牙方案：无需复杂硬件（如 USB 控制器），仅通过 UART 即可实现主机与蓝牙控制器的连接。</li>
+</ul>
+
+<h2>6.2 局限性</h2>
+
+<ul>
+	<li>速率限制：UART 的波特率通常最高为 1-2 Mbps，难以满足高速数据传输（如蓝牙音频流）；</li>
+	<li>可靠性依赖上层：UART 本身无重传机制，需依赖 HCI 层或应用层实现数据重传；</li>
+	<li>抗干扰性较弱：相比差分信号（如 USB），UART 的单端信号易受电磁干扰，需在硬件设计中增加滤波电路。</li>
+</ul>
+
+<h2>七、总结</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;UART H5 Transport 是蓝牙 Transport 层中基于 UART 接口的轻量级传输协议，通过定义明确的帧结构、转义机制和流控规则，实现了主机与控制器之间的可靠通信。其硬件简单、成本低的特点使其在中小型嵌入式设备中广泛应用，但受限于 UART 的物理层特性，在高速、高可靠性场景中需考虑其他传输方案（如 USB Transport）。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;理解 UART H5 Transport 的协议细节，对蓝牙硬件设计（如模块选型、引脚配置）和软件开发（如驱动编写、帧解析）具有重要指导意义。</p>
+
+<h1>八、补充说明</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以下是蓝牙不同接口传输协议的核心区别，按接口类型和特性整理：</p>
+
+<table>
+	<thead>
+		<tr>
+			<th>协议</th>
+			<th>物理接口</th>
+			<th>核心特点</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td>H2</td>
+			<td>USB</td>
+			<td>基于 USB 总线的传输协议，支持高速数据传输，适用于需要大带宽的场景（如蓝牙音频）。</td>
+		</tr>
+		<tr>
+			<td>H4</td>
+			<td>五线 UART</td>
+			<td>包含 RX/TX/CTS/RTS/GND，依赖硬件流控；帧结构简单，仅在 HCI 原始数据前加 1 字节类型标识（如命令 / 事件 / 数据），是最基础的 UART 传输方式。</td>
+		</tr>
+		<tr>
+			<td>H5</td>
+			<td>三线 UART</td>
+			<td>仅用 RX/TX/GND，无硬件流控；通过协议层添加帧头（SOF）、长度、CRC 校验和帧尾（EOF）保证数据完整性，需软件处理转义机制和校验。</td>
+		</tr>
+		<tr>
+			<td>BCSP</td>
+			<td>UART</td>
+			<td>基于 UART 的专用传输协议，支持错误检测、重传和流控，设计更复杂，适用于对可靠性要求高的场景（如早期蓝牙模块通信）。</td>
+		</tr>
+		<tr>
+			<td>SDIO</td>
+			<td>SDIO 接口</td>
+			<td>基于安全数字输入输出接口，传输速率高，适合需要高速数据交互的场景（如蓝牙与 Wi-Fi 共存的芯片）。</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><strong>核心区别总结</strong>：</p>
+
+<ul>
+	<li>接口类型：H2 用 USB，H4/H5/BCSP 用 UART（线数和流控不同），SDIO 用 SDIO 接口。</li>
+	<li>复杂度：H4 最简单（仅加类型标识），H5 和 BCSP 需额外处理校验或重传，H2 和 SDIO 依赖总线特性。</li>
+	<li>适用场景：H4 适合简单低成本场景，H5 适合无硬件流控的简化设计，H2/SDIO 适合高速需求，BCSP 适合高可靠性需求。</li>
+</ul>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">蓝牙通信协议学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/bluetooth-%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE-H5/" class="print-no-link">#bluetooth 蓝牙通信协议 H5</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解</div>
+      <div>http://example.com/2025/08/10/【Bluetooth】【Transport层篇】第五章 基于基础UART的蓝牙硬件发送协议 UART H5 Transport详解/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AD%E7%AB%A0%20%E5%9F%BA%E4%BA%8ESDIO%E7%9A%84%E8%93%9D%E7%89%99%E7%A1%AC%E4%BB%B6%E5%8F%91%E9%80%81%E5%8D%8F%E8%AE%AE%20SDIO%20Transport%E8%AF%A6%E8%A7%A3/" title="【Bluetooth】【Transport层篇】第六章 基于SDIO的蓝牙硬件发送协议 SDIO Transport详解">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【Transport层篇】第六章 基于SDIO的蓝牙硬件发送协议 SDIO Transport详解</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/10/%E3%80%90Ubuntu%E3%80%91%E3%80%90pyenv%E3%80%91%E3%80%90python%E3%80%91%E5%9F%BA%E4%BA%8Epyenv%E7%9A%84python%E7%89%88%E6%9C%AC%E7%AE%A1%E7%90%86%E6%A8%A1%E5%BC%8F%E4%B8%8B%EF%BC%8C%E5%AF%B9%E4%BA%8E%E7%89%B9%E5%AE%9Apython%E7%89%88%E6%9C%AC%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%A6%81%E6%B1%82%E4%B8%8B%E7%9B%B8%E5%85%B3%E8%AE%BE%E7%BD%AE/" title="【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置">
+                        <span class="hidden-mobile">【Ubuntu】【pyenv】【python】基于pyenv的python版本管理模式下，对于特定python版本开发环境的要求下相关设置</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

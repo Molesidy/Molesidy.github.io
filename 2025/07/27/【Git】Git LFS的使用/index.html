@@ -1,0 +1,1153 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  Git LFS（Git Large File Storage）是由 GitHub 开发的一款 Git 扩展工具，旨在帮助开发者更高效地管理仓库中的大文件。传统 Git 会将文件的每个版本完整存储在仓库历史中，导致大文件（如音频、视频、数据集、二进制文件等）快速膨胀仓库体积，影响克隆和推送效率。Git LFS 通过以下机制解决这一问题：  核心原理   	指针替换：在提交时，将大文件">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Git】Git LFS的使用">
+<meta property="og:url" content="http://example.com/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  Git LFS（Git Large File Storage）是由 GitHub 开发的一款 Git 扩展工具，旨在帮助开发者更高效地管理仓库中的大文件。传统 Git 会将文件的每个版本完整存储在仓库历史中，导致大文件（如音频、视频、数据集、二进制文件等）快速膨胀仓库体积，影响克隆和推送效率。Git LFS 通过以下机制解决这一问题：  核心原理   	指针替换：在提交时，将大文件">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/54b19d4e17344c38a8f0e67625694eca.png">
+<meta property="article:published_time" content="2025-07-27T02:39:30.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git git lfs 远程推送 学习记录">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png">
+  
+  
+  
+  <title>【Git】Git LFS的使用 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Git】Git LFS的使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-27 10:39" pubdate>
+          2025年7月27日 上午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          2.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          24 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Git】Git LFS的使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p>Git LFS（Git Large File Storage）是由 GitHub 开发的一款 Git 扩展工具，旨在帮助开发者更高效地管理仓库中的大文件。传统 Git 会将文件的每个版本完整存储在仓库历史中，导致大文件（如音频、视频、数据集、二进制文件等）快速膨胀仓库体积，影响克隆和推送效率。Git LFS 通过以下机制解决这一问题：</p>
+
+<h3>核心原理</h3>
+
+<ol>
+	<li><strong>指针替换</strong>：在提交时，将大文件替换为轻量级的文本指针（Pointer File），仅几 KB 大小，包含原文件的元信息（如哈希值、存储路径）。</li>
+	<li><strong>远程存储</strong>：大文件实际内容被存储在 Git LFS 服务器（如 GitHub、GitLab 提供的服务，或自建服务器），与代码仓库分离。</li>
+	<li><strong>按需下载</strong>：克隆或切换分支时，Git LFS 会根据指针文件从远程服务器下载当前需要的大文件版本，而非全部历史版本。</li>
+</ol>
+
+<h3>工作流程</h3>
+
+<ol>
+	<li><strong>安装</strong>：先安装 Git LFS 客户端（<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="官网下载" target="_blank" rel="noopener" href="https://git-lfs.github.com/" title="官网下载">官网下载</a>），并在仓库中初始化：
+
+<pre><code class="hljs">&lt;p&gt;bash&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>git lfs install<br></code></pre><br>	</li><br>	<li><strong>跟踪文件</strong>：指定需要使用 LFS 管理的文件类型或路径（支持通配符）：<br>	<p>bash</p></p>
+<pre><code class="hljs">&lt;pre&gt;
+</code></pre>
+<p><code>git lfs track &quot;<em>.mp4&quot;  # 跟踪所有 MP4 文件<br>git lfs track &quot;data/</em>&quot; # 跟踪 data 目录下的所有文件<br></code></pre><br>	此操作会生成&nbsp;<code>.gitattributes</code>&nbsp;文件并自动提交，记录跟踪规则。</li><br>	<li><strong>正常提交</strong>：添加、提交和推送文件时，Git LFS 会自动处理大文件：<br>	<p>bash</p></p>
+<pre><code class="hljs">&lt;pre&gt;
+</code></pre>
+<p><code>git add video.mp4<br>git commit -m &quot;添加视频文件&quot;<br>git push origin main<br></code></pre><br>	推送时，大文件会上传至 LFS 服务器，代码仓库仅包含指针。</li><br>	<li><strong>克隆仓库</strong>：使用&nbsp;<code>git clone</code>&nbsp;时，LFS 文件会自动下载：<br>	<p>bash</p></p>
+<pre><code class="hljs">&lt;pre&gt;
+</code></pre>
+<p><code>git clone <a href="https://example.com/repo.git">https://example.com/repo.git</a><br></code></pre><br>	若只需代码而不下载大文件，可使用：</p>
+<pre><code class="hljs">&lt;p&gt;bash&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>git lfs clone --skip-smudge <a href="https://example.com/repo.git">https://example.com/repo.git</a><br></code></pre><br>	后续按需下载指定文件：</p>
+<pre><code class="hljs">&lt;p&gt;bash&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code>git lfs pull --include=&quot;video.mp4&quot;<br></code></pre></p>
+<pre><code class="hljs">&lt;p&gt;&lt;/p&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3>主要优势</h3>
+
+<ul>
+	<li><strong>仓库体积显著减小</strong>：避免大文件占用过多空间，提升克隆速度。</li>
+	<li><strong>版本控制更高效</strong>：仅需管理轻量级指针，历史记录更清晰。</li>
+	<li><strong>协作友好</strong>：团队成员可选择性下载需要的大文件，节省带宽。</li>
+	<li><strong>兼容性强</strong>：与现有 Git 工作流程无缝集成，无需改变使用习惯。</li>
+</ul>
+
+<h3>注意事项</h3>
+
+<ul>
+	<li><strong>存储成本</strong>：部分托管平台（如 GitHub）对 LFS 存储和带宽有限额，超出需付费。</li>
+	<li><strong>依赖外部服务</strong>：需确保 LFS 服务器可用，否则可能影响文件访问。</li>
+	<li><strong>历史清理复杂</strong>：若误提交大文件到普通 Git 历史，需使用&nbsp;<code>git filter-repo</code>&nbsp;等工具清理。</li>
+</ul>
+
+<p>Git LFS 适合需要在 Git 仓库中管理大文件的场景，尤其在音视频制作、机器学习（数据集）、游戏开发（资源文件）等领域应用广泛。</p>
+
+<h1>二、Git LFS的使用过程</h1>
+
+<h2>1.创建文件夹，使用git init&nbsp;</h2>
+
+<p># 在当前目录初始化一个新的 Git 仓库 git init</p>
+
+<h2>2.在该仓库下安装Git LFS</h2>
+
+<pre>
+<code class="language-bash">15155@MM MINGW64 /e/Git_Projects/MDK (main)
+$ git lfs install
+Updated Git hooks.
+Git LFS initialized.
+</code></pre>
+
+<p>验证</p>
+
+<pre>
+<code class="language-bash">$ git lfs version
+git-lfs/3.5.1 (GitHub; windows amd64; go 1.21.7; git e237bb3a)
+</code></pre>
+
+<h2>3.<strong>配置跟踪规则</strong></h2>
+
+<p>在仓库中指定哪些文件需要使用 LFS 管理，支持通配符（如&nbsp;<code>*.mp4</code>、<code>data/*</code>）。</p>
+
+<h3><strong>方式一：命令行直接跟踪</strong></h3>
+
+<p>bash</p>
+
+<pre>
+<code>git lfs track "*.mp4"     # 跟踪所有 MP4 文件
+git lfs track "data/*"    # 跟踪 data 目录下的所有文件
+git lfs track "model.h5"  # 跟踪特定文件
+</code></pre>
+
+<p>执行后，Git LFS 会自动创建或更新&nbsp;<code>.gitattributes</code>&nbsp;文件（需提交该文件）。</p>
+
+<pre>
+<code class="language-bash">$ git lfs track "*.zip"
+Tracking "*.zip"
+</code></pre>
+
+<p>产生文件</p>
+
+<p><img alt="" height="347" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png" srcset="/img/loading.gif" lazyload width="853" /></p>
+
+<h3>&nbsp;<strong>方式二：手动编辑&nbsp;<code>.gitattributes</code></strong></h3>
+
+<p>直接在仓库根目录创建或编辑&nbsp;<code>.gitattributes</code>&nbsp;文件，添加类似以下内容：</p>
+
+<p>plaintext</p>
+
+<pre>
+<code>*.mp4 filter=lfs diff=lfs merge=lfs -text
+data/* filter=lfs diff=lfs merge=lfs -text</code></pre>
+
+<h2>4.<strong>提交Git LFS配置文件，目标大文件和推送到运程的目标大文件</strong></h2>
+
+<p>添加、提交和推送文件的操作与普通 Git 流程一致，但大文件会自动上传到 LFS 服务器：</p>
+
+<p>bash</p>
+
+<pre>
+<code class="language-bash">git add .gitattributes    # 提交跟踪规则
+git add video.mp4        # 添加大文件（实际只提交指针）
+git commit -m "添加视频文件"
+git push origin main     # 推送时，大文件会上传到 LFS 服务器</code></pre>
+
+<h3>（1）提交配置</h3>
+
+<pre>
+<code class="language-bash">$ git add .gitattributes
+</code></pre>
+
+<h3>（2）查看大文件</h3>
+
+<pre>
+<code class="language-bash">$ ls -al
+total 813758
+drwxr-xr-x 1 28970 197609         0 Jul 27 10:24 ./
+drwxr-xr-x 1 28970 197609         0 Jul 27 09:55 ../
+drwxr-xr-x 1 28970 197609         0 Jul 27 10:27 .git/
+-rw-r--r-- 1 28970 197609        43 Jul 27 10:24 .gitattributes
+-rw-r--r-- 1 28970 197609 833276817 Jul 16 22:16 MDK528.zip
+-rw-r--r-- 1 28970 197609        39 Jul 27 09:45 README.md
+</code></pre>
+
+<h3>（3）暂存目标大文件</h3>
+
+<pre>
+<code class="language-bash">$ git add MDK528.zip
+</code></pre>
+
+<h3>（4）提交到本地</h3>
+
+<pre>
+<code class="language-bash">$ git commit -m "Firstly,commit a big MDK_Setup_package."
+[main 39e1935] Firstly,commit a big MDK_Setup_package.
+ 2 files changed, 4 insertions(+)
+ create mode 100644 .gitattributes
+ create mode 100644 MDK528.zip</code></pre>
+
+<h3>（5）推送至远程</h3>
+
+<pre>
+<code class="language-bash">$ git push origin main
+Uploading LFS objects: 100% (1/1), 833 MB | 3.6 MB/s, done.
+Enumerating objects: 5, done.
+Counting objects: 100% (5/5), done.
+Delta compression using up to 20 threads
+Compressing objects: 100% (3/3), done.
+Writing objects: 100% (4/4), 498 bytes | 249.00 KiB/s, done.
+Total 4 (delta 0), reused 0 (delta 0), pack-reused 0 (from 0)
+To github.com:Molesidy/MDK.git
+   58bc491..39e1935  main -&gt; main
+</code></pre>
+
+<h2>5.成功提交并上传大文件</h2>
+
+<p><img alt="" height="163" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/54b19d4e17344c38a8f0e67625694eca.png" srcset="/img/loading.gif" lazyload width="1114" /></p>
+
+<p><span style="background-color:#f9eda6">注：普通git不能传输超过100MB的文件，而git lfs在github上最大支持2GB；</span></p>
+
+<p><span style="background-color:#f9eda6">普通的<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="免费 GitHub 仓库建议" target="_blank" rel="noopener" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github" title="免费 GitHub 仓库建议">免费 GitHub 仓库建议</a>最大存放 1GB 的文件：</span></p>
+
+<p><span style="background-color:#f9eda6">GitHub 虽未对免费仓库设置严格的硬性容量上限，但建议将仓库大小保持在 1GB 以内，理想情况是小于 5GB。若超过该大小，可能会收到 GitHub 支持团队要求减小仓库大小的邮件。此外，免费账户单个文件不能超过 100MB，若文件大于 50MB 会收到警告，若通过浏览器上传文件，则不得大于 25MB。</span></p>
+
+<h1 style="background-color:transparent">三、补充说明1</h1>
+
+<p>Git LFS 的文件大小限制取决于具体的<strong>存储提供商</strong>和<strong>客户端配置</strong>，而非 Git LFS 本身。以下是常见场景的限制说明：</p>
+
+<h2 style="background-color:transparent"><strong>1. 不同平台的文件大小限制</strong></h2>
+
+<table>
+	<thead>
+		<tr>
+			<th>平台</th>
+			<th>免费版限制</th>
+			<th>付费版限制</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>GitHub</strong></td>
+			<td>单个文件 &le; 2GB</td>
+			<td>单个文件 &le; 5GB（需联系支持）</td>
+		</tr>
+		<tr>
+			<td><strong>GitLab</strong></td>
+			<td>单个文件 &le; 10GB（取决于实例配置）</td>
+			<td>企业版可提升限制</td>
+		</tr>
+		<tr>
+			<td><strong>Bitbucket</strong></td>
+			<td>单个文件 &le; 2GB</td>
+			<td>单个文件 &le; 5GB（需联系支持）</td>
+		</tr>
+		<tr>
+			<td><strong>AWS CodeCommit</strong></td>
+			<td>无明确限制（受 S3 存储桶限制）</td>
+			<td>无明确限制</td>
+		</tr>
+		<tr>
+			<td><strong>自建服务器</strong></td>
+			<td>取决于服务器配置（如 Nginx/Apache 限制）</td>
+			<td>自定义配置</td>
+		</tr>
+	</tbody>
+</table>
+
+<ul>
+	<li><strong>注意</strong>：即使平台支持大文件，上传速度也可能受网络和服务器性能影响。</li>
+</ul>
+
+<h2><strong>2. 客户端配置限制</strong></h2>
+
+<p>Git LFS 客户端默认没有严格的文件大小上限，但可能受以下因素影响：</p>
+
+<ul>
+	<li><strong>HTTP 请求大小限制</strong>：如果使用 HTTP 协议传输，服务器（如 Nginx、Apache）可能限制最大请求体大小。例如：
+
+<pre><code class="hljs">&lt;p&gt;bash&lt;/p&gt;
+
+&lt;pre&gt;
+</code></pre>
+<p><code># Nginx 配置示例（需修改 nginx.conf）<br>client_max_body_size 10G;<br></code></pre><br>	</li><br>	<li><strong>内存和磁盘空间</strong>：上传 &#x2F; 下载大文件时，客户端需要足够的临时空间缓存数据。</li></p>
+</ul>
+
+<h2 style="background-color:transparent"><strong>3. 突破限制的方法</strong></h2>
+
+<ul>
+	<li><strong>使用专业存储服务</strong>：对于超大文件（如数十 GB），可考虑将文件存储在云存储（如 S3、Google Cloud Storage），仅在 Git 中记录下载链接。</li>
+	<li><strong>分块处理</strong>：将大文件分割为多个小文件（如使用&nbsp;<code>split</code>&nbsp;命令），分别管理。</li>
+	<li><strong>联系平台支持</strong>：企业版用户可联系 GitHub/GitLab 等平台提升限制。</li>
+</ul>
+
+<h2><strong>4. 最佳实践</strong></h2>
+
+<ul>
+	<li><strong>避免超大型文件</strong>：尽量将单个文件控制在 1GB 以内，过大的文件会显著降低协作效率。</li>
+	<li><strong>使用&nbsp;<code>.gitattributes</code>&nbsp;严格过滤</strong>：仅对必要的大文件使用 LFS，避免意外提交不需要的大文件。</li>
+	<li><strong>定期清理历史</strong>：使用&nbsp;<code>git lfs prune</code>&nbsp;清理不再需要的本地 LFS 文件。</li>
+</ul>
+
+<h2 style="background-color:transparent"><strong>总结</strong></h2>
+
+<p>Git LFS 的实际文件大小限制因平台而异，<strong>免费版通常支持 2GB 以内</strong>，付费版或自建服务器可扩展到更大。在使用前，建议查看对应平台的文档或联系技术支持确认具体限制。</p>
+
+<h1>四、补充说明2</h1>
+
+<p>对于免费 GitHub 用户，<strong>单个仓库内的 Git LFS 文件最大支持 2GB</strong>，这一结论是正确的。以下是具体细节和限制说明：</p>
+
+<h2 style="background-color:transparent"><strong>1. 单个文件大小限制：2GB（免费版明确支持）</strong></h2>
+
+<p>根据 <a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="GitHub 官方文档" target="_blank" rel="noopener" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-git-large-file-storage" title="GitHub 官方文档">GitHub 官方文档</a>，免费用户的 Git LFS 文件大小限制为：</p>
+
+<ul>
+	<li><strong>单个文件上限</strong>：2GB（付费版如 GitHub Team 为 4GB，GitHub Enterprise Cloud 为 5GB）。</li>
+	<li><strong>超出处理</strong>：若上传超过 2GB 的文件，Git LFS 会直接拒绝并报错。</li>
+</ul>
+
+<p>例如，用户上传一个 2.1GB 的视频文件时，会收到类似以下的错误提示：</p>
+
+<p>bash</p>
+
+<pre>
+<code>error: The file "large_video.mp4" is 2.1 GB; this exceeds GitHub's file size limit of 2.0 GB for Git LFS files.
+</code></pre>
+
+<h2 style="background-color:transparent"><strong>2. 仓库总存储量限制：所有仓库共享 1GB</strong></h2>
+
+<p>尽管单个文件支持 2GB，但免费用户的<strong>所有仓库的 LFS 文件总存储量被限制为 1GB</strong>。例如：</p>
+
+<ul>
+	<li>若在多个仓库中分别上传 2 个 1GB 的 LFS 文件，总存储量将达到 2GB，超出免费配额，导致后续上传失败。</li>
+	<li>需通过 GitHub 账户设置中的<strong>Billing and plans</strong>页面查看实时用量。</li>
+</ul>
+
+<h2><strong>3. 带宽配额：每月 1GB（所有仓库共享）</strong></h2>
+
+<p>免费用户的 LFS 文件下载和上传带宽每月总计 1GB。例如：</p>
+
+<ul>
+	<li>若一个 2GB 的 LFS 文件被下载 5 次，总带宽消耗为 10GB（远超免费配额），此时文件将无法继续下载，需升级付费计划。</li>
+</ul>
+
+<h2 style="background-color:transparent"><strong>4. 常见误区与注意事项</strong></h2>
+
+<h3>（1）仓库总大小与 LFS 存储的区别</h3>
+
+<ul>
+	<li><strong>仓库总大小</strong>：GitHub 建议免费仓库总大小控制在 1GB 以内（含普通文件和 LFS 指针文件），但这是软性建议，非硬性限制。</li>
+	<li><strong>LFS 存储量</strong>：仅计算实际存储在 GitHub LFS 服务器上的大文件内容，不包含仓库中的普通文件和指针文件。</li>
+</ul>
+
+<h3>（2）LFS 指针文件不占用存储配额</h3>
+
+<p>Git LFS 在仓库中存储的是<strong>轻量级指针文件</strong>（约 1KB），这些文件不计入 1GB 的 LFS 存储配额。例如：</p>
+
+<ul>
+	<li>即使仓库中有 1000 个 LFS 指针文件，它们的总大小仍可忽略不计。</li>
+</ul>
+
+<h3>（3）历史文件清理的重要性</h3>
+
+<ul>
+	<li><strong>未引用的 LFS 文件</strong>：即使文件被删除或从仓库历史中移除，其内容仍可能保留在 LFS 存储中，继续占用配额。</li>
+	<li><strong>清理方法</strong>：使用&nbsp;<code>git lfs prune</code>&nbsp;命令清理本地未引用的 LFS 文件，或通过 GitHub API 删除远程未引用的对象。</li>
+</ul>
+
+<h2 style="background-color:transparent"><strong>5. 突破限制的可行方案</strong></h2>
+
+<h3>（1）拆分大文件</h3>
+
+<ul>
+	<li>将单个 2GB 以上的文件拆分为多个 2GB 以内的片段（如使用&nbsp;<code>split</code>&nbsp;命令），分别上传。</li>
+	<li>示例：
+	<p>bash</p>
+
+<pre><code class="hljs">&lt;pre&gt;
+</code></pre>
+<p><code>split -b 2G large_file.iso large_file_part_<br></code></pre><br>	</li></p>
+</ul>
+
+<h3>（2）混合使用 LFS 和外部存储</h3>
+
+<ul>
+	<li>对超过 2GB 的文件，将其存储在云存储（如 AWS S3、Google Cloud Storage），仅在 Git 中记录下载链接。</li>
+	<li>示例：
+	<p>markdown</p>
+
+<pre><code class="hljs">&lt;pre&gt;
+</code></pre>
+<p><code># 下载大文件的说明</p>
+<ol>
+<li>访问 <a target="_blank" rel="noopener" href="https://example-bucket.s3.amazonaws.com/large_model.pth">S3链接</a></li>
+<li>将文件放置在 <code>models/</code> 目录下<br></code></pre> </li>
+</ul></li>
+</ol>
+<h3>（3）升级付费计划</h3>
+
+<ul>
+	<li><strong>GitHub Team</strong>（$4 / 用户 / 月）：提供 50GB 存储 + 50GB / 月带宽，单个文件支持 4GB。</li>
+	<li><strong>GitHub Enterprise Cloud</strong>：支持 5GB 单个文件，存储和带宽配额更高。</li>
+</ul>
+
+<h3><strong>总结</strong></h3>
+
+<p>免费 GitHub 用户的<strong>单个仓库内的 Git LFS 文件最大支持 2GB</strong>，但需注意以下全局限制：</p>
+
+<ol>
+	<li><strong>所有仓库的 LFS 文件总存储量</strong>：1GB。</li>
+	<li><strong>每月带宽配额</strong>：1GB。</li>
+	<li><strong>仓库总大小建议</strong>：控制在 1GB 以内（含普通文件和指针文件）。</li>
+</ol>
+
+<p>若需频繁处理大文件，建议结合外部存储或升级付费计划，以避免因配额不足影响协作。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Git%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Git学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git-git-lfs-%E8%BF%9C%E7%A8%8B%E6%8E%A8%E9%80%81-%E5%AD%A6%E4%B9%A0%E8%AE%B0%E5%BD%95/" class="print-no-link">#git git lfs 远程推送 学习记录</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Git】Git LFS的使用</div>
+      <div>http://example.com/2025/07/27/【Git】Git LFS的使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月27日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/31/%E3%80%90Bluetooth%E3%80%91%E3%80%90%E5%9F%BA%E7%A1%80%E7%AF%87%E3%80%91%E7%AC%AC%E4%B8%80%E7%AB%A0%20%E5%AF%B9%E4%BA%8E%E8%93%9D%E7%89%99%E9%80%9A%E4%BF%A1%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/" title="【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Bluetooth】【基础篇】第一章 对于蓝牙通信协议的初步认识</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/27/%E3%80%90EWARM%E3%80%91EWARM%EF%BC%88IAR%EF%BC%89%E7%9A%84%E5%AE%89%E8%A3%85%E8%BF%87%E7%A8%8B%E4%BB%A5%E5%8F%8AGD32%E7%9A%84IAR%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA/" title="【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建">
+                        <span class="hidden-mobile">【EWARM】EWARM（IAR）的安装过程以及GD32的IAR工程模板搭建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

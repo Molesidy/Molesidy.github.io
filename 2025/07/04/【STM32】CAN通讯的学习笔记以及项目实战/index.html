@@ -1,0 +1,3243 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、CAN通讯方式介绍  1.CAN协议简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN是控制器局域网络(Controller Area Network)的简称，它是由研发和生产汽车电子产品著称的德国BOSCH公司开发的，并最终成为国际标准（ISO11519），是国际上应用最广泛的现场总线之一。  &nbsp;&nbsp;&nbsp;&amp;nbsp">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【STM32】CAN通讯的学习笔记以及项目实战">
+<meta property="og:url" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、CAN通讯方式介绍  1.CAN协议简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN是控制器局域网络(Controller Area Network)的简称，它是由研发和生产汽车电子产品著称的德国BOSCH公司开发的，并最终成为国际标准（ISO11519），是国际上应用最广泛的现场总线之一。  &nbsp;&nbsp;&nbsp;&amp;nbsp">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8ec30e9f7f5e400e9e77ada71f40d548.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e6adec8a0b7b450c90308e09ee261314.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/67ae848f4dde4efaa90adaa377d64842.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a1a134f36dfe4783bc25b4ddc15813f9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1ea2e6384aad4b3c88c0aea4215a5800.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/971e52d93b0f4b6d9cc306ac6323c471.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f549acbba061449fbbfa0d66794293b8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b95ab39aaafa486d907fb5ef4149ebf4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de028a886f7c4bfc96a44ee7c454a79a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59c544c2357f40c8a1d9528be5d56f30.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a9648bd0b65248d7814506194d7e1f50.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/356a1de24acf4520b032cba01f7c7a57.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e4f2b955a07b4e3698472997a5732f9e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/060eb723ead546329bb3c400e7c390cc.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b8a902d501c4ac1b0e25d55b4673266.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fa0947cb4f914fc69a399a17f3d46d6c.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fc4bea5e5014c70b7fcd9c6f92addd6.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/329790a70c2e4432a6afeedf7215ba07.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8e9e7bff29ff4f7ea290faa4326cfcbe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/86826c2e14df4b21befd7f0e74f2a785.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/034da824a89f4352bcb3e4bca5105dae.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3686c397288c4b6896c5e8e876944e31.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3ffe4bed9f344f3ab5fdb0385392eb6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d2ee435696f641e7b18e6caa8b1da4e5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cbdacdae1cd44c31a3ae87b7164d2686.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2b26c2f654a644999216a5c4e9c7aa0f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6dc5fcb2563e4a43a3ced9e76460d9c8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de58223ec01244ff9485541c6569a2a5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a99d47e6bdb425fa55830ef1fbf4afb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0323f172325b4353bb3c1b153b595e2d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3d6969b6820049899e81e5d95a28d570.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/33326781fe6a4084b2bdc3ef7416d87e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3244434bac574d678d07050761554750.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7f90973c189f43e5800f555be71704a4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/563cf1609b6c41169455bbf35719d0d7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/15a503bef8e2430a955107c9f1fc47e1.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/685e37bdc0f64af6b1d062900199762b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/33de648e7fc441a2840f2a4d382a3a14.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/461a9f98d9714d25ae22fe06725bd97e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e48a21ef4f04d959b617c28c7c2320a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0ec9705365ec4803ae2f2d188da4393b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f993a41ce5564c8db3df11038a40e2a7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5ad1a95e266e4b76bd47264680a3d49b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/45470c8a1d094218893081cdf712e54d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6a155a720df04dbd880c64e4925a600a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7853b17300a44188ad0e237298a05f1.gif">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/df6e2b42601f4a3ea78139dc0f59aa9a.gif">
+<meta property="article:published_time" content="2025-07-04T06:50:36.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="stm32 单片机 嵌入式 CAN">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png">
+  
+  
+  
+  <title>【STM32】CAN通讯的学习笔记以及项目实战 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【STM32】CAN通讯的学习笔记以及项目实战"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-04 14:50" pubdate>
+          2025年7月4日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          18k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          149 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【STM32】CAN通讯的学习笔记以及项目实战</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 id="%E4%B8%80%E3%80%81CAN%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D" name="%E4%B8%80%E3%80%81CAN%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E4%BB%8B%E7%BB%8D">一、CAN通讯方式介绍</h1>
+
+<h2 id="1.CAN%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B" name="1.CAN%E5%8D%8F%E8%AE%AE%E7%AE%80%E4%BB%8B">1.CAN协议简介</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN是控制器局域网络(Controller Area Network)的简称，它是由研发和生产汽车电子产品著称的<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="德国BOSCH公司" target="_blank" rel="noopener" href="http://baike.baidu.com/view/3762.htm" title="德国BOSCH公司">德国BOSCH公司</a>开发的，并最终成为国际标准（ISO11519），是国际上应用最广泛的现场总线之一。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN总线协议已经成为<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="汽车计算机控制系统" target="_blank" rel="noopener" href="http://baike.baidu.com/view/1783239.htm" title="汽车计算机控制系统">汽车计算机控制系统</a>和嵌入式工业控制局域网的标准总线，并且拥有以CAN为底层协议专为大型货车和重工机械车辆设计的J1939协议。近年来， 它具有的高可靠性和良好的错误检测能力受到重视，被广泛应用于汽车计算机控制系统和环境温度恶劣、电磁辐射强及振动大的工业环境。</p>
+
+<p><strong>CAN总线特点</strong></p>
+
+<ol>
+	<li><strong>实时性：</strong>&nbsp;CAN总线具有优越的实时性能，适用于需要及时传输数据的应用，如汽车控制系统、工业自动化等。仲裁机制和帧优先级的设计保证了低延迟和可预测性。</li>
+	<li><strong>多主机系统：</strong>&nbsp;CAN支持多主机系统，多个节点可以同时发送和接收数据。这种分布式控制结构使得系统更加灵活，适用于复杂的嵌入式网络。CAN总线上的节点既可以发送数据又可以接收数据，没有主从之分。但是在同一个时刻，只能由一个节点发送数据，其他节点只能接收数据。</li>
+	<li><strong>差分信号传输：</strong>&nbsp;CAN使用差分信号传输，通过两个线路（CAN_H和CAN_L）之间的电压差来传递信息。这种差分传输方式提供了良好的抗干扰性能，使得CAN总线适用于工业环境等有电磁干扰的场合。</li>
+	<li><strong>仲裁机制：</strong>&nbsp;CAN总线采用非破坏性仲裁机制，通过比较消息标识符的优先级来决定哪个节点有权继续发送数据。这种机制确保了总线上数据传输的有序性，避免了冲突。</li>
+	<li><strong>广播通信：</strong>&nbsp;CAN总线采用广播通信方式，即发送的数据帧可以被总线上的所有节点接收。这种特性有助于信息的共享和同步，同时减少了系统的复杂性。</li>
+	<li><strong>低成本：</strong>&nbsp;CAN总线的硬件成本相对较低，适用于大规模的系统集成。由于CAN控制器在硬件上实现了仲裁机制，无需额外的主机处理器，减小了成本和复杂性。</li>
+	<li><strong>灵活性：</strong>&nbsp;CAN协议灵活适应不同的应用场景，支持不同的波特率和通信速率。这使得CAN总线可以被广泛用于各种嵌入式系统，从低速的传感器网络到高速的汽车控制系统。</li>
+	<li><strong>错误检测和处理：</strong>&nbsp;CAN总线具有强大的错误检测和处理机制。通过CRC检查和其他错误检测手段，CAN能够识别和处理传输过程中可能发生的错误，提高了通信的可靠性。</li>
+	<li><strong>多种帧类型：</strong>CAN总线上的节点没有地址的概念。CAN总线上的数据是以帧为单位传输的，帧又分为数据帧、遥控帧等多种帧类型，帧包含需要传输的数据或控制信息。</li>
+	<li><strong>线与逻辑：</strong>CAN总线具有&ldquo;线与&rdquo;的特性，也就是当由两个节点同时向总线发送信号时，一个是发送显性电平（逻辑0），另一个发送隐性电平（逻辑1），则总线呈现为显性电平。这个特性被用于总线总裁，也就是哪个节点优先占用总线进行发送操作。</li>
+	<li><strong>特定标识符</strong>：每一个帧有一个标识符（Identifier，一下简称ID）。ID不是地址，它表示传输数据的类型，也可以用于总线仲裁时确定优先级。例如，在汽车的CAN总线上，假设用于碰撞检测的节点输出数据帧ID为01，车内温度检测节点发送数据帧的ID为05等。</li>
+	<li><strong>滤波特性：</strong>每个CAN节点都接收数据，但是可以对接收的帧根据ID进行过滤。只有节点需要的数据才会被接收并进一步处理，不需要的数据会被自动舍弃。例如，假设安全气囊控制器只接受碰撞检测节点发出的ID为01的帧，这种ID的过滤时有硬件完成的，以便安全气囊控制器在发送碰撞时能及时响应。</li>
+	<li><strong>半双工：</strong>CAN总线通信时半双工的，即总线不能同时发送和接收。在多个节点竞争总线进行发送时，通过ID的优先级进行仲裁，竞争胜出的节点继续发送，竞争失败的节点立刻转入接收状态。</li>
+	<li><strong>无时钟信号：</strong>CAN总线没有用于同步的时钟信号，所以需要规定CAN总线通信的波特率，所以节点都是用同样的波特率进行通信。</li>
+</ol>
+
+<h2 id="2.CAN-%E7%89%A9%E7%90%86%E5%B1%82" name="2.CAN-%E7%89%A9%E7%90%86%E5%B1%82">2.CAN-物理层</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN通讯是异步通讯，只有CAN_High和CAN_Low两条信号线，共同构成一组差分信号线，以差分信号的形式进行通讯。</p>
+
+<h3 id="%EF%BC%881%EF%BC%89%C2%A0%E9%97%AD%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C" name="%EF%BC%881%EF%BC%89%C2%A0%E9%97%AD%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C"><strong>（一）&nbsp;闭环总线网络</strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN物理层的形式主要有两种，图&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="CAN闭环总线通讯网络" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f103badao/std/zh/latest/book/CAN.html#id4" title="CAN闭环总线通讯网络">CAN闭环总线通讯网络</a>&nbsp;中的CAN通讯网络是一种遵循ISO11898标准的高速、 短距离&ldquo;闭环网络&rdquo;，它的总线最大长度为40m，通信速度最高为1Mbps，总线的两端各要求有一个&ldquo;120欧&rdquo;的电阻。</p>
+
+<p><img alt="" height="464" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png" srcset="/img/loading.gif" lazyload width="977" /></p>
+
+<h3 id="%EF%BC%882%EF%BC%89%E5%BC%80%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C" name="%EF%BC%882%EF%BC%89%E5%BC%80%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C"><strong>（二）开环总线网络</strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图中的是遵循ISO11519-2标准的低速、远距离&ldquo;开环网络&rdquo;，它的最大传输距离为1km， 最高通讯速率为125kbps，两根总线是独立的、不形成闭环，要求每根总线上各串联有一个&ldquo;2.2千欧&rdquo;的电阻。</p>
+
+<p><img alt="" height="508" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8ec30e9f7f5e400e9e77ada71f40d548.png" srcset="/img/loading.gif" lazyload width="995" /></p>
+
+<h3 id="%EF%BC%883%EF%BC%89%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7" name="%EF%BC%883%EF%BC%89%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7"><strong>（三）差分信号</strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;差分信号又称差模信号，与传统使用单根信号线电压表示逻辑的方式有区别，使用差分信号传输时，需要两根信号线，这两个信号线的振幅相等， 相位相反，通过两根信号线的电压差值来表示逻辑0和逻辑1。见下图，它使用了V+与V-信号的差值表达出了图下方的信号。</p>
+
+<p><img alt="" height="353" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e6adec8a0b7b450c90308e09ee261314.png" srcset="/img/loading.gif" lazyload width="635" /></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;这样子来使用两个引脚来传输一路信号，利用这两个引脚间的电压差的正负极和大小来决定传输数据的数值（0和1），周期一模一样，振幅相等，相位相差180度，极性完全相反。由于差分信号是两个信号的差值，当两跟信号受到相同的干扰时（如环境温度变化、电磁干扰），两个信号受到的扰动程度一样，这样的扰动信号称为共模信号，相减的时候就会将这个共模信号给减掉，以此来抵消扰动，大大提升了信号传输的准确性。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相对于单信号线传输方式，差分信号传输凭借其独特的电气特性，在抗干扰能力、信号完整性和传输性能等方面展现出显著优势。</p>
+
+<p><img alt="" height="333" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/67ae848f4dde4efaa90adaa377d64842.png" srcset="/img/loading.gif" lazyload width="699" /></p>
+
+<h3 id="%EF%BC%884%EF%BC%89%E5%9F%BA%E4%BA%8ECAN%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7" name="%EF%BC%884%EF%BC%89%E5%9F%BA%E4%BA%8ECAN%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7">（四）基于CAN协议的差分信号</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN协议中对它使用的CAN_High及CAN_Low表示的差分信号做了规定，见表CAN协议标准表示的信号逻辑及图CAN的差分信号高速。 以高速CAN协议为例，当表示逻辑1时(隐性电平)，CAN_High和CAN_Low线上的电压均为2.5v， 即它们的电压差VH-VL=0V；而表示逻辑0时(显性电平)， CAN_High的电平为3.5V，CAN_Low线的电平为1.5V， 即它们的电压差为VH-VL=2V。例如，当CAN收发器从CAN_Tx线接收到来自CAN控制器的低电平信号时(逻辑0)， 它会使CAN_High输出3.5V，同时CAN_Low输出1.5V，从而输出显性电平表示逻辑0。</p>
+
+<p><img alt="" height="382" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a1a134f36dfe4783bc25b4ddc15813f9.png" srcset="/img/loading.gif" lazyload width="976" /></p>
+
+<p><img alt="" height="454" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1ea2e6384aad4b3c88c0aea4215a5800.png" srcset="/img/loading.gif" lazyload width="782" /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在CAN总线中，必须使它处于隐性电平(逻辑1)或显性电平(逻辑0)中的其中一个状态。假如有两个CAN通讯节点，在同一时间，一个输出隐性电平， 另一个输出显性电平，类似I2C总线的&ldquo;线与&rdquo;特性将使它处于显性电平状态，显性电平的名字就是这样来的，即可以认为显性具有优先的意味。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于CAN总线协议的物理层只有1对差分线，在一个时刻只能表示一个信号，所以对通讯节点来说，CAN通讯是半双工的，收发数据需要分时进行。 在CAN的通讯网络中，因为共用总线，在整个网络中同一时刻只能有一个通讯节点发送信号，其余的节点在该时刻都只能接收。</p>
+
+<h3>（五）电平标准</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN总线采用差分信号，即两线电压差（VCAN_H-VCAN_L）传输数据位。</p>
+
+<p><strong>高速CAN规定： &nbsp;</strong>&nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1）电压差为0V时表示逻辑1（隐性电平） &nbsp;&nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）电压差为2V时表示逻辑0（显性电平）</p>
+
+<p><strong>低速CAN规定：</strong> &nbsp;&nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1）电压差为-1.5V时表示逻辑1（隐性电平） &nbsp;&nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）电压差为3V时表示逻辑0（显性电平）</p>
+
+<p><img alt="" height="312" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/971e52d93b0f4b6d9cc306ac6323c471.png" srcset="/img/loading.gif" lazyload width="1006" /></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;如何记住逻辑1与隐性电平，逻辑0与显性电平相对应？可联想到I2C默认状态下是处于上拉电阻拉高电平的状态，即该默认状态下的高电平（逻辑1）就是隐性电平，所以低电平（逻辑0）就是显性电平</p>
+
+<h3 id="%EF%BC%885%EF%BC%89%E9%80%9A%E4%BF%A1%E8%8A%82%E7%82%B9" name="%EF%BC%885%EF%BC%89%E9%80%9A%E4%BF%A1%E8%8A%82%E7%82%B9">（六）通信节点</h3>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;从CAN通讯网络图可了解到，CAN总线上可以挂载多个通讯节点，节点之间的信号经过总线传输，实现节点间通讯。由于CAN通讯协议不对节点进行地址编码， 而是对数据内容进行编码的，所以网络中的节点个数理论上不受限制，只要总线的负载足够即可，可以通过中继器增强负载。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN通讯节点由一个CAN控制器及CAN收发器组成，控制器与收发器之间通过CAN_Tx及CAN_Rx信号线相连，收发器与CAN总线之间使用CAN_High及CAN_Low信号线相连。 其中CAN_Tx及CAN_Rx使用普通的类似TTL逻辑信号，而CAN_High及CAN_Low是一对差分信号线，使用比较特别的差分信号。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当CAN节点需要发送数据时，控制器把要发送的二进制编码通过CAN_Tx线发送到收发器，然后由收发器把这个普通的逻辑电平信号（类似TTL）转化成差分信号， 通过差分线CAN_High和CAN_Low线输出到CAN总线网络。而通过收发器接收总线上的数据到控制器时，则是相反的过程， 收发器把总线上收到的CAN_High及CAN_Low信号转化成普通的逻辑电平信号，通过CAN_Rx输出到控制器（MCU）中。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，STM32的CAN片上外设就是通讯节点中的控制器，为了构成完整的节点，还要给它外接一个收发器。其实就是类比于RS485，STM32 具有USART片上外设作为串口控制器，再搭配RS485收发器（与STM32 之间串口连接）使用，收发器与外部设备（除控制器外）转差分电平通过差分信号和基于此基础上的特定协议格式通讯。</p>
+
+<p><strong>CAN收发器实物图：</strong></p>
+
+<p><img alt="" height="382" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f549acbba061449fbbfa0d66794293b8.png" srcset="/img/loading.gif" lazyload width="564" /></p>
+
+<p><img alt="" height="298" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b95ab39aaafa486d907fb5ef4149ebf4.png" srcset="/img/loading.gif" lazyload width="774" /></p>
+
+<p><img alt="" height="320" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de028a886f7c4bfc96a44ee7c454a79a.png" srcset="/img/loading.gif" lazyload width="565" /></p>
+
+<h2 id="3.CAN-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82" name="3.CAN-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">3.CAN-数据链路层</h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据链路层分为&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="MAC 子层" target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238720860&amp;content_type=Article&amp;match_order=1&amp;q=MAC+%E5%AD%90%E5%B1%82&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTE2MjI2MDgsInEiOiJNQUMg5a2Q5bGCIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM4NzIwODYwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.P-WtcA8SKxe89REaDrIJ2KIeZ7DW4jEorPbCQDdydhE&amp;zhida_source=entity" title="MAC 子层">MAC 子层</a>和&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="LLC 子层" target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238720860&amp;content_type=Article&amp;match_order=1&amp;q=LLC+%E5%AD%90%E5%B1%82&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTE2MjI2MDgsInEiOiJMTEMg5a2Q5bGCIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM4NzIwODYwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.p45HM2x1rWKqn7c-PxmxBLJlCkVCz66hUFb0Cdcanxw&amp;zhida_source=entity" title="LLC 子层">LLC 子层</a>，MAC 子层是 CAN 协议的核心部分。数据链路层的功能是将物理层收到的信号组织成有意义的消息，并提供传送错误控制等传输控制的流程。具体地说，就是消息的帧化、仲裁、应答、错误的检测或报告。数据链路层的功能通常在 CAN 控制器的硬件中执行。 在物理层定义了信号实际的发送方式、位时序、位的编码方式及同步的步骤。但具体地说，信号电平、通信速度、采样点、驱动器和总线的电气特性、连接器的形态等均未定义。这些必须由用户根据系统需求自行确定。</p>
+
+<h3 id="%EF%BC%88%E4%B8%80%EF%BC%89%E5%AA%92%E4%BD%93%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82%EF%BC%88MAC%EF%BC%89" name="%EF%BC%88%E4%B8%80%EF%BC%89%E5%AA%92%E4%BD%93%E8%AE%BF%E9%97%AE%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82%EF%BC%88MAC%EF%BC%89">（一）媒体访问控制子层（MAC）</h3>
+
+<h4 id="1.%C2%A0%E6%80%BB%E7%BA%BF%E4%BB%B2%E8%A3%81%E6%9C%BA%E5%88%B6%EF%BC%9A%E9%9D%9E%E7%A0%B4%E5%9D%8F%E6%80%A7%E9%80%90%E4%BD%8D%E4%BB%B2%E8%A3%81" name="1.%C2%A0%E6%80%BB%E7%BA%BF%E4%BB%B2%E8%A3%81%E6%9C%BA%E5%88%B6%EF%BC%9A%E9%9D%9E%E7%A0%B4%E5%9D%8F%E6%80%A7%E9%80%90%E4%BD%8D%E4%BB%B2%E8%A3%81">（1）&nbsp;<strong>总线仲裁机制：非破坏性逐位仲裁</strong></h4>
+
+<ul>
+	<li><strong>原理</strong>：CAN 总线采用 &ldquo;线与&rdquo; 逻辑（显性电平 0，隐性电平 1），多个节点同时发送时，发送显性位的节点优先占用总线，发送隐性位的节点自动退避，避免总线冲突。</li>
+	<li><strong>仲裁示例</strong>：<br />
+	节点 A 发送 ID 为 0x123 的帧，节点 B 发送 ID 为 0x122 的帧，两者前 7 位相同，第 8 位 A 为隐性（1），B 为显性（0），则 B 的帧优先传输，A 自动停止发送并等待总线空闲。</li>
+	<li><strong>优势</strong>：仲裁过程不浪费总线带宽，优先级高的消息（ID 值越小，优先级越高）实时性更强。</li>
+</ul>
+
+<h4 id="2.%C2%A0%E5%B8%A7%E7%BB%93%E6%9E%84%EF%BC%9A5%20%E7%A7%8D%E5%B8%A7%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%A0%BC%E5%BC%8F" name="2.%C2%A0%E5%B8%A7%E7%BB%93%E6%9E%84%EF%BC%9A5%20%E7%A7%8D%E5%B8%A7%E7%B1%BB%E5%9E%8B%E5%8F%8A%E6%A0%BC%E5%BC%8F">（2）<strong>帧结构：5 种帧类型及格式</strong></h4>
+
+<table>
+	<thead>
+		<tr>
+			<th style="width:69px">帧类型</th>
+			<th style="width:207px">用途</th>
+			<th style="width:413px">帧结构（以标准帧为例）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:69px">数据帧</td>
+			<td style="width:207px">传输用户数据</td>
+			<td style="width:413px">帧起始 (SOF)&rarr;仲裁段 (ID+RTR)&rarr;控制段&rarr;数据段&rarr;CRC&rarr;ACK&rarr;帧结束</td>
+		</tr>
+		<tr>
+			<td style="width:69px">远程帧</td>
+			<td style="width:207px">请求其他节点发送数据</td>
+			<td style="width:413px">无数据段，RTR 位为 1（隐性），用于主机轮询从机</td>
+		</tr>
+		<tr>
+			<td style="width:69px">错误帧</td>
+			<td style="width:207px">检测到错误时发送报警</td>
+			<td style="width:413px">错误标志（6 个显性位）+ 错误界定符（8 个隐性位）</td>
+		</tr>
+		<tr>
+			<td style="width:69px">过载帧</td>
+			<td style="width:207px">节点处理能力不足时请求延迟</td>
+			<td style="width:413px">过载标志（6 个显性位）+ 过载界定符（8 个隐性位）</td>
+		</tr>
+		<tr>
+			<td style="width:69px">帧间隔</td>
+			<td style="width:207px">分隔连续帧</td>
+			<td style="width:413px">3 个隐性位，用于恢复总线空闲状态</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="3.%C2%A0%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B%E4%B8%8E%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6" name="3.%C2%A0%E9%94%99%E8%AF%AF%E6%A3%80%E6%B5%8B%E4%B8%8E%E6%81%A2%E5%A4%8D%E6%9C%BA%E5%88%B6">（3）<strong>错误检测与恢复机制</strong></h4>
+
+<ul>
+	<li><strong>5 种错误检测方式</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;位错误：发送位与总线读取位不一致时检测；&lt;/li&gt;
+	&lt;li&gt;填充错误：非数据段中出现 5 个连续同电平位时（CAN 采用位填充避免长连 0/1）；&lt;/li&gt;
+	&lt;li&gt;CRC 错误：接收端计算 CRC 与帧中 CRC 字段不匹配；&lt;/li&gt;
+	&lt;li&gt;格式错误：帧结构中的固定位（如 ACK 界定符）不符合规范；&lt;/li&gt;
+	&lt;li&gt;应答错误：发送帧后未收到 ACK 应答（接收端未正确接收）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;错误恢复策略&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;节点维护错误计数器，累计错误时进入 &amp;ldquo;错误激活&amp;rdquo;&amp;ldquo;错误认可&amp;rdquo;&amp;ldquo;总线关闭&amp;rdquo; 状态，自动重发或请求总线复位。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4 id="4.%C2%A0%E4%BD%8D%E6%97%B6%E5%BA%8F%E4%B8%8E%E5%90%8C%E6%AD%A5" name="4.%C2%A0%E4%BD%8D%E6%97%B6%E5%BA%8F%E4%B8%8E%E5%90%8C%E6%AD%A5">（4）<strong>位时序与同步</strong></h4>
+
+<ul>
+	<li><strong>位时间划分</strong>：1 位分为同步段（SS）、传播时间段（PTS）、相位缓冲段 1（PBS1）、相位缓冲段 2（PBS2），可通过寄存器配置适应不同总线速率。</li>
+	<li><strong>同步机制</strong>：硬同步（帧起始 SOF 的下降沿）和重同步（根据位边沿偏移调整相位缓冲段），确保多节点时钟同步。</li>
+</ul>
+
+<h3 id="%EF%BC%88%E4%BA%8C%EF%BC%89%E9%80%BB%E8%BE%91%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82%EF%BC%88LLC%EF%BC%89" name="%EF%BC%88%E4%BA%8C%EF%BC%89%E9%80%BB%E8%BE%91%E9%93%BE%E8%B7%AF%E6%8E%A7%E5%88%B6%E5%AD%90%E5%B1%82%EF%BC%88LLC%EF%BC%89">（二）逻辑链路控制子层（LLC）</h3>
+
+<h4 id="1.%C2%A0%E5%B8%A7%E7%B1%BB%E5%9E%8B%E6%8E%A7%E5%88%B6" name="1.%C2%A0%E5%B8%A7%E7%B1%BB%E5%9E%8B%E6%8E%A7%E5%88%B6">（1）&nbsp;<strong>帧类型控制</strong></h4>
+
+<ul>
+	<li>区分数据帧和远程帧的逻辑功能，处理远程帧的请求响应逻辑（如接收远程帧后发送对应数据帧）。</li>
+</ul>
+
+<h4 id="2.%C2%A0%E6%B6%88%E6%81%AF%E8%BF%87%E6%BB%A4" name="2.%C2%A0%E6%B6%88%E6%81%AF%E8%BF%87%E6%BB%A4">（2）<strong>消息过滤</strong></h4>
+
+<ul>
+	<li>通过接收滤波器（如掩码寄存器）筛选需要处理的消息 ID，减少节点 CPU 负载。例如，汽车 ECU 可只接收与自身功能相关的消息（如发动机控制模块只处理 ID 为 0x100~0x1FF 的帧）。</li>
+</ul>
+
+<h4 id="3.%C2%A0%E6%81%A2%E5%A4%8D%E7%AE%A1%E7%90%86" name="3.%C2%A0%E6%81%A2%E5%A4%8D%E7%AE%A1%E7%90%86">（3）<strong>恢复管理</strong></h4>
+
+<ul>
+	<li>处理过载帧的发送与接收，协调节点间的数据流控制，避免缓冲区溢出。</li>
+</ul>
+
+<h2 id="4.%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%9A%E4%BB%8E%E5%BA%95%E5%B1%82%E5%88%B0%E5%9C%BA%E6%99%AF%E5%8C%96%E7%9A%84%E8%AF%AD%E4%B9%89%E5%AE%9A%E4%B9%89" name="4.%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE%EF%BC%9A%E4%BB%8E%E5%BA%95%E5%B1%82%E5%88%B0%E5%9C%BA%E6%99%AF%E5%8C%96%E7%9A%84%E8%AF%AD%E4%B9%89%E5%AE%9A%E4%B9%89">4.应用层协议：从底层到场景化的语义定义</h2>
+
+<h3 id="1.%C2%A0CANopen%EF%BC%88%E5%B7%A5%E4%B8%9A%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%89" name="1.%C2%A0CANopen%EF%BC%88%E5%B7%A5%E4%B8%9A%E8%87%AA%E5%8A%A8%E5%8C%96%EF%BC%89">（1）&nbsp;<strong>CANopen（工业自动化）</strong></h3>
+
+<ul>
+	<li><strong>架构</strong>：基于 CAN 的数据链路层，定义设备模型、通信协议和应用协议（如 SDO/PDO 服务）。</li>
+	<li><strong>典型应用</strong>：伺服电机控制、机器人关节驱动，支持主从模式和分布式时钟同步（如使用 Sync 报文）。</li>
+</ul>
+
+<h3 id="2.%C2%A0J1939%EF%BC%88%E5%95%86%E7%94%A8%E8%BD%A6%E7%94%B5%E5%AD%90%EF%BC%89" name="2.%C2%A0J1939%EF%BC%88%E5%95%86%E7%94%A8%E8%BD%A6%E7%94%B5%E5%AD%90%EF%BC%89">（2）<strong>J1939（商用车电子）</strong></h3>
+
+<ul>
+	<li><strong>标准化组织</strong>：SAE（美国汽车工程师学会），定义卡车、公交车的电子控制单元通信标准。</li>
+	<li><strong>核心特性</strong>：
+	<ul>
+		<li>分层地址分配（如发动机 ECU 地址 0x01，变速箱 ECU 地址 0x02）；</li>
+		<li>定义参数组（PGN）编码规则，如发动机转速对应 PGN 0x100004。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3 id="3.%C2%A0%E5%85%B6%E4%BB%96%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE" name="3.%C2%A0%E5%85%B6%E4%BB%96%E5%BA%94%E7%94%A8%E5%B1%82%E5%8D%8F%E8%AE%AE">（3）<strong>其他应用层协议</strong></h3>
+
+<ul>
+	<li><strong>DeviceNet</strong>：工业自动化领域，支持多主通信和设备热插拔；</li>
+	<li><strong>SAE J1939-21</strong>：定义诊断协议，用于车辆故障码（DTC）的传输与解析；</li>
+	<li><strong>ISO 15118</strong>：电动汽车充电通信协议，基于 CAN 实现充电控制与状态交互。</li>
+</ul>
+
+<h2 id="5.CAN%E5%8D%8F%E8%AE%AE%E5%B1%82" name="5.CAN%E5%8D%8F%E8%AE%AE%E5%B1%82">5.CAN协议层</h2>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;CAN的物理层标准，约定了电气特性，以下介绍的协议层则规定了通讯逻辑。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN（Controller Area Network，控制器局域网）协议作为工业控制和汽车电子领域的核心通信标准，其协议层设计遵循 OSI 参考模型，主要包含<strong>数据链路层</strong>（又细分为逻辑链路控制子层 LLC 和媒体访问控制子层 MAC）和<strong>物理层</strong>，同时衍生出多种应用层协议（如 CANopen、J1939 等）。</p>
+
+<p><strong>OSI 模型映射：</strong></p>
+
+<p><img alt="" height="272" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59c544c2357f40c8a1d9528be5d56f30.png" srcset="/img/loading.gif" lazyload width="768" /></p>
+
+<h3 id="%EF%BC%88%E4%B8%80%EF%BC%89%20CAN%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87%E5%8F%8A%E4%BD%8D%E5%90%8C%E6%AD%A5" name="%EF%BC%88%E4%B8%80%EF%BC%89%20CAN%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87%E5%8F%8A%E4%BD%8D%E5%90%8C%E6%AD%A5" style="background-color:transparent">（一） CAN的波特率及位同步</h3>
+
+<h4 id="%EF%BC%881%EF%BC%89%E4%BD%8D%E6%97%B6%E5%BA%8F%E7%9A%84%E5%88%86%E8%A7%A3%EF%BC%9A" name="%EF%BC%881%EF%BC%89%E4%BD%8D%E6%97%B6%E5%BA%8F%E7%9A%84%E5%88%86%E8%A7%A3%EF%BC%9A">（1）位时序的分解：</h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了实现位同步，CAN 协议把每一个数据位的时序分解成 SS 段、PTS 段、PBS1 段、PBS2 段，这四段的长度加起来即为一个 CAN 数据位的长度。分解后最小的时间单位是 Tq，而一个完整的位由 8~25 个 Tq 组成。为方便表示，下图中的高低电平直接代表信号逻辑 0 或逻辑 1(不是差分信号)。（为了避免不同设备的时钟误差和为了灵活调整每个采样点的位置，使采样点对齐数据位中心附近，CAN总线对每一个数据位的时长进行了更细的划分，分为同步段（SS）、传播时间段（PTS）、相位缓冲段1（PBS1）和相位缓冲段2（PBS2），每个段又由若干个最小时间单位（Tq）构成。）</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Tq 是 CAN 控制器的最小时间周期，称作时间份额（Time quantum）。它是通过芯片晶振周期分频而来。&nbsp;Tq 是 CAN 协议中定义位时间的基本单位，用于确定 CAN 数据位的各个组成部分的时间长度。一个完整的 CAN 数据位由 8~25 个 Tq 组成，CAN 协议把每一个数据位的时序分解成的 SS 段、PTS 段、PBS1 段、PBS2 段，其长度也是由若干个 Tq 构成。总线上的各个通讯节点约定好 1 个 Tq 的时间长度以及每一个数据位占据的 Tq 数量，就可以确定 CAN 通讯的波特率。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下图中表示的 CAN 通讯信号每一个数据位的长度为 19Tq，其中 SS 段占 1Tq，PTS 段 占 6Tq，PBS1 段占 5Tq，PBS2 段占 7Tq。信号的采样点位于 PBS1 段与 PBS2 段之间，通过控制各段的长度，可以对采样点的位置进行偏移，以便准确地采样。</p>
+
+<p><img alt="" height="329" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a9648bd0b65248d7814506194d7e1f50.png" srcset="/img/loading.gif" lazyload width="760" /></p>
+
+<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/356a1de24acf4520b032cba01f7c7a57.png" srcset="/img/loading.gif" lazyload width="612" /></p>
+
+<p><strong>1）SS 段(SYNC SEG)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS 译为同步段，若通讯节点检测到总线上信号的跳变沿被包含在 SS 段的范围之内，则表示节点与总线的时序是同步的，当节点与总线同步时，采样点采集到的总线电平即可被确定为该位的电平。SS 段的大小固定为 1Tq。<br />
+<strong>2）PTS 段(PROP SEG)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PTS 译为传播时间段，这个时间段是用于补偿网络的物理延时时间。是总线上输入比较器延时和输出驱动器延时总和的两倍。PTS 段的大小可以为 1~8Tq（可自定义）。<br />
+<strong>3）PBS1 段(PHASE SEG1)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBS1 译为相位缓冲段，主要用来补偿边沿阶段的误差，它的时间长度在重新同步的时候可以加长。PBS1 段的初始大小可以为 1~8Tq（可自定义）。<br />
+<strong>4）PBS2 段(PHASE SEG2)</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;PBS2 这是另一个相位缓冲段，也是用来补偿边沿阶段误差的，它的时间长度在重新同步时可以缩短。PBS2 段的初始大小可以为 2~8Tq（可自定义）。</p>
+
+<h4 id="%EF%BC%882%EF%BC%89%E9%80%9A%E8%AE%AF%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87" name="%EF%BC%882%EF%BC%89%E9%80%9A%E8%AE%AF%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87"><strong>（2）通讯的波特率</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;总线上的各个通讯节点只要约定好1个Tq的时间长度以及每一个数据位占据多少个Tq，就可以确定CAN通讯的波特率。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;例如，假设上图中的1Tq=1us，而每个数据位由19个Tq组成， 则传输一位数据需要时间T1bit&nbsp;=19us，从而每秒可以传输的数据位个数为：</p>
+
+<p style="text-align:center">1x106&shy;/19 = 52631.6 (bps)</p>
+
+<p>这个每秒可传输的数据位的个数即为通讯中的波特率。</p>
+
+<h4 id="%EF%BC%883%EF%BC%89%E5%90%8C%E6%AD%A5%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90" name="%EF%BC%883%EF%BC%89%E5%90%8C%E6%AD%A5%E8%BF%87%E7%A8%8B%E5%88%86%E6%9E%90"><strong>（3）同步过程分析</strong></h4>
+
+<p>波特率只是约定了每个数据位的长度，数据同步还涉及到相位的细节，这个时候就需要用到数据位内的SS、PTS、PBS1及PBS2段了。（未细讲，置底查看参考文档链接）</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;1) 硬同步</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若某个CAN节点通过总线发送数据时，它会发送一个表示通讯起始的信号(即帧起始信号)，该信号是一个由高变低的下降沿。 而挂载到CAN总线上的通讯节点在不发送数据时，会时刻检测总线上的信号。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;1） 每个设备都有一个位时序计时周期，当某个设备（发送方）率先发送报文，其他所有设备（接收方）收到SOF的下降沿时，接收方会将自己的位时序计时周期拨到SS段的位置，与发送方的位时序计时周期保持同步（在开始任务前，根据第一个下降沿&ldquo;对表&rdquo;）</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）硬同步只在帧的第一个下降沿（SOF下降沿）有效</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3）经过硬同步后，若发送方和接收方的时钟没有误差，则后续所有数据位的采样点必然都会对齐数据位中心附近</p>
+
+<p><img alt="" height="310" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e4f2b955a07b4e3698472997a5732f9e.png" srcset="/img/loading.gif" lazyload width="1085" /></p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) 重新同步/再同步</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面的硬同步只是当存在帧起始信号时才起作用，如果在一帧很长的数据内，节点信号与总线信号相位有偏移时，这种同步方式就无能为力了。 因而需要引入重新同步方式，它利用普通数据位的高至低电平的跳变沿来同步(帧起始信号是特殊的跳变沿)。重新同步与硬同步方式相似的地方是它们都使用SS段来进行检测，同步的目的都是使 节点内的SS段把跳变沿包含起来。</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;1）若发送方或接收方的时钟有误差，随着误差积累，数据位边沿逐渐偏离SS段，则此时接收方根据再同步补偿宽度值（SJW）通过加长PBS1段，或缩短PBS2段，以调整同步</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;2）再同步可以发生在第一个下降沿之后的每个数据位跳变边沿</p>
+
+<p><img alt="" height="394" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/060eb723ead546329bb3c400e7c390cc.png" srcset="/img/loading.gif" lazyload width="785" /></p>
+
+<h3 id="%EF%BC%88%E4%BA%8C%EF%BC%89CAN%E7%9A%84%E6%8A%A5%E6%96%87%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%BB%93%E6%9E%84" name="%EF%BC%88%E4%BA%8C%EF%BC%89CAN%E7%9A%84%E6%8A%A5%E6%96%87%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%BB%93%E6%9E%84">（二）CAN的报文种类及结构</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN使用的是两条差分信号线，只能表达一个信号， 简洁的物理层决定了CAN必然要配上一套更复杂的协议，如何用一个信号通道实现同样、甚至更强大的功能呢？CAN协议给出的解决方案是对数据、 操作命令(如读/写)以及同步信号进行打包，打包后的这些内容称为报文。报文的承载格式是数据帧。</p>
+
+<h4 id="%EF%BC%881%EF%BC%89%E6%8A%A5%E6%96%87%E7%9A%84%E7%A7%8D%E7%B1%BB" name="%EF%BC%881%EF%BC%89%E6%8A%A5%E6%96%87%E7%9A%84%E7%A7%8D%E7%B1%BB"><strong>（1）报文的种类</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在原始数据段的前面加上传输起始标签、片选(识别)标签和控制标签，在数据的尾段加上CRC校验标签、应答标签和传输结束标签，把这些内容按特定的格式打包好， 就可以用一个通道表达各种信号了，各种各样的标签就如同SPI中各种通道上的信号，起到了协同传输的作用。当整个数据包被传输到其它设备时， 只要这些设备按格式去解读，就能还原出原始数据，这样的报文就被称为CAN的&ldquo;数据帧&rdquo;。</p>
+
+<p>为了更有效地控制通讯，CAN一共规定了5种类型的帧， 它们的类型及用途说明如表帧的种类及其用途。</p>
+
+<table>
+	<thead>
+		<tr>
+			<th style="width:69px">帧类型</th>
+			<th style="width:207px">用途</th>
+			<th style="width:413px">帧结构（以标准帧为例）</th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td style="width:69px">数据帧</td>
+			<td style="width:207px">传输用户数据</td>
+			<td style="width:413px">帧起始 (SOF)&rarr;仲裁段 (ID+RTR)&rarr;控制段&rarr;数据段&rarr;CRC&rarr;ACK&rarr;帧结束</td>
+		</tr>
+		<tr>
+			<td style="width:69px">远程帧</td>
+			<td style="width:207px">请求其他节点发送数据</td>
+			<td style="width:413px">无数据段，RTR 位为 1（隐性），用于主机轮询从机</td>
+		</tr>
+		<tr>
+			<td style="width:69px">错误帧</td>
+			<td style="width:207px">检测到错误时发送报警</td>
+			<td style="width:413px">错误标志（6 个显性位）+ 错误界定符（8 个隐性位）</td>
+		</tr>
+		<tr>
+			<td style="width:69px">过载帧</td>
+			<td style="width:207px">节点处理能力不足时请求延迟</td>
+			<td style="width:413px">过载标志（6 个显性位）+ 过载界定符（8 个隐性位）</td>
+		</tr>
+		<tr>
+			<td style="width:69px">帧间隔</td>
+			<td style="width:207px">分隔连续帧</td>
+			<td style="width:413px">3 个隐性位，用于恢复总线空闲状态</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4 id="%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E5%B8%A7%E7%9A%84%E7%BB%93%E6%9E%84" name="%EF%BC%882%EF%BC%89%E6%95%B0%E6%8D%AE%E5%B8%A7%E7%9A%84%E7%BB%93%E6%9E%84"><strong>（2）数据帧的结构</strong></h4>
+
+<p><strong>SOF（Start of Frame）：帧起始，表示后面一段波形为传输的数据位 </strong></p>
+
+<p><strong>ID（Identify）：标识符，区分功能，同时决定优先级 </strong></p>
+
+<p><strong>RTR（Remote Transmission Request ）：远程请求位，区分数据帧和遥控帧 </strong></p>
+
+<p><strong>IDE（Identifier Extension）：扩展标志位，区分标准格式和扩展格式 </strong></p>
+
+<p><strong>SRR（Substitute Remote Request）：替代RTR，协议升级时留下的无意义位 </strong></p>
+
+<p><strong>r0/r1（Reserve）：保留位，为后续协议升级留下空间 </strong></p>
+
+<p><strong>DLC（Data Length Code）：数据长度，指示数据段有几个字节 </strong></p>
+
+<p><strong>Data：数据段的1~8个字节有效数据 </strong></p>
+
+<p><strong>CRC（Cyclic Redundancy Check）：循环冗余校验，校验数据是否正确 </strong></p>
+
+<p><strong>ACK（Acknowledgement）：应答位，判断数据有没有被接收方接收 </strong></p>
+
+<p><strong>CRC/ACK界定符：为应答位前后发送方和接收方释放总线留下时间 </strong></p>
+
+<p><strong>EOF（End of Frame ）：帧结束，表示数据位已经传输完毕</strong></p>
+
+<p style="text-align:center"><img alt="" height="466" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0b8a902d501c4ac1b0e25d55b4673266.png" srcset="/img/loading.gif" lazyload width="976" /></p>
+
+<p style="text-align:center">数据帧</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据帧以一个显性位(逻辑0)开始，以7个连续的隐性位(逻辑1)结束，在它们之间，分别有仲裁段、控制段、数据段、CRC段和ACK段。</p>
+
+<ul>
+	<li>
+	<p><strong>帧起始</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SOF段(Start Of Frame)，译为帧起始，帧起始信号只有一个数据位，是一个显性电平， 它用于通知各个节点将有数据传输，其它节点通过帧起始信号的电平跳变沿来进行硬同步。</p>
+
+<ul>
+	<li>
+	<p><strong>仲裁段</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN总线只有一对差分信号线，同一时间只能有一个设备操作总线发送数据，若多个设备同时有发送需求，该如何分配总线资源？ 解决问题的思路：制定资源分配规则，依次满足多个设备的发送需求，确保同一时间只有一个设备操作总线</p>
+
+<p><strong><span style="background-color:#38d8f0">资源分配规则1 - 先占先得</span></strong></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1）若当前已经有设备正在操作总线发送数据帧/遥控帧，则其他任何设备不能再同时发送数据帧/遥控帧（可以发送错误帧/过载帧破坏当前数据） </span></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）任何设备检测到连续11个隐性电平，即认为总线空闲，只有在总线空闲时，设备才能发送数据帧/遥控帧 </span></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3）一旦有设备正在发送数据帧/遥控帧，总线就会变为活跃状态，必然不会出现连续11个隐性电平，其他设备自然也不会破坏当前发送 </span></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;4）若总线活跃状态其他设备有发送需求，则需要等待总线变为空闲，才能执行发送需求</span></p>
+
+<p><strong><span style="background-color:#38d8f0">资源分配规则2 - 非破坏性仲裁</span></strong></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若多个设备的发送需求同时到来或因等待而同时到来，则CAN总线协议会根据ID号（仲裁段）进行非破坏性仲裁，ID号小的（优先级高）取到总线控制权，ID号大的（优先级低）仲裁失利后将转入接收状态，等待下一次总线空闲时再尝试发送 </span></p>
+
+<p><span style="color:#4da8ee">实现非破坏性仲裁需要两个要求： </span></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;线与特性：总线上任何一个设备发送显性电平0时，总线就会呈现显性电平0状态，只有当所有设备都发送隐性电平1时，总线才呈现隐性电平1状态，即：0 &amp; X &amp; X = 0，1 &amp; 1 &amp; 1 = 1 </span></p>
+
+<p><span style="color:#4da8ee">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;回读机制：每个设备发出一个数据位后，都会读回总线当前的电平状态，以确认自己发出的电平是否被真实地发送出去了，根据线与特性，发出0读回必然是0，发出1读回不一定是1</span></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;当同时有两个报文被发送时，总线会根据仲裁段的内容决定哪个数据包能被传输，这也是它名称的由来。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仲裁段的内容主要为本数据帧的ID信息(标识符)，数据帧具有标准格式和扩展格式两种，区别就在于ID信息的长度，标准格式的ID为11位，扩展格式的ID为29位， 它在标准ID的基础上多出18位。在CAN协议中，ID起着重要的作用，它决定着数据帧发送的优先级，也决定着其它节点是否会接收这个数据帧。 CAN协议不对挂载在它之上的节点分配优先级和地址，对总线的占有权是由信息的重要性决定的，即对于重要的信息，我们会给它打包上一个优先级高的ID， 使它能够及时地发送出去。也正因为它这样的优先级分配原则，使得CAN的扩展性大大加强，在总线上增加或减少节点并不影响其它设备。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;报文的优先级，是通过对ID的仲裁来确定的。根据前面对物理层的分析我们知道如果总线上同时出现显性电平和隐性电平，总线的状态会被置为显性电平，CAN正是利用这个特性<strong>（线与特性）</strong>进行仲裁。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若两个节点同时竞争CAN总线的占有权，当它们发送报文时，若首先出现隐性电平，则会失去对总线的占有权，进入接收状态。<strong>（即该两个节点同时发送字节，帧起始一样，然后到ID<span style="color:#4da8ee">（仲裁段部分）</span>，根据线与特性只要谁的ID为显性0<span style="color:#4da8ee">（ID小，优先级高）</span>则马上拉开总线，相对应的另外一个节点的ID的某位为隐性1就表示它的ID大<span style="color:#4da8ee">（因为前面比较过来都是一样大小的ID位）</span>，其优先级低被淘汰）</strong>见图仲裁过程&nbsp;，在开始阶段，两个设备发送的电平一样， 所以它们一直继续发送数据。到了图中箭头所指的时序处，节点单元1发送的为隐性电平，而此时节点单元2发送的为显性电平， 由于总线的&ldquo;线与&rdquo;特性使它表达出显示电平，因此单元2竞争总线成功，这个报文得以被继续发送出去。</p>
+
+<p><img alt="" height="322" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png" srcset="/img/loading.gif" lazyload width="777" />​</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仲裁段ID的优先级也影响着接收设备对报文的反应。因为在CAN总线上数据是以广播的形式发送的，所有连接在CAN总线的节点都会收到所有其它节点发出的有效数据， 因而我们的CAN控制器大多具有根据ID过滤报文的功能，它可以控制自己只接收某些ID的报文。</p>
+
+<p>回看图&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="数据帧的结构" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f103badao/std/zh/latest/book/CAN.html#id21" title="数据帧的结构">数据帧的结构</a>&nbsp;中的数据帧格式，可看到仲裁段除了报文ID外，还有RTR、IDE和SRR位。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;1) RTR位(Remote Transmission Request Bit)，译作远程传输请求位， 它是用于区分数据帧和遥控帧的，当它为显性电平时表示数据帧，隐性电平时表示遥控帧。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) IDE位(Identifier Extension Bit)，译作标识符扩展位， 它是用于区分标准格式与扩展格式，当它为显性电平时表示标准格式，隐性电平时表示扩展格式。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3) SRR位(Substitute Remote Request Bit)，只存在于扩展格式，它用于替代标准格式中的RTR位。 由于扩展帧中的SRR位为隐性位，RTR在数据帧为显性位，所以在两个ID相同的标准格式报文与扩展格式报文中，标准格式的优先级较高。</p>
+
+<p>额外：</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据帧和遥控帧的优先级：数据帧和遥控帧ID号一样时，数据帧的优先级高于遥控帧</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标准格式和扩展格式的优先级：标准格式11位ID号和扩展格式29位ID号的高11位一样时，标准格式的优先级高于扩展格式（SRR必须始终为1，以保证此要求）</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fa0947cb4f914fc69a399a17f3d46d6c.png" srcset="/img/loading.gif" lazyload /></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填充位不会影响 CAN 总线仲裁的优先级。CAN 总线的填充位机制是指在发送数据时，当发送器检测到位流中有五个连续相同逻辑电平的位时，便在这五位后面自动插入一个补码位。接收方检测到填充位时，会自动移除填充位，恢复原始数据。由于填充位是根据特定规则自动插入和移除的，且所有节点都会遵循这一规则，因此不会改变仲裁段中原本 ID 的内容和顺序，也就不会影响到优先级。</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6fc4bea5e5014c70b7fcd9c6f92addd6.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<ul>
+	<li>
+	<p><strong>控制段</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在控制段中的r1和r0为保留位，默认设置为显性位。它最主要的是DLC段(Data Length Code)，译为数据长度码， 它由4个数据位组成，用于表示本报文中的数据段含有多少个字节，DLC段表示的数字为0~8。</p>
+
+<ul>
+	<li>
+	<p><strong>数据段</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据段为数据帧的核心内容，它是节点要发送的原始信息，由0~8个字节组成，MSB先行。</p>
+
+<ul>
+	<li>
+	<p><strong>CRC段</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;为了保证报文的正确传输，CAN的报文包含了一段15位的CRC校验码，一旦接收节点算出的CRC码跟接收到的CRC码不同，则它会向发送节点反馈出错信息，利用错误帧请求它重新发送。CRC部分的计算一般由CAN控制器硬件完成，出错时的处理则由软件控制最大重发数。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在CRC校验码之后，有一个CRC界定符，它为隐性位，主要作用是把CRC校验码与后面的ACK段间隔起来。</p>
+
+<ul>
+	<li>
+	<p><strong>ACK段</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ACK段包括一个ACK槽位，和ACK界定符位。类似I2C总线，在ACK槽位中，发送节点发送的是隐性位，而接收节点则在这一位中发送显性位以示应答。在ACK槽和帧结束之间由ACK界定符间隔开。</p>
+
+<ul>
+	<li>
+	<p><strong>帧结束</strong></p>
+	</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;EOF段(End Of Frame)，译为帧结束，帧结束段由发送节点发送的7个隐性位表示结束。</p>
+
+<p><span style="background-color:#faa572">错误处理：</span></p>
+
+<p><span style="background-color:#faa572">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;错误类型：&nbsp;位错误、填充错误、CRC错误、格式错误、应答错误</span></p>
+
+<p><img alt="" height="499" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/329790a70c2e4432a6afeedf7215ba07.png" srcset="/img/loading.gif" lazyload width="609" /></p>
+
+<p><span style="background-color:#faa572">错误状态（限制抽风设备不断发送错误通知影响其他设备）：</span></p>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">1）主动错误状态的设备正常参与通信并在检测到错误时发出主动错误帧 </span></p>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">2）被动错误状态的设备正常参与通信但检测到错误时只能发出被动错误帧 </span></p>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">3）总线关闭状态的设备不能参与通信 </span></p>
+
+<p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">4）每个设备内部管理一个TEC和REC，根据TEC和REC的值确定自己的状态</span></p>
+
+<p><img alt="" height="367" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8e9e7bff29ff4f7ea290faa4326cfcbe.png" srcset="/img/loading.gif" lazyload width="506" /></p>
+
+<h4>（3）遥控帧的结构</h4>
+
+<p>遥控帧无数据段，RTR为隐性电平1，其他部分与数据帧相同。</p>
+
+<p><img alt="" height="461" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png" srcset="/img/loading.gif" lazyload width="837" />​</p>
+
+<h4>（4）错误帧的结构</h4>
+
+<p>总线上所有设备都会监督总线的数据，一旦发现&ldquo;位错误&rdquo;或&ldquo;填充错误&rdquo;或&ldquo;CRC错误&rdquo;或&ldquo;格式错误&rdquo;或&ldquo;应答错误&rdquo; ，这些设备便会发出错误帧来破坏数据，同时终止当前的发送设备</p>
+
+<p><img alt="" height="305" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/86826c2e14df4b21befd7f0e74f2a785.png" srcset="/img/loading.gif" lazyload width="835" />​</p>
+
+<h4>（5）过载帧的结构</h4>
+
+<p>当接收方收到大量数据而无法处理时，其可以发出过载帧，延缓发送方的数据发送，以平衡总线负载，避免数据丢失</p>
+
+<p><img alt="" height="304" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/034da824a89f4352bcb3e4bca5105dae.png" srcset="/img/loading.gif" lazyload width="833" />​</p>
+
+<h4>（6）帧间隔的结构</h4>
+
+<p>将数据帧和遥控帧与前面的帧分离开</p>
+
+<p><img alt="" height="274" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3686c397288c4b6896c5e8e876944e31.png" srcset="/img/loading.gif" lazyload width="830" />​</p>
+
+<h4>（7）位填充的结构</h4>
+
+<p>位填充规则：发送方每发送5个相同电平后，自动追加一个相反电平的填充位，接收方检测到填充位时，会自动移除填充位，恢复原始数据</p>
+
+<p>例如：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;即将发送：&nbsp;&nbsp; &nbsp;100000110&nbsp;&nbsp; &nbsp; &nbsp; 10000011110&nbsp;&nbsp; &nbsp;0111111111110 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际发送：&nbsp;&nbsp; &nbsp;1000001110&nbsp;&nbsp; &nbsp; &nbsp; 1000001111100&nbsp;&nbsp; &nbsp;011111011111010 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;实际接收：&nbsp;&nbsp; &nbsp;1000001110&nbsp;&nbsp; &nbsp; &nbsp; 1000001111100&nbsp;&nbsp; &nbsp;011111011111010 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;移除填充后： 100000110&nbsp;&nbsp; &nbsp; &nbsp; 10000011110&nbsp;&nbsp; &nbsp;0111111111110</p>
+
+<p>位填充作用： 增加波形的定时信息，利于接收方执行&ldquo;再同步&rdquo;，防止波形长时间无变化，导致接收方不能精确掌握数据采样时机 将正常数据流与&ldquo;错误帧&rdquo;和&ldquo;过载帧&rdquo;区分开，标志&ldquo;错误帧&rdquo;和&ldquo;过载帧&rdquo;的特异性 保持CAN总线在发送正常数据流时的活跃状态，防止被误认为总线空闲</p>
+
+<h2>6.STM32 CAN外设简介</h2>
+
+<p>STM32内置bxCAN外设（CAN控制器），支持CAN2.0A和2.0B，可以自动发送CAN报文和按照过滤器自动接收指定CAN报文，程序只需处理报文数据而无需关注总线的电平细节</p>
+
+<p>波特率最高可达1兆位/秒</p>
+
+<p>3个可配置优先级的发送邮箱</p>
+
+<p>2个3级深度的接收FIFO</p>
+
+<p>14个过滤器组（互联型28个）</p>
+
+<p>时间触发通信、自动离线恢复、自动唤醒、禁止自动重传、接收FIFO溢出处理方式可配置、发送优先级可配置、双CAN模式</p>
+
+<p>STM32F103C8T6 CAN资源：CAN1</p>
+
+<h3>（一）CAN网拓扑结构</h3>
+
+<p><img alt="" height="292" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3ffe4bed9f344f3ab5fdb0385392eb6.png" srcset="/img/loading.gif" lazyload width="729" /></p>
+
+<h3>（二）CAN框图</h3>
+
+<p><img alt="" height="697" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d2ee435696f641e7b18e6caa8b1da4e5.png" srcset="/img/loading.gif" lazyload width="676" /></p>
+
+<h3>（三）CAN基本结构</h3>
+
+<p><img alt="" height="597" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cbdacdae1cd44c31a3ae87b7164d2686.png" srcset="/img/loading.gif" lazyload width="1095" /></p>
+
+<h3>（四）发送过程</h3>
+
+<p>基本流程：选择一个空置邮箱&rarr;写入报文 &rarr;请求发送</p>
+
+<p><img alt="" height="434" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2b26c2f654a644999216a5c4e9c7aa0f.png" srcset="/img/loading.gif" lazyload width="658" /></p>
+
+<p>（五）接收过程</p>
+
+<p>基本流程：接收到一个报文&rarr;匹配过滤器后进入FIFO 0或FIFO 1&rarr;CPU读取</p>
+
+<p><img alt="" height="461" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6dc5fcb2563e4a43a3ced9e76460d9c8.png" srcset="/img/loading.gif" lazyload width="537" /></p>
+
+<h3>（六）发送和接收配置位</h3>
+
+<p>NART：置1，关闭自动重传，CAN报文只被发送1次，不管发送的结果如何（成功、出错或仲裁丢失）；置0，自动重传，CAN硬件在发送报文失败时会一直自动重传直到发送成功</p>
+
+<p>TXFP：置1，优先级由发送请求的顺序来决定，先请求的先发送；置0，优先级由报文标识符来决定，标识符值小的先发送（标识符值相等时，邮箱号小的报文先发送）</p>
+
+<p>RFLM：置1，接收FIFO锁定，FIFO溢出时，新收到的报文会被丢弃；置0，禁用FIFO锁定，FIFO溢出时，FIFO中最后收到的报文被新报文覆盖</p>
+
+<h3>（七）标识符过滤器</h3>
+
+<p>每个过滤器的核心由两个32位寄存器组成：R1[31:0]和R2[31:0]</p>
+
+<p>FSCx：位宽设置 &nbsp; &nbsp; 置0，16位；置1，32位</p>
+
+<p>FBMx：模式设置 &nbsp; &nbsp; 置0，屏蔽模式；置1，列表模式</p>
+
+<p>FFAx：关联设置 &nbsp; &nbsp; 置0，FIFO 0；置1，FIFO 1</p>
+
+<p>FACTx：激活设置 &nbsp; &nbsp; 置0，禁用；置1，启用</p>
+
+<p><img alt="" height="667" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de58223ec01244ff9485541c6569a2a5.png" srcset="/img/loading.gif" lazyload width="748" /></p>
+
+<ul>
+	<li><strong>屏蔽模式</strong>（Identifier Mask Mode）：用 &ldquo;ID + 屏蔽&rdquo; 组合，灵活筛选 ID（比如只想接收某一类 ID，或固定位段的 ID）。</li>
+	<li><strong>列表模式</strong>（Identifier List Mode）：此时 &ldquo;屏蔽&rdquo; 的逻辑会被 &ldquo;忽略&rdquo;（或强制设为全<code>1</code>），相当于要求 ID&nbsp;<strong>完全等于</strong>&nbsp;列表里的某个值（更严格的精确匹配）。</li>
+</ul>
+
+<h3>（八）测试模式</h3>
+
+<p>静默模式：用于分析CAN总线的活动，不会对总线造成影响</p>
+
+<p>环回模式：用于自测试，同时发送的报文可以在CAN_TX引脚上检测到</p>
+
+<p>环回静默模式：用于热自测试，自测的同时不会影响CAN总线</p>
+
+<p><img alt="" height="356" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a99d47e6bdb425fa55830ef1fbf4afb.png" srcset="/img/loading.gif" lazyload width="1170" /></p>
+
+<h3>（九）工作模式</h3>
+
+<p>初始化模式：用于配置CAN外设，禁止报文的接收和发送</p>
+
+<p>正常模式：配置CAN外设后进入正常模式，以便正常接收和发送报文</p>
+
+<p>睡眠模式：低功耗，CAN外设时钟停止，可使用软件唤醒或者硬件自动唤醒</p>
+
+<p>AWUM：置1，自动唤醒，一旦检测到CAN总线活动，硬件就自动清零SLEEP，唤醒CAN外设；置0，手动唤醒，软件清零SLEEP，唤醒CAN外设</p>
+
+<p><img alt="" height="294" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0323f172325b4353bb3c1b153b595e2d.png" srcset="/img/loading.gif" lazyload width="617" /></p>
+
+<h3>（十）位时间特性</h3>
+
+<p><img alt="" height="463" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3d6969b6820049899e81e5d95a28d570.png" srcset="/img/loading.gif" lazyload width="1024" /></p>
+
+<p>波特率 = APB1时钟频率 / 分频系数 / 一位的Tq数量 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = 36MHz / (BRP[9:0]+1) / (1 + (TS1[3:0]+1) + (TS2[2:0]+1))</p>
+
+<h3>（十一）中断</h3>
+
+<p>CAN外设占用4个专用的中断向量</p>
+
+<p>（1）发送中断：发送邮箱空时产生</p>
+
+<p>（2）FIFO 0中断：收到一个报文/FIFO 0满/FIFO 0溢出时产生</p>
+
+<p>（3）FIFO 1中断：收到一个报文/FIFO 1满/FIFO 1溢出时产生</p>
+
+<p>（4）状态改变错误中断：出错/唤醒/进入睡眠时产生</p>
+
+<p><img alt="" height="680" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/33326781fe6a4084b2bdc3ef7416d87e.png" srcset="/img/loading.gif" lazyload width="672" /></p>
+
+<h3>（十二）时间触发通信</h3>
+
+<p>（1）TTCM：置1，开启时间触发通信功能；置0，关闭时间触发通信功能</p>
+
+<p>（2）CAN外设内置一个16位的计数器，用于记录时间戳</p>
+
+<p>（3）TTCM置1后，该计数器在每个CAN位的时间自增一次，溢出后归零</p>
+
+<p>（4）每个发送邮箱和接收FIFO都有一个TIME[15:0]寄存器，发送帧SOF时，硬件捕获计数器值到发送邮箱的TIME寄存器，接收帧SOF时，硬件捕获计数器值到接收FIFO的TIME寄存器</p>
+
+<p>（5）发送邮箱可配置TGT位，捕获计数器值的同时，也把此值写入到数据帧数据段的最后两个字节，为了使用此功能，DLC必须设置为8</p>
+
+<p><img alt="" height="261" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3244434bac574d678d07050761554750.png" srcset="/img/loading.gif" lazyload width="1129" /></p>
+
+<h3>（十三）错误处理和离线恢复</h3>
+
+<p>（1）TEC和REC根据错误的情况增加或减少</p>
+
+<p>（2）ABOM：置1，开启离线自动恢复，进入离线状态后，就自动开启恢复过程；置0，关闭离线自动恢复，软件必须先请求进入然后再退出初始化模式，随后恢复过程才被开启<img alt="" height="460" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7f90973c189f43e5800f555be71704a4.png" srcset="/img/loading.gif" lazyload width="781" /></p>
+
+<h1 id="%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5" name="%E4%BA%8C%E3%80%81%E9%A1%B9%E7%9B%AE%E5%AE%9E%E8%B7%B5">二、项目实践</h1>
+
+<h2>（一）基于STM32F103C8T6 标准库的CAN设备一、二的程序编写</h2>
+
+<p id="articleContentId"><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）" target="_blank" rel="noopener" href="https://blog.csdn.net/qq_73648789/article/details/149104675?spm=1001.2014.3001.5502" title="【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）">【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）</a></p>
+
+<p>&nbsp;在基础模板上，移植OLED的驱动和编写按键和CAN驱动，参考江协。</p>
+
+<p>OLED_Font.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __OLED_FONT_H
+#define __OLED_FONT_H
+
+#include "stm32f10x.h"                 
+
+/*OLED字模库，宽8像素，高16像素*/
+const uint8_t OLED_F8x16[][16]=
+{
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//  0
+	
+	0x00,0x00,0x00,0xF8,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x33,0x30,0x00,0x00,0x00,//! 1
+	
+	0x00,0x10,0x0C,0x06,0x10,0x0C,0x06,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//" 2
+	
+	0x40,0xC0,0x78,0x40,0xC0,0x78,0x40,0x00,
+	0x04,0x3F,0x04,0x04,0x3F,0x04,0x04,0x00,//# 3
+	
+	0x00,0x70,0x88,0xFC,0x08,0x30,0x00,0x00,
+	0x00,0x18,0x20,0xFF,0x21,0x1E,0x00,0x00,//$ 4
+	
+	0xF0,0x08,0xF0,0x00,0xE0,0x18,0x00,0x00,
+	0x00,0x21,0x1C,0x03,0x1E,0x21,0x1E,0x00,//% 5
+	
+	0x00,0xF0,0x08,0x88,0x70,0x00,0x00,0x00,
+	0x1E,0x21,0x23,0x24,0x19,0x27,0x21,0x10,//&amp; 6
+	
+	0x10,0x16,0x0E,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//' 7
+	
+	0x00,0x00,0x00,0xE0,0x18,0x04,0x02,0x00,
+	0x00,0x00,0x00,0x07,0x18,0x20,0x40,0x00,//( 8
+	
+	0x00,0x02,0x04,0x18,0xE0,0x00,0x00,0x00,
+	0x00,0x40,0x20,0x18,0x07,0x00,0x00,0x00,//) 9
+	
+	0x40,0x40,0x80,0xF0,0x80,0x40,0x40,0x00,
+	0x02,0x02,0x01,0x0F,0x01,0x02,0x02,0x00,//* 10
+	
+	0x00,0x00,0x00,0xF0,0x00,0x00,0x00,0x00,
+	0x01,0x01,0x01,0x1F,0x01,0x01,0x01,0x00,//+ 11
+	
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x80,0xB0,0x70,0x00,0x00,0x00,0x00,0x00,//, 12
+	
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x01,0x01,0x01,0x01,0x01,0x01,0x01,//- 13
+	
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x00,0x30,0x30,0x00,0x00,0x00,0x00,0x00,//. 14
+	
+	0x00,0x00,0x00,0x00,0x80,0x60,0x18,0x04,
+	0x00,0x60,0x18,0x06,0x01,0x00,0x00,0x00,/// 15
+	
+	0x00,0xE0,0x10,0x08,0x08,0x10,0xE0,0x00,
+	0x00,0x0F,0x10,0x20,0x20,0x10,0x0F,0x00,//0 16
+	
+	0x00,0x10,0x10,0xF8,0x00,0x00,0x00,0x00,
+	0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,//1 17
+	
+	0x00,0x70,0x08,0x08,0x08,0x88,0x70,0x00,
+	0x00,0x30,0x28,0x24,0x22,0x21,0x30,0x00,//2 18
+	
+	0x00,0x30,0x08,0x88,0x88,0x48,0x30,0x00,
+	0x00,0x18,0x20,0x20,0x20,0x11,0x0E,0x00,//3 19
+	
+	0x00,0x00,0xC0,0x20,0x10,0xF8,0x00,0x00,
+	0x00,0x07,0x04,0x24,0x24,0x3F,0x24,0x00,//4 20
+	
+	0x00,0xF8,0x08,0x88,0x88,0x08,0x08,0x00,
+	0x00,0x19,0x21,0x20,0x20,0x11,0x0E,0x00,//5 21
+	
+	0x00,0xE0,0x10,0x88,0x88,0x18,0x00,0x00,
+	0x00,0x0F,0x11,0x20,0x20,0x11,0x0E,0x00,//6 22
+	
+	0x00,0x38,0x08,0x08,0xC8,0x38,0x08,0x00,
+	0x00,0x00,0x00,0x3F,0x00,0x00,0x00,0x00,//7 23
+	
+	0x00,0x70,0x88,0x08,0x08,0x88,0x70,0x00,
+	0x00,0x1C,0x22,0x21,0x21,0x22,0x1C,0x00,//8 24
+	
+	0x00,0xE0,0x10,0x08,0x08,0x10,0xE0,0x00,
+	0x00,0x00,0x31,0x22,0x22,0x11,0x0F,0x00,//9 25
+	
+	0x00,0x00,0x00,0xC0,0xC0,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x30,0x30,0x00,0x00,0x00,//: 26
+	
+	0x00,0x00,0x00,0x80,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x80,0x60,0x00,0x00,0x00,0x00,//; 27
+	
+	0x00,0x00,0x80,0x40,0x20,0x10,0x08,0x00,
+	0x00,0x01,0x02,0x04,0x08,0x10,0x20,0x00,//&lt; 28
+	
+	0x40,0x40,0x40,0x40,0x40,0x40,0x40,0x00,
+	0x04,0x04,0x04,0x04,0x04,0x04,0x04,0x00,//= 29
+	
+	0x00,0x08,0x10,0x20,0x40,0x80,0x00,0x00,
+	0x00,0x20,0x10,0x08,0x04,0x02,0x01,0x00,//&gt; 30
+	
+	0x00,0x70,0x48,0x08,0x08,0x08,0xF0,0x00,
+	0x00,0x00,0x00,0x30,0x36,0x01,0x00,0x00,//? 31
+	
+	0xC0,0x30,0xC8,0x28,0xE8,0x10,0xE0,0x00,
+	0x07,0x18,0x27,0x24,0x23,0x14,0x0B,0x00,//@ 32
+	
+	0x00,0x00,0xC0,0x38,0xE0,0x00,0x00,0x00,
+	0x20,0x3C,0x23,0x02,0x02,0x27,0x38,0x20,//A 33
+	
+	0x08,0xF8,0x88,0x88,0x88,0x70,0x00,0x00,
+	0x20,0x3F,0x20,0x20,0x20,0x11,0x0E,0x00,//B 34
+	
+	0xC0,0x30,0x08,0x08,0x08,0x08,0x38,0x00,
+	0x07,0x18,0x20,0x20,0x20,0x10,0x08,0x00,//C 35
+	
+	0x08,0xF8,0x08,0x08,0x08,0x10,0xE0,0x00,
+	0x20,0x3F,0x20,0x20,0x20,0x10,0x0F,0x00,//D 36
+	
+	0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,
+	0x20,0x3F,0x20,0x20,0x23,0x20,0x18,0x00,//E 37
+	
+	0x08,0xF8,0x88,0x88,0xE8,0x08,0x10,0x00,
+	0x20,0x3F,0x20,0x00,0x03,0x00,0x00,0x00,//F 38
+	
+	0xC0,0x30,0x08,0x08,0x08,0x38,0x00,0x00,
+	0x07,0x18,0x20,0x20,0x22,0x1E,0x02,0x00,//G 39
+	
+	0x08,0xF8,0x08,0x00,0x00,0x08,0xF8,0x08,
+	0x20,0x3F,0x21,0x01,0x01,0x21,0x3F,0x20,//H 40
+	
+	0x00,0x08,0x08,0xF8,0x08,0x08,0x00,0x00,
+	0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,//I 41
+	
+	0x00,0x00,0x08,0x08,0xF8,0x08,0x08,0x00,
+	0xC0,0x80,0x80,0x80,0x7F,0x00,0x00,0x00,//J 42
+	
+	0x08,0xF8,0x88,0xC0,0x28,0x18,0x08,0x00,
+	0x20,0x3F,0x20,0x01,0x26,0x38,0x20,0x00,//K 43
+	
+	0x08,0xF8,0x08,0x00,0x00,0x00,0x00,0x00,
+	0x20,0x3F,0x20,0x20,0x20,0x20,0x30,0x00,//L 44
+	
+	0x08,0xF8,0xF8,0x00,0xF8,0xF8,0x08,0x00,
+	0x20,0x3F,0x00,0x3F,0x00,0x3F,0x20,0x00,//M 45
+	
+	0x08,0xF8,0x30,0xC0,0x00,0x08,0xF8,0x08,
+	0x20,0x3F,0x20,0x00,0x07,0x18,0x3F,0x00,//N 46
+	
+	0xE0,0x10,0x08,0x08,0x08,0x10,0xE0,0x00,
+	0x0F,0x10,0x20,0x20,0x20,0x10,0x0F,0x00,//O 47
+	
+	0x08,0xF8,0x08,0x08,0x08,0x08,0xF0,0x00,
+	0x20,0x3F,0x21,0x01,0x01,0x01,0x00,0x00,//P 48
+	
+	0xE0,0x10,0x08,0x08,0x08,0x10,0xE0,0x00,
+	0x0F,0x18,0x24,0x24,0x38,0x50,0x4F,0x00,//Q 49
+	
+	0x08,0xF8,0x88,0x88,0x88,0x88,0x70,0x00,
+	0x20,0x3F,0x20,0x00,0x03,0x0C,0x30,0x20,//R 50
+	
+	0x00,0x70,0x88,0x08,0x08,0x08,0x38,0x00,
+	0x00,0x38,0x20,0x21,0x21,0x22,0x1C,0x00,//S 51
+	
+	0x18,0x08,0x08,0xF8,0x08,0x08,0x18,0x00,
+	0x00,0x00,0x20,0x3F,0x20,0x00,0x00,0x00,//T 52
+	
+	0x08,0xF8,0x08,0x00,0x00,0x08,0xF8,0x08,
+	0x00,0x1F,0x20,0x20,0x20,0x20,0x1F,0x00,//U 53
+	
+	0x08,0x78,0x88,0x00,0x00,0xC8,0x38,0x08,
+	0x00,0x00,0x07,0x38,0x0E,0x01,0x00,0x00,//V 54
+	
+	0xF8,0x08,0x00,0xF8,0x00,0x08,0xF8,0x00,
+	0x03,0x3C,0x07,0x00,0x07,0x3C,0x03,0x00,//W 55
+	
+	0x08,0x18,0x68,0x80,0x80,0x68,0x18,0x08,
+	0x20,0x30,0x2C,0x03,0x03,0x2C,0x30,0x20,//X 56
+	
+	0x08,0x38,0xC8,0x00,0xC8,0x38,0x08,0x00,
+	0x00,0x00,0x20,0x3F,0x20,0x00,0x00,0x00,//Y 57
+	
+	0x10,0x08,0x08,0x08,0xC8,0x38,0x08,0x00,
+	0x20,0x38,0x26,0x21,0x20,0x20,0x18,0x00,//Z 58
+	
+	0x00,0x00,0x00,0xFE,0x02,0x02,0x02,0x00,
+	0x00,0x00,0x00,0x7F,0x40,0x40,0x40,0x00,//[ 59
+	
+	0x00,0x0C,0x30,0xC0,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x01,0x06,0x38,0xC0,0x00,//\ 60
+	
+	0x00,0x02,0x02,0x02,0xFE,0x00,0x00,0x00,
+	0x00,0x40,0x40,0x40,0x7F,0x00,0x00,0x00,//] 61
+	
+	0x00,0x00,0x04,0x02,0x02,0x02,0x04,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//^ 62
+	
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,
+	0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x80,//_ 63
+	
+	0x00,0x02,0x02,0x04,0x00,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//` 64
+	
+	0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,
+	0x00,0x19,0x24,0x22,0x22,0x22,0x3F,0x20,//a 65
+	
+	0x08,0xF8,0x00,0x80,0x80,0x00,0x00,0x00,
+	0x00,0x3F,0x11,0x20,0x20,0x11,0x0E,0x00,//b 66
+	
+	0x00,0x00,0x00,0x80,0x80,0x80,0x00,0x00,
+	0x00,0x0E,0x11,0x20,0x20,0x20,0x11,0x00,//c 67
+	
+	0x00,0x00,0x00,0x80,0x80,0x88,0xF8,0x00,
+	0x00,0x0E,0x11,0x20,0x20,0x10,0x3F,0x20,//d 68
+	
+	0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,
+	0x00,0x1F,0x22,0x22,0x22,0x22,0x13,0x00,//e 69
+	
+	0x00,0x80,0x80,0xF0,0x88,0x88,0x88,0x18,
+	0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,//f 70
+	
+	0x00,0x00,0x80,0x80,0x80,0x80,0x80,0x00,
+	0x00,0x6B,0x94,0x94,0x94,0x93,0x60,0x00,//g 71
+	
+	0x08,0xF8,0x00,0x80,0x80,0x80,0x00,0x00,
+	0x20,0x3F,0x21,0x00,0x00,0x20,0x3F,0x20,//h 72
+	
+	0x00,0x80,0x98,0x98,0x00,0x00,0x00,0x00,
+	0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,//i 73
+	
+	0x00,0x00,0x00,0x80,0x98,0x98,0x00,0x00,
+	0x00,0xC0,0x80,0x80,0x80,0x7F,0x00,0x00,//j 74
+	
+	0x08,0xF8,0x00,0x00,0x80,0x80,0x80,0x00,
+	0x20,0x3F,0x24,0x02,0x2D,0x30,0x20,0x00,//k 75
+	
+	0x00,0x08,0x08,0xF8,0x00,0x00,0x00,0x00,
+	0x00,0x20,0x20,0x3F,0x20,0x20,0x00,0x00,//l 76
+	
+	0x80,0x80,0x80,0x80,0x80,0x80,0x80,0x00,
+	0x20,0x3F,0x20,0x00,0x3F,0x20,0x00,0x3F,//m 77
+	
+	0x80,0x80,0x00,0x80,0x80,0x80,0x00,0x00,
+	0x20,0x3F,0x21,0x00,0x00,0x20,0x3F,0x20,//n 78
+	
+	0x00,0x00,0x80,0x80,0x80,0x80,0x00,0x00,
+	0x00,0x1F,0x20,0x20,0x20,0x20,0x1F,0x00,//o 79
+	
+	0x80,0x80,0x00,0x80,0x80,0x00,0x00,0x00,
+	0x80,0xFF,0xA1,0x20,0x20,0x11,0x0E,0x00,//p 80
+	
+	0x00,0x00,0x00,0x80,0x80,0x80,0x80,0x00,
+	0x00,0x0E,0x11,0x20,0x20,0xA0,0xFF,0x80,//q 81
+	
+	0x80,0x80,0x80,0x00,0x80,0x80,0x80,0x00,
+	0x20,0x20,0x3F,0x21,0x20,0x00,0x01,0x00,//r 82
+	
+	0x00,0x00,0x80,0x80,0x80,0x80,0x80,0x00,
+	0x00,0x33,0x24,0x24,0x24,0x24,0x19,0x00,//s 83
+	
+	0x00,0x80,0x80,0xE0,0x80,0x80,0x00,0x00,
+	0x00,0x00,0x00,0x1F,0x20,0x20,0x00,0x00,//t 84
+	
+	0x80,0x80,0x00,0x00,0x00,0x80,0x80,0x00,
+	0x00,0x1F,0x20,0x20,0x20,0x10,0x3F,0x20,//u 85
+	
+	0x80,0x80,0x80,0x00,0x00,0x80,0x80,0x80,
+	0x00,0x01,0x0E,0x30,0x08,0x06,0x01,0x00,//v 86
+	
+	0x80,0x80,0x00,0x80,0x00,0x80,0x80,0x80,
+	0x0F,0x30,0x0C,0x03,0x0C,0x30,0x0F,0x00,//w 87
+	
+	0x00,0x80,0x80,0x00,0x80,0x80,0x80,0x00,
+	0x00,0x20,0x31,0x2E,0x0E,0x31,0x20,0x00,//x 88
+	
+	0x80,0x80,0x80,0x00,0x00,0x80,0x80,0x80,
+	0x80,0x81,0x8E,0x70,0x18,0x06,0x01,0x00,//y 89
+	
+	0x00,0x80,0x80,0x80,0x80,0x80,0x80,0x00,
+	0x00,0x21,0x30,0x2C,0x22,0x21,0x30,0x00,//z 90
+	
+	0x00,0x00,0x00,0x00,0x80,0x7C,0x02,0x02,
+	0x00,0x00,0x00,0x00,0x00,0x3F,0x40,0x40,//{ 91
+	
+	0x00,0x00,0x00,0x00,0xFF,0x00,0x00,0x00,
+	0x00,0x00,0x00,0x00,0xFF,0x00,0x00,0x00,//| 92
+	
+	0x00,0x02,0x02,0x7C,0x80,0x00,0x00,0x00,
+	0x00,0x40,0x40,0x3F,0x00,0x00,0x00,0x00,//} 93
+	
+	0x00,0x06,0x01,0x01,0x02,0x02,0x04,0x04,
+	0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00,//~ 94
+};
+
+#endif
+</code></pre>
+
+<p>bsp_oled.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_OLED_H
+#define __BSP_OLED_H
+
+#include "stm32f10x.h"                 
+
+void OLED_Init(void);
+void OLED_Clear(void);
+void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char);
+void OLED_ShowString(uint8_t Line, uint8_t Column, char *String);
+void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+void OLED_ShowSignedNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length);
+void OLED_ShowHexNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+
+#endif
+</code></pre>
+
+<p>bsp_oled.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_oled.h"
+#include "stm32f10x.h"
+#include "OLED_Font.h"
+
+/*引脚配置*/
+#define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
+#define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+
+/*引脚初始化*/
+void OLED_I2C_Init(void)
+{
+    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+	
+	GPIO_InitTypeDef GPIO_InitStructure;
+ 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+ 	GPIO_Init(GPIOB, &amp;GPIO_InitStructure);
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+ 	GPIO_Init(GPIOB, &amp;GPIO_InitStructure);
+	
+	OLED_W_SCL(1);
+	OLED_W_SDA(1);
+}
+
+/**
+  * @brief  I2C开始
+  * @param  无
+  * @retval 无
+  */
+void OLED_I2C_Start(void)
+{
+	OLED_W_SDA(1);
+	OLED_W_SCL(1);
+	OLED_W_SDA(0);
+	OLED_W_SCL(0);
+}
+
+/**
+  * @brief  I2C停止
+  * @param  无
+  * @retval 无
+  */
+void OLED_I2C_Stop(void)
+{
+	OLED_W_SDA(0);
+	OLED_W_SCL(1);
+	OLED_W_SDA(1);
+}
+
+/**
+  * @brief  I2C发送一个字节
+  * @param  Byte 要发送的一个字节
+  * @retval 无
+  */
+void OLED_I2C_SendByte(uint8_t Byte)
+{
+	uint8_t i;
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_W_SDA(!!(Byte &amp; (0x80 &gt;&gt; i)));
+		OLED_W_SCL(1);
+		OLED_W_SCL(0);
+	}
+	OLED_W_SCL(1);	//额外的一个时钟，不处理应答信号
+	OLED_W_SCL(0);
+}
+
+/**
+  * @brief  OLED写命令
+  * @param  Command 要写入的命令
+  * @retval 无
+  */
+void OLED_WriteCommand(uint8_t Command)
+{
+	OLED_I2C_Start();
+	OLED_I2C_SendByte(0x78);		//从机地址
+	OLED_I2C_SendByte(0x00);		//写命令
+	OLED_I2C_SendByte(Command); 
+	OLED_I2C_Stop();
+}
+
+/**
+  * @brief  OLED写数据
+  * @param  Data 要写入的数据
+  * @retval 无
+  */
+void OLED_WriteData(uint8_t Data)
+{
+	OLED_I2C_Start();
+	OLED_I2C_SendByte(0x78);		//从机地址
+	OLED_I2C_SendByte(0x40);		//写数据
+	OLED_I2C_SendByte(Data);
+	OLED_I2C_Stop();
+}
+
+/**
+  * @brief  OLED设置光标位置
+  * @param  Y 以左上角为原点，向下方向的坐标，范围：0~7
+  * @param  X 以左上角为原点，向右方向的坐标，范围：0~127
+  * @retval 无
+  */
+void OLED_SetCursor(uint8_t Y, uint8_t X)
+{
+	OLED_WriteCommand(0xB0 | Y);					//设置Y位置
+	OLED_WriteCommand(0x10 | ((X &amp; 0xF0) &gt;&gt; 4));	//设置X位置高4位
+	OLED_WriteCommand(0x00 | (X &amp; 0x0F));			//设置X位置低4位
+}
+
+/**
+  * @brief  OLED清屏
+  * @param  无
+  * @retval 无
+  */
+void OLED_Clear(void)
+{  
+	uint8_t i, j;
+	for (j = 0; j &lt; 8; j++)
+	{
+		OLED_SetCursor(j, 0);
+		for(i = 0; i &lt; 128; i++)
+		{
+			OLED_WriteData(0x00);
+		}
+	}
+}
+
+/**
+  * @brief  OLED显示一个字符
+  * @param  Line 行位置，范围：1~4
+  * @param  Column 列位置，范围：1~16
+  * @param  Char 要显示的一个字符，范围：ASCII可见字符
+  * @retval 无
+  */
+void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char)
+{      	
+	uint8_t i;
+	OLED_SetCursor((Line - 1) * 2, (Column - 1) * 8);		//设置光标位置在上半部分
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i]);			//显示上半部分内容
+	}
+	OLED_SetCursor((Line - 1) * 2 + 1, (Column - 1) * 8);	//设置光标位置在下半部分
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i + 8]);		//显示下半部分内容
+	}
+}
+
+/**
+  * @brief  OLED显示字符串
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  String 要显示的字符串，范围：ASCII可见字符
+  * @retval 无
+  */
+void OLED_ShowString(uint8_t Line, uint8_t Column, char *String)
+{
+	uint8_t i;
+	for (i = 0; String[i] != '\0'; i++)
+	{
+		OLED_ShowChar(Line, Column + i, String[i]);
+	}
+}
+
+/**
+  * @brief  OLED次方函数
+  * @retval 返回值等于X的Y次方
+  */
+uint32_t OLED_Pow(uint32_t X, uint32_t Y)
+{
+	uint32_t Result = 1;
+	while (Y--)
+	{
+		Result *= X;
+	}
+	return Result;
+}
+
+/**
+  * @brief  OLED显示数字（十进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~4294967295
+  * @param  Length 要显示数字的长度，范围：1~10
+  * @retval 无
+  */
+void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+}
+
+/**
+  * @brief  OLED显示数字（十进制，带符号数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：-2147483648~2147483647
+  * @param  Length 要显示数字的长度，范围：1~10
+  * @retval 无
+  */
+void OLED_ShowSignedNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	uint32_t Number1;
+	if (Number &gt;= 0)
+	{
+		OLED_ShowChar(Line, Column, '+');
+		Number1 = Number;
+	}
+	else
+	{
+		OLED_ShowChar(Line, Column, '-');
+		Number1 = -Number;
+	}
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i + 1, Number1 / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+}
+
+/**
+  * @brief  OLED显示数字（十六进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~0xFFFFFFFF
+  * @param  Length 要显示数字的长度，范围：1~8
+  * @retval 无
+  */
+void OLED_ShowHexNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i, SingleNumber;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		SingleNumber = Number / OLED_Pow(16, Length - i - 1) % 16;
+		if (SingleNumber &lt; 10)
+		{
+			OLED_ShowChar(Line, Column + i, SingleNumber + '0');
+		}
+		else
+		{
+			OLED_ShowChar(Line, Column + i, SingleNumber - 10 + 'A');
+		}
+	}
+}
+
+/**
+  * @brief  OLED显示数字（二进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~1111 1111 1111 1111
+  * @param  Length 要显示数字的长度，范围：1~16
+  * @retval 无
+  */
+void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(2, Length - i - 1) % 2 + '0');
+	}
+}
+
+/**
+  * @brief  OLED初始化
+  * @param  无
+  * @retval 无
+  */
+void OLED_Init(void)
+{
+	uint32_t i, j;
+	
+	for (i = 0; i &lt; 1000; i++)			//上电延时
+	{
+		for (j = 0; j &lt; 1000; j++);
+	}
+	
+	OLED_I2C_Init();			//端口初始化
+	
+	OLED_WriteCommand(0xAE);	//关闭显示
+	
+	OLED_WriteCommand(0xD5);	//设置显示时钟分频比/振荡器频率
+	OLED_WriteCommand(0x80);
+	
+	OLED_WriteCommand(0xA8);	//设置多路复用率
+	OLED_WriteCommand(0x3F);
+	
+	OLED_WriteCommand(0xD3);	//设置显示偏移
+	OLED_WriteCommand(0x00);
+	
+	OLED_WriteCommand(0x40);	//设置显示开始行
+	
+	OLED_WriteCommand(0xA1);	//设置左右方向，0xA1正常 0xA0左右反置
+	
+	OLED_WriteCommand(0xC8);	//设置上下方向，0xC8正常 0xC0上下反置
+
+	OLED_WriteCommand(0xDA);	//设置COM引脚硬件配置
+	OLED_WriteCommand(0x12);
+	
+	OLED_WriteCommand(0x81);	//设置对比度控制
+	OLED_WriteCommand(0xCF);
+
+	OLED_WriteCommand(0xD9);	//设置预充电周期
+	OLED_WriteCommand(0xF1);
+
+	OLED_WriteCommand(0xDB);	//设置VCOMH取消选择级别
+	OLED_WriteCommand(0x30);
+
+	OLED_WriteCommand(0xA4);	//设置整个显示打开/关闭
+
+	OLED_WriteCommand(0xA6);	//设置正常/倒转显示
+
+	OLED_WriteCommand(0x8D);	//设置充电泵
+	OLED_WriteCommand(0x14);
+
+	OLED_WriteCommand(0xAF);	//开启显示
+		
+	OLED_Clear();				//OLED清屏
+}
+</code></pre>
+
+<p>bsp_key.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_KEY_H
+#define __BSP_KEY_H
+
+#include "stm32f10x.h"
+
+#define KEY_GPIO_CLK RCC_APB2Periph_GPIOB
+#define KEY_GPIO_PORT GPIOB
+#define KEY1_GPIO_PIN GPIO_Pin_1
+#define KEY2_GPIO_PIN GPIO_Pin_11
+
+void Key_Init(void);
+uint8_t Key_GetNum(void);
+
+#endif
+</code></pre>
+
+<p>bsp_key.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_key.h"
+#include "stm32f10x.h"                  
+#include "Delay.h"
+
+/**
+  * 函    数：按键初始化
+  * 参    数：无
+  * 返 回 值：无
+  */
+void Key_Init(void)
+{
+	/*开启时钟*/
+	RCC_APB2PeriphClockCmd(KEY_GPIO_CLK, ENABLE);		//开启GPIOB的时钟
+	
+	/*GPIO初始化*/
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+	GPIO_InitStructure.GPIO_Pin = KEY1_GPIO_PIN | KEY2_GPIO_PIN;
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(KEY_GPIO_PORT, &amp;GPIO_InitStructure);				
+}
+
+/**
+  * 函    数：按键获取键码
+  * 参    数：无
+  * 返 回 值：按下按键的键码值，范围：0~2，返回0代表没有按键按下
+  * 注意事项：此函数是阻塞式操作，当按键按住不放时，函数会卡住，直到按键松手
+  */
+uint8_t Key_GetNum(void)
+{
+	uint8_t KeyNum = 0;		//定义变量，默认键码值为0
+	
+	if (GPIO_ReadInputDataBit(KEY_GPIO_PORT, KEY1_GPIO_PIN) == 0)			//读PB1输入寄存器的状态，如果为0，则代表按键1按下
+	{
+		Delay_ms(20);											//延时消抖
+		while (GPIO_ReadInputDataBit(KEY_GPIO_PORT, KEY1_GPIO_PIN) == 0);	//等待按键松手
+		Delay_ms(20);											//延时消抖
+		KeyNum = 1;												//置键码为1
+	}
+	
+	if (GPIO_ReadInputDataBit(KEY_GPIO_PORT, KEY2_GPIO_PIN) == 0)			//读PB11输入寄存器的状态，如果为0，则代表按键2按下
+	{
+		Delay_ms(20);											//延时消抖
+		while (GPIO_ReadInputDataBit(KEY_GPIO_PORT, KEY2_GPIO_PIN) == 0);	//等待按键松手
+		Delay_ms(20);											//延时消抖
+		KeyNum = 2;												//置键码为2
+	}
+	
+	return KeyNum;			//返回键码值，如果没有按键按下，所有if都不成立，则键码为默认值0
+}
+</code></pre>
+
+<p>bsp_can.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_CAN_H
+#define __BSP_CAN_H
+
+#include "stm32f10x.h"
+
+void BSP_CAN_Init(void);
+void BSP_CAN_Transmit(uint32_t Device_ID, uint8_t Length, uint8_t *Data);
+uint8_t BSP_CAN_ReceiveFlag(void);
+void BSP_CAN_Receive(uint32_t *Device_ID, uint8_t *Length, uint8_t *Data);
+#endif //__BSP_CAN_H
+</code></pre>
+
+<p>bsp_can.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_can.h"
+
+void BSP_CAN_Init(void)
+{
+	RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOA, ENABLE);
+	RCC_APB1PeriphClockCmd(RCC_APB1Periph_CAN1, ENABLE);
+	
+	GPIO_InitTypeDef GPIO_InitStructure;
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_AF_PP;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_12; //PA12 CAN_TX
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);
+	
+	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_IPU;
+	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_11; //PA11 CAN_RX
+	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+	GPIO_Init(GPIOA, &amp;GPIO_InitStructure);
+	
+	//CAN 基本配置
+	CAN_InitTypeDef CAN_InitStructure;
+	CAN_InitStructure.CAN_ABOM = DISABLE;// 配置CAN自动离线管理，使能后当错误计数器恢复正常时会自动退出离线状态
+	CAN_InitStructure.CAN_AWUM = DISABLE;// 配置CAN自动唤醒模式，使能后接收到有效帧时自动从睡眠模式唤醒
+	CAN_InitStructure.CAN_BS1 = CAN_BS1_2tq;// 配置位时序段1，取值范围CAN_BS1_1tq~CAN_BS1_16tq，影响采样点位置
+	CAN_InitStructure.CAN_BS2 = CAN_BS2_3tq;// 配置位时序段2，取值范围CAN_BS2_1tq~CAN_BS2_8tq，影响位时间长度
+	CAN_InitStructure.CAN_Mode = CAN_Mode_Normal;// 配置CAN工作模式，可选正常模式、静默模式、回环模式、静默回环模式
+	CAN_InitStructure.CAN_NART = DISABLE;// 配置非自动重传模式，使能后发送失败不会自动重传
+	CAN_InitStructure.CAN_Prescaler = 48;// 配置位时序分频器，用于设置CAN时钟周期，实际波特率=APB1时钟/(CAN_Prescaler*(1+CAN_BS1+CAN_BS2))
+	CAN_InitStructure.CAN_RFLM = DISABLE;// 配置接收FIFO锁定模式，使能后FIFO溢出时不会覆盖旧消息
+	CAN_InitStructure.CAN_SJW = CAN_SJW_2tq;// 配置同步跳转宽度，取值范围CAN_SJW_1tq~CAN_SJW_4tq，决定重新同步时允许的最大跳变宽度
+	CAN_InitStructure.CAN_TTCM = DISABLE;// 配置时间触发通信模式，使能后支持按时间间隔发送消息
+	CAN_InitStructure.CAN_TXFP = DISABLE;// 配置发送FIFO优先级，使能后按ID优先级而非请求顺序发送
+	CAN_Init(CAN1, &amp;CAN_InitStructure);
+	
+	//CAN 过滤器配置
+	CAN_FilterInitTypeDef CAN_FilterInitStructure;
+	CAN_FilterInitStructure.CAN_FilterNumber = 0;// 配置过滤器编号，范围0~13（STM32F1系列）或0~27（STM32F4系列）
+	CAN_FilterInitStructure.CAN_FilterIdHigh = 0x0000;// 配置过滤器ID的高16位（对于标准帧ID，使用高11位；扩展帧使用高16位）
+	CAN_FilterInitStructure.CAN_FilterIdLow = 0x0000;// 配置过滤器ID的低16位（仅用于扩展帧ID的剩余18位）
+	CAN_FilterInitStructure.CAN_FilterMaskIdHigh = 0x0000;// 配置过滤器掩码的高16位（对应ID高16位的屏蔽位，1表示必须匹配，0表示忽略）
+	CAN_FilterInitStructure.CAN_FilterMaskIdLow = 0x0000;// 配置过滤器掩码的低16位（对应ID低16位的屏蔽位）
+	CAN_FilterInitStructure.CAN_FilterScale = CAN_FilterScale_32bit;// 配置过滤器位宽，可选32位（可过滤1个扩展帧或2个标准帧）或16位（仅用于标准帧且过滤两个不同的标准帧 ID）
+	CAN_FilterInitStructure.CAN_FilterMode = CAN_FilterMode_IdMask;// 配置过滤器工作模式，可选屏蔽/掩码模式（ID+Mask组合过滤）或列表模式（精确匹配列表中的ID）
+	CAN_FilterInitStructure.CAN_FilterFIFOAssignment = CAN_Filter_FIFO0;// 配置匹配的报文存入的FIFO，可选FIFO0或FIFO1
+	CAN_FilterInitStructure.CAN_FilterActivation = ENABLE;// 使能当前过滤器
+	CAN_FilterInit(&amp;CAN_FilterInitStructure);
+}
+
+void BSP_CAN_Transmit(uint32_t Device_ID, uint8_t Length, uint8_t *Data)
+{
+	CanTxMsg CAN_TX_Message;
+	
+	// 配置数据长度码(DLC)，取值0~8，表示数据段的字节数
+	CAN_TX_Message.DLC = Length;
+
+	// 配置扩展帧ID(29位)，但由于下面设置了标准帧模式，此值无效
+	CAN_TX_Message.ExtId = Device_ID;
+
+	// 配置标识符类型为标准帧(11位ID)，忽略ExtId字段
+	CAN_TX_Message.IDE = CAN_Id_Standard;
+
+	// 配置帧类型为数据帧，而非远程/遥控帧(远程/遥控帧用于请求数据)
+	CAN_TX_Message.RTR = CAN_RTR_Data;
+
+	// 配置标准帧ID(11位有效)，实际使用时会被自动扩展到16位
+	CAN_TX_Message.StdId = Device_ID;
+
+	// 将用户数据复制到CAN消息的数据段(最多8字节)
+	for (uint8_t i = 0; i &lt; Length; i ++)
+	{
+		CAN_TX_Message.Data[i] = Data[i];
+	}
+	
+	uint8_t TransmitMailbox_Status = CAN_Transmit(CAN1, &amp;CAN_TX_Message);
+	
+	uint32_t Timeout = 0;
+	while (CAN_TransmitStatus(CAN1, TransmitMailbox_Status) != CAN_TxStatus_Ok)
+	{
+		Timeout ++;
+		if (Timeout &gt; 100000)
+		{
+			break;
+		}
+	}
+}
+
+uint8_t BSP_CAN_ReceiveFlag(void)
+{
+	//CAN_FIFO0 中有长度非0的数据就返回1
+	if (CAN_MessagePending(CAN1, CAN_FIFO0) &gt; 0)
+	{
+		return 1;
+	}
+	return 0;
+}
+
+void BSP_CAN_Receive(uint32_t *Device_ID, uint8_t *Length, uint8_t *Data)
+{
+	CanRxMsg CAN_RX_Message;
+	CAN_Receive(CAN1, CAN_FIFO0, &amp;CAN_RX_Message);
+	
+	if (CAN_RX_Message.IDE == CAN_Id_Standard)
+	{
+		*Device_ID = CAN_RX_Message.StdId;//向外部存储ID变量传接收到的标准帧ID值
+	}
+	else
+	{
+		*Device_ID = CAN_RX_Message.ExtId;//向外部存储ID变量传接收到的扩展帧ID值
+	}
+	
+	if (CAN_RX_Message.RTR == CAN_RTR_Data)
+	{
+		*Length = CAN_RX_Message.DLC;
+		for (uint8_t i = 0; i &lt; *Length; i ++)
+		{
+			Data[i] = CAN_RX_Message.Data[i];//将接收的数据段数据依次拷贝到数据存储区
+		}
+	}
+	
+}
+
+</code></pre>
+
+<p>&nbsp;main.c</p>
+
+<pre>
+<code class="language-cpp">#include "stm32f10x.h"                  
+#include "Delay.h"
+#include "bsp_oled.h"
+#include "bsp_key.h"
+#include "bsp_can.h"
+
+uint32_t CAN_Device_ID = 0x222;//ID:0x000 ~ 0x7FF
+
+uint32_t Rx_ID;
+uint8_t RX_Length;
+uint8_t RX_Data[8];
+
+int main(void)
+{
+	uint32_t TX_ID = CAN_Device_ID;
+	uint8_t TX_Length = 4;
+	uint8_t TX_Data[8] = {0x00, 0x11, 0x22, 0x33};
+	
+	OLED_Init();		
+	Key_Init();
+	BSP_CAN_Init();
+	
+	OLED_Clear();
+	OLED_ShowString(1, 1, "TxID:");
+	OLED_ShowHexNum(1, 6, TX_ID, 4);
+	OLED_ShowString(2, 1, "RxID:");
+	OLED_ShowString(3, 1, "Leng:");
+	OLED_ShowString(4, 1, "Data:");
+	
+	while (1)
+	{
+		uint8_t KeyNum = Key_GetNum();
+		if(1 == KeyNum)
+		{
+			TX_Data[0] ++;
+			TX_Data[1] ++;
+			TX_Data[2] ++;
+			TX_Data[3] ++;
+			BSP_CAN_Transmit(TX_ID, TX_Length, TX_Data);
+		}
+		
+		if (BSP_CAN_ReceiveFlag())
+		{
+			BSP_CAN_Receive(&amp;Rx_ID, &amp;RX_Length, RX_Data);//读取已有数据的队列
+			
+			OLED_ShowHexNum(2, 6, Rx_ID, 4);
+			OLED_ShowHexNum(3, 6, RX_Length, 1);
+			OLED_ShowHexNum(4, 6, RX_Data[0], 2);
+			OLED_ShowHexNum(4, 9, RX_Data[1], 2);
+			OLED_ShowHexNum(4, 12, RX_Data[2], 2);
+			OLED_ShowHexNum(4, 15, RX_Data[3], 2);
+		}
+	}
+}
+</code></pre>
+
+<h2>（二）基于STM32F103VET6+CubeMX HAL库的CAN设备三的程序编写</h2>
+
+<h3>1.配置RCC</h3>
+
+<p><img alt="" height="337" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/563cf1609b6c41169455bbf35719d0d7.png" srcset="/img/loading.gif" lazyload width="823" /></p>
+
+<h3>2.开启SWD</h3>
+
+<p><img alt="" height="389" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/15a503bef8e2430a955107c9f1fc47e1.png" srcset="/img/loading.gif" lazyload width="818" /></p>
+
+<h3>3.配置CAN</h3>
+
+<p><img alt="" height="363" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/685e37bdc0f64af6b1d062900199762b.png" srcset="/img/loading.gif" lazyload width="1293" /></p>
+
+<p><img alt="" height="47" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/33de648e7fc441a2840f2a4d382a3a14.png" srcset="/img/loading.gif" lazyload width="690" /></p>
+
+<p><img alt="" height="564" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/461a9f98d9714d25ae22fe06725bd97e.png" srcset="/img/loading.gif" lazyload width="1363" /></p>
+
+<h3>4.配置PA0 GPIO下拉输入作为按键1，PB8/9配置为GPIO推挽输出使用模拟IIC</h3>
+
+<p><img alt="" height="749" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e48a21ef4f04d959b617c28c7c2320a.png" srcset="/img/loading.gif" lazyload width="1369" /></p>
+
+<p><img alt="" height="522" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0ec9705365ec4803ae2f2d188da4393b.png" srcset="/img/loading.gif" lazyload width="925" /></p>
+
+<p><img alt="" height="568" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f993a41ce5564c8db3df11038a40e2a7.png" srcset="/img/loading.gif" lazyload width="906" /></p>
+
+<h3>5.配置时钟树</h3>
+
+<p><img alt="" height="784" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5ad1a95e266e4b76bd47264680a3d49b.png" srcset="/img/loading.gif" lazyload width="1617" /></p>
+
+<h3>6.工程配置</h3>
+
+<p><img alt="" height="812" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/45470c8a1d094218893081cdf712e54d.png" srcset="/img/loading.gif" lazyload width="1216" /></p>
+
+<p><img alt="" height="417" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6a155a720df04dbd880c64e4925a600a.png" srcset="/img/loading.gif" lazyload width="851" /></p>
+
+<h3>7.代码编写</h3>
+
+<pre>
+<code class="language-cpp">//部分API
+HAL_CAN_Start    //开启CAN通讯
+HAL_CAN_Stop    //关闭CAN通讯
+HAL_CAN_RequestSleep    //尝试进入休眠模式
+HAL_CAN_WakeUp    //从休眠模式中唤醒
+HAL_CAN_IsSleepActive    //检查是否成功进入休眠模式
+HAL_CAN_AddTxMessage    //向 Tx 邮箱中增加一个消息,并且激活对应的传输请求
+HAL_CAN_AbortTxRequest    //请求中断传输
+HAL_CAN_IsTxMessagePending    //检查是否有传输请求在指定的 Tx 邮箱上等待
+HAL_CAN_GetRxMessage    //从Rx FIFO 收取一个 CAN 帧</code></pre>
+
+<p>bsp_key.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_KEY_H
+#define __BSP_KEY_H
+
+#include "stm32f1xx_hal.h"
+
+uint8_t KEY_GetNum(void);
+
+#endif
+</code></pre>
+
+<p>bsp_key.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_key.h"
+
+uint8_t KEY_GetNum(void)
+{
+	uint8_t Key_Num = 0;
+	if(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1)
+	{
+		HAL_Delay(20);
+		while(HAL_GPIO_ReadPin(GPIOA, GPIO_PIN_0) == 1);
+		HAL_Delay(8);
+		Key_Num = 1;
+	}
+	
+	return Key_Num;
+}
+</code></pre>
+
+<p>bsp_oled.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __OLED_H
+#define __OLED_H
+
+#include "stm32f1xx_hal.h"
+
+void OLED_Init(void);
+void OLED_Clear(void);
+void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char);
+void OLED_ShowString(uint8_t Line, uint8_t Column, char *String);
+void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+void OLED_ShowSignedNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length);
+void OLED_ShowHexNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length);
+
+#endif
+</code></pre>
+
+<p>bsp_oled.c</p>
+
+<pre>
+<code class="language-cpp">#include "gpio.h"
+#include "OLED_Font.h"
+
+/*引脚配置*/
+//#define OLED_W_SCL(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_8, (BitAction)(x))
+//#define OLED_W_SDA(x)		GPIO_WriteBit(GPIOB, GPIO_Pin_9, (BitAction)(x))
+void OLED_W_SCL(GPIO_PinState x){
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_8,x);
+}
+void OLED_W_SDA(GPIO_PinState x){
+	HAL_GPIO_WritePin(GPIOB, GPIO_PIN_9,x);
+}
+
+/*引脚初始化*/
+void OLED_I2C_Init(void)
+{
+//    RCC_APB2PeriphClockCmd(RCC_APB2Periph_GPIOB, ENABLE);
+//
+//	GPIO_InitTypeDef GPIO_InitStructure;
+// 	GPIO_InitStructure.GPIO_Mode = GPIO_Mode_Out_OD;
+//	GPIO_InitStructure.GPIO_Speed = GPIO_Speed_50MHz;
+//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_8;
+// 	GPIO_Init(GPIOB, &amp;GPIO_InitStructure);
+//	GPIO_InitStructure.GPIO_Pin = GPIO_Pin_9;
+// 	GPIO_Init(GPIOB, &amp;GPIO_InitStructure);
+	 MX_GPIO_Init();
+
+	OLED_W_SCL(1);
+	OLED_W_SDA(1);
+}
+
+/**
+  * @brief  I2C开始
+  * @param  无
+  * @retval 无
+  */
+void OLED_I2C_Start(void)
+{
+	OLED_W_SDA(1);
+	OLED_W_SCL(1);
+	OLED_W_SDA(0);
+	OLED_W_SCL(0);
+}
+
+/**
+  * @brief  I2C停止
+  * @param  无
+  * @retval 无
+  */
+void OLED_I2C_Stop(void)
+{
+	OLED_W_SDA(0);
+	OLED_W_SCL(1);
+	OLED_W_SDA(1);
+}
+
+/**
+  * @brief  I2C发送一个字节
+  * @param  Byte 要发送的一个字节
+  * @retval 无
+  */
+void OLED_I2C_SendByte(uint8_t Byte)
+{
+	uint8_t i;
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_W_SDA(Byte &amp; (0x80 &gt;&gt; i));
+		OLED_W_SCL(1);
+		OLED_W_SCL(0);
+	}
+	OLED_W_SCL(1);	//额外的一个时钟，不处理应答信号
+	OLED_W_SCL(0);
+}
+
+/**
+  * @brief  OLED写命令
+  * @param  Command 要写入的命令
+  * @retval 无
+  */
+void OLED_WriteCommand(uint8_t Command)
+{
+	OLED_I2C_Start();
+	OLED_I2C_SendByte(0x78);		//从机地址
+	OLED_I2C_SendByte(0x00);		//写命令
+	OLED_I2C_SendByte(Command); 
+	OLED_I2C_Stop();
+}
+
+/**
+  * @brief  OLED写数据
+  * @param  Data 要写入的数据
+  * @retval 无
+  */
+void OLED_WriteData(uint8_t Data)
+{
+	OLED_I2C_Start();
+	OLED_I2C_SendByte(0x78);		//从机地址
+	OLED_I2C_SendByte(0x40);		//写数据
+	OLED_I2C_SendByte(Data);
+	OLED_I2C_Stop();
+}
+
+/**
+  * @brief  OLED设置光标位置
+  * @param  Y 以左上角为原点，向下方向的坐标，范围：0~7
+  * @param  X 以左上角为原点，向右方向的坐标，范围：0~127
+  * @retval 无
+  */
+void OLED_SetCursor(uint8_t Y, uint8_t X)
+{
+	OLED_WriteCommand(0xB0 | Y);					//设置Y位置
+	OLED_WriteCommand(0x10 | ((X &amp; 0xF0) &gt;&gt; 4));	//设置X位置高4位
+	OLED_WriteCommand(0x00 | (X &amp; 0x0F));			//设置X位置低4位
+}
+
+/**
+  * @brief  OLED清屏
+  * @param  无
+  * @retval 无
+  */
+void OLED_Clear(void)
+{  
+	uint8_t i, j;
+	for (j = 0; j &lt; 8; j++)
+	{
+		OLED_SetCursor(j, 0);
+		for(i = 0; i &lt; 128; i++)
+		{
+			OLED_WriteData(0x00);
+		}
+	}
+}
+
+/**
+  * @brief  OLED显示一个字符
+  * @param  Line 行位置，范围：1~4
+  * @param  Column 列位置，范围：1~16
+  * @param  Char 要显示的一个字符，范围：ASCII可见字符
+  * @retval 无
+  */
+void OLED_ShowChar(uint8_t Line, uint8_t Column, char Char)
+{      	
+	uint8_t i;
+	OLED_SetCursor((Line - 1) * 2, (Column - 1) * 8);		//设置光标位置在上半部分
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i]);			//显示上半部分内容
+	}
+	OLED_SetCursor((Line - 1) * 2 + 1, (Column - 1) * 8);	//设置光标位置在下半部分
+	for (i = 0; i &lt; 8; i++)
+	{
+		OLED_WriteData(OLED_F8x16[Char - ' '][i + 8]);		//显示下半部分内容
+	}
+}
+
+/**
+  * @brief  OLED显示字符串
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  String 要显示的字符串，范围：ASCII可见字符
+  * @retval 无
+  */
+void OLED_ShowString(uint8_t Line, uint8_t Column, char *String)
+{
+	uint8_t i;
+	for (i = 0; String[i] != '\0'; i++)
+	{
+		OLED_ShowChar(Line, Column + i, String[i]);
+	}
+}
+
+/**
+  * @brief  OLED次方函数
+  * @retval 返回值等于X的Y次方
+  */
+uint32_t OLED_Pow(uint32_t X, uint32_t Y)
+{
+	uint32_t Result = 1;
+	while (Y--)
+	{
+		Result *= X;
+	}
+	return Result;
+}
+
+/**
+  * @brief  OLED显示数字（十进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~4294967295
+  * @param  Length 要显示数字的长度，范围：1~10
+  * @retval 无
+  */
+void OLED_ShowNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+}
+
+/**
+  * @brief  OLED显示数字（十进制，带符号数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：-2147483648~2147483647
+  * @param  Length 要显示数字的长度，范围：1~10
+  * @retval 无
+  */
+void OLED_ShowSignedNum(uint8_t Line, uint8_t Column, int32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	uint32_t Number1;
+	if (Number &gt;= 0)
+	{
+		OLED_ShowChar(Line, Column, '+');
+		Number1 = Number;
+	}
+	else
+	{
+		OLED_ShowChar(Line, Column, '-');
+		Number1 = -Number;
+	}
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i + 1, Number1 / OLED_Pow(10, Length - i - 1) % 10 + '0');
+	}
+}
+
+/**
+  * @brief  OLED显示数字（十六进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~0xFFFFFFFF
+  * @param  Length 要显示数字的长度，范围：1~8
+  * @retval 无
+  */
+void OLED_ShowHexNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i, SingleNumber;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		SingleNumber = Number / OLED_Pow(16, Length - i - 1) % 16;
+		if (SingleNumber &lt; 10)
+		{
+			OLED_ShowChar(Line, Column + i, SingleNumber + '0');
+		}
+		else
+		{
+			OLED_ShowChar(Line, Column + i, SingleNumber - 10 + 'A');
+		}
+	}
+}
+
+/**
+  * @brief  OLED显示数字（二进制，正数）
+  * @param  Line 起始行位置，范围：1~4
+  * @param  Column 起始列位置，范围：1~16
+  * @param  Number 要显示的数字，范围：0~1111 1111 1111 1111
+  * @param  Length 要显示数字的长度，范围：1~16
+  * @retval 无
+  */
+void OLED_ShowBinNum(uint8_t Line, uint8_t Column, uint32_t Number, uint8_t Length)
+{
+	uint8_t i;
+	for (i = 0; i &lt; Length; i++)							
+	{
+		OLED_ShowChar(Line, Column + i, Number / OLED_Pow(2, Length - i - 1) % 2 + '0');
+	}
+}
+
+/**
+  * @brief  OLED初始化
+  * @param  无
+  * @retval 无
+  */
+void OLED_Init(void)
+{
+	uint32_t i, j;
+	
+	for (i = 0; i &lt; 1000; i++)			//上电延时
+	{
+		for (j = 0; j &lt; 1000; j++);
+	}
+	
+	OLED_I2C_Init();			//端口初始化
+	
+	OLED_WriteCommand(0xAE);	//关闭显示
+	
+	OLED_WriteCommand(0xD5);	//设置显示时钟分频比/振荡器频率
+	OLED_WriteCommand(0x80);
+	
+	OLED_WriteCommand(0xA8);	//设置多路复用率
+	OLED_WriteCommand(0x3F);
+	
+	OLED_WriteCommand(0xD3);	//设置显示偏移
+	OLED_WriteCommand(0x00);
+	
+	OLED_WriteCommand(0x40);	//设置显示开始行
+	
+	OLED_WriteCommand(0xA1);	//设置左右方向，0xA1正常 0xA0左右反置
+	
+	OLED_WriteCommand(0xC8);	//设置上下方向，0xC8正常 0xC0上下反置
+
+	OLED_WriteCommand(0xDA);	//设置COM引脚硬件配置
+	OLED_WriteCommand(0x12);
+	
+	OLED_WriteCommand(0x81);	//设置对比度控制
+	OLED_WriteCommand(0xCF);
+
+	OLED_WriteCommand(0xD9);	//设置预充电周期
+	OLED_WriteCommand(0xF1);
+
+	OLED_WriteCommand(0xDB);	//设置VCOMH取消选择级别
+	OLED_WriteCommand(0x30);
+
+	OLED_WriteCommand(0xA4);	//设置整个显示打开/关闭
+
+	OLED_WriteCommand(0xA6);	//设置正常/倒转显示
+
+	OLED_WriteCommand(0x8D);	//设置充电泵
+	OLED_WriteCommand(0x14);
+
+	OLED_WriteCommand(0xAF);	//开启显示
+		
+	OLED_Clear();				//OLED清屏
+}
+</code></pre>
+
+<p>bsp_can.h</p>
+
+<pre>
+<code class="language-cpp">#ifndef __BSP_CAN_H
+#define __BSP_CAN_H
+
+#include "stm32f1xx_hal.h"
+
+void BSP_CAN_Filter_Config(void);
+void BSP_CAN_Transmit(CAN_HandleTypeDef* hcan, uint32_t Device_ID, uint8_t Length, uint8_t *Data);
+uint8_t BSP_CAN_ReceiveFlag(CAN_HandleTypeDef* hcan);
+void BSP_CAN_Receive(CAN_HandleTypeDef* hcan, uint32_t *Device_ID, uint8_t *Length, uint8_t *Data);
+
+#endif
+</code></pre>
+
+<p>bsp_can.c</p>
+
+<pre>
+<code class="language-cpp">#include "bsp_can.h"
+
+#include "can.h"
+
+//由图形化配置了CAN的基础功能
+
+//配置过滤器
+
+void BSP_CAN_Filter_Config(void)
+{
+    CAN_FilterTypeDef  sFilterConfig;
+    
+    // 配置CAN过滤器0的基本参数
+	sFilterConfig.FilterBank = 0;      // 设置过滤器编号为0（范围0-27）
+
+	// 配置过滤器工作模式为标识符屏蔽模式
+	sFilterConfig.FilterMode = CAN_FILTERMODE_IDMASK;  // 屏蔽模式：使用ID+MASK组合过滤
+
+	// 配置过滤器位宽为32位
+	sFilterConfig.FilterScale = CAN_FILTERSCALE_32BIT;  // 32位宽过滤器配置
+
+	// 配置32位ID值（标准帧ID扩展到32位或扩展帧ID）
+	sFilterConfig.FilterIdHigh = 0x0000;         // 32位ID的高16位
+	sFilterConfig.FilterIdLow = 0x0000;          // 32位ID的低16位
+
+	// 配置32位屏蔽码（对应位为1时表示必须匹配ID，为0时表示忽略该位）
+	sFilterConfig.FilterMaskIdHigh = 0x0000;      // 32位MASK的高16位
+	sFilterConfig.FilterMaskIdLow = 0x0000;       // 32位MASK的低16位
+
+	// 配置匹配的报文存入RX FIFO 0
+	sFilterConfig.FilterFIFOAssignment = CAN_RX_FIFO0; // 过滤器0关联到FIFO0
+
+	// 激活此过滤器配置
+	sFilterConfig.FilterActivation = ENABLE;           // 激活滤波器0
+
+	// 配置双CAN模式下从CAN的过滤器起始编号
+	//主 CAN 使用 0 至 7 号过滤器组（共 8 个）。
+	//从 CAN 使用 8 至 27 号过滤器组（共 20 个）。
+	sFilterConfig.SlaveStartFilterBank = 14;           // 从CAN使用过滤器14-27
+    
+    //过滤器配置 //初始化过滤器
+    if (HAL_CAN_ConfigFilter(&amp;hcan, &amp;sFilterConfig) != HAL_OK)
+    {
+        while(1){}
+		// Error_Handler();
+    }
+ 
+   //启动CAN外围设备
+    if (HAL_CAN_Start(&amp;hcan) != HAL_OK)
+    {
+        while(1){}
+		// Error_Handler();
+    }
+      
+    //激活可以RX通知，开启接受邮邮箱0挂起中断
+    if (HAL_CAN_ActivateNotification(&amp;hcan, CAN_IT_RX_FIFO0_MSG_PENDING) != HAL_OK)
+    {
+        while(1){}
+		// Error_Handler();
+    }
+	
+}
+
+void BSP_CAN_Transmit(CAN_HandleTypeDef* hcan, uint32_t Device_ID, uint8_t Length, uint8_t *Data)
+{
+    CAN_TxHeaderTypeDef CAN_TxHeader;
+    uint32_t TxMailbox;//用于存储硬件分配的发送邮箱编号
+	
+    // 配置CAN发送帧参数
+    CAN_TxHeader.StdId = Device_ID;            // 标准帧ID (11位)
+    CAN_TxHeader.ExtId = 0;                    // 扩展帧ID (29位，此处不使用)
+    CAN_TxHeader.IDE = CAN_ID_STD;             // 标准帧模式
+    CAN_TxHeader.RTR = CAN_RTR_DATA;           // 数据帧类型
+    CAN_TxHeader.DLC = Length;                 // 数据长度码(0-8字节)
+    CAN_TxHeader.TransmitGlobalTime = DISABLE; // 禁用时间戳功能
+	
+    // 尝试发送CAN消息并获取邮箱号
+    if (HAL_CAN_AddTxMessage(hcan, &amp;CAN_TxHeader, Data, &amp;TxMailbox) != HAL_OK)
+    {
+        // 发送请求失败处理
+        Error_Handler();
+    }
+    
+    // 等待发送完成或超时
+    uint32_t Timeout = 100000;
+    while (HAL_CAN_IsTxMessagePending(hcan, TxMailbox) &amp;&amp; (Timeout-- &gt; 0))
+    {
+        // 可添加低功耗等待逻辑或喂狗操作
+    }
+    
+    if (Timeout == 0)
+    {
+        // 发送超时处理
+        Error_Handler();
+    }
+}
+
+
+uint8_t BSP_CAN_ReceiveFlag(CAN_HandleTypeDef* hcan)
+{
+    // 检查CAN_FIFO0中待处理的消息数量
+    uint32_t pendingMessages = HAL_CAN_GetRxFifoFillLevel(hcan, CAN_RX_FIFO0);
+    
+    // 如果有消息等待处理，返回1，否则返回0
+    return (pendingMessages &gt; 0) ? 1 : 0;
+}
+
+void BSP_CAN_Receive(CAN_HandleTypeDef* hcan, uint32_t *Device_ID, uint8_t *Length, uint8_t *Data)
+{
+    CAN_RxHeaderTypeDef CAN_RxHeader;
+    uint8_t CAN_RxData[8];
+    
+    // 从FIFO0接收CAN消息
+    if (HAL_CAN_GetRxMessage(hcan, CAN_RX_FIFO0, &amp;CAN_RxHeader, CAN_RxData) == HAL_OK)
+    {
+        // 根据帧类型提取ID
+        if (CAN_RxHeader.IDE == CAN_ID_STD)
+        {
+            *Device_ID = CAN_RxHeader.StdId;  // 标准帧ID (11位)
+        }
+        else
+        {
+            *Device_ID = CAN_RxHeader.ExtId;  // 扩展帧ID (29位)
+        }
+        
+        // 仅处理数据帧（忽略远程帧）
+        if (CAN_RxHeader.RTR == CAN_RTR_DATA)
+        {
+            *Length = CAN_RxHeader.DLC;  // 获取数据长度
+            
+            // 复制数据到输出缓冲区（确保不超过DLC长度）
+            for (uint8_t i = 0; i &lt; *Length; i++)
+            {
+                Data[i] = CAN_RxData[i];
+            }
+        }
+    }
+    else
+    {
+        // 接收失败处理：可设置错误标志或返回错误码
+        *Length = 0;  // 标记无有效数据
+    }
+}
+
+</code></pre>
+
+<p>main.c</p>
+
+<pre>
+<code class="language-cpp">/* USER CODE BEGIN Header */
+/**
+  ******************************************************************************
+  * @file           : main.c
+  * @brief          : Main program body
+  ******************************************************************************
+  * @attention
+  *
+  * Copyright (c) 2025 STMicroelectronics.
+  * All rights reserved.
+  *
+  * This software is licensed under terms that can be found in the LICENSE file
+  * in the root directory of this software component.
+  * If no LICENSE file comes with this software, it is provided AS-IS.
+  *
+  ******************************************************************************
+  */
+/* USER CODE END Header */
+/* Includes ------------------------------------------------------------------*/
+#include "main.h"
+#include "can.h"
+#include "gpio.h"
+
+/* Private includes ----------------------------------------------------------*/
+/* USER CODE BEGIN Includes */
+#include "bsp_key.h"
+#include "bsp_oled.h"
+#include "bsp_can.h"
+/* USER CODE END Includes */
+
+/* Private typedef -----------------------------------------------------------*/
+/* USER CODE BEGIN PTD */
+
+/* USER CODE END PTD */
+
+/* Private define ------------------------------------------------------------*/
+/* USER CODE BEGIN PD */
+
+/* USER CODE END PD */
+
+/* Private macro -------------------------------------------------------------*/
+/* USER CODE BEGIN PM */
+
+/* USER CODE END PM */
+
+/* Private variables ---------------------------------------------------------*/
+
+/* USER CODE BEGIN PV */
+uint32_t CAN_Device_ID = 0x333;//ID:0x000 ~ 0x7FF
+
+uint32_t Rx_ID;
+uint8_t RX_Length;
+uint8_t RX_Data[8];
+
+/* USER CODE END PV */
+
+/* Private function prototypes -----------------------------------------------*/
+void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
+
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/* USER CODE END 0 */
+
+/**
+  * @brief  The application entry point.
+  * @retval int
+  */
+int main(void)
+{
+
+  /* USER CODE BEGIN 1 */
+	uint32_t TX_ID = CAN_Device_ID;
+	uint8_t TX_Length = 4;
+	uint8_t TX_Data[8] = {0x00, 0x11, 0x22, 0x33};
+  /* USER CODE END 1 */
+
+  /* MCU Configuration--------------------------------------------------------*/
+
+  /* Reset of all peripherals, Initializes the Flash interface and the Systick. */
+  HAL_Init();
+
+  /* USER CODE BEGIN Init */
+
+  /* USER CODE END Init */
+
+  /* Configure the system clock */
+  SystemClock_Config();
+
+  /* USER CODE BEGIN SysInit */
+
+  /* USER CODE END SysInit */
+
+  /* Initialize all configured peripherals */
+  MX_GPIO_Init();
+  MX_CAN_Init();
+  /* USER CODE BEGIN 2 */
+	OLED_Init();
+	BSP_CAN_Filter_Config();
+	
+	OLED_Clear();
+	OLED_ShowString(1, 1, "TxID:");
+	OLED_ShowHexNum(1, 6, TX_ID, 4);
+	OLED_ShowString(2, 1, "RxID:");
+	OLED_ShowString(3, 1, "Leng:");
+	OLED_ShowString(4, 1, "Data:");
+  /* USER CODE END 2 */
+
+  /* Infinite loop */
+  /* USER CODE BEGIN WHILE */
+  while (1)
+  {
+    /* USER CODE END WHILE */
+
+    /* USER CODE BEGIN 3 */
+	  uint8_t KeyNum = KEY_GetNum();
+		if(1 == KeyNum)
+		{
+			TX_Data[0] ++;
+			TX_Data[1] ++;
+			TX_Data[2] ++;
+			TX_Data[3] ++;
+			BSP_CAN_Transmit(&amp;hcan, TX_ID, TX_Length, TX_Data);
+		}
+		
+		if (BSP_CAN_ReceiveFlag(&amp;hcan))
+		{
+			BSP_CAN_Receive(&amp;hcan, &amp;Rx_ID, &amp;RX_Length, RX_Data);//读取已有数据的队列
+			
+			OLED_ShowHexNum(2, 6, Rx_ID, 4);
+			OLED_ShowHexNum(3, 6, RX_Length, 1);
+			OLED_ShowHexNum(4, 6, RX_Data[0], 2);
+			OLED_ShowHexNum(4, 9, RX_Data[1], 2);
+			OLED_ShowHexNum(4, 12, RX_Data[2], 2);
+			OLED_ShowHexNum(4, 15, RX_Data[3], 2);
+		}
+  }
+  /* USER CODE END 3 */
+}
+
+/**
+  * @brief System Clock Configuration
+  * @retval None
+  */
+void SystemClock_Config(void)
+{
+  RCC_OscInitTypeDef RCC_OscInitStruct = {0};
+  RCC_ClkInitTypeDef RCC_ClkInitStruct = {0};
+
+  /** Initializes the RCC Oscillators according to the specified parameters
+  * in the RCC_OscInitTypeDef structure.
+  */
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSE;
+  RCC_OscInitStruct.HSEState = RCC_HSE_ON;
+  RCC_OscInitStruct.HSEPredivValue = RCC_HSE_PREDIV_DIV1;
+  RCC_OscInitStruct.HSIState = RCC_HSI_ON;
+  RCC_OscInitStruct.PLL.PLLState = RCC_PLL_ON;
+  RCC_OscInitStruct.PLL.PLLSource = RCC_PLLSOURCE_HSE;
+  RCC_OscInitStruct.PLL.PLLMUL = RCC_PLL_MUL9;
+  if (HAL_RCC_OscConfig(&amp;RCC_OscInitStruct) != HAL_OK)
+  {
+    Error_Handler();
+  }
+
+  /** Initializes the CPU, AHB and APB buses clocks
+  */
+  RCC_ClkInitStruct.ClockType = RCC_CLOCKTYPE_HCLK|RCC_CLOCKTYPE_SYSCLK
+                              |RCC_CLOCKTYPE_PCLK1|RCC_CLOCKTYPE_PCLK2;
+  RCC_ClkInitStruct.SYSCLKSource = RCC_SYSCLKSOURCE_PLLCLK;
+  RCC_ClkInitStruct.AHBCLKDivider = RCC_SYSCLK_DIV1;
+  RCC_ClkInitStruct.APB1CLKDivider = RCC_HCLK_DIV2;
+  RCC_ClkInitStruct.APB2CLKDivider = RCC_HCLK_DIV1;
+
+  if (HAL_RCC_ClockConfig(&amp;RCC_ClkInitStruct, FLASH_LATENCY_2) != HAL_OK)
+  {
+    Error_Handler();
+  }
+}
+
+/* USER CODE BEGIN 4 */
+
+/* USER CODE END 4 */
+
+/**
+  * @brief  This function is executed in case of error occurrence.
+  * @retval None
+  */
+void Error_Handler(void)
+{
+  /* USER CODE BEGIN Error_Handler_Debug */
+  /* User can add his own implementation to report the HAL error return state */
+  __disable_irq();
+  while (1)
+  {
+  }
+  /* USER CODE END Error_Handler_Debug */
+}
+
+#ifdef  USE_FULL_ASSERT
+/**
+  * @brief  Reports the name of the source file and the source line number
+  *         where the assert_param error has occurred.
+  * @param  file: pointer to the source file name
+  * @param  line: assert_param error line source number
+  * @retval None
+  */
+void assert_failed(uint8_t *file, uint32_t line)
+{
+  /* USER CODE BEGIN 6 */
+  /* User can add his own implementation to report the file name and line number,
+     ex: printf("Wrong parameters value: file %s on line %d\r\n", file, line) */
+  /* USER CODE END 6 */
+}
+#endif /* USE_FULL_ASSERT */
+</code></pre>
+
+<h1>三、实验效果</h1>
+
+<p><img alt="" height="650" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7853b17300a44188ad0e237298a05f1.gif" srcset="/img/loading.gif" lazyload width="400" /></p>
+
+<p><img alt="" height="400" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/df6e2b42601f4a3ea78139dc0f59aa9a.gif" srcset="/img/loading.gif" lazyload width="650" /></p>
+
+<p>注：</p>
+
+<p>（1）参考链接：<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="42. CAN—通讯实验 — [野火]STM32库开发实战指南——基于野火霸道开发板 文档" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f103badao/std/zh/latest/book/CAN.html#id12" title="42. CAN—通讯实验 — [野火]STM32库开发实战指南——基于野火霸道开发板 文档">42. CAN&mdash;通讯实验 &mdash; [野火]STM32库开发实战指南&mdash;&mdash;基于野火霸道开发板 文档</a></p>
+
+<p>&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="CAN总线入门教程-全面细致 面包板教学 多机通信" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1vu4m1F7Gt/?spm_id_from=333.337.search-card.all.click&amp;vd_source=77379e487a8ecc7d4f9e65b8d9cd422d" title="CAN总线入门教程-全面细致 面包板教学 多机通信">CAN总线入门教程-全面细致 面包板教学 多机通信</a></p>
+
+<p>（2）注意在CAN总线的连接，和CAN收发器的连接需要连接同一个5V电源和共地，即在同一条件下的差分信号传输。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/stm32-%E5%8D%95%E7%89%87%E6%9C%BA-%E5%B5%8C%E5%85%A5%E5%BC%8F-CAN/" class="print-no-link">#stm32 单片机 嵌入式 CAN</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【STM32】CAN通讯的学习笔记以及项目实战</div>
+      <div>http://example.com/2025/07/04/【STM32】CAN通讯的学习笔记以及项目实战/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月4日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/07/%E3%80%90STM32%E3%80%91%E3%80%90USB%E3%80%91USB%E9%80%9A%E8%AE%AF%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E5%9F%BA%E4%BA%8ECubeMX%20HAL%E5%BA%93%E7%9A%84%E4%BE%8B%E7%A8%8B%E9%AA%8C%E8%AF%81/" title="【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【STM32】【USB】USB通讯方式的学习笔记以及基于CubeMX HAL库的例程验证</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/" title="【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）">
+                        <span class="hidden-mobile">【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

@@ -1,0 +1,964 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介    Keil 历史版本的下载方法有以下几种方式：   	官网正规步骤下载：Keil 官网为不同产品提供了相应的历史版本下载地址，具体如下：  &lt;ul&gt; 	&lt;li&gt;Keil MDK：&lt;a data-link-icon&#x3D;&quot;https:&#x2F;&#x2F;csdnimg.cn&#x2F;release&#x2F;blog_editor_html&#x2F;release2.4.2&#x2F;ckedit">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【MCU】【Keil】对于Keil系列软件的下载方式推荐">
+<meta property="og:url" content="http://example.com/2025/08/30/%E3%80%90MCU%E3%80%91%E3%80%90Keil%E3%80%91%E5%AF%B9%E4%BA%8EKeil%E7%B3%BB%E5%88%97%E8%BD%AF%E4%BB%B6%E7%9A%84%E4%B8%8B%E8%BD%BD%E6%96%B9%E5%BC%8F%E6%8E%A8%E8%8D%90/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介    Keil 历史版本的下载方法有以下几种方式：   	官网正规步骤下载：Keil 官网为不同产品提供了相应的历史版本下载地址，具体如下：  &lt;ul&gt; 	&lt;li&gt;Keil MDK：&lt;a data-link-icon&#x3D;&quot;https:&#x2F;&#x2F;csdnimg.cn&#x2F;release&#x2F;blog_editor_html&#x2F;release2.4.2&#x2F;ckedit">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bc5b0c23d37e4989864a78911394e235.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bf14d718358d4960b0eca5e44f3cbf34.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/faadc069ac614651b8528ab554080177.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c7e9a0ea7e1d456fb96eab81fabd1b45.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1eab16d53ce84cf380677d3c03e1d788.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c5b3d36e1fc4f99b967851939310f81.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3f7752a04799415fbc3c9c1584c0e48b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1e97effb1d434cd08fc9dffcc2aef088.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f4f6ab4c7b58407287118f449355ae8e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8c68ec0d6ae04d9aa59193e67770a02b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cc7b1794ddeb4210a7ac7b5003318ffb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1475b33721154392ada68cfba0533efd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ca5dadee9e2148ccafac9bf0b943d799.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e613d55d5c6b4e03b362ae9c86d03657.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cac9863b373e4231b10ca205e88313c7.png">
+<meta property="article:published_time" content="2025-08-29T16:37:19.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="单片机 stm32 嵌入式">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/bc5b0c23d37e4989864a78911394e235.png">
+  
+  
+  
+  <title>【MCU】【Keil】对于Keil系列软件的下载方式推荐 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【MCU】【Keil】对于Keil系列软件的下载方式推荐"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-08-30 00:37" pubdate>
+          2025年8月30日 凌晨
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          1.4k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          12 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【MCU】【Keil】对于Keil系列软件的下载方式推荐</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1>一、简介</h1>
+
+<p><img alt="" height="208" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bc5b0c23d37e4989864a78911394e235.png" srcset="/img/loading.gif" lazyload width="610" /></p>
+
+<p>Keil 历史版本的下载方法有以下几种方式：</p>
+
+<ul>
+	<li><strong>官网正规步骤下载</strong>：Keil 官网为不同产品提供了相应的历史版本下载地址，具体如下：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;Keil MDK：&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;ARM Product Updates&quot; href=&quot;https://www.keil.com/update/rvmdk.asp&quot; title=&quot;ARM Product Updates&quot;&gt;ARM Product Updates&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;Keil C51：&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;C51 Product Updates&quot; href=&quot;https://www.keil.com/update/c51.asp&quot; title=&quot;C51 Product Updates&quot;&gt;C51 Product Updates&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;Keil C166：&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;C166 Product Updates&quot; href=&quot;https://www.keil.com/update/c166.asp&quot; title=&quot;C166 Product Updates&quot;&gt;C166 Product Updates&lt;/a&gt;&lt;/li&gt;
+	&lt;li&gt;Keil C251：&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;C251 Product Updates&quot; href=&quot;https://www.keil.com/update/c251.asp&quot; title=&quot;C251 Product Updates&quot;&gt;C251 Product Updates&lt;/a&gt;&lt;br /&gt;
+	使用这种方法需要输入有效的产品序列号（PSN）或许可证代码（LIC）才能访问所有可用的产品版本。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;通过规律的下载链接&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;Keil MDK 可通过微软 Azure Blob Storage 下载服务进行下载，链接格式为&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;https://armkeil.blob.core.windows.net/eval/MDK536.EXE&quot; href=&quot;https://armkeil.blob.core.windows.net/eval/MDK536.EXE&quot; title=&quot;https://armkeil.blob.core.windows.net/eval/MDK536.EXE&quot;&gt;https://armkeil.blob.core.windows.net/eval/MDK536.EXE&lt;/a&gt;，将其中的 &amp;ldquo;536&amp;rdquo; 替换为所需的版本号即可，如 MDK537.EXE 对应 MDK v5.37 版本。&lt;/li&gt;
+	&lt;li&gt;Keil C51 有规律的下载地址为&lt;a data-link-icon=&quot;https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7&quot; data-link-title=&quot;https://www.keil.com/files/eval/c51v960a.exe&quot; href=&quot;https://www.keil.com/files/eval/c51v960a.exe&quot; title=&quot;https://www.keil.com/files/eval/c51v960a.exe&quot;&gt;https://www.keil.com/files/eval/c51v960a.exe&lt;/a&gt;，可将 &amp;ldquo;c51v960a&amp;rdquo; 替换为相应的版本号。不过，这种方法通常只能下载最新一版的历史版本，比如可能只能下载 C51 V9 版本，V8 版本则无法通过此方式下载。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;第三方下载链接&lt;/strong&gt;：一些正规的第三方，如安富莱、正点原子、野火等开发板厂家，也提供 Keil 历史版本的下载软件，用户可以通过这些厂家的官方网站或相关技术论坛获取下载链接。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h1><strong>二、官网正规步骤下载</strong></h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Keil 官网提供有 Keil 历史版本下载的地址。</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Keil Product Downloads" target="_blank" rel="noopener" href="https://www.keil.com/download/product/" title="Keil Product Downloads">Keil Product Downloads</a></p>
+
+<p><img alt="" height="989" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bf14d718358d4960b0eca5e44f3cbf34.png" srcset="/img/loading.gif" lazyload width="1349" /></p>
+
+<h2><strong>2.1 Keil MDK官网历史版本地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com/update/rvmdk.asp</code></pre>
+
+<p><img alt="" height="994" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/faadc069ac614651b8528ab554080177.png" srcset="/img/loading.gif" lazyload width="1490" /></p>
+
+<h2><strong>2.2 Keil C51</strong><strong>官网历史版本地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com/update/c51.asp</code></pre>
+
+<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c7e9a0ea7e1d456fb96eab81fabd1b45.png" srcset="/img/loading.gif" lazyload width="1465" /></p>
+
+<h2><strong>&nbsp;2.3 Keil C251</strong><strong>官网历史版本地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com/update/c251.asp</code></pre>
+
+<p><img alt="" height="1003" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1eab16d53ce84cf380677d3c03e1d788.png" srcset="/img/loading.gif" lazyload width="1463" /></p>
+
+<h2><strong>2.4 Keil C166</strong><strong>官网历史版本地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com/update/c166.asp</code></pre>
+
+<p><img alt="" height="993" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c5b3d36e1fc4f99b967851939310f81.png" srcset="/img/loading.gif" lazyload width="1448" /></p>
+
+<h2><strong>2.5 官网历史版本下载说明</strong></h2>
+
+<p>这种方法需要提供 LIC or PSN：</p>
+
+<p><img alt="" height="52" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3f7752a04799415fbc3c9c1584c0e48b.png" srcset="/img/loading.gif" lazyload width="484" /></p>
+
+<p>以及需要填写大量详细信息。</p>
+
+<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1e97effb1d434cd08fc9dffcc2aef088.png" srcset="/img/loading.gif" lazyload width="1009" /></p>
+
+<p><img alt="" height="963" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f4f6ab4c7b58407287118f449355ae8e.png" srcset="/img/loading.gif" lazyload width="539" /></p>
+
+<p><img alt="" height="542" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8c68ec0d6ae04d9aa59193e67770a02b.png" srcset="/img/loading.gif" lazyload width="507" /></p>
+
+<p>因此，不推荐用这种方法。</p>
+
+<h1><strong>三、通过规律的下载链接</strong></h1>
+
+<h2><strong>3.1 Keil MDK有规律的下载地址</strong></h2>
+
+<pre>
+<code>https://armkeil.blob.core.windows.net/eval/MDK***.EXE</code></pre>
+
+<p>注：必须是.EXE。</p>
+
+<p>比如：</p>
+
+<p>https://armkeil.blob.core.windows.net/eval/MDK536.EXE</p>
+
+<p>https://armkeil.blob.core.windows.net/eval/MDK528.EXE</p>
+
+<p>https://armkeil.blob.core.windows.net/eval/MDK515.EXE</p>
+
+<p><img alt="" height="28" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cc7b1794ddeb4210a7ac7b5003318ffb.png" srcset="/img/loading.gif" lazyload width="437" /></p>
+
+<p><img alt="" height="122" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1475b33721154392ada68cfba0533efd.png" srcset="/img/loading.gif" lazyload width="346" /></p>
+
+<p>注意：如果下载速度过慢，可能需要魔法的帮助，或者使用迅雷软件通过这些网址下载。</p>
+
+<h2><strong>3.2 Keil C51有规律的下载地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com//files/eval/c51v***.exe</code></pre>
+
+<p>比如：</p>
+
+<p>https://www.keil.com//files/eval/c51v959.exe</p>
+
+<p>https://www.keil.com//files/eval/c51v954.exe</p>
+
+<p>https://www.keil.com//files/eval/c51v902.exe</p>
+
+<p><img alt="" height="63" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ca5dadee9e2148ccafac9bf0b943d799.png" srcset="/img/loading.gif" lazyload width="327" /></p>
+
+<h2><strong>&nbsp;3.3 Keil C166有规律的下载地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com//files/eval/c166v***.exe</code></pre>
+
+<p>比如：</p>
+
+<p>https://www.keil.com//files/eval/c166v758.exe</p>
+
+<p>https://www.keil.com//files/eval/c166v753.exe</p>
+
+<p>https://www.keil.com//files/eval/c166v704.exe</p>
+
+<p><img alt="" height="70" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e613d55d5c6b4e03b362ae9c86d03657.png" srcset="/img/loading.gif" lazyload width="332" /></p>
+
+<h2><strong>3.4 Keil C251有规律的下载地址</strong></h2>
+
+<pre>
+<code>https://www.keil.com//files/eval/c251v***.exe</code></pre>
+
+<p>比如：</p>
+
+<p>https://www.keil.com//files/eval/c251v961.exe</p>
+
+<p>https://www.keil.com//files/eval/c251v956.exe</p>
+
+<p>https://www.keil.com//files/eval/c251v508.exe</p>
+
+<p><img alt="" height="66" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cac9863b373e4231b10ca205e88313c7.png" srcset="/img/loading.gif" lazyload width="356" /></p>
+
+<p><span style="background-color:#ffd900"><span style="color:#fe2c24">注意：</span>我这里只是举例子随便写的版本号，这种方式对于有些版本不支持下载，但是可以多尝试几次其他的版本号。</span></p>
+
+<h1><strong>四、第三方下载链接</strong></h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;第三方下载链接就是非官网下载，百度，谷歌可以出来很多，但要注意有些第三方的软件可能经过优化处理。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;推荐正规的第三方，比如安富莱、正点原子、野火等开发板厂家都提供 Keil 历史版本的下载软件。</p>
+
+<p>（1）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="撤销了MDK下载链接，仅提供Pack - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!" target="_blank" rel="noopener" href="https://forum.anfulai.cn/forum.php?mod=viewthread&amp;tid=96992" title="撤销了MDK下载链接，仅提供Pack - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!">撤销了MDK下载链接，仅提供Pack - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!</a></p>
+
+<p>（2）<a data-link-desc="文章浏览阅读2w次，点赞57次，收藏216次。KEIL的PACK下载资源分享..._各种pack软件包镜像下载" data-link-icon="https://g.csdnimg.cn/static/logo/favicon32.ico" data-link-title="KEIL各版本镜像和STM的KeilPACK包下载_各种pack软件包镜像下载-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/jgp886585/article/details/113343791?fromshare=blogdetail&amp;sharetype=blogdetail&amp;sharerId=113343791&amp;sharerefer=PC&amp;sharesource=qq_73648789&amp;sharefrom=from_link" title="KEIL各版本镜像和STM的KeilPACK包下载_各种pack软件包镜像下载-CSDN博客">KEIL各版本镜像和STM的KeilPACK包下载_各种pack软件包镜像下载-CSDN博客</a></p>
+
+<p>（3）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="【安富莱】开发板工具盘资源汇总下载帖 V1.2 (2025-02-28) - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!" target="_blank" rel="noopener" href="https://forum.anfulai.cn/forum.php?mod=viewthread&amp;tid=100027&amp;fromuid=58" title="【安富莱】开发板工具盘资源汇总下载帖 V1.2 (2025-02-28) - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!">【安富莱】开发板工具盘资源汇总下载帖 V1.2 (2025-02-28) - 开发环境 - 硬汉嵌入式论坛 - Powered by Discuz!</a></p>
+
+<p><strong>第三方下载链接说明：</strong>第三方下载可能存在：不全面等问题</p>
+
+<h1>五、基于Keil环境的芯片的支持包链接</h1>
+
+<h2>5.1 STM32</h2>
+
+<p>（1）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="阿姆·凯尔 |设备" target="_blank" rel="noopener" href="https://www.keil.arm.com/devices/" title="阿姆·凯尔 |设备">阿姆&middot;凯尔 |设备</a></p>
+
+<p>（2）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="【PACK】Keil MDK5.38 STM32全系列PACK包 网盘下载汇总(持续更新...) - STM32讨论区 - 野火电子论坛 - Powered by Discuz!" target="_blank" rel="noopener" href="https://www.firebbs.cn/forum.php?mod=viewthread&amp;tid=27263" title="【PACK】Keil MDK5.38 STM32全系列PACK包 网盘下载汇总(持续更新...) - STM32讨论区 - 野火电子论坛 - Powered by Discuz!">【PACK】Keil MDK5.38 STM32全系列PACK包 网盘下载汇总(持续更新...) - STM32讨论区 - 野火电子论坛 - Powered by Discuz!</a></p>
+
+<p>（3）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Keil MDK STM32全系列 PACK包 下载地址汇总（持续更新...）转载_mdk 离线dfp 下载-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/nicholas_duan/article/details/100515251" title="Keil MDK STM32全系列 PACK包 下载地址汇总（持续更新...）转载_mdk 离线dfp 下载-CSDN博客">Keil MDK STM32全系列 PACK包 下载地址汇总（持续更新...）转载_mdk 离线dfp 下载-CSDN博客</a></p>
+
+<h2>5.2 GD32</h2>
+
+<p>（1）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="兆易创新GigaDevice-资料下载兆易创新GD32 MCU" target="_blank" rel="noopener" href="https://www.gd32mcu.com/cn/download/7" title="兆易创新GigaDevice-资料下载兆易创新GD32 MCU">兆易创新GigaDevice-资料下载兆易创新GD32 MCU</a></p>
+
+<p>（2）<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Arm Keil | Devices" target="_blank" rel="noopener" href="https://www.keil.arm.com/devices/?q=GD&amp;vendor-search=" title="Arm Keil | Devices">Arm Keil | Devices</a></p>
+
+<hr />
+<p>等待后续更新------</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/MCU%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F-%E5%85%B6%E4%BB%96-%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">MCU学习专栏 其他-学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/%E5%8D%95%E7%89%87%E6%9C%BA-stm32-%E5%B5%8C%E5%85%A5%E5%BC%8F/" class="print-no-link">#单片机 stm32 嵌入式</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【MCU】【Keil】对于Keil系列软件的下载方式推荐</div>
+      <div>http://example.com/2025/08/30/【MCU】【Keil】对于Keil系列软件的下载方式推荐/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年8月30日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/08/30/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90Debian%E3%80%91%E3%80%90ArchLinux%E3%80%91%E5%9F%BA%E4%BA%8EDebian%E5%92%8CArchLinux%E7%9A%84ISO%E9%95%9C%E5%83%8F%E5%92%8C%E8%99%9A%E6%8B%9F%E6%9C%BAVM%E7%9A%84%E7%B3%BB%E7%BB%9F%E9%95%9C%E5%83%8F%E8%8E%B7%E5%8F%96%E5%AE%89%E8%A3%85/" title="【随笔】【Debian】【ArchLinux】基于Debian和ArchLinux的ISO镜像和虚拟机VM的系统镜像获取安装">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【随笔】【Debian】【ArchLinux】基于Debian和ArchLinux的ISO镜像和虚拟机VM的系统镜像获取安装</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/" title="【Git】对于github的本地ssh客户端的配置与分支的使用">
+                        <span class="hidden-mobile">【Git】对于github的本地ssh客户端的配置与分支的使用</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

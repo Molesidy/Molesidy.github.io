@@ -1,0 +1,1418 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于该文章仅适用于个人Linux电脑，笔者暂时没有深入研究运维方面的服务器Ubuntu系统安装和分区配置，有待后续更新。   目录  一、基础知识  （一）在了解硬盘分区前，先明确硬盘的主要分类及 Linux 系统中的标识规则：​  （二）硬盘分区表格式与 BIOS 引导方式的对应关系及系统适配​  （">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略">
+<meta property="og:url" content="http://example.com/2025/07/18/%E3%80%90Ubuntu%E3%80%91Ubuntu%E7%9A%84%E5%88%86%E5%8C%BA%E6%B7%B1%E5%85%A5%E8%AF%A6%E8%A7%A3%E4%BB%A5%E5%8F%8A%E5%88%B6%E5%AE%9A%E6%9C%80%E4%BD%B3%E5%88%86%E5%8C%BA%E5%88%86%E9%85%8D%E7%AD%96%E7%95%A5/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于该文章仅适用于个人Linux电脑，笔者暂时没有深入研究运维方面的服务器Ubuntu系统安装和分区配置，有待后续更新。   目录  一、基础知识  （一）在了解硬盘分区前，先明确硬盘的主要分类及 Linux 系统中的标识规则：​  （二）硬盘分区表格式与 BIOS 引导方式的对应关系及系统适配​  （">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/169741e83a9a485a83059be02aacd355.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fd0597cc9b124a6c9dfd876e0793b95a.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/aa07355343b94c8aba6a7489e9e955f8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8302b545703c4994bc0b91c96e1ed979.png">
+<meta property="article:published_time" content="2025-07-18T05:07:46.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="ubuntu linux 分区">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/169741e83a9a485a83059be02aacd355.png">
+  
+  
+  
+  <title>【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-18 13:07" pubdate>
+          2025年7月18日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          8.6k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          72 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 id="%E5%89%8D%E8%A8%80" name="%E5%89%8D%E8%A8%80">前言</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;对于该文章仅适用于个人Linux电脑，笔者暂时没有深入研究运维方面的服务器Ubuntu系统安装和分区配置，有待后续更新。</p>
+
+<hr />
+<h1 id="main-toc" name="tableOfContents"><strong>目录</strong></h1>
+
+<p id="%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86-toc" name="tableOfContents" style="margin-left:0px"><a href="#%E4%B8%80%E3%80%81%E5%9F%BA%E7%A1%80%E7%9F%A5%E8%AF%86">一、基础知识</a></p>
+
+<p id="%EF%BC%88%E4%B8%80%EF%BC%89%E5%9C%A8%E4%BA%86%E8%A7%A3%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E5%89%8D%EF%BC%8C%E5%85%88%E6%98%8E%E7%A1%AE%E7%A1%AC%E7%9B%98%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB%E5%8F%8A%20Linux%20%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99%EF%BC%9A%E2%80%8B-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%88%E4%B8%80%EF%BC%89%E5%9C%A8%E4%BA%86%E8%A7%A3%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E5%89%8D%EF%BC%8C%E5%85%88%E6%98%8E%E7%A1%AE%E7%A1%AC%E7%9B%98%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB%E5%8F%8A%20Linux%20%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99%EF%BC%9A%E2%80%8B">（一）在了解硬盘分区前，先明确硬盘的主要分类及 Linux 系统中的标识规则：​</a></p>
+
+<p id="%EF%BC%88%E4%BA%8C%EF%BC%89%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB%E5%8F%8A%E7%B3%BB%E7%BB%9F%E9%80%82%E9%85%8D%E2%80%8B-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%88%E4%BA%8C%EF%BC%89%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB%E5%8F%8A%E7%B3%BB%E7%BB%9F%E9%80%82%E9%85%8D%E2%80%8B">（二）硬盘分区表格式与 BIOS 引导方式的对应关系及系统适配​</a></p>
+
+<p id="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%881%EF%BC%89%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82%E2%80%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%881%EF%BC%89%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82%E2%80%8B">（1）分区表格式与 BIOS 引导方式的核心差异​</a></p>
+
+<p id="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%882%EF%BC%89%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E9%80%82%E9%85%8D%E8%A7%84%E5%88%99%E2%80%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%882%EF%BC%89%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E9%80%82%E9%85%8D%E8%A7%84%E5%88%99%E2%80%8B">（2）不同系统下的适配规则​</a></p>
+
+<p id="%C2%A0%EF%BC%883%EF%BC%89%E5%85%B3%E4%BA%8EGPT%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E-toc" name="tableOfContents" style="margin-left:80px"><a href="#%C2%A0%EF%BC%883%EF%BC%89%E5%85%B3%E4%BA%8EGPT%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E">（3）关于GPT分区表的简要说明</a></p>
+
+<p id="GPT%20%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91-toc" name="tableOfContents" style="margin-left:0px"><a href="#GPT%20%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91">GPT 分区表的底层逻辑</a></p>
+
+<p id="%EF%BC%884%EF%BC%89%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E2%80%8B-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%884%EF%BC%89%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E2%80%8B">（4）关键注意事项​</a></p>
+
+<p id="%EF%BC%88%E4%B8%89%EF%BC%89%E7%90%86%E8%A7%A3%20Ubuntu%20%E5%88%86%E5%8C%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%88%E4%B8%89%EF%BC%89%E7%90%86%E8%A7%A3%20Ubuntu%20%E5%88%86%E5%8C%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5">（三）理解 Ubuntu 分区的核心概念</a></p>
+
+<p id="%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E5%88%86%E5%8C%BA%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88-toc" name="tableOfContents" style="margin-left:0px"><a href="#%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E5%88%86%E5%8C%BA%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88">二、常见分区推荐方案</a></p>
+
+<p id="1.EFI%20%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%EF%BC%88%2Fboot%2Fefi%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#1.EFI%20%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%EF%BC%88%2Fboot%2Fefi%EF%BC%89">1.EFI 系统分区（/boot/efi）</a></p>
+
+<p id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A300MB%20%E2%80%93%201GB-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A300MB%20%E2%80%93%201GB">（1）大小：300MB &ndash; 1GB</a></p>
+
+<p id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E4%B8%BB%E5%88%86%E5%8C%BA-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E4%B8%BB%E5%88%86%E5%8C%BA">（2）类型：主分区</a></p>
+
+<p id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9AFAT32-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9AFAT32">（3）文件系统：FAT32</a></p>
+
+<p id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fboot%2Fefi-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fboot%2Fefi">（4）挂载点：/boot/efi</a></p>
+
+<p id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A">（5）说明：</a></p>
+
+<p id="2.Swap%20%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%EF%BC%88Swap%20Space%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#2.Swap%20%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%EF%BC%88Swap%20Space%EF%BC%89">2.Swap 交换分区（Swap Space）</a></p>
+
+<p id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A">（1）大小：</a></p>
+
+<p id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%C2%A0(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%C2%A0(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)">（2）类型：逻辑分区&nbsp;(如果是 GPT 硬盘则无此概念，直接创建即可)</a></p>
+
+<p id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9A%E9%80%89%E6%8B%A9%E2%80%9C%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%20(linux%20swap%20partition)%E2%80%9D-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9A%E9%80%89%E6%8B%A9%E2%80%9C%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%20(linux%20swap%20partition)%E2%80%9D">（3）文件系统：选择&ldquo;交换空间 (linux swap partition)&rdquo;</a></p>
+
+<p id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%EF%BC%88%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%BF%80%E6%B4%BB%EF%BC%8C%E6%97%A0%E9%9C%80%E6%8C%82%E8%BD%BD%E5%88%B0%E7%9B%AE%E5%BD%95%EF%BC%89-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%EF%BC%88%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%BF%80%E6%B4%BB%EF%BC%8C%E6%97%A0%E9%9C%80%E6%8C%82%E8%BD%BD%E5%88%B0%E7%9B%AE%E5%BD%95%EF%BC%89">（4）挂载点：（通过系统配置自动激活，无需挂载到目录）</a></p>
+
+<p id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A">（5）说明：</a></p>
+
+<p id="3.%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%88%2F%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#3.%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%88%2F%EF%BC%89">3.根目录（/）</a></p>
+
+<p id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A50GB%20%E2%80%93%20100GB%EF%BC%88%E5%BB%BA%E8%AE%AE%E8%87%B3%E5%B0%91%2050GB%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%BB%BA%E8%AE%AE%2080GB-100GB%EF%BC%89-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A50GB%20%E2%80%93%20100GB%EF%BC%88%E5%BB%BA%E8%AE%AE%E8%87%B3%E5%B0%91%2050GB%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%BB%BA%E8%AE%AE%2080GB-100GB%EF%BC%89">（1）大小：50GB &ndash; 100GB（建议至少 50GB，对于开发者建议 80GB-100GB）</a></p>
+
+<p id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)">（2）类型：逻辑分区 (如果是 GPT 硬盘则无此概念，直接创建即可)</a></p>
+
+<p id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4%EF%BC%88%E5%85%BC%E5%AE%B9%E6%80%A7%E5%BC%BA%EF%BC%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E9%AB%98%EF%BC%8C%E9%80%82%E5%90%88%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%9C%BA%E6%99%AF%EF%BC%89-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4%EF%BC%88%E5%85%BC%E5%AE%B9%E6%80%A7%E5%BC%BA%EF%BC%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E9%AB%98%EF%BC%8C%E9%80%82%E5%90%88%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%9C%BA%E6%99%AF%EF%BC%89">（3）文件系统：ext4（兼容性强，稳定性高，适合大多数场景）</a></p>
+
+<p id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2F%EF%BC%88%E5%9B%BA%E5%AE%9A%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%8C%E4%B8%8D%E5%8F%AF%E6%9B%B4%E6%94%B9%EF%BC%89-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2F%EF%BC%88%E5%9B%BA%E5%AE%9A%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%8C%E4%B8%8D%E5%8F%AF%E6%9B%B4%E6%94%B9%EF%BC%89">（4）挂载点：/（固定挂载点，不可更改）</a></p>
+
+<p id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A">（5）说明：</a></p>
+
+<p id="4.%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%EF%BC%88%2Fhome%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#4.%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%EF%BC%88%2Fhome%EF%BC%89">4.用户目录（/home）</a></p>
+
+<p id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A%E5%89%A9%E4%BD%99%E6%89%80%E6%9C%89%E7%A9%BA%E9%97%B4-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A%E5%89%A9%E4%BD%99%E6%89%80%E6%9C%89%E7%A9%BA%E9%97%B4">（1）大小：剩余所有空间</a></p>
+
+<p id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)">（2）类型：逻辑分区 (如果是 GPT 硬盘则无此概念，直接创建即可)</a></p>
+
+<p id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4">（3）文件系统：ext4</a></p>
+
+<p id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fhome-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fhome">（4）挂载点：/home</a></p>
+
+<p id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A-toc" name="tableOfContents" style="margin-left:80px"><a href="#%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A">（5）说明：</a></p>
+
+<p id="%E4%B8%89%E3%80%81%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88-toc" name="tableOfContents" style="margin-left:0px"><a href="#%E4%B8%89%E3%80%81%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88">三、个人推荐分区方案</a></p>
+
+<p id="%EF%BC%881%EF%BC%89%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%881%EF%BC%89%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA">（1）引导分区</a></p>
+
+<p id="%EF%BC%882%EF%BC%89Swap%E5%88%86%E5%8C%BA-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%882%EF%BC%89Swap%E5%88%86%E5%8C%BA">（2）Swap分区</a></p>
+
+<p id="%EF%BC%883%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8E%2Fhome%E7%9B%AE%E5%BD%95%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F-toc" name="tableOfContents" style="margin-left:40px"><a href="#%EF%BC%883%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8E%2Fhome%E7%9B%AE%E5%BD%95%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F">（3）为什么将根目录与/home目录放在一起？</a></p>
+
+<p id="1.%C2%A0%E7%AE%80%E5%8C%96%E5%88%86%E5%8C%BA%E7%AE%A1%E7%90%86%EF%BC%8C%E9%99%8D%E4%BD%8E%E9%97%A8%E6%A7%9B-toc" name="tableOfContents" style="margin-left:80px"><a href="#1.%C2%A0%E7%AE%80%E5%8C%96%E5%88%86%E5%8C%BA%E7%AE%A1%E7%90%86%EF%BC%8C%E9%99%8D%E4%BD%8E%E9%97%A8%E6%A7%9B">1.&nbsp;简化分区管理，降低门槛</a></p>
+
+<p id="2.%C2%A0%E7%A9%BA%E9%97%B4%E5%88%A9%E7%94%A8%E6%9B%B4%E7%81%B5%E6%B4%BB-toc" name="tableOfContents" style="margin-left:80px"><a href="#2.%C2%A0%E7%A9%BA%E9%97%B4%E5%88%A9%E7%94%A8%E6%9B%B4%E7%81%B5%E6%B4%BB">2.&nbsp;空间利用更灵活</a></p>
+
+<p id="3.%C2%A0%E9%80%82%E5%90%88%E5%B0%8F%E5%AE%B9%E9%87%8F%E5%AD%98%E5%82%A8%E6%88%96%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F-toc" name="tableOfContents" style="margin-left:80px"><a href="#3.%C2%A0%E9%80%82%E5%90%88%E5%B0%8F%E5%AE%B9%E9%87%8F%E5%AD%98%E5%82%A8%E6%88%96%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F">3.&nbsp;适合小容量存储或临时系统</a></p>
+
+<p id="4.%C2%A0%E5%AF%B9%20%E2%80%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%80%A7%E2%80%9D%20%E8%A6%81%E6%B1%82%E4%B8%8D%E9%AB%98%E7%9A%84%E5%9C%BA%E6%99%AF-toc" name="tableOfContents" style="margin-left:80px"><a href="#4.%C2%A0%E5%AF%B9%20%E2%80%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%80%A7%E2%80%9D%20%E8%A6%81%E6%B1%82%E4%B8%8D%E9%AB%98%E7%9A%84%E5%9C%BA%E6%99%AF">4.&nbsp;对 &ldquo;数据安全性&rdquo; 要求不高的场景</a></p>
+
+<p id="%E6%80%BB%E7%BB%93-toc" name="tableOfContents" style="margin-left:80px"><a href="#%E6%80%BB%E7%BB%93">总结</a></p>
+
+<p id="%E5%9B%9B%E3%80%81%E5%90%8E%E7%BB%AD%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9%E4%B8%8E%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88-toc" name="tableOfContents" style="margin-left:0px"><a href="#%E5%9B%9B%E3%80%81%E5%90%8E%E7%BB%AD%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9%E4%B8%8E%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88">四、后续分区扩容与调整方案</a></p>
+
+<p id="%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7%E8%B0%83%E6%95%B4%EF%BC%88%E5%A6%82%20GParted%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7%E8%B0%83%E6%95%B4%EF%BC%88%E5%A6%82%20GParted%EF%BC%89">一、使用传统分区工具调整（如 GParted）</a></p>
+
+<p id="%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%20LVM%EF%BC%88%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86%EF%BC%89-toc" name="tableOfContents" style="margin-left:40px"><a href="#%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%20LVM%EF%BC%88%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86%EF%BC%89">二、推荐使用 LVM（逻辑卷管理）</a></p>
+
+<hr id="hr-toc" name="tableOfContents" />
+<h1>一、基础知识</h1>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分区是将硬盘分割成一个或多个逻辑部分的过程。每个分区都被视为一个独立的存储设备，可以单独格式化、挂载和管理。在Ubuntu系统中，通常会有根分区、家目录分区、交换分区等不同类型的分区。在Ubuntu系统中，常用的文件系统包括ext4、btrfs、xfs等。</p>
+
+<h2 id="%EF%BC%88%E4%B8%80%EF%BC%89%E5%9C%A8%E4%BA%86%E8%A7%A3%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E5%89%8D%EF%BC%8C%E5%85%88%E6%98%8E%E7%A1%AE%E7%A1%AC%E7%9B%98%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB%E5%8F%8A%20Linux%20%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99%EF%BC%9A%E2%80%8B" name="%EF%BC%88%E4%B8%80%EF%BC%89%E5%9C%A8%E4%BA%86%E8%A7%A3%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E5%89%8D%EF%BC%8C%E5%85%88%E6%98%8E%E7%A1%AE%E7%A1%AC%E7%9B%98%E7%9A%84%E4%B8%BB%E8%A6%81%E5%88%86%E7%B1%BB%E5%8F%8A%20Linux%20%E7%B3%BB%E7%BB%9F%E4%B8%AD%E7%9A%84%E6%A0%87%E8%AF%86%E8%A7%84%E5%88%99%EF%BC%9A%E2%80%8B"><span style="color:#956fe7"><strong>（一）在了解硬盘分区前，先明确硬盘的主要分类及 Linux 系统中的标识规则：​</strong></span></h2>
+
+<h3>硬盘按存储介质可分为机械硬盘（HDD）和固态硬盘（SSD），按接口及协议可细分为多种类型。不同设备（手机、笔记本、台式机）因设计需求，常用的硬盘类型存在差异：</h3>
+
+<h3>(1)&nbsp;手机中的硬盘</h3>
+
+<p>手机受体积限制，均采用嵌入式固态存储，无机械硬盘：</p>
+
+<ul>
+	<li><strong>eMMC（嵌入式多媒体卡）</strong>：早期中低端手机常用，集成控制器和闪存芯片，接口为并行总线，速度较慢，属于入门级固态存储。</li>
+	<li><strong>UFS（通用闪存存储）</strong>：当前主流手机存储，采用串行接口，分 UFS 2.1、UFS 3.1、UFS 4.0 等版本，速度远高于 eMMC，支持全双工读写，属于高性能固态存储。</li>
+	<li>手机存储在 Linux 系统中通常以 &ldquo;mmcblk&rdquo; 为标识（如 mmcblk0 代表第一块存储设备，分区为 mmcblk0p1、mmcblk0p2 等），无机械部件。</li>
+</ul>
+
+<h3>(2) 笔记本电脑中的硬盘</h3>
+
+<p>笔记本兼顾便携与性能，机械硬盘逐渐被固态硬盘取代：</p>
+
+<ul>
+	<li><strong>机械硬盘（HDD）</strong>：多为 2.5 英寸 SATA 接口，依赖磁头和盘片转动读写数据，体积较大、功耗较高，目前仅在低端机型或大容量需求场景中保留。在 Linux 中标识为 &ldquo;sd&rdquo; 系列（如 sda、sdb）。</li>
+	<li><strong>固态硬盘（SSD）</strong>：
+	<ul>
+		<li><strong>SATA 接口 SSD</strong>：外形与 2.5 英寸机械硬盘兼容，采用 SATA 协议，速度受接口限制（约 500MB/s），在 Linux 中标识为 &ldquo;sd&rdquo; 系列（如 sdc、sdd）。</li>
+		<li><strong>NVMe M.2 SSD</strong>：主流高性能选择，采用 PCIe 通道和 NVMe 协议，体积小巧（M.2 接口，无外壳），速度可达 3000MB/s 以上。在 Linux 中标识为 &ldquo;nvme&rdquo; 系列（如 nvme0 代表第一块设备，分区为 nvme0n1p1、nvme0n1p2 等，n 为命名空间，p 为分区）。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3>(3) 台式机主板中的硬盘</h3>
+
+<p>台式机空间充裕，支持的硬盘类型更丰富：</p>
+
+<ul>
+	<li><strong>机械硬盘（HDD）</strong>：多为 3.5 英寸 SATA 接口，容量大（可达 20TB 以上）、成本低，适合存储大量数据。Linux 中标识为 &ldquo;sd&rdquo; 系列（如 sda、sdb）。</li>
+	<li><strong>固态硬盘（SSD）</strong>：
+	<ul>
+		<li><strong>SATA 接口 SSD</strong>：与台式机 SATA 主板接口兼容，速度与笔记本 SATA SSD 一致，Linux 标识为 &ldquo;sd&rdquo; 系列。</li>
+		<li><strong>NVMe M.2 SSD</strong>：通过主板 M.2 插槽连接，支持 PCIe 3.0/4.0/5.0 通道，速度随通道数提升（最高可达 10GB/s 以上），Linux 标识为 &ldquo;nvme&rdquo; 系列。</li>
+		<li><strong>PCIe 接口 SSD</strong>：直接插在主板 PCIe 插槽（如 x4、x8、x16），采用 NVMe 协议，多为高端发烧级或企业级产品，速度与 NVMe M.2 SSD 相当，Linux 中部分仍以 &ldquo;nvme&rdquo; 标识，部分特殊型号可能以 &ldquo;sd&rdquo; 标识。</li>
+	</ul>
+	</li>
+	<li><strong>SCSI 硬盘</strong>：多为企业级机械硬盘，接口速度快、稳定性强，主要用于服务器，民用台式机极少使用，Linux 中标识为 &ldquo;sd&rdquo; 系列。</li>
+	<li><strong>IDE 硬盘</strong>：已完全淘汰，早期台式机曾广泛使用，Linux 中标识为 &ldquo;hd&rdquo; 系列（如 hda、hdb）。</li>
+</ul>
+
+<h3>(4)关于硬盘分区的核心规则（传统规则，MBR分区表）如下：</h3>
+
+<p>分区类型：硬盘分区分为主分区、扩展分区和逻辑分区。其中主分区最多只能有 4 个；扩展分区是主分区以外的分区（可不存在），但硬盘必须至少有一个主分区。主分区中需有一个激活分区，用于启动 Windows/Linux 系统。</p>
+
+<p>主分区（Primary Partition）：可以用来直接安装操作系统或存储数据。一个硬盘最多可以有四个主分区。</p>
+
+<p>扩展分区（Extended Partition）：扩展分区本身不能直接使用，它需要被进一步划分为逻辑分区。扩展分区的主要作用是突破四个主分区的限制。</p>
+
+<p>合理分区方式：为充分利用主分区名额，最合理的方案是划分 3 个主分区和 1 个扩展分区，再在扩展分区内建立若干逻辑分区。</p>
+
+<p>Linux 系统中的分区标识：单块硬盘最多支持 16 个分区。</p>
+
+<ul>
+	<li>对于 IDE、SCSI、SATA 接口的硬盘，4 个主分区依次标识为 sda1、sda2、sda3、sda4；逻辑分区从 sda5 开始，依次到 sda16。</li>
+	<li>对于 NVMe 硬盘，分区标识格式为 &ldquo;nvme &lt; 设备号&gt; n &lt; 命名空间 &gt; p &lt; 分区号 &gt;&rdquo;，如第一块 NVMe 硬盘的第一个主分区为 nvme0n1p1，逻辑分区从 nvme0n1p5 开始（遵循主分区最多 4 个的规则）。</li>
+	<li>手机嵌入式存储（eMMC/UFS）的分区标识为 &ldquo;mmcblk &lt; 设备号&gt; p &lt; 分区号 &gt;&rdquo;，如 mmcblk0p1（主分区）、mmcblk0p5（逻辑分区）。</li>
+</ul>
+
+<p><strong><span style="background-color:#d4e9d5">补充说明：</span></strong></p>
+
+<p><span style="background-color:#d4e9d5">传统分区规则（主分区最多 4 个、依赖扩展分区和逻辑分区等）的核心限制来源于</span><strong><span style="background-color:#d4e9d5">MBR 分区表</span></strong><span style="background-color:#d4e9d5">（Master Boot Record，主引导记录），而非 BIOS 固件本身；而 UEFI 固件的普及，通常搭配</span><strong><span style="background-color:#d4e9d5">GPT 分区表</span></strong><span style="background-color:#d4e9d5">（GUID Partition Table，全局唯一标识分区表）使用，这才真正突破了传统分区规则的限制。两者的关系需要从 &ldquo;分区表类型&rdquo; 和 &ldquo;固件类型&rdquo; 的关联来理解：</span></p>
+
+<h3><span style="background-color:#d4e9d5">1）传统规则的本质：MBR 分区表的限制</span></h3>
+
+<p><span style="background-color:#d4e9d5">你提到的 &ldquo;主分区最多 4 个、扩展分区 + 逻辑分区突破限制&rdquo; 等规则，是</span><strong><span style="background-color:#d4e9d5">MBR 分区表</span></strong><span style="background-color:#d4e9d5">的固有特性：</span></p>
+
+<ul>
+	<li><span style="background-color:#d4e9d5">MBR 分区表的结构中，仅预留了 4 个主分区表项，因此最多只能创建 4 个主分区；</span></li>
+	<li><span style="background-color:#d4e9d5">为了突破这个限制，才设计了 &ldquo;扩展分区&rdquo;（占用 1 个主分区表项），再在扩展分区内划分 &ldquo;逻辑分区&rdquo;（数量最多 12 个，总分区数最多 16 个）。</span></li>
+	<li><span style="background-color:#d4e9d5">这种规则与传统 BIOS 固件配合使用，但本质是 MBR 分区表的技术限制，而非 BIOS 本身的限制。</span></li>
+</ul>
+
+<h3><span style="background-color:#d4e9d5">2） UEFI 环境下的分区规则：取决于分区表类型</span></h3>
+
+<p><span style="background-color:#d4e9d5">UEFI 是新一代固件标准，它本身不强制限制分区数量，但</span><strong><span style="background-color:#d4e9d5">推荐使用 GPT 分区表</span></strong><span style="background-color:#d4e9d5">（也兼容 MBR 分区表，称为 &ldquo;Legacy 模式&rdquo;）。因此分区规则是否适用，取决于使用的分区表类型：</span></p>
+
+<h4><span style="background-color:#d4e9d5">（1）UEFI + GPT 分区表：完全突破传统规则</span></h4>
+
+<p><span style="background-color:#d4e9d5">GPT 分区表是为配合 UEFI 设计的，彻底抛弃了 MBR 的限制：</span></p>
+
+<ul>
+	<li><strong><span style="background-color:#d4e9d5">无主分区 / 扩展分区 / 逻辑分区的区分</span></strong><span style="background-color:#d4e9d5">：所有分区都是 &ldquo;主分区&rdquo;，无需扩展分区中转；</span></li>
+	<li><strong><span style="background-color:#d4e9d5">分区数量无严格限制</span></strong><span style="background-color:#d4e9d5">：理论上支持无限分区，实际中受操作系统限制（如 Windows 支持最多 128 个分区，Linux 无明确上限）；</span></li>
+	<li><strong><span style="background-color:#d4e9d5">无需 &ldquo;激活分区&rdquo;</span></strong><span style="background-color:#d4e9d5">：UEFI 启动依赖专门的 &ldquo;EFI 系统分区（ESP）&rdquo;（通常为 FAT32 格式），用于存放启动文件，而非 MBR 中的 &ldquo;激活主分区&rdquo;。</span></li>
+</ul>
+
+<p><span style="background-color:#d4e9d5">此时，传统的 &ldquo;4 个主分区限制&rdquo;&ldquo;逻辑分区从 5 开始编号&rdquo; 等规则</span><strong><span style="background-color:#d4e9d5">完全不适用</span></strong><span style="background-color:#d4e9d5">。</span></p>
+
+<h4><span style="background-color:#d4e9d5">（2）UEFI + MBR 分区表：仍受传统规则限制</span></h4>
+
+<p><span style="background-color:#d4e9d5">UEFI 固件为了兼容旧系统，支持以 &ldquo;Legacy 模式&rdquo; 使用 MBR 分区表。这种情况下：</span></p>
+
+<ul>
+	<li><span style="background-color:#d4e9d5">分区规则仍遵循 MBR 的限制（最多 4 个主分区、需扩展分区 + 逻辑分区突破限制等）；</span></li>
+	<li><span style="background-color:#d4e9d5">启动方式仍依赖 MBR 中的激活分区，与传统 BIOS 一致。</span></li>
+</ul>
+
+<p><span style="background-color:#d4e9d5">此时，传统规则</span><strong><span style="background-color:#d4e9d5">仍然适用</span></strong><span style="background-color:#d4e9d5">。</span></p>
+
+<h3><span style="background-color:#d4e9d5">3） 总结：关键在分区表类型，而非 UEFI 本身</span></h3>
+
+<p><span style="background-color:#d4e9d5">&ldquo;UEFI 下分区没有限制&rdquo; 的说法，本质是 &ldquo;UEFI+GPT 分区表&rdquo; 突破了 MBR 的限制，而非 UEFI 固件直接取消了规则：</span></p>
+
+<ul>
+	<li><span style="background-color:#d4e9d5">若用 UEFI+GPT：传统分区规则（主分区 4 个限制、扩展 / 逻辑分区划分）完全失效；</span></li>
+	<li><span style="background-color:#d4e9d5">若用 UEFI+MBR（兼容模式）：传统规则仍有效；</span></li>
+	<li><span style="background-color:#d4e9d5">传统 BIOS+MBR：必须遵循传统规则；</span></li>
+	<li><span style="background-color:#d4e9d5">传统 BIOS+GPT：兼容性差（多数旧 BIOS 不支持），即使支持也需特殊处理，不推荐。</span></li>
+</ul>
+
+<p><span style="background-color:#d4e9d5">因此，现代 UEFI 系统普遍采用 GPT 分区表，也就不再受传统分区规则的约束了。</span></p>
+
+<h2 id="%EF%BC%88%E4%BA%8C%EF%BC%89%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB%E5%8F%8A%E7%B3%BB%E7%BB%9F%E9%80%82%E9%85%8D%E2%80%8B" name="%EF%BC%88%E4%BA%8C%EF%BC%89%E7%A1%AC%E7%9B%98%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E5%AF%B9%E5%BA%94%E5%85%B3%E7%B3%BB%E5%8F%8A%E7%B3%BB%E7%BB%9F%E9%80%82%E9%85%8D%E2%80%8B"><span style="color:#956fe7">（二）硬盘分区表格式与 BIOS 引导方式的对应关系及系统适配​</span></h2>
+
+<h3 id="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%881%EF%BC%89%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82%E2%80%8B" name="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%881%EF%BC%89%E5%88%86%E5%8C%BA%E8%A1%A8%E6%A0%BC%E5%BC%8F%E4%B8%8E%20BIOS%20%E5%BC%95%E5%AF%BC%E6%96%B9%E5%BC%8F%E7%9A%84%E6%A0%B8%E5%BF%83%E5%B7%AE%E5%BC%82%E2%80%8B">（1）分区表格式与 BIOS 引导方式的核心差异​</h3>
+
+<p>磁盘分区表主要有两种格式，对应的 BIOS 引导方式也分为两类，核心特性如下：​</p>
+
+<ul>
+	<li>MBR 分区表：传统格式，仅支持最大 2.2TB 硬盘和最多 4 个主分区，适配Legacy BIOS（传统 BIOS） 引导方式。​</li>
+</ul>
+
+<ul>
+	<li>GPT 分区表：属于 UEFI 规范的一部分，支持超百 TB 硬盘和最多 100 个主分区，适配UEFI BIOS（新型 BIOS） 引导方式，原生支持大容量硬盘更高效。​</li>
+</ul>
+
+<p>&nbsp;注：现在主流的分区表类型是&nbsp;<strong>GPT（GUID Partition Table）</strong>，尤其在新设备和大容量存储场景中已成为标准选择。后面方案主要以<strong>UEFI+GPT</strong>为主。(也存在其他分区表如：苹果生态专用：APFS 分区图（APFS Partition Map）、UNIX/BSD 系统专用：BSD 磁盘标签（BSD Disk Label）等等，但是主流还是GPT、MBR)</p>
+
+<h3 id="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%882%EF%BC%89%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E9%80%82%E9%85%8D%E8%A7%84%E5%88%99%E2%80%8B" name="%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%C2%A0%EF%BC%882%EF%BC%89%E4%B8%8D%E5%90%8C%E7%B3%BB%E7%BB%9F%E4%B8%8B%E7%9A%84%E9%80%82%E9%85%8D%E8%A7%84%E5%88%99%E2%80%8B">（2）不同系统下的适配规则​</h3>
+
+<p>1. Windows 系统​</p>
+
+<ul>
+	<li>Legacy BIOS 引导：需搭配 MBR 分区表。对于 32 位系统，可通过厂商（如华硕、技嘉、希捷）的 &ldquo;虚拟磁盘&rdquo; 技术在 MBR 分区下使用 2TB 以上硬盘，但体验不如原生支持。​</li>
+</ul>
+
+<ul>
+	<li>UEFI BIOS 引导：需搭配 GPT 分区表，原生支持大容量硬盘，尤其对 Windows 7 用户更友好，无需额外技术适配。​</li>
+	<li>演示Windows11下如何查看BIOS类型</li>
+</ul>
+
+<p>WIN+R输入msinfo32</p>
+
+<p><img alt="" height="255" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/169741e83a9a485a83059be02aacd355.png" srcset="/img/loading.gif" lazyload width="501" /></p>
+
+<p>点击确定</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fd0597cc9b124a6c9dfd876e0793b95a.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p>2. Linux 系统（以 Ubuntu 为例）​</p>
+
+<ul>
+	<li>Legacy BIOS 引导：必须使用 MBR 分区表，按常规划分/、/boot、swap、/home等分区即可。​</li>
+</ul>
+
+<ul>
+	<li>UEFI BIOS 引导：必须使用 GPT 分区表，且需额外创建ESP 分区（EFI 系统分区）（注：ESP 分区即 EFI 分区，为系统引导关键分区），划分/、/boot等分区时，严禁删除 ESP 分区，否则会导致系统重启时出现 &ldquo;Invalid Partition Table（无效分区表）&rdquo; 错误。​</li>
+</ul>
+
+<h3 id="%C2%A0%EF%BC%883%EF%BC%89%E5%85%B3%E4%BA%8EGPT%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E" name="%C2%A0%EF%BC%883%EF%BC%89%E5%85%B3%E4%BA%8EGPT%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E7%AE%80%E8%A6%81%E8%AF%B4%E6%98%8E">（3）关于GPT分区表的简要说明</h3>
+
+<p>在 GPT 分区表下，所有分区<strong>本质上都是主分区</strong>，没有逻辑分区的概念，也不存在主分区与逻辑分区的区分限制。这是 GPT 相对于 MBR 的核心改进之一，具体原理和使用方式如下：</p>
+
+<h1 id="GPT%20%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91" name="GPT%20%E5%88%86%E5%8C%BA%E8%A1%A8%E7%9A%84%E5%BA%95%E5%B1%82%E9%80%BB%E8%BE%91"><span style="color:#e6b223"><strong>GPT 分区表的底层逻辑</strong></span></h1>
+
+<ol>
+	<li>
+	<p><strong>无主分区数量限制</strong><br />
+	GPT 通过全局唯一标识符（GUID）管理分区，理论上支持最多 128 个主分区。这种设计彻底打破了 MBR 的 &ldquo;4 主分区&rdquo; 限制，用户可直接创建多个独立主分区（如 /、/home、/boot 等），无需依赖扩展分区或逻辑分区。</p>
+	</li>
+	<li>
+	<p><strong>分区类型由 GUID 标识</strong><br />
+	GPT 通过<strong>分区类型 GUID</strong>区分不同功能的分区，例如：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;Linux 根目录（/）的类型 GUID 为&lt;code&gt;0FC63DAF-8483-4772-8E79-3D69D8477DE4&lt;/code&gt;；&lt;/li&gt;
+	&lt;li&gt;EFI 系统分区（ESP）的类型 GUID 为&lt;code&gt;C12A7328-F81F-11D2-BA4B-00A0C93EC93B&lt;/code&gt;。&lt;br /&gt;
+	这些 GUID 仅用于标识分区用途，与分区类型（主 / 逻辑）无关。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;分区表结构简化&lt;/strong&gt;&lt;br /&gt;
+GPT 分区表直接存储在磁盘的特定位置（如 LBA 1），并包含备份分区表以提高可靠性。所有分区平等存在，无需像 MBR 那样通过扩展分区嵌套逻辑分区，因此创建 /home 分区时只需指定挂载点和文件系统即可。&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;理解主分区与逻辑分区限制：&lt;/strong&gt;&amp;nbsp;对于使用 MBR 分区表的硬盘，你最多只能创建 4 个主分区。如果你需要更多分区，则必须将其中一个主分区设置为&amp;ldquo;扩展分区&amp;rdquo;，然后在扩展分区内部创建逻辑分区。GPT 分区表则没有这种限制，可以创建更多分区。&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h3 id="%EF%BC%884%EF%BC%89%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E2%80%8B" name="%EF%BC%884%EF%BC%89%E5%85%B3%E9%94%AE%E6%B3%A8%E6%84%8F%E4%BA%8B%E9%A1%B9%E2%80%8B">（4）关键注意事项​</h3>
+
+<ul>
+	<li>若 UEFI BIOS 引导的主机使用 MBR 分区表，或 GPT 分区表下删除 ESP 分区，都会导致系统安装后无法正常启动。​</li>
+</ul>
+
+<ul>
+	<li>GPT+UEFI 组合对大容量硬盘的支持是原生且高效的，优于 MBR 分区表在 32 位系统中的兼容方案。</li>
+</ul>
+
+<h2 id="%EF%BC%88%E4%B8%89%EF%BC%89%E7%90%86%E8%A7%A3%20Ubuntu%20%E5%88%86%E5%8C%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5" name="%EF%BC%88%E4%B8%89%EF%BC%89%E7%90%86%E8%A7%A3%20Ubuntu%20%E5%88%86%E5%8C%BA%E7%9A%84%E6%A0%B8%E5%BF%83%E6%A6%82%E5%BF%B5"><span style="color:#956fe7">（三）理解 Ubuntu 分区的核心概念</span></h2>
+
+<p><strong>&nbsp; &nbsp; &nbsp; &nbsp;（1）文件系统 (File System)：</strong>文件系统是操作系统用来组织和存储文件的方法。对于 Linux 系统，ext4 是目前最常用且推荐的文件系统，它提供了良好的性能和稳定性。<br />
+<strong>&nbsp; &nbsp; &nbsp; &nbsp;（2）挂载点 (Mount Point)：</strong>在 Linux 中，所有存储设备和分区都必须&ldquo;挂载&rdquo;到文件系统树的一个特定目录上，这个目录就是挂载点。例如，根目录 / 是整个文件系统的起点。<br />
+<strong>&nbsp; &nbsp; &nbsp; &nbsp;（3）主分区 (Primary Partition) 与 逻辑分区 (Logical Partition)：</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>&nbsp;主分区：</strong>直接定义在硬盘的 MBR（主引导记录）或 GPT（GUID 分区表）中。MBR 硬盘最多支持 4 个主分区。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>逻辑分区：</strong>为了突破 MBR 硬盘主分区数量的限制，可以在一个主分区（扩展分区）内创建多个逻辑分区。GPT 硬盘则没有主分区和逻辑分区的概念，可以直接创建大量分区。<br />
+<strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;（4）UEFI 与 BIOS 启动模式：</strong><br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>UEFI (Unified Extensible Firmware Interface)：</strong>现代计算机普遍采用的启动模式，支持更大的硬盘和更快的启动速度。UEFI 系统需要一个 EFI 系统分区 (EFI System Partition, ESP) 来存放引导文件。<br />
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<strong>Legacy BIOS (Basic Input/Output System)：</strong>传统的启动模式，通常用于老旧设备。BIOS 模式下不需要 EFI 分区。</p>
+
+<h1 id="%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E5%88%86%E5%8C%BA%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88" name="%E4%BA%8C%E3%80%81%E5%B8%B8%E8%A7%81%E5%88%86%E5%8C%BA%E6%8E%A8%E8%8D%90%E6%96%B9%E6%A1%88">二、常见分区推荐方案</h1>
+
+<h2 id="1.EFI%20%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%EF%BC%88%2Fboot%2Fefi%EF%BC%89" name="1.EFI%20%E7%B3%BB%E7%BB%9F%E5%88%86%E5%8C%BA%EF%BC%88%2Fboot%2Fefi%EF%BC%89"><span style="color:#fe2c24">1.EFI 系统分区（/boot/efi）</span></h2>
+
+<h3 id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A300MB%20%E2%80%93%201GB" name="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A300MB%20%E2%80%93%201GB"><span style="color:#4da8ee">（1）大小：</span>300MB &ndash; 1GB</h3>
+
+<h3 id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E4%B8%BB%E5%88%86%E5%8C%BA" name="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E4%B8%BB%E5%88%86%E5%8C%BA"><span style="color:#6eaad7">（2）类型：</span>主分区</h3>
+
+<h3 id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9AFAT32" name="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9AFAT32"><span style="color:#6eaad7">（3）文件系统：</span><strong>FAT32</strong></h3>
+
+<h3 id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fboot%2Fefi" name="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fboot%2Fefi"><span style="color:#6eaad7">（4）挂载点：</span>/boot/efi</h3>
+
+<h3 id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A" name="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A"><span style="color:#6eaad7">（5）说明：</span></h3>
+
+<p>该分区是 UEFI BIOS 引导模式下（搭配 GPT 分区表）Linux 系统（如 Ubuntu）的核心引导分区。其核心参数与特性如下：</p>
+
+<ul>
+	<li><strong>文件系统要求</strong>：必须格式化为<strong>FAT32</strong>。这是 UEFI 固件的标准要求，因为 FAT32 具有跨平台兼容性，可被 Windows、Linux、macOS 等主流操作系统识别，确保引导程序能被多系统环境下的 UEFI 固件正确读取。</li>
+	<li><strong>分区类型标识</strong>：在 GPT 分区表中，该分区的类型标识为<strong>EFI 系统分区（类型 GUID：C12A7328-F81F-11D2-BA4B-00A0C93EC93B）</strong>，与文件系统类型（FAT32）是两个独立概念。</li>
+	<li><strong>大小方面：</strong>一般是300MB/512MB就够了，但如果需要后续引导多系统就要1GB或者大一些。</li>
+	<li><strong>核心功能</strong>：
+	<ul>
+		<li>存储 UEFI 引导程序（如 GRUB）、内核镜像及启动配置文件，是系统启动的 &ldquo;入口&rdquo;。</li>
+		<li>支持 UEFI 固件直接访问引导文件，确保系统快速启动和安全启动功能正常运行。</li>
+	</ul>
+	</li>
+	<li><strong>操作注意事项</strong>：
+	<ul>
+		<li>严禁删除或格式化该分区，否则会导致系统启动失败（如出现 &ldquo;Invalid Partition Table&rdquo; 错误）。</li>
+		<li>挂载点必须设置为 **/boot/efi**，而非传统 BIOS 模式下的 &ldquo;/boot&rdquo;，以确保 UEFI 固件能正确识别引导路径。</li>
+		<li>若手动分区，需使用工具（如<code>gdisk</code>）明确指定分区类型为 EFI 系统分区，并格式化为 FAT32。</li>
+	</ul>
+	</li>
+</ul>
+
+<h2 id="2.Swap%20%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%EF%BC%88Swap%20Space%EF%BC%89" name="2.Swap%20%E4%BA%A4%E6%8D%A2%E5%88%86%E5%8C%BA%EF%BC%88Swap%20Space%EF%BC%89"><span style="color:#fe2c24">2.Swap 交换分区（Swap Space）</span></h2>
+
+<h3 id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A" name="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A"><span style="color:#6eaad7">（1）大小：</span></h3>
+
+<ul>
+	<li><strong>常规建议</strong>：通常为物理内存的&nbsp;<strong>1-2 倍</strong>，但需结合实际场景调整。例如：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;内存 &amp;le; 4GB：建议设置为&amp;nbsp;&lt;strong&gt;4-8GB&lt;/strong&gt;；&lt;/li&gt;
+	&lt;li&gt;内存 4-16GB：建议设置为&amp;nbsp;&lt;strong&gt;8-16GB&lt;/strong&gt;；&lt;/li&gt;
+	&lt;li&gt;内存 &amp;ge; 16GB：可适当减少（如&amp;nbsp;&lt;strong&gt;2-4GB&lt;/strong&gt;），甚至可关闭（但需禁用休眠功能）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;特殊需求&lt;/strong&gt;：若需启用休眠（Hibernate）功能，Swap 大小需&amp;nbsp;&lt;strong&gt;&amp;ge; 物理内存&lt;/strong&gt;，以确保休眠文件能完整写入磁盘。&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3 id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%C2%A0(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)" name="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%C2%A0(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)"><span style="color:#6eaad7">（2）类型：</span>逻辑分区&nbsp;(如果是 GPT 硬盘则无此概念，直接创建即可)</h3>
+
+<ul>
+	<li><strong>MBR 分区表</strong>：通常作为&nbsp;<strong>逻辑分区</strong>&nbsp;存在于扩展分区中（受限于 MBR 的 4 主分区限制）。</li>
+	<li><strong>GPT 分区表</strong>：可设置为&nbsp;<strong>主分区</strong>，无主分区数量限制。</li>
+	<li><strong>分区类型标识</strong>：
+	<ul>
+		<li>MBR 中需设置为&nbsp;<strong>Linux Swap（类型代码 8200）</strong>；</li>
+		<li>GPT 中需设置为&nbsp;<strong>Swap 类型 GUID（0657FD6D-A4AB-43C4-84E5-0933C84B4F4F）</strong>。</li>
+	</ul>
+	</li>
+</ul>
+
+<h3 id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9A%E9%80%89%E6%8B%A9%E2%80%9C%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%20(linux%20swap%20partition)%E2%80%9D" name="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9A%E9%80%89%E6%8B%A9%E2%80%9C%E4%BA%A4%E6%8D%A2%E7%A9%BA%E9%97%B4%20(linux%20swap%20partition)%E2%80%9D"><span style="color:#6eaad7">（3）文件系统：</span>选择&ldquo;<strong>交换空间 (linux swap partition)</strong>&rdquo;</h3>
+
+<h3 id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%EF%BC%88%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%BF%80%E6%B4%BB%EF%BC%8C%E6%97%A0%E9%9C%80%E6%8C%82%E8%BD%BD%E5%88%B0%E7%9B%AE%E5%BD%95%EF%BC%89" name="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%EF%BC%88%E9%80%9A%E8%BF%87%E7%B3%BB%E7%BB%9F%E9%85%8D%E7%BD%AE%E8%87%AA%E5%8A%A8%E6%BF%80%E6%B4%BB%EF%BC%8C%E6%97%A0%E9%9C%80%E6%8C%82%E8%BD%BD%E5%88%B0%E7%9B%AE%E5%BD%95%EF%BC%89"><span style="color:#6eaad7">（4）挂载点：</span>（通过系统配置自动激活，无需挂载到目录）</h3>
+
+<h3 id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A" name="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A"><span style="color:#6eaad7">（5）说明：</span></h3>
+
+<ul>
+	<li><strong>核心功能</strong>：当物理内存不足时，Swap 分区作为虚拟内存扩展，临时存储不活跃的内存数据，避免系统因内存耗尽崩溃。</li>
+	<li><strong>设置原则</strong>：
+	<ul>
+		<li><strong>性能权衡</strong>：Swap 空间过大会增加磁盘 I/O 负担，影响系统响应速度；过小则无法有效缓解内存压力。</li>
+		<li><strong>休眠依赖</strong>：若需使用休眠功能（将内存状态保存到磁盘），Swap 大小必须&nbsp;<strong>&ge; 物理内存</strong>，否则休眠功能无法启用。</li>
+	</ul>
+	</li>
+	<li><strong>分区工具建议</strong>：
+	<ul>
+		<li>MBR 环境下，使用<code>fdisk</code>或<code>parted</code>工具创建逻辑分区并设置类型为 8200；</li>
+		<li>GPT 环境下，使用<code>gdisk</code>工具创建主分区并指定 Swap 类型 GUID。</li>
+	</ul>
+	</li>
+	<li><strong>系统配置</strong>：
+	<ul>
+		<li>通过<code>/etc/fstab</code>文件自动激活 Swap 分区（例如：<code>/dev/sdaX swap swap defaults 0 0</code>）；</li>
+		<li>可通过<code>swapon -a</code>命令手动启用，或<code>swapoff -a</code>关闭。</li>
+	</ul>
+	</li>
+	<li><strong>现代趋势</strong>：对于内存充足的系统（如 &ge; 16GB），Swap 分区可适当缩小甚至省略，但需通过<code>sysctl</code>调整<code>swappiness</code>参数（默认 60，表示内存使用率达 60% 时启用 Swap），以优化内存使用策略。</li>
+	<li><strong>类型方面：</strong><span style="color:#fe2c24">逻辑分区&nbsp;(如果是 GPT 硬盘则无此概念，直接创建即可)，我这里表达的是传统Legacy&nbsp; BIOS下的MBR 分区表情况下是逻辑分区；但是 GPT 分区表情况下就没有限制了没有逻辑分区概念了就全是主分区。</span></li>
+</ul>
+
+<h2 id="3.%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%88%2F%EF%BC%89" name="3.%E6%A0%B9%E7%9B%AE%E5%BD%95%EF%BC%88%2F%EF%BC%89"><span style="color:#fe2c24"><strong>3.根目录（/）</strong></span></h2>
+
+<h3 id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A50GB%20%E2%80%93%20100GB%EF%BC%88%E5%BB%BA%E8%AE%AE%E8%87%B3%E5%B0%91%2050GB%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%BB%BA%E8%AE%AE%2080GB-100GB%EF%BC%89" name="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A50GB%20%E2%80%93%20100GB%EF%BC%88%E5%BB%BA%E8%AE%AE%E8%87%B3%E5%B0%91%2050GB%EF%BC%8C%E5%AF%B9%E4%BA%8E%E5%BC%80%E5%8F%91%E8%80%85%E5%BB%BA%E8%AE%AE%2080GB-100GB%EF%BC%89"><span style="color:#6eaad7">（1）大小：</span>50GB &ndash; 100GB（建议至少 50GB，对于开发者建议 80GB-100GB）</h3>
+
+<ul>
+	<li><strong>最小需求</strong>：至少&nbsp;<strong>10GB</strong>（适用于最小化安装的服务器或轻量级系统）。</li>
+	<li><strong>推荐配置</strong>：
+	<ul>
+		<li><strong>个人桌面 / 工作站</strong>：20GB&ndash;50GB（需预留系统更新、软件安装及临时文件空间）。</li>
+		<li><strong>服务器 / 高负载环境</strong>：50GB 以上（根据日志、数据库等数据量调整，如 Web 服务器建议 100GB+）。</li>
+	</ul>
+	</li>
+	<li><strong>动态扩展</strong>：若使用&nbsp;<strong>LVM（逻辑卷管理）</strong>，可通过扩容卷组动态调整根目录大小，避免空间不足问题。</li>
+</ul>
+
+<h3 id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)" name="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)"><span style="color:#6eaad7">（2）类型：</span>逻辑分区 (如果是 GPT 硬盘则无此概念，直接创建即可)</h3>
+
+<ul>
+	<li><strong>MBR 分区表</strong>：可作为&nbsp;<strong>主分区</strong>&nbsp;或&nbsp;<strong>逻辑分区</strong>（受限于 MBR 的 4 主分区限制，通常与扩展分区配合使用）。</li>
+	<li><strong>GPT 分区表</strong>：直接创建为&nbsp;<strong>主分区</strong>，无主分区数量限制。</li>
+	<li><strong>GPT 类型标识</strong>：在 GPT 分区表中，根目录的类型 GUID 为&nbsp;<strong>0FC63DAF-8483-4772-8E79-3D69D8477DE4</strong>（Linux 文件系统通用类型）。</li>
+</ul>
+
+<h3 id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4%EF%BC%88%E5%85%BC%E5%AE%B9%E6%80%A7%E5%BC%BA%EF%BC%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E9%AB%98%EF%BC%8C%E9%80%82%E5%90%88%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%9C%BA%E6%99%AF%EF%BC%89" name="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4%EF%BC%88%E5%85%BC%E5%AE%B9%E6%80%A7%E5%BC%BA%EF%BC%8C%E7%A8%B3%E5%AE%9A%E6%80%A7%E9%AB%98%EF%BC%8C%E9%80%82%E5%90%88%E5%A4%A7%E5%A4%9A%E6%95%B0%E5%9C%BA%E6%99%AF%EF%BC%89"><span style="color:#6eaad7">（3）文件系统：</span><strong>ext4</strong>（兼容性强，稳定性高，适合大多数场景）</h3>
+
+<ul>
+	<li><strong>其他选项</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;XFS&lt;/strong&gt;：适合大文件和高吞吐量场景（如数据库服务器）。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;Btrfs&lt;/strong&gt;：支持快照、校验和及弹性扩展，适合需要高级功能的系统。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;ZFS&lt;/strong&gt;：提供数据冗余和压缩功能，但需额外内核模块支持。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3 id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2F%EF%BC%88%E5%9B%BA%E5%AE%9A%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%8C%E4%B8%8D%E5%8F%AF%E6%9B%B4%E6%94%B9%EF%BC%89" name="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2F%EF%BC%88%E5%9B%BA%E5%AE%9A%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%8C%E4%B8%8D%E5%8F%AF%E6%9B%B4%E6%94%B9%EF%BC%89"><span style="color:#6eaad7">（4）挂载点：</span>/（固定挂载点，不可更改）</h3>
+
+<h3 id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A" name="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A"><span style="color:#6eaad7">（5）说明：</span></h3>
+
+<ul>
+	<li><strong>核心功能</strong>：
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;根目录是 Linux 文件系统的起点，包含所有系统文件、用户文件、应用程序及配置文件（如&lt;code&gt;/etc&lt;/code&gt;、&lt;code&gt;/usr&lt;/code&gt;、&lt;code&gt;/var&lt;/code&gt;等）。&lt;/li&gt;
+	&lt;li&gt;直接影响系统稳定性，若空间不足可能导致服务异常（如日志无法写入、软件更新失败）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;分区策略&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;独立分区建议&lt;/strong&gt;：若追求精细化管理，可将&lt;code&gt;/home&lt;/code&gt;、&lt;code&gt;/var&lt;/code&gt;、&lt;code&gt;/tmp&lt;/code&gt;等目录单独分区，避免根目录被单一目录占满。&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;LVM 优势&lt;/strong&gt;：通过 LVM 将根目录创建为逻辑卷，可灵活扩展空间（如添加新硬盘后通过&lt;code&gt;vgextend&lt;/code&gt;和&lt;code&gt;lvextend&lt;/code&gt;命令扩容）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;操作注意事项&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;避免在根目录下直接存储大量用户数据，建议将数据存放在独立分区（如&lt;code&gt;/home&lt;/code&gt;）。&lt;/li&gt;
+	&lt;li&gt;格式化时需指定正确的文件系统类型（如&lt;code&gt;mkfs.ext4 /dev/sdaX&lt;/code&gt;），并通过&lt;code&gt;/etc/fstab&lt;/code&gt;配置自动挂载。&lt;/li&gt;
+	&lt;li&gt;若使用 GPT 分区表，需确保根目录分区类型 GUID 正确设置，否则可能导致系统无法识别。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;性能优化&lt;/strong&gt;：
+&lt;ul&gt;
+	&lt;li&gt;对 SSD 硬盘，可启用&lt;code&gt;discard&lt;/code&gt;选项（在&lt;code&gt;/etc/fstab&lt;/code&gt;中添加&lt;code&gt;discard&lt;/code&gt;参数）以提升性能并延长寿命。&lt;/li&gt;
+	&lt;li&gt;定期清理临时文件（如&lt;code&gt;/tmp&lt;/code&gt;目录），避免空间碎片化。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<p><strong>补充说明</strong>：</p>
+
+<ul>
+	<li>根目录的大小需根据实际需求动态调整。例如，安装图形界面（如 GNOME/KDE）可能需要额外 5GB&ndash;10GB 空间；运行容器或虚拟机时，建议预留更多空间。</li>
+	<li>在多系统环境中，根目录应独立于其他系统分区，避免文件冲突。若使用 LVM，可通过卷组共享物理磁盘资源，但需注意不同系统对 LVM 的支持差异。</li>
+</ul>
+
+<h2 id="4.%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%EF%BC%88%2Fhome%EF%BC%89" name="4.%E7%94%A8%E6%88%B7%E7%9B%AE%E5%BD%95%EF%BC%88%2Fhome%EF%BC%89"><span style="color:#fe2c24">4.用户目录（/home）</span></h2>
+
+<h3 id="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A%E5%89%A9%E4%BD%99%E6%89%80%E6%9C%89%E7%A9%BA%E9%97%B4" name="%EF%BC%881%EF%BC%89%E5%A4%A7%E5%B0%8F%EF%BC%9A%E5%89%A9%E4%BD%99%E6%89%80%E6%9C%89%E7%A9%BA%E9%97%B4"><span style="color:#6eaad7">（1）大小：</span>剩余所有空间</h3>
+
+<h3 id="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)" name="%EF%BC%882%EF%BC%89%E7%B1%BB%E5%9E%8B%EF%BC%9A%E9%80%BB%E8%BE%91%E5%88%86%E5%8C%BA%20(%E5%A6%82%E6%9E%9C%E6%98%AF%20GPT%20%E7%A1%AC%E7%9B%98%E5%88%99%E6%97%A0%E6%AD%A4%E6%A6%82%E5%BF%B5%EF%BC%8C%E7%9B%B4%E6%8E%A5%E5%88%9B%E5%BB%BA%E5%8D%B3%E5%8F%AF)"><span style="color:#6eaad7">（2）类型：</span>逻辑分区 (如果是 GPT 硬盘则无此概念，直接创建即可)</h3>
+
+<ul>
+	<li>GPT 分区表：直接创建为<strong>主分区</strong>（无主分区数量限制，无需依赖扩展分区）。</li>
+	<li>MBR 分区表：通常作为<strong>逻辑分区</strong>（受限于 4 主分区限制，需先创建扩展分区后再划分）。</li>
+</ul>
+
+<h3 id="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4" name="%EF%BC%883%EF%BC%89%E6%96%87%E4%BB%B6%E7%B3%BB%E7%BB%9F%EF%BC%9Aext4"><span style="color:#6eaad7">（3）文件系统：</span>ext4</h3>
+
+<h3 id="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fhome" name="%EF%BC%884%EF%BC%89%E6%8C%82%E8%BD%BD%E7%82%B9%EF%BC%9A%2Fhome"><span style="color:#6eaad7">（4）挂载点：</span>/home</h3>
+
+<h3 id="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A" name="%EF%BC%885%EF%BC%89%E8%AF%B4%E6%98%8E%EF%BC%9A"><span style="color:#6eaad7">（5）说明：</span></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;/home 是 Linux 系统中存储用户个人数据的核心分区，包含所有用户的文档、下载文件、桌面数据、浏览器缓存、应用程序配置（如<code>.bashrc</code>、<code>.config</code>目录）等。</p>
+
+<p>将 /home 独立分区的核心价值在于：</p>
+
+<ul>
+	<li><strong>数据安全</strong>：重装系统或升级根目录（/）时，可直接保留 /home 分区，避免用户数据丢失；</li>
+	<li><strong>管理灵活</strong>：可单独对 /home 进行扩容、备份（如通过 btrfs 快照）或修复，不影响系统核心文件；</li>
+	<li><strong>权限隔离</strong>：用户数据与系统文件分离，降低误操作（如删除系统文件）对个人数据的影响。</li>
+	<li>尤其是对于作为服务器来说，因为需要经常被访问可能导致系统文件出现问题，而独立分区的/home出来的用户配置数据不会被&ldquo;污染&rdquo;，可以保留下来用于重载系统时用上之前的配置。</li>
+</ul>
+
+<h1 id="%E4%B8%89%E3%80%81%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88" name="%E4%B8%89%E3%80%81%E4%B8%AA%E4%BA%BA%E6%8E%A8%E8%8D%90%E5%88%86%E5%8C%BA%E6%96%B9%E6%A1%88">三、个人推荐分区方案</h1>
+
+<p><span style="color:#fe2c24"><strong>前提条件：</strong>对于磁盘空间/硬件条件较低的读者就使用该方案，若是磁盘空间足够且配置较高请使用<strong>常见分区推荐方案</strong>，原因：对于&ldquo;开发老司机&rdquo;，如果经常折腾开发，/home独立分区隔离出来对于出现问题导致系统挂了，重装系统就可以继续使用之前的/home下的配置，这十分重要。</span></p>
+
+<table border="1" cellpadding="1" cellspacing="1" style="width:700px">
+	<tbody>
+		<tr>
+			<th style="text-align:center">分区</th>
+			<th style="text-align:center">推荐大小</th>
+			<th style="text-align:center">类型</th>
+			<th style="text-align:center">文件系统</th>
+			<th style="text-align:center">挂载点</th>
+			<th style="text-align:center">说明</th>
+		</tr>
+		<tr>
+			<td style="text-align:center">EFI（boot）</td>
+			<td style="text-align:center">300MB/1GB</td>
+			<td style="text-align:center">主分区</td>
+			<td style="text-align:center">FAT32</td>
+			<td style="text-align:center">/boot/efi</td>
+			<td style="text-align:center">UEFI 引导分区</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">Swap</td>
+			<td style="text-align:center">16GB</td>
+			<td style="text-align:center">逻辑分区</td>
+			<td style="text-align:center">交换空间</td>
+			<td style="text-align:center">-</td>
+			<td style="text-align:center">虚拟内存 (假设物理内存16GB)</td>
+		</tr>
+		<tr>
+			<td style="text-align:center">/</td>
+			<td style="text-align:center">剩余空间</td>
+			<td style="text-align:center">逻辑分区</td>
+			<td style="text-align:center">ext4</td>
+			<td style="text-align:center">/</td>
+			<td style="text-align:center">系统核心、应用程序安装与用户文件</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><span style="color:#ff9900">注：</span>这个需要根据个人习惯和个人需求的实际情况，同时，作为一名开发者的身份，在这里说明一下：</p>
+
+<h2 id="%EF%BC%881%EF%BC%89%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA" name="%EF%BC%881%EF%BC%89%E5%BC%95%E5%AF%BC%E5%88%86%E5%8C%BA"><span style="color:#e6b223">（1）引导分区</span></h2>
+
+<p>引导分区取决于你是否会用到多系统，即多系统的情况下需要对应的引导配置存放在该引导分区中。</p>
+
+<h2 id="%EF%BC%882%EF%BC%89Swap%E5%88%86%E5%8C%BA" name="%EF%BC%882%EF%BC%89Swap%E5%88%86%E5%8C%BA"><span style="color:#e6b223">（2）Swap分区</span></h2>
+
+<p>Swap分区要根据自己的实际物理内存和需求来看，现在笔记本一般是16GB的内存，笔者这里是因为有些时候需要编译系统镜像进行开发，防止内存不够就需要Swap分区（需要牺牲物理硬盘作为虚拟内存）顶上，如果自己的配置够高也可以不用设置。同时，有些时候使用Docker并不推荐使用Swap分区。</p>
+
+<p><img alt="" height="683" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/aa07355343b94c8aba6a7489e9e955f8.png" srcset="/img/loading.gif" lazyload width="678" /></p>
+
+<p>&nbsp;<img alt="" height="427" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8302b545703c4994bc0b91c96e1ed979.png" srcset="/img/loading.gif" lazyload width="675" /></p>
+
+<h2 id="%EF%BC%883%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8E%2Fhome%E7%9B%AE%E5%BD%95%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F" name="%EF%BC%883%EF%BC%89%E4%B8%BA%E4%BB%80%E4%B9%88%E5%B0%86%E6%A0%B9%E7%9B%AE%E5%BD%95%E4%B8%8E%2Fhome%E7%9B%AE%E5%BD%95%E6%94%BE%E5%9C%A8%E4%B8%80%E8%B5%B7%EF%BC%9F"><span style="color:#e6b223">（3）为什么将根目录与/home目录放在一起？</span></h2>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这里主要对于磁盘/硬件条件较低或者使用Linux To Go的情况下，Linux入门使用者或者其他特殊情况的用户可使用该方案，或者对于无法做到/和/home的预估分区分配，只需要知道条件较低的话就要明白<strong>&ldquo;每一份空间都要用在刀刃上&rdquo;</strong>。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;将根目录（<code>/</code>）与&nbsp;<code>/home</code>&nbsp;目录放在一起（即不单独划分&nbsp;<code>/home</code>&nbsp;分区，让&nbsp;<code>/home</code>&nbsp;作为根分区下的子目录），主要是出于<strong>简化管理、灵活利用空间</strong>的考虑，适合特定场景。</p>
+
+<p>具体原因如下：</p>
+
+<h3 id="1.%C2%A0%E7%AE%80%E5%8C%96%E5%88%86%E5%8C%BA%E7%AE%A1%E7%90%86%EF%BC%8C%E9%99%8D%E4%BD%8E%E9%97%A8%E6%A7%9B" name="1.%C2%A0%E7%AE%80%E5%8C%96%E5%88%86%E5%8C%BA%E7%AE%A1%E7%90%86%EF%BC%8C%E9%99%8D%E4%BD%8E%E9%97%A8%E6%A7%9B">1.&nbsp;<strong>简化分区管理，降低门槛</strong></h3>
+
+<p>对于新手或不想纠结分区细节的用户，合并根目录与&nbsp;<code>/home</code>&nbsp;可以省去分区规划的麻烦：</p>
+
+<ul>
+	<li>无需提前计算根分区和&nbsp;<code>/home</code>&nbsp;分区的大小（避免 &ldquo;根分区太小不够用、<code>/home</code>&nbsp;分区剩余太多&rdquo; 或反之的尴尬）。</li>
+	<li>减少分区操作步骤，系统安装时只需创建一个根分区（无需单独设置&nbsp;<code>/home</code>），降低出错概率。</li>
+</ul>
+
+<h3 id="2.%C2%A0%E7%A9%BA%E9%97%B4%E5%88%A9%E7%94%A8%E6%9B%B4%E7%81%B5%E6%B4%BB" name="2.%C2%A0%E7%A9%BA%E9%97%B4%E5%88%A9%E7%94%A8%E6%9B%B4%E7%81%B5%E6%B4%BB">2.&nbsp;<strong>空间利用更灵活</strong></h3>
+
+<p>根分区和&nbsp;<code>/home</code>&nbsp;共享同一存储空间时，空间可以动态分配：</p>
+
+<ul>
+	<li>例如，当根目录需要更多空间（如安装大量软件）时，可直接使用原本可能属于&nbsp;<code>/home</code>&nbsp;的剩余空间；反之，当&nbsp;<code>/home</code>&nbsp;存放大量文件（如视频、文档）时，也能占用根分区的空闲空间。</li>
+	<li>避免了 &ldquo;分区大小固定导致空间浪费&rdquo; 的问题（尤其是对新手，常因预估错误导致某分区空间不足、另一分区闲置）。</li>
+</ul>
+
+<h3 id="3.%C2%A0%E9%80%82%E5%90%88%E5%B0%8F%E5%AE%B9%E9%87%8F%E5%AD%98%E5%82%A8%E6%88%96%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F" name="3.%C2%A0%E9%80%82%E5%90%88%E5%B0%8F%E5%AE%B9%E9%87%8F%E5%AD%98%E5%82%A8%E6%88%96%E4%B8%B4%E6%97%B6%E7%B3%BB%E7%BB%9F">3.&nbsp;<strong>适合小容量存储或临时系统</strong></h3>
+
+<ul>
+	<li><strong>小容量硬盘 / SSD</strong>：如果硬盘空间较小（如 128GB 以下），单独划分&nbsp;<code>/home</code>&nbsp;会进一步碎片化空间，合并后能减少分区表复杂度，更高效利用有限容量。</li>
+	<li><strong>临时或测试系统</strong>：如虚拟机、短期使用的系统，无需长期保存&nbsp;<code>/home</code>&nbsp;下的用户数据（如配置文件、文档），合并后重装系统更简单（无需备份&nbsp;<code>/home</code>）。</li>
+</ul>
+
+<h3 id="4.%C2%A0%E5%AF%B9%20%E2%80%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%80%A7%E2%80%9D%20%E8%A6%81%E6%B1%82%E4%B8%8D%E9%AB%98%E7%9A%84%E5%9C%BA%E6%99%AF" name="4.%C2%A0%E5%AF%B9%20%E2%80%9C%E6%95%B0%E6%8D%AE%E5%AE%89%E5%85%A8%E6%80%A7%E2%80%9D%20%E8%A6%81%E6%B1%82%E4%B8%8D%E9%AB%98%E7%9A%84%E5%9C%BA%E6%99%AF">4.&nbsp;<strong>对 &ldquo;数据安全性&rdquo; 要求不高的场景</strong></h3>
+
+<p><code>/home</code>&nbsp;目录主要存放用户数据（文档、配置、下载等），单独分区的核心意义是<strong>系统重装时可保留&nbsp;<code>/home</code>&nbsp;数据</strong>。但如果满足以下情况，合并反而更合适：</p>
+
+<ul>
+	<li>用户数据不重要（如临时文件、可随时从云端恢复的数据）。</li>
+	<li>习惯定期备份数据到外部存储（如移动硬盘、云盘），无需依赖&nbsp;<code>/home</code>&nbsp;分区隔离数据。</li>
+</ul>
+
+<p><strong>注意：合并的潜在缺点</strong></p>
+
+<p>虽然合并有便利性，但也存在局限：</p>
+
+<ul>
+	<li><strong>系统重装时数据易丢失</strong>：若根分区损坏或重装系统，<code>/home</code>&nbsp;下的用户数据会被一同清除（需提前备份）。</li>
+	<li>若根分区填满，会直接影响&nbsp;<code>/home</code>&nbsp;使用：例如，根分区因日志文件、软件缓存占满时，用户甚至无法在&nbsp;<code>/home</code>&nbsp;下保存新文件（而单独分区时&nbsp;<code>/home</code>&nbsp;空间不受根分区影响）。</li>
+</ul>
+
+<h3 id="%E6%80%BB%E7%BB%93" name="%E6%80%BB%E7%BB%93"><strong>总结</strong></h3>
+
+<p>将根目录与&nbsp;<code>/home</code>&nbsp;放在一起，本质是<strong>以 &ldquo;数据灵活性&rdquo; 换取 &ldquo;管理便捷性&rdquo;</strong>，适合：</p>
+
+<ul>
+	<li>新手用户（减少分区配置难度）；</li>
+	<li>小容量存储设备（避免空间碎片化）；</li>
+	<li>临时 / 测试系统（无需长期保留用户数据）。</li>
+</ul>
+
+<p><span style="color:#fe2c24">若重视数据安全（需保留用户数据跨系统重装）或使用大容量硬盘，更推荐单独划分&nbsp;<code>/home</code>&nbsp;分区。</span></p>
+
+<h1 id="%E5%9B%9B%E3%80%81%E5%90%8E%E7%BB%AD%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9%E4%B8%8E%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88" name="%E5%9B%9B%E3%80%81%E5%90%8E%E7%BB%AD%E5%88%86%E5%8C%BA%E6%89%A9%E5%AE%B9%E4%B8%8E%E8%B0%83%E6%95%B4%E6%96%B9%E6%A1%88"><strong>四、后续分区扩容与调整方案</strong></h1>
+
+<p>若未来根目录（/）出现空间不足的情况，可通过以下两种方式灵活调整：</p>
+
+<h2 id="%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7%E8%B0%83%E6%95%B4%EF%BC%88%E5%A6%82%20GParted%EF%BC%89" name="%E4%B8%80%E3%80%81%E4%BD%BF%E7%94%A8%E4%BC%A0%E7%BB%9F%E5%88%86%E5%8C%BA%E5%B7%A5%E5%85%B7%E8%B0%83%E6%95%B4%EF%BC%88%E5%A6%82%20GParted%EF%BC%89">一、使用传统分区工具调整（如 GParted）</h2>
+
+<p>适用于未采用 LVM 的常规分区场景，操作步骤如下：</p>
+
+<ol>
+	<li><strong>准备环境</strong>：制作 Ubuntu Live USB 启动盘，从启动盘启动进入 Live 环境（避免分区被系统占用）。</li>
+	<li><strong>调整分区</strong>：
+	<ul>
+		<li>打开 GParted 工具，先缩小相邻的空闲分区（如 /home 分区，需确保该分区有未使用空间），释放出可用空间。</li>
+		<li>将释放的空间分配给根目录（/）分区，完成扩容。</li>
+	</ul>
+	</li>
+	<li><strong>注意事项</strong>：操作前需备份重要数据，避免分区调整过程中因意外（如断电、误操作）导致数据丢失；此方法依赖分区物理位置相邻，灵活性有限。</li>
+</ol>
+
+<h2 id="%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%20LVM%EF%BC%88%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86%EF%BC%89" name="%E4%BA%8C%E3%80%81%E6%8E%A8%E8%8D%90%E4%BD%BF%E7%94%A8%20LVM%EF%BC%88%E9%80%BB%E8%BE%91%E5%8D%B7%E7%AE%A1%E7%90%86%EF%BC%89">二、推荐使用 LVM（逻辑卷管理）</h2>
+
+<p>LVM 通过抽象物理硬盘为 &ldquo;卷组&rdquo;，再划分 &ldquo;逻辑卷&rdquo;（可理解为灵活的 &ldquo;分区&rdquo;），提供更高的动态调整能力，核心优势包括：</p>
+
+<ul>
+	<li><strong>无需重新分区</strong>：可直接在线（或离线）调整逻辑卷大小（如根目录、/home 对应的逻辑卷），无需依赖分区物理位置。</li>
+	<li><strong>跨设备扩展</strong>：支持将多个物理硬盘的空间合并为一个卷组，灵活分配给不同逻辑卷，适合未来添加新硬盘扩展存储空间。</li>
+	<li><strong>适配频繁调整场景</strong>：对于编译工作等需频繁增减空间的需求，LVM 可快速响应调整，避免传统分区的繁琐操作。</li>
+</ul>
+
+<p>若初始分区时采用 LVM，后续根目录或 /home 空间不足时，只需通过<code>lvextend</code>（扩展）或<code>lvreduce</code>（缩小）命令即可完成调整，大幅降低操作复杂度。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/ubuntu-linux-%E5%88%86%E5%8C%BA/" class="print-no-link">#ubuntu linux 分区</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略</div>
+      <div>http://example.com/2025/07/18/【Ubuntu】Ubuntu的分区深入详解以及制定最佳分区分配策略/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月18日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu+%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E7%9A%84Linux%20To%20Go%E7%9A%84%E8%B6%85%E8%AF%A6%E7%BB%86%E5%88%B6%E4%BD%9C%E5%85%A8%E8%BF%87%E7%A8%8B/" title="【Ubuntu】基于Ubuntu+移动硬盘的Linux To Go的超详细制作全过程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Ubuntu】基于Ubuntu+移动硬盘的Linux To Go的超详细制作全过程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/11/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91%E5%9F%BA%E4%BA%8EVSCode+ESP-IDF%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B/" title="【SoC】【ESP32】基于VSCode+ESP-IDF插件开发环境的示例工程">
+                        <span class="hidden-mobile">【SoC】【ESP32】基于VSCode+ESP-IDF插件开发环境的示例工程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

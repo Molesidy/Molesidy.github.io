@@ -1,0 +1,914 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、TortoiseGit安装  1.1 下载  首先，确保安装了git，再安装TortoiseGit。  Git - 安装 Git  Download &ndash; TortoiseGit &ndash; Windows Shell Interface to Git      语言包：    1.2 双击安装    SSH 客户端选项：      	选项 1（已选中）：TortoiseGi">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Git】【TortoiseGit】TortoiseGit安装与基础使用">
+<meta property="og:url" content="http://example.com/2025/10/20/%E3%80%90Git%E3%80%91%E3%80%90TortoiseGit%E3%80%91TortoiseGit%E5%AE%89%E8%A3%85%E4%B8%8E%E5%9F%BA%E7%A1%80%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、TortoiseGit安装  1.1 下载  首先，确保安装了git，再安装TortoiseGit。  Git - 安装 Git  Download &ndash; TortoiseGit &ndash; Windows Shell Interface to Git      语言包：    1.2 双击安装    SSH 客户端选项：      	选项 1（已选中）：TortoiseGi">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2ca71711432a4eaca713b1c66a4ef881.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c49bbf68cd1b4e04a04f51d183381a82.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c955cc6772e7488183cf5c355195942d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f45a9f2d27a04f6787d0c43d95b5b207.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b2e179ca2cc94e20bdb275987d38bf03.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6d4ae30b02694f608650c8c14dbad874.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6f608f2a85c54944883495ed1a9335fa.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e8abab20fa8d493eb985107227523b92.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3155c48832324e16abce09509b711e12.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a697230559154ba085a0ab44e2ae7008.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/96c2a8087e124fa1a50c735648b97131.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd667a4d4d404d4faf07b17554c88b96.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b9d0af309dfc4b828c37f4c3702c60dd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a5e288d069c64eb68c31116299615c07.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/971166ef06b9472d8f41cb7a039fd301.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9628b4c9fff74bedb0484fb322334bbe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a033c907e4554358bec1d690b688651f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/869286747e7647ef9cb34684fc477e72.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a982b402fcb74a318afffebc23671661.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/77cbcf8c91dc497298d6a3f80c3dedb3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/13275da471bf45fdb252e353780bd75e.png">
+<meta property="article:published_time" content="2025-10-20T13:59:35.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="git">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/2ca71711432a4eaca713b1c66a4ef881.png">
+  
+  
+  
+  <title>【Git】【TortoiseGit】TortoiseGit安装与基础使用 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Git】【TortoiseGit】TortoiseGit安装与基础使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-10-20 21:59" pubdate>
+          2025年10月20日 晚上
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          905 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          8 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Git】【TortoiseGit】TortoiseGit安装与基础使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h1 style="background-color:transparent">一、TortoiseGit安装</h1>
+
+<h2>1.1 下载</h2>
+
+<p>首先，确保安装了git，再安装TortoiseGit。</p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Git - 安装 Git" target="_blank" rel="noopener" href="https://git-scm.com/book/zh/v2/%E8%B5%B7%E6%AD%A5-%E5%AE%89%E8%A3%85-Git" title="Git - 安装 Git">Git - 安装 Git</a></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Download – TortoiseGit – Windows Shell Interface to Git" target="_blank" rel="noopener" href="https://tortoisegit.org/download/" title="Download – TortoiseGit – Windows Shell Interface to Git">Download &ndash; TortoiseGit &ndash; Windows Shell Interface to Git</a></p>
+
+<p><img alt="" height="925" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2ca71711432a4eaca713b1c66a4ef881.png" srcset="/img/loading.gif" lazyload width="1912" /></p>
+
+<p><img alt="" height="99" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c49bbf68cd1b4e04a04f51d183381a82.png" srcset="/img/loading.gif" lazyload width="333" /></p>
+
+<p>语言包：</p>
+
+<p><img alt="" height="28" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c955cc6772e7488183cf5c355195942d.png" srcset="/img/loading.gif" lazyload width="968" /></p>
+
+<h2>1.2 双击安装</h2>
+
+<p><img alt="" height="387" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f45a9f2d27a04f6787d0c43d95b5b207.png" srcset="/img/loading.gif" lazyload width="496" /></p>
+
+<p><strong>SSH 客户端选项</strong>：</p>
+
+<ol>
+</ol>
+
+<ul>
+	<li>选项 1（已选中）：<code>TortoiseGitPlink, based on PuTTY; optimized for TortoiseGit and integrates better with Windows.</code>意思是：<em>TortoiseGitPlink（基于 PuTTY 开发），为 TortoiseGit 做了优化，且与 Windows 系统集成更友好</em>。</li>
+	<li>选项 2：<code>OpenSSH, Git default SSH Client</code>意思是：<em>OpenSSH（Git 默认的 SSH 客户端）</em>。</li>
+</ul>
+
+<p>默认就好</p>
+
+<p>安装位置</p>
+
+<p><img alt="" height="380" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b2e179ca2cc94e20bdb275987d38bf03.png" srcset="/img/loading.gif" lazyload width="495" /></p>
+
+<p>然后就直接安装</p>
+
+<h2>1.3 语言包双击安装</h2>
+
+<p><img alt="" height="619" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6d4ae30b02694f608650c8c14dbad874.png" srcset="/img/loading.gif" lazyload width="760" /></p>
+
+<p>需要安装语言包后，才能设置，直接装</p>
+
+<p><img alt="" height="380" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6f608f2a85c54944883495ed1a9335fa.png" srcset="/img/loading.gif" lazyload width="489" /></p>
+
+<p><img alt="" height="616" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e8abab20fa8d493eb985107227523b92.png" srcset="/img/loading.gif" lazyload width="765" /></p>
+
+<h2>1.4 第一次启动</h2>
+
+<p>TortoiseGit</p>
+
+<p><img alt="" height="276" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3155c48832324e16abce09509b711e12.png" srcset="/img/loading.gif" lazyload width="346" /></p>
+
+<p>查看帮助文档<br />
+<img alt="" height="1029" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a697230559154ba085a0ab44e2ae7008.png" srcset="/img/loading.gif" lazyload width="1912" /></p>
+
+<p>进入setting，一般不会需要手动添加git路径，会自动检测<br />
+<img alt="" height="620" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/96c2a8087e124fa1a50c735648b97131.png" srcset="/img/loading.gif" lazyload width="764" /></p>
+
+<h2 style="background-color:transparent">1.5 如果本地git没有配置用户需要自己配置<br />
+<img alt="" height="626" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd667a4d4d404d4faf07b17554c88b96.png" srcset="/img/loading.gif" lazyload width="764" /></h2>
+
+<h2>1.6 配置密钥，第四个</h2>
+
+<p><img alt="" height="440" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b9d0af309dfc4b828c37f4c3702c60dd.png" srcset="/img/loading.gif" lazyload width="559" /></p>
+
+<h3>方法一：你可以现场生成一对公钥和私钥，然后的配置就跟Windows的ssh客户端与github的配置方法一样的。</h3>
+
+<p><img alt="" height="466" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a5e288d069c64eb68c31116299615c07.png" srcset="/img/loading.gif" lazyload width="599" /></p>
+
+<h2 style="background-color:transparent">方法二：使用你之前的ssh产生的一对公钥和私钥，将私钥的格式改为id_rsa.ppk，一样能够识别到，然后导入后依然要保存私钥（小乌龟使用的格式），也保存一下公钥防止忘记，实际上小乌龟保存下来的公钥，核心内容与ssh的内容一样，只是格式不同。意思就是你的小乌龟私钥从ssh的私钥转过来，保存下来，后面在pagent把小乌龟私钥添加上，而github上的公钥部分就是ssh的公钥可通用（不用再把小乌龟公钥在添加一遍，比第一个方法少一个在服务端布置一个公钥的步骤）</h2>
+
+<p><img alt="" height="30" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/971166ef06b9472d8f41cb7a039fd301.png" srcset="/img/loading.gif" lazyload width="158" /></p>
+
+<p><img alt="" height="467" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9628b4c9fff74bedb0484fb322334bbe.png" srcset="/img/loading.gif" lazyload width="590" /></p>
+
+<p><img alt="" height="29" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a033c907e4554358bec1d690b688651f.png" srcset="/img/loading.gif" lazyload width="485" /></p>
+
+<p>这是&nbsp;<strong>PuTTY Key Generator（PuTTY 密钥生成器）</strong>&nbsp;的界面，同时弹出了一个提示框（<code>PuTTYgen Notice</code>），核心内容解释如下：</p>
+
+<h3>提示框内容</h3>
+
+<p>提示框显示：&ldquo;<code>Successfully imported foreign key (OpenSSH SSH-2 private key (new format)). To use this key with PuTTY, you need to use the &quot;Save private key&quot; command to save it in PuTTY&#39;s own format.</code>&rdquo;翻译为：<em>&ldquo;成功导入外部密钥（OpenSSH 格式的 SSH-2 私钥（新格式））。要在 PuTTY 中使用此密钥，你需要使用「保存私钥（Save private key）」命令，将其保存为 PuTTY 自身支持的格式。&rdquo;</em></p>
+
+<h3>主界面（PuTTY Key Generator）</h3>
+
+<p>主界面是用于<strong>生成、管理 SSH 密钥</strong>的工具，包含以下核心区域：</p>
+
+<ul>
+	<li><strong>菜单栏</strong>：<code>File</code>（文件）、<code>Key</code>（密钥）、<code>Conversions</code>（转换）、<code>Help</code>（帮助），用于密钥的各类操作。</li>
+	<li><strong>Key 区域</strong>：显示公钥（<code>Public key for pasting into OpenSSH authorized_keys file</code>，可复制到 OpenSSH 的&nbsp;<code>authorized_keys</code>&nbsp;文件中）、密钥指纹（<code>Key fingerprint</code>）、密钥注释（<code>Key comment</code>）、密钥密码（<code>Key passphrase</code>，用于加密私钥）等。</li>
+	<li><strong>Actions 区域</strong>：提供密钥操作按钮，比如&nbsp;<code>Generate a public/private key pair</code>（生成公私钥对）、<code>Load an existing private key</code>（加载已有私钥）、<code>Save the generated key</code>（保存生成的密钥）等。</li>
+	<li><strong>Parameters 区域</strong>：选择要生成的<strong>密钥类型</strong>（如 RSA、DSA、ECDSA 等），以及<strong>密钥位数</strong>（<code>Number of bits in a generated key</code>，图中为 2048 位，影响密钥安全性）。</li>
+</ul>
+
+<h3 style="background-color:transparent">场景背景</h3>
+
+<p>通常在需要将&nbsp;<strong>OpenSSH 格式的 SSH 私钥</strong>&nbsp;用于 PuTTY 相关工具（比如配合 TortoiseGit 使用 PuTTY 作为 SSH 客户端时），需要通过 PuTTY Key Generator 导入 OpenSSH 私钥，再转换为 PuTTY 专用的&nbsp;<code>.ppk</code>&nbsp;格式，才能被 PuTTY 识别和使用。提示框就是在告知用户 &ldquo;已成功导入 OpenSSH 私钥，但需另存为 PuTTY 格式&rdquo;。</p>
+
+<p><img alt="" height="403" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/869286747e7647ef9cb34684fc477e72.png" srcset="/img/loading.gif" lazyload width="670" /></p>
+
+<p>add key，添加私钥.ppk</p>
+
+<h1>二、基础使用</h1>
+
+<p>url是远程仓库地址</p>
+
+<p>选择本地存储仓库地址</p>
+
+<p>然后加载Putty的私钥</p>
+
+<p><img alt="" height="432" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a982b402fcb74a318afffebc23671661.png" srcset="/img/loading.gif" lazyload width="670" /></p>
+
+<p>中间有一个询问你是否信任这个服务器，只要是正确的github地址，就信任，然后就直接克隆成功</p>
+
+<p><img alt="" height="389" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/77cbcf8c91dc497298d6a3f80c3dedb3.png" srcset="/img/loading.gif" lazyload width="570" /></p>
+
+<p>假设这个库是自己的，你要配置远程推送的仓库在下面那里设置</p>
+
+<p><img alt="" height="610" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/13275da471bf45fdb252e353780bd75e.png" srcset="/img/loading.gif" lazyload width="757" /></p>
+
+<p>后续使用方法待后续更新。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Git%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Git学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/git/" class="print-no-link">#git</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Git】【TortoiseGit】TortoiseGit安装与基础使用</div>
+      <div>http://example.com/2025/10/20/【Git】【TortoiseGit】TortoiseGit安装与基础使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年10月20日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/10/20/%E3%80%90Git%E3%80%91%E3%80%90Sourcetree%E3%80%91%E5%AE%89%E8%A3%85%E4%B8%8E%E4%BD%BF%E7%94%A8%E6%95%99%E7%A8%8B/" title="【Git】【Sourcetree】安装与使用教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【Git】【Sourcetree】安装与使用教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/" title="【SoC】【W800】基于WM IoT SDK的环境搭建">
+                        <span class="hidden-mobile">【SoC】【W800】基于WM IoT SDK的环境搭建</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

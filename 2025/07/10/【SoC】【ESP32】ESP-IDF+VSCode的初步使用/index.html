@@ -1,0 +1,1404 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（Espressif IoT Development Framework）是乐鑫为其 ESP32、ESP32-S 系列、ESP32-C 系列等芯片提供的官方物联网开发框架，基于 FreeRTOS 操作系统，支持 C、C++ 和 Lua 等语言，用于快速开发物联网、智能家居、工业控制等领">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【SoC】【ESP32】ESP-IDF+VSCode的初步使用">
+<meta property="og:url" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（Espressif IoT Development Framework）是乐鑫为其 ESP32、ESP32-S 系列、ESP32-C 系列等芯片提供的官方物联网开发框架，基于 FreeRTOS 操作系统，支持 C、C++ 和 Lua 等语言，用于快速开发物联网、智能家居、工业控制等领">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f7350203864243caa531a30a2f3fd747.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/efea735fe6a0454e95378d2457157526.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3ae334630bf42ea90f24a51cc2b1fce.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/879345b449594477b7cbd0efd3c80bd7.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1467f00766124c528252b963733844ab.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a08172660b248c8a089e5ddd000ad65.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/679df0a25a25448686bfe5624fc0a998.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/54f6134ea6684a8397ff362f1f4f1166.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6d879ea3c64d46759b1061cc77672ab8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7e8b5d5937a947eabc32d3ec88a0faab.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a519f141471f42229dc47300bb6f3281.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7a4bddace47d423ab23d068105968b08.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c07ebc72015c4dc29f24f4db9600c44d.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5d8a09073ef943e9b76a5e3c1bbda6f6.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/45d11f1aa838453fb9d88e9cef2f3837.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20e1af789c53439da42635241f52408a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6939bd8e885349be8dd0a8005f4fcf59.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0bd0e5adbda547fca43f4abb67f94f46.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f10b8cd98cba4f38aa720d97457e7834.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/15ce6f77a7a8482684577d69617f41a4.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0f24743e12f74b61b69e972dfcb16079.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b68e473fc1344758aa7ea970669f653a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3bc804add83d49a29ddce737077c3a28.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d03e680227894b40aa54f7b1ba99647f.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dfa5e01f45cb43e5b1ee2c19c2216476.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/73e801701dd143a9b321affeba4f7ea3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb8dcee22b7f4ccab4470dfa34158cf8.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5534e6853ca349a997a0c56c08cbe685.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e31d665cec6642448dc9296316a14cd3.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f0eb7daf66234bcabfc49b5b2c80013a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dbc7150b0f86466599f893dbb0435291.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9c629a196c524e3ea893ea71726a191b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/07be58cb42e244ba85c6db1a441002ce.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c0395d46406746c9bae05552d53b9a5e.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/233a09f3f7b34876a50f5e06e86deafb.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/be7fe46eb84a46fab7509f42a98b498b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/deaf86d0cfa649b49b836d7eff85bc18.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a2214a781d004eaeab623eee8f1a152b.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ccfd5df1725049cfbbe7fd8a38530c21.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5b41598fbe744fdb8abe6734efd2b548.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9b9c835c53924c65aae7771520ff37ed.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/322a203c66444dd9804f7aaf12f5e9cd.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e14f4c3b0fe9460ba45004f7ea5d57ff.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8a43902e50494ff788c106b49181d024.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5c64cda50e9f40e2bd1d4f3ace0cddbe.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/435bb75047e44d9f8385afa5c2e18947.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/29bb4daa9d3d4bb28e942d2dd4868622.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/415a07dca1a44c64a9287d2b8b7d480e.jpeg">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7ec1e06b8852440cb7a27fb2a662465f.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ffcdb7bbc5914e0bb560cf7eb6f0de50.png">
+<meta property="article:published_time" content="2025-07-10T09:33:17.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="vscode ide 编辑器 ESP32 ESP-IDF">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png">
+  
+  
+  
+  <title>【SoC】【ESP32】ESP-IDF+VSCode的初步使用 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【SoC】【ESP32】ESP-IDF+VSCode的初步使用"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-10 17:33" pubdate>
+          2025年7月10日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          4.3k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          36 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【SoC】【ESP32】ESP-IDF+VSCode的初步使用</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<h3>一、简介</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（Espressif IoT Development Framework）是乐鑫为其 ESP32、ESP32-S 系列、ESP32-C 系列等芯片提供的官方物联网开发框架，基于 FreeRTOS 操作系统，支持 C、C++ 和 Lua 等语言，用于快速开发物联网、智能家居、工业控制等领域的嵌入式应用。</p>
+
+<h3>（1）主要特点：</h3>
+
+<ol>
+	<li><strong>硬件抽象层</strong>：提供 Wi-Fi、蓝牙、以太网、SPI、I2C、UART 等外设的驱动和 API。</li>
+	<li><strong>丰富组件</strong>：包含文件系统（FAT、SPIFFS）、网络协议栈（TCP/IP、MQTT、HTTP）、安全框架（SSL/TLS）等。</li>
+	<li><strong>工具链支持</strong>：集成 CMake 构建系统、idf.py 命令行工具，支持一键编译、烧录、调试。</li>
+	<li><strong>跨平台</strong>：支持 Windows、Linux、macOS 开发环境。</li>
+	<li><strong>示例与文档</strong>：提供大量官方示例和详细文档，便于快速上手。</li>
+</ol>
+
+<h3>（2）基本开发流程：</h3>
+
+<ol>
+	<li><strong>环境搭建</strong>：安装 ESP-IDF 工具链（包含编译器、调试工具等）。</li>
+	<li><strong>项目创建</strong>：基于示例模板或自定义创建项目。</li>
+	<li><strong>配置</strong>：通过<code>idf.py menuconfig</code>配置项目参数（如 Wi-Fi、串口波特率等）。</li>
+	<li><strong>开发</strong>：编写代码实现业务逻辑。</li>
+	<li><strong>编译与烧录</strong>：使用<code>idf.py build</code>编译，<code>idf.py flash</code>烧录到设备。</li>
+	<li><strong>调试</strong>：通过<code>idf.py monitor</code>查看串口输出或调试信息。</li>
+</ol>
+
+<h3>（3）典型应用场景：</h3>
+
+<ul>
+	<li>低功耗物联网设备（如温湿度传感器）</li>
+	<li>智能家居控制（如智能开关、灯光控制）</li>
+	<li>工业自动化数据采集</li>
+	<li>无线通信中继设备</li>
+</ul>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF 适合需要高性能、低功耗、丰富通信接口的嵌入式系统开发，尤其在物联网领域应用广泛。</p>
+
+<h1>二、创建工程</h1>
+
+<h2>1.新建文件夹ESP32_Example</h2>
+
+<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png" srcset="/img/loading.gif" lazyload width="812" /></p>
+
+<h2>2. 使用命令idf.py build初始化该工程&nbsp;</h2>
+
+<p><img alt="" height="742" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f7350203864243caa531a30a2f3fd747.png" srcset="/img/loading.gif" lazyload width="1469" /></p>
+
+<p><img alt="" height="280" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/efea735fe6a0454e95378d2457157526.png" srcset="/img/loading.gif" lazyload width="879" /></p>
+
+<p>注：CMakeLists.txt是帮助链接编译的文件</p>
+
+<h2>3.对于 ESP - IDF 等开发框架中<code>component</code>文件夹的功能，用于明确该目录在项目结构里承担存放特定代码（第三方组件、用户程序驱动代码 ）的角色 。使用命令idf.py create-component + 文件名字</h2>
+
+<p><img alt="" height="628" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3ae334630bf42ea90f24a51cc2b1fce.png" srcset="/img/loading.gif" lazyload width="1466" /></p>
+
+<p><img alt="" height="100" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/879345b449594477b7cbd0efd3c80bd7.png" srcset="/img/loading.gif" lazyload width="1203" /></p>
+
+<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1467f00766124c528252b963733844ab.png" srcset="/img/loading.gif" lazyload width="758" /></p>
+
+<h2>4.在ESP32_Example下新建一个文件夹components，把所有组件放在components下</h2>
+
+<p><img alt="" height="230" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a08172660b248c8a089e5ddd000ad65.png" srcset="/img/loading.gif" lazyload width="833" /></p>
+
+<h2>5.设置目标芯片</h2>
+
+<p>使用查询命令idf.py --list-targets查看有哪些芯片类型</p>
+
+<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/679df0a25a25448686bfe5624fc0a998.png" srcset="/img/loading.gif" lazyload width="1060" /></p>
+
+<p>idf.py set-target &lt;芯片类型&gt;</p>
+
+<p><img alt="" height="608" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/54f6134ea6684a8397ff362f1f4f1166.png" srcset="/img/loading.gif" lazyload width="1453" /></p>
+
+<p>成功设置</p>
+
+<p><img alt="" height="704" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6d879ea3c64d46759b1061cc77672ab8.png" srcset="/img/loading.gif" lazyload width="1464" /></p>
+
+<p><img alt="" height="377" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7e8b5d5937a947eabc32d3ec88a0faab.png" srcset="/img/loading.gif" lazyload width="828" /></p>
+
+<h2>6.输入命令idf.py menuconfig启动文本界面进行详细配置</h2>
+
+<p><img alt="" height="1006" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a519f141471f42229dc47300bb6f3281.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>7.设置SPI Flash速度模式，默认（DIO）即可</p>
+
+<p><img alt="" height="352" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7a4bddace47d423ab23d068105968b08.png" srcset="/img/loading.gif" lazyload width="522" /></p>
+
+<p><img alt="" height="383" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c07ebc72015c4dc29f24f4db9600c44d.png" srcset="/img/loading.gif" lazyload width="684" /></p>
+
+<p>按下ESC退出</p>
+
+<h2>7.使用命令idf.py -p COM8 flash下载代码，这里只是检测是否能正常下载</h2>
+
+<p><img alt="" height="137" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5d8a09073ef943e9b76a5e3c1bbda6f6.png" srcset="/img/loading.gif" lazyload width="1308" /></p>
+
+<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/45d11f1aa838453fb9d88e9cef2f3837.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>8.编写测试函数</h2>
+
+<p><img alt="" height="349" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20e1af789c53439da42635241f52408a.png" srcset="/img/loading.gif" lazyload width="771" /></p>
+
+<h2>9.测试函数编译</h2>
+
+<p><img alt="" height="134" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6939bd8e885349be8dd0a8005f4fcf59.png" srcset="/img/loading.gif" lazyload width="1085" /></p>
+
+<h2>10.测试函数下载</h2>
+
+<p><img alt="" height="609" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0bd0e5adbda547fca43f4abb67f94f46.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>11.测试函数监控，使用命令idf.py monitor</h2>
+
+<p><img alt="" height="117" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f10b8cd98cba4f38aa720d97457e7834.png" srcset="/img/loading.gif" lazyload width="998" /></p>
+
+<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/15ce6f77a7a8482684577d69617f41a4.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>可以看到了成功打印了hello，然后按下ctrl + ]&nbsp;退出监控器。</p>
+
+<h2>12.清除编译文件</h2>
+
+<p>idf.py fullclean</p>
+
+<p><img alt="" height="1010" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0f24743e12f74b61b69e972dfcb16079.png" srcset="/img/loading.gif" lazyload width="1749" /></p>
+
+<p><img alt="" height="156" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b68e473fc1344758aa7ea970669f653a.png" srcset="/img/loading.gif" lazyload width="1089" /></p>
+
+<h1>三、使用VSCode+ESP-IDF插件编写代码</h1>
+
+<h2>1.使用VSCode打开工程文件夹ESP32_Example</h2>
+
+<p><img alt="" height="971" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3bc804add83d49a29ddce737077c3a28.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>2.配置工程</h2>
+
+<p>选择下载程序方式、接口和目标芯片</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d03e680227894b40aa54f7b1ba99647f.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<h2>3.扳手按钮编译</h2>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dfa5e01f45cb43e5b1ee2c19c2216476.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h2>4.闪电按钮烧写</h2>
+
+<p><img alt="" height="98" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/73e801701dd143a9b321affeba4f7ea3.png" srcset="/img/loading.gif" lazyload width="290" /></p>
+
+<p><img alt="" height="442" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb8dcee22b7f4ccab4470dfa34158cf8.png" srcset="/img/loading.gif" lazyload width="1489" /></p>
+
+<h2>5.电视按钮启用监控</h2>
+
+<p>初步测试没问题。&nbsp;</p>
+
+<p><img alt="" height="445" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5534e6853ca349a997a0c56c08cbe685.png" srcset="/img/loading.gif" lazyload width="1478" /></p>
+
+<h2>6.最下方的芯片选择后的齿轮按钮进行SDK的详细配置</h2>
+
+<h3>flash</h3>
+
+<p>ESP32-S3-N16R8 中， &ldquo;N16&rdquo; 代表的是<strong>16MB 的 Flash</strong>，&ldquo;R8&rdquo; 表示<strong>8MB 的 PSRAM</strong>。所以这款芯片的 Flash 大小是 16MB。</p>
+
+<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e31d665cec6642448dc9296316a14cd3.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="547" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f0eb7daf66234bcabfc49b5b2c80013a.png" srcset="/img/loading.gif" lazyload width="488" /></p>
+
+<h3>Partition Table</h3>
+
+<p>选择自定义分区表，分区表自定义名称：partitions_tabel_16MB.csv</p>
+
+<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dbc7150b0f86466599f893dbb0435291.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>PSRAM</p>
+
+<p>使能外部SRAM，主要调整为八线模式和80MHz</p>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9c629a196c524e3ea893ea71726a191b.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/07be58cb42e244ba85c6db1a441002ce.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="426" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c0395d46406746c9bae05552d53b9a5e.png" srcset="/img/loading.gif" lazyload width="418" /></p>
+
+<h3>CPU Frequency</h3>
+
+<p><img alt="" height="1013" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/233a09f3f7b34876a50f5e06e86deafb.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>FreeRTOS</h3>
+
+<h4><strong>一、GDB Stub（调试相关）</strong></h4>
+
+<p>GDB Stub 是 FreeRTOS 中用于支持 GDB 调试器的组件，允许通过 GDB 查看任务状态、断点调试等。</p>
+
+<p></p>
+
+<ul>
+	<li><strong>Enable listing FreeRTOS tasks through GDB Stub</strong><br />
+	启用后，GDB 调试器可以列出当前所有 FreeRTOS 任务的信息（如任务名、状态、优先级等），方便调试时监控任务运行状态。</li>
+	<li><strong>Maximum number of tasks supported by GDB Stub: 32</strong><br />
+	GDB Stub 最多支持同时显示 32 个任务的信息（超过则无法通过 GDB 完整列出）。</li>
+</ul>
+
+<h4><strong>二、FreeRTOS Kernel（内核核心配置）</strong></h4>
+
+<h5><strong>1. 内核基础</strong></h5>
+
+<ul>
+	<li><strong>Run the Amazon SMP FreeRTOS kernel instead (FEATURE UNDER DEVELOPMENT)</strong><br />
+	启用后将使用亚马逊的 SMP（对称多处理）版本 FreeRTOS 内核（实验性功能），支持多核心同时运行任务（适用于 ESP32S3 等双核芯片）。默认不启用时，使用标准单核心调度的 FreeRTOS 内核。</li>
+	<li><strong>Run FreeRTOS only on first core</strong><br />
+	限制 FreeRTOS 仅在芯片的第一个核心（Core 0）上运行，第二个核心（若有，如 ESP32S3 的 Core 1）可用于其他裸机程序或独立任务。</li>
+	<li><strong>configTICK_RATE_HZ: 1000</strong><br />
+	FreeRTOS 系统时钟节拍频率，单位为 Hz。此处设置为 1000，即每秒产生 1000 个时钟节拍（每个节拍间隔 1ms），用于任务调度、延时（如&nbsp;<code>vTaskDelay()</code>）等时间相关操作。节拍频率越高，时间精度越高，但内核开销略增。</li>
+</ul>
+
+<h5><strong>2. 栈溢出检测</strong></h5>
+
+<ul>
+	<li><strong>configCHECK_FOR_STACK_OVERFLOW: Check using canary bytes (Method 2)</strong><br />
+	启用栈溢出检测功能，采用「金丝雀字节（canary bytes）」方式（方法 2）：在任务栈的末尾放置特殊标记字节（金丝雀值），每次任务切换时检查标记是否被改写，若改写则判定为栈溢出（会触发栈溢出钩子函数）。这是一种常用的内存越界检测机制。</li>
+</ul>
+
+<h5><strong>3. 任务与内存相关</strong></h5>
+
+<ul>
+	<li><strong>configNUM_THREAD_LOCAL_STORAGE_POINTERS: 1</strong><br />
+	每个任务可分配的「线程本地存储指针（TLS）」数量。TLS 用于存储任务私有数据（如任务专属的变量），此处最多支持 1 个指针。</li>
+	<li><strong>configMINIMAL_STACK_SIZE (Idle task stack size): 1536</strong><br />
+	空闲任务（Idle Task）的栈大小（单位：字节）。空闲任务是 FreeRTOS 自动创建的最低优先级任务，用于系统空闲时运行，栈大小需根据系统最小需求配置（此处 1536 字节适用于多数嵌入式场景）。</li>
+	<li><strong>configMAX_TASK_NAME_LEN: 16</strong><br />
+	任务名称的最大长度（包含终止符&nbsp;<code>\0</code>），超过则会被截断。例如，任务名最长为 15 个可见字符 + 1 个终止符。</li>
+	<li><strong>configENABLE_BACKWARD_COMPATIBILITY</strong><br />
+	启用后兼容旧版本 FreeRTOS 的 API 或宏定义（如旧版中的函数参数、结构体成员），避免因版本升级导致的兼容性问题。</li>
+</ul>
+
+<h5><strong>4. 定时器功能</strong></h5>
+
+<ul>
+	<li><strong>configUSE_TIMERS</strong><br />
+	启用 FreeRTOS 软件定时器功能，允许创建周期性或一次性定时器（通过&nbsp;<code>xTimerCreate()</code>&nbsp;等 API）。</li>
+	<li><strong>configTIMER_SERVICE_TASK_NAME: Tmr Svc</strong><br />
+	定时器服务任务的名称（默认&nbsp;<code>Tmr Svc</code>），该任务负责处理所有软件定时器的触发逻辑。</li>
+	<li><strong>configTIMER_SERVICE_TASK_CORE_AFFINITY: No affinity</strong><br />
+	定时器服务任务的核心绑定（适用于多核芯片），「No affinity」表示不固定核心，由内核自动调度到任意核心。</li>
+	<li><strong>configTIMER_TASK_PRIORITY: 1</strong><br />
+	定时器服务任务的优先级（数值越大优先级越高），此处为 1（较低优先级，避免抢占关键任务）。</li>
+	<li><strong>configTIMER_TASK_STACK_DEPTH: 2048</strong><br />
+	定时器服务任务的栈大小（2048 字节），需根据定时器回调函数的复杂度调整（若回调函数复杂，需增大栈大小）。</li>
+	<li><strong>configTIMER_QUEUE_LENGTH: 10</strong><br />
+	定时器命令队列的长度，用于存储待处理的定时器操作（如启动、停止定时器），超过 10 个则需等待队列空闲。</li>
+</ul>
+
+<h5><strong>5. 队列与通知</strong></h5>
+
+<ul>
+	<li><strong>configQUEUE_REGISTRY_SIZE: 0</strong><br />
+	队列注册表的大小，用于将队列 / 信号量与名称关联（通过&nbsp;<code>vQueueAddToRegistry()</code>），方便调试时识别队列。0 表示禁用该功能。</li>
+	<li><strong>configTASK_NOTIFICATION_ARRAY_ENTRIES: 1</strong><br />
+	每个任务的「任务通知数组」长度。任务通知是一种轻量级的通信机制（替代信号量 / 队列），此处最多支持 1 个通知条目（每个任务可接收 1 种通知）。</li>
+</ul>
+
+<h5><strong>6. 调试与统计</strong></h5>
+
+<ul>
+	<li><strong>configUSE_TRACE_FACILITY</strong><br />
+	启用跟踪功能，支持 FreeRTOS 的跟踪宏（如&nbsp;<code>vTaskList()</code>&nbsp;列出任务状态、<code>vTaskGetRunTimeStats()</code>&nbsp;统计任务运行时间），用于系统性能分析。</li>
+	<li><strong>configUSE_LIST_DATA_INTEGRITY_CHECK_BYTES</strong><br />
+	启用链表数据完整性检查，在 FreeRTOS 内部链表（如任务就绪链表、阻塞链表）的节点中添加校验字节，检测链表是否被意外篡改（如内存越界导致的链表损坏）。</li>
+	<li><strong>configGENERATE_RUN_TIME_STATS</strong><br />
+	启用任务运行时间统计功能，可通过&nbsp;<code>vTaskGetRunTimeStats()</code>&nbsp;获取每个任务的运行时间占比（需配合硬件定时器实现）。</li>
+	<li><strong>configUSE_APPLICATION_TASK_TAG</strong><br />
+	允许为任务设置「标签（tag）」，通过&nbsp;<code>vTaskSetApplicationTaskTag()</code>&nbsp;关联一个整数或指针，用于标识任务（如区分任务类型、归属模块）。</li>
+</ul>
+
+<h4><strong>三、Port（端口配置，与硬件相关）</strong></h4>
+
+<p>针对特定硬件平台（如 ESP32S3 的 Xtensa 架构）的 FreeRTOS 移植配置。</p>
+
+<p></p>
+
+<ul>
+	<li><strong>Wrap task functions</strong><br />
+	对任务函数进行包装（如添加进入 / 退出钩子），通常用于调试或跟踪任务的创建 / 销毁。</li>
+	<li><strong>Enable stack overflow debug watchpoint</strong><br />
+	启用栈溢出调试断点（依赖硬件 watchpoint 功能），当栈指针超出栈范围时触发调试中断，方便定位栈溢出问题。</li>
+	<li><strong>Enable thread local storage pointers deletion callbacks</strong><br />
+	启用线程本地存储（TLS）指针的删除回调，当任务销毁时自动调用 TLS 指针的清理函数（释放资源）。</li>
+	<li><strong>Enable task pre-deletion hook</strong><br />
+	启用任务删除前的钩子函数（<code>vTaskPreDeleteHook()</code>），在任务被删除前执行自定义逻辑（如释放任务持有的资源）。</li>
+	<li><strong>Enable static task clean up hook (DEPRECATED)</strong><br />
+	启用静态任务的清理钩子（已过时），用于静态创建的任务（<code>xTaskCreateStatic()</code>）销毁时的资源清理。</li>
+	<li><strong>Check that mutex semaphore is given by owner task</strong><br />
+	检查互斥锁（mutex）的释放操作是否由持有锁的任务执行（避免其他任务释放不属于自己的锁，导致死锁）。</li>
+	<li><strong>ISR stack size: 1536</strong><br />
+	中断服务程序（ISR）的栈大小（1536 字节），用于处理中断时的临时数据存储（栈不足会导致系统崩溃）。</li>
+	<li><strong>Enable backtrace from interrupt to task context</strong><br />
+	启用从中断上下文到任务上下文的回溯功能，当发生中断时，可追踪中断前正在运行的任务调用栈（方便调试中断相关问题）。</li>
+	<li><strong>Use float in Level 1 ISR</strong><br />
+	允许在 Level 1 中断服务程序中使用浮点数（需硬件支持浮点运算，且会增加中断处理开销）。</li>
+	<li><strong>Tick timer source (Xtensa Only): SYSTIMER 0 (level 1)</strong><br />
+	选择 FreeRTOS 系统节拍（tick）的定时器源（仅 Xtensa 架构），此处使用 SYSTIMER 0（系统定时器 0），且为 Level 1 中断（较高优先级，确保节拍计时准确）。</li>
+	<li><strong>Place FreeRTOS functions into Flash</strong><br />
+	将 FreeRTOS 函数存储在 Flash 中（而非 RAM），节省 RAM 空间（适用于 RAM 有限的嵌入式设备）。</li>
+	<li>*<em>Tests compliance with Vanilla FreeRTOS port&nbsp;<em>_CRITICAL calls</em></em><br />
+	检查与「标准 FreeRTOS 端口」中临界区函数（如&nbsp;<code>taskENTER_CRITICAL()</code>）的兼容性，确保临界区操作符合官方规范。</li>
+</ul>
+
+<h4><strong>四、Extra（额外配置）</strong></h4>
+
+<ul>
+	<li><strong>Allow external memory as an argument to xTaskCreateStatic (READ HELP)</strong><br />
+	允许将外部内存（如 SPI RAM）作为参数传递给&nbsp;<code>xTaskCreateStatic()</code>（静态创建任务的 API），即任务的栈和控制块可存储在外部内存中（需确保外部内存的访问速度和稳定性）。</li>
+</ul>
+
+<p><strong>有如下更改：</strong></p>
+
+<p>100对应的节拍周期是10ms，1000对应的节拍周期是1ms</p>
+
+<p><img alt="" height="109" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/be7fe46eb84a46fab7509f42a98b498b.png" srcset="/img/loading.gif" lazyload width="680" /></p>
+
+<p><img alt="" height="110" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/deaf86d0cfa649b49b836d7eff85bc18.png" srcset="/img/loading.gif" lazyload width="699" /></p>
+
+<h2>7.保存SDK配置后，ctrl+shift+p打开分区表编辑器</h2>
+
+<p>这是&nbsp;<strong>ESP-IDF Partition Table Editor（ESP-IDF 分区表编辑器）</strong>&nbsp;的界面，用于可视化配置 ESP32/ESP32-S3 等设备的 Flash 分区表。以下逐行解释核心内容：</p>
+
+<h3><strong>1. 界面标题与功能说明</strong></h3>
+
+<ul>
+	<li><strong><code>ESP-IDF Partition Table Editor</code></strong><br />
+	标题：明确这是 ESP-IDF 框架的分区表可视化工具。</li>
+	<li><strong><code>Partition Editor can help you to easily edit, build &amp; flash partition table through GUI...</code></strong><br />
+	功能说明：无需手动编辑 CSV 文件，可通过图形界面（GUI）轻松编辑、构建和烧录分区表。</li>
+</ul>
+
+<h3><strong>2. 操作按钮（右上角）</strong></h3>
+
+<ul>
+	<li><strong><code>Select Flash Method</code></strong><br />
+	选择烧录方式：指定如何将分区表烧录到设备（如串口、JTAG 等）。</li>
+	<li><strong><code>Build</code></strong><br />
+	构建：根据当前配置生成分区表二进制文件（<code>.bin</code>）。</li>
+	<li><strong><code>Flash</code></strong><br />
+	烧录：将生成的分区表二进制文件烧录到设备的 Flash 中。</li>
+</ul>
+
+<h3><strong>3. 分区表配置区域</strong></h3>
+
+<p>表格中每行对应一个&nbsp;<strong>Flash 分区</strong>，包含以下字段：</p>
+
+<h4><strong>字段 1：<code>Name</code>（分区名称）</strong></h4>
+
+<ul>
+	<li><code>nvs</code>：Non-Volatile Storage（非易失性存储）分区，用于保存设备配置、键值对数据（如 WiFi 密码、自定义参数）。</li>
+	<li><code>phy_init</code>：PHY（物理层）初始化数据分区，存储 WiFi / 蓝牙射频的校准参数。</li>
+	<li><code>factory</code>：工厂应用分区，存储默认的固件镜像（设备首次启动或恢复出厂设置时运行的程序）。</li>
+	<li><code>vfs</code>：Virtual File System（虚拟文件系统）分区，类型为&nbsp;<code>fat</code>（FAT 文件系统），可用于存储文件（如配置文件、日志）。</li>
+	<li><code>storage</code>：自定义存储分区，类型为&nbsp;<code>spiffs</code>（SPIFFS 文件系统），适合嵌入式设备的轻量级文件存储。</li>
+</ul>
+
+<h4><strong>字段 2：<code>Type</code>（分区类型）</strong></h4>
+
+<ul>
+	<li><code>data</code>：数据分区（存储配置、文件系统等非程序数据）。</li>
+	<li><code>app</code>：应用分区（存储固件程序，可被 Bootloader 加载运行）。</li>
+</ul>
+
+<h4><strong>字段 3：<code>Sub Type</code>（子类型）</strong></h4>
+
+<ul>
+	<li><code>nvs</code>：对应&nbsp;<code>nvs</code>&nbsp;分区，标识该数据分区用于 NVS。</li>
+	<li><code>phy</code>：对应&nbsp;<code>phy_init</code>&nbsp;分区，标识该数据分区用于 PHY 初始化。</li>
+	<li><code>factory</code>：对应&nbsp;<code>factory</code>&nbsp;分区，标识该应用分区为工厂固件。</li>
+	<li><code>fat</code>：对应&nbsp;<code>vfs</code>&nbsp;分区，标识该数据分区使用 FAT 文件系统。</li>
+	<li><code>spiffs</code>：对应&nbsp;<code>storage</code>&nbsp;分区，标识该数据分区使用 SPIFFS 文件系统。</li>
+</ul>
+
+<h4><strong>字段 4：<code>Offset</code>（分区起始偏移）</strong></h4>
+
+<ul>
+	<li>如&nbsp;<code>0x9000</code>、<code>0xF000</code>&nbsp;等，表示该分区在 Flash 中的起始地址（相对于 Flash 起始位置）。</li>
+	<li>需注意分区之间<strong>不能重叠</strong>，且需符合 Flash 擦除块（erase block）对齐要求。</li>
+</ul>
+
+<h4><strong>字段 5：<code>Size</code>（分区大小）</strong></h4>
+
+<ul>
+	<li>如&nbsp;<code>0x6000</code>（24KB）、<code>0x1F0000</code>（2,048KB = 2MB）等，表示该分区占用的 Flash 空间大小。</li>
+</ul>
+
+<h4><strong>字段 6：<code>Encrypted</code>（加密）</strong></h4>
+
+<ul>
+	<li>复选框：启用后，该分区数据会被加密（需配合 ESP-IDF 的安全机制，如 Secure Boot、Flash 加密）。</li>
+</ul>
+
+<h4><strong>字段 7：<code>&times;</code>（删除按钮）</strong></h4>
+
+<ul>
+	<li>点击可删除对应分区的配置。</li>
+</ul>
+
+<h3><strong>4. 关键分区的作用</strong></h3>
+
+<ul>
+	<li><strong><code>nvs</code></strong>：必选分区，用于保存设备运行时的配置（掉电不丢失）。</li>
+	<li><strong><code>phy_init</code></strong>：必选分区（若使用 WiFi / 蓝牙），存储射频校准参数，确保无线通信稳定。</li>
+	<li><strong><code>factory</code></strong>：必选分区，存储默认固件，设备启动时 Bootloader 会优先加载此分区的程序。</li>
+	<li><strong><code>vfs</code>（FAT）</strong>：可选分区，适合存储文件（如文本、二进制数据），支持电脑直接挂载访问。</li>
+	<li><strong><code>storage</code>（SPIFFS）</strong>：可选分区，轻量级文件系统，适合嵌入式设备（无需复杂的文件系统支持）。</li>
+</ul>
+
+<h3><strong>5. 实际应用场景</strong></h3>
+
+<ul>
+	<li><strong>分区表的作用</strong>：将 Flash 划分为多个逻辑区域，分别存储程序、配置、文件系统等，让不同功能的数据互不干扰。</li>
+	<li><strong>修改注意事项</strong>：
+	<ul>
+		<li>调整分区大小或偏移时，需确保 Flash 总容量足够（如 ESP32-S3-N16R8 的 Flash 是 16MB）。</li>
+		<li>若新增文件系统分区（如&nbsp;<code>vfs</code>、<code>storage</code>），需在代码中初始化对应的文件系统（如&nbsp;<code>esp_vfs_fat_mount()</code>&nbsp;或&nbsp;<code>esp_spiffs_mount()</code>）。</li>
+		<li>烧录新分区表后，若覆盖了原有数据分区（如&nbsp;<code>nvs</code>），可能导致配置丢失，需谨慎操作。</li>
+	</ul>
+	</li>
+</ul>
+
+<p>简单说，这个界面让你<strong>可视化管理 ESP32 设备的 Flash 分区</strong>，像分硬盘区一样把 Flash 划给固件、配置、文件系统等不同功能使用，避免手动写 CSV 配置的麻烦～</p>
+
+<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a2214a781d004eaeab623eee8f1a152b.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p><img alt="" height="496" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ccfd5df1725049cfbbe7fd8a38530c21.png" srcset="/img/loading.gif" lazyload width="869" /></p>
+
+<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5b41598fbe744fdb8abe6734efd2b548.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<p>分区如下：</p>
+
+<p><img alt="" height="792" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9b9c835c53924c65aae7771520ff37ed.png" srcset="/img/loading.gif" lazyload width="1373" /></p>
+
+<p><img alt="" height="299" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/322a203c66444dd9804f7aaf12f5e9cd.png" srcset="/img/loading.gif" lazyload width="666" /></p>
+
+<h2>8.编译烧写</h2>
+
+<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e14f4c3b0fe9460ba45004f7ea5d57ff.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h3>头文件报红问题：</h3>
+
+<p>验证了程序正常，但是这里头文件报红是因为VSCode里找不到组件文件，需要配置一下路径，这个组件的位置其实是在ESP-IDF里带的组件源码</p>
+
+<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8a43902e50494ff788c106b49181d024.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
+
+<h4>方法一：</h4>
+
+<p>（1）可以在文件夹.vscode下手动添加c_cpp_properties.json，或者点击VSCode的右下角的WIN32点击JSON可以得到自动生成的c_cpp_properties.json文件</p>
+
+<p><img alt="" height="67" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png" srcset="/img/loading.gif" lazyload width="131" /><img alt="" height="139" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5c64cda50e9f40e2bd1d4f3ace0cddbe.png" srcset="/img/loading.gif" lazyload width="765" /></p>
+
+<p><img alt="" height="589" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/435bb75047e44d9f8385afa5c2e18947.png" srcset="/img/loading.gif" lazyload width="1371" /></p>
+
+<p>（2）&quot;D:/Espressif/frameworks/esp-idf-v5.4/components&quot;你需要将你安装的ESP-IDF里的组件路径导入VSCode的json配置文件里，然后如果还有波浪线需要使用VSCode的自带的快速修复自动添加路径。</p>
+
+<p><img alt="" height="591" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/29bb4daa9d3d4bb28e942d2dd4868622.png" srcset="/img/loading.gif" lazyload width="1179" /></p>
+
+<h4>方法二：</h4>
+
+<p>按下ctrl+shift+P，输入Add VS Code Configuration Folder，然后VSCode会把我们自动配置路径，以及更好地完善组件文件与用户文件地内联关系，可以自己去看看，了解一下。</p>
+
+<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/415a07dca1a44c64a9287d2b8b7d480e.jpeg" srcset="/img/loading.gif" lazyload /></p>
+
+<p><img alt="" height="578" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7ec1e06b8852440cb7a27fb2a662465f.png" srcset="/img/loading.gif" lazyload width="1270" /></p>
+
+<p>结果：</p>
+
+<p><img alt="" height="799" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ffcdb7bbc5914e0bb560cf7eb6f0de50.png" srcset="/img/loading.gif" lazyload width="815" /></p>
+
+<p>11.bsp_led和main的CMakeLists分别需要补充依赖</p>
+
+<p>bsp_led</p>
+
+<pre>
+<code class="language-cpp"># idf_component_register(SRCS "bsp_led.c"
+#                     INCLUDE_DIRS "include")
+
+idf_component_register(
+    SRCS "bsp_led.c"  # 合并两个源文件
+    INCLUDE_DIRS "include"          # 合并头文件目录
+    REQUIRES driver                     # 声明依赖 driver 组件
+)</code></pre>
+
+<p>main</p>
+
+<pre>
+<code class="language-cpp">idf_component_register(SRCS "ESP32_Example.c"
+                    INCLUDE_DIRS "."
+                    REQUIRES bsp_led        )
+
+
+</code></pre>
+
+<p>10.编写点灯测试代码</p>
+
+<p>bsp_led.c</p>
+
+<pre>
+<code class="language-cpp">#include &lt;stdio.h&gt;
+
+#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+
+#include "driver/gpio.h"
+
+#include "bsp_led.h"
+void bsp_led_init(void)
+{
+    // 设置GPIO1为输出
+    gpio_set_direction(GPIO_NUM_1, GPIO_MODE_OUTPUT);
+    
+    // // GPIO配置结构体
+    // gpio_config_t io_conf = {
+    //     .pin_bit_mask = (1ULL&lt;&lt;GPIO_NUM_1), // 选择GPIO1
+    //     .mode = GPIO_MODE_OUTPUT,           // 设置为输出模式
+    //     .pull_up_en = GPIO_PULLUP_ENABLE,  // 启用上拉
+    //     .pull_down_en = GPIO_PULLDOWN_DISABLE, // 禁用下拉
+    //     .intr_type = GPIO_INTR_DISABLE       // 禁用中断
+    // };
+
+    // // 配置GPIO
+    // esp_err_t ret = gpio_config(&amp;io_conf);
+    // if (ret != ESP_OK) {
+    //     printf("GPIO配置失败\n");
+    // }
+}
+
+void bsp_led_toggle(void)
+{
+    // 切换GPIO1的状态
+    gpio_set_level(GPIO_NUM_1, !gpio_get_level(GPIO_NUM_1));
+    //vTaskDelay(pdMS_TO_TICKS(1000)); // 延时1秒
+}</code></pre>
+
+<p>main.c(ESP32_Example.c)</p>
+
+<pre>
+<code class="language-cpp">#include "freertos/FreeRTOS.h"
+#include "freertos/task.h"
+// #include "nvs_flash.h"
+#include "esp_system.h"
+#include "esp_chip_info.h"
+// #include "esp_psram.h"
+// #include "esp_flash.h"
+
+#include "bsp_led.h" /* 包含 LED 头文件 */
+
+/**
+* @brief 程序入口
+* @param 无
+* @retval 无
+*/
+void app_main(void)
+{
+	// esp_err_t ret;
+	// uint32_t flash_size;
+	// esp_chip_info_t chip_info; /* 定义芯片信息结构体变量 */
+	// ret = nvs_flash_init(); /* 初始化 NVS */
+	// if (ret == ESP_ERR_NVS_NO_FREE_PAGES || ret == ESP_ERR_NVS_NEW_VERSION_FOUND)
+	// {
+	// 	ESP_ERROR_CHECK(nvs_flash_erase());
+	// 	ret = nvs_flash_init();
+	// }
+	// esp_flash_get_size(NULL, &amp;flash_size); /* 获取 FLASH 大小 */
+	// esp_chip_info(&amp;chip_info);
+	// printf("内核： cup 数量%d\n",chip_info.cores); /* 获取 CPU 内核数并显示 */
+	// /* 获取 FLASH 大小并显示 */
+	// printf("FLASH size:%ld MB flash\n",flash_size / (1024 * 1024));
+	// /* 获取 PARAM 大小并显示 */
+	// printf("PSRAM size: %d bytes\n", esp_psram_get_size());
+
+
+	bsp_led_init(); /* 初始化 LED */
+	while(1)
+	{
+		printf("Hello-ESP32\r\n");
+			bsp_led_toggle(); /* 切换 LED 状态 */
+		vTaskDelay(1000);
+	}
+}
+</code></pre>
+
+<p>参考链接：<br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="【正点原子】手把手教你学ESP32S3快速入门" target="_blank" rel="noopener" href="https://www.bilibili.com/video/BV1sH4y1W7Tc?spm_id_from=333.788.player.switch&amp;vd_source=77379e487a8ecc7d4f9e65b8d9cd422d&amp;p=13" title="【正点原子】手把手教你学ESP32S3快速入门">【正点原子】手把手教你学ESP32S3快速入门</a><br />
+&nbsp; &nbsp; &nbsp; &nbsp;<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="ESP32的ESP-IDF在VScode工程下，头文件标红警告、报错、无法跳转" target="_blank" rel="noopener" href="https://blog.csdn.net/weixin_49337111/article/details/135167692" title="ESP32的ESP-IDF在VScode工程下，头文件标红警告、报错、无法跳转">ESP32的ESP-IDF在VScode工程下，头文件标红警告、报错、无法跳转</a></p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/SoC%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">SoC学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/vscode-ide-%E7%BC%96%E8%BE%91%E5%99%A8-ESP32-ESP-IDF/" class="print-no-link">#vscode ide 编辑器 ESP32 ESP-IDF</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【SoC】【ESP32】ESP-IDF+VSCode的初步使用</div>
+      <div>http://example.com/2025/07/10/【SoC】【ESP32】ESP-IDF+VSCode的初步使用/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月10日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/11/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91%E5%9F%BA%E4%BA%8EVSCode+ESP-IDF%E6%8F%92%E4%BB%B6%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E7%A4%BA%E4%BE%8B%E5%B7%A5%E7%A8%8B/" title="【SoC】【ESP32】基于VSCode+ESP-IDF插件开发环境的示例工程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【SoC】【ESP32】基于VSCode+ESP-IDF插件开发环境的示例工程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/09/%E3%80%90MCU%E3%80%91%E3%80%90CH32%E3%80%91%E5%9F%BA%E4%BA%8ECH32F103C8T6%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%BA%93%E5%92%8CMDK%E7%8E%AF%E5%A2%83%E4%B8%8B%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E6%90%AD%E5%BB%BA%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/" title="【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）">
+                        <span class="hidden-mobile">【MCU】【CH32】基于CH32F103C8T6离线固件库和MDK环境下的工程模板搭建（纯手动）</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>

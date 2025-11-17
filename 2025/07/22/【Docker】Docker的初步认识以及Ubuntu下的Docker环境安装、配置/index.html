@@ -1,0 +1,1485 @@
+
+
+<!DOCTYPE html>
+<html lang="zh-CN" data-default-color-scheme=auto>
+
+
+
+<head>
+  <meta charset="UTF-8">
+
+  <link rel="apple-touch-icon" sizes="76x76" href="/img/fluid.png">
+  <link rel="icon" href="/img/fluid.png">
+  
+
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, shrink-to-fit=no">
+  <meta http-equiv="x-ua-compatible" content="ie=edge">
+  
+  <meta name="theme-color" content="#2f4154">
+  <meta name="author" content="John Doe">
+  <meta name="keywords" content="">
+  
+    <meta name="description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在当今快速迭代的软件开发与部署领域，容器化技术已成为不可或缺的核心力量，而 Docker 作为容器化技术的杰出代表，正以其轻量、高效、可移植的特性深刻改变着开发与运维的模式。它有效解决了 &ldquo;在我机器上能运行，在你那里却不行&rdquo; 的环境一致性难题，极大简化了应用的打包、分发与部署流程">
+<meta property="og:type" content="article">
+<meta property="og:title" content="【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置">
+<meta property="og:url" content="http://example.com/2025/07/22/%E3%80%90Docker%E3%80%91Docker%E7%9A%84%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86%E4%BB%A5%E5%8F%8AUbuntu%E4%B8%8B%E7%9A%84Docker%E7%8E%AF%E5%A2%83%E5%AE%89%E8%A3%85%E3%80%81%E9%85%8D%E7%BD%AE/index.html">
+<meta property="og:site_name" content="Molesidy Blog">
+<meta property="og:description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在当今快速迭代的软件开发与部署领域，容器化技术已成为不可或缺的核心力量，而 Docker 作为容器化技术的杰出代表，正以其轻量、高效、可移植的特性深刻改变着开发与运维的模式。它有效解决了 &ldquo;在我机器上能运行，在你那里却不行&rdquo; 的环境一致性难题，极大简化了应用的打包、分发与部署流程">
+<meta property="og:locale" content="zh_CN">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9695687ead6b4e64942b9ddfdc4bc498.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8c72f2dd61c441f89779ab5aafa306b5.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1535b7298cfb4486b217c99940b2a8a9.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/50c1c37de49e452d8543f062251fe36a.png">
+<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fcd1cda725ae42b79917364b0dc4fa8f.png">
+<meta property="article:published_time" content="2025-07-22T05:53:20.000Z">
+<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:author" content="John Doe">
+<meta property="article:tag" content="docker 容器 运维 Ubuntu">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/9695687ead6b4e64942b9ddfdc4bc498.png">
+  
+  
+  
+  <title>【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置 - Molesidy Blog</title>
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/twitter-bootstrap/4.6.1/css/bootstrap.min.css" />
+
+
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/github-markdown-css/4.0.0/github-markdown.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/hint.css/2.7.0/hint.min.css" />
+
+  <link  rel="stylesheet" href="https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css" />
+
+
+
+<!-- 主题依赖的图标库，不要自行修改 -->
+<!-- Do not modify the link that theme dependent icons -->
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1749284_5i9bdhy70f8.css">
+
+
+
+<link rel="stylesheet" href="//at.alicdn.com/t/c/font_1736178_k526ubmyhba.css">
+
+
+<link  rel="stylesheet" href="/css/main.css" />
+
+
+  <link id="highlight-css" rel="stylesheet" href="/css/highlight.css" />
+  
+    <link id="highlight-css-dark" rel="stylesheet" href="/css/highlight-dark.css" />
+  
+
+
+
+
+  <script id="fluid-configs">
+    var Fluid = window.Fluid || {};
+    Fluid.ctx = Object.assign({}, Fluid.ctx)
+    var CONFIG = {"hostname":"example.com","root":"/","version":"1.9.8","typing":{"enable":true,"typeSpeed":70,"cursorChar":"_","loop":false,"scope":[]},"anchorjs":{"enable":true,"element":"h1,h2,h3,h4,h5,h6","placement":"left","visible":"hover","icon":""},"progressbar":{"enable":true,"height_px":3,"color":"#29d","options":{"showSpinner":false,"trickleSpeed":100}},"code_language":{"enable":true,"default":"TEXT"},"copy_btn":true,"image_caption":{"enable":true},"image_zoom":{"enable":true,"img_url_replace":["",""]},"toc":{"enable":true,"placement":"right","headingSelector":"h1,h2,h3,h4,h5,h6","collapseDepth":0},"lazyload":{"enable":true,"loading_img":"/img/loading.gif","onlypost":false,"offset_factor":2},"web_analytics":{"enable":true,"follow_dnt":true,"baidu":null,"google":{"measurement_id":null},"tencent":{"sid":null,"cid":null},"leancloud":{"app_id":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","app_key":"hJeKUi4Je8aWf2npb4mhsFAl","server_url":"https://382jzdvn.lc-cn-n1-shared.com","path":"window.location.pathname","ignore_local":false},"umami":{"src":null,"website_id":null,"domains":null,"start_time":"2024-01-01T00:00:00.000Z","token":null,"api_server":null}},"search_path":"/local-search.xml","include_content_in_search":true};
+
+    if (CONFIG.web_analytics.follow_dnt) {
+      var dntVal = navigator.doNotTrack || window.doNotTrack || navigator.msDoNotTrack;
+      Fluid.ctx.dnt = dntVal && (dntVal.startsWith('1') || dntVal.startsWith('yes') || dntVal.startsWith('on'));
+    }
+  </script>
+  <script  src="/js/utils.js" ></script>
+  <script  src="/js/color-schema.js" ></script>
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+  
+
+
+
+  
+<meta name="generator" content="Hexo 8.1.1"></head>
+
+
+<body>
+  
+
+  <header>
+    
+
+<div class="header-inner" style="height: 70vh;">
+  <nav id="navbar" class="navbar fixed-top  navbar-expand-lg navbar-dark scrolling-navbar">
+  <div class="container">
+    <a class="navbar-brand" href="/">
+      <strong>Molesidy&#39;s Blog</strong>
+    </a>
+
+    <button id="navbar-toggler-btn" class="navbar-toggler" type="button" data-toggle="collapse"
+            data-target="#navbarSupportedContent"
+            aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+      <div class="animated-icon"><span></span><span></span><span></span></div>
+    </button>
+
+    <!-- Collapsible content -->
+    <div class="collapse navbar-collapse" id="navbarSupportedContent">
+      <ul class="navbar-nav ml-auto text-center">
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/" target="_self">
+                <i class="iconfont icon-home-fill"></i>
+                <span>首页</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/archives/" target="_self">
+                <i class="iconfont icon-archive-fill"></i>
+                <span>归档</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/categories/" target="_self">
+                <i class="iconfont icon-category-fill"></i>
+                <span>分类</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/tags/" target="_self">
+                <i class="iconfont icon-tags-fill"></i>
+                <span>标签</span>
+              </a>
+            </li>
+          
+        
+          
+          
+          
+          
+            <li class="nav-item">
+              <a class="nav-link" href="/about/" target="_self">
+                <i class="iconfont icon-user-fill"></i>
+                <span>关于</span>
+              </a>
+            </li>
+          
+        
+        
+          <li class="nav-item" id="search-btn">
+            <a class="nav-link" target="_self" href="javascript:;" data-toggle="modal" data-target="#modalSearch" aria-label="Search">
+              <i class="iconfont icon-search"></i>
+            </a>
+          </li>
+          
+        
+        
+          <li class="nav-item" id="color-toggle-btn">
+            <a class="nav-link" target="_self" href="javascript:;" aria-label="Color Toggle">
+              <i class="iconfont icon-dark" id="color-toggle-icon"></i>
+            </a>
+          </li>
+        
+      </ul>
+    </div>
+  </div>
+</nav>
+
+  
+
+<div id="banner" class="banner" parallax=true
+     style="background: url('/img/default.png') no-repeat center center; background-size: cover;">
+  <div class="full-bg-img">
+    <div class="mask flex-center" style="background-color: rgba(0, 0, 0, 0.3)">
+      <div class="banner-text text-center fade-in-up">
+        <div class="h2">
+          
+            <span id="subtitle" data-typed-text="【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置"></span>
+          
+        </div>
+
+        
+          
+  <div class="mt-3">
+    
+    
+      <span class="post-meta">
+        <i class="iconfont icon-date-fill" aria-hidden="true"></i>
+        <time datetime="2025-07-22 13:53" pubdate>
+          2025年7月22日 下午
+        </time>
+      </span>
+    
+  </div>
+
+  <div class="mt-1">
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-chart"></i>
+        
+          6.8k 字
+        
+      </span>
+    
+
+    
+      <span class="post-meta mr-2">
+        <i class="iconfont icon-clock-fill"></i>
+        
+        
+        
+          57 分钟
+        
+      </span>
+    
+
+    
+    
+      
+        <span id="leancloud-page-views-container" class="post-meta" style="display: none">
+          <i class="iconfont icon-eye" aria-hidden="true"></i>
+          <span id="leancloud-page-views"></span> 次
+        </span>
+        
+      
+      
+    
+  </div>
+
+
+        
+      </div>
+
+      
+    </div>
+  </div>
+</div>
+
+</div>
+
+  </header>
+
+  <main>
+    
+      
+
+<div class="container-fluid nopadding-x">
+  <div class="row nomargin-x">
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+
+    </div>
+
+    <div class="col-lg-8 nopadding-x-md">
+      <div class="container nopadding-x-md" id="board-ctn">
+        <div id="board">
+          <article class="post-content mx-auto">
+            <h1 id="seo-header">【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置</h1>
+            
+              <p id="updated-time" class="note note-info" style="display: none">
+                
+                  
+                    本文最后更新于 2025-11-17T21:53:22+08:00
+                  
+                  
+
+                
+              </p>
+            
+            
+              <div class="markdown-body">
+                
+                <span id="more"></span>
+
+<p><strong>前言</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在当今快速迭代的软件开发与部署领域，容器化技术已成为不可或缺的核心力量，而 Docker 作为容器化技术的杰出代表，正以其轻量、高效、可移植的特性深刻改变着开发与运维的模式。它有效解决了 &ldquo;在我机器上能运行，在你那里却不行&rdquo; 的环境一致性难题，极大简化了应用的打包、分发与部署流程，让开发者能够更专注于业务逻辑的实现，而非环境配置的琐碎细节。​</p>
+
+<h1>一、Docker的初步认识</h1>
+
+<h2><span style="color:#ff9900">1.什么是Docker？</span></h2>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Docker官网" target="_blank" rel="noopener" href="https://www.docker.com/" title="Docker官网">Docker官网</a></p>
+
+<p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="DockerHub官网 " target="_blank" rel="noopener" href="https://hub.docker.com/" title="DockerHub官网 ">DockerHub官网</a></p>
+
+<p><strong>Docker </strong>是一个用于开发、部署和运行应用程序的开源平台，它采用容器化技术，将应用及其依赖项打包成独立的容器，确保应用在不同环境中无缝运行。以下是对 Docker 的详细解释：</p>
+
+<p><img alt="" height="366" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9695687ead6b4e64942b9ddfdc4bc498.png" srcset="/img/loading.gif" lazyload width="697" /></p>
+
+<h3><span style="color:#ed7976"><strong>（1）. 核心概念</strong></span></h3>
+
+<h4><strong>仓库（Registry）</strong></h4>
+
+<ul>
+	<li><strong>镜像存储中心</strong>：仓库用于存储和分发镜像，例如 Docker Hub、阿里云容器镜像服务等。</li>
+	<li><strong>公有与私有</strong>：公有仓库免费使用，私有仓库适合企业内部管理镜像。</li>
+	<li><span style="color:#0d0016"><span style="background-color:#f9eda6">注：类比为软件官网，其具有分发软件安装包（</span></span><span style="background-color:#f9eda6">镜像</span><span style="color:#0d0016"><span style="background-color:#f9eda6">）的功能。</span></span></li>
+</ul>
+
+<h4><strong>镜像（Image）</strong></h4>
+
+<ul>
+	<li><strong>容器的模板</strong>：镜像是一个只读的文件，包含创建容器所需的所有内容（代码、依赖、配置等）。</li>
+	<li><strong>分层结构</strong>：镜像采用分层存储，复用公共层，减少存储空间和下载时间。</li>
+	<li><span style="background-color:#f9eda6">注：类比为常见的软件安装包。</span></li>
+</ul>
+
+<h4><strong>容器（Container）</strong></h4>
+
+<ul>
+	<li><strong>轻量级隔离环境</strong>：容器是应用运行的独立环境，包含代码、运行时、系统工具和库，与其他容器共享宿主机操作系统内核。</li>
+	<li><strong>隔离性</strong>：容器之间相互隔离，不会影响其他容器或宿主机的运行状态。</li>
+	<li><span style="background-color:#f9eda6">注：类比为软件安装包安装软件后的一个正在运行的软件，在该软件环境（就相当于容器）下进行相应的工作。</span></li>
+</ul>
+
+<h3><span style="color:#ed7976"><strong>（2）. Docker 与传统虚拟机的区别</strong></span></h3>
+
+<h4><strong>Docker 与虚拟化技术：本质差异与演进逻辑</strong></h4>
+
+<p>Docker 与传统虚拟化技术（如 VMware、Hypervisor）均属于环境隔离技术，但在架构设计、资源利用和应用场景上存在本质差异。Docker 通过<strong>容器化技术</strong>对操作系统层进行深度封装，实现了比虚拟机更轻量、更高效的应用隔离方案。</p>
+
+<h4><strong>1）. 技术架构对比：从系统级隔离到应用级隔离</strong></h4>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>维度</strong></th>
+			<th><strong>Docker 容器</strong></th>
+			<th><strong>传统虚拟机</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>隔离层级</strong></td>
+			<td>操作系统层（共享内核，隔离用户空间）</td>
+			<td>硬件层（通过 Hypervisor 虚拟完整硬件）</td>
+		</tr>
+		<tr>
+			<td><strong>资源抽象</strong></td>
+			<td>应用进程 + 依赖库</td>
+			<td>完整操作系统 + 硬件驱动</td>
+		</tr>
+		<tr>
+			<td><strong>启动机制</strong></td>
+			<td>直接启动应用进程（无需加载内核）</td>
+			<td>需要引导整个操作系统</td>
+		</tr>
+		<tr>
+			<td><strong>镜像体积</strong></td>
+			<td>通常几十 MB 到 GB 级（分层存储）</td>
+			<td>通常数 GB 到 TB 级（含完整系统）</td>
+		</tr>
+		<tr>
+			<td><strong>运行密度</strong></td>
+			<td>单主机可运行数百个容器</td>
+			<td>单主机通常运行数十个虚拟机</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>2）. Docker 的核心创新：容器深度封装技术</strong></h4>
+
+<p>Docker 在容器基础上引入了三大核心封装机制：</p>
+
+<ol>
+	<li>
+	<p><strong>联合文件系统（UnionFS）</strong></p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;通过分层存储技术，将应用依赖、配置和代码分层打包，不同容器可共享基础层，大幅减少存储空间占用和部署时间。&lt;/li&gt;
+	&lt;li&gt;示例：多个 Python 应用可共享同一 Python 运行时镜像层。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;网络命名空间与虚拟网络&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;为每个容器分配独立的网络栈（IP、端口、路由表），支持桥接、overlay 等多种网络模式，实现容器间安全通信。&lt;/li&gt;
+	&lt;li&gt;对比虚拟机：无需为每个容器分配虚拟网卡，网络延迟更低。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Cgroups 资源隔离&lt;/strong&gt;&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;通过 Linux Control Groups 精确限制容器的 CPU、内存、IO 等资源，避免单个容器耗尽系统资源。&lt;/li&gt;
+	&lt;li&gt;特性：支持动态调整资源配额，适应弹性伸缩场景。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ol>
+
+<h4><strong>3）. 性能对比：轻量与高效的实证数据</strong></h4>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>测试指标</strong></th>
+			<th><strong>Docker 容器</strong></th>
+			<th><strong>虚拟机</strong></th>
+			<th><strong>性能差异</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>启动时间</strong></td>
+			<td>0.1-1 秒</td>
+			<td>30-120 秒</td>
+			<td><strong>快 30-1000 倍</strong></td>
+		</tr>
+		<tr>
+			<td><strong>内存占用（Nginx）</strong></td>
+			<td>~5MB</td>
+			<td>~200MB</td>
+			<td><strong>节省 97% 内存</strong></td>
+		</tr>
+		<tr>
+			<td><strong>吞吐量（HTTP 请求）</strong></td>
+			<td>约 95% 原生性能</td>
+			<td>约 70% 原生性能</td>
+			<td><strong>提升 35% 吞吐量</strong></td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>4）. 应用场景的分化与融合</strong></h4>
+
+<ul>
+	<li>
+	<p><strong>Docker 适用场景</strong>：</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;微服务架构（如 Netflix、Amazon 的容器化改造）&lt;/li&gt;
+	&lt;li&gt;CI/CD 流水线（GitLab、Jenkins 的容器化部署）&lt;/li&gt;
+	&lt;li&gt;开发环境一致性保障（DevOps 团队协作）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;虚拟机适用场景&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;异构操作系统共存（Windows + Linux 混合环境）&lt;/li&gt;
+	&lt;li&gt;安全敏感型应用（金融、医疗领域的合规要求）&lt;/li&gt;
+	&lt;li&gt;资源密集型单应用（传统数据库、中间件）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;融合趋势&lt;/strong&gt;：&lt;/p&gt;
+
+&lt;ul&gt;
+	&lt;li&gt;&lt;strong&gt;容器云平台&lt;/strong&gt;：在虚拟机集群上部署 Docker，兼顾隔离性与弹性（如 AWS EKS、阿里云 ACK）&lt;/li&gt;
+	&lt;li&gt;&lt;strong&gt;边缘计算&lt;/strong&gt;：轻量级容器在资源受限设备上替代虚拟机（如 Raspberry Pi + Docker）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4><strong>5）. 技术选型决策矩阵</strong></h4>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>需求维度</strong></th>
+			<th><strong>优先选择 Docker</strong></th>
+			<th><strong>优先选择虚拟机</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>资源利用率</strong></td>
+			<td>高（密度部署）</td>
+			<td>低（冗余系统开销）</td>
+		</tr>
+		<tr>
+			<td><strong>部署速度</strong></td>
+			<td>秒级（适合频繁迭代）</td>
+			<td>分钟级（适合长期稳定运行）</td>
+		</tr>
+		<tr>
+			<td><strong>异构环境支持</strong></td>
+			<td>单一内核（Linux/Windows）</td>
+			<td>多操作系统（跨平台兼容）</td>
+		</tr>
+		<tr>
+			<td><strong>安全隔离级别</strong></td>
+			<td>进程级隔离（需加固配置）</td>
+			<td>系统级隔离（天然安全边界）</td>
+		</tr>
+	</tbody>
+</table>
+
+<h4><strong>Docker 与传统虚拟机的区别的总结：容器技术的演进价值</strong></h4>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Docker 通过<strong>操作系统级虚拟化</strong>，在保留虚拟机隔离优势的同时，消除了传统虚拟化的性能损耗和资源冗余。其核心价值在于：</p>
+
+<ul>
+	<li><strong>开发效率提升</strong>：一次构建，随处运行，彻底解决 &ldquo;环境不一致&rdquo; 问题</li>
+	<li><strong>运维成本降低</strong>：资源利用率提升 3-5 倍，部署速度提升 10-100 倍</li>
+	<li><strong>架构创新</strong>：推动微服务、Serverless 等新型架构落地</li>
+</ul>
+
+<table>
+	<thead>
+		<tr>
+			<th><strong>对比项</strong></th>
+			<th><strong>Docker 容器</strong></th>
+			<th><strong>传统虚拟机</strong></th>
+		</tr>
+	</thead>
+	<tbody>
+		<tr>
+			<td><strong>隔离级别</strong></td>
+			<td>共享内核，进程级隔离</td>
+			<td>完全隔离，包含独立操作系统</td>
+		</tr>
+		<tr>
+			<td><strong>启动速度</strong></td>
+			<td>秒级启动</td>
+			<td>分钟级启动</td>
+		</tr>
+		<tr>
+			<td><strong>资源占用</strong></td>
+			<td>轻量，仅需必要依赖</td>
+			<td>重量级，需完整操作系统</td>
+		</tr>
+		<tr>
+			<td><strong>性能</strong></td>
+			<td>接近原生性能</td>
+			<td>性能损耗较大</td>
+		</tr>
+		<tr>
+			<td><strong>部署效率</strong></td>
+			<td>高（镜像复用、快速部署）</td>
+			<td>低（需安装完整操作系统）</td>
+		</tr>
+	</tbody>
+</table>
+
+<p><strong>虚拟机的架构图：</strong></p>
+
+<p><img alt="" height="245" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8c72f2dd61c441f89779ab5aafa306b5.png" srcset="/img/loading.gif" lazyload width="223" /></p>
+
+<p><strong>Docker的架构图：</strong></p>
+
+<p><img alt="" height="172" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1535b7298cfb4486b217c99940b2a8a9.png" srcset="/img/loading.gif" lazyload width="210" /></p>
+
+<p><strong>简化的虚拟机和Docker的架构对比图：</strong></p>
+
+<p><img alt="" height="532" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/50c1c37de49e452d8543f062251fe36a.png" srcset="/img/loading.gif" lazyload width="458" /></p>
+
+<h3><span style="color:#ed7976"><strong>（3）. Docker 的优势</strong></span></h3>
+
+<ul>
+	<li><strong>环境一致性</strong>：确保开发、测试、生产环境一致，避免 &ldquo;环境差异&rdquo; 导致的问题。</li>
+	<li><strong>快速部署与扩展</strong>：容器秒级启动，支持快速复制和扩展，适应微服务架构。</li>
+	<li><strong>资源利用率高</strong>：多个容器共享内核，资源占用少，提升硬件利用率。</li>
+	<li><strong>可移植性强</strong>：一次构建，随处运行（支持 Linux、Windows、macOS 等）。</li>
+	<li><strong>版本控制</strong>：镜像支持版本管理，方便回滚和追踪变更。</li>
+</ul>
+
+<h3><span style="color:#ed7976"><strong>（4）. 典型应用场景</strong></span></h3>
+
+<ul>
+	<li><strong>微服务架构</strong>：将应用拆分为多个独立容器，实现松耦合、高可用。</li>
+	<li><strong>持续集成与部署（CI/CD）</strong>：自动化构建、测试和部署容器化应用。</li>
+	<li><strong>开发环境管理</strong>：为团队提供一致的开发环境，避免依赖冲突。</li>
+	<li><strong>资源密集型应用</strong>：通过容器隔离和资源限制，优化资源分配。</li>
+</ul>
+
+<h3><span style="color:#ed7976"><strong>（5）. 基本工作流程</strong></span></h3>
+
+<ol>
+	<li><strong>编写 Dockerfile</strong>：定义应用的环境和依赖。</li>
+	<li><strong>构建镜像</strong>：使用&nbsp;<code>docker build</code>&nbsp;命令创建镜像。</li>
+	<li><strong>运行容器</strong>：使用&nbsp;<code>docker run</code>&nbsp;命令启动容器。</li>
+	<li><strong>推送 / 拉取镜像</strong>：将镜像上传至仓库或从仓库下载。</li>
+</ol>
+
+<h3><span style="color:#ed7976"><strong>（6）. 核心组件</strong></span></h3>
+
+<ul>
+	<li><strong>Docker 引擎</strong>：运行在宿主机上的服务，负责创建和管理容器。</li>
+	<li><strong>Docker CLI</strong>：命令行工具，用于与 Docker 引擎交互。</li>
+	<li><strong>Docker Compose</strong>：定义和运行多容器应用的工具（通过 YAML 文件配置）。</li>
+	<li><strong>Docker Swarm/Kubernetes</strong>：容器编排工具，用于集群管理和自动化部署。</li>
+</ul>
+
+<h3><span style="color:#ff9900">Docker-</span><strong>总结</strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;Docker 通过容器化技术，将应用与环境解耦，实现了高效、一致的应用交付。它已成为云计算、DevOps 和微服务领域的基石技术，帮助开发者和运维团队降低成本、提升效率。在后续内容中，我们将详细介绍如何在 Ubuntu 系统上安装和配置 Docker 环境。</p>
+
+<h2><span style="color:#ff9900">2.为什么使用Docker？</span></h2>
+
+<p>使用 Docker 的核心价值，在于它从根本上解决了软件开发、部署和运维中的一系列经典痛点，尤其在云原生、微服务和 DevOps 兴起的背景下，其优势被进一步放大。具体可从以下 6 个核心场景和技术价值展开：</p>
+
+<h3>1）.&nbsp;<strong>彻底解决 &ldquo;环境不一致&rdquo; 问题：一次构建，随处运行</strong></h3>
+
+<p>开发中最常见的矛盾是：&ldquo;在我电脑上能跑，到你这怎么就报错了？&rdquo; 根源在于开发、测试、生产环境的依赖（如系统版本、库版本、配置文件）存在差异。<br />
+Docker 通过<strong>容器镜像</strong>将应用及其所有依赖（代码、运行时、库、环境变量、配置文件）打包成一个不可变的 &ldquo;标准化交付单元&rdquo;。无论在开发者的笔记本（Ubuntu/macOS）、测试服务器（CentOS）还是生产集群（云服务器），只要安装了 Docker，容器就能以完全一致的方式运行，消除了 &ldquo;环境适配&rdquo; 的重复劳动。</p>
+
+<h3>2）.&nbsp;<strong>资源效率碾压传统虚拟化：轻量、高密度、低成本</strong></h3>
+
+<p>相比虚拟机（VM），Docker 容器的 &ldquo;轻量性&rdquo; 带来了显著的资源优势：</p>
+
+<ul>
+	<li><strong>启动速度</strong>：容器直接复用宿主机内核，无需加载完整操作系统，启动时间从虚拟机的 &ldquo;分钟级&rdquo; 缩短到 &ldquo;秒级甚至毫秒级&rdquo;（如 Nginx 容器启动仅需 0.1 秒）。</li>
+	<li><strong>资源占用</strong>：容器仅包含应用及必要依赖，镜像体积通常是虚拟机镜像的 1/10 到 1/100（例如一个 Python 应用容器约 50MB，而同等功能的虚拟机镜像可能达 5GB）。</li>
+	<li><strong>运行密度</strong>：单台服务器可运行数百个容器（而虚拟机通常只能运行几十个），大幅提升硬件利用率，降低服务器采购和运维成本（尤其对云服务器按资源计费场景）。</li>
+</ul>
+
+<h3>3）.&nbsp;<strong>简化部署与运维：从 &ldquo;手动配置&rdquo; 到 &ldquo;自动化交付&rdquo;</strong></h3>
+
+<p>传统部署流程（如手动安装依赖、改配置、启停服务）不仅繁琐，还容易因人为操作出错。Docker 通过<strong>镜像版本管理</strong>和<strong>容器编排</strong>，将部署流程 &ldquo;代码化&rdquo;：</p>
+
+<ul>
+	<li><strong>版本可控</strong>：镜像支持版本标签（如<code>app:v1.0</code>、<code>app:v2.0</code>），部署时指定版本即可，回滚时只需切换标签，比手动卸载 / 重装高效 10 倍以上。</li>
+	<li><strong>自动化集成</strong>：无缝对接 CI/CD 工具（如 GitLab CI、Jenkins），代码提交后自动构建镜像、运行测试、部署到目标环境，实现 &ldquo;提交即部署&rdquo; 的 DevOps 闭环。</li>
+	<li><strong>批量操作</strong>：通过 Docker Compose 或 Kubernetes，可一键启动 / 停止 / 扩容多个关联容器（如 &ldquo;前端 + 后端 + 数据库&rdquo; 的微服务组合），替代复杂的手动脚本。</li>
+</ul>
+
+<h3>4）.&nbsp;<strong>微服务架构的 &ldquo;最佳搭档&rdquo;：解耦与弹性伸缩</strong></h3>
+
+<p>在微服务架构中，一个系统被拆分为多个独立服务（如用户服务、订单服务、支付服务），每个服务需要独立部署、扩展和维护。Docker 的特性完美适配这一需求：</p>
+
+<ul>
+	<li><strong>服务隔离</strong>：每个微服务运行在独立容器中，通过虚拟网络通信，单个服务崩溃不会影响其他服务，且资源（CPU / 内存）可单独限制，避免 &ldquo;一个服务耗尽整机资源&rdquo;。</li>
+	<li><strong>弹性伸缩</strong>：当某个服务压力增大时，可通过容器编排工具（如 K8s）快速复制多个容器实例分担负载，压力减小时自动销毁冗余实例，实现 &ldquo;按需分配资源&rdquo;。</li>
+	<li><strong>技术栈灵活</strong>：不同微服务可使用不同技术栈（如 A 服务用 Python，B 服务用 Java），容器化后无需担心依赖冲突，降低跨团队协作的技术门槛。</li>
+</ul>
+
+<h3>5）.&nbsp;<strong>开发效率提升：快速搭建 &ldquo;干净环境&rdquo;</strong></h3>
+
+<p>开发者常需要在本地测试不同版本的依赖（如 &ldquo;测试 Python 3.8 和 3.9 对应用的影响&rdquo;），或临时启动辅助服务（如 Redis、MySQL）。传统方式需手动安装、配置，结束后还得清理残留文件，耗时且易污染系统。<br />
+Docker 可通过<strong>临时容器</strong>快速解决：</p>
+
+<ul>
+	<li>启动一个<code>redis:6.2</code>容器，用完直接删除（<code>docker rm</code>），无需担心系统残留配置；</li>
+	<li>为不同依赖版本创建独立镜像（如<code>app:py38</code>、<code>app:py39</code>），切换环境只需切换容器，避免本地环境 &ldquo;越用越乱&rdquo;。</li>
+</ul>
+
+<h3>6）.&nbsp;<strong>跨平台兼容性：从本地到云，无缝迁移</strong></h3>
+
+<p>无论是个人电脑（Windows/macOS/Linux）、物理服务器，还是公有云（AWS/Azure/ 阿里云）、私有云，只要支持 Docker，容器就能一致运行。这打破了 &ldquo;云厂商锁定&rdquo;：</p>
+
+<ul>
+	<li>开发者在本地用 Ubuntu 开发的容器，可直接部署到阿里云 ECS（CentOS 系统），无需修改任何配置；</li>
+	<li>未来若需从 AWS 迁移到自建数据中心，只需迁移镜像和容器配置，避免因平台差异导致的 &ldquo;重写适配代码&rdquo;。</li>
+</ul>
+
+<h3>总结：Docker 的核心价值公式</h3>
+
+<p><strong>Docker = 环境一致性 + 资源效率 + 部署自动化 + 架构灵活性</strong></p>
+
+<p>它不是 &ldquo;银弹&rdquo;，但在大多数场景下（尤其是分布式系统、频繁迭代、多环境协作），能将团队的 &ldquo;无效劳动&rdquo;（环境调试、手动部署、跨平台适配）转化为 &ldquo;有效创新&rdquo;，这也是它从 2013 年诞生至今，成为云原生时代基础设施的核心原因。</p>
+
+<h2><span style="color:#ff9900">3.概念详解</span></h2>
+
+<h3><strong>1）镜像</strong></h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;操作系统一般分为内核和用户空间，而对于 Linux 而言，内核启动后，会挂载 root 文件系统（<strong>rootfs</strong>）为其提供用户空间支持。而 Docker 镜像（Image）就相当于是一个 root 文件系统。比如：官方镜像 ubuntu:22.04 就包含了完整的一套 Ubuntu 22.04 最小系统的 root 文件系统。同时，Docker 镜像 是一个特殊的文件系统，除了提供容器运行时所需的程序、库、资源、配置等文件外，还包含了一些为运行时准备的一些配置参数（如匿名卷、环境变量、用户等）。镜像不包含 任何动态数据，其内容在构建之后也不会被改变。</p>
+
+<p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镜像的分层存储：</strong></p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;因为镜像包含操作系统完整的 root 文件系统，其体积往往是庞大的，因此在 Docker 设计时，就充分利用 Union FS 的技术，将其设计为分层存储的架构。所以严格来说，镜像并非是像一个 ISO 那样的打包文件，镜像只是一个虚拟的概念，其实际体现并非由一个文件组成，而是由一组文件系统组成，或者说，由多层文件系统联合组成。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镜像构建时，会一层层构建，前一层是后一层的基础。每一层构建完就不会再发生改变，后一层上的任何改变只发生在自己这一层。比如，删除前一层文件的操作，实际不是真的删除前一层的文件，而是仅在当前层标记为该文件已删除。在最终容器运行的时候，虽然不会看到这个文件，但是实际上该文件会一直跟随镜像。因此，在构建镜像的时候，需要额外小心，每一层尽量只包含该层需要添加的东西，任何额外的东西应该在该层构建结束前清理掉。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;分层存储的特征还使得镜像的复用、定制变的更为容易。甚至可以用之前构建好的镜像作为基础层，然后进一步添加新的层，以定制自己所需的内容，构建新的镜像。、</p>
+
+<h3>2）容器</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镜像和容器的关系，就像面向对象编程里的类和实例：镜像是静态的模板，容器是镜像运行起来的实体，能被创建、启动、停止、删除等。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容器本质是进程，但它运行在独立的命名空间中，有自己的 root 文件系统、网络配置、进程空间等，就像在独立系统中操作，比直接在宿主运行更安全，这也让初学者易与虚拟机混淆。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;容器和镜像一样采用分层存储，运行时以镜像为基础层，再创建一个容器存储层供读写。容器存储层随容器消亡而消失，所以里面的信息会跟着容器删除而丢失。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;按 Docker 最佳实践，容器存储层要保持无状态，不写入数据。文件写入应使用数据卷或绑定宿主目录，这样能跳过容器存储层，直接操作宿主或网络存储，性能和稳定性更好。而且数据卷生命周期独立于容器，容器没了，数据卷里的数据也不会丢失。</p>
+
+<h3>3）仓库</h3>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;镜像构建完成后，可以很容易的在当前宿主机上运行，但是，如果需要在其它服务器上使用这个镜像，我们就需要一个集中的存储、分发镜像的服务，Docker Registry 就是这样的服务。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;一个 Docker Registry 中可以包含多个仓库（Repository）；每个仓库可以包含多个标签（Tag）；而每个标签对应一个镜像。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;通常，一个仓库会包含同一个软件不同版本的镜像，而标签就常用于对应该软件的各个版本。我们可以通过 &lt;仓库名&gt;:&lt;标签&gt; 的格式来指定具体是这个软件哪个版本的镜像。如果不给出标签，将以 latest 作为默认标签。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;以 Ubuntu 镜像为例，ubuntu 是仓库的名字，其内包含有不同的版本标签，如：16.04, 18.04。我们可以通过 ubuntu:16.04，或者 ubuntu:18.04 来具体指定所需哪个版本的镜像。如果忽略了标签，比如 ubuntu，那将视为 ubuntu:latest。</p>
+
+<p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仓库名经常以两段式路径形式出现，比如 jwilder/nginx-proxy，前者往往意味着 Docker Registry 多用户环境下的用户名，后者则往往是对应的软件名。但这并非绝对，取决于所使用的具体 Docker Registry 的软件或服务。</p>
+
+<p><strong>参考链接（如有侵权，请联系删除）：</strong></p>
+
+<p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="一文说清 Docker 是什么（非常详细），零基础入门到精通，看这一篇就够了-CSDN博客" target="_blank" rel="noopener" href="https://blog.csdn.net/SpringJavaMyBatis/article/details/142784654?spm=1001.2101.3001.6650.14&amp;utm_medium=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-142784654-blog-143731844.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;depth_1-utm_source=distribute.pc_relevant.none-task-blog-2%7Edefault%7EBlogCommendFromBaidu%7ERate-14-142784654-blog-143731844.235%5Ev43%5Epc_blog_bottom_relevance_base8&amp;utm_relevant_index=23" title="一文说清 Docker 是什么（非常详细），零基础入门到精通，看这一篇就够了-CSDN博客">一文说清 Docker 是什么（非常详细），零基础入门到精通，看这一篇就够了-CSDN博客</a></p>
+
+<h1>二、基于Ubuntu下的Docker安装步骤</h1>
+
+<h2><span style="color:#6eaad7">1.查看是否已经安装了Docker，如果安装则删除旧版本</span></h2>
+
+<pre>
+<code class="language-bash">#查看Docker版本
+docker --version
+
+#删除旧版本
+sudo apt-get remove docker docker-engine docker.io containerd runc
+</code></pre>
+
+<h2><span style="color:#6eaad7">2.安装下载Docker时需要的依赖</span></h2>
+
+<pre>
+<code class="language-bash">#更新 apt 包索引
+sudo apt-get update
+
+#安装相关软件包以允许 apt 通过 HTTPS 使用 docker 存储库
+sudo apt-get install ca-certificates curl gnupg lsb-release</code></pre>
+
+<h2><span style="color:#6eaad7">3.<strong>使用存储库安装 Docker</strong></span></h2>
+
+<h3><strong>&nbsp;&nbsp;&nbsp;&nbsp;为什么使用存储库安装 Docker？</strong></h3>
+
+<ol>
+	<li><strong>自动解决依赖</strong>：Docker 依赖于多个系统组件（如 <code>containerd</code>、<code>runc</code>），存储库安装会自动处理这些依赖关系。</li>
+	<li><strong>版本管理</strong>：通过存储库可以轻松安装、升级或降级软件版本，且支持自动更新。</li>
+	<li><strong>安全性</strong>：官方存储库的软件包经过签名验证，确保来源可信。</li>
+	<li><strong>标准化流程</strong>：所有 Linux 发行版都支持通过存储库安装软件，操作统一。</li>
+</ol>
+
+<h3><span style="color:#6eaad7"><strong>（1）添加 Docker 的官方 GPG 密钥</strong></span></h3>
+
+<pre>
+<code class="language-bash"># 1. 创建存放GPG密钥的目录
+sudo mkdir -p /etc/apt/keyrings
+
+# 2. 下载Docker官方GPG密钥并保存
+curl -fsSL https://download.docker.com/linux/ubuntu/gpg | sudo gpg --dearmor -o /etc/apt/keyrings/docker.gpg
+</code></pre>
+
+<h3><strong>第一条命令：创建存放 GPG 密钥的目录</strong></h3>
+
+<p><strong>参数解析</strong></p>
+
+<ul>
+	<li>
+	<p><strong><code>sudo</code></strong><br />
+	以超级用户（root）权限执行命令，因为 <code>/etc</code> 目录通常只有 root 用户可写。</p>
+	</li>
+	<li>
+	<p><strong><code>mkdir</code></strong><br />
+	创建目录的命令（Make Directory）。</p>
+	</li>
+	<li>
+	<p><strong><code>-p</code></strong><br />
+	<strong>递归创建父目录</strong>。如果 <code>/etc/apt/keyrings</code> 的上级目录（如 <code>/etc/apt</code>）不存在，会自动创建它们。<br />
+	例如：若 <code>/etc/apt</code> 不存在，会先创建 <code>/etc/apt</code>，再创建 <code>/etc/apt/keyrings</code>。</p>
+	</li>
+	<li>
+	<p><strong><code>/etc/apt/keyrings</code></strong><br />
+	目标目录路径。</p>
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;/etc/apt&lt;/code&gt;：Debian 系 Linux 存放软件源配置的目录。&lt;/li&gt;
+	&lt;li&gt;&lt;code&gt;keyrings&lt;/code&gt;：专门用于存放 GPG 密钥环的子目录（从 APT 2.4 版本开始推荐）。&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h3>&nbsp;<strong>第二条命令：下载并保存 Docker 官方 GPG 密钥</strong></h3>
+
+<h4><strong>管道前半部分：<code>curl -fsSL [...]</code></strong></h4>
+
+<ul>
+	<li>
+	<p><strong><code>curl</code></strong><br />
+	用于发送 HTTP 请求、下载文件的命令行工具。</p>
+	</li>
+	<li>
+	<p><strong><code>-f</code> (<code>--fail</code>)</strong><br />
+	若 HTTP 请求返回错误状态码（如 404、500），立即终止并返回错误，避免输出错误页面内容。</p>
+	</li>
+	<li>
+	<p><strong><code>-s</code> (<code>--silent</code>)</strong><br />
+	静默模式，不显示进度条和错误信息（但 <code>-S</code> 会覆盖此选项，显示错误）。</p>
+	</li>
+	<li>
+	<p><strong><code>-S</code> (<code>--show-error</code>)</strong><br />
+	与 <code>-s</code> 配合使用，即使静默模式也显示错误信息。</p>
+	</li>
+	<li>
+	<p><strong><code>-L</code> (<code>--location</code>)</strong><br />
+	若服务器返回重定向（如 301、302），自动跟随重定向到新 URL。</p>
+	</li>
+	<li>
+	<p><strong><code>https://download.docker.com/linux/ubuntu/gpg</code></strong><br />
+	Docker 官方提供的 GPG 公钥下载地址，用于验证软件包的签名。</p>
+	</li>
+</ul>
+
+<h4><strong>管道后半部分：<code>sudo gpg --dearmor -o [...]</code></strong></h4>
+
+<ul>
+	<li>
+	<p><strong><code>gpg</code></strong><br />
+	GNU Privacy Guard，用于加密、签名和验证的工具。</p>
+	</li>
+	<li>
+	<p><strong><code>--dearmor</code></strong><br />
+	将 ASCII 格式的 GPG 密钥（文本形式）转换为二进制格式（<code>.gpg</code> 文件）。</p>
+	</li>
+</ul>
+
+<p>例如，下载的原始密钥是：</p>
+
+<p>plaintext</p>
+
+<pre>
+<code>-----BEGIN PGP PUBLIC KEY BLOCK-----
+...（长文本）...
+-----END PGP PUBLIC KEY BLOCK-----
+</code></pre>
+
+<ul>
+	<li>
+	<p>转换后变为二进制格式，便于 APT 系统读取。</p>
+	</li>
+	<li>
+	<p><strong><code>-o /etc/apt/keyrings/docker.gpg</code></strong><br />
+	<strong><code>-o</code> (<code>--output</code>)</strong>：指定输出文件路径。<br />
+	将转换后的二进制密钥保存为 <code>/etc/apt/keyrings/docker.gpg</code>。</p>
+	</li>
+</ul>
+
+<h4><strong>为什么需要这两步？</strong></h4>
+
+<ol>
+	<li>
+	<p><strong>安全性</strong><br />
+	GPG 密钥用于验证软件包是否由 Docker 官方发布，防止中间人攻击或篡改。</p>
+	</li>
+	<li>
+	<p><strong>兼容性</strong><br />
+	从 APT 2.4 版本开始，推荐将密钥存放在 <code>/etc/apt/keyrings/</code> 目录，并在软件源配置中用 <code>signed-by</code> 指定密钥路径。</p>
+	</li>
+	<li>
+	<p><strong>自动化</strong><br />
+	通过命令自动下载和配置密钥，避免手动操作可能的错误。</p>
+	</li>
+</ol>
+
+<h4><strong>验证配置结果</strong></h4>
+
+<p>bash</p>
+
+<pre>
+<code># 检查目录是否创建成功
+ls -ld /etc/apt/keyrings
+
+# 检查密钥文件是否存在且正确
+ls -l /etc/apt/keyrings/docker.gpg
+gpg --show-keys /etc/apt/keyrings/docker.gpg
+</code></pre>
+
+<p>正常情况下，密钥文件权限应为 <code>-rw-r--r--</code>（644），且能显示密钥的指纹信息（如 <code>9DC8 5822 9FC7 DD38 854A E2D8 8D81 803C 0EBF CD88</code>）。</p>
+
+<h3><span style="color:#6eaad7">（2）设置存储库</span></h3>
+
+<pre>
+<code class="language-bash">echo "deb [arch=$(dpkg --print-architecture) signed-by=/etc/apt/keyrings/docker.gpg] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" | sudo tee -a /etc/apt/sources.list.d/docker.list &gt; /dev/null
+</code></pre>
+
+<h4><strong>逐段解析：</strong></h4>
+
+<h4><strong>1. <code>echo &quot;deb [...]&quot;</code></strong></h4>
+
+<ul>
+	<li><strong><code>echo</code></strong>：输出字符串到标准输出</li>
+	<li><strong><code>deb [...]</code></strong>：这是 APT 软件源配置的格式，告诉系统从哪里下载软件包</li>
+</ul>
+
+<h4><strong>2. <code>[arch=$(dpkg --print-architecture)]</code></strong></h4>
+
+<ul>
+	<li><strong><code>arch=</code></strong>：指定软件包的架构（如 amd64、arm64）</li>
+	<li><strong><code>dpkg --print-architecture</code></strong>：自动获取当前系统的架构
+	<ul>
+		<li>例如在 x86_64 系统上会输出 <code>amd64</code></li>
+		<li>在 ARM64 系统上会输出 <code>arm64</code></li>
+	</ul>
+	</li>
+	<li><strong>作用</strong>：确保只下载与当前系统架构匹配的软件包</li>
+</ul>
+
+<h4><strong>3. <code>signed-by=/etc/apt/keyrings/docker.gpg</code></strong></h4>
+
+<ul>
+	<li><strong><code>signed-by</code></strong>：指定用于验证软件包签名的 GPG 密钥</li>
+	<li><strong><code>/etc/apt/keyrings/docker.gpg</code></strong>：Docker 官方 GPG 密钥的路径</li>
+	<li><strong>作用</strong>：防止软件包被篡改，确保来源可信</li>
+</ul>
+
+<h4><strong>4. <code>https://download.docker.com/linux/ubuntu</code></strong></h4>
+
+<ul>
+	<li>Docker 官方软件源的基础 URL</li>
+	<li>Ubuntu 系统的 Docker 软件包都存放在这个服务器上</li>
+</ul>
+
+<h4><strong>5. <code>$(lsb_release -cs)</code></strong></h4>
+
+<ul>
+	<li><strong><code>lsb_release -cs</code></strong>：获取当前 Ubuntu 系统的<strong>版本代号</strong>（Codename）
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;例如 Ubuntu 22.04 的代号是 &lt;code&gt;jammy&lt;/code&gt;&lt;/li&gt;
+	&lt;li&gt;Ubuntu 20.04 的代号是 &lt;code&gt;focal&lt;/code&gt;&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+&lt;li&gt;&lt;strong&gt;作用&lt;/strong&gt;：自动适配不同版本的 Ubuntu，确保下载的软件包兼容&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4><strong>6. <code>stable</code></strong></h4>
+
+<ul>
+	<li>Docker 软件源的<strong>通道</strong>（channel）
+
+<pre><code class="hljs">&lt;ul&gt;
+	&lt;li&gt;&lt;code&gt;stable&lt;/code&gt;：稳定版（推荐生产环境使用）&lt;/li&gt;
+	&lt;li&gt;其他可选通道：&lt;code&gt;edge&lt;/code&gt;（测试版）、&lt;code&gt;nightly&lt;/code&gt;（开发版）&lt;/li&gt;
+&lt;/ul&gt;
+&lt;/li&gt;
+</code></pre>
+</ul>
+
+<h4><strong>7. <code>| sudo tee -a /etc/apt/sources.list.d/docker.list</code></strong></h4>
+
+<ul>
+	<li><strong><code>|</code></strong>：管道符号，将前面的输出作为后面命令的输入</li>
+	<li><strong><code>sudo tee -a</code></strong>：
+	<ul>
+		<li><code>tee</code>：将输出同时写入文件和屏幕</li>
+		<li><code>-a</code>：追加模式（append），不覆盖原有内容</li>
+		<li><code>sudo</code>：以管理员权限执行</li>
+	</ul>
+	</li>
+	<li><strong><code>/etc/apt/sources.list.d/docker.list</code></strong>：APT 软件源配置文件
+	<ul>
+		<li>APT 会自动读取这个目录下的所有 <code>.list</code> 文件</li>
+	</ul>
+	</li>
+</ul>
+
+<h4><strong>8. <code>&gt; /dev/null</code></strong></h4>
+
+<ul>
+	<li><strong><code>&gt;</code></strong>：重定向符号</li>
+	<li><strong><code>/dev/null</code></strong>：Linux 的黑洞设备，所有写入的数据都会被丢弃</li>
+	<li><strong>作用</strong>：隐藏命令的输出（不显示在终端）</li>
+</ul>
+
+<h4><strong>总结</strong></h4>
+
+<p>这个命令的核心作用是：</p>
+
+<ol>
+	<li>自动生成 Docker 官方软件源的配置</li>
+	<li>将配置写入 <code>/etc/apt/sources.list.d/docker.list</code> 文件</li>
+	<li>配置会根据当前系统架构和版本自动适配</li>
+	<li>使用 Docker 官方 GPG 密钥确保软件包安全</li>
+</ol>
+
+<h2><span style="color:#6eaad7">4.安装 Docker engine</span></h2>
+
+<pre>
+<code class="language-bash">sudo apt-get update
+sudo apt-get install docker-ce docker-ce-cli containerd.io docker-compose-plugin</code></pre>
+
+<h2><span style="color:#6eaad7">5.验证安装是否完成</span></h2>
+
+<pre>
+<code class="language-bash">sudo docker -v</code></pre>
+
+<p><img alt="" height="23" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fcd1cda725ae42b79917364b0dc4fa8f.png" srcset="/img/loading.gif" lazyload width="199" /></p>
+
+<p><strong>注：</strong>拉取镜像除了使用VPN，还可以配置到国内的镜像源进行拉取；Docker桌面版没怎么用，暂不介绍。</p>
+
+                
+              </div>
+            
+            <hr/>
+            <div>
+              <div class="post-metas my-3">
+  
+    <div class="post-meta mr-3 d-flex align-items-center">
+      <i class="iconfont icon-category"></i>
+      
+
+<span class="category-chains">
+  
+  
+    
+      <span class="category-chain">
+        
+  <a href="/categories/Docker%E5%AD%A6%E4%B9%A0%E4%B8%93%E6%A0%8F/" class="category-chain-item">Docker学习专栏</a>
+  
+  
+
+      </span>
+    
+  
+</span>
+
+    </div>
+  
+  
+    <div class="post-meta">
+      <i class="iconfont icon-tags"></i>
+      
+        <a href="/tags/docker-%E5%AE%B9%E5%99%A8-%E8%BF%90%E7%BB%B4-Ubuntu/" class="print-no-link">#docker 容器 运维 Ubuntu</a>
+      
+    </div>
+  
+</div>
+
+
+              
+  
+
+  <div class="license-box my-3">
+    <div class="license-title">
+      <div>【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置</div>
+      <div>http://example.com/2025/07/22/【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置/</div>
+    </div>
+    <div class="license-meta">
+      
+        <div class="license-meta-item">
+          <div>作者</div>
+          <div>John Doe</div>
+        </div>
+      
+      
+        <div class="license-meta-item license-meta-date">
+          <div>发布于</div>
+          <div>2025年7月22日</div>
+        </div>
+      
+      
+      
+        <div class="license-meta-item">
+          <div>许可协议</div>
+          <div>
+            
+              
+              
+                <a class="print-no-link" target="_blank" href="https://creativecommons.org/licenses/by/4.0/">
+                  <span class="hint--top hint--rounded" aria-label="BY - 署名">
+                    <i class="iconfont icon-cc-by"></i>
+                  </span>
+                </a>
+              
+            
+          </div>
+        </div>
+      
+    </div>
+    <div class="license-icon iconfont"></div>
+  </div>
+
+
+
+              
+                <div class="post-prevnext my-3">
+                  <article class="post-prev col-6">
+                    
+                    
+                      <a href="/2025/07/22/%E3%80%90RK3566%E3%80%91%E9%80%82%E7%94%A8%E4%BA%8E%E8%90%8C%E6%96%B0%E4%B8%8E%E5%B0%8F%E7%99%BD%E7%9A%84%E7%AB%8B%E5%88%9B%E6%B3%B0%E5%B1%B1%E6%B4%BE%E5%88%B0%E6%89%8B%E5%88%9D%E4%BD%93%E9%AA%8C%E9%80%9F%E9%80%9A%E6%95%99%E7%A8%8B/" title="【RK3566】适用于萌新与小白的立创泰山派到手初体验速通教程">
+                        <i class="iconfont icon-arrowleft"></i>
+                        <span class="hidden-mobile">【RK3566】适用于萌新与小白的立创泰山派到手初体验速通教程</span>
+                        <span class="visible-mobile">上一篇</span>
+                      </a>
+                    
+                  </article>
+                  <article class="post-next col-6">
+                    
+                    
+                      <a href="/2025/07/18/%E3%80%90Ubuntu%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu+%E7%A7%BB%E5%8A%A8%E7%A1%AC%E7%9B%98%E7%9A%84Linux%20To%20Go%E7%9A%84%E8%B6%85%E8%AF%A6%E7%BB%86%E5%88%B6%E4%BD%9C%E5%85%A8%E8%BF%87%E7%A8%8B/" title="【Ubuntu】基于Ubuntu+移动硬盘的Linux To Go的超详细制作全过程">
+                        <span class="hidden-mobile">【Ubuntu】基于Ubuntu+移动硬盘的Linux To Go的超详细制作全过程</span>
+                        <span class="visible-mobile">下一篇</span>
+                        <i class="iconfont icon-arrowright"></i>
+                      </a>
+                    
+                  </article>
+                </div>
+              
+            </div>
+
+            
+  
+  
+    <article id="comments" lazyload>
+      
+  <div id="valine"></div>
+  <script type="text/javascript">
+    Fluid.utils.loadComments('#valine', function() {
+      Fluid.utils.createScript('https://lib.baomitu.com/valine/1.5.1/Valine.min.js', function() {
+        var options = Object.assign(
+          {"appId":"382JzdvN94i0Gilod7qOmXIh-gzGzoHsz","appKey":"hJeKUi4Je8aWf2npb4mhsFAl","path":"window.location.pathname","placeholder":null,"avatar":"retro","meta":["nick","mail","link"],"requiredFields":[],"pageSize":10,"lang":"zh-CN","highlight":false,"recordIP":false,"serverURLs":"","emojiCDN":null,"emojiMaps":null,"enableQQ":false},
+          {
+            el: "#valine",
+            path: window.location.pathname
+          }
+        )
+        new Valine(options);
+        Fluid.utils.waitElementVisible('#valine .vcontent', () => {
+          var imgSelector = '#valine .vcontent img:not(.vemoji)';
+          Fluid.plugins.imageCaption(imgSelector);
+          Fluid.plugins.fancyBox(imgSelector);
+        })
+      });
+    });
+  </script>
+  <noscript>Please enable JavaScript to view the comments</noscript>
+
+
+    </article>
+  
+
+
+          </article>
+        </div>
+      </div>
+    </div>
+
+    <div class="side-col d-none d-lg-block col-lg-2">
+      
+  <aside class="sidebar" style="margin-left: -1rem">
+    <div id="toc">
+  <p class="toc-header">
+    <i class="iconfont icon-list"></i>
+    <span>目录</span>
+  </p>
+  <div class="toc-body" id="toc-body"></div>
+</div>
+
+
+
+  </aside>
+
+
+    </div>
+  </div>
+</div>
+
+
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+  
+
+
+
+
+
+
+
+    
+
+    
+      <a id="scroll-top-button" aria-label="TOP" href="#" role="button">
+        <i class="iconfont icon-arrowup" aria-hidden="true"></i>
+      </a>
+    
+
+    
+      <div class="modal fade" id="modalSearch" tabindex="-1" role="dialog" aria-labelledby="ModalLabel"
+     aria-hidden="true">
+  <div class="modal-dialog modal-dialog-scrollable modal-lg" role="document">
+    <div class="modal-content">
+      <div class="modal-header text-center">
+        <h4 class="modal-title w-100 font-weight-bold">搜索</h4>
+        <button type="button" id="local-search-close" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+        </button>
+      </div>
+      <div class="modal-body mx-3">
+        <div class="md-form mb-5">
+          <input type="text" id="local-search-input" class="form-control validate">
+          <label data-error="x" data-success="v" for="local-search-input">关键词</label>
+        </div>
+        <div class="list-group" id="local-search-result"></div>
+      </div>
+    </div>
+  </div>
+</div>
+
+    
+
+    
+  </main>
+
+  <footer>
+    <div class="footer-inner">
+  
+    <div class="footer-content">
+       <a href="https://hexo.io" target="_blank" rel="nofollow noopener"><span>Hexo</span></a> <i class="iconfont icon-love"></i> <a href="https://github.com/fluid-dev/hexo-theme-fluid" target="_blank" rel="nofollow noopener"><span>Fluid</span></a> 
+    </div>
+  
+  
+    <div class="statistics">
+  
+  
+
+  
+    
+      <span id="leancloud-site-pv-container" style="display: none">
+        总访问 
+        <span id="leancloud-site-pv"></span>
+         次
+      </span>
+    
+    
+      <span id="leancloud-site-uv-container" style="display: none">
+        总访客 
+        <span id="leancloud-site-uv"></span>
+         人
+      </span>
+    
+    
+
+  
+
+</div>
+
+  
+  
+</div>
+
+  </footer>
+
+  <!-- Scripts -->
+  
+  <script  src="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.js" ></script>
+  <link  rel="stylesheet" href="https://lib.baomitu.com/nprogress/0.2.0/nprogress.min.css" />
+
+  <script>
+    NProgress.configure({"showSpinner":false,"trickleSpeed":100})
+    NProgress.start()
+    window.addEventListener('load', function() {
+      NProgress.done();
+    })
+  </script>
+
+
+<script  src="https://lib.baomitu.com/jquery/3.6.4/jquery.min.js" ></script>
+<script  src="https://lib.baomitu.com/twitter-bootstrap/4.6.1/js/bootstrap.min.js" ></script>
+<script  src="/js/events.js" ></script>
+<script  src="/js/plugins.js" ></script>
+
+
+  <script  src="https://lib.baomitu.com/typed.js/2.0.12/typed.min.js" ></script>
+  <script>
+    (function (window, document) {
+      var typing = Fluid.plugins.typing;
+      var subtitle = document.getElementById('subtitle');
+      if (!subtitle || !typing) {
+        return;
+      }
+      var text = subtitle.getAttribute('data-typed-text');
+      
+        typing(text);
+      
+    })(window, document);
+  </script>
+
+
+
+
+  
+    <script  src="/js/img-lazyload.js" ></script>
+  
+
+
+
+
+  
+<script>
+  var relativeDate = function() {
+    var updatedTime = document.getElementById('updated-time');
+    if (updatedTime) {
+      var text = updatedTime.textContent;
+      var reg = /\d{4}-\d{2}-\d{2}T\d{2}:\d{2}:\d{2}(?:Z|[+-]\d{2}:\d{2})/;
+      var matchs = text.match(reg);
+      if (matchs) {
+        var relativeTime = moment(matchs[0]).fromNow();
+        updatedTime.textContent = text.replace(reg, relativeTime);
+      }
+      updatedTime.style.display = '';
+    }
+  };
+  Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/moment.min.js', function() {
+    if (!'zh-cn'.startsWith('en')) {
+      Fluid.utils.createScript('https://lib.baomitu.com/moment.js/2.29.4/locale/zh-cn.min.js', function() {
+        relativeDate();
+      });
+    } else {
+      relativeDate();
+    }
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/tocbot/4.20.1/tocbot.min.js', function() {
+    var toc = jQuery('#toc');
+    if (toc.length === 0 || !window.tocbot) { return; }
+    var boardCtn = jQuery('#board-ctn');
+    var boardTop = boardCtn.offset().top;
+
+    window.tocbot.init(Object.assign({
+      tocSelector     : '#toc-body',
+      contentSelector : '.markdown-body',
+      linkClass       : 'tocbot-link',
+      activeLinkClass : 'tocbot-active-link',
+      listClass       : 'tocbot-list',
+      isCollapsedClass: 'tocbot-is-collapsed',
+      collapsibleClass: 'tocbot-is-collapsible',
+      scrollSmooth    : true,
+      includeTitleTags: true,
+      headingsOffset  : -boardTop,
+    }, CONFIG.toc));
+    if (toc.find('.toc-list-item').length > 0) {
+      toc.css('visibility', 'visible');
+    }
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('tocbot' in window) {
+        tocbot.refresh();
+        var toc = jQuery('#toc');
+        if (toc.length === 0 || !tocbot) {
+          return;
+        }
+        if (toc.find('.toc-list-item').length > 0) {
+          toc.css('visibility', 'visible');
+        }
+      }
+    });
+  });
+</script>
+
+
+  <script src=https://lib.baomitu.com/clipboard.js/2.0.11/clipboard.min.js></script>
+
+  <script>Fluid.plugins.codeWidget();</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/anchor-js/5.0.0/anchor.min.js', function() {
+    window.anchors.options = {
+      placement: CONFIG.anchorjs.placement,
+      visible  : CONFIG.anchorjs.visible
+    };
+    if (CONFIG.anchorjs.icon) {
+      window.anchors.options.icon = CONFIG.anchorjs.icon;
+    }
+    var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+    var res = [];
+    for (var item of el) {
+      res.push('.markdown-body > ' + item.trim());
+    }
+    if (CONFIG.anchorjs.placement === 'left') {
+      window.anchors.options.class = 'anchorjs-link-left';
+    }
+    window.anchors.add(res.join(', '));
+
+    Fluid.events.registerRefreshCallback(function() {
+      if ('anchors' in window) {
+        anchors.removeAll();
+        var el = (CONFIG.anchorjs.element || 'h1,h2,h3,h4,h5,h6').split(',');
+        var res = [];
+        for (var item of el) {
+          res.push('.markdown-body > ' + item.trim());
+        }
+        if (CONFIG.anchorjs.placement === 'left') {
+          anchors.options.class = 'anchorjs-link-left';
+        }
+        anchors.add(res.join(', '));
+      }
+    });
+  });
+</script>
+
+
+  
+<script>
+  Fluid.utils.createScript('https://lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js', function() {
+    Fluid.plugins.fancyBox();
+  });
+</script>
+
+
+  <script>Fluid.plugins.imageCaption();</script>
+
+  <script defer src="/js/leancloud.js" ></script>
+
+  <script  src="/js/local-search.js" ></script>
+
+
+
+
+
+<!-- 主题的启动项，将它保持在最底部 -->
+<!-- the boot of the theme, keep it at the bottom -->
+<script  src="/js/boot.js" ></script>
+
+
+  
+
+  <noscript>
+    <div class="noscript-warning">博客在允许 JavaScript 运行的环境下浏览效果更佳</div>
+  </noscript>
+</body>
+</html>
