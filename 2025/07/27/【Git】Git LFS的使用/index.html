@@ -26,14 +26,14 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、简介  Git LFS（Git Large File Storage）是由 GitHub 开发的一款 Git 扩展工具，旨在帮助开发者更高效地管理仓库中的大文件。传统 Git 会将文件的每个版本完整存储在仓库历史中，导致大文件（如音频、视频、数据集、二进制文件等）快速膨胀仓库体积，影响克隆和推送效率。Git LFS 通过以下机制解决这一问题：  核心原理   	指针替换：在提交时，将大文件">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/54b19d4e17344c38a8f0e67625694eca.png">
+<meta property="og:image" content="http://example.com/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/6fc4c786aa3940fb94eafdc635bf193e.png">
+<meta property="og:image" content="http://example.com/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/54b19d4e17344c38a8f0e67625694eca.png">
 <meta property="article:published_time" content="2025-07-27T02:39:30.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:08:47.662Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="git git lfs 远程推送 学习记录">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png">
+<meta name="twitter:image" content="http://example.com/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/6fc4c786aa3940fb94eafdc635bf193e.png">
   
   
   
@@ -301,7 +301,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:08:47+08:00
                   
                   
 
@@ -423,8 +423,7 @@ Tracking "*.zip"
 
 <p>产生文件</p>
 
-<p><img alt="" height="347" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6fc4c786aa3940fb94eafdc635bf193e.png" srcset="/img/loading.gif" lazyload width="853" /></p>
-
+<p><img src="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/6fc4c786aa3940fb94eafdc635bf193e.png" srcset="/img/loading.gif" lazyload></p>
 <h3>&nbsp;<strong>方式二：手动编辑&nbsp;<code>.gitattributes</code></strong></h3>
 
 <p>直接在仓库根目录创建或编辑&nbsp;<code>.gitattributes</code>&nbsp;文件，添加类似以下内容：</p>
@@ -498,8 +497,7 @@ To github.com:Molesidy/MDK.git
 
 <h2>5.成功提交并上传大文件</h2>
 
-<p><img alt="" height="163" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/54b19d4e17344c38a8f0e67625694eca.png" srcset="/img/loading.gif" lazyload width="1114" /></p>
-
+<p><img src="/2025/07/27/%E3%80%90Git%E3%80%91Git%20LFS%E7%9A%84%E4%BD%BF%E7%94%A8/54b19d4e17344c38a8f0e67625694eca.png" srcset="/img/loading.gif" lazyload></p>
 <p><span style="background-color:#f9eda6">注：普通git不能传输超过100MB的文件，而git lfs在github上最大支持2GB；</span></p>
 
 <p><span style="background-color:#f9eda6">普通的<a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="免费 GitHub 仓库建议" target="_blank" rel="noopener" href="https://docs.github.com/en/repositories/working-with-files/managing-large-files/about-large-files-on-github" title="免费 GitHub 仓库建议">免费 GitHub 仓库建议</a>最大存放 1GB 的文件：</span></p>

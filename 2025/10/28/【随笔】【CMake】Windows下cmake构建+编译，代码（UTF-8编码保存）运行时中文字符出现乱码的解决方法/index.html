@@ -19,21 +19,21 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="&nbsp;1. 解决编码乱码问题：  即需要三端都保持同样的编码：代码保存时+CMake构建时+终端激活UTF-8编码显示  （1）vscode的右下角，将.h&#x2F;.c&#x2F;.cpp代码的编码格式改为UTF-8    （2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码    （3）将vscode里">
+    <meta name="description" content="&nbsp;1. 解决编码乱码问题：  即需要三端都保持同样的编码：代码保存时+CMake构建时+终端激活UTF-8编码显示  （1）vscode的右下角，将.h&#x2F;.c&#x2F;.cpp代码的编码格式改为UTF-8   （2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码   （3）将vscode里的p">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【随笔】【CMake】Windows下cmake构建+编译，代码（UTF-8编码保存）运行时中文字符出现乱码的解决方法">
 <meta property="og:url" content="http://example.com/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/index.html">
 <meta property="og:site_name" content="Molesidy Blog">
-<meta property="og:description" content="&nbsp;1. 解决编码乱码问题：  即需要三端都保持同样的编码：代码保存时+CMake构建时+终端激活UTF-8编码显示  （1）vscode的右下角，将.h&#x2F;.c&#x2F;.cpp代码的编码格式改为UTF-8    （2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码    （3）将vscode里">
+<meta property="og:description" content="&nbsp;1. 解决编码乱码问题：  即需要三端都保持同样的编码：代码保存时+CMake构建时+终端激活UTF-8编码显示  （1）vscode的右下角，将.h&#x2F;.c&#x2F;.cpp代码的编码格式改为UTF-8   （2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码   （3）将vscode里的p">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png">
+<meta property="og:image" content="http://example.com/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/fa601e2886af46449cce1f7c86cf7158.png">
+<meta property="og:image" content="http://example.com/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/52ab1a716f4a4671b58c5f476301d2eb.png">
 <meta property="article:published_time" content="2025-10-28T12:45:03.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:modified_time" content="2025-11-17T18:13:51.221Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="windows cmake UTF-8 乱码">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png">
+<meta name="twitter:image" content="http://example.com/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/fa601e2886af46449cce1f7c86cf7158.png">
   
   
   
@@ -301,7 +301,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:13:51+08:00
                   
                   
 
@@ -319,12 +319,10 @@
 
 <h2>（1）vscode的右下角，将.h/.c/.cpp代码的编码格式改为UTF-8</h2>
 
-<p><img alt="" height="22" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png" srcset="/img/loading.gif" lazyload width="711" /></p>
-
+<p><img src="/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/fa601e2886af46449cce1f7c86cf7158.png" srcset="/img/loading.gif" lazyload></p>
 <h2>（2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码</h2>
 
-<p><img alt="" height="192" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png" srcset="/img/loading.gif" lazyload width="1235" /></p>
-
+<p><img src="/2025/10/28/%E3%80%90%E9%9A%8F%E7%AC%94%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8Bcmake%E6%9E%84%E5%BB%BA+%E7%BC%96%E8%AF%91%EF%BC%8C%E4%BB%A3%E7%A0%81%EF%BC%88UTF-8%E7%BC%96%E7%A0%81%E4%BF%9D%E5%AD%98%EF%BC%89%E8%BF%90%E8%A1%8C%E6%97%B6%E4%B8%AD%E6%96%87%E5%AD%97%E7%AC%A6%E5%87%BA%E7%8E%B0%E4%B9%B1%E7%A0%81%E7%9A%84%E8%A7%A3%E5%86%B3%E6%96%B9%E6%B3%95/52ab1a716f4a4671b58c5f476301d2eb.png" srcset="/img/loading.gif" lazyload></p>
 <h2>（3）将vscode里的powershell代理终端切换为UTF-8编码格式，在vscode的总设置文件setting（使用ctrl+shift+p搜索setting）</h2>
 
 <pre>

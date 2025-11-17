@@ -19,58 +19,58 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;该文将展示STM32F103C8T6标准库的工程示例模板创建，但是，前提需要单片机入门的基础知识，提示这里不会展示如何安装Keil&nbsp;For ARM（MDK）和STM32F1系列的Keil固件包，这些将在其他文章进行阐述。  STM32F1系列标准库源码下载链接    二、工程创建  1.首先创建一个新的文件夹    2">
+    <meta name="description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;该文将展示STM32F103C8T6标准库的工程示例模板创建，但是，前提需要单片机入门的基础知识，提示这里不会展示如何安装Keil&nbsp;For ARM（MDK）和STM32F1系列的Keil固件包，这些将在其他文章进行阐述。  STM32F1系列标准库源码下载链接   二、工程创建  1.首先创建一个新的文件夹   2.在">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【STM32】基于STM32F103C8T6标准库的工程模板创建（使用离线固件包纯手动创建）">
 <meta property="og:url" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/index.html">
 <meta property="og:site_name" content="Molesidy Blog">
-<meta property="og:description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;该文将展示STM32F103C8T6标准库的工程示例模板创建，但是，前提需要单片机入门的基础知识，提示这里不会展示如何安装Keil&nbsp;For ARM（MDK）和STM32F1系列的Keil固件包，这些将在其他文章进行阐述。  STM32F1系列标准库源码下载链接    二、工程创建  1.首先创建一个新的文件夹    2">
+<meta property="og:description" content="一、简介  &nbsp; &nbsp; &nbsp; &nbsp;该文将展示STM32F103C8T6标准库的工程示例模板创建，但是，前提需要单片机入门的基础知识，提示这里不会展示如何安装Keil&nbsp;For ARM（MDK）和STM32F1系列的Keil固件包，这些将在其他文章进行阐述。  STM32F1系列标准库源码下载链接   二、工程创建  1.首先创建一个新的文件夹   2.在">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/88bbc5d4179c4e1fb742df2dff7f1012.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/511300645e3d4622b632b47971b7ce1c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/177859cc98334bdda480a56cdd86f4fd.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8c600719342746c69723bd3c22d873a9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d455a6014b248d0b7a84a39e4590593.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/53556993d750424eb16eddbf0dbeb338.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/85011d3268b44c9ea169c2ca9a62487c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/618769dd358541dba6183a90976926ba.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d90f4baebf4a4bd6bcba672926a23246.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/24dcdc813bfc43cc8f3ca801de2d2ac0.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f291fb845ec44399b6379134b143cdac.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/61435a10fb6e4b07b5e8dadbdbfed139.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5a0b90eaaeff4f26a84b0a74c3988383.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a8a673df7cd849df91d6de3f84a8b2e1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c0de8b35c63b4d498ab76f44a59f4102.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fad0e43712604b2b97bf6e19567db37b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/776ef72c463b437289d2ade200b2fbb7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a5b4dc619beb40c59dc04bd19d6ef134.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20d36068012448f1aa9cf4c21971a878.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/58b7969c3a1b4e9e89d19f584a5a21d8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f89e6180468a4faab4a64952f68f867c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d2271b8eab5b4a22ab3b2eebd32e80b8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0ae2c4af76b449beac63e78f25e23ed1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3c361483896348ca8a4baad8eda22c9b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/978b846379394aafa1372a5f8be17f9f.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/88bbc5d4179c4e1fb742df2dff7f1012.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/511300645e3d4622b632b47971b7ce1c.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/177859cc98334bdda480a56cdd86f4fd.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/8c600719342746c69723bd3c22d873a9.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/9d455a6014b248d0b7a84a39e4590593.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/53556993d750424eb16eddbf0dbeb338.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/85011d3268b44c9ea169c2ca9a62487c.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/618769dd358541dba6183a90976926ba.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d90f4baebf4a4bd6bcba672926a23246.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/24dcdc813bfc43cc8f3ca801de2d2ac0.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/f291fb845ec44399b6379134b143cdac.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/61435a10fb6e4b07b5e8dadbdbfed139.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/5a0b90eaaeff4f26a84b0a74c3988383.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/a8a673df7cd849df91d6de3f84a8b2e1.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/c0de8b35c63b4d498ab76f44a59f4102.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fad0e43712604b2b97bf6e19567db37b.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/776ef72c463b437289d2ade200b2fbb7.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/a5b4dc619beb40c59dc04bd19d6ef134.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/20d36068012448f1aa9cf4c21971a878.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/58b7969c3a1b4e9e89d19f584a5a21d8.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/f89e6180468a4faab4a64952f68f867c.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d2271b8eab5b4a22ab3b2eebd32e80b8.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/0ae2c4af76b449beac63e78f25e23ed1.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/3c361483896348ca8a4baad8eda22c9b.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/978b846379394aafa1372a5f8be17f9f.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94b7ae1f364d4a899f09f8f2833fb275.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d2b8ce138cb54569a9a61f6273059c23.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7bd57c867f3c438bbfe7d22357a752c4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7061142f0b6542d0bf3caab5509e1db0.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d2b8ce138cb54569a9a61f6273059c23.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/7bd57c867f3c438bbfe7d22357a752c4.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/7061142f0b6542d0bf3caab5509e1db0.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cf5622a7fa4642b183decd16c571de8b.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6c5ff09842ab4c01a5a67904fc9c269e.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fc4df9b47cfb471b8330473712c42e93.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/78b78760843a47f597995af87de6bb89.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/97782ffff72e427e9848e196c55c39b9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fe8e814c8d744266b3e09ad1e0e34f2d.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3ba19758f3c943f88eed0647c1765bca.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1bd7c313e04f42f8b3bb959299d1eae7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/04f3a36fff29487dbc0a0a001db51ef9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bbcc643a996248ad81a67fae91d53021.gif">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/6c5ff09842ab4c01a5a67904fc9c269e.jpeg">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fc4df9b47cfb471b8330473712c42e93.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/78b78760843a47f597995af87de6bb89.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/97782ffff72e427e9848e196c55c39b9.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fe8e814c8d744266b3e09ad1e0e34f2d.jpeg">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/3ba19758f3c943f88eed0647c1765bca.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/1bd7c313e04f42f8b3bb959299d1eae7.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/04f3a36fff29487dbc0a0a001db51ef9.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/bbcc643a996248ad81a67fae91d53021.gif">
 <meta property="article:published_time" content="2025-07-03T17:04:50.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:12:01.841Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="stm32 单片机 嵌入式 Keil 标准库">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/88bbc5d4179c4e1fb742df2dff7f1012.png">
+<meta name="twitter:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/88bbc5d4179c4e1fb742df2dff7f1012.png">
   
   
   
@@ -338,7 +338,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:12:01+08:00
                   
                   
 
@@ -356,92 +356,67 @@
 
 <p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="STM32F1系列标准库源码下载链接" target="_blank" rel="noopener" href="https://www.st.com.cn/zh/embedded-software/stsw-stm32054.html" title="STM32F1系列标准库源码下载链接">STM32F1系列标准库源码下载链接</a></p>
 
-<p><img alt="" height="966" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/88bbc5d4179c4e1fb742df2dff7f1012.png" srcset="/img/loading.gif" lazyload width="1662" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/88bbc5d4179c4e1fb742df2dff7f1012.png" srcset="/img/loading.gif" lazyload></p>
 <h1>二、工程创建</h1>
 
 <h2>1.首先创建一个新的文件夹</h2>
 
-<p><img alt="" height="73" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/511300645e3d4622b632b47971b7ce1c.png" srcset="/img/loading.gif" lazyload width="650" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/511300645e3d4622b632b47971b7ce1c.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.在STM32_Example文件夹下建立以下文件夹</h2>
 
-<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/177859cc98334bdda480a56cdd86f4fd.png" srcset="/img/loading.gif" lazyload width="797" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/177859cc98334bdda480a56cdd86f4fd.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.然后将ST提供的F1系列的标准固件包的STM32F10x_StdPeriph_Driver外设源码文件夹整个复制到STM32_Example文件夹下，同时将STM32F10x_StdPeriph_Driver更名为Library</h2>
 
-<p><img alt="" height="394" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8c600719342746c69723bd3c22d873a9.png" srcset="/img/loading.gif" lazyload width="805" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/8c600719342746c69723bd3c22d873a9.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个网页链接可以删掉</p>
 
-<p><img alt="" height="315" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d455a6014b248d0b7a84a39e4590593.png" srcset="/img/loading.gif" lazyload width="823" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/9d455a6014b248d0b7a84a39e4590593.png" srcset="/img/loading.gif" lazyload></p>
 <h2>4.将\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\CoreSupport下的core_cm3.c/h文件复制到StartUp文件夹下，这里的core_cm3.c/h是STM32F1系列需要的内核支持文件，即内核是属于ARM的Cortex-M3架构</h2>
 
-<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/53556993d750424eb16eddbf0dbeb338.png" srcset="/img/loading.gif" lazyload width="849" /></p>
-
-<p><img alt="" height="331" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/85011d3268b44c9ea169c2ca9a62487c.png" srcset="/img/loading.gif" lazyload width="847" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/53556993d750424eb16eddbf0dbeb338.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/85011d3268b44c9ea169c2ca9a62487c.png" srcset="/img/loading.gif" lazyload></p>
 <h2>5.将\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x文件夹下的这三个系统文件复制到StartUp文件夹下</h2>
 
-<p><img alt="" height="385" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/618769dd358541dba6183a90976926ba.png" srcset="/img/loading.gif" lazyload width="807" /></p>
-
-<p><img alt="" height="401" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d90f4baebf4a4bd6bcba672926a23246.png" srcset="/img/loading.gif" lazyload width="812" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/618769dd358541dba6183a90976926ba.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d90f4baebf4a4bd6bcba672926a23246.png" srcset="/img/loading.gif" lazyload></p>
 <h2>6.在嵌入式开发中，<code>.s</code>&nbsp;文件通常是用汇编语言编写的启动文件或底层初始化代码，其核心作用是<strong>建立硬件与高级语言（如 C）之间的桥梁</strong>，将\STM32F10x_StdPeriph_Lib_V3.5.0\Libraries\CMSIS\CM3\DeviceSupport\ST\STM32F10x\startup\arm的所有.s文件复制到StartUp文件夹下</h2>
 
-<p><img alt="" height="482" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/24dcdc813bfc43cc8f3ca801de2d2ac0.png" srcset="/img/loading.gif" lazyload width="838" /></p>
-
-<p><img alt="" height="677" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f291fb845ec44399b6379134b143cdac.png" srcset="/img/loading.gif" lazyload width="827" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/24dcdc813bfc43cc8f3ca801de2d2ac0.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/f291fb845ec44399b6379134b143cdac.png" srcset="/img/loading.gif" lazyload></p>
 <h2>7.在ST给的例程中，即\STM32F10x_StdPeriph_Lib_V3.5.0\Project\STM32F10x_StdPeriph_Template文件夹下</h2>
 
 <h2>main.c&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;stm32f10x_conf.h&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;stm32f10x_it.c/h&nbsp; &nbsp; &nbsp; &nbsp;&nbsp;</h2>
 
 <h2>四个文件复制到User文件夹下</h2>
 
-<p><img alt="" height="590" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/61435a10fb6e4b07b5e8dadbdbfed139.png" srcset="/img/loading.gif" lazyload width="797" /></p>
-
-<p><img alt="" height="334" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5a0b90eaaeff4f26a84b0a74c3988383.png" srcset="/img/loading.gif" lazyload width="809" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/61435a10fb6e4b07b5e8dadbdbfed139.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/5a0b90eaaeff4f26a84b0a74c3988383.png" srcset="/img/loading.gif" lazyload></p>
 <h2>8.文件移植完毕，就打开Keil创建工程，选择Project文件夹放Keil工程启动文件，命名并保存</h2>
 
-<p><img alt="" height="118" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a8a673df7cd849df91d6de3f84a8b2e1.png" srcset="/img/loading.gif" lazyload width="1431" /></p>
-
-<p><img alt="" height="75" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c0de8b35c63b4d498ab76f44a59f4102.png" srcset="/img/loading.gif" lazyload width="221" /></p>
-
-<p><img alt="" height="792" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fad0e43712604b2b97bf6e19567db37b.png" srcset="/img/loading.gif" lazyload width="1276" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/a8a673df7cd849df91d6de3f84a8b2e1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/c0de8b35c63b4d498ab76f44a59f4102.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fad0e43712604b2b97bf6e19567db37b.png" srcset="/img/loading.gif" lazyload></p>
 <h2>9.选择MDK的对应芯片的支持包，选中STM32F103C8</h2>
 
-<p><img alt="" height="582" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/776ef72c463b437289d2ade200b2fbb7.png" srcset="/img/loading.gif" lazyload width="769" /></p>
-
-<p><img alt="" height="153" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a5b4dc619beb40c59dc04bd19d6ef134.png" srcset="/img/loading.gif" lazyload width="256" /></p>
-
-<p><img alt="" height="108" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20d36068012448f1aa9cf4c21971a878.png" srcset="/img/loading.gif" lazyload width="216" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/776ef72c463b437289d2ade200b2fbb7.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/a5b4dc619beb40c59dc04bd19d6ef134.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/20d36068012448f1aa9cf4c21971a878.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个是Keil自带的在线库配置工具，使用这个工具其实也可以配置标准库工程，但是，在这里我们是下载了离线的标准库来纯手动导入，那么就不使用这个工具了，直接点击OK关掉即可</p>
 
-<p><img alt="" height="1008" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/58b7969c3a1b4e9e89d19f584a5a21d8.png" srcset="/img/loading.gif" lazyload width="1223" /></p>
-
-<p><img alt="" height="1011" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f89e6180468a4faab4a64952f68f867c.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/58b7969c3a1b4e9e89d19f584a5a21d8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/f89e6180468a4faab4a64952f68f867c.png" srcset="/img/loading.gif" lazyload></p>
 <p>以后启动该Keil工程就点击绿色可执行文件</p>
 
-<p><img alt="" height="401" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d2271b8eab5b4a22ab3b2eebd32e80b8.png" srcset="/img/loading.gif" lazyload width="1054" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d2271b8eab5b4a22ab3b2eebd32e80b8.png" srcset="/img/loading.gif" lazyload></p>
 <h2>10.点击红绿白彩色图标，创建我们的工程组结构</h2>
 
-<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0ae2c4af76b449beac63e78f25e23ed1.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/0ae2c4af76b449beac63e78f25e23ed1.png" srcset="/img/loading.gif" lazyload></p>
 <p>点红色的X可以删掉默认的组</p>
 
-<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3c361483896348ca8a4baad8eda22c9b.png" srcset="/img/loading.gif" lazyload width="771" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/3c361483896348ca8a4baad8eda22c9b.png" srcset="/img/loading.gif" lazyload></p>
 <p>建立4个组</p>
 
-<p><img alt="" height="574" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/978b846379394aafa1372a5f8be17f9f.png" srcset="/img/loading.gif" lazyload width="770" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/978b846379394aafa1372a5f8be17f9f.png" srcset="/img/loading.gif" lazyload></p>
 <h2>11.选中中间的各组，点击ADD Files导入标准库文件</h2>
 
 <p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94b7ae1f364d4a899f09f8f2833fb275.jpeg" srcset="/img/loading.gif" lazyload /></p>
@@ -450,18 +425,15 @@
 
 <p>添加3个文件，一般是要.c文件，和.s文件，.h头文件在后面配置文件路径后编译器可以自行找到，除非需要改动.h头文件就导入到工程里</p>
 
-<p><img alt="" height="727" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d2b8ce138cb54569a9a61f6273059c23.png" srcset="/img/loading.gif" lazyload width="1296" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/d2b8ce138cb54569a9a61f6273059c23.png" srcset="/img/loading.gif" lazyload></p>
 <p>Library</p>
 
 <p>需要所有的外设源文件，或者按自己的需求导入</p>
 
-<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7bd57c867f3c438bbfe7d22357a752c4.png" srcset="/img/loading.gif" lazyload width="1918" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/7bd57c867f3c438bbfe7d22357a752c4.png" srcset="/img/loading.gif" lazyload></p>
 <p>User</p>
 
-<p><img alt="" height="727" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7061142f0b6542d0bf3caab5509e1db0.png" srcset="/img/loading.gif" lazyload width="1294" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/7061142f0b6542d0bf3caab5509e1db0.png" srcset="/img/loading.gif" lazyload></p>
 <p>BSP</p>
 
 <p>有些习惯写Hardware，但是作用都一样，主要存放用户自己写的函数和一些外设（如温湿度模块）的驱动文件</p>
@@ -480,26 +452,20 @@
 
 <p>最重要的就是最后一个框添加那些文件的具体路径，但是有些人会看到正点原子的包含头文件的方法写的是相对路径，如果以后那种遇到但是有问题就可以使用Keil的includepaths来添加文件</p>
 
-<p><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6c5ff09842ab4c01a5a67904fc9c269e.jpeg" srcset="/img/loading.gif" lazyload /></p>
-
-<p><img alt="" height="656" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fc4df9b47cfb471b8330473712c42e93.png" srcset="/img/loading.gif" lazyload width="786" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/6c5ff09842ab4c01a5a67904fc9c269e.jpeg" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fc4df9b47cfb471b8330473712c42e93.png" srcset="/img/loading.gif" lazyload></p>
 <p>Debug</p>
 
 <p>这里主要选择下载/烧写方式</p>
 
-<p><img alt="" height="583" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/78b78760843a47f597995af87de6bb89.png" srcset="/img/loading.gif" lazyload width="771" /></p>
-
-<p><img alt="" height="36" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/97782ffff72e427e9848e196c55c39b9.png" srcset="/img/loading.gif" lazyload width="311" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/78b78760843a47f597995af87de6bb89.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/97782ffff72e427e9848e196c55c39b9.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里点击setting后选择下载地址范围（一般是芯片自带默认配置），下载算法和下载模式（SW/JTAG），还有下载完成软件复位</p>
 
-<p><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fe8e814c8d744266b3e09ad1e0e34f2d.jpeg" srcset="/img/loading.gif" lazyload /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/fe8e814c8d744266b3e09ad1e0e34f2d.jpeg" srcset="/img/loading.gif" lazyload></p>
 <h2>13.除了汇编启动文件，main.c的main函数就是我们编写代码后的正式入口了，把这里移植过来的main.c里的东西删完</h2>
 
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3ba19758f3c943f88eed0647c1765bca.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/3ba19758f3c943f88eed0647c1765bca.png" srcset="/img/loading.gif" lazyload></p>
 <p>main.c</p>
 
 <pre>
@@ -541,13 +507,11 @@ int main(void)
 
 <p>在Keil中，单片机的main函数初始化后就会一直执行while（1）里的内容，同时还要求每个.c/h文件最后必须有一行空行</p>
 
-<p><img alt="" height="1008" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1bd7c313e04f42f8b3bb959299d1eae7.png" srcset="/img/loading.gif" lazyload width="1911" /></p>
-
-<p><img alt="" height="1011" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/04f3a36fff29487dbc0a0a001db51ef9.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/1bd7c313e04f42f8b3bb959299d1eae7.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/04f3a36fff29487dbc0a0a001db51ef9.png" srcset="/img/loading.gif" lazyload></p>
 <h1>三、实验效果</h1>
 
-<p><img alt="" height="500" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bbcc643a996248ad81a67fae91d53021.gif" srcset="/img/loading.gif" lazyload width="700" /></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32F103C8T6%E6%A0%87%E5%87%86%E5%BA%93%E7%9A%84%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%E5%88%9B%E5%BB%BA%EF%BC%88%E4%BD%BF%E7%94%A8%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E7%BA%AF%E6%89%8B%E5%8A%A8%E5%88%9B%E5%BB%BA%EF%BC%89/bbcc643a996248ad81a67fae91d53021.gif" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>

@@ -26,42 +26,42 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;本文将介绍如何自己手动搭建基于MDK开发环境下的AT32工程模板。  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;AT32 系列是 ** 雅特力科技（Arterytek）** 推出的 32 位 ARM Cortex-M 系列微控制器（MCU），兼容 STM32">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ee596a2dceb04062bbc93066ca21f0ff.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e004c476ea584a9db83461ca5d6c522c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c4af2910e7fc4b77976aa167b875a1ff.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94de730aa6cf466bae575bbe0e6b0c0f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/24cfcbd5747d4cc484b6aa101a472b57.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c88335dd4fd04fcbb3e36d47dc3144f9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9330559b80644eae9681d251e4d236a0.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/066fca26267f4e7bafb9ade5dc5f78d7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ed0d78fcfa4b4bfdaf07bdad998f809c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b715ca39ef84436a760a8af90b62732.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c87d3f4d0b224ec7b04bd7ce28f604a6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b966f7bd1e7f4b28ac1edfeeb2dd305f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0c1f0b26730c49dc97e15e8cf0e6be01.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f594bbb437ae493080e531eb255ae473.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f5f17c17359044208aeb802d7546523b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a18acc26dd7247d6baa57f1fb636e49f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e6d22626945a4f25a4c01eb4fa1f5391.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ebf13cc797884cdd82c4c793e01dfb97.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/929c593d352f4a61a344142d75b35ca7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59a796e678f24bf2952de35751598c1d.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/a0a50a1cd95746f2925260640babefae.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ee596a2dceb04062bbc93066ca21f0ff.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/e004c476ea584a9db83461ca5d6c522c.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c4af2910e7fc4b77976aa167b875a1ff.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/94de730aa6cf466bae575bbe0e6b0c0f.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/24cfcbd5747d4cc484b6aa101a472b57.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c88335dd4fd04fcbb3e36d47dc3144f9.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/9330559b80644eae9681d251e4d236a0.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/066fca26267f4e7bafb9ade5dc5f78d7.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ed0d78fcfa4b4bfdaf07bdad998f809c.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/0b715ca39ef84436a760a8af90b62732.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c87d3f4d0b224ec7b04bd7ce28f604a6.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/b966f7bd1e7f4b28ac1edfeeb2dd305f.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/0c1f0b26730c49dc97e15e8cf0e6be01.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/f594bbb437ae493080e531eb255ae473.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/f5f17c17359044208aeb802d7546523b.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/a18acc26dd7247d6baa57f1fb636e49f.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/e6d22626945a4f25a4c01eb4fa1f5391.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ebf13cc797884cdd82c4c793e01dfb97.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/929c593d352f4a61a344142d75b35ca7.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/59a796e678f24bf2952de35751598c1d.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/58f675306641424cb15f3f1101ff7df2.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a6286e8fe55429391bc95965864f20f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d7a4fa7821f4fe8a949e01fd00bda65.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5288158b26c44bb48f7810607eeb2ca1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/30c3312d9ee4433097b8016b3e50ef82.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d5687aad2dc544ea97a3769f3fb0eb74.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ab7126c7ba7441dcae446da86ecf7327.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48b026d582db4b588087407870af1308.gif">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/4a6286e8fe55429391bc95965864f20f.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/9d7a4fa7821f4fe8a949e01fd00bda65.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/5288158b26c44bb48f7810607eeb2ca1.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/30c3312d9ee4433097b8016b3e50ef82.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/d5687aad2dc544ea97a3769f3fb0eb74.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ab7126c7ba7441dcae446da86ecf7327.png">
+<meta property="og:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/48b026d582db4b588087407870af1308.gif">
 <meta property="og:image" content="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758">
 <meta property="article:published_time" content="2025-07-07T16:02:41.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:09:27.862Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="AT32 单片机 嵌入式">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png">
+<meta name="twitter:image" content="http://example.com/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/a0a50a1cd95746f2925260640babefae.png">
   
   
   
@@ -329,7 +329,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:09:27+08:00
                   
                   
 
@@ -496,101 +496,76 @@
 
 <p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="固件库下载链接" target="_blank" rel="noopener" href="https://www.arterytek.com/cn/product/AT32F403A.jsp#Resource" title="固件库下载链接">固件库下载链接</a></p>
 
-<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a0a50a1cd95746f2925260640babefae.png" srcset="/img/loading.gif" lazyload width="1480" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/a0a50a1cd95746f2925260640babefae.png" srcset="/img/loading.gif" lazyload></p>
 <p><a class="link-info" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="AT32的MDK支持包链接" target="_blank" rel="noopener" href="https://www.arterytek.com/cn/product/AT32F403A.jsp#Resource" title="AT32的MDK支持包链接">AT32的MDK支持包链接</a></p>
 
-<p><img alt="" height="75" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ee596a2dceb04062bbc93066ca21f0ff.png" srcset="/img/loading.gif" lazyload width="1472" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ee596a2dceb04062bbc93066ca21f0ff.png" srcset="/img/loading.gif" lazyload></p>
 <h1>二、工程文件结构搭建</h1>
 
 <h2>1.新建文件夹AT32_Example，在其下再次新建文件夹</h2>
 
-<p><img alt="" height="775" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e004c476ea584a9db83461ca5d6c522c.png" srcset="/img/loading.gif" lazyload width="1135" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/e004c476ea584a9db83461ca5d6c522c.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.将\AT32F403AVGT7移植材料\libraries\drivers\src下的AT32外设c文件源码移植到firmware</h2>
 
-<p><img alt="" height="525" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c4af2910e7fc4b77976aa167b875a1ff.png" srcset="/img/loading.gif" lazyload width="1683" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c4af2910e7fc4b77976aa167b875a1ff.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.将\AT32F403AVGT7移植材料\libraries\drivers\inc下的AT32外设h头文件放到/include/drivers/inc/下</h2>
 
-<p><img alt="" height="973" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94de730aa6cf466bae575bbe0e6b0c0f.png" srcset="/img/loading.gif" lazyload width="1512" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/94de730aa6cf466bae575bbe0e6b0c0f.png" srcset="/img/loading.gif" lazyload></p>
 <h2>&nbsp;4.\AT32F403AVGT7移植材料\project\at32f403a_407_board下的board.c，board.h放在bsp下</h2>
 
-<p><img alt="" height="296" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/24cfcbd5747d4cc484b6aa101a472b57.png" srcset="/img/loading.gif" lazyload width="961" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/24cfcbd5747d4cc484b6aa101a472b57.png" srcset="/img/loading.gif" lazyload></p>
 <h2>5.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\device_support\startup\mdk下的s文件是mdk环境下的启动文件放在cmsis</h2>
 
-<p><img alt="" height="260" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c88335dd4fd04fcbb3e36d47dc3144f9.png" srcset="/img/loading.gif" lazyload width="895" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c88335dd4fd04fcbb3e36d47dc3144f9.png" srcset="/img/loading.gif" lazyload></p>
 <h2>6.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\device_support下的系统文件也放在cmsis下</h2>
 
-<p><img alt="" height="396" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9330559b80644eae9681d251e4d236a0.png" srcset="/img/loading.gif" lazyload width="903" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/9330559b80644eae9681d251e4d236a0.png" srcset="/img/loading.gif" lazyload></p>
 <h2>&nbsp;7.将\AT32F403AVGT7移植材料\project\at_start_f403a\templates\inc下的3个头文件放到user下</h2>
 
-<p><img alt="" height="306" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/066fca26267f4e7bafb9ade5dc5f78d7.png" srcset="/img/loading.gif" lazyload width="859" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/066fca26267f4e7bafb9ade5dc5f78d7.png" srcset="/img/loading.gif" lazyload></p>
 <h2>&nbsp;8.将\AT32F403AVGT7移植材料\project\at_start_f403a\templates\src下的3个c文件放在user下</h2>
 
-<p><img alt="" height="305" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ed0d78fcfa4b4bfdaf07bdad998f809c.png" srcset="/img/loading.gif" lazyload width="998" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ed0d78fcfa4b4bfdaf07bdad998f809c.png" srcset="/img/loading.gif" lazyload></p>
 <p>at32f403a_407_conf_template.h文件删掉，因为已经有at32f403a_407_conf.h</p>
 
-<p><img alt="" height="367" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0b715ca39ef84436a760a8af90b62732.png" srcset="/img/loading.gif" lazyload width="1134" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/0b715ca39ef84436a760a8af90b62732.png" srcset="/img/loading.gif" lazyload></p>
 <h2>&nbsp;9.在文件夹下再新建一个文件夹存放MDK工程启动文件</h2>
 
-<p><img alt="" height="418" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c87d3f4d0b224ec7b04bd7ce28f604a6.png" srcset="/img/loading.gif" lazyload width="1108" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/c87d3f4d0b224ec7b04bd7ce28f604a6.png" srcset="/img/loading.gif" lazyload></p>
 <h2>10.打开MDK并新建工程</h2>
 
-<p><img alt="" height="90" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b966f7bd1e7f4b28ac1edfeeb2dd305f.png" srcset="/img/loading.gif" lazyload width="1355" /></p>
-
-<p><img alt="" height="825" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0c1f0b26730c49dc97e15e8cf0e6be01.png" srcset="/img/loading.gif" lazyload width="1360" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/b966f7bd1e7f4b28ac1edfeeb2dd305f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/0c1f0b26730c49dc97e15e8cf0e6be01.png" srcset="/img/loading.gif" lazyload></p>
 <h2>11.选择对应支持芯片包</h2>
 
-<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f594bbb437ae493080e531eb255ae473.png" srcset="/img/loading.gif" lazyload width="773" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/f594bbb437ae493080e531eb255ae473.png" srcset="/img/loading.gif" lazyload></p>
 <h2>12.跳过在线配置工具，重新自定义工程结构组</h2>
 
-<p><img alt="" height="581" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f5f17c17359044208aeb802d7546523b.png" srcset="/img/loading.gif" lazyload width="505" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/f5f17c17359044208aeb802d7546523b.png" srcset="/img/loading.gif" lazyload></p>
 <h2>13.添加文件</h2>
 
-<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a18acc26dd7247d6baa57f1fb636e49f.png" srcset="/img/loading.gif" lazyload width="775" /></p>
-
-<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e6d22626945a4f25a4c01eb4fa1f5391.png" srcset="/img/loading.gif" lazyload width="771" /></p>
-
-<p><img alt="" height="569" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ebf13cc797884cdd82c4c793e01dfb97.png" srcset="/img/loading.gif" lazyload width="772" /></p>
-
-<p><img alt="" height="576" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/929c593d352f4a61a344142d75b35ca7.png" srcset="/img/loading.gif" lazyload width="771" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/a18acc26dd7247d6baa57f1fb636e49f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/e6d22626945a4f25a4c01eb4fa1f5391.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ebf13cc797884cdd82c4c793e01dfb97.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/929c593d352f4a61a344142d75b35ca7.png" srcset="/img/loading.gif" lazyload></p>
 <h2>14.添加文件路径</h2>
 
-<p><img alt="" height="577" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59a796e678f24bf2952de35751598c1d.png" srcset="/img/loading.gif" lazyload width="773" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/59a796e678f24bf2952de35751598c1d.png" srcset="/img/loading.gif" lazyload></p>
 <h2>15.再新建文件core</h2>
 
 <h2><img alt="" height="422" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/58f675306641424cb15f3f1101ff7df2.png" srcset="/img/loading.gif" lazyload width="1076" />16.\AT32F403AVGT7移植材料\libraries\cmsis\cm4\core_support下的文件（不包括文件夹），放到core下，再导入路径</h2>
 
-<p><img alt="" height="823" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a6286e8fe55429391bc95965864f20f.png" srcset="/img/loading.gif" lazyload width="1350" /></p>
-
-<p><img alt="" height="580" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d7a4fa7821f4fe8a949e01fd00bda65.png" srcset="/img/loading.gif" lazyload width="776" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/4a6286e8fe55429391bc95965864f20f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/9d7a4fa7821f4fe8a949e01fd00bda65.png" srcset="/img/loading.gif" lazyload></p>
 <h2>17.工程配置中添加宏定义</h2>
 
 <pre>
 <code class="language-cpp">AT32F403AVGT7,USE_STDPERIPH_DRIVER,AT_START_F403A_V1</code></pre>
 
-<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5288158b26c44bb48f7810607eeb2ca1.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/5288158b26c44bb48f7810607eeb2ca1.png" srcset="/img/loading.gif" lazyload></p>
 <h2>18.编译</h2>
 
-<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/30c3312d9ee4433097b8016b3e50ef82.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/30c3312d9ee4433097b8016b3e50ef82.png" srcset="/img/loading.gif" lazyload></p>
 <h1>三、代码编写</h1>
 
 <h2>1.开启时钟初始化</h2>
@@ -599,8 +574,7 @@
 
 <h2>3.gpio（Led）初始化</h2>
 
-<p><img alt="" height="380" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d5687aad2dc544ea97a3769f3fb0eb74.png" srcset="/img/loading.gif" lazyload width="484" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/d5687aad2dc544ea97a3769f3fb0eb74.png" srcset="/img/loading.gif" lazyload></p>
 <h2>4.灯光闪烁</h2>
 
 <pre>
@@ -763,12 +737,10 @@ int main(void)
   */
 </code></pre>
 
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ab7126c7ba7441dcae446da86ecf7327.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/ab7126c7ba7441dcae446da86ecf7327.png" srcset="/img/loading.gif" lazyload></p>
 <h1>四、 实验验证</h1>
 
-<p><img alt="" height="480" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48b026d582db4b588087407870af1308.gif" srcset="/img/loading.gif" lazyload width="600" /></p>
-
+<p><img src="/2025/07/08/%E3%80%90MCU%E3%80%91%E3%80%90AT32%E3%80%91%E5%88%A9%E7%94%A8AT32%E7%A6%BB%E7%BA%BF%E5%9B%BA%E4%BB%B6%E5%8C%85%E6%90%AD%E5%BB%BAAT32%E5%B7%A5%E7%A8%8B%E6%A8%A1%E6%9D%BF%EF%BC%88%E7%BA%AF%E6%89%8B%E5%8A%A8%EF%BC%89/48b026d582db4b588087407870af1308.gif" srcset="/img/loading.gif" lazyload></p>
 <p><strong>示例工程链接：</strong><a class="has-card" data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32." target="_blank" rel="noopener" href="https://github.com/Molesidy/AT32" title="Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32."><span class="link-card-box" contenteditable="false"><span class="link-title">Molesidy/AT32: This repository is used to store sample projects generated during the process of learning AT32.</span><span class="link-link"><img class="link-link-icon" src="https://csdnimg.cn/release/blog_editor_html/release2.4.1/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P758" srcset="/img/loading.gif" lazyload />https://github.com/Molesidy/AT32</span></span></a></p>
 
                 

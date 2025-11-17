@@ -26,18 +26,18 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="前言  【Docker】Docker的初步认识以及Ubuntu下的Docker环境安装、配置_ubuntu和docker的关系-CSDN博客  一、Docker安装与卸载  1.1 卸载   # 如果安装过，查看Docker版本 docker --version  # 删除旧版本，同时彻底删除Docker相关包及配置 sudo apt-get purge docker docker-engin">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e3d6aa4c53c54f72ac41bab6dd2648f7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dfa80611a7b642fe92559a0303183513.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c2647f5354b9470b8f32aa8d88cfc8e9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/644a65243ef74feebe3165f331f2d0b3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/942fb3b1c191451db4fb4804d7444cbe.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/299b9a01b90e4408ac729e28384fceaf.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/e3d6aa4c53c54f72ac41bab6dd2648f7.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/dfa80611a7b642fe92559a0303183513.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/c2647f5354b9470b8f32aa8d88cfc8e9.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/644a65243ef74feebe3165f331f2d0b3.png">
+<meta property="og:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/942fb3b1c191451db4fb4804d7444cbe.png">
 <meta property="article:published_time" content="2025-10-03T04:03:39.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:modified_time" content="2025-11-17T18:08:15.790Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="docker ubuntu nginx">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png">
+<meta name="twitter:image" content="http://example.com/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/299b9a01b90e4408ac729e28384fceaf.png">
   
   
   
@@ -305,7 +305,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:08:15+08:00
                   
                   
 
@@ -430,8 +430,7 @@ sudo apt-get install docker-ce docker-ce-cli containerd.io
 # 使用验机镜像指令查看是否成功 如果未拉下来则配置镜像加速器（使用提供的仓库源）
 sudo docker run hello-world</code></pre>
 
-<p><img alt="" height="752" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/299b9a01b90e4408ac729e28384fceaf.png" srcset="/img/loading.gif" lazyload width="1027" /></p>
-
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/299b9a01b90e4408ac729e28384fceaf.png" srcset="/img/loading.gif" lazyload></p>
 <h3>1.2.3 补充说明：<br />
 （1）为什么安装docker-ce docker-ce-cli containerd.io，而不是只安装docker-ce？</h3>
 
@@ -793,8 +792,7 @@ zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ ip addr
 zky@zky-virtual-machine:~/ProjectsHub/Docker_Projects$ 
 </code></pre>
 
-<p><img alt="" height="327" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e3d6aa4c53c54f72ac41bab6dd2648f7.png" srcset="/img/loading.gif" lazyload width="695" /></p>
-
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/e3d6aa4c53c54f72ac41bab6dd2648f7.png" srcset="/img/loading.gif" lazyload></p>
 <h3 style="background-color:transparent">2.3.2 容器删除命令</h3>
 
 <pre>
@@ -939,12 +937,10 @@ zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$
 
 <p>运行容器后，查看</p>
 
-<p><img alt="" height="188" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dfa80611a7b642fe92559a0303183513.png" srcset="/img/loading.gif" lazyload width="720" /></p>
-
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/dfa80611a7b642fe92559a0303183513.png" srcset="/img/loading.gif" lazyload></p>
 <p>创建一个html文件后，写入hello world&nbsp;</p>
 
-<p><img alt="" height="232" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c2647f5354b9470b8f32aa8d88cfc8e9.png" srcset="/img/loading.gif" lazyload width="453" /></p>
-
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/c2647f5354b9470b8f32aa8d88cfc8e9.png" srcset="/img/loading.gif" lazyload></p>
 <h3 style="background-color:transparent">2.3.5&nbsp;容器卷映射命令（将容器内部的数据同步映射到宿主机，位置在docker相关文件夹管理）</h3>
 
 <p><span style="background-color:#f9eda6">提示：如果使用容器数据挂载宿主机命令来在宿主机管理nginx的配置文件，由于宿主机外新建的文件夹导致宿主机管理nginx的配置文件是空的，然后运行容器能看见容器好像启动了但是实际上由于配置文件是空的，使用docker ps查看其实它没有在运行，是有错误的；但是，又怎么把容器内部的配置文件拷贝出来呢？这就需要容器卷映射命令将容器的配置文件映射同步到宿主机来管理。</span></p>
@@ -1247,10 +1243,8 @@ zky@zky-virtual-machine:~/Docker_Projects/test_web1/html$
 
 </code></pre>
 
-<p><img alt="" height="240" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/644a65243ef74feebe3165f331f2d0b3.png" srcset="/img/loading.gif" lazyload width="452" /></p>
-
-<p><img alt="" height="969" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/942fb3b1c191451db4fb4804d7444cbe.png" srcset="/img/loading.gif" lazyload width="1437" /></p>
-
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/644a65243ef74feebe3165f331f2d0b3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/03/%E3%80%90Docker%E3%80%91%E5%9F%BA%E4%BA%8EUbuntu%E7%9A%84Docker%E7%9A%84%E6%97%A5%E5%B8%B8%E4%BD%BF%E7%94%A8%E6%96%B9%E6%B3%95/942fb3b1c191451db4fb4804d7444cbe.png" srcset="/img/loading.gif" lazyload></p>
 <h3>2.3.6 容器网络配置命令</h3>
 
 <p>具体命令：</p>

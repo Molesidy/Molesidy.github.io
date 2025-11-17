@@ -26,63 +26,63 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、简介  在 VSCode 中配置 C&#x2F;C++ 开发环境，主要有两种主流的语言服务器（LSP）方案，它们基于不同的工具链和设计理念，适用于不同的开发需求。要理解这两种方案，需先明确 LSP（语言服务器协议）&nbsp;的概念：它是由微软主导制定的一套跨编辑器 &#x2F; IDE 的标准化协议，旨在简化编程语言工具（如代码补全、语法检查、跳转定义等）的开发与集成，让开发者在不同编辑器中能获得一致的编程">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7130fbeab5d5419f8ba666d459fcea7b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/980de7d7070443a4ba646dface3de033.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5381be2152c94c05b61188d328274800.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/240e5161423e47969ac200d956d3b7fc.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/83b7d8debf32492fadfd5d39a92dfd45.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d25ffeea9a824ec5b264f5f2e3ae5331.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd06e784a20a4f40b982e5555fb931d1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/16faba45640a4da080d5e8f71928eeff.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e0567c07a2644ccc96b0f47f3b2b95b1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/42685dcf44f243319b103ff66774b435.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8b2df7bd905d4d0b8f3432eddfa03786.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/221a3e80692d434bab242e23ffab5d46.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/19bdfce5b5d142e5a30c628ddb0c3d2e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59d03df88fcb42e2838eb9b79f8837ac.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6cc7f13002da4826a6b951ab2a73f738.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4c224733502043abb5b2daef21192073.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5f56b55e0a524bee9ad49d7935c08441.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/917709db95894f7f9b2eee3336db7d33.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/80c6034fd9864a4bbcedd50271de64f2.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f3ab9875e3dd4be092f0005f6fa9c526.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cc75aa94791b4d10a10f8bced7ec3727.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/94343b98ecc24dbf961ed797ac414c95.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4cef572ea1ee4e199d2a15e316fe25b1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/056c07c738c04068b5bd1c0a9c10c12b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/be37655961484fec9626ce73d7e6b176.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6188f8b628994d57ae6b8d77f3ae45d5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3339aa69f4904df898c9749cd8ddf064.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d8800b25c5a54ff78fd5e7766b351772.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4162624540da477cb228ab3ff2cc0bdb.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7fb19b395ef40ddbaf988055c80da68.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2c413ecf695f44dca1ad679211a78d21.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ab9a025223f44a7a9cda873b9e54e937.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a43500105a004612ae82d95f6b212080.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6c04107a67a64997ba6c1bd57f5ab74b.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d98752d7a3e94a32921d6cd652c5279b.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/7130fbeab5d5419f8ba666d459fcea7b.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/980de7d7070443a4ba646dface3de033.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5381be2152c94c05b61188d328274800.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/240e5161423e47969ac200d956d3b7fc.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/83b7d8debf32492fadfd5d39a92dfd45.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d25ffeea9a824ec5b264f5f2e3ae5331.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/bd06e784a20a4f40b982e5555fb931d1.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/16faba45640a4da080d5e8f71928eeff.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/e0567c07a2644ccc96b0f47f3b2b95b1.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/42685dcf44f243319b103ff66774b435.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/8b2df7bd905d4d0b8f3432eddfa03786.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/221a3e80692d434bab242e23ffab5d46.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/19bdfce5b5d142e5a30c628ddb0c3d2e.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/59d03df88fcb42e2838eb9b79f8837ac.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6cc7f13002da4826a6b951ab2a73f738.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4c224733502043abb5b2daef21192073.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5f56b55e0a524bee9ad49d7935c08441.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/917709db95894f7f9b2eee3336db7d33.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/80c6034fd9864a4bbcedd50271de64f2.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/f3ab9875e3dd4be092f0005f6fa9c526.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/cc75aa94791b4d10a10f8bced7ec3727.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/94343b98ecc24dbf961ed797ac414c95.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4cef572ea1ee4e199d2a15e316fe25b1.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/056c07c738c04068b5bd1c0a9c10c12b.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/be37655961484fec9626ce73d7e6b176.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6188f8b628994d57ae6b8d77f3ae45d5.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/3339aa69f4904df898c9749cd8ddf064.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d8800b25c5a54ff78fd5e7766b351772.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4162624540da477cb228ab3ff2cc0bdb.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d7fb19b395ef40ddbaf988055c80da68.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/2c413ecf695f44dca1ad679211a78d21.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/ab9a025223f44a7a9cda873b9e54e937.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/a43500105a004612ae82d95f6b212080.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6c04107a67a64997ba6c1bd57f5ab74b.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/795825607c6a44c78313ca0320e4205f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/84917224c969468eaba08013d298aa02.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/818bde999f004096a38b9afbcbecbb65.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/48c4d9940bad43f0918504d63d5bd4dd.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/07ab5270fc8a4330ad25d74c133eb5a8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fa385c3e2194668ac6c50fc1343ddf5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/65adc71dcbf04ed6809b46cbe00a8b6d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1b67dad8a4ff436898d8a9cd634d1a74.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c35412c1978e406d9f3025f0e37b1212.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ba13409712dd4f12ba3b72789605be73.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/148b8af31f764caca16b515683c35234.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/12c9dfcc73764e4e898b5bf85e90f311.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/71f8320ef359478d90f9b6419593d3c9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5e959b7f3b854057a149856f6475899f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8e641441e566453a96f8c41e5dfa8a7a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c25bb7d1f3824c8cbecb65da9a2cd421.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/84917224c969468eaba08013d298aa02.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/818bde999f004096a38b9afbcbecbb65.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/48c4d9940bad43f0918504d63d5bd4dd.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/07ab5270fc8a4330ad25d74c133eb5a8.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6fa385c3e2194668ac6c50fc1343ddf5.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/65adc71dcbf04ed6809b46cbe00a8b6d.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/1b67dad8a4ff436898d8a9cd634d1a74.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/c35412c1978e406d9f3025f0e37b1212.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/ba13409712dd4f12ba3b72789605be73.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/148b8af31f764caca16b515683c35234.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/12c9dfcc73764e4e898b5bf85e90f311.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/71f8320ef359478d90f9b6419593d3c9.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5e959b7f3b854057a149856f6475899f.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/8e641441e566453a96f8c41e5dfa8a7a.png">
+<meta property="og:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/c25bb7d1f3824c8cbecb65da9a2cd421.png">
 <meta property="article:published_time" content="2025-11-11T15:56:18.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:modified_time" content="2025-11-17T18:13:27.601Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="vscode c++ ide clangd LLVM">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png">
+<meta name="twitter:image" content="http://example.com/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d98752d7a3e94a32921d6cd652c5279b.png">
   
   
   
@@ -350,7 +350,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:13:27+08:00
                   
                   
 
@@ -393,8 +393,7 @@
 
 <h4>（1）传统的编译器架构</h4>
 
-<p><img alt="" height="118" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d98752d7a3e94a32921d6cd652c5279b.png" srcset="/img/loading.gif" lazyload width="608" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d98752d7a3e94a32921d6cd652c5279b.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 	<li><strong>Frontend:前端</strong><br />
 	词法分析、语法分析、语义分析、生成中间代码</li>
@@ -406,8 +405,7 @@
 
 <h4>（2）LLVM架构</h4>
 
-<p><img alt="" height="260" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7130fbeab5d5419f8ba666d459fcea7b.png" srcset="/img/loading.gif" lazyload width="644" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/7130fbeab5d5419f8ba666d459fcea7b.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 	<li>不同的前端后端使用统一的中间代码LLVM Intermediate Representation (LLVM IR)</li>
 	<li>如果需要支持一种新的编程语言，那么只需要实现一个新的前端</li>
@@ -502,42 +500,30 @@
 
 <p><span style="color:#fe2c24">注意：在使用Clangd插件+LLVM 方案时，需要关闭微软官方的C/C++插件，因为会产生冲突。</span></p>
 
-<p><img alt="" height="588" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/980de7d7070443a4ba646dface3de033.png" srcset="/img/loading.gif" lazyload width="913" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/980de7d7070443a4ba646dface3de033.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.1 安装LLVM，一般GitHub的都带了clang，但是有些渠道下载的可能没有clang，需要注意一下</h2>
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Releases · llvm/llvm-project" target="_blank" rel="noopener" href="https://github.com/llvm/llvm-project/releases" title="Releases · llvm/llvm-project">Releases &middot; llvm/llvm-project</a></p>
 
-<p><img alt="" height="915" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5381be2152c94c05b61188d328274800.png" srcset="/img/loading.gif" lazyload width="1570" /></p>
-
-<p><img alt="" height="80" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/240e5161423e47969ac200d956d3b7fc.png" srcset="/img/loading.gif" lazyload width="1038" /></p>
-
-<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/83b7d8debf32492fadfd5d39a92dfd45.png" srcset="/img/loading.gif" lazyload width="492" /></p>
-
-<p><img alt="" height="353" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d25ffeea9a824ec5b264f5f2e3ae5331.png" srcset="/img/loading.gif" lazyload width="500" /></p>
-
-<p><img alt="" height="357" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd06e784a20a4f40b982e5555fb931d1.png" srcset="/img/loading.gif" lazyload width="497" /></p>
-
-<p><img alt="" height="322" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/16faba45640a4da080d5e8f71928eeff.png" srcset="/img/loading.gif" lazyload width="686" /></p>
-
-<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e0567c07a2644ccc96b0f47f3b2b95b1.png" srcset="/img/loading.gif" lazyload width="434" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5381be2152c94c05b61188d328274800.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/240e5161423e47969ac200d956d3b7fc.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/83b7d8debf32492fadfd5d39a92dfd45.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d25ffeea9a824ec5b264f5f2e3ae5331.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/bd06e784a20a4f40b982e5555fb931d1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/16faba45640a4da080d5e8f71928eeff.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/e0567c07a2644ccc96b0f47f3b2b95b1.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.2 vscode安装clang插件</h2>
 
-<p><img alt="" height="295" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/42685dcf44f243319b103ff66774b435.png" srcset="/img/loading.gif" lazyload width="576" /></p>
-
-<p><img alt="" height="903" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8b2df7bd905d4d0b8f3432eddfa03786.png" srcset="/img/loading.gif" lazyload width="1039" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/42685dcf44f243319b103ff66774b435.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/8b2df7bd905d4d0b8f3432eddfa03786.png" srcset="/img/loading.gif" lazyload></p>
 <p>这里选择不安装，到时候手动配置自己下载的clangd</p>
 
-<p><img alt="" height="99" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/221a3e80692d434bab242e23ffab5d46.png" srcset="/img/loading.gif" lazyload width="445" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/221a3e80692d434bab242e23ffab5d46.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.3 下载安装MINGW，记得添加到环境变量</h2>
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.4/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9T8" data-link-title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries" target="_blank" rel="noopener" href="https://github.com/niXman/mingw-builds-binaries/releases/tag/15.2.0-rt_v13-rev0" title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries">Release Release of 15.2.0-rt_v13-rev0 &middot; niXman/mingw-builds-binaries</a></p>
 
-<p><img alt="" height="45" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/19bdfce5b5d142e5a30c628ddb0c3d2e.png" srcset="/img/loading.gif" lazyload width="1275" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/19bdfce5b5d142e5a30c628ddb0c3d2e.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.4 配置需要的功能</h2>
 
 <p>要配置 Clangd 的<strong>用户级（全局共享）<strong>和</strong>项目级（工程私有）</strong>&nbsp;YAML 配置文件，可按照以下步骤操作：</p>
@@ -550,10 +536,8 @@
 
 <p>根据系统类型，在对应路径创建&nbsp;<code>config.yaml</code>&nbsp;文件：</p>
 
-<p><img alt="" height="68" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59d03df88fcb42e2838eb9b79f8837ac.png" srcset="/img/loading.gif" lazyload width="703" /></p>
-
-<p><img alt="" height="191" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6cc7f13002da4826a6b951ab2a73f738.png" srcset="/img/loading.gif" lazyload width="780" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/59d03df88fcb42e2838eb9b79f8837ac.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6cc7f13002da4826a6b951ab2a73f738.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 	<li><strong>Windows</strong>：路径：<code>%LocalAppData%\clangd\config.yaml</code>（可在文件资源管理器中直接输入&nbsp;<code>%LocalAppData%\clangd</code>，新建&nbsp;<code>config.yaml</code>）</li>
 	<li><strong>macOS</strong>：路径：<code>~/Library/Preferences/clangd/config.yaml</code>（在 Finder 中按&nbsp;<code>Shift+Command+G</code>，输入路径并创建文件）</li>
@@ -588,8 +572,7 @@ CompileFlags:
   Add: [-Wall]  # 添加 `-Wall` 开启所有警告
 </code></pre>
 
-<p><img alt="" height="494" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4c224733502043abb5b2daef21192073.png" srcset="/img/loading.gif" lazyload width="821" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4c224733502043abb5b2daef21192073.png" srcset="/img/loading.gif" lazyload></p>
 <h3>2.4.2 项目配置（工程私有设置）</h3>
 
 <h4>官方的配置说明文档链接</h4>
@@ -614,22 +597,17 @@ CompileFlags:
 
 <h3>2.5.1&nbsp;&nbsp;配置工具链本体路径，在设置里搜索Clangd:Path，因为我们最开始下载的时候插件Clangd是个空壳子还要求我们是否下载，取消后这里配置我们自己下载的clangd</h3>
 
-<p><img alt="" height="444" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5f56b55e0a524bee9ad49d7935c08441.png" srcset="/img/loading.gif" lazyload width="1189" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5f56b55e0a524bee9ad49d7935c08441.png" srcset="/img/loading.gif" lazyload></p>
 <h3>2.5.2 进入Clangd插件设置使用选项</h3>
 
-<p><img alt="" height="288" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/917709db95894f7f9b2eee3336db7d33.png" srcset="/img/loading.gif" lazyload width="928" /></p>
-
-<p><img alt="" height="392" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/80c6034fd9864a4bbcedd50271de64f2.png" srcset="/img/loading.gif" lazyload width="1010" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/917709db95894f7f9b2eee3336db7d33.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/80c6034fd9864a4bbcedd50271de64f2.png" srcset="/img/loading.gif" lazyload></p>
 <p>建议改为工作区设置，方便后续每个工作区的定制化改变，不会影响到用户设置</p>
 
-<p><img alt="" height="131" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f3ab9875e3dd4be092f0005f6fa9c526.png" srcset="/img/loading.gif" lazyload width="66" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/f3ab9875e3dd4be092f0005f6fa9c526.png" srcset="/img/loading.gif" lazyload></p>
 <p>一定要一条一条加进去</p>
 
-<p><img alt="" height="533" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cc75aa94791b4d10a10f8bced7ec3727.png" srcset="/img/loading.gif" lazyload width="1046" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/cc75aa94791b4d10a10f8bced7ec3727.png" srcset="/img/loading.gif" lazyload></p>
 <pre>
 <code class="language-bash">{
     "clangd.arguments": [
@@ -729,32 +707,23 @@ CompileFlags:
 
 <h2>2.6 安装cmake</h2>
 
-<p><img alt="" height="803" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/94343b98ecc24dbf961ed797ac414c95.png" srcset="/img/loading.gif" lazyload width="1116" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/94343b98ecc24dbf961ed797ac414c95.png" srcset="/img/loading.gif" lazyload></p>
 <p>我这里选择的二进制包，你可以下载.msi来安装，这种就是很直观但会增加一些注册表，但是，如果你直接拿源码是不行的，需要自己去编译得到可执行工具链。要下载二进制包，然后将bin文件夹工具链路径加入系统环境变量。这是个人习惯问题。</p>
 
-<p><img alt="" height="229" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4cef572ea1ee4e199d2a15e316fe25b1.png" srcset="/img/loading.gif" lazyload width="650" /></p>
-
-<p><img alt="" height="101" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/056c07c738c04068b5bd1c0a9c10c12b.png" srcset="/img/loading.gif" lazyload width="516" /></p>
-
-<p><img alt="" height="114" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/be37655961484fec9626ce73d7e6b176.png" srcset="/img/loading.gif" lazyload width="647" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4cef572ea1ee4e199d2a15e316fe25b1.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/056c07c738c04068b5bd1c0a9c10c12b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/be37655961484fec9626ce73d7e6b176.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.7 安装VSCode的CMake插件</h2>
 
-<p><img alt="" height="900" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6188f8b628994d57ae6b8d77f3ae45d5.png" srcset="/img/loading.gif" lazyload width="1609" /></p>
-
-<p><img alt="" height="928" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3339aa69f4904df898c9749cd8ddf064.png" srcset="/img/loading.gif" lazyload width="1780" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6188f8b628994d57ae6b8d77f3ae45d5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/3339aa69f4904df898c9749cd8ddf064.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.8 如果后续需要调试，就需要安装这个插件，提示：这个插件会下载很久建议找到VSIX的外部http地址进行下载</h2>
 
-<p><img alt="" height="939" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d8800b25c5a54ff78fd5e7766b351772.png" srcset="/img/loading.gif" lazyload width="1268" /></p>
-
-<p><img alt="" height="583" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4162624540da477cb228ab3ff2cc0bdb.png" srcset="/img/loading.gif" lazyload width="624" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d8800b25c5a54ff78fd5e7766b351772.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/4162624540da477cb228ab3ff2cc0bdb.png" srcset="/img/loading.gif" lazyload></p>
 <p>会出现</p>
 
-<p><img alt="" height="50" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7fb19b395ef40ddbaf988055c80da68.png" srcset="/img/loading.gif" lazyload width="56" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/d7fb19b395ef40ddbaf988055c80da68.png" srcset="/img/loading.gif" lazyload></p>
 <h1>三、初步使用</h1>
 
 <p><strong>说明：</strong>自己可以尝试当一个大型项目找对应的函数实现，会发现微软那个c/c++插件查找索引会比较慢以及占用内存，相对之下Clangd的效果就好的多。</p>
@@ -765,18 +734,14 @@ CompileFlags:
 
 <p>这里可以写个小代码进行测试，clangd是否运行正常，一般头文件出现下划线，以及传值前面会有函数形参变量名提示，以及能够正常跳转，就表示是正常的</p>
 
-<p><img alt="" height="998" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2c413ecf695f44dca1ad679211a78d21.png" srcset="/img/loading.gif" lazyload width="1487" /></p>
-
-<p><img alt="" height="773" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ab9a025223f44a7a9cda873b9e54e937.png" srcset="/img/loading.gif" lazyload width="1093" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/2c413ecf695f44dca1ad679211a78d21.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/ab9a025223f44a7a9cda873b9e54e937.png" srcset="/img/loading.gif" lazyload></p>
 <p>右击鼠标，能够正常跳转</p>
 
-<p><img alt="" height="997" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a43500105a004612ae82d95f6b212080.png" srcset="/img/loading.gif" lazyload width="1649" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/a43500105a004612ae82d95f6b212080.png" srcset="/img/loading.gif" lazyload></p>
 <p>这个配置文件就再指定了一下编译器路径。</p>
 
-<p><img alt="" height="283" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6c04107a67a64997ba6c1bd57f5ab74b.png" srcset="/img/loading.gif" lazyload width="735" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6c04107a67a64997ba6c1bd57f5ab74b.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.2 使用CMake版本</h2>
 
 <p>参考：</p>
@@ -917,52 +882,37 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)</span></p>
 
 <h4>（1）cmake配置，选择对应的编译器，然后就会先配置一些东西，此时就会产生<code>compile_commands.json</code>，然后可以<code>clangd: Restart Language Server</code>&nbsp;重启服务</h4>
 
-<p><img alt="" height="99" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/84917224c969468eaba08013d298aa02.png" srcset="/img/loading.gif" lazyload width="616" /></p>
-
-<p><img alt="" height="433" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/818bde999f004096a38b9afbcbecbb65.png" srcset="/img/loading.gif" lazyload width="1390" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/84917224c969468eaba08013d298aa02.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/818bde999f004096a38b9afbcbecbb65.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（2）在 VS Code 中按&nbsp;<code>Ctrl+Shift+P</code>，输入&nbsp;<code>clangd: Restart Language Server</code>&nbsp;重启服务，clangd 会重新读取&nbsp;<code>compile_commands.json，就会发现头文件就不会报红了</code></h4>
 
-<p><img alt="" height="475" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/48c4d9940bad43f0918504d63d5bd4dd.png" srcset="/img/loading.gif" lazyload width="1201" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/48c4d9940bad43f0918504d63d5bd4dd.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（3）在 VS Code 中按&nbsp;<code>Ctrl+Shift+P</code>，输入 cmake build</h4>
 
-<p><img alt="" height="49" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/07ab5270fc8a4330ad25d74c133eb5a8.png" srcset="/img/loading.gif" lazyload width="593" /></p>
-
-<p><img alt="" height="1034" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6fa385c3e2194668ac6c50fc1343ddf5.png" srcset="/img/loading.gif" lazyload width="1913" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/07ab5270fc8a4330ad25d74c133eb5a8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/6fa385c3e2194668ac6c50fc1343ddf5.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（4）执行可执行文件</h4>
 
-<p><img alt="" height="1031" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/65adc71dcbf04ed6809b46cbe00a8b6d.png" srcset="/img/loading.gif" lazyload width="1914" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/65adc71dcbf04ed6809b46cbe00a8b6d.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（5）尝试调试，点击调试目标设置，通过cmake插件工具进行配置项目的调试方式文件launch.json，或者直接从CodeLLDB的调试按钮开始也可以</h4>
 
-<p><img alt="" height="26" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1b67dad8a4ff436898d8a9cd634d1a74.png" srcset="/img/loading.gif" lazyload width="392" /></p>
-
-<p><img alt="" height="1002" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c35412c1978e406d9f3025f0e37b1212.png" srcset="/img/loading.gif" lazyload width="1915" /></p>
-
-<p><img alt="" height="1024" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ba13409712dd4f12ba3b72789605be73.png" srcset="/img/loading.gif" lazyload width="1636" /></p>
-
-<p><img alt="" height="1027" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/148b8af31f764caca16b515683c35234.png" srcset="/img/loading.gif" lazyload width="1418" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/1b67dad8a4ff436898d8a9cd634d1a74.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/c35412c1978e406d9f3025f0e37b1212.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/ba13409712dd4f12ba3b72789605be73.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/148b8af31f764caca16b515683c35234.png" srcset="/img/loading.gif" lazyload></p>
 <p>或者CodeLLDB</p>
 
-<p><img alt="" height="106" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/12c9dfcc73764e4e898b5bf85e90f311.png" srcset="/img/loading.gif" lazyload width="431" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/12c9dfcc73764e4e898b5bf85e90f311.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（6）查看launch</h4>
 
-<p><img alt="" height="1032" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/71f8320ef359478d90f9b6419593d3c9.png" srcset="/img/loading.gif" lazyload width="1646" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/71f8320ef359478d90f9b6419593d3c9.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（7）现在开始CodeLLDB，左上角直接点击出现错误，要找到可执行文件，&quot;program&quot;: &quot;${workspaceRoot}/build/E9_clang_test.exe&quot;,</h4>
 
-<p><img alt="" height="1026" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5e959b7f3b854057a149856f6475899f.png" srcset="/img/loading.gif" lazyload width="1911" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/5e959b7f3b854057a149856f6475899f.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（8）这里发现我使用的：vscode的 G++编译器+Clangd代码补全+lldb（CodeLLDB） 不能调试（不知道为什么打了断点后，点击使用lldb调试后就马上全部执行并退出，断点灰色且空心），原因可能是：G++编译出来的调试版本的代码的调试符号与lldb不适配，可能需要更换为clang编译出来的文件进行调试。这里我把C/C++ Extension Pack再打开，换为cppdbg调试，可能会跳出一个智能补全类型的功能提示与clang冲突了，点击disable关掉，然后就可以正常进行单步调试。</h4>
 
-<p><img alt="" height="1028" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8e641441e566453a96f8c41e5dfa8a7a.png" srcset="/img/loading.gif" lazyload width="1916" /></p>
-
-<p><img alt="" height="1029" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c25bb7d1f3824c8cbecb65da9a2cd421.png" srcset="/img/loading.gif" lazyload width="1909" /></p>
-
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/8e641441e566453a96f8c41e5dfa8a7a.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/11/11/%E3%80%90VSCode%E3%80%91%E3%80%90Clangd%E3%80%91Win%E4%B8%8B%E7%9A%84%E5%9F%BA%E4%BA%8ELLVM!Clangd+Clangd%E6%8F%92%E4%BB%B6+MINGW+CMake%E7%9A%84VSCode%E9%85%8D%E7%BD%AEC!C++%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E7%9A%84%E8%AF%A6%E7%BB%86%E6%95%99%E7%A8%8B/c25bb7d1f3824c8cbecb65da9a2cd421.png" srcset="/img/loading.gif" lazyload></p>
 <p></p>
 
                 

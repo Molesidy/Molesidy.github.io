@@ -19,63 +19,63 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、添加ssh公钥  1.使用git bash命令窗口    2.查看git用户以及邮箱配置  （1）查看当前仓库的本地配置（仓库级配置）   git config --local --list  （2）查看全局配置（用户级配置）   git config --global --list   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些配置对当前用户">
+    <meta name="description" content="一、添加ssh公钥  1.使用git bash命令窗口   2.查看git用户以及邮箱配置  （1）查看当前仓库的本地配置（仓库级配置）   git config --local --list  （2）查看全局配置（用户级配置）   git config --global --list   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些配置对当前用户的">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Git】对于github的本地ssh客户端的配置与分支的使用">
 <meta property="og:url" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/index.html">
 <meta property="og:site_name" content="Molesidy Blog">
-<meta property="og:description" content="一、添加ssh公钥  1.使用git bash命令窗口    2.查看git用户以及邮箱配置  （1）查看当前仓库的本地配置（仓库级配置）   git config --local --list  （2）查看全局配置（用户级配置）   git config --global --list   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些配置对当前用户">
+<meta property="og:description" content="一、添加ssh公钥  1.使用git bash命令窗口   2.查看git用户以及邮箱配置  （1）查看当前仓库的本地配置（仓库级配置）   git config --local --list  （2）查看全局配置（用户级配置）   git config --global --list   &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;这些配置对当前用户的">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bba552eb6d164eaf8839c50c1884ec90.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8df3334ddc834f539ab2f19ad65408ae.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bba552eb6d164eaf8839c50c1884ec90.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/8df3334ddc834f539ab2f19ad65408ae.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/282d4113feec433e98af538ab51bef38.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/45289ef2892b4e86bcc2fd3519ad6f09.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9aa39e3d52234a3598ba23ff1a2b184a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5ed37f07b58c4ac09eb8571aa8b1fbab.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/560b8066676f4c68ac280fac64569406.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/95cde2f4db7047cb97fc83251d05c718.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eafe7e6bed834e7d83c266c62a655a86.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/121d3aa8ba0545fdb5ec7faaf2283733.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6bba5a9f8e1b482cbcf743c93cb2e207.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/885f9ac584bf43a9ad3c1abfecf597d5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c249d29158be4f3ba32fde061bf4cd54.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/45289ef2892b4e86bcc2fd3519ad6f09.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/9aa39e3d52234a3598ba23ff1a2b184a.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/5ed37f07b58c4ac09eb8571aa8b1fbab.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/560b8066676f4c68ac280fac64569406.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/95cde2f4db7047cb97fc83251d05c718.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/eafe7e6bed834e7d83c266c62a655a86.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/121d3aa8ba0545fdb5ec7faaf2283733.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6bba5a9f8e1b482cbcf743c93cb2e207.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/885f9ac584bf43a9ad3c1abfecf597d5.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c249d29158be4f3ba32fde061bf4cd54.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a9488d5503d44f5d82691b13f95d4d60.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/31bb17443e39401bb3d92f34285893fb.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/468f5350b040442ea32f9fefaa59c106.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c44e2230df8246c9b07809dd30f7f331.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dd3b2f591dde44e5b0ea74507dc6f521.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6bc0b179f3af4baab1a3623520d1af14.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f52543892e2747c7a5a1d48dd2067fa5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/821547166b534de1bd9dcbcc96a1c605.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b82bf4691c0f4f0184d1e5fc43d6d805.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/04c7ce3ee52a40f1b5c7ffb15504b523.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d162105aa814424c99a0a9ecc5c7b2a3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8019495663314adc82f7483d8c660f28.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9d3e6326a1424aad8ef786bb254261af.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/89dde7a0a9c3464088d62a903ef4860a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bb85f8747dfd41a4a5ca6cca82f61837.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/988498be7d974251880a6ae1fa092292.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/595f2a63215a43f7955dc33d353ad68d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cb92f82137fe44e391db8739e4da7dcf.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c0a7ae35d59e47a1bd054248e58d0b6f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b26d4260ecbe4b5c87d8f14275a77e2d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6b3fb083cd6c4aabbd19054bcfe20c20.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/31bb17443e39401bb3d92f34285893fb.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/468f5350b040442ea32f9fefaa59c106.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c44e2230df8246c9b07809dd30f7f331.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/dd3b2f591dde44e5b0ea74507dc6f521.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6bc0b179f3af4baab1a3623520d1af14.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/f52543892e2747c7a5a1d48dd2067fa5.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/821547166b534de1bd9dcbcc96a1c605.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/b82bf4691c0f4f0184d1e5fc43d6d805.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/04c7ce3ee52a40f1b5c7ffb15504b523.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/d162105aa814424c99a0a9ecc5c7b2a3.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/8019495663314adc82f7483d8c660f28.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/9d3e6326a1424aad8ef786bb254261af.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/89dde7a0a9c3464088d62a903ef4860a.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bb85f8747dfd41a4a5ca6cca82f61837.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/988498be7d974251880a6ae1fa092292.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/595f2a63215a43f7955dc33d353ad68d.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/cb92f82137fe44e391db8739e4da7dcf.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c0a7ae35d59e47a1bd054248e58d0b6f.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/b26d4260ecbe4b5c87d8f14275a77e2d.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6b3fb083cd6c4aabbd19054bcfe20c20.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59865fae002e4ce4a9d69552dd474626.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a69e6aef71e940b3b476b8482ba82046.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bc8f60fc3c7a41f2a2365405093f305a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2405ba984f2042459ef27964cac44a8a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f72f645f163c4e2e8b7e3bec6c275040.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2a779e1aed1e47c9a998356b26fb86a4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/17fe0ed194c44dc69c765da6ad8b45b9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6875c99154e643f9bd8a04b943e17834.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/46672e839a334a4aada9d25b10998854.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a72d95da473845a0af7dc3eadb5532cc.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/a69e6aef71e940b3b476b8482ba82046.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bc8f60fc3c7a41f2a2365405093f305a.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/2405ba984f2042459ef27964cac44a8a.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/f72f645f163c4e2e8b7e3bec6c275040.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/2a779e1aed1e47c9a998356b26fb86a4.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/17fe0ed194c44dc69c765da6ad8b45b9.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6875c99154e643f9bd8a04b943e17834.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/46672e839a334a4aada9d25b10998854.png">
+<meta property="og:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/a72d95da473845a0af7dc3eadb5532cc.png">
 <meta property="article:published_time" content="2025-08-28T17:13:22.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:modified_time" content="2025-11-17T18:09:12.315Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="git github ssh">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/bba552eb6d164eaf8839c50c1884ec90.png">
+<meta name="twitter:image" content="http://example.com/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bba552eb6d164eaf8839c50c1884ec90.png">
   
   
   
@@ -343,7 +343,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:09:12+08:00
                   
                   
 
@@ -359,8 +359,7 @@
 
 <h2>1.使用git bash命令窗口</h2>
 
-<p><img alt="" height="369" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bba552eb6d164eaf8839c50c1884ec90.png" srcset="/img/loading.gif" lazyload width="361" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bba552eb6d164eaf8839c50c1884ec90.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.查看git用户以及邮箱配置</h2>
 
 <h3>（1）查看当前仓库的本地配置（仓库级配置）</h3>
@@ -425,8 +424,7 @@
 
 <p>C:\Users\name\.ssh\</p>
 
-<p><img alt="" height="31" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8df3334ddc834f539ab2f19ad65408ae.png" srcset="/img/loading.gif" lazyload width="93" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/8df3334ddc834f539ab2f19ad65408ae.png" srcset="/img/loading.gif" lazyload></p>
 <p>.pub就是公钥</p>
 
 <h2>5.点击github网页的右上角用户头像进入设置</h2>
@@ -436,10 +434,8 @@
 
 <h2>6.选择ssh选项,然后点击new ssh key，将公钥里的内容复制粘贴到ssh密钥框里</h2>
 
-<p><img alt="" height="55" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/45289ef2892b4e86bcc2fd3519ad6f09.png" srcset="/img/loading.gif" lazyload width="347" /></p>
-
-<p><img alt="" height="161" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9aa39e3d52234a3598ba23ff1a2b184a.png" srcset="/img/loading.gif" lazyload width="1083" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/45289ef2892b4e86bcc2fd3519ad6f09.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/9aa39e3d52234a3598ba23ff1a2b184a.png" srcset="/img/loading.gif" lazyload></p>
 <h2><strong>7.测试 SSH 连接&nbsp;</strong></h2>
 
 <p>在 Git Bash 中输入对应平台的测试命令</p>
@@ -463,8 +459,7 @@ ssh -T git@gitee.com
 
 <p>出现</p>
 
-<p><img alt="" height="34" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5ed37f07b58c4ac09eb8571aa8b1fbab.png" srcset="/img/loading.gif" lazyload width="431" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/5ed37f07b58c4ac09eb8571aa8b1fbab.png" srcset="/img/loading.gif" lazyload></p>
 <pre>
 <code>$ ssh-add /c/Users/name/.ssh/ssh_key_git/id_rsa
 Could not open a connection to your authentication agent.</code></pre>
@@ -502,8 +497,7 @@ Could not open a connection to your authentication agent.</code></pre>
 
 <p>在C:\Users\name\.ssh\的这个目录下才是ssh的客户端的配置地方，新建文件conf，如下：</p>
 
-<p><img alt="" height="23" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/560b8066676f4c68ac280fac64569406.png" srcset="/img/loading.gif" lazyload width="120" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/560b8066676f4c68ac280fac64569406.png" srcset="/img/loading.gif" lazyload></p>
 <p>添加一下内容：</p>
 
 <pre>
@@ -626,7 +620,7 @@ ssh-copy-id 用户名@服务器IP或主机名</code></pre>
 <p><code># generated by Git for Windows<br>test -f ~/.profile &amp;&amp; . ~/.profile<br>test -f ~/.bashrc &amp;&amp; . ~/.bashrc<br></code></pre><br>	</li><br>	<li><br>	<p>重新打开 Git Bash 测试，之前配置的 SSH 代理自动启动和密钥加载功能应该已经正常工作了。可以再次执行连接测试：</p></p>
 <pre><code class="hljs">&lt;pre&gt;
 </code></pre>
-<p><code>ssh -T <a href="mailto:&#x67;&#x69;&#x74;&#64;&#103;&#105;&#x74;&#104;&#x75;&#x62;&#x2e;&#x63;&#x6f;&#109;">git@github.com</a><br></code></pre><br>	</li></p>
+<p><code>ssh -T <a href="mailto:&#103;&#x69;&#116;&#x40;&#x67;&#x69;&#116;&#x68;&#117;&#98;&#x2e;&#99;&#111;&#x6d;">git@github.com</a><br></code></pre><br>	</li></p>
 </ol>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;如果看到 GitHub 的欢迎信息，说明所有配置都已生效，接下来就可以正常使用&nbsp;<code>git clone</code>、<code>git push</code>&nbsp;等命令了。</p>
@@ -671,30 +665,24 @@ Receiving objects: 100% (3/3), done.
 <code class="language-bash">#查看当前分支情况
 git branch                   </code></pre>
 
-<p><img alt="" height="39" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/95cde2f4db7047cb97fc83251d05c718.png" srcset="/img/loading.gif" lazyload width="494" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/95cde2f4db7047cb97fc83251d05c718.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.新建分支</h2>
 
 <pre>
 <code class="language-bash">#新建一个分支branch_test1
 git branch branch_test1</code></pre>
 
-<p><img alt="" height="26" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eafe7e6bed834e7d83c266c62a655a86.png" srcset="/img/loading.gif" lazyload width="493" /></p>
-
-<p><img alt="" height="52" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/121d3aa8ba0545fdb5ec7faaf2283733.png" srcset="/img/loading.gif" lazyload width="496" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/eafe7e6bed834e7d83c266c62a655a86.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/121d3aa8ba0545fdb5ec7faaf2283733.png" srcset="/img/loading.gif" lazyload></p>
 <h2>4.切换到分支上开发操作</h2>
 
-<p><img alt="" height="101" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6bba5a9f8e1b482cbcf743c93cb2e207.png" srcset="/img/loading.gif" lazyload width="226" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6bba5a9f8e1b482cbcf743c93cb2e207.png" srcset="/img/loading.gif" lazyload></p>
 <pre>
 <code class="language-bash">#切换到新建的分支branch_test1
 git checkout branch_test1</code></pre>
 
-<p><img alt="" height="46" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/885f9ac584bf43a9ad3c1abfecf597d5.png" srcset="/img/loading.gif" lazyload width="494" /></p>
-
-<p><img alt="" height="54" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c249d29158be4f3ba32fde061bf4cd54.png" srcset="/img/loading.gif" lazyload width="564" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/885f9ac584bf43a9ad3c1abfecf597d5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c249d29158be4f3ba32fde061bf4cd54.png" srcset="/img/loading.gif" lazyload></p>
 <pre>
 <code class="language-bash">#如果希望在创建分支的同时切换到该分支，可以使用以下命令：
 
@@ -715,66 +703,46 @@ git push origin branch_test1  或者 git push origin branch_test1:branch_test1
 #git push &lt;远程仓库名&gt; &lt;本地分支名&gt;:&lt;远程分支名&gt;    
 #远程仓库名是你现在所在的仓库名字默认是origin    </code></pre>
 
-<p><img alt="" height="36" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/31bb17443e39401bb3d92f34285893fb.png" srcset="/img/loading.gif" lazyload width="724" /></p>
-
-<p><img alt="" height="62" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/468f5350b040442ea32f9fefaa59c106.png" srcset="/img/loading.gif" lazyload width="497" /></p>
-
-<p><img alt="" height="109" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c44e2230df8246c9b07809dd30f7f331.png" srcset="/img/loading.gif" lazyload width="424" /></p>
-
-<p><img alt="" height="277" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dd3b2f591dde44e5b0ea74507dc6f521.png" srcset="/img/loading.gif" lazyload width="345" /></p>
-
-<p><img alt="" height="39" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6bc0b179f3af4baab1a3623520d1af14.png" srcset="/img/loading.gif" lazyload width="967" /></p>
-
-<p><img alt="" height="221" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f52543892e2747c7a5a1d48dd2067fa5.png" srcset="/img/loading.gif" lazyload width="534" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/31bb17443e39401bb3d92f34285893fb.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/468f5350b040442ea32f9fefaa59c106.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c44e2230df8246c9b07809dd30f7f331.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/dd3b2f591dde44e5b0ea74507dc6f521.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6bc0b179f3af4baab1a3623520d1af14.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/f52543892e2747c7a5a1d48dd2067fa5.png" srcset="/img/loading.gif" lazyload></p>
 <h2>7.github切回main，查看mytest.txt</h2>
 
-<p><img alt="" height="149" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/821547166b534de1bd9dcbcc96a1c605.png" srcset="/img/loading.gif" lazyload width="329" /></p>
-
-<p><img alt="" height="171" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b82bf4691c0f4f0184d1e5fc43d6d805.png" srcset="/img/loading.gif" lazyload width="704" /></p>
-
-<p><img alt="" height="193" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/04c7ce3ee52a40f1b5c7ffb15504b523.png" srcset="/img/loading.gif" lazyload width="720" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/821547166b534de1bd9dcbcc96a1c605.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/b82bf4691c0f4f0184d1e5fc43d6d805.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/04c7ce3ee52a40f1b5c7ffb15504b523.png" srcset="/img/loading.gif" lazyload></p>
 <h2>8.切回main，创建一个新的文件test2.txt，来回切换一次，看看区别</h2>
 
-<p><img alt="" height="54" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d162105aa814424c99a0a9ecc5c7b2a3.png" srcset="/img/loading.gif" lazyload width="331" /></p>
-
-<p><img alt="" height="20" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8019495663314adc82f7483d8c660f28.png" srcset="/img/loading.gif" lazyload width="144" /></p>
-
-<p><img alt="" height="106" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9d3e6326a1424aad8ef786bb254261af.png" srcset="/img/loading.gif" lazyload width="366" /></p>
-
-<p><img alt="" height="64" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/89dde7a0a9c3464088d62a903ef4860a.png" srcset="/img/loading.gif" lazyload width="504" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/d162105aa814424c99a0a9ecc5c7b2a3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/8019495663314adc82f7483d8c660f28.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/9d3e6326a1424aad8ef786bb254261af.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/89dde7a0a9c3464088d62a903ef4860a.png" srcset="/img/loading.gif" lazyload></p>
 <p>在main分支提交测试文件二到本地分支main后，再切回branch_test1分支看文件就看不到test2.txt了</p>
 
-<p><img alt="" height="100" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bb85f8747dfd41a4a5ca6cca82f61837.png" srcset="/img/loading.gif" lazyload width="558" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bb85f8747dfd41a4a5ca6cca82f61837.png" srcset="/img/loading.gif" lazyload></p>
 <p>然后我将测试文件2推送到远程的main了</p>
 
 <h2>9.尝试将branch_test1的测试文件1：mytest.txt合并到main，现在的情况是本地仓库的mytest.txt看起来是只有一个文件，但是逻辑上是两个，查看内容，即使我现在在main分支下将全部内容提交推送到远程，mytest.txt 里并没有 hello github</h2>
 
-<p><img alt="" height="146" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/988498be7d974251880a6ae1fa092292.png" srcset="/img/loading.gif" lazyload width="636" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/988498be7d974251880a6ae1fa092292.png" srcset="/img/loading.gif" lazyload></p>
 <p>main</p>
 
-<p><img alt="" height="108" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/595f2a63215a43f7955dc33d353ad68d.png" srcset="/img/loading.gif" lazyload width="491" /></p>
-
-<p><img alt="" height="32" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cb92f82137fe44e391db8739e4da7dcf.png" srcset="/img/loading.gif" lazyload width="529" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/595f2a63215a43f7955dc33d353ad68d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/cb92f82137fe44e391db8739e4da7dcf.png" srcset="/img/loading.gif" lazyload></p>
 <p>branch</p>
 
-<p><img alt="" height="96" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c0a7ae35d59e47a1bd054248e58d0b6f.png" srcset="/img/loading.gif" lazyload width="553" /></p>
-
-<p><img alt="" height="44" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b26d4260ecbe4b5c87d8f14275a77e2d.png" srcset="/img/loading.gif" lazyload width="359" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/c0a7ae35d59e47a1bd054248e58d0b6f.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/b26d4260ecbe4b5c87d8f14275a77e2d.png" srcset="/img/loading.gif" lazyload></p>
 <h2>10.分支的合并</h2>
 
 <p>当在不同的分支上进行了独立的开发工作后，我们可能需要将某个分支的修改合并到主线或其他分支上。Git提供了合并（merge）操作来实现这个功能。</p>
 
 <p>切回main</p>
 
-<p><img alt="" height="51" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6b3fb083cd6c4aabbd19054bcfe20c20.png" srcset="/img/loading.gif" lazyload width="332" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6b3fb083cd6c4aabbd19054bcfe20c20.png" srcset="/img/loading.gif" lazyload></p>
 <pre>
 <code class="language-bash">#指定哪一个分支合并到你现在的分支下
 git merge branch_test1</code></pre>
@@ -824,28 +792,19 @@ git merge branch_test1</code></pre>
 	Git 会取消这次合并操作，回到合并前的状态。</li>
 </ul>
 
-<p><img alt="" height="1030" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a69e6aef71e940b3b476b8482ba82046.png" srcset="/img/loading.gif" lazyload width="1905" /></p>
-
-<p><img alt="" height="81" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bc8f60fc3c7a41f2a2365405093f305a.png" srcset="/img/loading.gif" lazyload width="258" /></p>
-
-<p><img alt="" height="37" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2405ba984f2042459ef27964cac44a8a.png" srcset="/img/loading.gif" lazyload width="139" /></p>
-
-<p><img alt="" height="45" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f72f645f163c4e2e8b7e3bec6c275040.png" srcset="/img/loading.gif" lazyload width="176" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/a69e6aef71e940b3b476b8482ba82046.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/bc8f60fc3c7a41f2a2365405093f305a.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/2405ba984f2042459ef27964cac44a8a.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/f72f645f163c4e2e8b7e3bec6c275040.png" srcset="/img/loading.gif" lazyload></p>
 <p>合并完成，提交一下</p>
 
-<p><img alt="" height="102" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2a779e1aed1e47c9a998356b26fb86a4.png" srcset="/img/loading.gif" lazyload width="372" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/2a779e1aed1e47c9a998356b26fb86a4.png" srcset="/img/loading.gif" lazyload></p>
 <h2>11.到branch_test1分支下修改一下文件，演示解决冲突（这里冲突没出来就后面有空再补）</h2>
 
-<p><img alt="" height="38" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/17fe0ed194c44dc69c765da6ad8b45b9.png" srcset="/img/loading.gif" lazyload width="125" /></p>
-
-<p><img alt="" height="15" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6875c99154e643f9bd8a04b943e17834.png" srcset="/img/loading.gif" lazyload width="95" /></p>
-
-<p><img alt="" height="56" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/46672e839a334a4aada9d25b10998854.png" srcset="/img/loading.gif" lazyload width="567" /></p>
-
-<p><img alt="" height="1024" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a72d95da473845a0af7dc3eadb5532cc.png" srcset="/img/loading.gif" lazyload width="1909" /></p>
-
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/17fe0ed194c44dc69c765da6ad8b45b9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/6875c99154e643f9bd8a04b943e17834.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/46672e839a334a4aada9d25b10998854.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/08/29/%E3%80%90Git%E3%80%91%E5%AF%B9%E4%BA%8Egithub%E7%9A%84%E6%9C%AC%E5%9C%B0ssh%E5%AE%A2%E6%88%B7%E7%AB%AF%E7%9A%84%E9%85%8D%E7%BD%AE%E4%B8%8E%E5%88%86%E6%94%AF%E7%9A%84%E4%BD%BF%E7%94%A8/a72d95da473845a0af7dc3eadb5532cc.png" srcset="/img/loading.gif" lazyload></p>
 <h2>12.合并完成后有时候就删了</h2>
 
 <pre>

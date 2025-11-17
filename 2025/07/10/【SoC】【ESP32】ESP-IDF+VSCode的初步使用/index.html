@@ -26,64 +26,62 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（Espressif IoT Development Framework）是乐鑫为其 ESP32、ESP32-S 系列、ESP32-C 系列等芯片提供的官方物联网开发框架，基于 FreeRTOS 操作系统，支持 C、C++ 和 Lua 等语言，用于快速开发物联网、智能家居、工业控制等领">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f7350203864243caa531a30a2f3fd747.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/efea735fe6a0454e95378d2457157526.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3ae334630bf42ea90f24a51cc2b1fce.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/879345b449594477b7cbd0efd3c80bd7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1467f00766124c528252b963733844ab.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a08172660b248c8a089e5ddd000ad65.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/679df0a25a25448686bfe5624fc0a998.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/54f6134ea6684a8397ff362f1f4f1166.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6d879ea3c64d46759b1061cc77672ab8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7e8b5d5937a947eabc32d3ec88a0faab.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a519f141471f42229dc47300bb6f3281.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7a4bddace47d423ab23d068105968b08.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c07ebc72015c4dc29f24f4db9600c44d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5d8a09073ef943e9b76a5e3c1bbda6f6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/45d11f1aa838453fb9d88e9cef2f3837.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/20e1af789c53439da42635241f52408a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6939bd8e885349be8dd0a8005f4fcf59.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0bd0e5adbda547fca43f4abb67f94f46.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f10b8cd98cba4f38aa720d97457e7834.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/15ce6f77a7a8482684577d69617f41a4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0f24743e12f74b61b69e972dfcb16079.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b68e473fc1344758aa7ea970669f653a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3bc804add83d49a29ddce737077c3a28.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0aaabd9f728241b98803b6cf7831cdc3.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f7350203864243caa531a30a2f3fd747.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/efea735fe6a0454e95378d2457157526.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/d3ae334630bf42ea90f24a51cc2b1fce.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/879345b449594477b7cbd0efd3c80bd7.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/1467f00766124c528252b963733844ab.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/4a08172660b248c8a089e5ddd000ad65.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/679df0a25a25448686bfe5624fc0a998.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/54f6134ea6684a8397ff362f1f4f1166.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/6d879ea3c64d46759b1061cc77672ab8.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7e8b5d5937a947eabc32d3ec88a0faab.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/a519f141471f42229dc47300bb6f3281.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7a4bddace47d423ab23d068105968b08.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/c07ebc72015c4dc29f24f4db9600c44d.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5d8a09073ef943e9b76a5e3c1bbda6f6.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/45d11f1aa838453fb9d88e9cef2f3837.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/20e1af789c53439da42635241f52408a.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/6939bd8e885349be8dd0a8005f4fcf59.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0bd0e5adbda547fca43f4abb67f94f46.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f10b8cd98cba4f38aa720d97457e7834.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/15ce6f77a7a8482684577d69617f41a4.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0f24743e12f74b61b69e972dfcb16079.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/b68e473fc1344758aa7ea970669f653a.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/3bc804add83d49a29ddce737077c3a28.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d03e680227894b40aa54f7b1ba99647f.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dfa5e01f45cb43e5b1ee2c19c2216476.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/73e801701dd143a9b321affeba4f7ea3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/eb8dcee22b7f4ccab4470dfa34158cf8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5534e6853ca349a997a0c56c08cbe685.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e31d665cec6642448dc9296316a14cd3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f0eb7daf66234bcabfc49b5b2c80013a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/dbc7150b0f86466599f893dbb0435291.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9c629a196c524e3ea893ea71726a191b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/07be58cb42e244ba85c6db1a441002ce.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c0395d46406746c9bae05552d53b9a5e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/233a09f3f7b34876a50f5e06e86deafb.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/be7fe46eb84a46fab7509f42a98b498b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/deaf86d0cfa649b49b836d7eff85bc18.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a2214a781d004eaeab623eee8f1a152b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ccfd5df1725049cfbbe7fd8a38530c21.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5b41598fbe744fdb8abe6734efd2b548.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/9b9c835c53924c65aae7771520ff37ed.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/322a203c66444dd9804f7aaf12f5e9cd.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e14f4c3b0fe9460ba45004f7ea5d57ff.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8a43902e50494ff788c106b49181d024.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5c64cda50e9f40e2bd1d4f3ace0cddbe.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/435bb75047e44d9f8385afa5c2e18947.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/29bb4daa9d3d4bb28e942d2dd4868622.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/dfa5e01f45cb43e5b1ee2c19c2216476.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/73e801701dd143a9b321affeba4f7ea3.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/eb8dcee22b7f4ccab4470dfa34158cf8.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5534e6853ca349a997a0c56c08cbe685.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/e31d665cec6642448dc9296316a14cd3.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f0eb7daf66234bcabfc49b5b2c80013a.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/dbc7150b0f86466599f893dbb0435291.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/9c629a196c524e3ea893ea71726a191b.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/07be58cb42e244ba85c6db1a441002ce.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/c0395d46406746c9bae05552d53b9a5e.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/233a09f3f7b34876a50f5e06e86deafb.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/be7fe46eb84a46fab7509f42a98b498b.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/deaf86d0cfa649b49b836d7eff85bc18.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/a2214a781d004eaeab623eee8f1a152b.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/ccfd5df1725049cfbbe7fd8a38530c21.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5b41598fbe744fdb8abe6734efd2b548.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/9b9c835c53924c65aae7771520ff37ed.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/322a203c66444dd9804f7aaf12f5e9cd.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/e14f4c3b0fe9460ba45004f7ea5d57ff.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/8a43902e50494ff788c106b49181d024.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/435bb75047e44d9f8385afa5c2e18947.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/29bb4daa9d3d4bb28e942d2dd4868622.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/415a07dca1a44c64a9287d2b8b7d480e.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7ec1e06b8852440cb7a27fb2a662465f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ffcdb7bbc5914e0bb560cf7eb6f0de50.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7ec1e06b8852440cb7a27fb2a662465f.png">
+<meta property="og:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/ffcdb7bbc5914e0bb560cf7eb6f0de50.png">
 <meta property="article:published_time" content="2025-07-10T09:33:17.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:10:44.480Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="vscode ide 编辑器 ESP32 ESP-IDF">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png">
+<meta name="twitter:image" content="http://example.com/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0aaabd9f728241b98803b6cf7831cdc3.png">
   
   
   
@@ -351,7 +349,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:10:44+08:00
                   
                   
 
@@ -403,96 +401,72 @@
 
 <h2>1.新建文件夹ESP32_Example</h2>
 
-<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0aaabd9f728241b98803b6cf7831cdc3.png" srcset="/img/loading.gif" lazyload width="812" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0aaabd9f728241b98803b6cf7831cdc3.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2. 使用命令idf.py build初始化该工程&nbsp;</h2>
 
-<p><img alt="" height="742" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f7350203864243caa531a30a2f3fd747.png" srcset="/img/loading.gif" lazyload width="1469" /></p>
-
-<p><img alt="" height="280" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/efea735fe6a0454e95378d2457157526.png" srcset="/img/loading.gif" lazyload width="879" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f7350203864243caa531a30a2f3fd747.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/efea735fe6a0454e95378d2457157526.png" srcset="/img/loading.gif" lazyload></p>
 <p>注：CMakeLists.txt是帮助链接编译的文件</p>
 
 <h2>3.对于 ESP - IDF 等开发框架中<code>component</code>文件夹的功能，用于明确该目录在项目结构里承担存放特定代码（第三方组件、用户程序驱动代码 ）的角色 。使用命令idf.py create-component + 文件名字</h2>
 
-<p><img alt="" height="628" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3ae334630bf42ea90f24a51cc2b1fce.png" srcset="/img/loading.gif" lazyload width="1466" /></p>
-
-<p><img alt="" height="100" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/879345b449594477b7cbd0efd3c80bd7.png" srcset="/img/loading.gif" lazyload width="1203" /></p>
-
-<p><img alt="" height="282" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1467f00766124c528252b963733844ab.png" srcset="/img/loading.gif" lazyload width="758" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/d3ae334630bf42ea90f24a51cc2b1fce.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/879345b449594477b7cbd0efd3c80bd7.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/1467f00766124c528252b963733844ab.png" srcset="/img/loading.gif" lazyload></p>
 <h2>4.在ESP32_Example下新建一个文件夹components，把所有组件放在components下</h2>
 
-<p><img alt="" height="230" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a08172660b248c8a089e5ddd000ad65.png" srcset="/img/loading.gif" lazyload width="833" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/4a08172660b248c8a089e5ddd000ad65.png" srcset="/img/loading.gif" lazyload></p>
 <h2>5.设置目标芯片</h2>
 
 <p>使用查询命令idf.py --list-targets查看有哪些芯片类型</p>
 
-<p><img alt="" height="239" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/679df0a25a25448686bfe5624fc0a998.png" srcset="/img/loading.gif" lazyload width="1060" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/679df0a25a25448686bfe5624fc0a998.png" srcset="/img/loading.gif" lazyload></p>
 <p>idf.py set-target &lt;芯片类型&gt;</p>
 
-<p><img alt="" height="608" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/54f6134ea6684a8397ff362f1f4f1166.png" srcset="/img/loading.gif" lazyload width="1453" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/54f6134ea6684a8397ff362f1f4f1166.png" srcset="/img/loading.gif" lazyload></p>
 <p>成功设置</p>
 
-<p><img alt="" height="704" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6d879ea3c64d46759b1061cc77672ab8.png" srcset="/img/loading.gif" lazyload width="1464" /></p>
-
-<p><img alt="" height="377" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7e8b5d5937a947eabc32d3ec88a0faab.png" srcset="/img/loading.gif" lazyload width="828" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/6d879ea3c64d46759b1061cc77672ab8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7e8b5d5937a947eabc32d3ec88a0faab.png" srcset="/img/loading.gif" lazyload></p>
 <h2>6.输入命令idf.py menuconfig启动文本界面进行详细配置</h2>
 
-<p><img alt="" height="1006" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a519f141471f42229dc47300bb6f3281.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/a519f141471f42229dc47300bb6f3281.png" srcset="/img/loading.gif" lazyload></p>
 <p>7.设置SPI Flash速度模式，默认（DIO）即可</p>
 
-<p><img alt="" height="352" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7a4bddace47d423ab23d068105968b08.png" srcset="/img/loading.gif" lazyload width="522" /></p>
-
-<p><img alt="" height="383" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c07ebc72015c4dc29f24f4db9600c44d.png" srcset="/img/loading.gif" lazyload width="684" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7a4bddace47d423ab23d068105968b08.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/c07ebc72015c4dc29f24f4db9600c44d.png" srcset="/img/loading.gif" lazyload></p>
 <p>按下ESC退出</p>
 
 <h2>7.使用命令idf.py -p COM8 flash下载代码，这里只是检测是否能正常下载</h2>
 
-<p><img alt="" height="137" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5d8a09073ef943e9b76a5e3c1bbda6f6.png" srcset="/img/loading.gif" lazyload width="1308" /></p>
-
-<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/45d11f1aa838453fb9d88e9cef2f3837.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5d8a09073ef943e9b76a5e3c1bbda6f6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/45d11f1aa838453fb9d88e9cef2f3837.png" srcset="/img/loading.gif" lazyload></p>
 <h2>8.编写测试函数</h2>
 
-<p><img alt="" height="349" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/20e1af789c53439da42635241f52408a.png" srcset="/img/loading.gif" lazyload width="771" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/20e1af789c53439da42635241f52408a.png" srcset="/img/loading.gif" lazyload></p>
 <h2>9.测试函数编译</h2>
 
-<p><img alt="" height="134" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6939bd8e885349be8dd0a8005f4fcf59.png" srcset="/img/loading.gif" lazyload width="1085" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/6939bd8e885349be8dd0a8005f4fcf59.png" srcset="/img/loading.gif" lazyload></p>
 <h2>10.测试函数下载</h2>
 
-<p><img alt="" height="609" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0bd0e5adbda547fca43f4abb67f94f46.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0bd0e5adbda547fca43f4abb67f94f46.png" srcset="/img/loading.gif" lazyload></p>
 <h2>11.测试函数监控，使用命令idf.py monitor</h2>
 
-<p><img alt="" height="117" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f10b8cd98cba4f38aa720d97457e7834.png" srcset="/img/loading.gif" lazyload width="998" /></p>
-
-<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/15ce6f77a7a8482684577d69617f41a4.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f10b8cd98cba4f38aa720d97457e7834.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/15ce6f77a7a8482684577d69617f41a4.png" srcset="/img/loading.gif" lazyload></p>
 <p>可以看到了成功打印了hello，然后按下ctrl + ]&nbsp;退出监控器。</p>
 
 <h2>12.清除编译文件</h2>
 
 <p>idf.py fullclean</p>
 
-<p><img alt="" height="1010" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0f24743e12f74b61b69e972dfcb16079.png" srcset="/img/loading.gif" lazyload width="1749" /></p>
-
-<p><img alt="" height="156" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b68e473fc1344758aa7ea970669f653a.png" srcset="/img/loading.gif" lazyload width="1089" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/0f24743e12f74b61b69e972dfcb16079.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/b68e473fc1344758aa7ea970669f653a.png" srcset="/img/loading.gif" lazyload></p>
 <h1>三、使用VSCode+ESP-IDF插件编写代码</h1>
 
 <h2>1.使用VSCode打开工程文件夹ESP32_Example</h2>
 
-<p><img alt="" height="971" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3bc804add83d49a29ddce737077c3a28.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/3bc804add83d49a29ddce737077c3a28.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.配置工程</h2>
 
 <p>选择下载程序方式、接口和目标芯片</p>
@@ -501,50 +475,39 @@
 
 <h2>3.扳手按钮编译</h2>
 
-<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dfa5e01f45cb43e5b1ee2c19c2216476.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/dfa5e01f45cb43e5b1ee2c19c2216476.png" srcset="/img/loading.gif" lazyload></p>
 <h2>4.闪电按钮烧写</h2>
 
-<p><img alt="" height="98" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/73e801701dd143a9b321affeba4f7ea3.png" srcset="/img/loading.gif" lazyload width="290" /></p>
-
-<p><img alt="" height="442" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/eb8dcee22b7f4ccab4470dfa34158cf8.png" srcset="/img/loading.gif" lazyload width="1489" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/73e801701dd143a9b321affeba4f7ea3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/eb8dcee22b7f4ccab4470dfa34158cf8.png" srcset="/img/loading.gif" lazyload></p>
 <h2>5.电视按钮启用监控</h2>
 
 <p>初步测试没问题。&nbsp;</p>
 
-<p><img alt="" height="445" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5534e6853ca349a997a0c56c08cbe685.png" srcset="/img/loading.gif" lazyload width="1478" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5534e6853ca349a997a0c56c08cbe685.png" srcset="/img/loading.gif" lazyload></p>
 <h2>6.最下方的芯片选择后的齿轮按钮进行SDK的详细配置</h2>
 
 <h3>flash</h3>
 
 <p>ESP32-S3-N16R8 中， &ldquo;N16&rdquo; 代表的是<strong>16MB 的 Flash</strong>，&ldquo;R8&rdquo; 表示<strong>8MB 的 PSRAM</strong>。所以这款芯片的 Flash 大小是 16MB。</p>
 
-<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e31d665cec6642448dc9296316a14cd3.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="547" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f0eb7daf66234bcabfc49b5b2c80013a.png" srcset="/img/loading.gif" lazyload width="488" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/e31d665cec6642448dc9296316a14cd3.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/f0eb7daf66234bcabfc49b5b2c80013a.png" srcset="/img/loading.gif" lazyload></p>
 <h3>Partition Table</h3>
 
 <p>选择自定义分区表，分区表自定义名称：partitions_tabel_16MB.csv</p>
 
-<p><img alt="" height="1021" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/dbc7150b0f86466599f893dbb0435291.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/dbc7150b0f86466599f893dbb0435291.png" srcset="/img/loading.gif" lazyload></p>
 <p>PSRAM</p>
 
 <p>使能外部SRAM，主要调整为八线模式和80MHz</p>
 
-<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9c629a196c524e3ea893ea71726a191b.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/07be58cb42e244ba85c6db1a441002ce.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="426" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c0395d46406746c9bae05552d53b9a5e.png" srcset="/img/loading.gif" lazyload width="418" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/9c629a196c524e3ea893ea71726a191b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/07be58cb42e244ba85c6db1a441002ce.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/c0395d46406746c9bae05552d53b9a5e.png" srcset="/img/loading.gif" lazyload></p>
 <h3>CPU Frequency</h3>
 
-<p><img alt="" height="1013" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/233a09f3f7b34876a50f5e06e86deafb.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/233a09f3f7b34876a50f5e06e86deafb.png" srcset="/img/loading.gif" lazyload></p>
 <h3>FreeRTOS</h3>
 
 <h4><strong>一、GDB Stub（调试相关）</strong></h4>
@@ -676,10 +639,8 @@
 
 <p>100对应的节拍周期是10ms，1000对应的节拍周期是1ms</p>
 
-<p><img alt="" height="109" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/be7fe46eb84a46fab7509f42a98b498b.png" srcset="/img/loading.gif" lazyload width="680" /></p>
-
-<p><img alt="" height="110" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/deaf86d0cfa649b49b836d7eff85bc18.png" srcset="/img/loading.gif" lazyload width="699" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/be7fe46eb84a46fab7509f42a98b498b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/deaf86d0cfa649b49b836d7eff85bc18.png" srcset="/img/loading.gif" lazyload></p>
 <h2>7.保存SDK配置后，ctrl+shift+p打开分区表编辑器</h2>
 
 <p>这是&nbsp;<strong>ESP-IDF Partition Table Editor（ESP-IDF 分区表编辑器）</strong>&nbsp;的界面，用于可视化配置 ESP32/ESP32-S3 等设备的 Flash 分区表。以下逐行解释核心内容：</p>
@@ -785,52 +746,40 @@
 
 <p>简单说，这个界面让你<strong>可视化管理 ESP32 设备的 Flash 分区</strong>，像分硬盘区一样把 Flash 划给固件、配置、文件系统等不同功能使用，避免手动写 CSV 配置的麻烦～</p>
 
-<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a2214a781d004eaeab623eee8f1a152b.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="496" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ccfd5df1725049cfbbe7fd8a38530c21.png" srcset="/img/loading.gif" lazyload width="869" /></p>
-
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5b41598fbe744fdb8abe6734efd2b548.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/a2214a781d004eaeab623eee8f1a152b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/ccfd5df1725049cfbbe7fd8a38530c21.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/5b41598fbe744fdb8abe6734efd2b548.png" srcset="/img/loading.gif" lazyload></p>
 <p>分区如下：</p>
 
-<p><img alt="" height="792" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/9b9c835c53924c65aae7771520ff37ed.png" srcset="/img/loading.gif" lazyload width="1373" /></p>
-
-<p><img alt="" height="299" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/322a203c66444dd9804f7aaf12f5e9cd.png" srcset="/img/loading.gif" lazyload width="666" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/9b9c835c53924c65aae7771520ff37ed.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/322a203c66444dd9804f7aaf12f5e9cd.png" srcset="/img/loading.gif" lazyload></p>
 <h2>8.编译烧写</h2>
 
-<p><img alt="" height="1022" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e14f4c3b0fe9460ba45004f7ea5d57ff.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/e14f4c3b0fe9460ba45004f7ea5d57ff.png" srcset="/img/loading.gif" lazyload></p>
 <h3>头文件报红问题：</h3>
 
 <p>验证了程序正常，但是这里头文件报红是因为VSCode里找不到组件文件，需要配置一下路径，这个组件的位置其实是在ESP-IDF里带的组件源码</p>
 
-<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8a43902e50494ff788c106b49181d024.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/8a43902e50494ff788c106b49181d024.png" srcset="/img/loading.gif" lazyload></p>
 <h4>方法一：</h4>
 
 <p>（1）可以在文件夹.vscode下手动添加c_cpp_properties.json，或者点击VSCode的右下角的WIN32点击JSON可以得到自动生成的c_cpp_properties.json文件</p>
 
-<p><img alt="" height="67" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png" srcset="/img/loading.gif" lazyload width="131" /><img alt="" height="139" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5c64cda50e9f40e2bd1d4f3ace0cddbe.png" srcset="/img/loading.gif" lazyload width="765" /></p>
-
-<p><img alt="" height="589" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/435bb75047e44d9f8385afa5c2e18947.png" srcset="/img/loading.gif" lazyload width="1371" /></p>
-
+<p>![](<a target="_blank" rel="noopener" href="https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png">https://i-blog.csdnimg.cn/direct/44a7fe18c981445c8575d7da155bda05.png</a>“ width&#x3D;”131” &#x2F;&gt;&lt;img alt&#x3D;)</p>
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/435bb75047e44d9f8385afa5c2e18947.png" srcset="/img/loading.gif" lazyload></p>
 <p>（2）&quot;D:/Espressif/frameworks/esp-idf-v5.4/components&quot;你需要将你安装的ESP-IDF里的组件路径导入VSCode的json配置文件里，然后如果还有波浪线需要使用VSCode的自带的快速修复自动添加路径。</p>
 
-<p><img alt="" height="591" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/29bb4daa9d3d4bb28e942d2dd4868622.png" srcset="/img/loading.gif" lazyload width="1179" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/29bb4daa9d3d4bb28e942d2dd4868622.png" srcset="/img/loading.gif" lazyload></p>
 <h4>方法二：</h4>
 
 <p>按下ctrl+shift+P，输入Add VS Code Configuration Folder，然后VSCode会把我们自动配置路径，以及更好地完善组件文件与用户文件地内联关系，可以自己去看看，了解一下。</p>
 
 <p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/415a07dca1a44c64a9287d2b8b7d480e.jpeg" srcset="/img/loading.gif" lazyload /></p>
 
-<p><img alt="" height="578" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7ec1e06b8852440cb7a27fb2a662465f.png" srcset="/img/loading.gif" lazyload width="1270" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/7ec1e06b8852440cb7a27fb2a662465f.png" srcset="/img/loading.gif" lazyload></p>
 <p>结果：</p>
 
-<p><img alt="" height="799" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ffcdb7bbc5914e0bb560cf7eb6f0de50.png" srcset="/img/loading.gif" lazyload width="815" /></p>
-
+<p><img src="/2025/07/10/%E3%80%90SoC%E3%80%91%E3%80%90ESP32%E3%80%91ESP-IDF+VSCode%E7%9A%84%E5%88%9D%E6%AD%A5%E4%BD%BF%E7%94%A8/ffcdb7bbc5914e0bb560cf7eb6f0de50.png" srcset="/img/loading.gif" lazyload></p>
 <p>11.bsp_led和main的CMakeLists分别需要补充依赖</p>
 
 <p>bsp_led</p>

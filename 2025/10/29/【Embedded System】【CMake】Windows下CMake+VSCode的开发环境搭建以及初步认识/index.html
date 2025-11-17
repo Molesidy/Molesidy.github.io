@@ -19,27 +19,27 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、安装  1.1 CMake  Download CMake    1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Red">
+    <meta name="description" content="一、安装  1.1 CMake  Download CMake   1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Rede">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【Embedded System】【CMake】Windows下CMake+VSCode的开发环境搭建以及初步认识">
 <meta property="og:url" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/index.html">
 <meta property="og:site_name" content="Molesidy Blog">
-<meta property="og:description" content="一、安装  1.1 CMake  Download CMake    1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Red">
+<meta property="og:description" content="一、安装  1.1 CMake  Download CMake   1.2 MinGw（自行配置gcc&#x2F;g++的系统环境变量）  Release Release of 15.2.0-rt_v13-rev0 &middot; niXman&#x2F;mingw-builds-binaries  1.3&nbsp;VSCode  Visual Studio Code - Code Editing. Rede">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4cd5c19b322b46b6bdeda60e16648149.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4b145e7133104df0a7406980f28d33e6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/14f42d7def55477d880e376783a4b148.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2e56deee87864320b057bdf6bc5ec1dc.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/3726e14bea314cccb34bb3b0fcd2447a.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/4cd5c19b322b46b6bdeda60e16648149.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/4b145e7133104df0a7406980f28d33e6.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/14f42d7def55477d880e376783a4b148.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/2e56deee87864320b057bdf6bc5ec1dc.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d371fbae74044f9083f2ba7c8aa1dc6d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/fa601e2886af46449cce1f7c86cf7158.png">
+<meta property="og:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/52ab1a716f4a4671b58c5f476301d2eb.png">
 <meta property="article:published_time" content="2025-10-28T17:16:31.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:modified_time" content="2025-11-17T18:08:18.333Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="vscode ide 编辑器 cmake">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png">
+<meta name="twitter:image" content="http://example.com/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/3726e14bea314cccb34bb3b0fcd2447a.png">
   
   
   
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:08:18+08:00
                   
                   
 
@@ -325,8 +325,7 @@
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="Download CMake" target="_blank" rel="noopener" href="https://cmake.org/download/" title="Download CMake">Download CMake</a></p>
 
-<p><img alt="" height="817" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3726e14bea314cccb34bb3b0fcd2447a.png" srcset="/img/loading.gif" lazyload width="1131" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/3726e14bea314cccb34bb3b0fcd2447a.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.2 MinGw（自行配置gcc/g++的系统环境变量）</h2>
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.3/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P9N6" data-link-title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries" target="_blank" rel="noopener" href="https://github.com/niXman/mingw-builds-binaries/releases/tag/15.2.0-rt_v13-rev0" title="Release Release of 15.2.0-rt_v13-rev0 · niXman/mingw-builds-binaries">Release Release of 15.2.0-rt_v13-rev0 &middot; niXman/mingw-builds-binaries</a></p>
@@ -345,8 +344,7 @@
 	<li>C/C++ Extension Pack（包含前两个和第三个）</li>
 </ul>
 
-<p><img alt="" height="544" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4cd5c19b322b46b6bdeda60e16648149.png" srcset="/img/loading.gif" lazyload width="1002" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/4cd5c19b322b46b6bdeda60e16648149.png" srcset="/img/loading.gif" lazyload></p>
 <h2>二、初步使用</h2>
 
 <h2>2.1 创建一个工程文件夹，然后simple_math.h，simple_math.cpp，main.cpp，编写代码</h2>
@@ -538,16 +536,13 @@ d-----        2025/10/28     14:13                CMakeFiles
 
 PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E7_test_cmake\build&gt;</code></pre>
 
-<p><img alt="" height="1333" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4b145e7133104df0a7406980f28d33e6.png" srcset="/img/loading.gif" lazyload width="1322" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/4b145e7133104df0a7406980f28d33e6.png" srcset="/img/loading.gif" lazyload></p>
 <h1>三、构建多文件夹组织结构以及制作静态库/动态库</h1>
 
-<p><img alt="" height="559" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/14f42d7def55477d880e376783a4b148.png" srcset="/img/loading.gif" lazyload width="1144" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/14f42d7def55477d880e376783a4b148.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.1 在工程文件夹下创建子文件夹hello_world，simple_math，build</h2>
 
-<p><img alt="" height="377" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2e56deee87864320b057bdf6bc5ec1dc.png" srcset="/img/loading.gif" lazyload width="969" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/2e56deee87864320b057bdf6bc5ec1dc.png" srcset="/img/loading.gif" lazyload></p>
 <h2>3.2&nbsp;hello_world&nbsp;这个作为静态库</h2>
 
 <p>CMakeLists.txt</p>
@@ -901,12 +896,10 @@ PS E:\VSCode_Projects\VSCode_Examples_Workspaces\E8_test_cmake_multi\build&gt;</
 
 <h3>（1）vscode的右下角，将.h/.c/.cpp代码的编码格式改为UTF-8</h3>
 
-<p><img alt="" height="22" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fa601e2886af46449cce1f7c86cf7158.png" srcset="/img/loading.gif" lazyload width="711" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/fa601e2886af46449cce1f7c86cf7158.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（2）将cmake的vscode插件里cmake使用时的编码固定为UTF-8，进入vscode的设置搜索encoding，找到扩展的cmake，更改编码</h3>
 
-<p><img alt="" height="192" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/52ab1a716f4a4671b58c5f476301d2eb.png" srcset="/img/loading.gif" lazyload width="1235" /></p>
-
+<p><img src="/2025/10/29/%E3%80%90Embedded%20System%E3%80%91%E3%80%90CMake%E3%80%91Windows%E4%B8%8BCMake+VSCode%E7%9A%84%E5%BC%80%E5%8F%91%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA%E4%BB%A5%E5%8F%8A%E5%88%9D%E6%AD%A5%E8%AE%A4%E8%AF%86/52ab1a716f4a4671b58c5f476301d2eb.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（3）将vscode里的powershell代理终端切换为UTF-8编码格式，在vscode的总设置文件setting（使用ctrl+shift+p搜索setting）</h3>
 
 <pre>

@@ -26,31 +26,31 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="前言  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;要深入理解&nbsp;kconfig、menuconfig、prj.config&nbsp;及其在工程编译中的作用，可以从「配置系统的本质」入手 &mdash;&mdash; 它们是一套用于管理编译选项、实现功能模块化和可定制化的工具链，尤其在嵌入式 &#x2F; 物联网大型工程中至关重要。以下结合 WM to">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/149cb801d8954bd3b187bc86609427f4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c9082272994b4c10a3b7f925ec0cf0f2.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a9838b4f88ff456c968218087aaafd7d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3887f912d03d43dc961f132a0d7f13fc.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2cafb0a52fec44c5a06b58bc7f07351e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/70f7181840a54c3eb75fa71087d986ae.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/716bcdade8c243179dc24e54012aa7c5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/753e7bbe50d24809a7c9d66aa033f91f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d51dc5c050454275ac3a49ef7364a230.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8684110598f643d4967e1189f48a639e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/42111a438a674f2ba3e64e2dc570d333.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/84c71e0383324d4d93415fef203ea0fa.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bd374aa2a72d46a7847a4f9ffcb5236e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0227c1ddc596415ea3c1e77b23115313.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/082cfcf32d2f4222ba39b3ab46c248ec.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/70f7181840a54c3eb75fa71087d986ae.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d51dc5c050454275ac3a49ef7364a230.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7879b0a275c5428cbcff4ef69a34f9fd.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cacd94d680414025853f19cf02c8bf9f.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/149cb801d8954bd3b187bc86609427f4.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/c9082272994b4c10a3b7f925ec0cf0f2.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/a9838b4f88ff456c968218087aaafd7d.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/3887f912d03d43dc961f132a0d7f13fc.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/2cafb0a52fec44c5a06b58bc7f07351e.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/70f7181840a54c3eb75fa71087d986ae.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/716bcdade8c243179dc24e54012aa7c5.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/753e7bbe50d24809a7c9d66aa033f91f.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/d51dc5c050454275ac3a49ef7364a230.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/8684110598f643d4967e1189f48a639e.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/42111a438a674f2ba3e64e2dc570d333.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/84c71e0383324d4d93415fef203ea0fa.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/bd374aa2a72d46a7847a4f9ffcb5236e.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/0227c1ddc596415ea3c1e77b23115313.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/082cfcf32d2f4222ba39b3ab46c248ec.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/70f7181840a54c3eb75fa71087d986ae.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/d51dc5c050454275ac3a49ef7364a230.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/7879b0a275c5428cbcff4ef69a34f9fd.png">
+<meta property="og:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/cacd94d680414025853f19cf02c8bf9f.png">
 <meta property="article:published_time" content="2025-09-15T14:51:55.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.474Z">
+<meta property="article:modified_time" content="2025-11-17T18:08:25.509Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="物联网 SoC Kconfig">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/149cb801d8954bd3b187bc86609427f4.png">
+<meta name="twitter:image" content="http://example.com/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/149cb801d8954bd3b187bc86609427f4.png">
   
   
   
@@ -318,7 +318,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:08:25+08:00
                   
                   
 
@@ -682,68 +682,53 @@
 
 <p>比如：\wm_iot_sdk\tools\wm\Kconfig</p>
 
-<p><img alt="" height="977" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/149cb801d8954bd3b187bc86609427f4.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/149cb801d8954bd3b187bc86609427f4.png" srcset="/img/loading.gif" lazyload></p>
 <p>比如：D:\Espressif\frameworks\esp-idf-v5.5\Kconfig</p>
 
-<p><img alt="" height="943" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c9082272994b4c10a3b7f925ec0cf0f2.png" srcset="/img/loading.gif" lazyload width="1490" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/c9082272994b4c10a3b7f925ec0cf0f2.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（2）由顶层的Kconfig向下延伸，写出各个子设备的Kconfig。</h4>
 
 <p>比如：各个组件下都有子kconfig文件</p>
 
-<p><img alt="" height="914" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a9838b4f88ff456c968218087aaafd7d.png" srcset="/img/loading.gif" lazyload width="943" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/a9838b4f88ff456c968218087aaafd7d.png" srcset="/img/loading.gif" lazyload></p>
 <p>比如：&quot;D:\Espressif\frameworks\esp-idf-v5.5\components\esp_driver_gpio\Kconfig&quot;</p>
 
 <p>&quot;D:\Espressif\frameworks\esp-idf-v5.5\components\bt\Kconfig&quot;等等</p>
 
-<p><img alt="" height="381" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3887f912d03d43dc961f132a0d7f13fc.png" srcset="/img/loading.gif" lazyload width="789" /></p>
-
-<p><img alt="" height="659" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2cafb0a52fec44c5a06b58bc7f07351e.png" srcset="/img/loading.gif" lazyload width="799" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/3887f912d03d43dc961f132a0d7f13fc.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/2cafb0a52fec44c5a06b58bc7f07351e.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（3）借助可视化的菜单式配置界面<code>menuconfig，可以通过各种工具实现这种menu界面，比如python。</code></h4>
 
 <p>如：<code>make menuconfig</code>是文本菜单、<code>make xconfig</code>是 Qt 图形界面、<code>make gconfig</code>是 GTK 图形界面</p>
 
 <p>比如：idf.py menuconfig&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;&nbsp; ESP IDF的命令行下的menu配置界面</p>
 
-<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/70f7181840a54c3eb75fa71087d986ae.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/70f7181840a54c3eb75fa71087d986ae.png" srcset="/img/loading.gif" lazyload></p>
 <p>比如：vscode的ESPIDF插件下的界面配置齿轮按钮</p>
 
-<p><img alt="" height="30" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/716bcdade8c243179dc24e54012aa7c5.png" srcset="/img/loading.gif" lazyload width="82" /></p>
-
-<p><img alt="" height="914" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/753e7bbe50d24809a7c9d66aa033f91f.png" srcset="/img/loading.gif" lazyload width="1216" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/716bcdade8c243179dc24e54012aa7c5.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/753e7bbe50d24809a7c9d66aa033f91f.png" srcset="/img/loading.gif" lazyload></p>
 <p>比如：&nbsp;wm.py menuconfig&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;WM SDK的命令行下的menu配置界面</p>
 
-<p><img alt="" height="994" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d51dc5c050454275ac3a49ef7364a230.png" srcset="/img/loading.gif" lazyload width="1869" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/d51dc5c050454275ac3a49ef7364a230.png" srcset="/img/loading.gif" lazyload></p>
 <p>比如：vscode的WM插件的界面配置齿轮按钮</p>
 
-<p><img alt="" height="20" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8684110598f643d4967e1189f48a639e.png" srcset="/img/loading.gif" lazyload width="136" /></p>
-
-<p><img alt="" height="807" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/42111a438a674f2ba3e64e2dc570d333.png" srcset="/img/loading.gif" lazyload width="968" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/8684110598f643d4967e1189f48a639e.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/42111a438a674f2ba3e64e2dc570d333.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（4）生成的 &ldquo;用户修改后的配置树&rdquo;，在配置初步产生的过程中，会自动寻找其组件相关的所有必要的依赖</h4>
 
 <p>比如体现在使用wifi组件，必会启动其他的一些组件</p>
 
-<p><img alt="" height="426" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/84c71e0383324d4d93415fef203ea0fa.png" srcset="/img/loading.gif" lazyload width="564" /></p>
-
-<p><img alt="" height="396" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bd374aa2a72d46a7847a4f9ffcb5236e.png" srcset="/img/loading.gif" lazyload width="554" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/84c71e0383324d4d93415fef203ea0fa.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/bd374aa2a72d46a7847a4f9ffcb5236e.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（5）生产最终要使用的标准化的.config文件，供编译系统（Makefile、CMake）使用。</h4>
 
 <p>\EX1_led\sdkconfig</p>
 
-<p><img alt="" height="991" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0227c1ddc596415ea3c1e77b23115313.png" srcset="/img/loading.gif" lazyload width="1160" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/0227c1ddc596415ea3c1e77b23115313.png" srcset="/img/loading.gif" lazyload></p>
 <p>\WM_IDE_Examples_Workspaces\PWM\build\config\wmsdk.config</p>
 
-<p><img alt="" height="738" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/082cfcf32d2f4222ba39b3ab46c248ec.png" srcset="/img/loading.gif" lazyload width="802" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/082cfcf32d2f4222ba39b3ab46c248ec.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.4&nbsp;Kconfig在芯片 SDK 中的核心价值</h2>
 
 <p>Kconfig 的应用本质是为芯片 SDK 提供 &ldquo;<strong>动态适配能力</strong>&rdquo;，解决传统 SDK 的三大痛点：</p>
@@ -989,10 +974,8 @@ if not errors:
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;menuconfig 是 Kconfig 系统中最具代表性的交互工具，也是开发者配置 Linux 内核、嵌入式系统（如 U-Boot、Buildroot）时最常用的界面。它的起源与发展紧密伴随 Kconfig 的演进，既解决了早期配置工具的效率问题，又凭借 &ldquo;轻量、直观、跨环境&rdquo; 的特性成为配置工具的标杆。</p>
 
-<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/70f7181840a54c3eb75fa71087d986ae.png" srcset="/img/loading.gif" lazyload width="1906" /></p>
-
-<p><img alt="" height="994" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d51dc5c050454275ac3a49ef7364a230.png" srcset="/img/loading.gif" lazyload width="1869" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/70f7181840a54c3eb75fa71087d986ae.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/d51dc5c050454275ac3a49ef7364a230.png" srcset="/img/loading.gif" lazyload></p>
 <h2>2.1menuconfig 的起源与发展</h2>
 
 <h3>2.1.1 menuconfig 的起源：解决 &ldquo;配置效率痛点&rdquo; 的必然产物</h3>
@@ -1166,8 +1149,7 @@ if not errors:
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Kconfig 配置 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/2.4-rc/component_guides/kconfig.html#id2" title="Kconfig 配置 — WinnerMicro 在线文档">Kconfig 配置 &mdash; WinnerMicro 在线文档</a></p>
 
-<p><img alt="" height="918" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7879b0a275c5428cbcff4ef69a34f9fd.png" srcset="/img/loading.gif" lazyload width="1622" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/7879b0a275c5428cbcff4ef69a34f9fd.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 </ul>
 
@@ -1241,8 +1223,7 @@ ADC_ENABLE=0
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="构建系统 - ESP32 - — ESP-IDF 编程指南 v5.5.1 文档" target="_blank" rel="noopener" href="https://docs.espressif.com/projects/esp-idf/zh_CN/stable/esp32/api-guides/build-system.html#sdkconfig" title="构建系统 - ESP32 - — ESP-IDF 编程指南 v5.5.1 文档">构建系统 - ESP32 - &mdash; ESP-IDF 编程指南 v5.5.1 文档</a></p>
 
-<p><img alt="" height="929" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cacd94d680414025853f19cf02c8bf9f.png" srcset="/img/loading.gif" lazyload width="1590" /></p>
-
+<p><img src="/2025/09/15/%E3%80%90Embedded%20System%E3%80%91%E3%80%90Kconfig%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E5%92%8CESP%20IDF%20SDK%E7%9A%84%E5%85%B3%E4%BA%8E%E3%80%90Kconfig%E3%80%91%E3%80%90menuconfig%E3%80%91%E3%80%90prj.config%E3%80%91%E7%AD%89%E9%85%8D%E7%BD%AE%E6%96%87%E4%BB%B6%E7%9A%84%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3/cacd94d680414025853f19cf02c8bf9f.png" srcset="/img/loading.gif" lazyload></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;ESP-IDF（乐鑫 ESP 系列芯片的 SDK）中，<code>sdkconfig.defaults</code>是<strong>用户自定义的默认配置模板</strong>，用于为项目预设配置项的初始值，替代 SDK 的默认值。它的核心作用是：让开发者在新建项目或团队协作时，无需每次通过<code>menuconfig</code>重复配置相同选项（如固定的 Wi-Fi 信道、日志级别），而是通过文件批量定义默认值。</p>
 
 <h3>3.2.1&nbsp;核心定位与设计逻辑</h3>

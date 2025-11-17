@@ -26,33 +26,33 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="前言 （提示：在最开始，在windows进行WM IoT SDK的环境搭建，但是搭建起来进行编译例程编译速度比windows的ESP-IDF还慢，后面在Ubuntu里进行了WM IoT SDK的环境搭建，Linux下编译速度很快，最后找到了问题所在：Windows系统的C盘初始占用和内存初始占用过高。重装系统后在Windows系统里编译速度也比较快了。）  快速入门 &mdash; Winne">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e9eb194477d547d2a3a11400234dd2b7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/10b78852684447da8a5db5cd4cc05608.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/e9eb194477d547d2a3a11400234dd2b7.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/10b78852684447da8a5db5cd4cc05608.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b3d8340378f4012b7723508255ea99c.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a3ab49ae990b4724be9320174702d811.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/05370f18b3884f84854cc5165763980b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5bf8f27750f24941a593fb3ead70b1a0.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1bfc899da0fe4efb8a4be6688384a1f6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b3f26635b1554b6887752a2724c92516.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8120e53130a04fe6ad66b72b3d91f53e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/62da41f9f77b4a3a8551d1d40c188012.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/494e0bd050b24b36bb32a92e242bb904.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/78d1837713b84adf837ae873fe1491f1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b513f4ad18444fa79d598a458739229a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1c8e024fcea847a2bdafc331d49d186c.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6266350583674ee495b498d0fc34d935.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f143520480a04a1680a037f3118fbad9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7556ced931f84ea58fd702293e5ac505.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3b75a497734a40c2b645390d06fece82.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5ebbc8398fec4712bf14dd6da5af2010.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2129bde68fa0469d87a9c357e8bc4d85.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bf8258be45ce4a06aacc78916a8ea230.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/05370f18b3884f84854cc5165763980b.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/5bf8f27750f24941a593fb3ead70b1a0.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1bfc899da0fe4efb8a4be6688384a1f6.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/b3f26635b1554b6887752a2724c92516.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/8120e53130a04fe6ad66b72b3d91f53e.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/62da41f9f77b4a3a8551d1d40c188012.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/494e0bd050b24b36bb32a92e242bb904.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/78d1837713b84adf837ae873fe1491f1.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/b513f4ad18444fa79d598a458739229a.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1c8e024fcea847a2bdafc331d49d186c.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/6266350583674ee495b498d0fc34d935.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/f143520480a04a1680a037f3118fbad9.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/7556ced931f84ea58fd702293e5ac505.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/3b75a497734a40c2b645390d06fece82.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/5ebbc8398fec4712bf14dd6da5af2010.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/2129bde68fa0469d87a9c357e8bc4d85.png">
+<meta property="og:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/bf8258be45ce4a06aacc78916a8ea230.png">
 <meta property="article:published_time" content="2025-10-18T03:28:39.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.473Z">
+<meta property="article:modified_time" content="2025-11-17T18:11:16.597Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="物联网 W800 SoC WM IoT SDK">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/e9eb194477d547d2a3a11400234dd2b7.png">
+<meta name="twitter:image" content="http://example.com/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/e9eb194477d547d2a3a11400234dd2b7.png">
   
   
   
@@ -320,7 +320,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:11:16+08:00
                   
                   
 
@@ -337,8 +337,7 @@
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="快速入门 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/get_started/index.html#compiling-environment" title="快速入门 — WinnerMicro 在线文档">快速入门 &mdash; WinnerMicro 在线文档</a></p>
 
-<p><img alt="" height="1557" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e9eb194477d547d2a3a11400234dd2b7.png" srcset="/img/loading.gif" lazyload width="1183" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/e9eb194477d547d2a3a11400234dd2b7.png" srcset="/img/loading.gif" lazyload></p>
 <h2>一、Windows系统下的基于WM IoT SDK的环境搭建</h2>
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="VS Code — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/get_started/ide.html" title="VS Code — WinnerMicro 在线文档">VS Code &mdash; WinnerMicro 在线文档</a></p>
@@ -351,8 +350,7 @@
 
 <p>针对 Windows 64 位系统，推荐选择&nbsp;<strong><code>x86_64-15.2.0-release-win32-seh-ucrt_rt_v13-rev0.7z</code></strong></p>
 
-<p><img alt="" height="484" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/10b78852684447da8a5db5cd4cc05608.png" srcset="/img/loading.gif" lazyload width="1106" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/10b78852684447da8a5db5cd4cc05608.png" srcset="/img/loading.gif" lazyload></p>
 <p>这些文件是针对不同<strong>硬件架构、操作系统环境、运行时库</strong>的预编译包，以及源码包，用于适配多样的开发 / 运行场景（比如嵌入式、桌面系统等）。以下是关键维度的拆解：</p>
 
 <h3>1. 架构与平台维度</h3>
@@ -402,54 +400,38 @@
 
 <h2>1.3 配置插件，安装SDK以及toolchains。点击扳手按钮进行配置，Windows的配置非常简单，可以直接下载，但是Linux下的配置就有点麻烦。</h2>
 
-<p><img alt="" height="785" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/05370f18b3884f84854cc5165763980b.png" srcset="/img/loading.gif" lazyload width="1470" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/05370f18b3884f84854cc5165763980b.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.4 安装SDK，点击browse选择一个SDK存放路径，在点击Download直接下载</h2>
 
-<p><img alt="" height="106" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5bf8f27750f24941a593fb3ead70b1a0.png" srcset="/img/loading.gif" lazyload width="1125" /></p>
-
-<p><img alt="" height="56" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1bfc899da0fe4efb8a4be6688384a1f6.png" srcset="/img/loading.gif" lazyload width="516" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/5bf8f27750f24941a593fb3ead70b1a0.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1bfc899da0fe4efb8a4be6688384a1f6.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.5 安装toolchains，击browse选择一个toolchains存放路径，在点击Download直接下载</h2>
 
-<p><img alt="" height="76" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b3f26635b1554b6887752a2724c92516.png" srcset="/img/loading.gif" lazyload width="1148" /></p>
-
-<p><img alt="" height="41" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8120e53130a04fe6ad66b72b3d91f53e.png" srcset="/img/loading.gif" lazyload width="450" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/b3f26635b1554b6887752a2724c92516.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/8120e53130a04fe6ad66b72b3d91f53e.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.6 点击Advance进行高级配置，都是配置toolchains路径</h2>
 
-<p><img alt="" height="644" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/62da41f9f77b4a3a8551d1d40c188012.png" srcset="/img/loading.gif" lazyload width="1136" /></p>
-
-<p><img alt="" height="260" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/494e0bd050b24b36bb32a92e242bb904.png" srcset="/img/loading.gif" lazyload width="1133" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/62da41f9f77b4a3a8551d1d40c188012.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/494e0bd050b24b36bb32a92e242bb904.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.7 可以下载最新的SDK包进行更换</h2>
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Windows 搭建命令行编译环境 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/get_started/windows.html" title="Windows 搭建命令行编译环境 — WinnerMicro 在线文档">Windows 搭建命令行编译环境 &mdash; WinnerMicro 在线文档</a></p>
 
-<p><img alt="" height="1198" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/78d1837713b84adf837ae873fe1491f1.png" srcset="/img/loading.gif" lazyload width="1132" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/78d1837713b84adf837ae873fe1491f1.png" srcset="/img/loading.gif" lazyload></p>
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="WM IoT SDK Download Center" target="_blank" rel="noopener" href="https://doc.winnermicro.net/download/version/index.html#wincc" title="WM IoT SDK Download Center">WM IoT SDK Download Center</a></p>
 
-<p><img alt="" height="867" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b513f4ad18444fa79d598a458739229a.png" srcset="/img/loading.gif" lazyload width="1165" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/b513f4ad18444fa79d598a458739229a.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.8 进行初步的SDK例程编译</h2>
 
-<p><img alt="" height="1034" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1c8e024fcea847a2bdafc331d49d186c.png" srcset="/img/loading.gif" lazyload width="1912" /></p>
-
-<p><img alt="" height="756" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6266350583674ee495b498d0fc34d935.png" srcset="/img/loading.gif" lazyload width="1785" /></p>
-
-<p><img alt="" height="369" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f143520480a04a1680a037f3118fbad9.png" srcset="/img/loading.gif" lazyload width="1661" /></p>
-
-<p><img alt="" height="585" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/7556ced931f84ea58fd702293e5ac505.png" srcset="/img/loading.gif" lazyload width="857" /></p>
-
-<p><img alt="" height="751" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3b75a497734a40c2b645390d06fece82.png" srcset="/img/loading.gif" lazyload width="1392" /></p>
-
-<p><img alt="" height="945" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5ebbc8398fec4712bf14dd6da5af2010.png" srcset="/img/loading.gif" lazyload width="1825" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/1c8e024fcea847a2bdafc331d49d186c.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/6266350583674ee495b498d0fc34d935.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/f143520480a04a1680a037f3118fbad9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/7556ced931f84ea58fd702293e5ac505.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/3b75a497734a40c2b645390d06fece82.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/5ebbc8398fec4712bf14dd6da5af2010.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.9 烧写</h2>
 
-<p><img alt="" height="708" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2129bde68fa0469d87a9c357e8bc4d85.png" srcset="/img/loading.gif" lazyload width="1108" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/2129bde68fa0469d87a9c357e8bc4d85.png" srcset="/img/loading.gif" lazyload></p>
 <h2>1.10 要看某些组件怎么使用，请看官方wiki和SDK里的例程</h2>
 
 <h1>二、Linux系统下的基于WM IoT SDK的环境搭建</h1>
@@ -458,8 +440,7 @@
 
 <p><a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.4.2/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P7R7" data-link-title="Linux 搭建命令行编译环境 — WinnerMicro 在线文档" target="_blank" rel="noopener" href="https://doc.winnermicro.net/w800/zh_CN/latest/get_started/linux.html" title="Linux 搭建命令行编译环境 — WinnerMicro 在线文档">Linux 搭建命令行编译环境 &mdash; WinnerMicro 在线文档</a></p>
 
-<p><img alt="" height="1757" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bf8258be45ce4a06aacc78916a8ea230.png" srcset="/img/loading.gif" lazyload width="1178" /></p>
-
+<p><img src="/2025/10/18/%E3%80%90SoC%E3%80%91%E3%80%90W800%E3%80%91%E5%9F%BA%E4%BA%8EWM%20IoT%20SDK%E7%9A%84%E7%8E%AF%E5%A2%83%E6%90%AD%E5%BB%BA/bf8258be45ce4a06aacc78916a8ea230.png" srcset="/img/loading.gif" lazyload></p>
 <p></p>
 
                 

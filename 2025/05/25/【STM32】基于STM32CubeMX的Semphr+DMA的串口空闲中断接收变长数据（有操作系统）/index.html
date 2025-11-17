@@ -19,30 +19,28 @@
   <meta name="author" content="John Doe">
   <meta name="keywords" content="">
   
-    <meta name="description" content="一、框架概述  　　在嵌入式系统的串口通信设计中，针对高吞吐量、低延迟的数据传输需求，可使用DMA辅助处理串口的数据，能够大幅缓解单片机的运行压力，提高串口数据的处理能力，实现可靠通信。我的方案采用的是基于FreeRTOS下的Semphr+DMA的串口空闲中断来接收变长数据。  &nbsp;二、STM32CubeMX的配置  １、时钟配置    ２、时钟源换为TIM6（systick需要提供给">
+    <meta name="description" content="一、框架概述  　　在嵌入式系统的串口通信设计中，针对高吞吐量、低延迟的数据传输需求，可使用DMA辅助处理串口的数据，能够大幅缓解单片机的运行压力，提高串口数据的处理能力，实现可靠通信。我的方案采用的是基于FreeRTOS下的Semphr+DMA的串口空闲中断来接收变长数据。  &nbsp;二、STM32CubeMX的配置  １、时钟配置   ２、时钟源换为TIM6（systick需要提供给F">
 <meta property="og:type" content="article">
 <meta property="og:title" content="【STM32】基于STM32CubeMX的Semphr+DMA的串口空闲中断接收变长数据（有操作系统）">
 <meta property="og:url" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/index.html">
 <meta property="og:site_name" content="Molesidy Blog">
-<meta property="og:description" content="一、框架概述  　　在嵌入式系统的串口通信设计中，针对高吞吐量、低延迟的数据传输需求，可使用DMA辅助处理串口的数据，能够大幅缓解单片机的运行压力，提高串口数据的处理能力，实现可靠通信。我的方案采用的是基于FreeRTOS下的Semphr+DMA的串口空闲中断来接收变长数据。  &nbsp;二、STM32CubeMX的配置  １、时钟配置    ２、时钟源换为TIM6（systick需要提供给">
+<meta property="og:description" content="一、框架概述  　　在嵌入式系统的串口通信设计中，针对高吞吐量、低延迟的数据传输需求，可使用DMA辅助处理串口的数据，能够大幅缓解单片机的运行压力，提高串口数据的处理能力，实现可靠通信。我的方案采用的是基于FreeRTOS下的Semphr+DMA的串口空闲中断来接收变长数据。  &nbsp;二、STM32CubeMX的配置  １、时钟配置   ２、时钟源换为TIM6（systick需要提供给F">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cdaf3eef6d9746d3bf66e7c00bd21dc8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/310f83033a924d42920e38c82ae90ed0.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cb0ab4a582a548a6acdf6f0e68f49b67.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8cc5d6499ef8412ca49ee632e89bcb02.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3987eaa1202b4771bf3d8b521f8aa166.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b4c484837a3c4f06a704fcea0daf07b7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4f64a93648ba46edb1371c4c49a8e54f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/088384713fcd448a8dc4df0d0c6f9ee6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/286f0687db2044ecacd8e4c1006a7cac.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/268c7da38ccb4308b610017b11d9a1f2.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/cdaf3eef6d9746d3bf66e7c00bd21dc8.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/310f83033a924d42920e38c82ae90ed0.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/3987eaa1202b4771bf3d8b521f8aa166.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/b4c484837a3c4f06a704fcea0daf07b7.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/4f64a93648ba46edb1371c4c49a8e54f.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/088384713fcd448a8dc4df0d0c6f9ee6.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/286f0687db2044ecacd8e4c1006a7cac.png">
+<meta property="og:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/268c7da38ccb4308b610017b11d9a1f2.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2ba98408580a447caaa821ec881214c6.png">
 <meta property="article:published_time" content="2025-05-25T07:57:38.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.476Z">
+<meta property="article:modified_time" content="2025-11-17T18:11:47.211Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="stm32 嵌入式硬件 单片机">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/cdaf3eef6d9746d3bf66e7c00bd21dc8.png">
+<meta name="twitter:image" content="http://example.com/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/cdaf3eef6d9746d3bf66e7c00bd21dc8.png">
   
   
   
@@ -248,7 +246,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          875 字
+          891 字
         
       </span>
     
@@ -310,7 +308,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:11:47+08:00
                   
                   
 
@@ -330,40 +328,31 @@
 
 <p>１、时钟配置</p>
 
-<p><img alt="" height="1018" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cdaf3eef6d9746d3bf66e7c00bd21dc8.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/cdaf3eef6d9746d3bf66e7c00bd21dc8.png" srcset="/img/loading.gif" lazyload></p>
 <p>２、时钟源换为TIM6（systick需要提供给FreeRTOS）</p>
 
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/310f83033a924d42920e38c82ae90ed0.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/310f83033a924d42920e38c82ae90ed0.png" srcset="/img/loading.gif" lazyload></p>
 <p>３、串口配置</p>
 
-<p><img alt="" height="1017" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cb0ab4a582a548a6acdf6f0e68f49b67.png" srcset="/img/loading.gif" lazyload width="1919" /><img alt="" height="1012" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8cc5d6499ef8412ca49ee632e89bcb02.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="1020" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3987eaa1202b4771bf3d8b521f8aa166.png" srcset="/img/loading.gif" lazyload width="1917" /></p>
-
+<p>![](<a target="_blank" rel="noopener" href="https://i-blog.csdnimg.cn/direct/cb0ab4a582a548a6acdf6f0e68f49b67.png">https://i-blog.csdnimg.cn/direct/cb0ab4a582a548a6acdf6f0e68f49b67.png</a>“ width&#x3D;”1919” &#x2F;&gt;&lt;img alt&#x3D;)</p>
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/3987eaa1202b4771bf3d8b521f8aa166.png" srcset="/img/loading.gif" lazyload></p>
 <p>４、中间件FreeRTOS的配置（由于只演示本方案，这里按照默认的配置即可）</p>
 
-<p><img alt="" height="1016" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b4c484837a3c4f06a704fcea0daf07b7.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/b4c484837a3c4f06a704fcea0daf07b7.png" srcset="/img/loading.gif" lazyload></p>
 <p>５、时钟树的配置</p>
 
-<p><img alt="" height="1014" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4f64a93648ba46edb1371c4c49a8e54f.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/4f64a93648ba46edb1371c4c49a8e54f.png" srcset="/img/loading.gif" lazyload></p>
 <p>６、工程的设置</p>
 
-<p><img alt="" height="1015" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/088384713fcd448a8dc4df0d0c6f9ee6.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
-<p><img alt="" height="1019" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/286f0687db2044ecacd8e4c1006a7cac.png" srcset="/img/loading.gif" lazyload width="1919" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/088384713fcd448a8dc4df0d0c6f9ee6.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/286f0687db2044ecacd8e4c1006a7cac.png" srcset="/img/loading.gif" lazyload></p>
 <p>　　至此，CubeMX配置完毕。</p>
 
 <p><strong>三、代码编写</strong></p>
 
 <p>　　首先，先编译运行一下，如果出现以下情况，请将CubeMX的HAL库固件包版本换成1.8.5版本：</p>
 
-<p><img alt="" height="949" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/268c7da38ccb4308b610017b11d9a1f2.png" srcset="/img/loading.gif" lazyload width="1917" /></p>
-
+<p><img src="/2025/05/25/%E3%80%90STM32%E3%80%91%E5%9F%BA%E4%BA%8ESTM32CubeMX%E7%9A%84Semphr+DMA%E7%9A%84%E4%B8%B2%E5%8F%A3%E7%A9%BA%E9%97%B2%E4%B8%AD%E6%96%AD%E6%8E%A5%E6%94%B6%E5%8F%98%E9%95%BF%E6%95%B0%E6%8D%AE%EF%BC%88%E6%9C%89%E6%93%8D%E4%BD%9C%E7%B3%BB%E7%BB%9F%EF%BC%89/268c7da38ccb4308b610017b11d9a1f2.png" srcset="/img/loading.gif" lazyload></p>
 <p>以下代码：</p>
 
 <p>freertos.c</p>

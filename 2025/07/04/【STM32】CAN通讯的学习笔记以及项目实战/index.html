@@ -26,62 +26,58 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、CAN通讯方式介绍  1.CAN协议简介  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN是控制器局域网络(Controller Area Network)的简称，它是由研发和生产汽车电子产品著称的德国BOSCH公司开发的，并最终成为国际标准（ISO11519），是国际上应用最广泛的现场总线之一。  &nbsp;&nbsp;&nbsp;&amp;nbsp">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8ec30e9f7f5e400e9e77ada71f40d548.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e6adec8a0b7b450c90308e09ee261314.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/67ae848f4dde4efaa90adaa377d64842.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a1a134f36dfe4783bc25b4ddc15813f9.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1ea2e6384aad4b3c88c0aea4215a5800.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/971e52d93b0f4b6d9cc306ac6323c471.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f549acbba061449fbbfa0d66794293b8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/b95ab39aaafa486d907fb5ef4149ebf4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de028a886f7c4bfc96a44ee7c454a79a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/59c544c2357f40c8a1d9528be5d56f30.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/a9648bd0b65248d7814506194d7e1f50.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/356a1de24acf4520b032cba01f7c7a57.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/e4f2b955a07b4e3698472997a5732f9e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/060eb723ead546329bb3c400e7c390cc.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f5b614ce1d2348e3806fb720ee3f558d.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/8ec30e9f7f5e400e9e77ada71f40d548.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/e6adec8a0b7b450c90308e09ee261314.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/67ae848f4dde4efaa90adaa377d64842.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/a1a134f36dfe4783bc25b4ddc15813f9.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/1ea2e6384aad4b3c88c0aea4215a5800.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/971e52d93b0f4b6d9cc306ac6323c471.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f549acbba061449fbbfa0d66794293b8.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/b95ab39aaafa486d907fb5ef4149ebf4.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/de028a886f7c4bfc96a44ee7c454a79a.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/59c544c2357f40c8a1d9528be5d56f30.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/a9648bd0b65248d7814506194d7e1f50.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/356a1de24acf4520b032cba01f7c7a57.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/e4f2b955a07b4e3698472997a5732f9e.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/060eb723ead546329bb3c400e7c390cc.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0b8a902d501c4ac1b0e25d55b4673266.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/fa0947cb4f914fc69a399a17f3d46d6c.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6fc4bea5e5014c70b7fcd9c6f92addd6.jpeg">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/329790a70c2e4432a6afeedf7215ba07.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/8e9e7bff29ff4f7ea290faa4326cfcbe.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/329790a70c2e4432a6afeedf7215ba07.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/8e9e7bff29ff4f7ea290faa4326cfcbe.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/86826c2e14df4b21befd7f0e74f2a785.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/034da824a89f4352bcb3e4bca5105dae.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3686c397288c4b6896c5e8e876944e31.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d3ffe4bed9f344f3ab5fdb0385392eb6.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d2ee435696f641e7b18e6caa8b1da4e5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/cbdacdae1cd44c31a3ae87b7164d2686.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2b26c2f654a644999216a5c4e9c7aa0f.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6dc5fcb2563e4a43a3ced9e76460d9c8.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/de58223ec01244ff9485541c6569a2a5.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/4a99d47e6bdb425fa55830ef1fbf4afb.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0323f172325b4353bb3c1b153b595e2d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3d6969b6820049899e81e5d95a28d570.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/33326781fe6a4084b2bdc3ef7416d87e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/3244434bac574d678d07050761554750.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/d2ee435696f641e7b18e6caa8b1da4e5.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/cbdacdae1cd44c31a3ae87b7164d2686.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/2b26c2f654a644999216a5c4e9c7aa0f.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6dc5fcb2563e4a43a3ced9e76460d9c8.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/de58223ec01244ff9485541c6569a2a5.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/4a99d47e6bdb425fa55830ef1fbf4afb.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/0323f172325b4353bb3c1b153b595e2d.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/3d6969b6820049899e81e5d95a28d570.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/33326781fe6a4084b2bdc3ef7416d87e.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/3244434bac574d678d07050761554750.png">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/7f90973c189f43e5800f555be71704a4.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/563cf1609b6c41169455bbf35719d0d7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/15a503bef8e2430a955107c9f1fc47e1.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/685e37bdc0f64af6b1d062900199762b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/33de648e7fc441a2840f2a4d382a3a14.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/461a9f98d9714d25ae22fe06725bd97e.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6e48a21ef4f04d959b617c28c7c2320a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/0ec9705365ec4803ae2f2d188da4393b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/f993a41ce5564c8db3df11038a40e2a7.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/5ad1a95e266e4b76bd47264680a3d49b.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/45470c8a1d094218893081cdf712e54d.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/6a155a720df04dbd880c64e4925a600a.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/d7853b17300a44188ad0e237298a05f1.gif">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/df6e2b42601f4a3ea78139dc0f59aa9a.gif">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/563cf1609b6c41169455bbf35719d0d7.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/15a503bef8e2430a955107c9f1fc47e1.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/685e37bdc0f64af6b1d062900199762b.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/33de648e7fc441a2840f2a4d382a3a14.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/461a9f98d9714d25ae22fe06725bd97e.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6e48a21ef4f04d959b617c28c7c2320a.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/0ec9705365ec4803ae2f2d188da4393b.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f993a41ce5564c8db3df11038a40e2a7.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/5ad1a95e266e4b76bd47264680a3d49b.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/45470c8a1d094218893081cdf712e54d.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6a155a720df04dbd880c64e4925a600a.png">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/d7853b17300a44188ad0e237298a05f1.gif">
+<meta property="og:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/df6e2b42601f4a3ea78139dc0f59aa9a.gif">
 <meta property="article:published_time" content="2025-07-04T06:50:36.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:11:36.843Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="stm32 单片机 嵌入式 CAN">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png">
+<meta name="twitter:image" content="http://example.com/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f5b614ce1d2348e3806fb720ee3f558d.png">
   
   
   
@@ -287,7 +283,7 @@
       <span class="post-meta mr-2">
         <i class="iconfont icon-chart"></i>
         
-          18k 字
+          8.8k 字
         
       </span>
     
@@ -298,7 +294,7 @@
         
         
         
-          149 分钟
+          74 分钟
         
       </span>
     
@@ -349,7 +345,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:11:36+08:00
                   
                   
 
@@ -396,34 +392,28 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN物理层的形式主要有两种，图&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="CAN闭环总线通讯网络" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f103badao/std/zh/latest/book/CAN.html#id4" title="CAN闭环总线通讯网络">CAN闭环总线通讯网络</a>&nbsp;中的CAN通讯网络是一种遵循ISO11898标准的高速、 短距离&ldquo;闭环网络&rdquo;，它的总线最大长度为40m，通信速度最高为1Mbps，总线的两端各要求有一个&ldquo;120欧&rdquo;的电阻。</p>
 
-<p><img alt="" height="464" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f5b614ce1d2348e3806fb720ee3f558d.png" srcset="/img/loading.gif" lazyload width="977" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f5b614ce1d2348e3806fb720ee3f558d.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="%EF%BC%882%EF%BC%89%E5%BC%80%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C" name="%EF%BC%882%EF%BC%89%E5%BC%80%E7%8E%AF%E6%80%BB%E7%BA%BF%E7%BD%91%E7%BB%9C"><strong>（二）开环总线网络</strong></h3>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;图中的是遵循ISO11519-2标准的低速、远距离&ldquo;开环网络&rdquo;，它的最大传输距离为1km， 最高通讯速率为125kbps，两根总线是独立的、不形成闭环，要求每根总线上各串联有一个&ldquo;2.2千欧&rdquo;的电阻。</p>
 
-<p><img alt="" height="508" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8ec30e9f7f5e400e9e77ada71f40d548.png" srcset="/img/loading.gif" lazyload width="995" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/8ec30e9f7f5e400e9e77ada71f40d548.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="%EF%BC%883%EF%BC%89%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7" name="%EF%BC%883%EF%BC%89%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7"><strong>（三）差分信号</strong></h3>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;差分信号又称差模信号，与传统使用单根信号线电压表示逻辑的方式有区别，使用差分信号传输时，需要两根信号线，这两个信号线的振幅相等， 相位相反，通过两根信号线的电压差值来表示逻辑0和逻辑1。见下图，它使用了V+与V-信号的差值表达出了图下方的信号。</p>
 
-<p><img alt="" height="353" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e6adec8a0b7b450c90308e09ee261314.png" srcset="/img/loading.gif" lazyload width="635" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/e6adec8a0b7b450c90308e09ee261314.png" srcset="/img/loading.gif" lazyload></p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp;这样子来使用两个引脚来传输一路信号，利用这两个引脚间的电压差的正负极和大小来决定传输数据的数值（0和1），周期一模一样，振幅相等，相位相差180度，极性完全相反。由于差分信号是两个信号的差值，当两跟信号受到相同的干扰时（如环境温度变化、电磁干扰），两个信号受到的扰动程度一样，这样的扰动信号称为共模信号，相减的时候就会将这个共模信号给减掉，以此来抵消扰动，大大提升了信号传输的准确性。</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;相对于单信号线传输方式，差分信号传输凭借其独特的电气特性，在抗干扰能力、信号完整性和传输性能等方面展现出显著优势。</p>
 
-<p><img alt="" height="333" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/67ae848f4dde4efaa90adaa377d64842.png" srcset="/img/loading.gif" lazyload width="699" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/67ae848f4dde4efaa90adaa377d64842.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="%EF%BC%884%EF%BC%89%E5%9F%BA%E4%BA%8ECAN%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7" name="%EF%BC%884%EF%BC%89%E5%9F%BA%E4%BA%8ECAN%E5%8D%8F%E8%AE%AE%E7%9A%84%E5%B7%AE%E5%88%86%E4%BF%A1%E5%8F%B7">（四）基于CAN协议的差分信号</h3>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN协议中对它使用的CAN_High及CAN_Low表示的差分信号做了规定，见表CAN协议标准表示的信号逻辑及图CAN的差分信号高速。 以高速CAN协议为例，当表示逻辑1时(隐性电平)，CAN_High和CAN_Low线上的电压均为2.5v， 即它们的电压差VH-VL=0V；而表示逻辑0时(显性电平)， CAN_High的电平为3.5V，CAN_Low线的电平为1.5V， 即它们的电压差为VH-VL=2V。例如，当CAN收发器从CAN_Tx线接收到来自CAN控制器的低电平信号时(逻辑0)， 它会使CAN_High输出3.5V，同时CAN_Low输出1.5V，从而输出显性电平表示逻辑0。</p>
 
-<p><img alt="" height="382" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a1a134f36dfe4783bc25b4ddc15813f9.png" srcset="/img/loading.gif" lazyload width="976" /></p>
-
-<p><img alt="" height="454" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1ea2e6384aad4b3c88c0aea4215a5800.png" srcset="/img/loading.gif" lazyload width="782" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/a1a134f36dfe4783bc25b4ddc15813f9.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/1ea2e6384aad4b3c88c0aea4215a5800.png" srcset="/img/loading.gif" lazyload></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;在CAN总线中，必须使它处于隐性电平(逻辑1)或显性电平(逻辑0)中的其中一个状态。假如有两个CAN通讯节点，在同一时间，一个输出隐性电平， 另一个输出显性电平，类似I2C总线的&ldquo;线与&rdquo;特性将使它处于显性电平状态，显性电平的名字就是这样来的，即可以认为显性具有优先的意味。</p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;由于CAN总线协议的物理层只有1对差分线，在一个时刻只能表示一个信号，所以对通讯节点来说，CAN通讯是半双工的，收发数据需要分时进行。 在CAN的通讯网络中，因为共用总线，在整个网络中同一时刻只能有一个通讯节点发送信号，其余的节点在该时刻都只能接收。</p>
@@ -444,8 +434,7 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2）电压差为3V时表示逻辑0（显性电平）</p>
 
-<p><img alt="" height="312" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/971e52d93b0f4b6d9cc306ac6323c471.png" srcset="/img/loading.gif" lazyload width="1006" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/971e52d93b0f4b6d9cc306ac6323c471.png" srcset="/img/loading.gif" lazyload></p>
 <p>&nbsp; &nbsp; &nbsp; &nbsp;如何记住逻辑1与隐性电平，逻辑0与显性电平相对应？可联想到I2C默认状态下是处于上拉电阻拉高电平的状态，即该默认状态下的高电平（逻辑1）就是隐性电平，所以低电平（逻辑0）就是显性电平</p>
 
 <h3 id="%EF%BC%885%EF%BC%89%E9%80%9A%E4%BF%A1%E8%8A%82%E7%82%B9" name="%EF%BC%885%EF%BC%89%E9%80%9A%E4%BF%A1%E8%8A%82%E7%82%B9">（六）通信节点</h3>
@@ -460,12 +449,9 @@
 
 <p><strong>CAN收发器实物图：</strong></p>
 
-<p><img alt="" height="382" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f549acbba061449fbbfa0d66794293b8.png" srcset="/img/loading.gif" lazyload width="564" /></p>
-
-<p><img alt="" height="298" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/b95ab39aaafa486d907fb5ef4149ebf4.png" srcset="/img/loading.gif" lazyload width="774" /></p>
-
-<p><img alt="" height="320" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de028a886f7c4bfc96a44ee7c454a79a.png" srcset="/img/loading.gif" lazyload width="565" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f549acbba061449fbbfa0d66794293b8.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/b95ab39aaafa486d907fb5ef4149ebf4.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/de028a886f7c4bfc96a44ee7c454a79a.png" srcset="/img/loading.gif" lazyload></p>
 <h2 id="3.CAN-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82" name="3.CAN-%E6%95%B0%E6%8D%AE%E9%93%BE%E8%B7%AF%E5%B1%82">3.CAN-数据链路层</h2>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;数据链路层分为&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="MAC 子层" target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238720860&amp;content_type=Article&amp;match_order=1&amp;q=MAC+%E5%AD%90%E5%B1%82&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTE2MjI2MDgsInEiOiJNQUMg5a2Q5bGCIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM4NzIwODYwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.P-WtcA8SKxe89REaDrIJ2KIeZ7DW4jEorPbCQDdydhE&amp;zhida_source=entity" title="MAC 子层">MAC 子层</a>和&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="LLC 子层" target="_blank" rel="noopener" href="https://zhida.zhihu.com/search?content_id=238720860&amp;content_type=Article&amp;match_order=1&amp;q=LLC+%E5%AD%90%E5%B1%82&amp;zd_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJ6aGlkYV9zZXJ2ZXIiLCJleHAiOjE3NTE2MjI2MDgsInEiOiJMTEMg5a2Q5bGCIiwiemhpZGFfc291cmNlIjoiZW50aXR5IiwiY29udGVudF9pZCI6MjM4NzIwODYwLCJjb250ZW50X3R5cGUiOiJBcnRpY2xlIiwibWF0Y2hfb3JkZXIiOjEsInpkX3Rva2VuIjpudWxsfQ.p45HM2x1rWKqn7c-PxmxBLJlCkVCz66hUFb0Cdcanxw&amp;zhida_source=entity" title="LLC 子层">LLC 子层</a>，MAC 子层是 CAN 协议的核心部分。数据链路层的功能是将物理层收到的信号组织成有意义的消息，并提供传送错误控制等传输控制的流程。具体地说，就是消息的帧化、仲裁、应答、错误的检测或报告。数据链路层的功能通常在 CAN 控制器的硬件中执行。 在物理层定义了信号实际的发送方式、位时序、位的编码方式及同步的步骤。但具体地说，信号电平、通信速度、采样点、驱动器和总线的电气特性、连接器的形态等均未定义。这些必须由用户根据系统需求自行确定。</p>
@@ -605,8 +591,7 @@
 
 <p><strong>OSI 模型映射：</strong></p>
 
-<p><img alt="" height="272" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/59c544c2357f40c8a1d9528be5d56f30.png" srcset="/img/loading.gif" lazyload width="768" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/59c544c2357f40c8a1d9528be5d56f30.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="%EF%BC%88%E4%B8%80%EF%BC%89%20CAN%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87%E5%8F%8A%E4%BD%8D%E5%90%8C%E6%AD%A5" name="%EF%BC%88%E4%B8%80%EF%BC%89%20CAN%E7%9A%84%E6%B3%A2%E7%89%B9%E7%8E%87%E5%8F%8A%E4%BD%8D%E5%90%8C%E6%AD%A5" style="background-color:transparent">（一） CAN的波特率及位同步</h3>
 
 <h4 id="%EF%BC%881%EF%BC%89%E4%BD%8D%E6%97%B6%E5%BA%8F%E7%9A%84%E5%88%86%E8%A7%A3%EF%BC%9A" name="%EF%BC%881%EF%BC%89%E4%BD%8D%E6%97%B6%E5%BA%8F%E7%9A%84%E5%88%86%E8%A7%A3%EF%BC%9A">（1）位时序的分解：</h4>
@@ -617,10 +602,8 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;下图中表示的 CAN 通讯信号每一个数据位的长度为 19Tq，其中 SS 段占 1Tq，PTS 段 占 6Tq，PBS1 段占 5Tq，PBS2 段占 7Tq。信号的采样点位于 PBS1 段与 PBS2 段之间，通过控制各段的长度，可以对采样点的位置进行偏移，以便准确地采样。</p>
 
-<p><img alt="" height="329" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/a9648bd0b65248d7814506194d7e1f50.png" srcset="/img/loading.gif" lazyload width="760" /></p>
-
-<p><img alt="" height="358" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/356a1de24acf4520b032cba01f7c7a57.png" srcset="/img/loading.gif" lazyload width="612" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/a9648bd0b65248d7814506194d7e1f50.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/356a1de24acf4520b032cba01f7c7a57.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>1）SS 段(SYNC SEG)</strong><br />
 &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;SS 译为同步段，若通讯节点检测到总线上信号的跳变沿被包含在 SS 段的范围之内，则表示节点与总线的时序是同步的，当节点与总线同步时，采样点采集到的总线电平即可被确定为该位的电平。SS 段的大小固定为 1Tq。<br />
 <strong>2）PTS 段(PROP SEG)</strong><br />
@@ -654,8 +637,7 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;3）经过硬同步后，若发送方和接收方的时钟没有误差，则后续所有数据位的采样点必然都会对齐数据位中心附近</p>
 
-<p><img alt="" height="310" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/e4f2b955a07b4e3698472997a5732f9e.png" srcset="/img/loading.gif" lazyload width="1085" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/e4f2b955a07b4e3698472997a5732f9e.png" srcset="/img/loading.gif" lazyload></p>
 <p><strong>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;2) 重新同步/再同步</strong></p>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;前面的硬同步只是当存在帧起始信号时才起作用，如果在一帧很长的数据内，节点信号与总线信号相位有偏移时，这种同步方式就无能为力了。 因而需要引入重新同步方式，它利用普通数据位的高至低电平的跳变沿来同步(帧起始信号是特殊的跳变沿)。重新同步与硬同步方式相似的地方是它们都使用SS段来进行检测，同步的目的都是使 节点内的SS段把跳变沿包含起来。</p>
@@ -664,8 +646,7 @@
 
 <p>&nbsp; &nbsp; &nbsp; &nbsp;2）再同步可以发生在第一个下降沿之后的每个数据位跳变边沿</p>
 
-<p><img alt="" height="394" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/060eb723ead546329bb3c400e7c390cc.png" srcset="/img/loading.gif" lazyload width="785" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/060eb723ead546329bb3c400e7c390cc.png" srcset="/img/loading.gif" lazyload></p>
 <h3 id="%EF%BC%88%E4%BA%8C%EF%BC%89CAN%E7%9A%84%E6%8A%A5%E6%96%87%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%BB%93%E6%9E%84" name="%EF%BC%88%E4%BA%8C%EF%BC%89CAN%E7%9A%84%E6%8A%A5%E6%96%87%E7%A7%8D%E7%B1%BB%E5%8F%8A%E7%BB%93%E6%9E%84">（二）CAN的报文种类及结构</h3>
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;CAN使用的是两条差分信号线，只能表达一个信号， 简洁的物理层决定了CAN必然要配上一套更复杂的协议，如何用一个信号通道实现同样、甚至更强大的功能呢？CAN协议给出的解决方案是对数据、 操作命令(如读/写)以及同步信号进行打包，打包后的这些内容称为报文。报文的承载格式是数据帧。</p>
@@ -789,8 +770,7 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;若两个节点同时竞争CAN总线的占有权，当它们发送报文时，若首先出现隐性电平，则会失去对总线的占有权，进入接收状态。<strong>（即该两个节点同时发送字节，帧起始一样，然后到ID<span style="color:#4da8ee">（仲裁段部分）</span>，根据线与特性只要谁的ID为显性0<span style="color:#4da8ee">（ID小，优先级高）</span>则马上拉开总线，相对应的另外一个节点的ID的某位为隐性1就表示它的ID大<span style="color:#4da8ee">（因为前面比较过来都是一样大小的ID位）</span>，其优先级低被淘汰）</strong>见图仲裁过程&nbsp;，在开始阶段，两个设备发送的电平一样， 所以它们一直继续发送数据。到了图中箭头所指的时序处，节点单元1发送的为隐性电平，而此时节点单元2发送的为显性电平， 由于总线的&ldquo;线与&rdquo;特性使它表达出显示电平，因此单元2竞争总线成功，这个报文得以被继续发送出去。</p>
 
-<p><img alt="" height="322" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png" srcset="/img/loading.gif" lazyload width="777" />​</p>
-
+<p>![](<a target="_blank" rel="noopener" href="https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png">https://i-blog.csdnimg.cn/direct/f3af0b9bff204a83a907f4f48d46f9e6.png</a>“ width&#x3D;”777” &#x2F;&gt;​</p></p>
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;仲裁段ID的优先级也影响着接收设备对报文的反应。因为在CAN总线上数据是以广播的形式发送的，所有连接在CAN总线的节点都会收到所有其它节点发出的有效数据， 因而我们的CAN控制器大多具有根据ID过滤报文的功能，它可以控制自己只接收某些ID的报文。</p>
 
 <p>回看图&nbsp;<a data-link-icon="https://csdnimg.cn/release/blog_editor_html/release2.3.9/ckeditor/plugins/CsdnLink/icons/icon-default.png?t=P4F5" data-link-title="数据帧的结构" target="_blank" rel="noopener" href="https://doc.embedfire.com/mcu/stm32/f103badao/std/zh/latest/book/CAN.html#id21" title="数据帧的结构">数据帧的结构</a>&nbsp;中的数据帧格式，可看到仲裁段除了报文ID外，还有RTR、IDE和SRR位。</p>
@@ -807,7 +787,7 @@
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;标准格式和扩展格式的优先级：标准格式11位ID号和扩展格式29位ID号的高11位一样时，标准格式的优先级高于扩展格式（SRR必须始终为1，以保证此要求）</p>
 
-<p style="text-align:center"><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/fa0947cb4f914fc69a399a17f3d46d6c.png" srcset="/img/loading.gif" lazyload /></p>
+<p style="text-align:center"><img alt=)
 
 <p>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;填充位不会影响 CAN 总线仲裁的优先级。CAN 总线的填充位机制是指在发送数据时，当发送器检测到位流中有五个连续相同逻辑电平的位时，便在这五位后面自动插入一个补码位。接收方检测到填充位时，会自动移除填充位，恢复原始数据。由于填充位是根据特定规则自动插入和移除的，且所有节点都会遵循这一规则，因此不会改变仲裁段中原本 ID 的内容和顺序，也就不会影响到优先级。</p>
 
@@ -859,8 +839,7 @@
 
 <p><span style="background-color:#faa572">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;错误类型：&nbsp;位错误、填充错误、CRC错误、格式错误、应答错误</span></p>
 
-<p><img alt="" height="499" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/329790a70c2e4432a6afeedf7215ba07.png" srcset="/img/loading.gif" lazyload width="609" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/329790a70c2e4432a6afeedf7215ba07.png" srcset="/img/loading.gif" lazyload></p>
 <p><span style="background-color:#faa572">错误状态（限制抽风设备不断发送错误通知影响其他设备）：</span></p>
 
 <p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">1）主动错误状态的设备正常参与通信并在检测到错误时发出主动错误帧 </span></p>
@@ -871,14 +850,12 @@
 
 <p><span style="background-color:null">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</span><span style="background-color:#faa572">4）每个设备内部管理一个TEC和REC，根据TEC和REC的值确定自己的状态</span></p>
 
-<p><img alt="" height="367" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/8e9e7bff29ff4f7ea290faa4326cfcbe.png" srcset="/img/loading.gif" lazyload width="506" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/8e9e7bff29ff4f7ea290faa4326cfcbe.png" srcset="/img/loading.gif" lazyload></p>
 <h4>（3）遥控帧的结构</h4>
 
 <p>遥控帧无数据段，RTR为隐性电平1，其他部分与数据帧相同。</p>
 
-<p><img alt="" height="461" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png" srcset="/img/loading.gif" lazyload width="837" />​</p>
-
+<p>![](<a target="_blank" rel="noopener" href="https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png">https://i-blog.csdnimg.cn/direct/1fc05735e2654b73bb31644af0d11a99.png</a>“ width&#x3D;”837” &#x2F;&gt;​</p></p>
 <h4>（4）错误帧的结构</h4>
 
 <p>总线上所有设备都会监督总线的数据，一旦发现&ldquo;位错误&rdquo;或&ldquo;填充错误&rdquo;或&ldquo;CRC错误&rdquo;或&ldquo;格式错误&rdquo;或&ldquo;应答错误&rdquo; ，这些设备便会发出错误帧来破坏数据，同时终止当前的发送设备</p>
@@ -929,28 +906,24 @@
 
 <h3>（一）CAN网拓扑结构</h3>
 
-<p><img alt="" height="292" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d3ffe4bed9f344f3ab5fdb0385392eb6.png" srcset="/img/loading.gif" lazyload width="729" /></p>
+<p><img alt=)
 
 <h3>（二）CAN框图</h3>
 
-<p><img alt="" height="697" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d2ee435696f641e7b18e6caa8b1da4e5.png" srcset="/img/loading.gif" lazyload width="676" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/d2ee435696f641e7b18e6caa8b1da4e5.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（三）CAN基本结构</h3>
 
-<p><img alt="" height="597" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/cbdacdae1cd44c31a3ae87b7164d2686.png" srcset="/img/loading.gif" lazyload width="1095" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/cbdacdae1cd44c31a3ae87b7164d2686.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（四）发送过程</h3>
 
 <p>基本流程：选择一个空置邮箱&rarr;写入报文 &rarr;请求发送</p>
 
-<p><img alt="" height="434" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2b26c2f654a644999216a5c4e9c7aa0f.png" srcset="/img/loading.gif" lazyload width="658" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/2b26c2f654a644999216a5c4e9c7aa0f.png" srcset="/img/loading.gif" lazyload></p>
 <p>（五）接收过程</p>
 
 <p>基本流程：接收到一个报文&rarr;匹配过滤器后进入FIFO 0或FIFO 1&rarr;CPU读取</p>
 
-<p><img alt="" height="461" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6dc5fcb2563e4a43a3ced9e76460d9c8.png" srcset="/img/loading.gif" lazyload width="537" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6dc5fcb2563e4a43a3ced9e76460d9c8.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（六）发送和接收配置位</h3>
 
 <p>NART：置1，关闭自动重传，CAN报文只被发送1次，不管发送的结果如何（成功、出错或仲裁丢失）；置0，自动重传，CAN硬件在发送报文失败时会一直自动重传直到发送成功</p>
@@ -971,8 +944,7 @@
 
 <p>FACTx：激活设置 &nbsp; &nbsp; 置0，禁用；置1，启用</p>
 
-<p><img alt="" height="667" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/de58223ec01244ff9485541c6569a2a5.png" srcset="/img/loading.gif" lazyload width="748" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/de58223ec01244ff9485541c6569a2a5.png" srcset="/img/loading.gif" lazyload></p>
 <ul>
 	<li><strong>屏蔽模式</strong>（Identifier Mask Mode）：用 &ldquo;ID + 屏蔽&rdquo; 组合，灵活筛选 ID（比如只想接收某一类 ID，或固定位段的 ID）。</li>
 	<li><strong>列表模式</strong>（Identifier List Mode）：此时 &ldquo;屏蔽&rdquo; 的逻辑会被 &ldquo;忽略&rdquo;（或强制设为全<code>1</code>），相当于要求 ID&nbsp;<strong>完全等于</strong>&nbsp;列表里的某个值（更严格的精确匹配）。</li>
@@ -986,8 +958,7 @@
 
 <p>环回静默模式：用于热自测试，自测的同时不会影响CAN总线</p>
 
-<p><img alt="" height="356" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/4a99d47e6bdb425fa55830ef1fbf4afb.png" srcset="/img/loading.gif" lazyload width="1170" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/4a99d47e6bdb425fa55830ef1fbf4afb.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（九）工作模式</h3>
 
 <p>初始化模式：用于配置CAN外设，禁止报文的接收和发送</p>
@@ -998,12 +969,10 @@
 
 <p>AWUM：置1，自动唤醒，一旦检测到CAN总线活动，硬件就自动清零SLEEP，唤醒CAN外设；置0，手动唤醒，软件清零SLEEP，唤醒CAN外设</p>
 
-<p><img alt="" height="294" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0323f172325b4353bb3c1b153b595e2d.png" srcset="/img/loading.gif" lazyload width="617" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/0323f172325b4353bb3c1b153b595e2d.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（十）位时间特性</h3>
 
-<p><img alt="" height="463" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3d6969b6820049899e81e5d95a28d570.png" srcset="/img/loading.gif" lazyload width="1024" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/3d6969b6820049899e81e5d95a28d570.png" srcset="/img/loading.gif" lazyload></p>
 <p>波特率 = APB1时钟频率 / 分频系数 / 一位的Tq数量 &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;</p>
 
 <p>&nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; = 36MHz / (BRP[9:0]+1) / (1 + (TS1[3:0]+1) + (TS2[2:0]+1))</p>
@@ -1020,8 +989,7 @@
 
 <p>（4）状态改变错误中断：出错/唤醒/进入睡眠时产生</p>
 
-<p><img alt="" height="680" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/33326781fe6a4084b2bdc3ef7416d87e.png" srcset="/img/loading.gif" lazyload width="672" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/33326781fe6a4084b2bdc3ef7416d87e.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（十二）时间触发通信</h3>
 
 <p>（1）TTCM：置1，开启时间触发通信功能；置0，关闭时间触发通信功能</p>
@@ -1034,8 +1002,7 @@
 
 <p>（5）发送邮箱可配置TGT位，捕获计数器值的同时，也把此值写入到数据帧数据段的最后两个字节，为了使用此功能，DLC必须设置为8</p>
 
-<p><img alt="" height="261" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/3244434bac574d678d07050761554750.png" srcset="/img/loading.gif" lazyload width="1129" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/3244434bac574d678d07050761554750.png" srcset="/img/loading.gif" lazyload></p>
 <h3>（十三）错误处理和离线恢复</h3>
 
 <p>（1）TEC和REC根据错误的情况增加或减少</p>
@@ -1974,38 +1941,27 @@ int main(void)
 
 <h3>1.配置RCC</h3>
 
-<p><img alt="" height="337" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/563cf1609b6c41169455bbf35719d0d7.png" srcset="/img/loading.gif" lazyload width="823" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/563cf1609b6c41169455bbf35719d0d7.png" srcset="/img/loading.gif" lazyload></p>
 <h3>2.开启SWD</h3>
 
-<p><img alt="" height="389" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/15a503bef8e2430a955107c9f1fc47e1.png" srcset="/img/loading.gif" lazyload width="818" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/15a503bef8e2430a955107c9f1fc47e1.png" srcset="/img/loading.gif" lazyload></p>
 <h3>3.配置CAN</h3>
 
-<p><img alt="" height="363" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/685e37bdc0f64af6b1d062900199762b.png" srcset="/img/loading.gif" lazyload width="1293" /></p>
-
-<p><img alt="" height="47" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/33de648e7fc441a2840f2a4d382a3a14.png" srcset="/img/loading.gif" lazyload width="690" /></p>
-
-<p><img alt="" height="564" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/461a9f98d9714d25ae22fe06725bd97e.png" srcset="/img/loading.gif" lazyload width="1363" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/685e37bdc0f64af6b1d062900199762b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/33de648e7fc441a2840f2a4d382a3a14.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/461a9f98d9714d25ae22fe06725bd97e.png" srcset="/img/loading.gif" lazyload></p>
 <h3>4.配置PA0 GPIO下拉输入作为按键1，PB8/9配置为GPIO推挽输出使用模拟IIC</h3>
 
-<p><img alt="" height="749" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6e48a21ef4f04d959b617c28c7c2320a.png" srcset="/img/loading.gif" lazyload width="1369" /></p>
-
-<p><img alt="" height="522" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/0ec9705365ec4803ae2f2d188da4393b.png" srcset="/img/loading.gif" lazyload width="925" /></p>
-
-<p><img alt="" height="568" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/f993a41ce5564c8db3df11038a40e2a7.png" srcset="/img/loading.gif" lazyload width="906" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6e48a21ef4f04d959b617c28c7c2320a.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/0ec9705365ec4803ae2f2d188da4393b.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/f993a41ce5564c8db3df11038a40e2a7.png" srcset="/img/loading.gif" lazyload></p>
 <h3>5.配置时钟树</h3>
 
-<p><img alt="" height="784" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/5ad1a95e266e4b76bd47264680a3d49b.png" srcset="/img/loading.gif" lazyload width="1617" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/5ad1a95e266e4b76bd47264680a3d49b.png" srcset="/img/loading.gif" lazyload></p>
 <h3>6.工程配置</h3>
 
-<p><img alt="" height="812" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/45470c8a1d094218893081cdf712e54d.png" srcset="/img/loading.gif" lazyload width="1216" /></p>
-
-<p><img alt="" height="417" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/6a155a720df04dbd880c64e4925a600a.png" srcset="/img/loading.gif" lazyload width="851" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/45470c8a1d094218893081cdf712e54d.png" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/6a155a720df04dbd880c64e4925a600a.png" srcset="/img/loading.gif" lazyload></p>
 <h3>7.代码编写</h3>
 
 <pre>
@@ -2795,10 +2751,8 @@ void assert_failed(uint8_t *file, uint32_t line)
 
 <h1>三、实验效果</h1>
 
-<p><img alt="" height="650" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/d7853b17300a44188ad0e237298a05f1.gif" srcset="/img/loading.gif" lazyload width="400" /></p>
-
-<p><img alt="" height="400" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/df6e2b42601f4a3ea78139dc0f59aa9a.gif" srcset="/img/loading.gif" lazyload width="650" /></p>
-
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/d7853b17300a44188ad0e237298a05f1.gif" srcset="/img/loading.gif" lazyload></p>
+<p><img src="/2025/07/04/%E3%80%90STM32%E3%80%91CAN%E9%80%9A%E8%AE%AF%E7%9A%84%E5%AD%A6%E4%B9%A0%E7%AC%94%E8%AE%B0%E4%BB%A5%E5%8F%8A%E9%A1%B9%E7%9B%AE%E5%AE%9E%E6%88%98/df6e2b42601f4a3ea78139dc0f59aa9a.gif" srcset="/img/loading.gif" lazyload></p>
 <p>注：</p>
 
 <p>（1）参考链接：<br />

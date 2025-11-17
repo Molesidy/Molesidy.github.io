@@ -27,18 +27,18 @@
 <meta property="og:description" content="前言： &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;关于git的下载、安装、配置等，本文未进行阐述，仅以此简单记录一下仓库的创建与项目的提交的过程，若需要git的下载、安装、配置等相关信息，请移步至其他优秀文章，同时提醒下面的步骤由于初次测试有一些麻烦，建议步骤是首先创建远程仓库后就克隆到本地进行修改再次推送，若是在本地另外创建的仓库初始化后">
 <meta property="og:locale" content="zh_CN">
 <meta property="og:image" content="https://i-blog.csdnimg.cn/direct/febef72fde9748bea31769e88fee5f86.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/54ba834916e144309e1d455cdad3b993.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/042f4582bc34452cbc0e19ee31198903.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/bfd0f81d19904c8294acb417872a9bed.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ad1de8054529487db097101bfa7e5979.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/2f60f1b319bb410297f35f2d7513e900.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/84c65ec0d8b54ca1bb6edcb5742a6599.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ba0f0955c0514cceaf69df7a3eb4d7fe.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/ca07db5439ab4d42aa61a09c536350c3.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/98ab4260dedd4fc69953a6a6f8fffc77.png">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/c3edb8f588e54f71bf857b3fa63c273a.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/54ba834916e144309e1d455cdad3b993.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/042f4582bc34452cbc0e19ee31198903.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/bfd0f81d19904c8294acb417872a9bed.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ad1de8054529487db097101bfa7e5979.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/2f60f1b319bb410297f35f2d7513e900.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/84c65ec0d8b54ca1bb6edcb5742a6599.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ba0f0955c0514cceaf69df7a3eb4d7fe.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ca07db5439ab4d42aa61a09c536350c3.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/98ab4260dedd4fc69953a6a6f8fffc77.png">
+<meta property="og:image" content="http://example.com/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/c3edb8f588e54f71bf857b3fa63c273a.png">
 <meta property="article:published_time" content="2025-06-28T11:27:54.000Z">
-<meta property="article:modified_time" content="2025-11-17T13:53:22.475Z">
+<meta property="article:modified_time" content="2025-11-17T18:09:00.262Z">
 <meta property="article:author" content="John Doe">
 <meta property="article:tag" content="git">
 <meta name="twitter:card" content="summary_large_image">
@@ -310,7 +310,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-17T21:53:22+08:00
+                    本文最后更新于 2025-11-18T02:09:00+08:00
                   
                   
 
@@ -333,44 +333,35 @@
 
 <p style="text-align:center"><strong>二、在本地磁盘上创建一个文件夹并右击用Git Bash进行本地git仓库的初始化和本地项目的提交。</strong></p>
 
-<p><img alt="" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/54ba834916e144309e1d455cdad3b993.png" srcset="/img/loading.gif" lazyload /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/54ba834916e144309e1d455cdad3b993.png" srcset="/img/loading.gif" lazyload></p>
 <p>1.输入命令：<strong>git init，</strong>在当前所在目录下创建一个空的Git仓库，同时会在当前目录下生成.git文件夹</p>
 
-<p><img alt="" height="868" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/042f4582bc34452cbc0e19ee31198903.png" srcset="/img/loading.gif" lazyload width="1148" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/042f4582bc34452cbc0e19ee31198903.png" srcset="/img/loading.gif" lazyload></p>
 <p>2.输入命令：<strong>git add *(*表示文件/文件夹名)</strong>，选择要上传的文件/文件夹添加到Git仓库中，如果需把该目录下的所有文件/文件夹都暂存到Git仓库中，可输入命令<strong>git add .</strong>，<strong>.</strong>表示当前路径下的所有文件/文件夹</p>
 
-<p><img alt="" height="284" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/bfd0f81d19904c8294acb417872a9bed.png" srcset="/img/loading.gif" lazyload width="728" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/bfd0f81d19904c8294acb417872a9bed.png" srcset="/img/loading.gif" lazyload></p>
 <p>3.之后，输入命令：<strong>git commit -m &quot;此次提交时的备注&quot;（windows使用&quot;&quot;，Linux使用&#39;&#39;）</strong>将代码正式提交到本地仓库中</p>
 
-<p><img alt="" height="57" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ad1de8054529487db097101bfa7e5979.png" srcset="/img/loading.gif" lazyload width="687" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ad1de8054529487db097101bfa7e5979.png" srcset="/img/loading.gif" lazyload></p>
 <p>4.输入命令：<strong>git status</strong>，查看是否都已提交</p>
 
-<p><img alt="" height="78" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/2f60f1b319bb410297f35f2d7513e900.png" srcset="/img/loading.gif" lazyload width="535" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/2f60f1b319bb410297f35f2d7513e900.png" srcset="/img/loading.gif" lazyload></p>
 <p>5.输入命令：<strong>git remote add origin &quot;传输通道类型:仓库地址&quot;</strong>，关联远程仓库</p>
 
-<p><img alt="" height="47" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/84c65ec0d8b54ca1bb6edcb5742a6599.png" srcset="/img/loading.gif" lazyload width="552" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/84c65ec0d8b54ca1bb6edcb5742a6599.png" srcset="/img/loading.gif" lazyload></p>
 <p>6.输入命令：<strong>git remote -v</strong>，查看关联情况，出现可拉取和可推送信息则关联成功</p>
 
-<p><img alt="" height="82" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ba0f0955c0514cceaf69df7a3eb4d7fe.png" srcset="/img/loading.gif" lazyload width="520" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ba0f0955c0514cceaf69df7a3eb4d7fe.png" srcset="/img/loading.gif" lazyload></p>
 <p>7.输入命令：<strong>git push -u origin&nbsp;main</strong>，就可以推送到远程仓库了，第一次传项目时远程仓库是空的需要加上<strong>-u</strong>，但是后面的推送就不需要加上<strong>-u</strong>了（我的默认分支命是<strong>main</strong>，若是你的仓库设置分支名是<strong>master</strong>可改为<strong>master</strong>）</p>
 
-<p><img alt="" height="48" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/ca07db5439ab4d42aa61a09c536350c3.png" srcset="/img/loading.gif" lazyload width="522" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/ca07db5439ab4d42aa61a09c536350c3.png" srcset="/img/loading.gif" lazyload></p>
 <p>8.由于本地仓库没有远程仓库的readme.md文件导致不同步，所以应该在本地仓库初始化并关联远程仓库后先拉取一下保持同步，解决办法就是先拉取一下（<strong>git pull --rebase origin main</strong><br />
 ）后再推送。（最好还是先创建远程仓库再将其克隆到本地进行修改）</p>
 
-<p><img alt="" height="177" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/98ab4260dedd4fc69953a6a6f8fffc77.png" srcset="/img/loading.gif" lazyload width="693" /></p>
-
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/98ab4260dedd4fc69953a6a6f8fffc77.png" srcset="/img/loading.gif" lazyload></p>
 <p>最后完成推送。</p>
 
-<p><img alt="" height="198" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/c3edb8f588e54f71bf857b3fa63c273a.png" srcset="/img/loading.gif" lazyload width="600" /></p>
+<p><img src="/2025/06/28/%E3%80%90Git%E3%80%91%E4%BB%93%E5%BA%93%E7%9A%84%E5%88%9B%E5%BB%BA%E4%B8%8E%E9%A1%B9%E7%9B%AE%E7%9A%84%E6%8F%90%E4%BA%A4/c3edb8f588e54f71bf857b3fa63c273a.png" srcset="/img/loading.gif" lazyload></p>
 
                 
               </div>
