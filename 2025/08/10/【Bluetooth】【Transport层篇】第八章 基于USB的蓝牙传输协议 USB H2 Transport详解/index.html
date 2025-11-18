@@ -26,16 +26,16 @@
 <meta property="og:site_name" content="Molesidy Blog">
 <meta property="og:description" content="一、蓝牙 H2（USB）Transport 协议的核心定义与定位  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;蓝牙 H2 Transport 是基于 USB 接口实现的传输层协议，用于在蓝牙主机（Host，如计算机、手机）与控制器（Controller，如蓝牙芯片）之间承载 HCI（Host Controller Interface）数据。作为蓝牙协议">
 <meta property="og:locale" content="zh_CN">
-<meta property="og:image" content="https://i-blog.csdnimg.cn/direct/66f2666990a740568928cdacfb73433a.png">
+<meta property="og:image" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/66f2666990a740568928cdacfb73433a.png">
 <meta property="og:image" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/fc8f480ed3344e99a59566aac4fe5d43.png">
 <meta property="og:image" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/9b22cd37014648cb9cdd0b46d626a8b9.png">
 <meta property="og:image" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/b1c936c73731451a8abbd6ca3eaeadba.png">
 <meta property="article:published_time" content="2025-08-10T09:05:51.000Z">
-<meta property="article:modified_time" content="2025-11-17T18:08:06.125Z">
+<meta property="article:modified_time" content="2025-11-18T05:27:51.084Z">
 <meta property="article:author" content="Molesidy">
 <meta property="article:tag" content="bluetooth H2 USB">
 <meta name="twitter:card" content="summary_large_image">
-<meta name="twitter:image" content="https://i-blog.csdnimg.cn/direct/66f2666990a740568928cdacfb73433a.png">
+<meta name="twitter:image" content="http://example.com/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/66f2666990a740568928cdacfb73433a.png">
   
   
   
@@ -74,7 +74,7 @@
 
 
   
-<link rel="stylesheet" href="/css/mac-style-code.css">
+<link rel="stylesheet" href="/css/macpanel.css">
 
 
 
@@ -307,7 +307,7 @@
               <p id="updated-time" class="note note-info" style="display: none">
                 
                   
-                    本文最后更新于 2025-11-18T02:08:06+08:00
+                    本文最后更新于 2025-11-18T13:27:51+08:00
                   
                   
 
@@ -325,8 +325,7 @@
 
 <h1>二、工作原理与核心机制</h1>
 
-<p class="img-center"><img alt="" height="497" isbindedload="true" src="https://i-blog.csdnimg.cn/direct/66f2666990a740568928cdacfb73433a.png" srcset="/img/loading.gif" lazyload width="529" /></p>
-
+<p><img src="/2025/08/10/%E3%80%90Bluetooth%E3%80%91%E3%80%90Transport%E5%B1%82%E7%AF%87%E3%80%91%E7%AC%AC%E5%85%AB%E7%AB%A0%20%E5%9F%BA%E4%BA%8EUSB%E7%9A%84%E8%93%9D%E7%89%99%E4%BC%A0%E8%BE%93%E5%8D%8F%E8%AE%AE%20USB%20H2%20Transport%E8%AF%A6%E8%A7%A3/66f2666990a740568928cdacfb73433a.png" srcset="/img/loading.gif" lazyload></p>
 <ol>
 	<li>
 	<p><strong>HCI 与 USB 的协同</strong></p>
