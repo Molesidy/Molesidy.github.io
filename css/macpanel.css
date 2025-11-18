@@ -1,4 +1,4 @@
-.highlight {
+/* .highlight {
   background: #21252b;
   border-radius: 5px;
   box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4);
@@ -14,4 +14,27 @@
   margin-top: -20px;
   position: absolute;
   width: 12px;
+} */
+
+/* 增强选择器优先级（结合父容器类名，确保覆盖主题样式） */
+.article .highlight {
+  background: #21252b !important; /* 强制覆盖背景色（临时用，确认生效后可去掉!important） */
+  border-radius: 5px !important;
+  box-shadow: 0 10px 30px 0 rgba(0,0,0,0.4) !important;
+  padding-top: 30px !important;
+  position: relative !important; /* 关键：让伪元素以.highlight为基准定位 */
+}
+
+/* 修复伪元素定位 */
+.article .highlight::before {
+  background: #fc625d;
+  border-radius: 50%;
+  box-shadow: 20px 0 #fdbc40, 40px 0 #35cd4b;
+  content: ' ';
+  height: 12px;
+  left: 12px; /* 相对于.highlight左侧12px */
+  top: 10px; /* 相对于.highlight顶部10px（替代margin-top，避免定位偏移） */
+  position: absolute;
+  width: 12px;
+  z-index: 1; /* 确保在代码块内容上方显示 */
 }
